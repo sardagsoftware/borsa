@@ -1,9 +1,9 @@
-/* global window, document, navigator, MediaRecorder, AudioContext, fetch, Blob, FileReader, atob, URL, Audio, alert */
+/* global window, document, navigator, MediaRecorder, fetch, Blob, FileReader, Audio, alert, CustomEvent */
 /**
- * AILYDIAN Voice Chat Client
+ * AILYDIAN Voice Chat Client - Siri-Like Holographic Interface
  * Voice-to-Voice conversation in Turkish
  *
- * @version 1.0.0
+ * @version 2.0.0 - Inline Siri-style holographic interface
  */
 
 (function () {
@@ -47,14 +47,16 @@
 
   // Permission error messages in Turkish
   const PERMISSION_ERRORS = {
-    NotAllowedError: 'Mikrofon izni reddedildi. Lütfen tarayıcı ayarlarından mikrofon iznini verin.',
-    NotFoundError: 'Mikrofon bulunamadı. Lütfen cihazınıza mikrofon bağlayın.',
-    NotReadableError: 'Mikrofon başka bir uygulama tarafından kullanılıyor. Lütfen diğer uygulamaları kapatın.',
-    OverconstrainedError: 'Mikrofon ayarları uyumsuz. Lütfen farklı bir tarayıcı deneyin.',
-    SecurityError: 'Güvenli bağlantı (HTTPS) gerekli. Lütfen site adresini kontrol edin.',
-    AbortError: 'Mikrofon bağlantısı kesildi. Lütfen tekrar deneyin.',
-    TypeError: 'Tarayıcınız ses kaydını desteklemiyor.',
-    default: 'Mikrofon erişimi başarısız oldu. Lütfen tarayıcı ayarlarını kontrol edin.',
+    NotAllowedError:
+      'Mikrofon izni reddedildi. Lutfen tarayici ayarlarindan mikrofon iznini verin.',
+    NotFoundError: 'Mikrofon bulunamadi. Lutfen cihaziniza mikrofon baglayin.',
+    NotReadableError:
+      'Mikrofon baska bir uygulama tarafindan kullaniliyor. Lutfen diger uygulamalari kapatin.',
+    OverconstrainedError: 'Mikrofon ayarlari uyumsuz. Lutfen farkli bir tarayici deneyin.',
+    SecurityError: 'Guvenli baglanti (HTTPS) gerekli. Lutfen site adresini kontrol edin.',
+    AbortError: 'Mikrofon baglantisi kesildi. Lutfen tekrar deneyin.',
+    TypeError: 'Tarayiciniz ses kaydini desteklemiyor.',
+    default: 'Mikrofon erisimi basarisiz oldu. Lutfen tarayici ayarlarini kontrol edin.',
   };
 
   let mediaRecorder = null;
@@ -63,12 +65,12 @@
   let _isPlaying = false; // eslint-disable-line no-unused-vars
   let _audioContext = null; // eslint-disable-line no-unused-vars
   let conversationHistory = [];
+  let voiceInterfaceActive = false;
 
   // UI Elements
   let voiceBtn = null;
-  let voiceOverlay = null;
+  let voiceInterface = null;
   let statusText = null;
-  let _waveContainer = null; // eslint-disable-line no-unused-vars
 
   /**
    * Initialize voice chat
@@ -80,100 +82,302 @@
       return;
     }
 
-    createVoiceOverlay();
+    injectStyles();
     setupEventListeners();
-    console.log('[VoiceChat] Initialized');
+    console.log('[VoiceChat] Siri-like interface initialized');
   }
 
   /**
-   * Create voice chat overlay UI
+   * Inject Siri-like holographic styles
    */
-  function createVoiceOverlay() {
-    // Check if already exists
-    if (document.getElementById('voiceChatOverlay')) return;
+  function injectStyles() {
+    if (document.getElementById('siri-voice-styles')) return;
 
-    const overlay = document.createElement('div');
-    overlay.id = 'voiceChatOverlay';
-    overlay.className = 'voice-chat-overlay';
-    overlay.innerHTML = `
-      <div class="voice-chat-modal">
-        <button class="voice-close-btn" id="voiceCloseBtn">
-          <svg viewBox="0 0 24 24" width="24" height="24">
-            <path fill="currentColor" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-          </svg>
-        </button>
-
-        <div class="voice-avatar">
-          <div class="voice-avatar-inner">
-            <svg viewBox="0 0 24 24" width="48" height="48">
-              <path fill="currentColor" d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
-              <path fill="currentColor" d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
-            </svg>
-          </div>
-          <div class="voice-pulse"></div>
-        </div>
-
-        <div class="voice-wave-container" id="voiceWaveContainer">
-          <div class="voice-wave"></div>
-          <div class="voice-wave"></div>
-          <div class="voice-wave"></div>
-          <div class="voice-wave"></div>
-          <div class="voice-wave"></div>
-        </div>
-
-        <p class="voice-status" id="voiceStatus">Mikrofona dokunun ve konusmaya baslayin</p>
-
-        <button class="voice-record-btn" id="voiceRecordBtn">
-          <svg class="mic-icon" viewBox="0 0 24 24" width="32" height="32">
-            <path fill="currentColor" d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm-1-9c0-.55.45-1 1-1s1 .45 1 1v6c0 .55-.45 1-1 1s-1-.45-1-1V5zm6 6c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
-          </svg>
-          <svg class="stop-icon" viewBox="0 0 24 24" width="32" height="32" style="display:none">
-            <path fill="currentColor" d="M6 6h12v12H6z"/>
-          </svg>
-        </button>
-
-        <p class="voice-hint">Konusurken butonu basili tutun veya bir kez dokunup konusun</p>
-      </div>
-    `;
-
-    // Add styles
     const style = document.createElement('style');
-    style.id = 'voice-chat-styles';
+    style.id = 'siri-voice-styles';
     style.textContent = `
-      .voice-chat-overlay {
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.95);
-        display: none;
+      /* Siri-like Holographic Voice Interface */
+      .siri-voice-interface {
+        position: relative;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem 1rem;
+        background: linear-gradient(180deg,
+          rgba(16, 163, 127, 0.05) 0%,
+          rgba(0, 212, 170, 0.02) 50%,
+          transparent 100%
+        );
+        border-radius: 24px 24px 0 0;
+        margin-bottom: 0.5rem;
+        animation: siriAppear 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      @keyframes siriAppear {
+        from {
+          opacity: 0;
+          transform: translateY(20px) scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      /* Siri Orb Container */
+      .siri-orb-container {
+        position: relative;
+        width: 120px;
+        height: 120px;
+        margin-bottom: 1.5rem;
+      }
+
+      /* Main Orb */
+      .siri-orb {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background: radial-gradient(circle at 30% 30%,
+          rgba(16, 163, 127, 0.9) 0%,
+          rgba(0, 212, 170, 0.7) 30%,
+          rgba(16, 163, 127, 0.5) 60%,
+          rgba(0, 100, 80, 0.3) 100%
+        );
+        box-shadow:
+          0 0 40px rgba(16, 163, 127, 0.4),
+          0 0 80px rgba(16, 163, 127, 0.2),
+          inset 0 0 30px rgba(255, 255, 255, 0.1);
+        position: relative;
+        z-index: 2;
+        animation: siriOrbidle 3s ease-in-out infinite;
+      }
+
+      .siri-orb::before {
+        content: '';
+        position: absolute;
+        top: 10%;
+        left: 15%;
+        width: 30%;
+        height: 30%;
+        background: radial-gradient(ellipse, rgba(255, 255, 255, 0.4) 0%, transparent 70%);
+        border-radius: 50%;
+      }
+
+      @keyframes siriOrbidle {
+        0%, 100% {
+          transform: scale(1);
+          box-shadow:
+            0 0 40px rgba(16, 163, 127, 0.4),
+            0 0 80px rgba(16, 163, 127, 0.2),
+            inset 0 0 30px rgba(255, 255, 255, 0.1);
+        }
+        50% {
+          transform: scale(1.02);
+          box-shadow:
+            0 0 50px rgba(16, 163, 127, 0.5),
+            0 0 100px rgba(16, 163, 127, 0.3),
+            inset 0 0 40px rgba(255, 255, 255, 0.15);
+        }
+      }
+
+      /* Recording State - Pulsing */
+      .siri-voice-interface.recording .siri-orb {
+        animation: siriOrbRecording 0.8s ease-in-out infinite;
+        background: radial-gradient(circle at 30% 30%,
+          rgba(239, 68, 68, 0.9) 0%,
+          rgba(220, 38, 38, 0.7) 30%,
+          rgba(185, 28, 28, 0.5) 60%,
+          rgba(127, 29, 29, 0.3) 100%
+        );
+        box-shadow:
+          0 0 50px rgba(239, 68, 68, 0.5),
+          0 0 100px rgba(239, 68, 68, 0.3),
+          inset 0 0 30px rgba(255, 255, 255, 0.1);
+      }
+
+      @keyframes siriOrbRecording {
+        0%, 100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.08);
+        }
+      }
+
+      /* Processing State - Spinning */
+      .siri-voice-interface.processing .siri-orb {
+        animation: siriOrbProcessing 1.5s linear infinite;
+        background: conic-gradient(from 0deg,
+          rgba(16, 163, 127, 0.9),
+          rgba(0, 212, 170, 0.7),
+          rgba(59, 130, 246, 0.7),
+          rgba(139, 92, 246, 0.7),
+          rgba(16, 163, 127, 0.9)
+        );
+      }
+
+      @keyframes siriOrbProcessing {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+
+      /* Glow Rings */
+      .siri-glow-ring {
+        position: absolute;
+        border-radius: 50%;
+        border: 2px solid rgba(16, 163, 127, 0.3);
+        animation: siriGlowExpand 2s ease-out infinite;
+        pointer-events: none;
+      }
+
+      .siri-glow-ring:nth-child(1) {
+        inset: -15px;
+        animation-delay: 0s;
+      }
+
+      .siri-glow-ring:nth-child(2) {
+        inset: -30px;
+        animation-delay: 0.5s;
+      }
+
+      .siri-glow-ring:nth-child(3) {
+        inset: -45px;
+        animation-delay: 1s;
+      }
+
+      .siri-voice-interface:not(.recording):not(.processing) .siri-glow-ring {
+        animation-play-state: paused;
+        opacity: 0.3;
+      }
+
+      @keyframes siriGlowExpand {
+        0% {
+          transform: scale(1);
+          opacity: 0.5;
+        }
+        100% {
+          transform: scale(1.3);
+          opacity: 0;
+        }
+      }
+
+      /* Voice Visualizer Bars */
+      .siri-voice-bars {
+        display: flex;
         align-items: center;
         justify-content: center;
-        z-index: 100000;
-        padding: 1rem;
-        backdrop-filter: blur(10px);
+        gap: 3px;
+        height: 50px;
+        margin-bottom: 1rem;
       }
-      .voice-chat-overlay.active {
-        display: flex;
+
+      .siri-voice-bar {
+        width: 4px;
+        height: 20px;
+        background: linear-gradient(to top, #10a37f, #00d4aa);
+        border-radius: 2px;
+        transition: height 0.1s ease;
       }
-      .voice-chat-modal {
-        background: linear-gradient(135deg, #0a0b0d 0%, #1a1a2e 100%);
-        border: 1px solid rgba(16, 163, 127, 0.3);
-        border-radius: 24px;
-        padding: 2rem;
-        max-width: 400px;
-        width: 100%;
+
+      .siri-voice-interface.recording .siri-voice-bar {
+        animation: siriBarPulse 0.4s ease-in-out infinite;
+      }
+
+      .siri-voice-bar:nth-child(1) { animation-delay: 0s; }
+      .siri-voice-bar:nth-child(2) { animation-delay: 0.05s; }
+      .siri-voice-bar:nth-child(3) { animation-delay: 0.1s; }
+      .siri-voice-bar:nth-child(4) { animation-delay: 0.15s; }
+      .siri-voice-bar:nth-child(5) { animation-delay: 0.2s; }
+      .siri-voice-bar:nth-child(6) { animation-delay: 0.25s; }
+      .siri-voice-bar:nth-child(7) { animation-delay: 0.3s; }
+      .siri-voice-bar:nth-child(8) { animation-delay: 0.35s; }
+      .siri-voice-bar:nth-child(9) { animation-delay: 0.4s; }
+      .siri-voice-bar:nth-child(10) { animation-delay: 0.45s; }
+      .siri-voice-bar:nth-child(11) { animation-delay: 0.5s; }
+      .siri-voice-bar:nth-child(12) { animation-delay: 0.55s; }
+
+      @keyframes siriBarPulse {
+        0%, 100% { height: 10px; }
+        50% { height: 40px; }
+      }
+
+      .siri-voice-interface:not(.recording) .siri-voice-bar {
+        height: 4px;
+        opacity: 0.3;
+      }
+
+      /* Status Text */
+      .siri-status {
+        color: #fff;
+        font-size: 1rem;
+        font-weight: 500;
+        margin-bottom: 1.25rem;
         text-align: center;
-        position: relative;
-        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 100px rgba(16, 163, 127, 0.1);
+        min-height: 1.5rem;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
       }
-      .voice-close-btn {
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
-        width: 40px;
-        height: 40px;
-        background: rgba(255, 255, 255, 0.1);
-        border: none;
+
+      /* Action Buttons */
+      .siri-actions {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+      }
+
+      .siri-mic-btn {
+        width: 60px;
+        height: 60px;
         border-radius: 50%;
+        background: linear-gradient(135deg, #10a37f 0%, #00d4aa 100%);
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        box-shadow: 0 4px 20px rgba(16, 163, 127, 0.4);
+        transition: all 0.2s;
+      }
+
+      .siri-mic-btn:hover {
+        transform: scale(1.08);
+        box-shadow: 0 6px 30px rgba(16, 163, 127, 0.5);
+      }
+
+      .siri-mic-btn:active {
+        transform: scale(0.95);
+      }
+
+      .siri-voice-interface.recording .siri-mic-btn {
+        background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+        box-shadow: 0 4px 20px rgba(239, 68, 68, 0.4);
+      }
+
+      .siri-mic-btn .mic-icon,
+      .siri-mic-btn .stop-icon {
+        width: 28px;
+        height: 28px;
+      }
+
+      .siri-mic-btn .stop-icon {
+        display: none;
+      }
+
+      .siri-voice-interface.recording .siri-mic-btn .mic-icon {
+        display: none;
+      }
+
+      .siri-voice-interface.recording .siri-mic-btn .stop-icon {
+        display: block;
+      }
+
+      .siri-close-btn {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.15);
         cursor: pointer;
         display: flex;
         align-items: center;
@@ -181,131 +385,120 @@
         color: rgba(255, 255, 255, 0.7);
         transition: all 0.2s;
       }
-      .voice-close-btn:hover {
-        background: rgba(255, 255, 255, 0.2);
+
+      .siri-close-btn:hover {
+        background: rgba(255, 255, 255, 0.15);
         color: #fff;
       }
-      .voice-avatar {
-        width: 120px;
-        height: 120px;
-        margin: 0 auto 1.5rem;
-        position: relative;
-      }
-      .voice-avatar-inner {
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(135deg, #10a37f 0%, #00d4aa 100%);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #fff;
-        position: relative;
-        z-index: 2;
-      }
-      .voice-pulse {
-        position: absolute;
-        inset: -10px;
-        border-radius: 50%;
-        background: rgba(16, 163, 127, 0.3);
-        animation: voicePulse 2s ease-in-out infinite;
-        opacity: 0;
-      }
-      .voice-chat-overlay.recording .voice-pulse {
-        opacity: 1;
-      }
-      @keyframes voicePulse {
-        0%, 100% { transform: scale(1); opacity: 0.3; }
-        50% { transform: scale(1.2); opacity: 0.1; }
-      }
-      .voice-wave-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 4px;
-        height: 40px;
-        margin-bottom: 1rem;
-        opacity: 0;
-        transition: opacity 0.3s;
-      }
-      .voice-chat-overlay.recording .voice-wave-container,
-      .voice-chat-overlay.playing .voice-wave-container {
-        opacity: 1;
-      }
-      .voice-wave {
-        width: 4px;
-        height: 20px;
-        background: linear-gradient(to top, #10a37f, #00d4aa);
-        border-radius: 2px;
-        animation: voiceWave 1s ease-in-out infinite;
-      }
-      .voice-wave:nth-child(1) { animation-delay: 0s; }
-      .voice-wave:nth-child(2) { animation-delay: 0.1s; }
-      .voice-wave:nth-child(3) { animation-delay: 0.2s; }
-      .voice-wave:nth-child(4) { animation-delay: 0.3s; }
-      .voice-wave:nth-child(5) { animation-delay: 0.4s; }
-      @keyframes voiceWave {
-        0%, 100% { height: 10px; }
-        50% { height: 35px; }
-      }
-      .voice-status {
-        color: #fff;
-        font-size: 1.1rem;
-        margin: 0 0 1.5rem;
-        min-height: 1.5rem;
-      }
-      .voice-record-btn {
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, #10a37f 0%, #00d4aa 100%);
-        border: none;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #fff;
-        margin: 0 auto 1rem;
-        transition: all 0.2s;
-        box-shadow: 0 4px 20px rgba(16, 163, 127, 0.4);
-      }
-      .voice-record-btn:hover {
-        transform: scale(1.05);
-        box-shadow: 0 6px 30px rgba(16, 163, 127, 0.5);
-      }
-      .voice-record-btn:active {
-        transform: scale(0.95);
-      }
-      .voice-chat-overlay.recording .voice-record-btn {
-        background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-        box-shadow: 0 4px 20px rgba(239, 68, 68, 0.4);
-      }
-      .voice-chat-overlay.recording .mic-icon { display: none; }
-      .voice-chat-overlay.recording .stop-icon { display: block; }
-      .voice-hint {
+
+      /* Hint Text */
+      .siri-hint {
         color: rgba(255, 255, 255, 0.5);
-        font-size: 0.85rem;
-        margin: 0;
+        font-size: 0.8rem;
+        margin-top: 1rem;
+        text-align: center;
       }
-      .voice-chat-overlay.processing .voice-record-btn {
-        pointer-events: none;
-        opacity: 0.5;
-      }
-      .voice-chat-overlay.playing .voice-avatar-inner {
-        animation: speaking 0.5s ease-in-out infinite;
-      }
-      @keyframes speaking {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.05); }
+
+      /* Mobile Responsive */
+      @media (max-width: 768px) {
+        .siri-voice-interface {
+          padding: 1.5rem 1rem;
+        }
+
+        .siri-orb-container {
+          width: 100px;
+          height: 100px;
+        }
+
+        .siri-glow-ring:nth-child(1) { inset: -10px; }
+        .siri-glow-ring:nth-child(2) { inset: -20px; }
+        .siri-glow-ring:nth-child(3) { inset: -30px; }
+
+        .siri-mic-btn {
+          width: 54px;
+          height: 54px;
+        }
+
+        .siri-voice-bars {
+          height: 40px;
+        }
       }
     `;
 
     document.head.appendChild(style);
-    document.body.appendChild(overlay);
+  }
 
-    voiceOverlay = overlay;
-    statusText = document.getElementById('voiceStatus');
-    _waveContainer = document.getElementById('voiceWaveContainer');
+  /**
+   * Create inline Siri-like voice interface
+   */
+  function createVoiceInterface() {
+    // Remove existing if any
+    if (voiceInterface) {
+      voiceInterface.remove();
+    }
+
+    const container = document.createElement('div');
+    container.id = 'siriVoiceInterface';
+    container.className = 'siri-voice-interface';
+    container.innerHTML = `
+      <!-- Siri Orb with Glow -->
+      <div class="siri-orb-container">
+        <div class="siri-glow-ring"></div>
+        <div class="siri-glow-ring"></div>
+        <div class="siri-glow-ring"></div>
+        <div class="siri-orb"></div>
+      </div>
+
+      <!-- Voice Visualization Bars -->
+      <div class="siri-voice-bars">
+        <div class="siri-voice-bar"></div>
+        <div class="siri-voice-bar"></div>
+        <div class="siri-voice-bar"></div>
+        <div class="siri-voice-bar"></div>
+        <div class="siri-voice-bar"></div>
+        <div class="siri-voice-bar"></div>
+        <div class="siri-voice-bar"></div>
+        <div class="siri-voice-bar"></div>
+        <div class="siri-voice-bar"></div>
+        <div class="siri-voice-bar"></div>
+        <div class="siri-voice-bar"></div>
+        <div class="siri-voice-bar"></div>
+      </div>
+
+      <!-- Status -->
+      <p class="siri-status" id="siriStatus">Mikrofona dokunun ve konusmaya baslayin</p>
+
+      <!-- Actions -->
+      <div class="siri-actions">
+        <button class="siri-close-btn" id="siriCloseBtn" title="Kapat">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 6L6 18M6 6l12 12"/>
+          </svg>
+        </button>
+
+        <button class="siri-mic-btn" id="siriMicBtn" title="Kaydet">
+          <svg class="mic-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
+            <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+          </svg>
+          <svg class="stop-icon" viewBox="0 0 24 24" fill="currentColor">
+            <rect x="6" y="6" width="12" height="12" rx="2"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Hint -->
+      <p class="siri-hint">Butona basin ve konusmaya baslayin</p>
+    `;
+
+    voiceInterface = container;
+    statusText = container.querySelector('#siriStatus');
+
+    // Setup interface event listeners
+    container.querySelector('#siriCloseBtn')?.addEventListener('click', closeVoiceInterface);
+    container.querySelector('#siriMicBtn')?.addEventListener('click', toggleRecording);
+
+    return container;
   }
 
   /**
@@ -313,59 +506,92 @@
    */
   function setupEventListeners() {
     // Main voice button
-    voiceBtn.addEventListener('click', openVoiceChat);
-
-    // Overlay controls
-    document.getElementById('voiceCloseBtn')?.addEventListener('click', closeVoiceChat);
-    document.getElementById('voiceRecordBtn')?.addEventListener('click', toggleRecording);
+    voiceBtn.addEventListener('click', openVoiceInterface);
 
     // Close on escape
     document.addEventListener('keydown', e => {
-      if (e.key === 'Escape' && voiceOverlay?.classList.contains('active')) {
-        closeVoiceChat();
+      if (e.key === 'Escape' && voiceInterfaceActive) {
+        closeVoiceInterface();
       }
     });
   }
 
   /**
-   * Open voice chat overlay with permission pre-check
+   * Open inline voice interface
    */
-  async function openVoiceChat() {
-    if (!voiceOverlay) return;
+  async function openVoiceInterface() {
+    if (voiceInterfaceActive) return;
 
     // Check browser support first
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-      alert('Tarayıcınız ses kaydını desteklemiyor. Lütfen Chrome, Firefox veya Safari kullanın.');
+      alert('Tarayiciniz ses kaydini desteklemiyor. Lutfen Chrome, Firefox veya Safari kullanin.');
       return;
     }
 
-    voiceOverlay.classList.add('active');
+    // Create interface
+    const container = createVoiceInterface();
 
-    // Check permission status and show appropriate message
-    const permissionStatus = await checkMicrophonePermission();
+    // Insert into chat area - before the input wrapper
+    const inputWrapper = document.querySelector('.input-wrapper');
+    const inputContainer = document.querySelector('.input-container');
 
-    if (permissionStatus === 'denied') {
-      showPermissionGuidance('NotAllowedError');
-    } else if (permissionStatus === 'prompt') {
-      updateStatus('Mikrofon butonuna dokunun. İlk kullanımda izin isteyeceğiz.');
+    if (inputContainer && inputWrapper) {
+      inputContainer.insertBefore(container, inputWrapper);
+    } else if (inputWrapper && inputWrapper.parentNode) {
+      inputWrapper.parentNode.insertBefore(container, inputWrapper);
     } else {
-      updateStatus('Mikrofon butonuna dokunun ve konuşmaya başlayın.');
+      // Fallback - append to main area
+      const mainArea = document.querySelector('.main-area') || document.body;
+      mainArea.appendChild(container);
+    }
+
+    voiceInterfaceActive = true;
+
+    // Pre-check microphone permission
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({
+        audio: {
+          echoCancellation: true,
+          noiseSuppression: true,
+          autoGainControl: true,
+        },
+      });
+      // Release immediately
+      stream.getTracks().forEach(track => track.stop());
+      updateStatus('Hazir - kaydetmek icin butona basin');
+    } catch (error) {
+      const message = PERMISSION_ERRORS[error.name] || PERMISSION_ERRORS.default;
+      updateStatus(message);
+      console.warn('[VoiceChat] Microphone permission error:', error.name);
     }
   }
 
   /**
-   * Close voice chat overlay
+   * Close voice interface
    */
-  function closeVoiceChat() {
+  function closeVoiceInterface() {
+    if (!voiceInterfaceActive) return;
+
+    // Stop recording if active
     if (isRecording) {
       stopRecording();
     }
-    voiceOverlay?.classList.remove('active', 'recording', 'playing', 'processing');
-    conversationHistory = []; // Reset conversation
+
+    // Remove interface with animation
+    if (voiceInterface) {
+      voiceInterface.style.animation = 'siriAppear 0.3s ease reverse';
+      setTimeout(() => {
+        voiceInterface.remove();
+        voiceInterface = null;
+      }, 300);
+    }
+
+    voiceInterfaceActive = false;
+    statusText = null;
   }
 
   /**
-   * Toggle recording state
+   * Toggle recording
    */
   async function toggleRecording() {
     if (isRecording) {
@@ -376,127 +602,69 @@
   }
 
   /**
-   * Check microphone permission status
-   */
-  async function checkMicrophonePermission() {
-    try {
-      // Check if permissions API is available
-      if (navigator.permissions && navigator.permissions.query) {
-        const result = await navigator.permissions.query({ name: 'microphone' });
-        return result.state; // 'granted', 'denied', 'prompt'
-      }
-      return 'prompt'; // Assume prompt if API not available
-    } catch {
-      return 'prompt'; // Fallback
-    }
-  }
-
-  /**
-   * Show permission guidance modal
-   */
-  function showPermissionGuidance(errorType) {
-    const browser = getBrowserInfo();
-    let guidance = '';
-
-    if (browser.isIOS) {
-      guidance = 'iOS cihazlarda: Ayarlar > Safari > Mikrofon iznini açın.';
-    } else if (browser.isSafari) {
-      guidance = 'Safari: Adres çubuğundaki site ayarlarından mikrofon iznini verin.';
-    } else if (browser.isChrome) {
-      guidance = 'Chrome: Adres çubuğundaki kilit ikonuna tıklayıp mikrofon iznini verin.';
-    } else if (browser.isFirefox) {
-      guidance = 'Firefox: Adres çubuğundaki izinler ikonundan mikrofon iznini verin.';
-    } else {
-      guidance = 'Tarayıcı ayarlarından mikrofon iznini kontrol edin.';
-    }
-
-    const errorMessage = PERMISSION_ERRORS[errorType] || PERMISSION_ERRORS.default;
-    updateStatus(`${errorMessage}\n\n${guidance}`);
-  }
-
-  /**
-   * Start recording audio with enhanced permission handling
+   * Start recording
    */
   async function startRecording() {
-    const browser = getBrowserInfo();
-
-    // Check browser support
-    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-      updateStatus('Tarayıcınız ses kaydını desteklemiyor. Lütfen modern bir tarayıcı kullanın.');
-      return;
-    }
-
-    // Check MediaRecorder support
-    if (typeof MediaRecorder === 'undefined') {
-      updateStatus('Tarayıcınız ses kaydını desteklemiyor. Lütfen Chrome, Firefox veya Safari kullanın.');
-      return;
-    }
+    if (isRecording) return;
 
     try {
-      // First check permission status
-      const permissionStatus = await checkMicrophonePermission();
+      const browserInfo = getBrowserInfo();
 
-      if (permissionStatus === 'denied') {
-        showPermissionGuidance('NotAllowedError');
-        return;
-      }
-
-      updateStatus('Mikrofon izni isteniyor...');
-
-      // Request microphone with cross-browser compatible constraints
+      // Get audio stream with optimal settings
       const constraints = {
         audio: {
           echoCancellation: true,
           noiseSuppression: true,
           autoGainControl: true,
+          channelCount: 1,
         },
       };
 
-      // Add Safari-specific constraints
-      if (browser.isSafari || browser.isIOS) {
+      // Safari/iOS specific adjustments
+      if (browserInfo.isSafari || browserInfo.isIOS) {
         constraints.audio.sampleRate = 44100;
-        constraints.audio.channelCount = 1;
       }
 
       const stream = await navigator.mediaDevices.getUserMedia(constraints);
 
-      // Get supported MIME type
+      // Create MediaRecorder with supported MIME type
       const mimeType = getSupportedMimeType();
-      console.log('[VoiceChat] Using MIME type:', mimeType);
+      const options = { mimeType };
 
-      audioChunks = [];
-
-      // Create MediaRecorder with fallback options
       try {
-        mediaRecorder = new MediaRecorder(stream, { mimeType });
+        mediaRecorder = new MediaRecorder(stream, options);
       } catch {
-        // Fallback without mimeType specification
-        console.warn('[VoiceChat] MIME type not supported, using default');
+        // Fallback without options
         mediaRecorder = new MediaRecorder(stream);
       }
 
-      mediaRecorder.ondataavailable = e => {
-        if (e.data.size > 0) {
-          audioChunks.push(e.data);
+      audioChunks = [];
+
+      mediaRecorder.ondataavailable = event => {
+        if (event.data.size > 0) {
+          audioChunks.push(event.data);
         }
       };
 
-      mediaRecorder.onstop = async () => {
+      mediaRecorder.onstop = () => {
         stream.getTracks().forEach(track => track.stop());
-        await processRecording();
+        processRecording();
       };
 
-      mediaRecorder.onerror = event => {
-        console.error('[VoiceChat] MediaRecorder error:', event.error);
+      mediaRecorder.onerror = error => {
+        console.error('[VoiceChat] Recording error:', error);
+        updateStatus('Kayit hatasi olustu');
         stopRecording();
-        updateStatus('Ses kaydı sırasında hata oluştu. Lütfen tekrar deneyin.');
       };
 
-      // Start recording
       mediaRecorder.start(100); // Collect data every 100ms
       isRecording = true;
-      voiceOverlay?.classList.add('recording');
-      updateStatus('Dinliyorum... Konuşabilirsiniz.');
+
+      // Update UI
+      if (voiceInterface) {
+        voiceInterface.classList.add('recording');
+      }
+      updateStatus('Dinliyorum...');
 
       // Auto-stop after max time
       setTimeout(() => {
@@ -505,9 +673,11 @@
         }
       }, CONFIG.maxRecordingTime);
 
+      console.log('[VoiceChat] Recording started');
     } catch (error) {
-      console.error('[VoiceChat] Microphone error:', error.name, error.message);
-      showPermissionGuidance(error.name);
+      const message = PERMISSION_ERRORS[error.name] || PERMISSION_ERRORS.default;
+      updateStatus(message);
+      console.error('[VoiceChat] Start recording error:', error);
     }
   }
 
@@ -515,122 +685,170 @@
    * Stop recording
    */
   function stopRecording() {
-    if (mediaRecorder && mediaRecorder.state !== 'inactive') {
-      mediaRecorder.stop();
+    if (!isRecording || !mediaRecorder) return;
+
+    try {
+      if (mediaRecorder.state !== 'inactive') {
+        mediaRecorder.stop();
+      }
+    } catch (error) {
+      console.error('[VoiceChat] Stop error:', error);
     }
+
     isRecording = false;
-    voiceOverlay?.classList.remove('recording');
+
+    // Update UI
+    if (voiceInterface) {
+      voiceInterface.classList.remove('recording');
+      voiceInterface.classList.add('processing');
+    }
+    updateStatus('Isleniyor...');
+
+    console.log('[VoiceChat] Recording stopped');
   }
 
   /**
-   * Process recorded audio
+   * Process recording and send to API
    */
   async function processRecording() {
     if (audioChunks.length === 0) {
-      updateStatus('Ses algılanamadı. Lütfen tekrar deneyin.');
+      updateStatus('Ses kaydedilemedi');
+      if (voiceInterface) {
+        voiceInterface.classList.remove('processing');
+      }
       return;
     }
 
-    voiceOverlay?.classList.add('processing');
-    updateStatus('İşleniyor...');
+    updateStatus('Yanitiniz hazirlaniyor...');
 
     try {
-      // Create audio blob with detected MIME type
+      // Create audio blob
       const mimeType = getSupportedMimeType();
       const audioBlob = new Blob(audioChunks, { type: mimeType });
-      const base64Audio = await blobToBase64(audioBlob);
 
-      // Send to API
-      const response = await fetch(CONFIG.apiEndpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          audio: base64Audio,
-          conversationHistory,
-        }),
-      });
-
-      const result = await response.json();
-
-      if (!result.success) {
-        throw new Error(result.error || 'Failed');
-      }
-
-      // Update conversation history
-      conversationHistory.push({ role: 'user', content: result.userMessage });
-      conversationHistory.push({ role: 'assistant', content: result.response });
-
-      // Play response
-      updateStatus(result.response.substring(0, 100) + (result.response.length > 100 ? '...' : ''));
-
-      if (result.audio) {
-        await playAudio(result.audio, result.audioFormat || 'mp3');
-      }
-    } catch (error) {
-      console.error('[VoiceChat] Processing error:', error);
-      updateStatus('Bir hata olustu, tekrar deneyin');
-    } finally {
-      voiceOverlay?.classList.remove('processing');
-    }
-  }
-
-  /**
-   * Convert blob to base64
-   */
-  function blobToBase64(blob) {
-    return new Promise((resolve, reject) => {
+      // Convert to base64
       const reader = new FileReader();
-      reader.onloadend = () => {
-        const base64 = reader.result.split(',')[1];
-        resolve(base64);
+      reader.onloadend = async () => {
+        const base64Audio = reader.result.split(',')[1];
+
+        try {
+          // Send to API
+          const response = await fetch(CONFIG.apiEndpoint, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              audio: base64Audio,
+              mimeType: mimeType,
+              history: conversationHistory,
+            }),
+          });
+
+          const result = await response.json();
+
+          if (result.success) {
+            // Update conversation history
+            if (result.userText) {
+              conversationHistory.push({
+                role: 'user',
+                content: result.userText,
+              });
+            }
+
+            if (result.response) {
+              conversationHistory.push({
+                role: 'assistant',
+                content: result.response,
+              });
+
+              // Add response to chat
+              addMessageToChat(result.userText, 'user');
+              addMessageToChat(result.response, 'assistant');
+            }
+
+            // Play audio response if available
+            if (result.audioResponse) {
+              playAudioResponse(result.audioResponse);
+            }
+
+            updateStatus('Hazir - tekrar kayit icin butona basin');
+          } else {
+            updateStatus(result.error || 'Yanit alinamadi');
+          }
+        } catch (fetchError) {
+          console.error('[VoiceChat] API error:', fetchError);
+          updateStatus('Baglanti hatasi. Lutfen tekrar deneyin.');
+        }
       };
-      reader.onerror = reject;
-      reader.readAsDataURL(blob);
-    });
+
+      reader.readAsDataURL(audioBlob);
+    } catch (error) {
+      console.error('[VoiceChat] Process error:', error);
+      updateStatus('Islem hatasi');
+    } finally {
+      if (voiceInterface) {
+        voiceInterface.classList.remove('processing');
+      }
+    }
   }
 
   /**
    * Play audio response
    */
-  async function playAudio(base64Audio, format) {
+  function playAudioResponse(base64Audio) {
     try {
+      const audio = new Audio(`data:audio/mp3;base64,${base64Audio}`);
       _isPlaying = true;
-      voiceOverlay?.classList.add('playing');
 
-      const audioData = Uint8Array.from(atob(base64Audio), c => c.charCodeAt(0));
-      const audioBlob = new Blob([audioData], { type: `audio/${format}` });
-      const audioUrl = URL.createObjectURL(audioBlob);
-
-      const audio = new Audio(audioUrl);
       audio.onended = () => {
         _isPlaying = false;
-        voiceOverlay?.classList.remove('playing');
-        URL.revokeObjectURL(audioUrl);
-        updateStatus('Konusmak icin mikrofona dokunun');
       };
 
-      await audio.play();
+      audio.onerror = () => {
+        _isPlaying = false;
+        console.error('[VoiceChat] Audio playback error');
+      };
+
+      audio.play();
     } catch (error) {
-      console.error('[VoiceChat] Audio playback error:', error);
-      _isPlaying = false;
-      voiceOverlay?.classList.remove('playing');
+      console.error('[VoiceChat] Play audio error:', error);
     }
+  }
+
+  /**
+   * Add message to chat UI
+   */
+  function addMessageToChat(text, role) {
+    // Try to use the global addMessage function if available
+    if (typeof window.addMessage === 'function') {
+      window.addMessage(text, role);
+      return;
+    }
+
+    // Fallback - dispatch event for chat.html to handle
+    const event = new CustomEvent('voiceChatMessage', {
+      detail: { text, role },
+    });
+    document.dispatchEvent(event);
   }
 
   /**
    * Update status text
    */
-  function updateStatus(text) {
+  function updateStatus(message) {
     if (statusText) {
-      statusText.textContent = text;
+      statusText.textContent = message;
     }
   }
 
   // Export to global
   window.VoiceChat = {
     init,
-    open: openVoiceChat,
-    close: closeVoiceChat,
+    open: openVoiceInterface,
+    close: closeVoiceInterface,
+    isActive: () => voiceInterfaceActive,
+    isRecording: () => isRecording,
   };
 
   // Auto-initialize on DOM ready

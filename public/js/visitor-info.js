@@ -1,9 +1,10 @@
-/* global window, document, fetch */
+/* global window, document, fetch, navigator */
 /**
  * AILYDIAN Visitor Info Client
- * Location Display, VPN Detection, City Search
+ * Precise Location Display with Browser Geolocation
+ * VPN Detection, Device Detection, Security
  *
- * @version 1.0.0
+ * @version 3.0.0 - Enhanced with browser geolocation for neighborhood-level accuracy
  */
 
 (function () {
@@ -14,12 +15,15 @@
     containerSelector: '#visitor-city',
     retryAttempts: 2,
     retryDelay: 1000,
+    geolocationTimeout: 10000, // 10 seconds
+    reverseGeocodingAPI: 'https://nominatim.openstreetmap.org/reverse',
   };
 
   let visitorData = null;
+  let preciseLocation = null;
 
   /**
-   * Fetch visitor info from API
+   * Fetch visitor info from API (IP-based fallback)
    */
   async function fetchVisitorInfo(attempt = 1) {
     try {
@@ -55,48 +59,351 @@
   }
 
   /**
+   * Request browser geolocation permission and get precise location
+   */
+  async function requestPreciseLocation() {
+    // Check if geolocation is supported
+    if (!navigator.geolocation) {
+      console.warn('[VisitorInfo] Geolocation not supported');
+      return null;
+    }
+
+    return new Promise(resolve => {
+      navigator.geolocation.getCurrentPosition(
+        async position => {
+          try {
+            const { latitude, longitude } = position.coords;
+            console.log('[VisitorInfo] Got coordinates:', { latitude, longitude });
+
+            // Reverse geocode to get neighborhood name
+            const location = await reverseGeocode(latitude, longitude);
+            resolve(location);
+          } catch (error) {
+            console.warn('[VisitorInfo] Reverse geocoding failed:', error.message);
+            resolve(null);
+          }
+        },
+        error => {
+          console.warn('[VisitorInfo] Geolocation error:', error.message);
+          // If permission denied, show permission modal
+          if (error.code === error.PERMISSION_DENIED) {
+            showLocationPermissionModal();
+          }
+          resolve(null);
+        },
+        {
+          enableHighAccuracy: true,
+          timeout: CONFIG.geolocationTimeout,
+          maximumAge: 300000, // 5 minutes cache
+        }
+      );
+    });
+  }
+
+  /**
+   * Reverse geocode coordinates to get detailed location
+   */
+  async function reverseGeocode(lat, lon) {
+    try {
+      const response = await fetch(
+        `${CONFIG.reverseGeocodingAPI}?lat=${lat}&lon=${lon}&format=json&addressdetails=1&accept-language=tr`,
+        {
+          headers: {
+            'User-Agent': 'AILYDIAN-Web/3.0',
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+
+      const data = await response.json();
+      const address = data.address || {};
+
+      // Get most specific location (priority: neighbourhood > suburb > district > city)
+      const neighbourhood = address.neighbourhood || address.quarter || address.hamlet;
+      const suburb = address.suburb || address.village;
+      const district = address.county || address.district || address.town;
+      const city = address.city || address.state;
+      const country = address.country;
+
+      // Determine the most specific name to display
+      let displayName = neighbourhood || suburb || district || city || 'Unknown';
+
+      // Clean up Turkish characters for display
+      displayName = displayName.replace(/Mahallesi$/i, '').trim();
+      displayName = displayName.replace(/\s+Mah\.?$/i, '').trim();
+
+      console.log('[VisitorInfo] Reverse geocoded:', {
+        displayName,
+        neighbourhood,
+        suburb,
+        district,
+        city,
+        country,
+      });
+
+      return {
+        displayName,
+        neighbourhood,
+        suburb,
+        district,
+        city,
+        country,
+        coordinates: { lat, lon },
+      };
+    } catch (error) {
+      console.error('[VisitorInfo] Reverse geocoding error:', error);
+      return null;
+    }
+  }
+
+  /**
+   * Show location permission modal
+   */
+  function showLocationPermissionModal() {
+    // Check if already shown
+    if (document.getElementById('locationPermissionModal')) return;
+
+    const modal = document.createElement('div');
+    modal.id = 'locationPermissionModal';
+    modal.className = 'location-permission-modal';
+    modal.innerHTML = `
+      <div class="location-modal-content">
+        <div class="location-modal-icon">
+          <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+        </div>
+        <h3 class="location-modal-title">Konum Izni Gerekli</h3>
+        <p class="location-modal-text">
+          Size en yakin konumu gostermek icin konum izninize ihtiyacimiz var.
+          Tarayici ayarlarindan konum iznini etkinlestirin.
+        </p>
+        <div class="location-modal-actions">
+          <button class="location-modal-btn primary" onclick="window.VisitorInfo.retryLocation()">
+            Tekrar Dene
+          </button>
+          <button class="location-modal-btn secondary" onclick="this.closest('.location-permission-modal').remove()">
+            Kapat
+          </button>
+        </div>
+      </div>
+    `;
+
+    // Add styles
+    const style = document.createElement('style');
+    style.id = 'location-modal-styles';
+    style.textContent = `
+      .location-permission-modal {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(32, 33, 36, 0.98);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
+        padding: 2rem;
+        max-width: 320px;
+        text-align: center;
+        z-index: 100000;
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+        animation: modalFadeIn 0.3s ease-out;
+      }
+      @keyframes modalFadeIn {
+        from { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+        to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+      }
+      .location-modal-icon {
+        color: #10a37f;
+        margin-bottom: 1rem;
+      }
+      .location-modal-title {
+        color: #fff;
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin: 0 0 0.75rem;
+      }
+      .location-modal-text {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.9rem;
+        line-height: 1.5;
+        margin: 0 0 1.5rem;
+      }
+      .location-modal-actions {
+        display: flex;
+        gap: 0.75rem;
+        justify-content: center;
+      }
+      .location-modal-btn {
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s;
+        border: none;
+      }
+      .location-modal-btn.primary {
+        background: linear-gradient(135deg, #10a37f 0%, #0d8a6a 100%);
+        color: white;
+      }
+      .location-modal-btn.primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(16, 163, 127, 0.4);
+      }
+      .location-modal-btn.secondary {
+        background: rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.8);
+      }
+      .location-modal-btn.secondary:hover {
+        background: rgba(255, 255, 255, 0.15);
+      }
+    `;
+
+    if (!document.getElementById('location-modal-styles')) {
+      document.head.appendChild(style);
+    }
+    document.body.appendChild(modal);
+  }
+
+  /**
+   * Get device icon based on device type
+   */
+  function getDeviceIcon(deviceType) {
+    const icons = {
+      mobile: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+        <line x1="12" y1="18" x2="12.01" y2="18"/>
+      </svg>`,
+      tablet: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="4" y="2" width="16" height="20" rx="2" ry="2"/>
+        <line x1="12" y1="18" x2="12.01" y2="18"/>
+      </svg>`,
+      desktop: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+        <line x1="8" y1="21" x2="16" y2="21"/>
+        <line x1="12" y1="17" x2="12" y2="21"/>
+      </svg>`,
+      'smart-tv': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="7" width="20" height="15" rx="2" ry="2"/>
+        <polyline points="17 2 12 7 7 2"/>
+      </svg>`,
+      'game-console': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="6" y1="12" x2="10" y2="12"/>
+        <line x1="8" y1="10" x2="8" y2="14"/>
+        <circle cx="15" cy="11" r="1"/>
+        <circle cx="18" cy="13" r="1"/>
+        <rect x="2" y="6" width="20" height="12" rx="2"/>
+      </svg>`,
+    };
+    return icons[deviceType] || icons.desktop;
+  }
+
+  /**
    * Create city badge element
    */
-  function createCityBadge(data) {
+  function createCityBadge(data, precise) {
     const badge = document.createElement('button');
     badge.className = 'visitor-city-badge';
+
+    const deviceType = data.device?.type || 'desktop';
+    const deviceLabel =
+      {
+        mobile: 'Mobil',
+        tablet: 'Tablet',
+        desktop: 'Masaustu',
+        'smart-tv': 'Smart TV',
+        'game-console': 'Oyun Konsolu',
+      }[deviceType] || 'Cihaz';
+
+    // Use precise location if available, otherwise fall back to IP-based
+    let displayLocation;
+    let fullLocation;
+
+    if (precise && precise.displayName && precise.displayName !== 'Unknown') {
+      // Show only the most specific location (neighborhood/district)
+      displayLocation = precise.displayName;
+      fullLocation = [
+        precise.neighbourhood,
+        precise.suburb,
+        precise.district,
+        precise.city,
+        precise.country,
+      ]
+        .filter(Boolean)
+        .join(', ');
+    } else {
+      // Fallback to IP-based city
+      displayLocation = data.city || 'Unknown';
+      fullLocation =
+        data.countryName && data.countryName !== 'Unknown'
+          ? `${data.city}, ${data.countryName}`
+          : data.city;
+    }
+
     badge.setAttribute(
       'aria-label',
-      `Konum: ${data.city}, ${data.countryName}. Tiklayin bilgi icin.`
+      `Konum: ${fullLocation}. Cihaz: ${deviceLabel}. Tiklayin bilgi icin.`
     );
-    badge.setAttribute('title', `${data.city}, ${data.countryName} - Tiklayarak Google'da arayin`);
+    badge.setAttribute(
+      'title',
+      `${fullLocation} | ${deviceLabel} (${data.device?.os || 'Unknown'}) - Tiklayarak Google'da arayin`
+    );
 
     badge.innerHTML = `
+      <span class="visitor-device-icon">${getDeviceIcon(deviceType)}</span>
       <svg class="visitor-city-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
         <circle cx="12" cy="10" r="3"/>
       </svg>
-      <span class="visitor-city-text">${data.city}</span>
+      <span class="visitor-city-text">${displayLocation}</span>
     `;
 
     // Click handler - search city on Google
     badge.addEventListener('click', function (e) {
       e.preventDefault();
       e.stopPropagation();
-      searchCity(data);
+      searchLocation(fullLocation);
     });
 
     return badge;
   }
 
   /**
-   * Open Google search for city
+   * Open Google search for location
    */
-  function searchCity(data) {
-    const query = `${data.city}, ${data.countryName}`;
+  function searchLocation(query) {
     const url = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
     window.open(url, '_blank', 'noopener,noreferrer');
   }
 
   /**
-   * Show VPN block modal
+   * Show block modal based on reason
    */
-  function showVPNBlockModal() {
+  function showBlockModal(blockReason) {
+    const messages = {
+      vpn_detected: {
+        title: 'VPN/Proxy Algilandi',
+        message: 'Guvenlik nedeniyle VPN veya proxy uzerinden erisim engellenmistir.',
+        instruction: "Lutfen VPN'inizi kapatip sayfayi yenileyin.",
+      },
+      bot_detected: {
+        title: 'Bot Trafigi Algilandi',
+        message: 'Otomatik bot trafigi tespit edildi.',
+        instruction: 'Normal bir tarayici kullanarak tekrar deneyin.',
+      },
+      suspicious_activity: {
+        title: 'Suphe Uyandirici Aktivite',
+        message: 'Guvenlik sistemi suphe uyandirici bir aktivite tespit etti.',
+        instruction: 'Sayfayi normal sekilde yenilemeyi deneyin.',
+      },
+    };
+
+    const content = messages[blockReason] || messages.vpn_detected;
+
     // Create overlay
     const overlay = document.createElement('div');
     overlay.className = 'vpn-block-overlay';
@@ -108,13 +415,9 @@
             <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/>
           </svg>
         </div>
-        <h2 class="vpn-block-title">VPN/Proxy Algilandi</h2>
-        <p class="vpn-block-message">
-          Guvenlik nedeniyle VPN veya proxy uzerinden erisim engellenmistir.
-        </p>
-        <p class="vpn-block-instruction">
-          Lutfen VPN'inizi kapatip sayfayi yenileyin.
-        </p>
+        <h2 class="vpn-block-title">${content.title}</h2>
+        <p class="vpn-block-message">${content.message}</p>
+        <p class="vpn-block-instruction">${content.instruction}</p>
         <button class="vpn-block-refresh" onclick="window.location.reload()">
           Sayfayi Yenile
         </button>
@@ -234,6 +537,19 @@
       .visitor-city-badge:active {
         transform: translateY(0) scale(0.98);
       }
+      .visitor-device-icon {
+        width: 14px;
+        height: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0.7;
+      }
+      .visitor-device-icon svg {
+        width: 100%;
+        height: 100%;
+        stroke: currentColor;
+      }
       .visitor-city-icon {
         width: 16px;
         height: 16px;
@@ -244,33 +560,46 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        max-width: 120px;
+        max-width: 200px;
       }
 
       /* Mobile responsive */
       @media (max-width: 768px) {
         .visitor-city-badge {
-          padding: 6px 12px;
-          font-size: 12px;
-          min-height: 40px;
+          padding: 6px 10px;
+          font-size: 11px;
+          min-height: 36px;
+          gap: 4px;
         }
         .visitor-city-icon {
-          width: 14px;
-          height: 14px;
+          width: 12px;
+          height: 12px;
+        }
+        .visitor-device-icon {
+          width: 12px;
+          height: 12px;
         }
         .visitor-city-text {
-          max-width: 80px;
+          max-width: 100px;
         }
       }
 
       @media (max-width: 480px) {
         .visitor-city-badge {
-          padding: 5px 10px;
-          font-size: 11px;
-          gap: 4px;
+          padding: 4px 8px;
+          font-size: 10px;
+          gap: 3px;
+          min-height: 32px;
+        }
+        .visitor-city-icon {
+          width: 10px;
+          height: 10px;
+        }
+        .visitor-device-icon {
+          display: none; /* Hide device icon on small screens */
         }
         .visitor-city-text {
-          max-width: 60px;
+          max-width: 70px;
         }
       }
     `;
@@ -280,7 +609,7 @@
   /**
    * Render city badge in container
    */
-  function renderCityBadge(data) {
+  function renderCityBadge(data, precise) {
     const container = document.querySelector(CONFIG.containerSelector);
     if (!container) {
       console.warn('[VisitorInfo] Container not found:', CONFIG.containerSelector);
@@ -294,8 +623,24 @@
     addBadgeStyles();
 
     // Create and append badge
-    const badge = createCityBadge(data);
+    const badge = createCityBadge(data, precise);
     container.appendChild(badge);
+  }
+
+  /**
+   * Retry location request
+   */
+  async function retryLocation() {
+    // Remove modal
+    const modal = document.getElementById('locationPermissionModal');
+    if (modal) modal.remove();
+
+    // Try again
+    preciseLocation = await requestPreciseLocation();
+
+    if (preciseLocation && visitorData) {
+      renderCityBadge(visitorData, preciseLocation);
+    }
   }
 
   /**
@@ -303,7 +648,7 @@
    */
   async function init() {
     try {
-      // Fetch visitor data
+      // Fetch IP-based visitor data first (fast)
       visitorData = await fetchVisitorInfo();
 
       if (!visitorData) {
@@ -313,18 +658,28 @@
 
       // Check if blocked
       if (visitorData.isBlocked) {
-        console.warn('[VisitorInfo] VPN detected, access blocked');
-        showVPNBlockModal();
+        console.warn('[VisitorInfo] Access blocked:', visitorData.blockReason);
+        showBlockModal(visitorData.blockReason);
         return;
       }
 
-      // Render city badge
-      if (visitorData.city && visitorData.city !== 'Unknown') {
-        renderCityBadge(visitorData);
+      // Try to get precise location with browser geolocation
+      preciseLocation = await requestPreciseLocation();
+
+      // Render city badge with best available location
+      const locationToShow = preciseLocation?.displayName || visitorData.city;
+      if (locationToShow && locationToShow !== 'Unknown') {
+        renderCityBadge(visitorData, preciseLocation);
       }
 
-      // Log success
-      console.log('[VisitorInfo] Initialized:', visitorData.city, visitorData.country);
+      // Log success with device info
+      console.log('[VisitorInfo] Initialized:', {
+        city: visitorData.city,
+        preciseLocation: preciseLocation?.displayName,
+        country: visitorData.country,
+        device: visitorData.device,
+        securityScore: visitorData.securityScore,
+      });
     } catch (error) {
       console.error('[VisitorInfo] Init error:', error);
     }
@@ -337,12 +692,26 @@
     return visitorData;
   }
 
+  /**
+   * Get precise location data
+   */
+  function getPreciseLocation() {
+    return preciseLocation;
+  }
+
   // Export to global
   window.VisitorInfo = {
     init,
     getData,
+    getPreciseLocation,
+    retryLocation,
     searchCity: function () {
-      if (visitorData) searchCity(visitorData);
+      const location = preciseLocation
+        ? [preciseLocation.displayName, preciseLocation.city, preciseLocation.country]
+            .filter(Boolean)
+            .join(', ')
+        : `${visitorData?.city}, ${visitorData?.countryName}`;
+      if (location) searchLocation(location);
     },
   };
 

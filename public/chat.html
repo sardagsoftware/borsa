@@ -1826,6 +1826,79 @@
           0 0 30px rgba(16, 163, 127, 0.1);
       }
 
+      /* 📊 Desktop Stats & Disclaimer Below Form */
+      .desktop-stats-disclaimer {
+        display: flex;
+        justify-content: center;
+        max-width: 680px;
+        margin: 0.75rem auto 0;
+        padding: 0 1rem;
+      }
+
+      .desktop-stats-row {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.5rem 1rem;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 20px;
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      .desktop-stat-item {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-family: 'JetBrains Mono', monospace;
+        white-space: nowrap;
+      }
+
+      .desktop-stat-item svg {
+        opacity: 0.6;
+      }
+
+      .desktop-stat-item.token-stat {
+        background: linear-gradient(135deg, #10a37f 0%, #ff6b4a 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-weight: 600;
+      }
+
+      .desktop-stat-item.token-stat svg {
+        stroke: #10a37f;
+        opacity: 0.8;
+      }
+
+      .desktop-stat-divider {
+        color: rgba(255, 255, 255, 0.2);
+        font-weight: 300;
+      }
+
+      .desktop-disclaimer {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        color: rgba(255, 255, 255, 0.4);
+        font-size: 0.75rem;
+        white-space: nowrap;
+      }
+
+      .desktop-disclaimer svg {
+        opacity: 0.5;
+        color: rgba(255, 200, 100, 0.6);
+        stroke: currentColor;
+      }
+
+      /* Hide on mobile */
+      @media (max-width: 768px) {
+        .desktop-stats-disclaimer {
+          display: none;
+        }
+      }
+
       .input-area {
         display: flex;
         flex-direction: column;
@@ -1846,7 +1919,11 @@
         outline: none;
         color: #ffffff;
         font-size: 1rem;
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        font-family:
+          'Inter',
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
         line-height: 1.5;
         resize: none;
         min-height: 24px;
@@ -2408,8 +2485,12 @@
       }
 
       @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
       }
 
       /* 🎨 Theme Options */
@@ -4509,14 +4590,12 @@
 
           <!-- 📊 MOBILE STATS - Above form on mobile -->
           <div class="mobile-input-stats" id="mobileInputStats">
-            <span class="stat-item">
-              <span id="mobileCharCount">0</span> karakter
-            </span>
+            <span class="stat-item"> <span id="mobileCharCount">0</span> karakter </span>
             <span class="stat-divider">•</span>
             <span class="stat-item token-highlight">
               ~<span id="mobileTokenCount">0</span> token
             </span>
-            <span class="stat-item speed-item" id="mobileSpeedDisplay" style="display: none;">
+            <span class="stat-item speed-item" id="mobileSpeedDisplay" style="display: none">
               <span class="stat-divider">•</span>
               <span id="mobileSpeedValue">0</span> t/s
             </span>
@@ -4528,7 +4607,7 @@
             <div class="mobile-plus-container">
               <button class="mobile-plus-btn" id="mobilePlusBtn" title="Seçenekler">
                 <svg viewBox="0 0 24 24" width="24" height="24">
-                  <path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                  <path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
                 </svg>
               </button>
 
@@ -4536,14 +4615,23 @@
               <div class="mobile-plus-dropdown" id="mobilePlusDropdown">
                 <button class="plus-dropdown-item" id="plusVoiceBtn">
                   <svg viewBox="0 0 24 24" width="20" height="20">
-                    <path fill="currentColor" d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
-                    <path fill="currentColor" d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+                    <path
+                      fill="currentColor"
+                      d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"
+                    />
+                    <path
+                      fill="currentColor"
+                      d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"
+                    />
                   </svg>
                   <span>Sesli Giriş</span>
                 </button>
                 <button class="plus-dropdown-item" id="plusFileBtn">
                   <svg viewBox="0 0 24 24" width="20" height="20">
-                    <path fill="currentColor" d="M16.5 6v11.5c0 2.21-1.79 4-4 4s-4-1.79-4-4V5c0-1.38 1.12-2.5 2.5-2.5s2.5 1.12 2.5 2.5v10.5c0 .55-.45 1-1 1s-1-.45-1-1V6H10v9.5c0 1.38 1.12 2.5 2.5 2.5s2.5-1.12 2.5-2.5V5c0-2.21-1.79-4-4-4S7 2.79 7 5v12.5c0 3.04 2.46 5.5 5.5 5.5s5.5-2.46 5.5-5.5V6h-1.5z"/>
+                    <path
+                      fill="currentColor"
+                      d="M16.5 6v11.5c0 2.21-1.79 4-4 4s-4-1.79-4-4V5c0-1.38 1.12-2.5 2.5-2.5s2.5 1.12 2.5 2.5v10.5c0 .55-.45 1-1 1s-1-.45-1-1V6H10v9.5c0 1.38 1.12 2.5 2.5 2.5s2.5-1.12 2.5-2.5V5c0-2.21-1.79-4-4-4S7 2.79 7 5v12.5c0 3.04 2.46 5.5 5.5 5.5s5.5-2.46 5.5-5.5V6h-1.5z"
+                    />
                   </svg>
                   <span>Dosya Yükle</span>
                 </button>
@@ -4565,35 +4653,97 @@
               <!-- 📁 File Upload Button -->
               <button class="file-upload-btn" id="fileUploadBtn" title="Dosya Yükle">
                 <svg viewBox="0 0 24 24" width="20" height="20">
-                  <path fill="currentColor" d="M16.5 6v11.5c0 2.21-1.79 4-4 4s-4-1.79-4-4V5c0-1.38 1.12-2.5 2.5-2.5s2.5 1.12 2.5 2.5v10.5c0 .55-.45 1-1 1s-1-.45-1-1V6H10v9.5c0 1.38 1.12 2.5 2.5 2.5s2.5-1.12 2.5-2.5V5c0-2.21-1.79-4-4-4S7 2.79 7 5v12.5c0 3.04 2.46 5.5 5.5 5.5s5.5-2.46 5.5-5.5V6h-1.5z"/>
+                  <path
+                    fill="currentColor"
+                    d="M16.5 6v11.5c0 2.21-1.79 4-4 4s-4-1.79-4-4V5c0-1.38 1.12-2.5 2.5-2.5s2.5 1.12 2.5 2.5v10.5c0 .55-.45 1-1 1s-1-.45-1-1V6H10v9.5c0 1.38 1.12 2.5 2.5 2.5s2.5-1.12 2.5-2.5V5c0-2.21-1.79-4-4-4S7 2.79 7 5v12.5c0 3.04 2.46 5.5 5.5 5.5s5.5-2.46 5.5-5.5V6h-1.5z"
+                  />
                 </svg>
               </button>
 
               <!-- 🎤 Voice Chat Button -->
               <button class="voice-chat-btn" id="voiceChatBtn" title="Sesli Sohbet">
                 <svg viewBox="0 0 24 24" width="20" height="20">
-                  <path fill="currentColor" d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
-                  <path fill="currentColor" d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+                  <path
+                    fill="currentColor"
+                    d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"
+                  />
+                  <path
+                    fill="currentColor"
+                    d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"
+                  />
                 </svg>
               </button>
 
               <!-- 🚀 Send Button -->
               <button id="sendBtn" disabled>
                 <svg viewBox="0 0 24 24">
-                  <path d="M3.4 20.4l17.45-7.48c.81-.35.81-1.49 0-1.84L3.4 3.6c-.66-.29-1.39.2-1.39.91L2 9.12c0 .5.37.93.87.99L17 12 2.87 13.88c-.5.07-.87.5-.87 1l.01 4.61c0 .71.73 1.2 1.39.91z"></path>
+                  <path
+                    d="M3.4 20.4l17.45-7.48c.81-.35.81-1.49 0-1.84L3.4 3.6c-.66-.29-1.39.2-1.39.91L2 9.12c0 .5.37.93.87.99L17 12 2.87 13.88c-.5.07-.87.5-.87 1l.01 4.61c0 .71.73 1.2 1.39.91z"
+                  ></path>
                 </svg>
               </button>
             </div>
 
             <!-- Hidden file input -->
-            <input type="file" id="mainFileInput" accept="image/*,.pdf,.doc,.docx,.txt,.md,.csv" style="display: none" />
+            <input
+              type="file"
+              id="mainFileInput"
+              accept="image/*,.pdf,.doc,.docx,.txt,.md,.csv"
+              style="display: none"
+            />
           </div>
 
-          <!-- 📋 LYDIAN AI DISCLAIMER - Professional Corporate Notice -->
-          <div class="ai-disclaimer" style="display: none">
-            <strong>LyDian AI Hata Yapabilir.</strong> Önemli bilgiler için doğrulama yapmanızı
-            öneririz. Kullanım koşulları ve gizlilik politikası için
-            <a href="/terms.html" target="_blank">buraya tıklayın</a>.
+          <!-- 📊 DESKTOP STATS & DISCLAIMER - Below input form -->
+          <div class="desktop-stats-disclaimer" id="desktopStatsDisclaimer">
+            <div class="desktop-stats-row">
+              <span class="desktop-stat-item">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="14"
+                  height="14"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                  <polyline points="14 2 14 8 20 8" />
+                  <line x1="16" y1="13" x2="8" y2="13" />
+                  <line x1="16" y1="17" x2="8" y2="17" />
+                </svg>
+                <span id="desktopCharCount">0</span> karakter
+              </span>
+              <span class="desktop-stat-divider">|</span>
+              <span class="desktop-stat-item token-stat">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="14"
+                  height="14"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M12 6v6l4 2" />
+                </svg>
+                ~<span id="desktopTokenCount">0</span> token
+              </span>
+              <span class="desktop-stat-divider">|</span>
+              <span class="desktop-disclaimer">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="14"
+                  height="14"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="8" x2="12" y2="12" />
+                  <line x1="12" y1="16" x2="12.01" y2="16" />
+                </svg>
+                LyDian hata yapabilir
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -4832,6 +4982,12 @@
         charCount: document.getElementById('charCount'),
         tokenCount: document.getElementById('tokenCount'),
         tokenCountHeader: document.getElementById('tokenCountHeader'),
+        // Desktop stats elements
+        desktopCharCount: document.getElementById('desktopCharCount'),
+        desktopTokenCount: document.getElementById('desktopTokenCount'),
+        // Mobile stats elements
+        mobileCharCount: document.getElementById('mobileCharCount'),
+        mobileTokenCount: document.getElementById('mobileTokenCount'),
         emptyState: document.getElementById('emptyState'),
         themeBtn: document.getElementById('themeBtn'),
         themeModal: document.getElementById('themeModal'),
@@ -4911,6 +5067,12 @@
           if (elements.charCount) elements.charCount.textContent = charCount;
           if (elements.tokenCount) elements.tokenCount.textContent = tokenCount;
           if (elements.tokenCountHeader) elements.tokenCountHeader.textContent = tokenCount;
+
+          // Update desktop & mobile stats
+          if (elements.desktopCharCount) elements.desktopCharCount.textContent = charCount;
+          if (elements.desktopTokenCount) elements.desktopTokenCount.textContent = tokenCount;
+          if (elements.mobileCharCount) elements.mobileCharCount.textContent = charCount;
+          if (elements.mobileTokenCount) elements.mobileTokenCount.textContent = tokenCount;
 
           // Enable/disable send button
           if (elements.sendBtn) elements.sendBtn.disabled = text.trim().length === 0;
@@ -5167,6 +5329,27 @@
             }
           });
         }
+      }
+
+      // 📁 DESKTOP FILE UPLOAD BUTTON - Trigger file input
+      const fileUploadBtn = document.getElementById('fileUploadBtn');
+      const mainFileInputDesktop = document.getElementById('mainFileInput');
+
+      if (fileUploadBtn && mainFileInputDesktop) {
+        fileUploadBtn.addEventListener('click', e => {
+          e.preventDefault();
+          e.stopPropagation();
+          mainFileInputDesktop.click();
+        });
+
+        // Handle file selection
+        mainFileInputDesktop.addEventListener('change', e => {
+          const file = e.target.files[0];
+          if (file) {
+            console.log('[FileUpload] File selected:', file.name, file.type, file.size);
+            handleFileUpload(file);
+          }
+        });
       }
 
       // 🎛️ MOBILE TOGGLE BUTTON & SIDEBAR - Only close functionality
@@ -5461,6 +5644,11 @@
         if (elements.charCount) elements.charCount.textContent = '0';
         if (elements.tokenCount) elements.tokenCount.textContent = '0';
         if (elements.tokenCountHeader) elements.tokenCountHeader.textContent = '0';
+        // Reset desktop & mobile stats
+        if (elements.desktopCharCount) elements.desktopCharCount.textContent = '0';
+        if (elements.desktopTokenCount) elements.desktopTokenCount.textContent = '0';
+        if (elements.mobileCharCount) elements.mobileCharCount.textContent = '0';
+        if (elements.mobileTokenCount) elements.mobileTokenCount.textContent = '0';
 
         // Hide empty state
         if (elements.emptyState) {
@@ -5558,7 +5746,8 @@
         // Build confidence badge HTML if available
         let confidenceBadgeHtml = '';
         if (role === 'assistant' && confidence) {
-          const levelClass = confidence.level === 'high' ? 'high' : (confidence.level === 'medium' ? 'medium' : 'low');
+          const levelClass =
+            confidence.level === 'high' ? 'high' : confidence.level === 'medium' ? 'medium' : 'low';
           const researchTip = confidence.suggestResearch
             ? '<span class="research-tip">Araştırma önerilir</span>'
             : '';
@@ -5866,8 +6055,8 @@
               messages: state.messages,
               title,
               expiresIn: '24h',
-              whatsAppOnly: true
-            })
+              whatsAppOnly: true,
+            }),
           });
 
           const result = await response.json();
@@ -5950,7 +6139,8 @@
       function copyShareUrl() {
         const input = document.getElementById('shareUrlInput');
         if (input) {
-          navigator.clipboard.writeText(input.value)
+          navigator.clipboard
+            .writeText(input.value)
             .then(() => showToast('Link kopyalandı!', 'success'))
             .catch(() => showToast('Kopyalama başarısız', 'error'));
         }
@@ -6005,6 +6195,122 @@
             option.classList.remove('active');
           }
         });
+      }
+
+      // 📁 Handle file upload
+      function handleFileUpload(file) {
+        // Max file size: 10MB
+        const maxSize = 10 * 1024 * 1024;
+        if (file.size > maxSize) {
+          showToast("Dosya boyutu 10MB'dan buyuk olamaz");
+          return;
+        }
+
+        // Check file type
+        const isImage = file.type.startsWith('image/');
+        const allowedTypes = [
+          'image/',
+          'application/pdf',
+          'text/',
+          'application/msword',
+          'application/vnd.openxmlformats',
+        ];
+        const isAllowed = allowedTypes.some(
+          type => file.type.startsWith(type) || file.type.includes(type)
+        );
+
+        if (!isAllowed) {
+          showToast('Bu dosya turu desteklenmiyor');
+          return;
+        }
+
+        // Show toast for feedback
+        showToast(`Dosya yukleniyor: ${file.name}`);
+
+        // For images, show preview in input area
+        if (isImage) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            // Store the image data for sending with the message
+            state.pendingFile = {
+              name: file.name,
+              type: file.type,
+              size: file.size,
+              data: e.target.result,
+            };
+
+            // Show preview badge
+            showFilePreview(file.name, e.target.result, true);
+          };
+          reader.readAsDataURL(file);
+        } else {
+          // For documents, store reference
+          state.pendingFile = {
+            name: file.name,
+            type: file.type,
+            size: file.size,
+          };
+
+          // Show file badge
+          showFilePreview(file.name, null, false);
+        }
+      }
+
+      // Show file preview badge near input
+      function showFilePreview(fileName, imageData, isImage) {
+        // Remove existing preview
+        const existing = document.getElementById('filePreviewBadge');
+        if (existing) existing.remove();
+
+        const badge = document.createElement('div');
+        badge.id = 'filePreviewBadge';
+        badge.style.cssText = `
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          padding: 8px 12px;
+          background: rgba(16, 163, 127, 0.15);
+          border: 1px solid rgba(16, 163, 127, 0.3);
+          border-radius: 10px;
+          margin-bottom: 8px;
+          max-width: fit-content;
+        `;
+
+        const preview =
+          isImage && imageData
+            ? `<img src="${imageData}" style="width: 40px; height: 40px; object-fit: cover; border-radius: 6px;" />`
+            : `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#10a37f" stroke-width="2">
+               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+               <polyline points="14 2 14 8 20 8"/>
+             </svg>`;
+
+        badge.innerHTML = `
+          ${preview}
+          <span style="color: #fff; font-size: 0.85rem; max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+            ${fileName}
+          </span>
+          <button onclick="clearFilePreview()" style="background: none; border: none; color: rgba(255,255,255,0.7); cursor: pointer; padding: 4px;">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 6L6 18M6 6l12 12"/>
+            </svg>
+          </button>
+        `;
+
+        // Insert before input wrapper
+        const inputWrapper = document.querySelector('.input-wrapper');
+        if (inputWrapper && inputWrapper.parentNode) {
+          inputWrapper.parentNode.insertBefore(badge, inputWrapper);
+        }
+      }
+
+      // Clear file preview
+      function clearFilePreview() {
+        const badge = document.getElementById('filePreviewBadge');
+        if (badge) badge.remove();
+        state.pendingFile = null;
+        // Clear file input
+        const fileInput = document.getElementById('mainFileInput');
+        if (fileInput) fileInput.value = '';
       }
 
       function showToast(message) {
