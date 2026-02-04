@@ -5007,12 +5007,12 @@
         recallClient = new RecallClient({
           domain: 'general',
           mode: 'hybrid',
-          onModeChange: (status) => {
+          onModeChange: status => {
             updateChatConnectionStatus(status);
           },
-          onStatusChange: (status) => {
+          onStatusChange: status => {
             console.log('[AI_CHAT] Status:', status);
-          }
+          },
         });
         console.log('[AI_CHAT] RecallClient initialized successfully');
       } catch (initError) {
@@ -5025,7 +5025,11 @@
           indicator.setAttribute('data-status', status.effectiveMode || status.mode);
           const textEl = indicator.querySelector('.recall-status-text');
           if (textEl) {
-            const labels = { online: '🟢 Çevrimiçi', offline: '🔴 Çevrimdışı', hybrid: '🟡 Hibrit' };
+            const labels = {
+              online: '🟢 Çevrimiçi',
+              offline: '🔴 Çevrimdışı',
+              hybrid: '🟡 Hibrit',
+            };
             textEl.textContent = labels[status.effectiveMode || status.mode] || status.mode;
           }
         }
@@ -5094,7 +5098,11 @@
 
             // Calculate response time
             const totalTime = Date.now() - startTime;
-            const tokensPerSecond = ((result.response?.length || 100) / 4 / (totalTime / 1000)).toFixed(1);
+            const tokensPerSecond = (
+              (result.response?.length || 100) /
+              4 /
+              (totalTime / 1000)
+            ).toFixed(1);
 
             // Display speed
             if (elements.speedDisplay) {
@@ -5102,7 +5110,10 @@
               elements.speedValue.textContent = tokensPerSecond;
             }
           } else {
-            addMessage('assistant', `⚠️ **Yanıt Alınamadı**\n\n${result.error || 'Lütfen tekrar deneyin.'}`);
+            addMessage(
+              'assistant',
+              `⚠️ **Yanıt Alınamadı**\n\n${result.error || 'Lütfen tekrar deneyin.'}`
+            );
           }
           // Reset typing state on success
           state.isTyping = false;
@@ -5656,10 +5667,10 @@
       const userMenuBtn = document.getElementById('userMenuBtn');
       const userDropdown = document.getElementById('userDropdown');
 
-      // DEBUG: console.log('🔍 User menu elements:', {
+      /* DEBUG: console.log('🔍 User menu elements:', {
         userMenuBtn: !!userMenuBtn,
         userDropdown: !!userDropdown,
-      });
+      }); */
 
       if (userMenuBtn && userDropdown) {
         userMenuBtn.addEventListener('click', e => {
