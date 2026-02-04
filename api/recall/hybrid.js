@@ -13,7 +13,7 @@ const { getInstance, obfuscation, MODES } = require('../../services/localrecall'
 const KNOWLEDGE_BASE = {
   mathematics: {
     greeting:
-      'Merhaba! Ben AI Matematik Asistanı. Size matematik problemlerinde yardımcı olabilirim.',
+      'Merhaba! Ben LyDian Matematik Asistanı. Size matematik problemlerinde yardımcı olabilirim.',
     capabilities: [
       'Temel aritmetik işlemler',
       'Cebir problemleri',
@@ -29,7 +29,7 @@ const KNOWLEDGE_BASE = {
     },
   },
   general: {
-    greeting: 'Merhaba! Ben AI AI Asistanı. Size nasıl yardımcı olabilirim?',
+    greeting: 'Merhaba! Ben LyDian Asistanı. Size nasıl yardımcı olabilirim?',
     capabilities: [
       'Genel bilgi sorguları',
       'Metin analizi',
@@ -40,13 +40,13 @@ const KNOWLEDGE_BASE = {
   },
   medical: {
     greeting:
-      'Merhaba! Ben AI Sağlık Bilgi Asistanı. Genel sağlık bilgileri konusunda yardımcı olabilirim.',
+      'Merhaba! Ben LyDian Sağlık Asistanı. Genel sağlık bilgileri konusunda yardımcı olabilirim.',
     disclaimer:
       '⚠️ Bu bilgiler sadece eğitim amaçlıdır. Tıbbi tavsiye için mutlaka bir sağlık profesyoneline danışın.',
   },
   legal: {
     greeting:
-      'Merhaba! Ben AI Hukuk Bilgi Asistanı. Genel hukuki bilgiler konusunda yardımcı olabilirim.',
+      'Merhaba! Ben LyDian Hukuk Asistanı. Genel hukuki bilgileri konusunda yardımcı olabilirim.',
     disclaimer:
       '⚠️ Bu bilgiler sadece eğitim amaçlıdır. Hukuki tavsiye için mutlaka bir avukata danışın.',
   },
@@ -69,7 +69,7 @@ function generateIntelligentResponse(query, domain, ragContext) {
   if (/ne yapabilir|neler yapabilir|özellik|yetenek|capability/i.test(queryLower)) {
     const capabilities = domainKB.capabilities || KNOWLEDGE_BASE.general.capabilities;
     return {
-      response: `**AI ${domain.charAt(0).toUpperCase() + domain.slice(1)} Asistanı Yetenekleri:**\n\n${capabilities.map((c, i) => `${i + 1}. ${c}`).join('\n')}`,
+      response: `**LyDian ${domain.charAt(0).toUpperCase() + domain.slice(1)} Asistanı Yetenekleri:**\n\n${capabilities.map((c, i) => `${i + 1}. ${c}`).join('\n')}`,
       type: 'capabilities',
     };
   }
@@ -77,7 +77,7 @@ function generateIntelligentResponse(query, domain, ragContext) {
   // If RAG context available, use it
   if (ragContext && ragContext.trim().length > 50) {
     return {
-      response: `📚 **Bilgi Tabanı Yanıtı**\n\n${ragContext}\n\n---\n_Bu yanıt AI bilgi tabanından oluşturulmuştur._`,
+      response: `📚 **Bilgi Tabanı Yanıtı**\n\n${ragContext}\n\n---\n_Bu yanıt LyDian bilgi tabanından oluşturulmuştur._`,
       type: 'rag_response',
       ragUsed: true,
     };
@@ -96,7 +96,7 @@ function generateIntelligentResponse(query, domain, ragContext) {
 
   // Generic intelligent response
   return {
-    response: `🤖 **AI Yanıtı**\n\nSorunuz: "${query}"\n\nBu konuda size yardımcı olmak istiyorum. Ancak şu anda bilgi tabanımda bu spesifik sorguya doğrudan karşılık gelen bir içerik bulamadım.\n\n**Öneriler:**\n1. Sorunuzu daha spesifik hale getirmeyi deneyin\n2. Farklı anahtar kelimeler kullanın\n3. Konuyu daha küçük parçalara ayırın\n\n_AI sürekli öğrenmektedir. Geri bildirimleriniz sistemin gelişmesine yardımcı olur._`,
+    response: `🤖 **LyDian Yanıtı**\n\nSorunuz: "${query}"\n\nBu konuda size yardımcı olmak istiyorum. Ancak şu anda bilgi tabanımda bu spesifik sorguya doğrudan karşılık gelen bir içerik bulamadım.\n\n**Öneriler:**\n1. Sorunuzu daha spesifik hale getirmeyi deneyin\n2. Farklı anahtar kelimeler kullanın\n3. Konuyu daha küçük parçalara ayırın\n\n_LyDian sürekli öğrenmektedir. Geri bildirimleriniz sistemin gelişmesine yardımcı olur._`,
     type: 'fallback',
   };
 }
