@@ -156,6 +156,12 @@ const RATE_LIMIT_MAX = 5; // 5 attempts per minute
 
 function checkRateLimit(identifier) {
   const now = Date.now();
+
+  // Periodic cleanup (1 in 20 chance per call to reduce overhead)
+  if (Math.random() < 0.05 && rateLimitMap.size > 100) {
+    cleanupRateLimits();
+  }
+
   const record = rateLimitMap.get(identifier);
 
   if (!record || now - record.timestamp > RATE_LIMIT_WINDOW) {
@@ -173,7 +179,7 @@ function checkRateLimit(identifier) {
 }
 
 /**
- * Clean up old rate limit entries (call periodically)
+ * Clean up old rate limit entries (called automatically when checking rate limit)
  */
 function cleanupRateLimits() {
   const now = Date.now();
@@ -184,8 +190,8 @@ function cleanupRateLimits() {
   }
 }
 
-// Cleanup every 5 minutes
-setInterval(cleanupRateLimits, 5 * 60 * 1000);
+// Clean up old entries periodically during rate limit checks
+// (Serverless-compatible: no setInterval needed)
 
 module.exports = {
   hashPassword,
