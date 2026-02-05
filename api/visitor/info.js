@@ -1,14 +1,170 @@
 /* global fetch */
 /**
  * AILYDIAN Visitor Info API
- * IP Geolocation, VPN Detection, City Display
+ * IP Geolocation, VPN Detection, Device Detection, Security
  *
  * @route GET /api/visitor/info
- * @version 1.0.0
+ * @version 2.0.0
  */
 
 const geoip = require('geoip-lite');
 const crypto = require('crypto');
+
+// ============================================================
+// 🛡️ SECURITY: Rate Limiting (in-memory for serverless)
+// ============================================================
+const rateLimitMap = new Map();
+const RATE_LIMIT_WINDOW = 60000; // 1 minute
+const RATE_LIMIT_MAX = 30; // max requests per window
+
+function checkRateLimit(ip) {
+  const now = Date.now();
+  const record = rateLimitMap.get(ip);
+
+  if (!record || now - record.timestamp > RATE_LIMIT_WINDOW) {
+    rateLimitMap.set(ip, { timestamp: now, count: 1 });
+    return { allowed: true, remaining: RATE_LIMIT_MAX - 1 };
+  }
+
+  if (record.count >= RATE_LIMIT_MAX) {
+    return { allowed: false, remaining: 0 };
+  }
+
+  record.count++;
+  return { allowed: true, remaining: RATE_LIMIT_MAX - record.count };
+}
+
+// ============================================================
+// 📱 DEVICE DETECTION
+// ============================================================
+function detectDevice(userAgent) {
+  if (!userAgent) {
+    return { type: 'unknown', os: 'unknown', browser: 'unknown', isMobile: false, isBot: false };
+  }
+
+  const ua = userAgent.toLowerCase();
+
+  // Bot detection
+  const botPatterns = [
+    'bot',
+    'crawler',
+    'spider',
+    'scraper',
+    'curl',
+    'wget',
+    'python',
+    'java/',
+    'httpclient',
+    'okhttp',
+    'axios',
+    'node-fetch',
+    'go-http',
+    'headless',
+    'phantom',
+    'selenium',
+    'puppeteer',
+    'playwright',
+    'googlebot',
+    'bingbot',
+    'yandex',
+    'baiduspider',
+    'facebookexternalhit',
+  ];
+  const isBot = botPatterns.some(pattern => ua.includes(pattern));
+
+  // Device type detection
+  let type = 'desktop';
+  let isMobile = false;
+
+  if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(userAgent)) {
+    type = 'tablet';
+    isMobile = true;
+  } else if (
+    /mobile|iphone|ipod|android.*mobile|windows phone|blackberry|bb10|mini|webos|opera mini|opera mobi/i.test(
+      userAgent
+    )
+  ) {
+    type = 'mobile';
+    isMobile = true;
+  } else if (/smart-?tv|googletv|appletv|hbbtv|pov_tv|netcast.tv/i.test(userAgent)) {
+    type = 'smart-tv';
+  } else if (/xbox|playstation|nintendo/i.test(userAgent)) {
+    type = 'game-console';
+  }
+
+  // OS detection
+  let os = 'unknown';
+  if (/windows nt 10/i.test(userAgent)) os = 'Windows 10/11';
+  else if (/windows nt 6.3/i.test(userAgent)) os = 'Windows 8.1';
+  else if (/windows nt 6.2/i.test(userAgent)) os = 'Windows 8';
+  else if (/windows nt 6.1/i.test(userAgent)) os = 'Windows 7';
+  else if (/windows/i.test(userAgent)) os = 'Windows';
+  else if (/macintosh|mac os x/i.test(userAgent)) os = 'macOS';
+  else if (/iphone|ipad|ipod/i.test(userAgent)) os = 'iOS';
+  else if (/android/i.test(userAgent)) os = 'Android';
+  else if (/linux/i.test(userAgent)) os = 'Linux';
+  else if (/cros/i.test(userAgent)) os = 'Chrome OS';
+
+  // Browser detection
+  let browser = 'unknown';
+  if (/edg\//i.test(userAgent)) browser = 'Edge';
+  else if (/opr\//i.test(userAgent) || /opera/i.test(userAgent)) browser = 'Opera';
+  else if (/chrome/i.test(userAgent) && !/chromium/i.test(userAgent)) browser = 'Chrome';
+  else if (/firefox/i.test(userAgent)) browser = 'Firefox';
+  else if (/safari/i.test(userAgent) && !/chrome/i.test(userAgent)) browser = 'Safari';
+  else if (/msie|trident/i.test(userAgent)) browser = 'IE';
+
+  return { type, os, browser, isMobile, isBot };
+}
+
+// ============================================================
+// 🔒 SECURITY: Suspicious Activity Detection
+// ============================================================
+function detectSuspiciousActivity(req, device) {
+  const threats = [];
+  const userAgent = req.headers['user-agent'] || '';
+
+  // 1. Bot detection
+  if (device.isBot) {
+    threats.push('bot_detected');
+  }
+
+  // 2. Missing or suspicious headers
+  if (!userAgent || userAgent.length < 10) {
+    threats.push('missing_user_agent');
+  }
+
+  // 3. SQL injection patterns in headers
+  const sqlPatterns =
+    /('|"|;|--|\||\bor\b|\band\b|\bunion\b|\bselect\b|\bdrop\b|\binsert\b|\bdelete\b)/i;
+  const headersToCheck = ['referer', 'user-agent', 'cookie'];
+  for (const header of headersToCheck) {
+    if (req.headers[header] && sqlPatterns.test(req.headers[header])) {
+      threats.push('sql_injection_attempt');
+      break;
+    }
+  }
+
+  // 4. XSS patterns
+  const xssPatterns = /(<script|javascript:|on\w+\s*=|<img[^>]+onerror)/i;
+  for (const header of headersToCheck) {
+    if (req.headers[header] && xssPatterns.test(req.headers[header])) {
+      threats.push('xss_attempt');
+      break;
+    }
+  }
+
+  // 5. Path traversal attempts
+  if (req.url && /(\.\.|%2e%2e|%252e)/i.test(req.url)) {
+    threats.push('path_traversal_attempt');
+  }
+
+  return {
+    isSuspicious: threats.length > 0,
+    threats,
+    riskScore: Math.min(threats.length * 25, 100),
+  };
+}
 
 // Datacenter/VPN IP ranges (CIDR notation)
 const DATACENTER_RANGES = [
@@ -200,17 +356,35 @@ function hashIP(ip) {
 }
 
 /**
- * Log visitor (async, non-blocking)
+ * Log visitor (async, non-blocking) - Enhanced with device & security info
  */
-function logVisitor(ip, geo, userAgent, referer, isVPN, page) {
+function logVisitor(ip, geo, userAgent, referer, isVPN, page, device, security) {
   const logEntry = {
     timestamp: new Date().toISOString(),
-    type: isVPN ? 'VISITOR_VPN_DETECTED' : 'VISITOR_PAGE_ACCESS',
+    type: security?.isSuspicious
+      ? 'VISITOR_SUSPICIOUS_ACTIVITY'
+      : isVPN
+        ? 'VISITOR_VPN_DETECTED'
+        : 'VISITOR_PAGE_ACCESS',
     ipHash: hashIP(ip),
     city: geo?.city || 'Unknown',
     region: geo?.region || '',
     country: geo?.country || 'Unknown',
     isVPN,
+    // Device info
+    device: {
+      type: device?.type || 'unknown',
+      os: device?.os || 'unknown',
+      browser: device?.browser || 'unknown',
+      isMobile: device?.isMobile || false,
+      isBot: device?.isBot || false,
+    },
+    // Security info
+    security: {
+      isSuspicious: security?.isSuspicious || false,
+      threats: security?.threats || [],
+      riskScore: security?.riskScore || 0,
+    },
     userAgent: userAgent?.substring(0, 200) || 'Unknown',
     referer: referer?.substring(0, 200) || 'Direct',
     page: page || 'unknown',
@@ -218,14 +392,32 @@ function logVisitor(ip, geo, userAgent, referer, isVPN, page) {
 
   // Log to console (captured by Vercel)
   console.log('[VISITOR_LOG]', JSON.stringify(logEntry));
+
+  // If suspicious, log separately for security monitoring
+  if (security?.isSuspicious) {
+    console.warn(
+      '[SECURITY_ALERT]',
+      JSON.stringify({
+        timestamp: logEntry.timestamp,
+        ipHash: logEntry.ipHash,
+        threats: security.threats,
+        riskScore: security.riskScore,
+        page,
+      })
+    );
+  }
 }
 
 module.exports = async function handler(req, res) {
-  // CORS headers
+  // 🛡️ Security Headers
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   res.setHeader('Cache-Control', 'no-store, max-age=0');
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'DENY');
+  res.setHeader('X-XSS-Protection', '1; mode=block');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
 
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
@@ -241,20 +433,57 @@ module.exports = async function handler(req, res) {
   try {
     // Extract client IP
     const clientIP = getClientIP(req);
-
-    // Clean IP (remove IPv6 prefix if present)
     const cleanIP = clientIP.replace(/^::ffff:/, '');
 
-    // Get geolocation
+    // 🛡️ Rate limiting check
+    const rateLimit = checkRateLimit(cleanIP);
+    res.setHeader('X-RateLimit-Remaining', rateLimit.remaining.toString());
+
+    if (!rateLimit.allowed) {
+      console.warn('[RATE_LIMIT]', {
+        ipHash: hashIP(cleanIP),
+        timestamp: new Date().toISOString(),
+      });
+      return res.status(429).json({
+        success: false,
+        error: 'Too many requests. Please try again later.',
+        retryAfter: 60,
+      });
+    }
+
+    // 📱 Device detection
+    const userAgent = req.headers['user-agent'] || '';
+    const device = detectDevice(userAgent);
+
+    // 🔒 Security check
+    const security = detectSuspiciousActivity(req, device);
+
+    // 🌍 Geolocation
     const geo = geoip.lookup(cleanIP);
 
-    // Detect VPN
+    // 🔍 VPN detection
     const vpnResult = detectVPN(cleanIP, geo);
     const isVPN = vpnResult.isVPN;
 
     // Check if blocking is enabled
     const blockVPN = process.env.BLOCK_VPN === 'true';
-    const isBlocked = isVPN && blockVPN;
+    const blockBots = process.env.BLOCK_BOTS === 'true';
+    const blockSuspicious = process.env.BLOCK_SUSPICIOUS === 'true';
+
+    // Determine if blocked
+    let isBlocked = false;
+    let blockReason = null;
+
+    if (isVPN && blockVPN) {
+      isBlocked = true;
+      blockReason = 'vpn_detected';
+    } else if (device.isBot && blockBots) {
+      isBlocked = true;
+      blockReason = 'bot_detected';
+    } else if (security.isSuspicious && blockSuspicious && security.riskScore >= 50) {
+      isBlocked = true;
+      blockReason = 'suspicious_activity';
+    }
 
     // Get page from referer
     const referer = req.headers.referer || '';
@@ -262,22 +491,33 @@ module.exports = async function handler(req, res) {
     if (referer.includes('chat.html')) page = 'chat';
     if (referer.includes('lydian-iq.html')) page = 'lydian-iq';
 
-    // Log visitor
-    logVisitor(cleanIP, geo, req.headers['user-agent'], referer, isVPN, page);
+    // 📝 Log visitor with all info
+    logVisitor(cleanIP, geo, userAgent, referer, isVPN, page, device, security);
 
     // Return response
     return res.status(200).json({
       success: true,
       data: {
+        // Location
         ip: maskIP(cleanIP),
         city: geo?.city || 'Unknown',
         region: geo?.region || '',
         country: geo?.country || 'Unknown',
         countryName: COUNTRY_NAMES[geo?.country] || geo?.country || 'Unknown',
         timezone: geo?.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone,
+        // Device
+        device: {
+          type: device.type,
+          os: device.os,
+          browser: device.browser,
+          isMobile: device.isMobile,
+        },
+        // Security
         isVPN,
         vpnReason: vpnResult.reason,
         isBlocked,
+        blockReason,
+        securityScore: 100 - security.riskScore, // Higher is better
       },
       timestamp: new Date().toISOString(),
     });
@@ -293,9 +533,12 @@ module.exports = async function handler(req, res) {
         country: 'Unknown',
         countryName: 'Unknown',
         timezone: 'UTC',
+        device: { type: 'unknown', os: 'unknown', browser: 'unknown', isMobile: false },
         isVPN: false,
         vpnReason: null,
         isBlocked: false,
+        blockReason: null,
+        securityScore: 100,
       },
       error: 'Location detection failed',
       timestamp: new Date().toISOString(),

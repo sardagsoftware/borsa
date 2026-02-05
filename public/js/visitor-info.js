@@ -84,11 +84,14 @@
           }
         },
         error => {
-          console.warn('[VisitorInfo] Geolocation error:', error.message);
-          // If permission denied, show permission modal
-          if (error.code === error.PERMISSION_DENIED) {
-            showLocationPermissionModal();
-          }
+          // Handle geolocation errors gracefully - no custom modal needed
+          // The browser's native permission prompt handles everything
+          const errorMessages = {
+            1: 'Permission denied by user',
+            2: 'Position unavailable',
+            3: 'Request timeout',
+          };
+          console.log('[VisitorInfo] Geolocation:', errorMessages[error.code] || error.message);
           resolve(null);
         },
         {
@@ -157,116 +160,6 @@
       console.error('[VisitorInfo] Reverse geocoding error:', error);
       return null;
     }
-  }
-
-  /**
-   * Show location permission modal
-   */
-  function showLocationPermissionModal() {
-    // Check if already shown
-    if (document.getElementById('locationPermissionModal')) return;
-
-    const modal = document.createElement('div');
-    modal.id = 'locationPermissionModal';
-    modal.className = 'location-permission-modal';
-    modal.innerHTML = `
-      <div class="location-modal-content">
-        <div class="location-modal-icon">
-          <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-            <circle cx="12" cy="10" r="3"/>
-          </svg>
-        </div>
-        <h3 class="location-modal-title">Konum Izni Gerekli</h3>
-        <p class="location-modal-text">
-          Size en yakin konumu gostermek icin konum izninize ihtiyacimiz var.
-          Tarayici ayarlarindan konum iznini etkinlestirin.
-        </p>
-        <div class="location-modal-actions">
-          <button class="location-modal-btn primary" onclick="window.VisitorInfo.retryLocation()">
-            Tekrar Dene
-          </button>
-          <button class="location-modal-btn secondary" onclick="this.closest('.location-permission-modal').remove()">
-            Kapat
-          </button>
-        </div>
-      </div>
-    `;
-
-    // Add styles
-    const style = document.createElement('style');
-    style.id = 'location-modal-styles';
-    style.textContent = `
-      .location-permission-modal {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: rgba(32, 33, 36, 0.98);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 16px;
-        padding: 2rem;
-        max-width: 320px;
-        text-align: center;
-        z-index: 100000;
-        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-        animation: modalFadeIn 0.3s ease-out;
-      }
-      @keyframes modalFadeIn {
-        from { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
-        to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-      }
-      .location-modal-icon {
-        color: #10a37f;
-        margin-bottom: 1rem;
-      }
-      .location-modal-title {
-        color: #fff;
-        font-size: 1.25rem;
-        font-weight: 600;
-        margin: 0 0 0.75rem;
-      }
-      .location-modal-text {
-        color: rgba(255, 255, 255, 0.7);
-        font-size: 0.9rem;
-        line-height: 1.5;
-        margin: 0 0 1.5rem;
-      }
-      .location-modal-actions {
-        display: flex;
-        gap: 0.75rem;
-        justify-content: center;
-      }
-      .location-modal-btn {
-        padding: 0.75rem 1.5rem;
-        border-radius: 8px;
-        font-size: 0.9rem;
-        font-weight: 500;
-        cursor: pointer;
-        transition: all 0.2s;
-        border: none;
-      }
-      .location-modal-btn.primary {
-        background: linear-gradient(135deg, #10a37f 0%, #0d8a6a 100%);
-        color: white;
-      }
-      .location-modal-btn.primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(16, 163, 127, 0.4);
-      }
-      .location-modal-btn.secondary {
-        background: rgba(255, 255, 255, 0.1);
-        color: rgba(255, 255, 255, 0.8);
-      }
-      .location-modal-btn.secondary:hover {
-        background: rgba(255, 255, 255, 0.15);
-      }
-    `;
-
-    if (!document.getElementById('location-modal-styles')) {
-      document.head.appendChild(style);
-    }
-    document.body.appendChild(modal);
   }
 
   /**
@@ -628,22 +521,6 @@
   }
 
   /**
-   * Retry location request
-   */
-  async function retryLocation() {
-    // Remove modal
-    const modal = document.getElementById('locationPermissionModal');
-    if (modal) modal.remove();
-
-    // Try again
-    preciseLocation = await requestPreciseLocation();
-
-    if (preciseLocation && visitorData) {
-      renderCityBadge(visitorData, preciseLocation);
-    }
-  }
-
-  /**
    * Initialize visitor info
    */
   async function init() {
@@ -704,7 +581,6 @@
     init,
     getData,
     getPreciseLocation,
-    retryLocation,
     searchCity: function () {
       const location = preciseLocation
         ? [preciseLocation.displayName, preciseLocation.city, preciseLocation.country]
