@@ -2166,12 +2166,14 @@
       .mobile-plus-dropdown,
       .mobile-search-btn,
       .mobile-toggle-btn,
+      .mobile-hamburger-btn,
       .mobile-logo-toggle,
       .mobile-logo-text,
       .mobile-logo-container,
       .mobile-dropdown-trigger,
       .mobile-dropdown-menu,
-      .mobile-sidebar {
+      .mobile-sidebar,
+      .mobile-sidebar-overlay {
         display: none;
       }
 
@@ -2837,30 +2839,10 @@
           flex-shrink: 0;
         }
 
-        /* Show download/share icons on mobile with proper styling */
+        /* 📱 MOBILE: Hide download/share from header - they're in sidebar menu */
         .header-btn-icon#downloadBtn,
         .header-btn-icon#shareBtn {
-          display: flex !important;
-          width: 36px !important;
-          height: 36px !important;
-          padding: 6px !important;
-          background: rgba(255, 255, 255, 0.08) !important;
-          border: 1px solid rgba(255, 255, 255, 0.1) !important;
-          border-radius: 10px !important;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .header-btn-icon#downloadBtn:active,
-        .header-btn-icon#shareBtn:active {
-          transform: scale(0.95);
-          background: rgba(16, 163, 127, 0.2) !important;
-        }
-
-        .header-btn-icon#downloadBtn svg,
-        .header-btn-icon#shareBtn svg {
-          width: 18px !important;
-          height: 18px !important;
+          display: none !important;
         }
 
         /* Compact recall status on mobile */
@@ -2929,35 +2911,36 @@
 
         .message {
           max-width: 100%;
-          padding: 0.5rem 0.75rem;
-          margin-bottom: 0.25rem; /* Minimal spacing */
+          padding: 0.375rem 0.625rem;
+          margin-bottom: 0 !important; /* No spacing */
         }
 
         .message-content {
           font-size: 0.875rem;
-          line-height: 1.45;
+          line-height: 1.4;
         }
 
         .message-actions {
           gap: 0.25rem;
-          margin-top: 0.375rem !important;
+          margin-top: 0.25rem !important;
         }
 
         .action-btn {
-          padding: 0.25rem;
-          font-size: 0.65rem;
+          padding: 0.2rem;
+          font-size: 0.6rem;
         }
 
-        /* User message - tight spacing */
+        /* User message - NO gap below */
         .user-message {
-          margin-bottom: 0.125rem !important;
-          padding-bottom: 0.25rem !important;
+          margin-bottom: 0 !important;
+          padding-bottom: 0.125rem !important;
         }
 
-        /* Assistant message - immediately after user */
+        /* Assistant message - ZERO gap from user */
         .assistant-message {
-          margin-top: 0 !important;
-          margin-bottom: 0.5rem !important;
+          margin-top: 0.125rem !important;
+          margin-bottom: 0.375rem !important;
+          padding-top: 0.25rem !important;
         }
 
         /* Suggestion chips - ensure visibility */
@@ -3311,6 +3294,35 @@
           display: none !important;
         }
 
+        /* 📱 HAMBURGER MENU BUTTON - ChatGPT Style */
+        .mobile-hamburger-btn {
+          display: flex !important;
+          align-items: center;
+          justify-content: center;
+          width: 36px !important;
+          height: 36px !important;
+          background: transparent !important;
+          border: none !important;
+          border-radius: 8px !important;
+          padding: 0 !important;
+          cursor: pointer;
+          color: rgba(255, 255, 255, 0.85);
+          transition: background 0.15s ease, color 0.15s ease;
+          flex-shrink: 0;
+          margin-right: 0.25rem;
+        }
+
+        .mobile-hamburger-btn:hover,
+        .mobile-hamburger-btn:active {
+          background: rgba(255, 255, 255, 0.1) !important;
+          color: #ffffff;
+        }
+
+        .mobile-hamburger-btn svg {
+          width: 20px;
+          height: 20px;
+        }
+
         /* 📱 Mobile Logo Toggle - Show on mobile, aligned with header */
         .mobile-logo-toggle {
           display: flex !important;
@@ -3410,89 +3422,237 @@
           opacity: 0.7;
         }
 
-        /* 📱 MOBILE SIDEBAR MENU - Slide from right */
-        .mobile-sidebar {
-          display: flex !important; /* Show on mobile */
+        /* 📱 MOBILE SIDEBAR OVERLAY - ChatGPT Style */
+        .mobile-sidebar-overlay {
+          display: none;
           position: fixed;
           top: 0;
-          right: -280px;
-          width: 280px;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: rgba(0, 0, 0, 0.5);
+          z-index: 10003;
+          opacity: 0;
+          transition: opacity 0.3s ease;
+        }
+
+        .mobile-sidebar-overlay.show {
+          display: block;
+          opacity: 1;
+        }
+
+        /* 📱 MOBILE SIDEBAR MENU - ChatGPT Style (Slide from LEFT) */
+        .mobile-sidebar {
+          display: flex !important;
+          position: fixed;
+          top: 0;
+          left: -265px; /* Hidden to left */
+          width: 260px; /* ChatGPT mobile width */
           height: 100vh;
-          background: rgba(11, 15, 25, 0.98);
-          backdrop-filter: blur(20px);
-          border-left: 1px solid rgba(255, 255, 255, 0.1);
-          box-shadow: -4px 0 24px rgba(0, 0, 0, 0.5);
-          transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-          z-index: 10000;
+          height: 100dvh;
+          background: #171717; /* ChatGPT dark */
+          border-right: 1px solid rgba(255, 255, 255, 0.08);
+          box-shadow: 2px 0 16px rgba(0, 0, 0, 0.4);
+          transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          z-index: 10004;
           flex-direction: column;
-          padding: 1rem;
-          gap: 0.5rem;
+          padding: 0;
+          overflow: hidden;
         }
 
         .mobile-sidebar.open {
-          right: 0;
+          left: 0;
         }
 
+        /* ChatGPT Style Sidebar Header */
         .mobile-sidebar-header {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          padding: 0.5rem 0 1rem 0;
+          padding: 0.875rem 1rem;
           border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+          background: #171717;
+          min-height: 56px;
         }
 
         .mobile-sidebar-title {
-          font-size: 1.1rem;
+          font-size: 1rem;
           font-weight: 600;
           color: #ffffff;
+          letter-spacing: -0.01em;
         }
 
         .mobile-sidebar-close {
-          width: 36px;
-          height: 36px;
-          display: flex;
+          width: 32px;
+          height: 32px;
+          display: flex !important;
           align-items: center;
           justify-content: center;
-          background: rgba(255, 255, 255, 0.05);
-          border: 1px solid rgba(255, 255, 255, 0.15);
-          border-radius: 8px;
+          background: transparent;
+          border: 1px solid rgba(255, 255, 255, 0.9);
+          border-radius: 6px;
           cursor: pointer;
-          transition: all 0.2s ease;
+          transition: opacity 0.15s ease;
         }
 
+        .mobile-sidebar-close:hover,
         .mobile-sidebar-close:active {
-          transform: scale(0.95);
-          background: rgba(255, 255, 255, 0.1);
+          opacity: 0.7;
         }
 
         .mobile-sidebar-close svg {
-          width: 20px;
-          height: 20px;
-          fill: rgba(255, 255, 255, 0.8);
+          width: 16px;
+          height: 16px;
+          stroke: #ffffff;
+          stroke-width: 2;
+          fill: none;
+        }
+
+        /* New Chat Button - ChatGPT Style */
+        .mobile-new-chat-btn {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          margin: 0.75rem;
+          padding: 0.75rem 1rem;
+          background: transparent;
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          border-radius: 8px;
+          color: #ffffff;
+          font-size: 0.875rem;
+          font-weight: 500;
+          cursor: pointer;
+          transition: background 0.2s ease;
+        }
+
+        .mobile-new-chat-btn:hover,
+        .mobile-new-chat-btn:active {
+          background: rgba(255, 255, 255, 0.08);
+        }
+
+        .mobile-new-chat-btn svg {
+          width: 18px;
+          height: 18px;
+          stroke: currentColor;
+          fill: none;
+        }
+
+        /* Chat History List - ChatGPT Style */
+        .mobile-chat-history {
+          flex: 1;
+          overflow-y: auto;
+          padding: 0.5rem;
+        }
+
+        .mobile-chat-history::-webkit-scrollbar {
+          width: 4px;
+        }
+
+        .mobile-chat-history::-webkit-scrollbar-thumb {
+          background: rgba(255, 255, 255, 0.2);
+          border-radius: 2px;
+        }
+
+        .mobile-chat-item {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          padding: 0.625rem 0.75rem;
+          border-radius: 8px;
+          color: rgba(255, 255, 255, 0.8);
+          font-size: 0.875rem;
+          cursor: pointer;
+          transition: background 0.15s ease;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+        }
+
+        .mobile-chat-item:hover,
+        .mobile-chat-item:active {
+          background: rgba(255, 255, 255, 0.08);
+        }
+
+        .mobile-chat-item.active {
+          background: rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-chat-item svg {
+          width: 16px;
+          height: 16px;
+          flex-shrink: 0;
+          opacity: 0.7;
+        }
+
+        /* Sidebar Footer - ChatGPT Style */
+        .mobile-sidebar-footer {
+          padding: 0.75rem;
+          border-top: 1px solid rgba(255, 255, 255, 0.08);
+          background: #171717;
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+
+        .mobile-sidebar-user {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          padding: 0.625rem 0.75rem;
+          border-radius: 8px;
+          color: rgba(255, 255, 255, 0.9);
+          cursor: pointer;
+          transition: background 0.15s ease;
+        }
+
+        .mobile-sidebar-user:hover {
+          background: rgba(255, 255, 255, 0.08);
+        }
+
+        .mobile-sidebar-user-avatar {
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          background: linear-gradient(135deg, #10a37f, #1a7f64);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 0.875rem;
+          font-weight: 600;
+          color: #fff;
+        }
+
+        .mobile-sidebar-user-name {
+          font-size: 0.875rem;
+          font-weight: 500;
         }
 
         .mobile-menu-item {
           display: flex;
           align-items: center;
           gap: 0.75rem;
-          padding: 0.875rem 1rem;
-          background: rgba(255, 255, 255, 0.03);
-          border: 1px solid rgba(255, 255, 255, 0.08);
-          border-radius: 12px;
+          padding: 0.625rem 0.75rem;
+          background: transparent;
+          border: none;
+          border-radius: 8px;
           cursor: pointer;
-          transition: all 0.2s ease;
+          transition: all 0.15s ease;
           color: rgba(255, 255, 255, 0.9);
-          font-size: 0.95rem;
+          font-size: 0.875rem;
+        }
+
+        .mobile-menu-item:hover,
+        .mobile-menu-item:active {
+          background: rgba(255, 255, 255, 0.08);
         }
 
         .mobile-menu-item:active {
           transform: scale(0.98);
-          background: rgba(255, 255, 255, 0.06);
         }
 
         .mobile-menu-item svg {
-          width: 20px;
-          height: 20px;
+          width: 18px;
+          height: 18px;
           fill: rgba(255, 255, 255, 0.7);
         }
 
@@ -4106,6 +4266,521 @@
       .neon-mic.recording svg {
         fill: #ef4444 !important;
       }
+
+      /* ============================================================
+         🔐 CHAT AUTH PANEL SYSTEM - %100 Chat Page Compatible
+         ============================================================ */
+
+      /* Auth Overlay */
+      .chat-auth-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(10, 11, 13, 0.85);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 10005;
+        padding: 1rem;
+      }
+
+      .chat-auth-overlay.active {
+        display: flex;
+      }
+
+      /* Auth Panel */
+      .chat-auth-panel {
+        display: none;
+        background: #171717;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
+        width: 100%;
+        max-width: 400px;
+        max-height: 90vh;
+        overflow-y: auto;
+        box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
+      }
+
+      .chat-auth-panel.active {
+        display: block;
+        animation: authSlideUp 0.3s ease;
+      }
+
+      @keyframes authSlideUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Auth Panel Header */
+      .chat-auth-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 1.25rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        gap: 0.75rem;
+      }
+
+      .chat-auth-header h2 {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #ffffff;
+        margin: 0;
+        flex: 1;
+        text-align: center;
+      }
+
+      .chat-auth-close,
+      .chat-auth-back {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 6px;
+        cursor: pointer;
+        color: rgba(255, 255, 255, 0.8);
+        transition: all 0.2s ease;
+        flex-shrink: 0;
+      }
+
+      .chat-auth-close:hover,
+      .chat-auth-back:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.3);
+      }
+
+      .chat-auth-close svg,
+      .chat-auth-back svg {
+        width: 16px;
+        height: 16px;
+        stroke: currentColor;
+        stroke-width: 2;
+        fill: none;
+      }
+
+      /* Invisible placeholder for header alignment */
+      .chat-auth-header-spacer {
+        width: 32px;
+        height: 32px;
+        flex-shrink: 0;
+      }
+
+      /* Auth Form */
+      .chat-auth-form {
+        padding: 1.5rem 1.25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .chat-auth-field {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .chat-auth-field label {
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .chat-auth-field input {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 8px;
+        color: #ffffff;
+        font-size: 1rem;
+        font-family: inherit;
+        transition: border-color 0.2s, box-shadow 0.2s;
+        outline: none;
+      }
+
+      .chat-auth-field input:focus {
+        border-color: #10a37f;
+        box-shadow: 0 0 0 3px rgba(16, 163, 127, 0.15);
+      }
+
+      .chat-auth-field input::placeholder {
+        color: rgba(255, 255, 255, 0.4);
+      }
+
+      /* Error State */
+      .chat-auth-field.error input {
+        border-color: #ef4444;
+        box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+      }
+
+      .chat-auth-error {
+        font-size: 0.8rem;
+        color: #ef4444;
+        margin-top: 0.25rem;
+      }
+
+      /* Password Strength Indicator */
+      .password-strength {
+        height: 4px;
+        border-radius: 2px;
+        background: rgba(255, 255, 255, 0.1);
+        overflow: hidden;
+        margin-top: 0.5rem;
+      }
+
+      .password-strength-bar {
+        height: 100%;
+        transition: width 0.3s, background 0.3s;
+        border-radius: 2px;
+      }
+
+      .password-strength-bar.weak {
+        width: 33%;
+        background: #ef4444;
+      }
+
+      .password-strength-bar.medium {
+        width: 66%;
+        background: #f59e0b;
+      }
+
+      .password-strength-bar.strong {
+        width: 100%;
+        background: #10a37f;
+      }
+
+      .password-strength-text {
+        font-size: 0.75rem;
+        margin-top: 0.25rem;
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      /* Auth Button */
+      .chat-auth-btn {
+        width: 100%;
+        padding: 0.875rem;
+        background: linear-gradient(135deg, #10a37f, #0d8a6a);
+        border: none;
+        border-radius: 8px;
+        color: #ffffff;
+        font-size: 1rem;
+        font-weight: 600;
+        font-family: inherit;
+        cursor: pointer;
+        transition: transform 0.15s, box-shadow 0.2s, opacity 0.2s;
+        margin-top: 0.5rem;
+      }
+
+      .chat-auth-btn:hover:not(:disabled) {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(16, 163, 127, 0.3);
+      }
+
+      .chat-auth-btn:active:not(:disabled) {
+        transform: translateY(0);
+      }
+
+      .chat-auth-btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      .chat-auth-btn.loading {
+        position: relative;
+        color: transparent;
+      }
+
+      .chat-auth-btn.loading::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 20px;
+        height: 20px;
+        margin: -10px 0 0 -10px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-top-color: #ffffff;
+        border-radius: 50%;
+        animation: authSpinner 0.6s linear infinite;
+      }
+
+      @keyframes authSpinner {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Secondary Button */
+      .chat-auth-btn-secondary {
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      .chat-auth-btn-secondary:hover:not(:disabled) {
+        background: rgba(255, 255, 255, 0.05);
+        box-shadow: none;
+      }
+
+      /* Auth Links */
+      .chat-auth-links {
+        display: flex;
+        justify-content: space-between;
+        padding-top: 0.5rem;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .chat-auth-links a {
+        font-size: 0.875rem;
+        color: #10a37f;
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      .chat-auth-links a:hover {
+        color: #0d8a6a;
+        text-decoration: underline;
+      }
+
+      /* Auth Divider */
+      .chat-auth-divider {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin: 0.5rem 0;
+      }
+
+      .chat-auth-divider::before,
+      .chat-auth-divider::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      .chat-auth-divider span {
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      /* Profile Section */
+      .chat-auth-profile-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem 1.25rem 1.5rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .chat-auth-avatar {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #10a37f, #0d8a6a);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        font-weight: 600;
+        color: #ffffff;
+        margin-bottom: 1rem;
+      }
+
+      .chat-auth-profile-name {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #ffffff;
+        margin-bottom: 0.25rem;
+      }
+
+      .chat-auth-profile-email {
+        font-size: 0.875rem;
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      /* Menu Items */
+      .chat-auth-menu {
+        padding: 1rem;
+      }
+
+      .chat-auth-menu-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.875rem 1rem;
+        background: transparent;
+        border: none;
+        border-radius: 8px;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 0.9375rem;
+        font-family: inherit;
+        cursor: pointer;
+        width: 100%;
+        text-align: left;
+        transition: background 0.2s;
+      }
+
+      .chat-auth-menu-item:hover {
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .chat-auth-menu-item svg {
+        width: 20px;
+        height: 20px;
+        fill: currentColor;
+        opacity: 0.8;
+      }
+
+      .chat-auth-menu-item.danger {
+        color: #ef4444;
+      }
+
+      /* Settings Section */
+      .chat-auth-settings {
+        padding: 1rem 1.25rem;
+      }
+
+      .chat-auth-setting-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .chat-auth-setting-row:last-child {
+        border-bottom: none;
+      }
+
+      .chat-auth-setting-label {
+        font-size: 0.9375rem;
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      .chat-auth-setting-desc {
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.5);
+        margin-top: 0.25rem;
+      }
+
+      /* Toggle Switch */
+      .chat-auth-toggle {
+        position: relative;
+        width: 44px;
+        height: 24px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+
+      .chat-auth-toggle.active {
+        background: #10a37f;
+      }
+
+      .chat-auth-toggle::after {
+        content: '';
+        position: absolute;
+        left: 2px;
+        top: 2px;
+        width: 20px;
+        height: 20px;
+        background: #ffffff;
+        border-radius: 50%;
+        transition: transform 0.2s;
+      }
+
+      .chat-auth-toggle.active::after {
+        transform: translateX(20px);
+      }
+
+      /* Select Dropdown */
+      .chat-auth-select {
+        padding: 0.5rem 0.75rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 6px;
+        color: #ffffff;
+        font-size: 0.875rem;
+        font-family: inherit;
+        cursor: pointer;
+        outline: none;
+      }
+
+      .chat-auth-select:focus {
+        border-color: #10a37f;
+      }
+
+      .chat-auth-select option {
+        background: #171717;
+        color: #ffffff;
+      }
+
+      /* Success/Info Messages */
+      .chat-auth-message {
+        padding: 1rem;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        font-size: 0.875rem;
+      }
+
+      .chat-auth-message.success {
+        background: rgba(16, 163, 127, 0.15);
+        border: 1px solid rgba(16, 163, 127, 0.3);
+        color: #10a37f;
+      }
+
+      .chat-auth-message.error {
+        background: rgba(239, 68, 68, 0.15);
+        border: 1px solid rgba(239, 68, 68, 0.3);
+        color: #ef4444;
+      }
+
+      .chat-auth-message.info {
+        background: rgba(110, 132, 255, 0.15);
+        border: 1px solid rgba(110, 132, 255, 0.3);
+        color: #6e84ff;
+      }
+
+      /* Mobile Responsive */
+      @media (max-width: 768px) {
+        .chat-auth-overlay {
+          align-items: flex-end;
+          padding: 0;
+        }
+
+        .chat-auth-panel {
+          max-width: 100%;
+          max-height: 85vh;
+          border-radius: 20px 20px 0 0;
+          animation: authSlideFromBottom 0.3s ease;
+        }
+
+        @keyframes authSlideFromBottom {
+          from {
+            transform: translateY(100%);
+          }
+          to {
+            transform: translateY(0);
+          }
+        }
+
+        .chat-auth-form {
+          padding: 1.25rem 1rem 2rem;
+        }
+      }
     </style>
 
     <!-- 🤖 Ailydian AI Client - LyDian Acceleration-first Fallback Strategy -->
@@ -4671,8 +5346,16 @@
       <!-- 💬 MAIN CHAT AREA -->
       <div class="main-chat">
         <!-- 🎯 HEADER -->
-        <!-- 🎛️ MOBILE LOGO WITH DROPDOWN -->
+        <!-- 🎛️ MOBILE HAMBURGER + LOGO (ChatGPT Style) -->
         <div class="mobile-logo-container">
+          <!-- 📱 HAMBURGER MENU BUTTON - Opens sidebar from LEFT -->
+          <button class="mobile-hamburger-btn" id="mobileHamburgerBtn" aria-label="Menüyü aç">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
           <button class="mobile-logo-toggle" id="mobileToggleBtn" title="Menü">
             <img
               src="/icons/grape-icon-simple.svg"
@@ -4725,40 +5408,303 @@
           </div>
         </div>
 
-        <!-- 📱 MOBILE SIDEBAR MENU (Slide from right) -->
+        <!-- 📱 MOBILE SIDEBAR OVERLAY -->
+        <div class="mobile-sidebar-overlay" id="mobileSidebarOverlay"></div>
+
+        <!-- 📱 MOBILE SIDEBAR MENU (ChatGPT Style - Slide from LEFT) -->
         <div class="mobile-sidebar" id="mobileSidebar">
+          <!-- Header -->
           <div class="mobile-sidebar-header">
-            <span class="mobile-sidebar-title">Menü</span>
-            <button class="mobile-sidebar-close" id="mobileSidebarClose">
-              <svg viewBox="0 0 24 24" width="20" height="20">
-                <path
-                  fill="currentColor"
-                  d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-                ></path>
+            <span class="mobile-sidebar-title">LyDian AI</span>
+            <button class="mobile-sidebar-close" id="mobileSidebarClose" aria-label="Menüyü kapat">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"></polyline>
               </svg>
             </button>
           </div>
 
-          <div class="mobile-menu-item" id="menuDownload">
-            <svg viewBox="0 0 24 24" width="20" height="20">
-              <path
-                fill="currentColor"
-                d="M19 12v7H5v-7H3v7c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zm-6 .67l2.59-2.58L17 11.5l-5 5-5-5 1.41-1.41L11 12.67V3h2z"
-              ></path>
-            </svg>
-            <span>Sohbeti İndir</span>
+          <!-- New Chat Button -->
+          <button class="mobile-new-chat-btn" id="mobileNewChatBtn">
+            <svg viewBox="0 0 24 24" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            <span>Yeni Sohbet</span>
+          </button>
+
+          <!-- Chat History -->
+          <div class="mobile-chat-history" id="mobileChatHistory">
+            <!-- Chat items will be dynamically added here -->
           </div>
 
-          <div class="mobile-menu-item" id="menuShare">
-            <svg viewBox="0 0 24 24" width="20" height="20">
-              <path
-                fill="currentColor"
-                d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"
-              ></path>
-            </svg>
-            <span>Sohbeti Paylaş</span>
+          <!-- Footer with Actions -->
+          <div class="mobile-sidebar-footer">
+            <div class="mobile-menu-item" id="menuDownload">
+              <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M19 12v7H5v-7H3v7c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zm-6 .67l2.59-2.58L17 11.5l-5 5-5-5 1.41-1.41L11 12.67V3h2z"></path></svg>
+              <span>Sohbeti İndir</span>
+            </div>
+            <div class="mobile-menu-item" id="menuShare">
+              <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"></path></svg>
+              <span>Sohbeti Paylaş</span>
+            </div>
+            <div class="mobile-sidebar-user" id="mobileUserProfile">
+              <div class="mobile-sidebar-user-avatar">U</div>
+              <span class="mobile-sidebar-user-name">Kullanıcı</span>
+            </div>
           </div>
         </div>
+
+        <!-- 🔐 CHAT AUTH PANEL OVERLAY -->
+        <div class="chat-auth-overlay" id="chatAuthOverlay">
+
+          <!-- GİRİŞ PANELİ -->
+          <div class="chat-auth-panel" id="chatAuthLoginPanel">
+            <div class="chat-auth-header">
+              <div class="chat-auth-header-spacer"></div>
+              <h2>Giriş Yap</h2>
+              <button class="chat-auth-close" onclick="ChatAuth.closePanel()" aria-label="Kapat">
+                <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </button>
+            </div>
+            <form class="chat-auth-form" id="chatAuthLoginForm" autocomplete="on">
+              <div class="chat-auth-field">
+                <label for="loginEmail">E-posta</label>
+                <input type="email" id="loginEmail" name="email" required autocomplete="email" placeholder="ornek@email.com">
+              </div>
+              <div class="chat-auth-field">
+                <label for="loginPassword">Şifre</label>
+                <input type="password" id="loginPassword" name="password" required autocomplete="current-password" placeholder="••••••••">
+              </div>
+              <button type="submit" class="chat-auth-btn">Giriş Yap</button>
+              <div class="chat-auth-links">
+                <a href="#" onclick="ChatAuth.openPanel('forgot'); return false;">Şifremi Unuttum</a>
+                <a href="#" onclick="ChatAuth.openPanel('register'); return false;">Kayıt Ol</a>
+              </div>
+            </form>
+          </div>
+
+          <!-- KAYIT PANELİ -->
+          <div class="chat-auth-panel" id="chatAuthRegisterPanel">
+            <div class="chat-auth-header">
+              <button class="chat-auth-back" onclick="ChatAuth.openPanel('login')" aria-label="Geri">
+                <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+              </button>
+              <h2>Kayıt Ol</h2>
+              <button class="chat-auth-close" onclick="ChatAuth.closePanel()" aria-label="Kapat">
+                <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </button>
+            </div>
+            <form class="chat-auth-form" id="chatAuthRegisterForm" autocomplete="on">
+              <div class="chat-auth-field">
+                <label for="registerName">Ad Soyad</label>
+                <input type="text" id="registerName" name="displayName" required minlength="2" maxlength="100" autocomplete="name" placeholder="Ad Soyad">
+              </div>
+              <div class="chat-auth-field">
+                <label for="registerEmail">E-posta</label>
+                <input type="email" id="registerEmail" name="email" required autocomplete="email" placeholder="ornek@email.com">
+              </div>
+              <div class="chat-auth-field">
+                <label for="registerPassword">Şifre</label>
+                <input type="password" id="registerPassword" name="password" required minlength="8" autocomplete="new-password" placeholder="En az 8 karakter">
+                <div class="password-strength" id="registerPasswordStrength">
+                  <div class="password-strength-bar"></div>
+                </div>
+                <div class="password-strength-text" id="registerPasswordStrengthText"></div>
+              </div>
+              <div class="chat-auth-field">
+                <label for="registerPasswordConfirm">Şifre Tekrar</label>
+                <input type="password" id="registerPasswordConfirm" name="confirmPassword" required autocomplete="new-password" placeholder="Şifreyi tekrar girin">
+              </div>
+              <button type="submit" class="chat-auth-btn">Kayıt Ol</button>
+              <div class="chat-auth-links" style="justify-content: center;">
+                <span style="color: rgba(255,255,255,0.6); font-size: 0.875rem;">Zaten hesabınız var mı?</span>
+                <a href="#" onclick="ChatAuth.openPanel('login'); return false;">Giriş Yap</a>
+              </div>
+            </form>
+          </div>
+
+          <!-- ŞİFREMİ UNUTTUM PANELİ -->
+          <div class="chat-auth-panel" id="chatAuthForgotPanel">
+            <div class="chat-auth-header">
+              <button class="chat-auth-back" onclick="ChatAuth.openPanel('login')" aria-label="Geri">
+                <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+              </button>
+              <h2>Şifremi Unuttum</h2>
+              <button class="chat-auth-close" onclick="ChatAuth.closePanel()" aria-label="Kapat">
+                <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </button>
+            </div>
+            <form class="chat-auth-form" id="chatAuthForgotForm">
+              <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem; margin-bottom: 0.5rem;">
+                E-posta adresinizi girin, şifre sıfırlama bağlantısı göndereceğiz.
+              </p>
+              <div class="chat-auth-field">
+                <label for="forgotEmail">E-posta</label>
+                <input type="email" id="forgotEmail" name="email" required autocomplete="email" placeholder="ornek@email.com">
+              </div>
+              <button type="submit" class="chat-auth-btn">Sıfırlama Bağlantısı Gönder</button>
+              <div class="chat-auth-links" style="justify-content: center;">
+                <a href="#" onclick="ChatAuth.openPanel('login'); return false;">Giriş Yap'a Dön</a>
+              </div>
+            </form>
+          </div>
+
+          <!-- ŞİFRE SIFIRLAMA PANELİ -->
+          <div class="chat-auth-panel" id="chatAuthResetPanel">
+            <div class="chat-auth-header">
+              <div class="chat-auth-header-spacer"></div>
+              <h2>Yeni Şifre Belirle</h2>
+              <button class="chat-auth-close" onclick="ChatAuth.closePanel()" aria-label="Kapat">
+                <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </button>
+            </div>
+            <form class="chat-auth-form" id="chatAuthResetForm">
+              <div class="chat-auth-field">
+                <label for="resetPassword">Yeni Şifre</label>
+                <input type="password" id="resetPassword" name="password" required minlength="8" autocomplete="new-password" placeholder="En az 8 karakter">
+                <div class="password-strength" id="resetPasswordStrength">
+                  <div class="password-strength-bar"></div>
+                </div>
+              </div>
+              <div class="chat-auth-field">
+                <label for="resetPasswordConfirm">Şifre Tekrar</label>
+                <input type="password" id="resetPasswordConfirm" name="confirmPassword" required autocomplete="new-password" placeholder="Şifreyi tekrar girin">
+              </div>
+              <input type="hidden" id="resetToken" name="token" value="">
+              <button type="submit" class="chat-auth-btn">Şifreyi Güncelle</button>
+            </form>
+          </div>
+
+          <!-- PROFİL PANELİ -->
+          <div class="chat-auth-panel" id="chatAuthProfilePanel">
+            <div class="chat-auth-header">
+              <div class="chat-auth-header-spacer"></div>
+              <h2>Profil</h2>
+              <button class="chat-auth-close" onclick="ChatAuth.closePanel()" aria-label="Kapat">
+                <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </button>
+            </div>
+            <div class="chat-auth-profile-header">
+              <div class="chat-auth-avatar" id="profileAvatar">U</div>
+              <div class="chat-auth-profile-name" id="profileName">Kullanıcı</div>
+              <div class="chat-auth-profile-email" id="profileEmail">user@example.com</div>
+            </div>
+            <div class="chat-auth-menu">
+              <button class="chat-auth-menu-item" onclick="ChatAuth.openPanel('settings')">
+                <svg viewBox="0 0 24 24"><path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.07,0.94l-2.03,1.58c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"></path></svg>
+                Ayarlar
+              </button>
+              <button class="chat-auth-menu-item" onclick="ChatAuth.openPanel('security')">
+                <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"></path></svg>
+                Güvenlik
+              </button>
+              <div style="height: 1px; background: rgba(255,255,255,0.08); margin: 0.5rem 0;"></div>
+              <button class="chat-auth-menu-item danger" onclick="ChatAuth.logout()">
+                <svg viewBox="0 0 24 24"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"></path></svg>
+                Çıkış Yap
+              </button>
+            </div>
+          </div>
+
+          <!-- AYARLAR PANELİ -->
+          <div class="chat-auth-panel" id="chatAuthSettingsPanel">
+            <div class="chat-auth-header">
+              <button class="chat-auth-back" onclick="ChatAuth.openPanel('profile')" aria-label="Geri">
+                <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+              </button>
+              <h2>Ayarlar</h2>
+              <button class="chat-auth-close" onclick="ChatAuth.closePanel()" aria-label="Kapat">
+                <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </button>
+            </div>
+            <div class="chat-auth-settings">
+              <div class="chat-auth-setting-row">
+                <div>
+                  <div class="chat-auth-setting-label">Tema</div>
+                  <div class="chat-auth-setting-desc">Arayüz görünümü</div>
+                </div>
+                <select class="chat-auth-select" id="settingTheme" onchange="ChatAuth.updateSetting('theme', this.value)">
+                  <option value="dark">Koyu</option>
+                  <option value="light">Açık</option>
+                  <option value="system">Sistem</option>
+                </select>
+              </div>
+              <div class="chat-auth-setting-row">
+                <div>
+                  <div class="chat-auth-setting-label">Dil</div>
+                  <div class="chat-auth-setting-desc">Arayüz dili</div>
+                </div>
+                <select class="chat-auth-select" id="settingLanguage" onchange="ChatAuth.updateSetting('language', this.value)">
+                  <option value="tr">Türkçe</option>
+                  <option value="en">English</option>
+                </select>
+              </div>
+              <div class="chat-auth-setting-row">
+                <div>
+                  <div class="chat-auth-setting-label">Tercih Edilen Model</div>
+                  <div class="chat-auth-setting-desc">Varsayılan AI modeli</div>
+                </div>
+                <select class="chat-auth-select" id="settingModel" onchange="ChatAuth.updateSetting('preferredModel', this.value)">
+                  <option value="premium">Premium</option>
+                  <option value="standard">Standart</option>
+                  <option value="fast">Hızlı</option>
+                </select>
+              </div>
+              <div class="chat-auth-setting-row">
+                <div>
+                  <div class="chat-auth-setting-label">Geçmişi Otomatik Kaydet</div>
+                  <div class="chat-auth-setting-desc">Sohbetleri otomatik kaydet</div>
+                </div>
+                <div class="chat-auth-toggle active" id="settingAutoSave" onclick="ChatAuth.toggleSetting('autoSaveHistory', this)"></div>
+              </div>
+              <div class="chat-auth-setting-row">
+                <div>
+                  <div class="chat-auth-setting-label">Bildirimler</div>
+                  <div class="chat-auth-setting-desc">Bildirimleri etkinleştir</div>
+                </div>
+                <div class="chat-auth-toggle" id="settingNotifications" onclick="ChatAuth.toggleSetting('notificationsEnabled', this)"></div>
+              </div>
+              <div class="chat-auth-setting-row">
+                <div>
+                  <div class="chat-auth-setting-label">Sesler</div>
+                  <div class="chat-auth-setting-desc">Arayüz seslerini etkinleştir</div>
+                </div>
+                <div class="chat-auth-toggle" id="settingSounds" onclick="ChatAuth.toggleSetting('soundEnabled', this)"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- GÜVENLİK PANELİ -->
+          <div class="chat-auth-panel" id="chatAuthSecurityPanel">
+            <div class="chat-auth-header">
+              <button class="chat-auth-back" onclick="ChatAuth.openPanel('profile')" aria-label="Geri">
+                <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+              </button>
+              <h2>Güvenlik</h2>
+              <button class="chat-auth-close" onclick="ChatAuth.closePanel()" aria-label="Kapat">
+                <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </button>
+            </div>
+            <form class="chat-auth-form" id="chatAuthChangePasswordForm">
+              <h3 style="color: #fff; font-size: 1rem; margin-bottom: 0.5rem;">Şifre Değiştir</h3>
+              <div class="chat-auth-field">
+                <label for="currentPassword">Mevcut Şifre</label>
+                <input type="password" id="currentPassword" name="currentPassword" required autocomplete="current-password" placeholder="Mevcut şifreniz">
+              </div>
+              <div class="chat-auth-field">
+                <label for="newPassword">Yeni Şifre</label>
+                <input type="password" id="newPassword" name="newPassword" required minlength="8" autocomplete="new-password" placeholder="En az 8 karakter">
+                <div class="password-strength" id="newPasswordStrength">
+                  <div class="password-strength-bar"></div>
+                </div>
+              </div>
+              <div class="chat-auth-field">
+                <label for="newPasswordConfirm">Yeni Şifre Tekrar</label>
+                <input type="password" id="newPasswordConfirm" name="newPasswordConfirm" required autocomplete="new-password" placeholder="Yeni şifreyi tekrar girin">
+              </div>
+              <button type="submit" class="chat-auth-btn">Şifreyi Güncelle</button>
+            </form>
+          </div>
+
+        </div>
+        <!-- END CHAT AUTH PANEL OVERLAY -->
 
         <div class="chat-header">
           <div class="header-left" style="display: flex; align-items: center; gap: 10px">
@@ -5758,21 +6704,161 @@
         });
       }
 
-      // 🎛️ MOBILE TOGGLE BUTTON & SIDEBAR - Only close functionality
+      // 🎛️ MOBILE SIDEBAR - ChatGPT Style (Slide from LEFT)
+      const mobileHamburgerBtn = document.getElementById('mobileHamburgerBtn');
       const mobileToggleBtn = document.getElementById('mobileToggleBtn');
       const mobileSidebar = document.getElementById('mobileSidebar');
+      const mobileSidebarOverlay = document.getElementById('mobileSidebarOverlay');
       const mobileSidebarClose = document.getElementById('mobileSidebarClose');
+      const mobileNewChatBtn = document.getElementById('mobileNewChatBtn');
+      const mobileChatHistory = document.getElementById('mobileChatHistory');
       const headerActions = document.querySelector('.header-actions');
       const menuDownload = document.getElementById('menuDownload');
       const menuShare = document.getElementById('menuShare');
 
+      // Open mobile sidebar
+      function openMobileSidebar() {
+        if (mobileSidebar) {
+          mobileSidebar.classList.add('open');
+          if (mobileSidebarOverlay) {
+            mobileSidebarOverlay.classList.add('show');
+          }
+          document.body.style.overflow = 'hidden'; // Prevent background scroll
+          // Load chat history when opening
+          loadMobileChatHistory();
+        }
+      }
+
+      // Close mobile sidebar
       function closeMobileSidebar() {
         if (mobileSidebar) {
           mobileSidebar.classList.remove('open');
+          if (mobileSidebarOverlay) {
+            mobileSidebarOverlay.classList.remove('show');
+          }
+          document.body.style.overflow = ''; // Restore scroll
           if (headerActions) {
             headerActions.classList.remove('hide-on-sidebar-open');
           }
         }
+      }
+
+      // Load chat history from localStorage
+      function loadMobileChatHistory() {
+        if (!mobileChatHistory) return;
+
+        const savedChats = JSON.parse(localStorage.getItem('lydian_chat_history') || '[]');
+
+        if (savedChats.length === 0) {
+          mobileChatHistory.innerHTML = `
+            <div style="padding: 1rem; text-align: center; color: rgba(255,255,255,0.5); font-size: 0.875rem;">
+              Henüz kayıtlı sohbet yok
+            </div>
+          `;
+          return;
+        }
+
+        // Sort by date (newest first) and limit to 20
+        const recentChats = savedChats.slice(-20).reverse();
+
+        mobileChatHistory.innerHTML = recentChats.map((chat, idx) => `
+          <div class="mobile-chat-item" data-chat-id="${chat.id || idx}">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+            </svg>
+            <span>${chat.title || chat.preview || 'Sohbet ' + (idx + 1)}</span>
+          </div>
+        `).join('');
+
+        // Add click handlers to chat items
+        mobileChatHistory.querySelectorAll('.mobile-chat-item').forEach(item => {
+          item.addEventListener('click', () => {
+            const chatId = item.dataset.chatId;
+            loadChatFromHistory(chatId);
+            closeMobileSidebar();
+          });
+        });
+      }
+
+      // Load a specific chat from history
+      function loadChatFromHistory(chatId) {
+        const savedChats = JSON.parse(localStorage.getItem('lydian_chat_history') || '[]');
+        const chat = savedChats.find(c => (c.id || savedChats.indexOf(c)) == chatId);
+
+        if (chat && chat.messages) {
+          state.messages = chat.messages;
+          renderMessages();
+          showToast('Sohbet yüklendi', 'success');
+        }
+      }
+
+      // Save current chat to history
+      function saveCurrentChatToHistory() {
+        if (state.messages.length === 0) return;
+
+        const savedChats = JSON.parse(localStorage.getItem('lydian_chat_history') || '[]');
+        const firstUserMsg = state.messages.find(m => m.role === 'user');
+        const preview = firstUserMsg ? firstUserMsg.content.substring(0, 50) : 'Yeni Sohbet';
+
+        const chatData = {
+          id: Date.now().toString(),
+          title: preview + (preview.length >= 50 ? '...' : ''),
+          preview: preview,
+          messages: state.messages,
+          savedAt: new Date().toISOString()
+        };
+
+        savedChats.push(chatData);
+
+        // Keep only last 50 chats
+        if (savedChats.length > 50) {
+          savedChats.shift();
+        }
+
+        localStorage.setItem('lydian_chat_history', JSON.stringify(savedChats));
+      }
+
+      // Hamburger button opens sidebar
+      if (mobileHamburgerBtn) {
+        mobileHamburgerBtn.addEventListener('click', e => {
+          e.preventDefault();
+          e.stopPropagation();
+          openMobileSidebar();
+        });
+      }
+
+      // Overlay click closes sidebar
+      if (mobileSidebarOverlay) {
+        mobileSidebarOverlay.addEventListener('click', closeMobileSidebar);
+      }
+
+      // Close button closes sidebar
+      if (mobileSidebarClose) {
+        mobileSidebarClose.addEventListener('click', closeMobileSidebar);
+      }
+
+      // New Chat button - Start fresh conversation
+      if (mobileNewChatBtn) {
+        mobileNewChatBtn.addEventListener('click', () => {
+          // Save current chat if has messages
+          if (state.messages.length > 0) {
+            saveCurrentChatToHistory();
+          }
+
+          // Clear current conversation
+          state.messages = [];
+          state.conversationHistory = [];
+          renderMessages();
+
+          // Show empty state
+          const emptyState = document.getElementById('emptyState');
+          if (emptyState) {
+            emptyState.style.display = 'flex';
+          }
+
+          closeMobileSidebar();
+          showToast('Yeni sohbet başlatıldı', 'success');
+        });
       }
 
       // Mobile dropdown functionality
@@ -5796,83 +6882,53 @@
         });
       }
 
-      // Toggle button only closes the sidebar (no opening)
-      if (mobileToggleBtn) {
-        mobileToggleBtn.addEventListener('click', closeMobileSidebar);
-      }
+      // 📲 SWIPE GESTURE - Open sidebar by swiping from left edge
+      let touchStartX = 0;
+      let touchStartY = 0;
+      let isSwiping = false;
 
-      if (mobileSidebarClose) {
-        mobileSidebarClose.addEventListener('click', closeMobileSidebar);
-      }
+      document.addEventListener('touchstart', e => {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+        // Only track swipe if starting from left edge (within 30px)
+        isSwiping = touchStartX < 30 && !mobileSidebar?.classList.contains('open');
+      }, { passive: true });
 
-      // Header download/share buttons open the sidebar on mobile
+      document.addEventListener('touchmove', e => {
+        if (!isSwiping) return;
+
+        const touchX = e.touches[0].clientX;
+        const touchY = e.touches[0].clientY;
+        const diffX = touchX - touchStartX;
+        const diffY = Math.abs(touchY - touchStartY);
+
+        // If horizontal swipe is greater than vertical, open sidebar
+        if (diffX > 50 && diffX > diffY) {
+          openMobileSidebar();
+          isSwiping = false;
+        }
+      }, { passive: true });
+
+      document.addEventListener('touchend', () => {
+        isSwiping = false;
+      }, { passive: true });
+
+      // Header download/share buttons - Direct actions on mobile
       const originalDownloadBtn = document.getElementById('downloadBtn');
       const originalShareBtn = document.getElementById('shareBtn');
-
-      if (originalDownloadBtn && window.innerWidth <= 768) {
-        originalDownloadBtn.addEventListener('click', e => {
-          e.preventDefault();
-          if (mobileSidebar) {
-            mobileSidebar.classList.add('open');
-            if (headerActions) {
-              headerActions.classList.add('hide-on-sidebar-open');
-            }
-          }
-        });
-      }
-
-      if (originalShareBtn && window.innerWidth <= 768) {
-        originalShareBtn.addEventListener('click', e => {
-          e.preventDefault();
-          if (mobileSidebar) {
-            mobileSidebar.classList.add('open');
-            if (headerActions) {
-              headerActions.classList.add('hide-on-sidebar-open');
-            }
-          }
-        });
-      }
 
       // Menu actions - actually perform download/share
       if (menuDownload) {
         menuDownload.addEventListener('click', () => {
           closeMobileSidebar();
-          // Trigger actual download
-          setTimeout(() => {
-            if (originalDownloadBtn) {
-              const clickEvent = new MouseEvent('click', {
-                bubbles: true,
-                cancelable: true,
-                view: window,
-              });
-              // Remove our handler temporarily
-              const handler = originalDownloadBtn.onclick;
-              originalDownloadBtn.onclick = null;
-              originalDownloadBtn.dispatchEvent(clickEvent);
-              originalDownloadBtn.onclick = handler;
-            }
-          }, 300);
+          setTimeout(() => downloadConversation(), 300);
         });
       }
 
       if (menuShare) {
         menuShare.addEventListener('click', () => {
           closeMobileSidebar();
-          // Trigger actual share
-          setTimeout(() => {
-            if (originalShareBtn) {
-              const clickEvent = new MouseEvent('click', {
-                bubbles: true,
-                cancelable: true,
-                view: window,
-              });
-              // Remove our handler temporarily
-              const handler = originalShareBtn.onclick;
-              originalShareBtn.onclick = null;
-              originalShareBtn.dispatchEvent(clickEvent);
-              originalShareBtn.onclick = handler;
-            }
-          }, 300);
+          setTimeout(() => shareConversation(), 300);
         });
       }
 
@@ -7724,6 +8780,575 @@
 
     <!-- Translation System -->
     <!-- <script src="/js/translation.js"></script> DISABLED -->
+
+    <!-- 🔐 Chat Auth System -->
+    <script>
+      // ============================================================
+      // 🔐 CHAT AUTH MANAGER - Independent Authentication System
+      // ============================================================
+
+      const ChatAuth = {
+        state: {
+          isAuthenticated: false,
+          user: null,
+          settings: null,
+          activePanel: null
+        },
+
+        elements: {
+          overlay: null,
+          panels: {}
+        },
+
+        // Initialize
+        init() {
+          this.elements.overlay = document.getElementById('chatAuthOverlay');
+          this.elements.panels = {
+            login: document.getElementById('chatAuthLoginPanel'),
+            register: document.getElementById('chatAuthRegisterPanel'),
+            forgot: document.getElementById('chatAuthForgotPanel'),
+            reset: document.getElementById('chatAuthResetPanel'),
+            profile: document.getElementById('chatAuthProfilePanel'),
+            settings: document.getElementById('chatAuthSettingsPanel'),
+            security: document.getElementById('chatAuthSecurityPanel')
+          };
+
+          this.bindEvents();
+          this.checkSession();
+          this.checkResetToken();
+        },
+
+        // Bind all form events
+        bindEvents() {
+          // Login form
+          document.getElementById('chatAuthLoginForm')?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            this.handleLogin(new FormData(e.target));
+          });
+
+          // Register form
+          document.getElementById('chatAuthRegisterForm')?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            this.handleRegister(new FormData(e.target));
+          });
+
+          // Forgot password form
+          document.getElementById('chatAuthForgotForm')?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            this.handleForgotPassword(new FormData(e.target));
+          });
+
+          // Reset password form
+          document.getElementById('chatAuthResetForm')?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            this.handleResetPassword(new FormData(e.target));
+          });
+
+          // Change password form
+          document.getElementById('chatAuthChangePasswordForm')?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            this.handleChangePassword(new FormData(e.target));
+          });
+
+          // Password strength indicators
+          document.getElementById('registerPassword')?.addEventListener('input', (e) => {
+            this.updatePasswordStrength(e.target.value, 'registerPasswordStrength', 'registerPasswordStrengthText');
+          });
+          document.getElementById('resetPassword')?.addEventListener('input', (e) => {
+            this.updatePasswordStrength(e.target.value, 'resetPasswordStrength');
+          });
+          document.getElementById('newPassword')?.addEventListener('input', (e) => {
+            this.updatePasswordStrength(e.target.value, 'newPasswordStrength');
+          });
+
+          // Overlay click to close
+          this.elements.overlay?.addEventListener('click', (e) => {
+            if (e.target === this.elements.overlay) {
+              this.closePanel();
+            }
+          });
+
+          // ESC key to close
+          document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && this.state.activePanel) {
+              this.closePanel();
+            }
+          });
+
+          // User menu clicks (desktop sidebar and mobile sidebar)
+          document.getElementById('userMenuBtn')?.addEventListener('click', () => {
+            if (this.state.isAuthenticated) {
+              this.openPanel('profile');
+            } else {
+              this.openPanel('login');
+            }
+          });
+
+          document.getElementById('mobileUserProfile')?.addEventListener('click', () => {
+            if (this.state.isAuthenticated) {
+              this.openPanel('profile');
+            } else {
+              this.openPanel('login');
+            }
+            // Close mobile sidebar
+            document.getElementById('mobileSidebar')?.classList.remove('open');
+            document.getElementById('mobileSidebarOverlay')?.classList.remove('active');
+          });
+        },
+
+        // Check for reset token in URL
+        checkResetToken() {
+          const urlParams = new URLSearchParams(window.location.search);
+          const resetToken = urlParams.get('reset');
+          if (resetToken) {
+            document.getElementById('resetToken').value = resetToken;
+            this.openPanel('reset');
+            // Clean URL
+            window.history.replaceState({}, document.title, window.location.pathname);
+          }
+        },
+
+        // Open auth panel
+        openPanel(panelName) {
+          this.closeAllPanels();
+          this.elements.overlay?.classList.add('active');
+          const panel = this.elements.panels[panelName];
+          if (panel) {
+            panel.classList.add('active');
+            this.state.activePanel = panelName;
+            // Focus first input
+            setTimeout(() => {
+              panel.querySelector('input:not([type="hidden"])')?.focus();
+            }, 100);
+          }
+        },
+
+        // Close panel
+        closePanel() {
+          this.elements.overlay?.classList.remove('active');
+          this.closeAllPanels();
+          this.state.activePanel = null;
+        },
+
+        // Close all panels
+        closeAllPanels() {
+          Object.values(this.elements.panels).forEach(p => p?.classList.remove('active'));
+        },
+
+        // Password strength calculation
+        updatePasswordStrength(password, barId, textId = null) {
+          const bar = document.querySelector(`#${barId} .password-strength-bar`);
+          const text = textId ? document.getElementById(textId) : null;
+          if (!bar) return;
+
+          let score = 0;
+          let strength = 'weak';
+          let strengthText = 'Zayıf';
+
+          if (password.length >= 8) score++;
+          if (password.length >= 12) score++;
+          if (/[A-Z]/.test(password)) score++;
+          if (/[a-z]/.test(password)) score++;
+          if (/[0-9]/.test(password)) score++;
+          if (/[^A-Za-z0-9]/.test(password)) score++;
+
+          if (score >= 5) {
+            strength = 'strong';
+            strengthText = 'Güçlü';
+          } else if (score >= 3) {
+            strength = 'medium';
+            strengthText = 'Orta';
+          }
+
+          bar.className = 'password-strength-bar ' + strength;
+          if (text) text.textContent = password.length > 0 ? strengthText : '';
+        },
+
+        // Show toast notification
+        showToast(message, type = 'info') {
+          // Use existing showToast if available, otherwise create simple one
+          if (typeof window.showToast === 'function') {
+            window.showToast(message, type);
+          } else {
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+              position: fixed;
+              bottom: 20px;
+              left: 50%;
+              transform: translateX(-50%);
+              padding: 12px 24px;
+              background: ${type === 'error' ? '#ef4444' : type === 'success' ? '#10a37f' : '#6e84ff'};
+              color: white;
+              border-radius: 8px;
+              font-size: 14px;
+              z-index: 10010;
+              box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            `;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+          }
+        },
+
+        // Set button loading state
+        setButtonLoading(btn, loading, text) {
+          if (loading) {
+            btn.disabled = true;
+            btn.dataset.originalText = btn.textContent;
+            btn.classList.add('loading');
+          } else {
+            btn.disabled = false;
+            btn.textContent = text || btn.dataset.originalText || 'Gönder';
+            btn.classList.remove('loading');
+          }
+        },
+
+        // Handle Login
+        async handleLogin(formData) {
+          const email = formData.get('email');
+          const password = formData.get('password');
+          const btn = document.querySelector('#chatAuthLoginForm .chat-auth-btn');
+
+          this.setButtonLoading(btn, true);
+
+          try {
+            const res = await fetch('/api/chat-auth/login', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              credentials: 'include',
+              body: JSON.stringify({ email, password })
+            });
+
+            const data = await res.json();
+
+            if (data.success) {
+              this.onLoginSuccess(data.user);
+            } else {
+              this.showToast(data.error || 'Giriş başarısız', 'error');
+            }
+          } catch (err) {
+            this.showToast('Bağlantı hatası', 'error');
+          } finally {
+            this.setButtonLoading(btn, false, 'Giriş Yap');
+          }
+        },
+
+        // Handle Register
+        async handleRegister(formData) {
+          const displayName = formData.get('displayName');
+          const email = formData.get('email');
+          const password = formData.get('password');
+          const confirmPassword = formData.get('confirmPassword');
+
+          if (password !== confirmPassword) {
+            this.showToast('Şifreler eşleşmiyor', 'error');
+            return;
+          }
+
+          const btn = document.querySelector('#chatAuthRegisterForm .chat-auth-btn');
+          this.setButtonLoading(btn, true);
+
+          try {
+            const res = await fetch('/api/chat-auth/register', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ displayName, email, password })
+            });
+
+            const data = await res.json();
+
+            if (data.success) {
+              this.showToast('Kayıt başarılı! Giriş yapabilirsiniz.', 'success');
+              document.getElementById('chatAuthRegisterForm').reset();
+              this.openPanel('login');
+            } else {
+              this.showToast(data.error || 'Kayıt başarısız', 'error');
+            }
+          } catch (err) {
+            this.showToast('Bağlantı hatası', 'error');
+          } finally {
+            this.setButtonLoading(btn, false, 'Kayıt Ol');
+          }
+        },
+
+        // Handle Forgot Password
+        async handleForgotPassword(formData) {
+          const email = formData.get('email');
+          const btn = document.querySelector('#chatAuthForgotForm .chat-auth-btn');
+
+          this.setButtonLoading(btn, true);
+
+          try {
+            const res = await fetch('/api/chat-auth/forgot-password', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email })
+            });
+
+            const data = await res.json();
+            this.showToast(data.message || 'İstek gönderildi', 'success');
+            document.getElementById('chatAuthForgotForm').reset();
+          } catch (err) {
+            this.showToast('Bağlantı hatası', 'error');
+          } finally {
+            this.setButtonLoading(btn, false, 'Sıfırlama Bağlantısı Gönder');
+          }
+        },
+
+        // Handle Reset Password
+        async handleResetPassword(formData) {
+          const token = formData.get('token');
+          const password = formData.get('password');
+          const confirmPassword = formData.get('confirmPassword');
+
+          if (password !== confirmPassword) {
+            this.showToast('Şifreler eşleşmiyor', 'error');
+            return;
+          }
+
+          const btn = document.querySelector('#chatAuthResetForm .chat-auth-btn');
+          this.setButtonLoading(btn, true);
+
+          try {
+            const res = await fetch('/api/chat-auth/reset-password', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ token, password })
+            });
+
+            const data = await res.json();
+
+            if (data.success) {
+              this.showToast('Şifre güncellendi! Giriş yapabilirsiniz.', 'success');
+              document.getElementById('chatAuthResetForm').reset();
+              this.openPanel('login');
+            } else {
+              this.showToast(data.error || 'Şifre sıfırlama başarısız', 'error');
+            }
+          } catch (err) {
+            this.showToast('Bağlantı hatası', 'error');
+          } finally {
+            this.setButtonLoading(btn, false, 'Şifreyi Güncelle');
+          }
+        },
+
+        // Handle Change Password
+        async handleChangePassword(formData) {
+          const currentPassword = formData.get('currentPassword');
+          const newPassword = formData.get('newPassword');
+          const newPasswordConfirm = formData.get('newPasswordConfirm');
+
+          if (newPassword !== newPasswordConfirm) {
+            this.showToast('Yeni şifreler eşleşmiyor', 'error');
+            return;
+          }
+
+          const btn = document.querySelector('#chatAuthChangePasswordForm .chat-auth-btn');
+          this.setButtonLoading(btn, true);
+
+          try {
+            const res = await fetch('/api/chat-auth/change-password', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              credentials: 'include',
+              body: JSON.stringify({ currentPassword, newPassword })
+            });
+
+            const data = await res.json();
+
+            if (data.success) {
+              this.showToast('Şifre güncellendi', 'success');
+              document.getElementById('chatAuthChangePasswordForm').reset();
+            } else {
+              this.showToast(data.error || 'Şifre değiştirme başarısız', 'error');
+            }
+          } catch (err) {
+            this.showToast('Bağlantı hatası', 'error');
+          } finally {
+            this.setButtonLoading(btn, false, 'Şifreyi Güncelle');
+          }
+        },
+
+        // Login success handler
+        onLoginSuccess(user) {
+          this.state.isAuthenticated = true;
+          this.state.user = user;
+          localStorage.setItem('lydian_chat_user', JSON.stringify(user));
+          this.updateUI();
+          this.closePanel();
+          this.showToast(`Hoşgeldin, ${user.displayName}!`, 'success');
+          this.loadUserSettings();
+          this.loadUserChatHistory();
+        },
+
+        // Check existing session
+        async checkSession() {
+          try {
+            const res = await fetch('/api/chat-auth/me', { credentials: 'include' });
+            const data = await res.json();
+
+            if (data.success && data.user) {
+              this.state.isAuthenticated = true;
+              this.state.user = data.user;
+              this.state.settings = data.settings;
+              localStorage.setItem('lydian_chat_user', JSON.stringify(data.user));
+              this.updateUI();
+              this.applySettings(data.settings);
+            }
+          } catch (err) {
+            // No session, continue as guest
+          }
+        },
+
+        // Update UI with user info
+        updateUI() {
+          const user = this.state.user;
+          if (!user) return;
+
+          const initial = user.displayName?.charAt(0)?.toUpperCase() || 'U';
+
+          // Desktop sidebar
+          const userName = document.querySelector('.user-name');
+          const userEmail = document.querySelector('.user-email');
+          if (userName) userName.textContent = user.displayName;
+          if (userEmail) userEmail.textContent = user.email;
+
+          // Mobile sidebar
+          const mobileUserName = document.querySelector('.mobile-sidebar-user-name');
+          const mobileUserAvatar = document.querySelector('.mobile-sidebar-user-avatar');
+          if (mobileUserName) mobileUserName.textContent = user.displayName;
+          if (mobileUserAvatar) mobileUserAvatar.textContent = initial;
+
+          // Profile panel
+          const profileAvatar = document.getElementById('profileAvatar');
+          const profileName = document.getElementById('profileName');
+          const profileEmail = document.getElementById('profileEmail');
+          if (profileAvatar) profileAvatar.textContent = initial;
+          if (profileName) profileName.textContent = user.displayName;
+          if (profileEmail) profileEmail.textContent = user.email;
+
+          // Welcome text
+          const welcomeName = document.getElementById('welcomeUserName');
+          if (welcomeName) welcomeName.textContent = `Merhaba, ${user.displayName}`;
+        },
+
+        // Load and apply settings
+        applySettings(settings) {
+          if (!settings) return;
+          this.state.settings = settings;
+
+          // Theme
+          const themeSelect = document.getElementById('settingTheme');
+          if (themeSelect) themeSelect.value = settings.theme || 'dark';
+
+          // Language
+          const langSelect = document.getElementById('settingLanguage');
+          if (langSelect) langSelect.value = settings.language || 'tr';
+
+          // Model
+          const modelSelect = document.getElementById('settingModel');
+          if (modelSelect) modelSelect.value = settings.preferredModel || 'premium';
+
+          // Toggles
+          const autoSave = document.getElementById('settingAutoSave');
+          if (autoSave) autoSave.classList.toggle('active', settings.autoSaveHistory !== false);
+
+          const notifications = document.getElementById('settingNotifications');
+          if (notifications) notifications.classList.toggle('active', settings.notificationsEnabled);
+
+          const sounds = document.getElementById('settingSounds');
+          if (sounds) sounds.classList.toggle('active', settings.soundEnabled);
+        },
+
+        // Load user settings from API
+        async loadUserSettings() {
+          try {
+            const res = await fetch('/api/chat-auth/settings', { credentials: 'include' });
+            const data = await res.json();
+            if (data.success) {
+              this.applySettings(data.settings);
+            }
+          } catch (err) {}
+        },
+
+        // Update a setting
+        async updateSetting(key, value) {
+          try {
+            const body = {};
+            body[key] = value;
+            await fetch('/api/chat-auth/settings', {
+              method: 'PUT',
+              headers: { 'Content-Type': 'application/json' },
+              credentials: 'include',
+              body: JSON.stringify(body)
+            });
+          } catch (err) {}
+        },
+
+        // Toggle setting
+        toggleSetting(key, element) {
+          const isActive = element.classList.toggle('active');
+          this.updateSetting(key, isActive);
+        },
+
+        // Load user chat history
+        async loadUserChatHistory() {
+          if (!this.state.user) return;
+
+          try {
+            const res = await fetch('/api/chat-auth/history', { credentials: 'include' });
+            const data = await res.json();
+
+            if (data.success && data.conversations) {
+              localStorage.setItem('lydian_chat_history', JSON.stringify(data.conversations));
+              // Trigger history reload if function exists
+              if (typeof window.loadMobileChatHistory === 'function') {
+                window.loadMobileChatHistory();
+              }
+              if (typeof window.loadDesktopChatHistory === 'function') {
+                window.loadDesktopChatHistory();
+              }
+            }
+          } catch (err) {
+            console.warn('Chat history load failed:', err);
+          }
+        },
+
+        // Logout
+        async logout() {
+          try {
+            await fetch('/api/chat-auth/logout', { method: 'POST', credentials: 'include' });
+          } catch (err) {}
+
+          this.state.isAuthenticated = false;
+          this.state.user = null;
+          this.state.settings = null;
+          localStorage.removeItem('lydian_chat_user');
+          localStorage.removeItem('lydian_chat_history');
+
+          // Reset UI
+          const userName = document.querySelector('.user-name');
+          const userEmail = document.querySelector('.user-email');
+          if (userName) userName.textContent = 'Kullanıcı';
+          if (userEmail) userEmail.textContent = 'Giriş yapın';
+
+          const mobileUserName = document.querySelector('.mobile-sidebar-user-name');
+          const mobileUserAvatar = document.querySelector('.mobile-sidebar-user-avatar');
+          if (mobileUserName) mobileUserName.textContent = 'Kullanıcı';
+          if (mobileUserAvatar) mobileUserAvatar.textContent = 'U';
+
+          const welcomeName = document.getElementById('welcomeUserName');
+          if (welcomeName) welcomeName.textContent = 'Hoşgeldiniz';
+
+          this.closePanel();
+          this.showToast('Çıkış yapıldı', 'success');
+        }
+      };
+
+      // Initialize on DOM ready
+      document.addEventListener('DOMContentLoaded', () => ChatAuth.init());
+    </script>
+
     <script src="/js/mobile-menu-handler.js"></script>
     <!-- Visitor Location & VPN Detection -->
     <script src="/js/visitor-info.js"></script>
