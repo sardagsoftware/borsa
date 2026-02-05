@@ -1796,18 +1796,18 @@
         max-width: 680px;
         width: calc(100% - 3rem);
         margin: 0 auto;
-        /* Dark Glassmorphism effect */
-        background: rgba(64, 65, 79, 0.9);
+        /* Dark theme matching - darker background */
+        background: rgba(32, 33, 36, 0.95);
         backdrop-filter: blur(16px) saturate(180%);
         -webkit-backdrop-filter: blur(16px) saturate(180%);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 26px;
         padding: 0.75rem 1rem;
         /* Premium shadow */
         box-shadow:
-          0 0 0 1px rgba(0, 0, 0, 0.1),
-          0 4px 16px rgba(0, 0, 0, 0.3),
-          0 12px 32px rgba(0, 0, 0, 0.2);
+          0 0 0 1px rgba(0, 0, 0, 0.2),
+          0 4px 16px rgba(0, 0, 0, 0.4),
+          0 12px 32px rgba(0, 0, 0, 0.3);
         position: relative;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         /* Flex layout for components */
@@ -1817,13 +1817,18 @@
       }
 
       .input-wrapper:focus-within {
-        background: rgba(64, 65, 79, 1);
-        border-color: rgba(16, 163, 127, 0.4);
+        background: rgba(40, 41, 45, 0.98);
+        border-color: rgba(100, 120, 200, 0.3);
         box-shadow:
-          0 0 0 1px rgba(16, 163, 127, 0.2),
-          0 4px 16px rgba(0, 0, 0, 0.3),
-          0 12px 32px rgba(0, 0, 0, 0.2),
-          0 0 30px rgba(16, 163, 127, 0.1);
+          0 0 0 1px rgba(100, 120, 200, 0.15),
+          0 4px 16px rgba(0, 0, 0, 0.4),
+          0 12px 32px rgba(0, 0, 0, 0.3),
+          0 0 30px rgba(100, 120, 200, 0.08);
+      }
+
+      /* 📊 MOBILE STATS - Hide on desktop, show on mobile */
+      .mobile-input-stats {
+        display: none;
       }
 
       /* 📊 Desktop Stats & Disclaimer Below Form */
@@ -1892,10 +1897,35 @@
         stroke: currentColor;
       }
 
-      /* Hide on mobile */
+      /* Mobile responsive for stats */
       @media (max-width: 768px) {
+        /* Show stats on mobile too - but with adjusted styling */
         .desktop-stats-disclaimer {
-          display: none;
+          display: flex;
+          margin: 0.5rem auto 0;
+          padding: 0 0.5rem;
+        }
+
+        .desktop-stats-row {
+          padding: 0.4rem 0.75rem;
+          gap: 0.5rem;
+          font-size: 0.7rem;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        .desktop-stat-item {
+          gap: 0.25rem;
+        }
+
+        .desktop-disclaimer {
+          font-size: 0.65rem;
+        }
+
+        /* Hide file/voice buttons in input-actions on mobile - use + dropdown instead */
+        .file-upload-btn,
+        .voice-chat-btn {
+          display: none !important;
         }
       }
 

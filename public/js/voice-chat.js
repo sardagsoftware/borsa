@@ -96,7 +96,7 @@
     const style = document.createElement('style');
     style.id = 'siri-voice-styles';
     style.textContent = `
-      /* Siri-like Holographic Voice Interface */
+      /* Siri-like Holographic Voice Interface - Blue/Purple Theme */
       .siri-voice-interface {
         position: relative;
         width: 100%;
@@ -105,8 +105,8 @@
         align-items: center;
         padding: 2rem 1rem;
         background: linear-gradient(180deg,
-          rgba(16, 163, 127, 0.05) 0%,
-          rgba(0, 212, 170, 0.02) 50%,
+          rgba(124, 92, 255, 0.05) 0%,
+          rgba(0, 224, 255, 0.02) 50%,
           transparent 100%
         );
         border-radius: 24px 24px 0 0;
@@ -133,20 +133,20 @@
         margin-bottom: 1.5rem;
       }
 
-      /* Main Orb */
+      /* Main Orb - Blue/Purple Theme */
       .siri-orb {
         width: 100%;
         height: 100%;
         border-radius: 50%;
         background: radial-gradient(circle at 30% 30%,
-          rgba(16, 163, 127, 0.9) 0%,
-          rgba(0, 212, 170, 0.7) 30%,
-          rgba(16, 163, 127, 0.5) 60%,
-          rgba(0, 100, 80, 0.3) 100%
+          rgba(124, 92, 255, 0.9) 0%,
+          rgba(0, 224, 255, 0.7) 30%,
+          rgba(124, 92, 255, 0.5) 60%,
+          rgba(59, 130, 246, 0.3) 100%
         );
         box-shadow:
-          0 0 40px rgba(16, 163, 127, 0.4),
-          0 0 80px rgba(16, 163, 127, 0.2),
+          0 0 40px rgba(124, 92, 255, 0.4),
+          0 0 80px rgba(0, 224, 255, 0.2),
           inset 0 0 30px rgba(255, 255, 255, 0.1);
         position: relative;
         z-index: 2;
@@ -168,15 +168,15 @@
         0%, 100% {
           transform: scale(1);
           box-shadow:
-            0 0 40px rgba(16, 163, 127, 0.4),
-            0 0 80px rgba(16, 163, 127, 0.2),
+            0 0 40px rgba(124, 92, 255, 0.4),
+            0 0 80px rgba(0, 224, 255, 0.2),
             inset 0 0 30px rgba(255, 255, 255, 0.1);
         }
         50% {
           transform: scale(1.02);
           box-shadow:
-            0 0 50px rgba(16, 163, 127, 0.5),
-            0 0 100px rgba(16, 163, 127, 0.3),
+            0 0 50px rgba(124, 92, 255, 0.5),
+            0 0 100px rgba(0, 224, 255, 0.3),
             inset 0 0 40px rgba(255, 255, 255, 0.15);
         }
       }
@@ -222,11 +222,11 @@
         to { transform: rotate(360deg); }
       }
 
-      /* Glow Rings */
+      /* Glow Rings - Blue/Purple */
       .siri-glow-ring {
         position: absolute;
         border-radius: 50%;
-        border: 2px solid rgba(16, 163, 127, 0.3);
+        border: 2px solid rgba(124, 92, 255, 0.3);
         animation: siriGlowExpand 2s ease-out infinite;
         pointer-events: none;
       }
@@ -275,7 +275,7 @@
       .siri-voice-bar {
         width: 4px;
         height: 20px;
-        background: linear-gradient(to top, #10a37f, #00d4aa);
+        background: linear-gradient(to top, #7C5CFF, #00E0FF);
         border-radius: 2px;
         transition: height 0.1s ease;
       }
@@ -329,20 +329,20 @@
         width: 60px;
         height: 60px;
         border-radius: 50%;
-        background: linear-gradient(135deg, #10a37f 0%, #00d4aa 100%);
+        background: linear-gradient(135deg, #7C5CFF 0%, #00E0FF 100%);
         border: none;
         cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
         color: #fff;
-        box-shadow: 0 4px 20px rgba(16, 163, 127, 0.4);
+        box-shadow: 0 4px 20px rgba(124, 92, 255, 0.4);
         transition: all 0.2s;
       }
 
       .siri-mic-btn:hover {
         transform: scale(1.08);
-        box-shadow: 0 6px 30px rgba(16, 163, 127, 0.5);
+        box-shadow: 0 6px 30px rgba(124, 92, 255, 0.5);
       }
 
       .siri-mic-btn:active {
