@@ -10,7 +10,14 @@
       content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover"
     />
 
-    <!-- Favicon -->
+    <!-- Favicon - Lydian Grape Logo -->
+    <link rel="icon" type="image/svg+xml" href="/icons/grape-icon-simple.svg" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/grape-favicon-16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/grape-favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/icons/grape-favicon-48.png" />
+    <link rel="icon" type="image/x-icon" href="/icons/grape-favicon.ico" />
+    <link rel="shortcut icon" href="/icons/grape-favicon.ico" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon-180.png" />
 
     <!-- GeoIP Auto-Language Detection (MUST BE FIRST) -->
     <script src="/js/geo-language.js"></script>
@@ -1627,15 +1634,21 @@
       /* ⚡ Message Actions */
       .message-actions {
         display: flex;
-        gap: 0.5rem;
+        gap: 0.375rem;
         opacity: 0;
         transform: translateY(-5px);
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        margin-top: 0.5rem;
       }
 
       .message-content:hover .message-actions {
         opacity: 1;
         transform: translateY(0);
+      }
+
+      /* User message actions - align right */
+      .message-actions.user-actions {
+        justify-content: flex-end;
       }
 
       .message-action-btn {
@@ -1653,6 +1666,29 @@
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
+      /* Small copy button - icon only */
+      .copy-btn-small {
+        padding: 0.35rem !important;
+        background: transparent !important;
+        border: none !important;
+        border-radius: 6px;
+        color: rgba(255, 255, 255, 0.5);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+      }
+
+      .copy-btn-small:hover {
+        background: rgba(255, 255, 255, 0.1) !important;
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      .copy-btn-small svg {
+        fill: currentColor;
+      }
+
       .message-action-btn:hover {
         background: rgba(255, 255, 255, 0.1);
         border-color: #10a37f;
@@ -1667,13 +1703,62 @@
         fill: currentColor;
       }
 
-      /* 🔄 Typing Indicator */
+      /* 🔄 Typing Indicator - ChatGPT Style "Düşünüyor..." */
       .typing-indicator {
         display: flex;
+        align-items: center;
         gap: 0.5rem;
-        padding: 1rem 1.5rem;
+        padding: 0.75rem 1rem;
       }
 
+      .typing-text {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 0.95rem;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 2px;
+      }
+
+      .typing-dots {
+        display: inline-flex;
+        gap: 2px;
+        margin-left: 2px;
+      }
+
+      .typing-dots span {
+        display: inline-block;
+        width: 4px;
+        height: 4px;
+        background: #10a37f;
+        border-radius: 50%;
+        animation: typingDotBounce 1.4s infinite ease-in-out;
+      }
+
+      .typing-dots span:nth-child(1) {
+        animation-delay: 0s;
+      }
+      .typing-dots span:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .typing-dots span:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+
+      @keyframes typingDotBounce {
+        0%,
+        60%,
+        100% {
+          transform: translateY(0);
+          opacity: 0.4;
+        }
+        30% {
+          transform: translateY(-4px);
+          opacity: 1;
+        }
+      }
+
+      /* Legacy typing dots (keeping for compatibility) */
       .typing-dot {
         width: 10px;
         height: 10px;
@@ -2831,7 +2916,13 @@
 
         .messages-container {
           padding: 1rem 0.75rem;
-          max-height: calc(100vh - 200px);
+          padding-top: 70px; /* Space for fixed header */
+          padding-bottom: 140px; /* Space for fixed input */
+          min-height: 100vh;
+          min-height: 100dvh; /* Dynamic viewport height for mobile */
+          max-height: none;
+          overflow-y: auto;
+          box-sizing: border-box;
         }
 
         .message {
@@ -2871,17 +2962,27 @@
         }
 
         .input-container {
-          padding: 1rem;
-          gap: 0.75rem;
-          left: 0;
-          width: 100%;
-          max-width: 100%;
-          margin: 0 auto;
+          position: fixed !important;
+          bottom: 0 !important;
+          left: 0 !important;
+          right: 0 !important;
+          width: 100% !important;
+          max-width: 100% !important;
+          padding: 0.75rem;
+          gap: 0.5rem;
+          margin: 0;
+          background: #1a1a1a;
+          z-index: 100;
+          box-sizing: border-box;
         }
 
         .chat-header {
-          left: 0;
-          width: 100%;
+          position: fixed !important;
+          top: 0 !important;
+          left: 0 !important;
+          right: 0 !important;
+          width: 100% !important;
+          z-index: 110;
         }
 
         /* Input area as flex column */
@@ -3431,7 +3532,9 @@
         }
 
         .messages-container {
-          padding: 0.75rem 0.5rem;
+          padding: 0.5rem;
+          padding-top: 65px !important; /* Keep space for fixed header */
+          padding-bottom: 130px !important; /* Keep space for fixed input */
         }
 
         .message {
@@ -3453,7 +3556,12 @@
         }
 
         .input-container {
-          padding: 0.625rem;
+          padding: 0.5rem !important;
+          position: fixed !important;
+          bottom: 0 !important;
+          left: 0 !important;
+          right: 0 !important;
+          width: 100% !important;
         }
 
         #messageInput {
@@ -3589,6 +3697,90 @@
 
       .border-animated {
         animation: borderPulse 3s ease-in-out infinite;
+      }
+
+      /* ============================================================
+   💡 SUGGESTION CHIPS - ChatGPT Kompakt Stil
+   ============================================================ */
+
+      .suggestion-chips-container {
+        display: flex;
+        flex-direction: column;
+        gap: 0.375rem;
+        margin-top: 0.75rem;
+        padding: 0;
+        animation: fadeInUp 0.3s ease-out;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(6px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .suggestion-chip {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.5rem 0.875rem;
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 18px;
+        color: rgba(255, 255, 255, 0.75);
+        font-size: 0.8125rem;
+        font-weight: 400;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        text-align: left;
+        width: fit-content;
+        line-height: 1.3;
+      }
+
+      .suggestion-chip:hover {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 255, 255, 0.25);
+        color: #ffffff;
+      }
+
+      .suggestion-chip:active {
+        transform: scale(0.98);
+      }
+
+      /* Mobile'da suggestion chips */
+      @media (max-width: 768px) {
+        .suggestion-chips-container {
+          gap: 0.25rem;
+          margin-top: 0.5rem;
+        }
+
+        .suggestion-chip {
+          padding: 0.4rem 0.75rem;
+          font-size: 0.75rem;
+          border-radius: 16px;
+        }
+      }
+
+      /* Suggestion chips header */
+      .suggestions-header {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.5rem;
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 0.75rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .suggestions-header svg {
+        width: 14px;
+        height: 14px;
+        opacity: 0.6;
       }
 
       /* ============================================================
@@ -5769,6 +5961,11 @@
         if (elements.sendBtn) elements.sendBtn.disabled = true;
         clearFilePreview();
 
+        // Mobile: Close keyboard
+        if (window.innerWidth <= 768) {
+          elements.messageInput.blur();
+        }
+
         // Reset stats
         if (elements.charCount) elements.charCount.textContent = '0';
         if (elements.tokenCount) elements.tokenCount.textContent = '0';
@@ -5796,17 +5993,26 @@
           if (currentFile) {
             result = await analyzeFileWithAI(currentFile, message);
           } else {
-            // Check if RecallClient is available
-            if (!recallClient) {
-              throw new Error('AI client not initialized');
-            }
+            // Check for URL analysis request
+            const urlCheck = isUrlAnalysisRequest(message);
 
-            // Use RecallClient for AI responses
-            result = await recallClient.chat(message, {
-              domain: state.selectedAiType || 'general',
-              language: 'tr-TR',
-              preferOffline: false,
-            });
+            if (urlCheck.isUrlRequest && urlCheck.urls.length > 0) {
+              // URL detected - analyze it
+              console.log('[CHAT] URL analysis request detected:', urlCheck.urls[0]);
+              result = await analyzeUrlWithAI(urlCheck.urls[0], urlCheck.question);
+            } else {
+              // Check if RecallClient is available
+              if (!recallClient) {
+                throw new Error('AI client not initialized');
+              }
+
+              // Use RecallClient for AI responses
+              result = await recallClient.chat(message, {
+                domain: state.selectedAiType || 'general',
+                language: 'tr-TR',
+                preferOffline: false,
+              });
+            }
           }
 
           hideTypingIndicator();
@@ -5913,6 +6119,103 @@
           reader.onerror = reject;
           reader.readAsDataURL(file);
         });
+      }
+
+      // ============================================================
+      // URL DETECTION AND ANALYSIS (Claude-style URL Analysis)
+      // ============================================================
+
+      /**
+       * Detect URLs in a message
+       */
+      function detectUrls(text) {
+        const urlRegex = /(https?:\/\/[^\s<>"{}|\\^`[\]]+)/gi;
+        const matches = text.match(urlRegex);
+        return matches || [];
+      }
+
+      /**
+       * Check if message is primarily a URL analysis request
+       */
+      function isUrlAnalysisRequest(text) {
+        const urls = detectUrls(text);
+        if (urls.length === 0) return { isUrlRequest: false };
+
+        // Keywords that indicate URL analysis intent (Turkish + English)
+        const analysisKeywords = [
+          'analiz',
+          'incele',
+          'özetle',
+          'açıkla',
+          'ne anlatıyor',
+          'ne diyor',
+          'içeriği',
+          'hakkında',
+          'oku',
+          'bak',
+          'kontrol',
+          'analyze',
+          'summarize',
+          'explain',
+          'what',
+          'check',
+          'read',
+          'content',
+        ];
+
+        const lowerText = text.toLowerCase();
+        const hasAnalysisKeyword = analysisKeywords.some(kw => lowerText.includes(kw));
+
+        // If message contains URL and analysis keyword, or is mostly just a URL
+        const textWithoutUrl = text.replace(/(https?:\/\/[^\s]+)/gi, '').trim();
+        const isJustUrl = textWithoutUrl.length < 20;
+
+        return {
+          isUrlRequest: urls.length > 0 && (hasAnalysisKeyword || isJustUrl),
+          urls: urls,
+          question: textWithoutUrl || null,
+        };
+      }
+
+      /**
+       * Analyze URL content with AI
+       */
+      async function analyzeUrlWithAI(url, question) {
+        try {
+          const response = await fetch('/api/analyze-url', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              url: url,
+              question: question || '',
+            }),
+          });
+
+          if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.error || 'URL analizi başarısız');
+          }
+
+          const result = await response.json();
+
+          if (result.success) {
+            // Format response with URL info
+            const formattedResponse = `🔗 **URL Analizi**\n📌 **Başlık:** ${result.title}\n🌐 **Kaynak:** ${result.url}\n\n---\n\n${result.analysis}`;
+            return {
+              success: true,
+              response: formattedResponse,
+              url: result.url,
+              title: result.title,
+            };
+          } else {
+            return { success: false, error: result.error };
+          }
+        } catch (error) {
+          console.error('[URL_ANALYZE_ERR]', error);
+          return { success: false, error: error.message };
+        }
       }
 
       // Add message with file attachment (ChatGPT style)
@@ -6061,6 +6364,27 @@
           `;
         }
 
+        // Generate suggestion chips HTML for assistant messages
+        let suggestionsHtml = '';
+        if (role === 'assistant') {
+          const suggestions = generateSuggestions(content, state.messages);
+          if (suggestions.length > 0) {
+            suggestionsHtml = `
+              <div class="suggestion-chips-container">
+                ${suggestions
+                  .map(
+                    s => `
+                  <button class="suggestion-chip" data-suggestion="${escapeHtml(s.text)}">
+                    <span>${escapeHtml(s.text)}</span>
+                  </button>
+                `
+                  )
+                  .join('')}
+              </div>
+            `;
+          }
+        }
+
         messageEl.innerHTML = `
                 <div class="message-avatar">${avatarSvg}</div>
                 <div class="message-content">
@@ -6071,23 +6395,45 @@
                       role === 'assistant'
                         ? `
                         <div class="message-actions">
-                            <button class="message-action-btn" onclick="copyMessage(this)">
-                                <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
-                                Kopyala
+                            <button class="message-action-btn copy-btn-small" onclick="copyMessage(this)" title="Kopyala">
+                                <svg viewBox="0 0 24 24" width="14" height="14"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
                             </button>
-                            <button class="message-action-btn" onclick="regenerateMessage(this)">
-                                <svg viewBox="0 0 24 24"><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/></svg>
-                                Yeniden Oluştur
+                            <button class="message-action-btn" onclick="regenerateMessage(this)" title="Yeniden Oluştur">
+                                <svg viewBox="0 0 24 24" width="14" height="14"><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/></svg>
+                            </button>
+                        </div>
+                        ${suggestionsHtml}
+                    `
+                        : `
+                        <div class="message-actions user-actions">
+                            <button class="message-action-btn copy-btn-small" onclick="copyMessage(this)" title="Kopyala">
+                                <svg viewBox="0 0 24 24" width="14" height="14"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
                             </button>
                         </div>
                     `
-                        : ''
                     }
                 </div>
             `;
 
         elements.messagesContainer.appendChild(messageEl);
         messageEl.scrollIntoView({ behavior: 'smooth', block: 'end' });
+
+        // Add click handlers for suggestion chips
+        if (role === 'assistant') {
+          const chips = messageEl.querySelectorAll('.suggestion-chip');
+          chips.forEach(chip => {
+            chip.addEventListener('click', () => {
+              const suggestionText = chip.dataset.suggestion;
+              if (suggestionText && elements.messageInput) {
+                elements.messageInput.value = suggestionText;
+                elements.messageInput.focus();
+                elements.messageInput.dispatchEvent(new Event('input'));
+                // Optionally auto-send
+                // sendMessage();
+              }
+            });
+          });
+        }
       }
 
       function showTypingIndicator() {
@@ -6101,9 +6447,9 @@
                 </div>
                 <div class="message-content">
                     <div class="typing-indicator">
-                        <div class="typing-dot"></div>
-                        <div class="typing-dot"></div>
-                        <div class="typing-dot"></div>
+                        <span class="typing-text">
+                            Düşünüyor<span class="typing-dots"><span></span><span></span><span></span></span>
+                        </span>
                     </div>
                 </div>
             `;
@@ -6190,6 +6536,153 @@
         const div = document.createElement('div');
         div.textContent = text;
         return div.innerHTML;
+      }
+
+      /**
+       * Generate contextual suggestions based on conversation
+       * ChatGPT-style follow-up suggestions
+       */
+      function generateSuggestions(aiResponse, messages) {
+        const suggestions = [];
+        const lastUserMessage =
+          messages
+            .filter(m => m.role === 'user')
+            .pop()
+            ?.content?.toLowerCase() || '';
+        const responseLower = aiResponse.toLowerCase();
+
+        // Konu bazlı öneriler - İKONLARLA
+        const topicSuggestions = {
+          // Programlama ve Teknoloji
+          kod: [
+            { text: 'Bu kodu optimize edebilir misin?', icon: '⚡' },
+            { text: 'Hata ayıklama için önerilerin var mı?', icon: '🔧' },
+            { text: 'Alternatif bir yaklaşım gösterir misin?', icon: '🔄' },
+          ],
+          python: [
+            { text: 'Bu kodu daha Pythonic yapabilir misin?', icon: '🐍' },
+            { text: 'Unit test örnekleri ekler misin?', icon: '✅' },
+            { text: 'Performans iyileştirmeleri öner', icon: '🚀' },
+          ],
+          javascript: [
+            { text: 'Modern ES6+ syntax ile yaz', icon: '✨' },
+            { text: 'TypeScript versiyonunu göster', icon: '📘' },
+            { text: 'Error handling ekle', icon: '🛡️' },
+          ],
+
+          // Genel Bilgi
+          tarih: [
+            { text: 'Bu dönemin önemli olayları neler?', icon: '📜' },
+            { text: 'Daha detaylı anlatır mısın?', icon: '🔍' },
+            { text: 'Günümüze etkileri neler?', icon: '🌍' },
+          ],
+
+          // Sağlık
+          sağlık: [
+            { text: 'Belirtiler ne anlama geliyor?', icon: '🩺' },
+            { text: 'Hangi uzmanı görmeliyim?', icon: '👨‍⚕️' },
+            { text: 'Önleme yöntemleri neler?', icon: '💪' },
+          ],
+
+          // Finans
+          finans: [
+            { text: 'Yatırım stratejileri öner', icon: '📈' },
+            { text: 'Risk analizi yapabilir misin?', icon: '⚖️' },
+            { text: 'Alternatif seçenekler neler?', icon: '💡' },
+          ],
+
+          // Eğitim
+          öğren: [
+            { text: 'Pratik örnekler verebilir misin?', icon: '📝' },
+            { text: 'Kaynak önerilerin var mı?', icon: '📚' },
+            { text: 'Adım adım anlat', icon: '🎯' },
+          ],
+
+          // Yemek ve Tarif
+          tarif: [
+            { text: 'Malzeme listesi verir misin?', icon: '🥗' },
+            { text: 'Pişirme süresi ne kadar?', icon: '⏱️' },
+            { text: 'Vegan alternatifi var mı?', icon: '🌱' },
+          ],
+
+          // Seyahat
+          seyahat: [
+            { text: 'En iyi zaman ne zaman?', icon: '📅' },
+            { text: 'Bütçe önerisi verir misin?', icon: '💰' },
+            { text: 'Görülmesi gereken yerler neler?', icon: '📍' },
+          ],
+        };
+
+        // Genel öneriler (fallback) - İKONLARLA
+        const generalSuggestions = [
+          { text: 'Daha detaylı açıklar mısın?', icon: '🔍' },
+          { text: 'Başka örnekler verebilir misin?', icon: '💡' },
+          { text: 'Bu konuda nelere dikkat etmeliyim?', icon: '⚠️' },
+          { text: 'Özet geçebilir misin?', icon: '📋' },
+        ];
+
+        // Yanıt içeriğine göre öneriler
+        if (
+          responseLower.includes('kod') ||
+          responseLower.includes('function') ||
+          responseLower.includes('class')
+        ) {
+          suggestions.push(...(topicSuggestions.kod || []));
+        }
+        if (responseLower.includes('python') || lastUserMessage.includes('python')) {
+          suggestions.push(...(topicSuggestions.python || []));
+        }
+        if (
+          responseLower.includes('javascript') ||
+          responseLower.includes('js') ||
+          lastUserMessage.includes('javascript')
+        ) {
+          suggestions.push(...(topicSuggestions.javascript || []));
+        }
+        if (
+          responseLower.includes('tarih') ||
+          responseLower.includes('yüzyıl') ||
+          responseLower.includes('dönem')
+        ) {
+          suggestions.push(...(topicSuggestions.tarih || []));
+        }
+        if (
+          responseLower.includes('sağlık') ||
+          responseLower.includes('hastalık') ||
+          responseLower.includes('tedavi')
+        ) {
+          suggestions.push(...(topicSuggestions.sağlık || []));
+        }
+        if (
+          responseLower.includes('yatırım') ||
+          responseLower.includes('finans') ||
+          responseLower.includes('para')
+        ) {
+          suggestions.push(...(topicSuggestions.finans || []));
+        }
+        if (
+          responseLower.includes('tarif') ||
+          responseLower.includes('yemek') ||
+          responseLower.includes('pişir')
+        ) {
+          suggestions.push(...(topicSuggestions.tarif || []));
+        }
+        if (
+          responseLower.includes('seyahat') ||
+          responseLower.includes('gezi') ||
+          responseLower.includes('tur')
+        ) {
+          suggestions.push(...(topicSuggestions.seyahat || []));
+        }
+
+        // Eğer konu bazlı öneri bulunamadıysa genel öneriler
+        if (suggestions.length === 0) {
+          suggestions.push(...generalSuggestions);
+        }
+
+        // Benzersiz ve max 3 öneri döndür
+        const uniqueSuggestions = [...new Map(suggestions.map(s => [s.text, s])).values()];
+        return uniqueSuggestions.slice(0, 3);
       }
 
       function startNewChat() {
@@ -6553,7 +7046,7 @@
         }
       }
 
-      // Show file preview badge near input
+      // Show file preview badge near input - ChatGPT style
       function showFilePreview(fileName, imageData, isImage) {
         // Remove existing preview
         const existing = document.getElementById('filePreviewBadge');
@@ -6562,31 +7055,42 @@
         const badge = document.createElement('div');
         badge.id = 'filePreviewBadge';
         badge.style.cssText = `
-          display: flex;
+          display: inline-flex;
           align-items: center;
-          gap: 8px;
-          padding: 8px 12px;
-          background: rgba(16, 163, 127, 0.15);
-          border: 1px solid rgba(16, 163, 127, 0.3);
-          border-radius: 10px;
-          margin-bottom: 8px;
-          max-width: fit-content;
+          gap: 10px;
+          padding: ${isImage ? '6px 10px 6px 6px' : '10px 14px'};
+          background: rgba(32, 33, 36, 0.95);
+          border: 1px solid rgba(255, 255, 255, 0.12);
+          border-radius: ${isImage ? '12px' : '10px'};
+          margin-bottom: 10px;
+          max-width: 280px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+          animation: slideInUp 0.2s ease-out;
         `;
 
         const preview =
           isImage && imageData
-            ? `<img src="${imageData}" style="width: 40px; height: 40px; object-fit: cover; border-radius: 6px;" />`
-            : `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#10a37f" stroke-width="2">
-               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-               <polyline points="14 2 14 8 20 8"/>
-             </svg>`;
+            ? `<img src="${imageData}" style="width: 56px; height: 56px; object-fit: cover; border-radius: 8px; flex-shrink: 0;" />`
+            : `<div style="width: 40px; height: 40px; background: rgba(16, 163, 127, 0.15); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                 <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#10a37f" stroke-width="2">
+                   <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                   <polyline points="14 2 14 8 20 8"/>
+                 </svg>
+               </div>`;
+
+        // Get file extension
+        const ext = fileName.split('.').pop().toUpperCase();
+        const fileTypeLabel = isImage ? 'Görsel' : ext;
 
         badge.innerHTML = `
           ${preview}
-          <span style="color: #fff; font-size: 0.85rem; max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
-            ${fileName}
-          </span>
-          <button onclick="clearFilePreview()" style="background: none; border: none; color: rgba(255,255,255,0.7); cursor: pointer; padding: 4px;">
+          <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;">
+            <span style="color: #fff; font-size: 0.85rem; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+              ${fileName}
+            </span>
+            <span style="color: rgba(255,255,255,0.5); font-size: 0.75rem;">${fileTypeLabel}</span>
+          </div>
+          <button onclick="clearFilePreview()" style="background: rgba(255,255,255,0.08); border: none; color: rgba(255,255,255,0.6); cursor: pointer; padding: 6px; border-radius: 6px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; flex-shrink: 0;" onmouseover="this.style.background='rgba(239,68,68,0.2)'; this.style.color='#ef4444';" onmouseout="this.style.background='rgba(255,255,255,0.08)'; this.style.color='rgba(255,255,255,0.6)';">
             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M18 6L6 18M6 6l12 12"/>
             </svg>

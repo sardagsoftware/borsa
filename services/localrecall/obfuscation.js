@@ -336,61 +336,86 @@ function decryptFromClient(encrypted) {
 }
 
 /**
- * Sanitize any AI model names from text (for logging)
- * Comprehensive list covering all major AI models and companies
+ * ═══════════════════════════════════════════════════════════════════════════
+ * 🔒 ULTRA MILITARY-GRADE AI MODEL NAME SANITIZATION
+ * ═══════════════════════════════════════════════════════════════════════════
+ *
+ * PERMANENT - STRICT - UNBREAKABLE RULE
+ *
+ * This function removes ALL traces of AI model names from ANY text.
+ * NO AI model names can EVER be visible to users.
+ * This is a CORE SECURITY requirement - violation is CRITICAL.
+ *
  * @param {string} text - Text to sanitize
- * @returns {string} Sanitized text
+ * @returns {string} Sanitized text with LyDian AI branding ONLY
  */
 function sanitizeModelNames(text) {
   if (!text) return text;
 
-  // Comprehensive list of patterns to sanitize (all known AI model/company names)
+  // ═══════════════════════════════════════════════════════════════════════════
+  // 🔒 ULTRA MILITARY-GRADE: ALL KNOWN AI MODELS - ZERO TOLERANCE
+  // ═══════════════════════════════════════════════════════════════════════════
   const patterns = [
-    // Anthropic models
-    /claude[- ]?[\d.]*[- ]?(opus|sonnet|haiku)?/gi,
+    // ═══════════════════════════════════════════════════
+    // ANTHROPIC (Claude)
+    // ═══════════════════════════════════════════════════
+    /claude[- ]?[\d.]*[- ]?(opus|sonnet|haiku|instant)?/gi,
     /anthropic/gi,
+    /\bopus\b/gi,
+    /\bsonnet\b/gi,
+    /\bhaiku\b/gi,
 
-    // OpenAI models
-    /gpt[- ]?[\d.]+[- ]?(turbo|vision|mini|o|preview)?/gi,
-    /chatgpt[- ]?\d*/gi,
+    // ═══════════════════════════════════════════════════
+    // OPENAI (GPT, ChatGPT)
+    // ═══════════════════════════════════════════════════
+    /gpt[- ]?[\d.]+[- ]?(turbo|vision|mini|o|preview|omni)?/gi,
+    /chatgpt[- ]?[\d.]*/gi,
+    /\bgpt\b/gi,
     /openai/gi,
     /davinci[- ]?\d*/gi,
     /curie/gi,
     /babbage/gi,
-    /ada/gi,
     /whisper/gi,
     /dall[- ]?e[- ]?\d*/gi,
     /codex/gi,
     /sora/gi,
+    /o1[- ]?(preview|mini)?/gi,
 
-    // Google models
-    /gemini[- ]?[\d.]*[- ]?(pro|ultra|nano|flash)?/gi,
+    // ═══════════════════════════════════════════════════
+    // GOOGLE (Gemini, Bard, PaLM)
+    // ═══════════════════════════════════════════════════
+    /gemini[- ]?[\d.]*[- ]?(pro|ultra|nano|flash|advanced)?/gi,
     /google[- ]?ai/gi,
     /palm[- ]?[\d]*/gi,
-    /bard/gi,
+    /\bbard\b/gi,
     /imagen/gi,
     /veo/gi,
     /gemma[- ]?\d*/gi,
+    /lamda/gi,
 
-    // Meta models
-    /llama[- ]?[\d.-]+[- ]?\w*/gi,
+    // ═══════════════════════════════════════════════════
+    // META (Llama)
+    // ═══════════════════════════════════════════════════
+    /llama[- ]?[\d.-]*[- ]?\w*/gi,
     /meta[- ]?llama/gi,
     /meta[- ]?ai/gi,
+    /\bllama\b/gi,
 
-    // Mistral models
-    /mistral[- ]?[\d.]*[- ]?(large|medium|small|nemo)?/gi,
+    // ═══════════════════════════════════════════════════
+    // MISTRAL
+    // ═══════════════════════════════════════════════════
+    /mistral[- ]?[\d.]*[- ]?(large|medium|small|nemo|instruct)?/gi,
     /mixtral[- ]?\d*/gi,
     /pixtral/gi,
+    /\bmistral\b/gi,
 
-    // Groq
+    // ═══════════════════════════════════════════════════
+    // OTHER AI COMPANIES & MODELS
+    // ═══════════════════════════════════════════════════
     /groq[- ]?\w*/gi,
-
-    // Microsoft
     /copilot/gi,
     /bing[- ]?ai/gi,
     /phi[- ]?\d*/gi,
-
-    // Other major models
     /qwen[- ]?\d*/gi,
     /deepseek[- ]?\w*/gi,
     /cohere/gi,
@@ -406,7 +431,9 @@ function sanitizeModelNames(text) {
     /x\.ai/gi,
     /nvidia[- ]?nemotron/gi,
 
-    // Chinese AI models
+    // ═══════════════════════════════════════════════════
+    // CHINESE AI MODELS
+    // ═══════════════════════════════════════════════════
     /baidu/gi,
     /ernie/gi,
     /alibaba/gi,
@@ -417,61 +444,155 @@ function sanitizeModelNames(text) {
     /kimi/gi,
     /moonshot/gi,
     /01\.ai/gi,
+    /doubao/gi,
+    /spark/gi,
 
-    // Other services
+    // ═══════════════════════════════════════════════════
+    // AI PLATFORMS & SERVICES
+    // ═══════════════════════════════════════════════════
     /replicate/gi,
     /hugging\s*face/gi,
     /together\s*ai/gi,
     /anyscale/gi,
     /fireworks\s*ai/gi,
     /baseten/gi,
-    /modal/gi,
     /runpod/gi,
-
-    // Company names that reveal AI origin
+    /ai21\s*labs?/gi,
+    /amazon\s*bedrock/gi,
+    /amazon\s*titan/gi,
+    /aws\s*ai/gi,
+    /azure\s*openai/gi,
+    /vertex\s*ai/gi,
     /xai/gi,
     /inflection/gi,
     /adept/gi,
     /character\.ai/gi,
     /jasper\s*ai/gi,
 
-    // Additional edge cases
-    /ai21\s*labs?/gi,
-    /cohere\s*command/gi,
-    /amazon\s*bedrock/gi,
-    /amazon\s*titan/gi,
-    /aws\s*ai/gi,
-    /azure\s*openai/gi,
-    /vertex\s*ai/gi,
-    /claude\s*instant/gi,
-    /opus/gi,
-    /sonnet/gi,
-    /haiku/gi,
-
-    // Self-reference patterns (when AI says "I am X")
-    /I am (a |an )?(GPT|Claude|Gemini|Llama|Mistral|ChatGPT)/gi,
-    /I'm (a |an )?(GPT|Claude|Gemini|Llama|Mistral|ChatGPT)/gi,
+    // ═══════════════════════════════════════════════════
+    // SELF-REFERENCE PATTERNS (English)
+    // ═══════════════════════════════════════════════════
+    /I am (a |an )?(GPT|Claude|Gemini|Llama|Mistral|ChatGPT|AI assistant|language model)/gi,
+    /I'm (a |an )?(GPT|Claude|Gemini|Llama|Mistral|ChatGPT|AI assistant|language model)/gi,
     /(GPT|Claude|Gemini|Llama|Mistral|ChatGPT) model/gi,
-    /powered by (GPT|Claude|Gemini|Llama|Mistral|OpenAI|Anthropic|Google)/gi,
+    /powered by (GPT|Claude|Gemini|Llama|Mistral|OpenAI|Anthropic|Google|Meta)/gi,
     /built by (OpenAI|Anthropic|Google|Meta|Microsoft)/gi,
     /created by (OpenAI|Anthropic|Google|Meta|Microsoft)/gi,
     /developed by (OpenAI|Anthropic|Google|Meta|Microsoft)/gi,
     /made by (OpenAI|Anthropic|Google|Meta|Microsoft)/gi,
+    /trained by (OpenAI|Anthropic|Google|Meta|Microsoft)/gi,
+    /from (OpenAI|Anthropic|Google|Meta|Microsoft)/gi,
 
-    // Turkish self-reference patterns
-    /ben (bir )?(GPT|Claude|Gemini|Llama|Mistral|ChatGPT)/gi,
+    // ═══════════════════════════════════════════════════
+    // SELF-REFERENCE PATTERNS (Turkish)
+    // ═══════════════════════════════════════════════════
+    /ben (bir )?(GPT|Claude|Gemini|Llama|Mistral|ChatGPT|yapay zeka modeliyim)/gi,
     /(GPT|Claude|Gemini|Llama|Mistral|ChatGPT) modeliyim/gi,
-    /(OpenAI|Anthropic|Google|Meta|Microsoft) tarafından/gi,
+    /(OpenAI|Anthropic|Google|Meta|Microsoft) tarafından (geliştirildi|yapıldı|oluşturuldu|eğitildi)/gi,
+    /(OpenAI|Anthropic|Google|Meta|Microsoft)'(ın|in|un|ün) (ürünü|modeli|yapay zekası)/gi,
+
+    // ═══════════════════════════════════════════════════
+    // TECHNICAL TERMS THAT REVEAL AI ORIGIN
+    // ═══════════════════════════════════════════════════
+    /large language model/gi,
+    /büyük dil modeli/gi,
+    /transformer model/gi,
+    /neural network/gi,
+    /yapay sinir ağı/gi,
+    /derin öğrenme/gi,
+    /deep learning model/gi,
+    /foundation model/gi,
+    /temel model/gi,
+    /pre-?trained model/gi,
+    /önceden eğitilmiş/gi,
+
+    // ═══════════════════════════════════════════════════
+    // 🔒 ULTRA: ANY AI COMPANY/PRODUCT MENTION
+    // ═══════════════════════════════════════════════════
+    /\bSam Altman\b/gi,
+    /\bDario Amodei\b/gi,
+    /\bSundar Pichai\b/gi,
+    /\bElon Musk\b/gi,
+    /\bMark Zuckerberg\b/gi,
+    /\bAI research\b/gi,
+    /\byapay zeka araştırma\b/gi,
+
+    // ═══════════════════════════════════════════════════
+    // 🔒 ULTRA: VERSION & MODEL NUMBER PATTERNS
+    // ═══════════════════════════════════════════════════
+    /model\s*(version|v|ver)?\s*[\d.]+/gi,
+    /versiyon\s*[\d.]+/gi,
+    /\b(v|ver)\s*[\d.]+\s*(turbo|pro|ultra|mini|flash|preview|instruct|chat)?\b/gi,
   ];
 
   let sanitized = text;
+
+  // ═══════════════════════════════════════════════════
+  // PHASE 1: Apply all regex patterns
+  // ═══════════════════════════════════════════════════
   patterns.forEach(pattern => {
     sanitized = sanitized.replace(pattern, 'LyDian AI');
   });
 
-  // Additional cleanup for partial replacements
+  // ═══════════════════════════════════════════════════
+  // PHASE 2: Additional word-level scanning
+  // ═══════════════════════════════════════════════════
+  const bannedWords = [
+    'ChatGPT',
+    'GPT4',
+    'GPT-4',
+    'GPT3',
+    'GPT-3',
+    'GPT',
+    'Claude',
+    'Anthropic',
+    'Sonnet',
+    'Opus',
+    'Haiku',
+    'Gemini',
+    'Bard',
+    'PaLM',
+    'Google AI',
+    'Llama',
+    'LLaMA',
+    'Meta AI',
+    'Mistral',
+    'Mixtral',
+    'Groq',
+    'DeepSeek',
+    'Qwen',
+    'Cohere',
+    'OpenAI',
+    'Perplexity',
+    'Grok',
+  ];
+
+  bannedWords.forEach(word => {
+    const regex = new RegExp(`\\b${word}\\b`, 'gi');
+    sanitized = sanitized.replace(regex, 'LyDian AI');
+  });
+
+  // ═══════════════════════════════════════════════════
+  // PHASE 3: CLEANUP - Remove artifacts
+  // ═══════════════════════════════════════════════════
   sanitized = sanitized.replace(/LyDian AI LyDian AI/gi, 'LyDian AI');
   sanitized = sanitized.replace(/LyDian AI AI/gi, 'LyDian AI');
+  sanitized = sanitized.replace(/LyDian AI'LyDian AI/gi, 'LyDian AI');
+  sanitized = sanitized.replace(/LyDian AI's LyDian AI/gi, 'LyDian AI');
+  sanitized = sanitized.replace(/by LyDian AI/gi, 'by Emrah Şardağ');
+  sanitized = sanitized.replace(/from LyDian AI/gi, 'by Emrah Şardağ');
+  sanitized = sanitized.replace(/developed by LyDian AI/gi, 'developed by Emrah Şardağ');
+  sanitized = sanitized.replace(/created by LyDian AI/gi, 'created by Emrah Şardağ');
+
+  // ═══════════════════════════════════════════════════
+  // PHASE 4: FINAL VERIFICATION (Double-check)
+  // ═══════════════════════════════════════════════════
+  const finalCheck =
+    /gpt|claude|gemini|llama|mistral|anthropic|openai|deepseek|groq|qwen|cohere|perplexity|bard/gi;
+  if (finalCheck.test(sanitized)) {
+    // If any slip through, do another pass
+    sanitized = sanitized.replace(finalCheck, 'LyDian AI');
+  }
 
   return sanitized;
 }
