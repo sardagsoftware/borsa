@@ -1373,6 +1373,112 @@
         gap: 0.75rem;
       }
 
+      /* 📎 File Preview in Messages (ChatGPT Style) */
+      .message-file-preview {
+        margin-bottom: 0.5rem;
+        border-radius: 12px;
+        overflow: hidden;
+      }
+
+      .message-image-preview {
+        max-width: 300px;
+        max-height: 300px;
+        border-radius: 12px;
+        cursor: pointer;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .message-image-preview:hover {
+        transform: scale(1.02);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      }
+
+      .message-file-doc {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 16px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        max-width: 280px;
+      }
+
+      .message-file-doc .file-name {
+        flex: 1;
+        font-size: 0.9rem;
+        color: #fff;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .message-file-doc .file-size {
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      /* 🖼️ Image Modal */
+      .image-modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.9);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 100000;
+        padding: 2rem;
+        animation: fadeIn 0.2s ease-out;
+      }
+
+      .image-modal-content {
+        position: relative;
+        max-width: 90vw;
+        max-height: 90vh;
+      }
+
+      .image-modal-content img {
+        max-width: 100%;
+        max-height: 90vh;
+        border-radius: 8px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      }
+
+      .image-modal-close {
+        position: absolute;
+        top: -40px;
+        right: 0;
+        background: rgba(255, 255, 255, 0.1);
+        border: none;
+        border-radius: 50%;
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: #fff;
+        transition: background 0.2s;
+      }
+
+      .image-modal-close:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      @media (max-width: 768px) {
+        .message-image-preview {
+          max-width: 100%;
+          max-height: 250px;
+        }
+
+        .message-file-doc {
+          max-width: 100%;
+        }
+      }
+
       /* ========== MESSAGE BUBBLES (Original Style with Background) ========== */
       .message-text {
         padding: 0.75rem 1.5rem;
@@ -4000,12 +4106,13 @@
     <meta name="msapplication-TileColor" content="#C4A962" />
     <meta name="msapplication-TileImage" content="/icons/ms-icon-144.png" />
     <meta name="msapplication-config" content="/browserconfig.xml" />
-    <!-- Favicon (all sizes) -->
+    <!-- Favicon (SVG preferred + PNG fallbacks) -->
+    <link rel="icon" type="image/svg+xml" href="/icons/grape-icon-simple.svg" />
     <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon-48.png" />
     <link rel="icon" type="image/x-icon" href="/icons/favicon.ico" />
-    <link rel="shortcut icon" href="/icons/favicon.ico" />
+    <link rel="shortcut icon" type="image/svg+xml" href="/icons/grape-icon-simple.svg" />
 
     <!-- ================================ -->
     <!-- AILYDIAN SEO META TAGS (TR) -->
@@ -5635,25 +5742,37 @@
         }
 
         const message = elements.messageInput.value.trim();
-        if (!message || state.isTyping) return;
+        const hasPendingFile = state.pendingFile && state.pendingFile.name;
+
+        // Must have either message or file
+        if ((!message && !hasPendingFile) || state.isTyping) return;
 
         // Set typing state to prevent duplicate sends
         state.isTyping = true;
 
-        // Add user message
-        addMessage('user', message);
+        // Capture pending file before clearing
+        const currentFile = hasPendingFile ? { ...state.pendingFile } : null;
+
+        // Add user message with file attachment if present
+        if (currentFile) {
+          addMessageWithFile('user', message || `📎 ${currentFile.name}`, currentFile);
+        } else {
+          addMessage('user', message);
+        }
 
         // Trigger fire sparks animation
         triggerFireSparks();
 
-        // Clear input
+        // Clear input and file
         elements.messageInput.value = '';
         elements.messageInput.style.height = 'auto';
         if (elements.sendBtn) elements.sendBtn.disabled = true;
+        clearFilePreview();
+
+        // Reset stats
         if (elements.charCount) elements.charCount.textContent = '0';
         if (elements.tokenCount) elements.tokenCount.textContent = '0';
         if (elements.tokenCountHeader) elements.tokenCountHeader.textContent = '0';
-        // Reset desktop & mobile stats
         if (elements.desktopCharCount) elements.desktopCharCount.textContent = '0';
         if (elements.desktopTokenCount) elements.desktopTokenCount.textContent = '0';
         if (elements.mobileCharCount) elements.mobileCharCount.textContent = '0';
@@ -5671,23 +5790,31 @@
         const startTime = Date.now();
 
         try {
-          // Check if RecallClient is available
-          if (!recallClient) {
-            throw new Error('AI client not initialized');
-          }
+          let result;
 
-          // Use RecallClient for AI responses
-          const result = await recallClient.chat(message, {
-            domain: state.selectedAiType || 'general',
-            language: 'tr-TR',
-            preferOffline: false,
-          });
+          // If there's a file, analyze it
+          if (currentFile) {
+            result = await analyzeFileWithAI(currentFile, message);
+          } else {
+            // Check if RecallClient is available
+            if (!recallClient) {
+              throw new Error('AI client not initialized');
+            }
+
+            // Use RecallClient for AI responses
+            result = await recallClient.chat(message, {
+              domain: state.selectedAiType || 'general',
+              language: 'tr-TR',
+              preferOffline: false,
+            });
+          }
 
           hideTypingIndicator();
 
-          if (result.success || result.response) {
+          if (result.success || result.response || result.analysis) {
+            const responseText = result.response || result.analysis;
             // Pass confidence if available from API
-            addMessage('assistant', result.response, result.confidence || null);
+            addMessage('assistant', responseText, result.confidence || null);
 
             // Save chat after getting response
             saveCurrentChat();
@@ -5695,7 +5822,7 @@
             // Calculate response time
             const totalTime = Date.now() - startTime;
             const tokensPerSecond = (
-              (result.response?.length || 100) /
+              (responseText?.length || 100) /
               4 /
               (totalTime / 1000)
             ).toFixed(1);
@@ -5723,6 +5850,167 @@
           // Reset typing state on error
           state.isTyping = false;
         }
+      }
+
+      // Analyze file with AI (ChatGPT-style)
+      async function analyzeFileWithAI(file, userQuestion) {
+        try {
+          // For non-images, we need to read the file as base64
+          let base64Data = file.data;
+
+          // If data is a data URL, extract the base64 part
+          if (base64Data && base64Data.startsWith('data:')) {
+            base64Data = base64Data.split(',')[1];
+          }
+
+          // If no base64 data (for documents), read from the file input
+          if (!base64Data) {
+            const fileInput = document.getElementById('mainFileInput');
+            if (fileInput && fileInput.files && fileInput.files[0]) {
+              base64Data = await readFileAsBase64(fileInput.files[0]);
+            }
+          }
+
+          if (!base64Data) {
+            throw new Error('Dosya verisi okunamadı');
+          }
+
+          const response = await fetch('/api/files/analyze', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              file: base64Data,
+              mimeType: file.type,
+              fileName: file.name,
+              question: userQuestion || '',
+            }),
+          });
+
+          if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.error || 'Dosya analizi başarısız');
+          }
+
+          return await response.json();
+        } catch (error) {
+          console.error('[FILE_ANALYZE_ERR]', error);
+          return { success: false, error: error.message };
+        }
+      }
+
+      // Read file as base64
+      function readFileAsBase64(file) {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => {
+            const result = reader.result;
+            // Extract base64 from data URL
+            const base64 = result.split(',')[1];
+            resolve(base64);
+          };
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        });
+      }
+
+      // Add message with file attachment (ChatGPT style)
+      function addMessageWithFile(role, content, file) {
+        const message = { role, content, timestamp: Date.now(), file };
+        state.messages.push(message);
+
+        if (elements.emptyState && elements.emptyState.style.display !== 'none') {
+          elements.emptyState.style.display = 'none';
+        }
+
+        const messageEl = document.createElement('div');
+        messageEl.className = `message ${role}`;
+
+        const avatarSvg =
+          '<svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>';
+
+        const timeStr = new Date(message.timestamp).toLocaleTimeString('tr-TR', {
+          hour: '2-digit',
+          minute: '2-digit',
+        });
+        const dateStr = new Date(message.timestamp).toLocaleDateString('tr-TR', {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric',
+        });
+
+        // Build file preview HTML
+        let filePreviewHtml = '';
+        const isImage = file.type && file.type.startsWith('image/');
+
+        if (isImage && file.data) {
+          filePreviewHtml = `
+            <div class="message-file-preview">
+              <img src="${file.data}" alt="${file.name}" class="message-image-preview" onclick="openImageModal(this.src)" />
+            </div>
+          `;
+        } else {
+          const fileIcon = getFileIcon(file.type);
+          filePreviewHtml = `
+            <div class="message-file-preview message-file-doc">
+              ${fileIcon}
+              <span class="file-name">${file.name}</span>
+              <span class="file-size">${formatFileSize(file.size)}</span>
+            </div>
+          `;
+        }
+
+        messageEl.innerHTML = `
+          <div class="message-avatar">${avatarSvg}</div>
+          <div class="message-content">
+            ${filePreviewHtml}
+            ${content ? `<div class="message-text">${formatMessage(content)}</div>` : ''}
+            <div class="message-timestamp">${timeStr} • ${dateStr}</div>
+          </div>
+        `;
+
+        elements.messagesContainer.appendChild(messageEl);
+        messageEl.scrollIntoView({ behavior: 'smooth', block: 'end' });
+      }
+
+      // Get file icon based on type
+      function getFileIcon(mimeType) {
+        if (mimeType?.includes('pdf')) {
+          return '<svg viewBox="0 0 24 24" width="32" height="32" fill="#e53935"><path d="M20 2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8.5 7.5c0 .83-.67 1.5-1.5 1.5H9v2H7.5V7H10c.83 0 1.5.67 1.5 1.5v1zm5 2c0 .83-.67 1.5-1.5 1.5h-2.5V7H15c.83 0 1.5.67 1.5 1.5v3zm4-3H19v1h1.5V11H19v2h-1.5V7h3v1.5zM9 9.5h1v-1H9v1zM4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm10 5.5h1v-3h-1v3z"/></svg>';
+        } else if (mimeType?.includes('word') || mimeType?.includes('document')) {
+          return '<svg viewBox="0 0 24 24" width="32" height="32" fill="#1976d2"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zM6 20V4h7v5h5v11H6z"/><path d="M8 12h8v2H8zm0 3h8v2H8z"/></svg>';
+        } else {
+          return '<svg viewBox="0 0 24 24" width="32" height="32" fill="#10a37f"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zM6 20V4h7v5h5v11H6z"/></svg>';
+        }
+      }
+
+      // Format file size
+      function formatFileSize(bytes) {
+        if (!bytes) return '';
+        if (bytes < 1024) return bytes + ' B';
+        if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+        return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+      }
+
+      // Open image in modal
+      function openImageModal(src) {
+        const modal = document.createElement('div');
+        modal.className = 'image-modal-overlay';
+        modal.innerHTML = `
+          <div class="image-modal-content">
+            <img src="${src}" alt="Preview" />
+            <button class="image-modal-close" onclick="this.parentElement.parentElement.remove()">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 6L6 18M6 6l12 12"/>
+              </svg>
+            </button>
+          </div>
+        `;
+        modal.onclick = e => {
+          if (e.target === modal) modal.remove();
+        };
+        document.body.appendChild(modal);
       }
 
       function addMessage(role, content, confidence = null) {

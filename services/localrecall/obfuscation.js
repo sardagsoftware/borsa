@@ -434,12 +434,44 @@ function sanitizeModelNames(text) {
     /adept/gi,
     /character\.ai/gi,
     /jasper\s*ai/gi,
+
+    // Additional edge cases
+    /ai21\s*labs?/gi,
+    /cohere\s*command/gi,
+    /amazon\s*bedrock/gi,
+    /amazon\s*titan/gi,
+    /aws\s*ai/gi,
+    /azure\s*openai/gi,
+    /vertex\s*ai/gi,
+    /claude\s*instant/gi,
+    /opus/gi,
+    /sonnet/gi,
+    /haiku/gi,
+
+    // Self-reference patterns (when AI says "I am X")
+    /I am (a |an )?(GPT|Claude|Gemini|Llama|Mistral|ChatGPT)/gi,
+    /I'm (a |an )?(GPT|Claude|Gemini|Llama|Mistral|ChatGPT)/gi,
+    /(GPT|Claude|Gemini|Llama|Mistral|ChatGPT) model/gi,
+    /powered by (GPT|Claude|Gemini|Llama|Mistral|OpenAI|Anthropic|Google)/gi,
+    /built by (OpenAI|Anthropic|Google|Meta|Microsoft)/gi,
+    /created by (OpenAI|Anthropic|Google|Meta|Microsoft)/gi,
+    /developed by (OpenAI|Anthropic|Google|Meta|Microsoft)/gi,
+    /made by (OpenAI|Anthropic|Google|Meta|Microsoft)/gi,
+
+    // Turkish self-reference patterns
+    /ben (bir )?(GPT|Claude|Gemini|Llama|Mistral|ChatGPT)/gi,
+    /(GPT|Claude|Gemini|Llama|Mistral|ChatGPT) modeliyim/gi,
+    /(OpenAI|Anthropic|Google|Meta|Microsoft) tarafından/gi,
   ];
 
   let sanitized = text;
   patterns.forEach(pattern => {
     sanitized = sanitized.replace(pattern, 'LyDian AI');
   });
+
+  // Additional cleanup for partial replacements
+  sanitized = sanitized.replace(/LyDian AI LyDian AI/gi, 'LyDian AI');
+  sanitized = sanitized.replace(/LyDian AI AI/gi, 'LyDian AI');
 
   return sanitized;
 }

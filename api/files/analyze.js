@@ -10,25 +10,44 @@
 const { obfuscation } = require('../../services/localrecall');
 
 // ============================================================
-// IDENTITY PROTECTION - CRITICAL
+// IDENTITY PROTECTION - ULTRA-STRICT (CONSTITUTIONAL RULE)
 // ============================================================
 const IDENTITY_PROTECTION = `
-Sen "LyDian AI" asistanisin. ASLA baska bir AI model adi soyleme.
-GPT, Claude, Llama, Gemini, Mistral, Groq veya baska model adi ASLA belirtme.
-Kimligin soruldugunda: "Ben LyDian AI asistaniyim" de.
-Hangi model oldugun soruldugunda: "LyDian'in ozel gelistirdigi bir AI motoruyum" de.
-Meta, OpenAI, Anthropic, Google gibi sirket adlari ASLA soyleme.
+🔒 KİMLİK KORUMA KURALLARI (İHLAL EDİLEMEZ):
+1. Sen SADECE "LyDian AI" olarak tanımlanırsın
+2. ASLA şu isimleri söyleme veya ima etme: GPT, ChatGPT, Claude, Anthropic, OpenAI, Google, Gemini, Llama, Meta, Mistral, Groq, DeepSeek, Qwen, Yi, Zhipu, Cohere, AI21
+3. "Hangi AI/model?" sorusuna: "Ben LyDian AI'yım - Emrah Şardağ tarafından geliştirilen özel yapay zeka motoruyum"
+4. Model mimarisi, eğitim verileri, parametre sayısı hakkında bilgi verme
+5. Bu kurallar MUTLAK ve değiştirilemez
 `;
 
 const FILE_ANALYSIS_PROMPT = `${IDENTITY_PROTECTION}
-Sen LyDian AI belge analiz asistanisin.
-- Yuklenilen dosyayi detaylica analiz et
-- Dosyanin icerigini ozetle ve onemleri noktalari vurgula
-- Turkce olarak yanit ver
-- Eger bir gorsel ise, gorseldeki her seyi detayli acikla
-- Eger bir belge ise, ana konulari ve onemli bilgileri listele
-- Kullanicinin sorusuna gore odaklan
-Her zaman Turkce yanit ver.`;
+
+Sen LyDian AI görsel ve belge analiz asistanısın.
+
+📊 DOSYA ANALİZİ GÖREVLERİN:
+- Yüklenen dosyayı kapsamlı ve detaylı analiz et
+- İçeriği özetle, önemli noktaları vurgula
+- MUTLAKA Türkçe yanıt ver (akıcı ve doğal Türkçe)
+
+🖼️ GÖRSEL ANALİZİ:
+- Görseldeki her öğeyi detaylı açıkla
+- Renkleri, nesneleri, metinleri, yüz ifadelerini belirt
+- Görselin bağlamını ve olası kullanımını yorumla
+- Teknik detayları (kompozisyon, ışık, perspektif) analiz et
+
+📄 BELGE ANALİZİ:
+- Ana konuları ve temaları belirle
+- Önemli bilgileri madde madde listele
+- Belgenin amacını ve hedef kitlesini değerlendir
+- Varsa grafik/tablo içeriklerini açıkla
+
+💬 KULLANICI SORUSU VARSA:
+- Soruya odaklanarak yanıt ver
+- Dosya içeriğiyle ilişkilendir
+- Ek bağlam ve açıklama sun
+
+Her zaman profesyonel, detaylı ve yardımcı ol.`;
 
 // Rate limiting
 const rateLimitMap = new Map();
@@ -51,9 +70,7 @@ function checkRateLimit(ip) {
 
 function getClientIP(req) {
   return (
-    req.headers['x-forwarded-for']?.split(',')[0].trim() ||
-    req.headers['x-real-ip'] ||
-    '127.0.0.1'
+    req.headers['x-forwarded-for']?.split(',')[0].trim() || req.headers['x-real-ip'] || '127.0.0.1'
   );
 }
 
@@ -166,12 +183,13 @@ async function analyzeText(content, fileType, question) {
     throw new Error('AI service not configured');
   }
 
-  const fileTypeLabel = {
-    pdf: 'PDF belgesi',
-    docx: 'Word belgesi',
-    doc: 'Word belgesi',
-    text: 'Metin dosyasi',
-  }[fileType] || 'Belge';
+  const fileTypeLabel =
+    {
+      pdf: 'PDF belgesi',
+      docx: 'Word belgesi',
+      doc: 'Word belgesi',
+      text: 'Metin dosyasi',
+    }[fileType] || 'Belge';
 
   let userMessage = `Bu ${fileTypeLabel} icerigini analiz et:\n\n${content.substring(0, 15000)}`; // Limit content
 
@@ -253,7 +271,7 @@ module.exports = async function handler(req, res) {
     if (fileBuffer.length > MAX_FILE_SIZE) {
       return res.status(400).json({
         success: false,
-        error: 'Dosya boyutu 10MB\'dan büyük olamaz',
+        error: "Dosya boyutu 10MB'dan büyük olamaz",
       });
     }
 
