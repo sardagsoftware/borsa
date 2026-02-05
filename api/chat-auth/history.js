@@ -10,6 +10,7 @@
 const { chatConversations, chatMessages } = require('./_lib/db');
 const { extractToken, verifyAccessToken } = require('./_lib/jwt');
 const { parseCookies } = require('./_lib/cookies');
+const { parseBody } = require('./_lib/body-parser');
 
 module.exports = async function handler(req, res) {
   // CORS headers
@@ -104,7 +105,8 @@ module.exports = async function handler(req, res) {
 
     // POST - Create new conversation
     if (req.method === 'POST') {
-      const { title, model } = req.body;
+      const body = parseBody(req);
+      const { title, model } = body;
 
       const conversationId = await chatConversations.create(
         userId,
@@ -121,7 +123,8 @@ module.exports = async function handler(req, res) {
 
     // PUT - Update conversation (title)
     if (req.method === 'PUT') {
-      const { id, title } = req.body;
+      const body = parseBody(req);
+      const { id, title } = body;
 
       if (!id) {
         return res.status(400).json({

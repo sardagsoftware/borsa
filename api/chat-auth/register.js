@@ -11,6 +11,7 @@ const {
   validateDisplayName,
   checkRateLimit
 } = require('./_lib/password');
+const { parseBody } = require('./_lib/body-parser');
 
 module.exports = async function handler(req, res) {
   // CORS headers
@@ -28,7 +29,8 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    const { email, password, displayName } = req.body;
+    const body = parseBody(req);
+    const { email, password, displayName } = body;
 
     // Validate all inputs are present
     if (!email || !password || !displayName) {

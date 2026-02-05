@@ -6,6 +6,7 @@
 
 const { chatUsers, passwordResets } = require('./_lib/db');
 const { validateEmail, generateSecureToken, checkRateLimit } = require('./_lib/password');
+const { parseBody } = require('./_lib/body-parser');
 
 module.exports = async function handler(req, res) {
   // CORS headers
@@ -23,7 +24,8 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    const { email } = req.body;
+    const body = parseBody(req);
+    const { email } = body;
 
     // Validate email is present
     if (!email) {

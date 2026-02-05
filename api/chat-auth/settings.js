@@ -7,6 +7,7 @@
 const { chatSettings } = require('./_lib/db');
 const { extractToken, verifyAccessToken } = require('./_lib/jwt');
 const { parseCookies } = require('./_lib/cookies');
+const { parseBody } = require('./_lib/body-parser');
 
 // Allowed themes
 const ALLOWED_THEMES = ['dark', 'light', 'system'];
@@ -77,6 +78,7 @@ module.exports = async function handler(req, res) {
 
     if (req.method === 'PUT') {
       // Update settings
+      const body = parseBody(req);
       const {
         theme,
         language,
@@ -86,7 +88,7 @@ module.exports = async function handler(req, res) {
         notificationsEnabled,
         soundEnabled,
         customSettings
-      } = req.body;
+      } = body;
 
       const updateData = {};
 

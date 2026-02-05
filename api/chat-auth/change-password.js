@@ -13,6 +13,7 @@ const {
   validatePasswordStrength,
   checkRateLimit
 } = require('./_lib/password');
+const { parseBody } = require('./_lib/body-parser');
 
 module.exports = async function handler(req, res) {
   // CORS headers
@@ -52,7 +53,8 @@ module.exports = async function handler(req, res) {
       });
     }
 
-    const { currentPassword, newPassword } = req.body;
+    const body = parseBody(req);
+    const { currentPassword, newPassword } = body;
 
     // Validate inputs
     if (!currentPassword || !newPassword) {

@@ -6,6 +6,7 @@
 
 const { chatUsers, passwordResets, chatSessions } = require('./_lib/db');
 const { hashPassword, validatePasswordStrength, checkRateLimit } = require('./_lib/password');
+const { parseBody } = require('./_lib/body-parser');
 
 module.exports = async function handler(req, res) {
   // CORS headers
@@ -23,7 +24,8 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    const { token, password } = req.body;
+    const body = parseBody(req);
+    const { token, password } = body;
 
     // Validate inputs
     if (!token || !password) {

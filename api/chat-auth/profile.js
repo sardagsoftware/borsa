@@ -8,6 +8,7 @@ const { chatUsers } = require('./_lib/db');
 const { extractToken, verifyAccessToken } = require('./_lib/jwt');
 const { parseCookies } = require('./_lib/cookies');
 const { validateDisplayName } = require('./_lib/password');
+const { parseBody } = require('./_lib/body-parser');
 
 module.exports = async function handler(req, res) {
   // CORS headers
@@ -71,7 +72,8 @@ module.exports = async function handler(req, res) {
 
     if (req.method === 'PUT') {
       // Update profile
-      const { displayName, avatarUrl } = req.body;
+      const body = parseBody(req);
+      const { displayName, avatarUrl } = body;
 
       // Validate display name if provided
       if (displayName) {
