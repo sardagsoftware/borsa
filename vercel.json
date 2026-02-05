@@ -40,55 +40,17 @@
       "destination": "/api/lydian-iq/:path*"
     },
     {
-      "source": "/api/chat-auth/debug",
-      "destination": "/api/chat-auth/debug"
-    },
-    {
-      "source": "/api/chat-auth/login",
-      "destination": "/api/chat-auth/login"
-    },
-    {
-      "source": "/api/chat-auth/register",
-      "destination": "/api/chat-auth/register"
-    },
-    {
-      "source": "/api/chat-auth/logout",
-      "destination": "/api/chat-auth/logout"
-    },
-    {
-      "source": "/api/chat-auth/me",
-      "destination": "/api/chat-auth/me"
-    },
-    {
-      "source": "/api/chat-auth/refresh",
-      "destination": "/api/chat-auth/refresh"
-    },
-    {
-      "source": "/api/chat-auth/forgot-password",
-      "destination": "/api/chat-auth/forgot-password"
-    },
-    {
-      "source": "/api/chat-auth/reset-password",
-      "destination": "/api/chat-auth/reset-password"
-    },
-    {
-      "source": "/api/chat-auth/change-password",
-      "destination": "/api/chat-auth/change-password"
-    },
-    {
-      "source": "/api/chat-auth/profile",
-      "destination": "/api/chat-auth/profile"
-    },
-    {
-      "source": "/api/chat-auth/settings",
-      "destination": "/api/chat-auth/settings"
-    },
-    {
-      "source": "/api/chat-auth/history",
-      "destination": "/api/chat-auth/history"
-    },
-    {
       "source": "/api/:path*",
+      "has": [
+        {
+          "type": "query",
+          "key": "__vercel_no_rewrite"
+        }
+      ],
+      "destination": "/api/:path*"
+    },
+    {
+      "source": "/api/((?!chat-auth/).*)",
       "destination": "/api/index"
     },
     {
