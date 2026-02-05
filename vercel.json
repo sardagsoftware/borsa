@@ -40,6 +40,10 @@
       "destination": "/api/lydian-iq/:path*"
     },
     {
+      "source": "/api/chat-auth/debug",
+      "destination": "/api/chat-auth/debug"
+    },
+    {
       "source": "/api/chat-auth/login",
       "destination": "/api/chat-auth/login"
     },
