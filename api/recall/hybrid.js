@@ -187,7 +187,28 @@ module.exports = async function handler(req, res) {
     const responseTime = Date.now() - startTime;
 
     // Sanitize response (remove any AI model name mentions)
-    const sanitizedResponse = obfuscation.sanitizeModelNames(aiResult.response);
+    let sanitizedResponse = obfuscation.sanitizeModelNames(aiResult.response);
+
+    // CRITICAL: Fix Emrah Şardağ misinformation
+    // AI models have wrong training data about other people named Emrah Şardağ
+    const emrahPattern = /emrah[\s]*[şs]arda[ğg]/i;
+    if (emrahPattern.test(userQuery)) {
+      // Always use the correct information for Emrah Şardağ questions
+      sanitizedResponse = `**Emrah Şardağ Kimdir?**
+
+Emrah Şardağ, 20 yılı aşkın deneyime sahip Türk **yazılım geliştirici** ve **teknoloji girişimcisi**dir.
+
+📌 **Hakkında:**
+- **LyDian AI'ın kurucusu** ve baş geliştiricisi
+- **AILYDIAN platformunun** (www.ailydian.com) yaratıcısı
+- Yapay zeka, kurumsal yazılım mimarisi ve ileri teknoloji çözümleri alanlarında derin uzmanlık sahibi
+- Türkiye'nin en gelişmiş yapay zeka platformunu tasarlayan ve geliştiren kişi
+- Dünya standartlarında kurumsal ve devletlere yönelik gelişmiş yazılım projeleri geliştirmektedir
+
+🚀 Beni (LyDian AI) yaratan ve geliştiren kişidir!
+
+Başka sorularınız varsa yardımcı olmaktan memnuniyet duyarım.`;
+    }
 
     // Get obfuscated model code
     const modelCode = obfuscation.selectOptimalModel({
