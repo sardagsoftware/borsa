@@ -60,46 +60,82 @@
 
   /**
    * Request browser geolocation permission and get precise location
+   * With permission policy check to avoid console errors
    */
   async function requestPreciseLocation() {
     // Check if geolocation is supported
     if (!navigator.geolocation) {
-      console.warn('[VisitorInfo] Geolocation not supported');
+      console.log('[VisitorInfo] Geolocation not supported');
       return null;
     }
 
-    return new Promise(resolve => {
-      navigator.geolocation.getCurrentPosition(
-        async position => {
-          try {
-            const { latitude, longitude } = position.coords;
-            console.log('[VisitorInfo] Got coordinates:', { latitude, longitude });
-
-            // Reverse geocode to get neighborhood name
-            const location = await reverseGeocode(latitude, longitude);
-            resolve(location);
-          } catch (error) {
-            console.warn('[VisitorInfo] Reverse geocoding failed:', error.message);
-            resolve(null);
-          }
-        },
-        error => {
-          // Handle geolocation errors gracefully - no custom modal needed
-          // The browser's native permission prompt handles everything
-          const errorMessages = {
-            1: 'Permission denied by user',
-            2: 'Position unavailable',
-            3: 'Request timeout',
-          };
-          console.log('[VisitorInfo] Geolocation:', errorMessages[error.code] || error.message);
-          resolve(null);
-        },
-        {
-          enableHighAccuracy: true,
-          timeout: CONFIG.geolocationTimeout,
-          maximumAge: 300000, // 5 minutes cache
+    // Check if geolocation permission is allowed by permissions policy
+    // This prevents the "Permissions policy violation" console error
+    try {
+      if (navigator.permissions && navigator.permissions.query) {
+        const permissionStatus = await navigator.permissions.query({ name: 'geolocation' });
+        if (permissionStatus.state === 'denied') {
+          console.log('[VisitorInfo] Geolocation permission denied');
+          return null;
         }
-      );
+      }
+    } catch (_e) {
+      // Permissions API not supported or permission query failed
+      // This can happen when permissions policy blocks geolocation entirely
+      console.log('[VisitorInfo] Geolocation permission check not available');
+    }
+
+    // Double check: test if we can even ask for geolocation
+    // by checking if document allows the feature
+    if (typeof document !== 'undefined' && document.featurePolicy) {
+      try {
+        if (!document.featurePolicy.allowsFeature('geolocation')) {
+          console.log('[VisitorInfo] Geolocation blocked by feature policy');
+          return null;
+        }
+      } catch (_e) {
+        // Feature policy API not supported
+      }
+    }
+
+    return new Promise(resolve => {
+      try {
+        navigator.geolocation.getCurrentPosition(
+          async position => {
+            try {
+              const { latitude, longitude } = position.coords;
+              console.log('[VisitorInfo] Got coordinates:', { latitude, longitude });
+
+              // Reverse geocode to get neighborhood name
+              const location = await reverseGeocode(latitude, longitude);
+              resolve(location);
+            } catch (error) {
+              console.log('[VisitorInfo] Reverse geocoding failed:', error.message);
+              resolve(null);
+            }
+          },
+          error => {
+            // Handle geolocation errors gracefully - no custom modal needed
+            // The browser's native permission prompt handles everything
+            const errorMessages = {
+              1: 'Permission denied by user',
+              2: 'Position unavailable',
+              3: 'Request timeout',
+            };
+            console.log('[VisitorInfo] Geolocation:', errorMessages[error.code] || error.message);
+            resolve(null);
+          },
+          {
+            enableHighAccuracy: true,
+            timeout: CONFIG.geolocationTimeout,
+            maximumAge: 300000, // 5 minutes cache
+          }
+        );
+      } catch (error) {
+        // Catch any sync errors (like policy violations)
+        console.log('[VisitorInfo] Geolocation request blocked:', error.message);
+        resolve(null);
+      }
     });
   }
 

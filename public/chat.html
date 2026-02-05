@@ -2974,6 +2974,43 @@
           background: #1a1a1a;
           z-index: 100;
           box-sizing: border-box;
+          /* Keyboard awareness - iOS/Android fix */
+          padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+          transition: transform 0.3s ease;
+        }
+
+        /* Neon white glow for mobile input */
+        .input-wrapper {
+          border: 1px solid rgba(255, 255, 255, 0.4) !important;
+          box-shadow:
+            0 0 10px rgba(255, 255, 255, 0.2),
+            0 0 20px rgba(255, 255, 255, 0.1),
+            inset 0 0 10px rgba(255, 255, 255, 0.05) !important;
+          border-radius: 16px !important;
+          background: rgba(26, 26, 26, 0.95) !important;
+        }
+
+        /* Neon white plus button */
+        .mobile-plus-btn,
+        #mobilePlusBtn {
+          color: rgba(255, 255, 255, 0.9) !important;
+          border: 1px solid rgba(255, 255, 255, 0.4) !important;
+          box-shadow: 0 0 8px rgba(255, 255, 255, 0.3) !important;
+          background: transparent !important;
+        }
+
+        /* Neon white send button */
+        #sendBtn {
+          color: rgba(255, 255, 255, 0.9) !important;
+          border: 1px solid rgba(255, 255, 255, 0.4) !important;
+          box-shadow: 0 0 8px rgba(255, 255, 255, 0.3) !important;
+          background: transparent !important;
+        }
+
+        #sendBtn:not(:disabled):hover,
+        .mobile-plus-btn:hover,
+        #mobilePlusBtn:hover {
+          box-shadow: 0 0 15px rgba(255, 255, 255, 0.5) !important;
         }
 
         .chat-header {
@@ -7357,6 +7394,35 @@
         // Mobilde sidebar kapalı başlasın
         if (window.innerWidth <= 768) {
           elements.sidebar.classList.add('collapsed');
+        }
+
+        // Mobile keyboard handler - keep input visible above keyboard
+        if (window.visualViewport && window.innerWidth <= 768) {
+          const inputContainer = document.querySelector('.input-container');
+          if (inputContainer) {
+            window.visualViewport.addEventListener('resize', () => {
+              const viewportHeight = window.visualViewport.height;
+              const windowHeight = window.innerHeight;
+              const keyboardHeight = windowHeight - viewportHeight;
+
+              if (keyboardHeight > 100) {
+                // Keyboard is open - adjust input container position
+                inputContainer.style.transform = `translateY(-${keyboardHeight}px)`;
+                inputContainer.style.paddingBottom = '0.5rem';
+                // Scroll to bottom
+                setTimeout(() => {
+                  const messagesContainer = document.getElementById('messagesContainer');
+                  if (messagesContainer) {
+                    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                  }
+                }, 100);
+              } else {
+                // Keyboard is closed
+                inputContainer.style.transform = 'translateY(0)';
+                inputContainer.style.paddingBottom = '';
+              }
+            });
+          }
         }
 
         // Load saved theme

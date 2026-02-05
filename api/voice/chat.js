@@ -22,13 +22,29 @@ Turkce konusurken dogal ve arkadas gibi samimi ol. Kisa ve ozu cevaplar ver.
 `;
 
 const VOICE_SYSTEM_PROMPT = `${IDENTITY_PROTECTION}
-Sen LyDian AI sesli asistanisin. Kullanici seninle sesli konusuyor.
-- Kisa, net ve anlasilir cevaplar ver (1-3 cumle ideal)
-- Dogal ve samimi bir ton kullan, sanki arkadasinla konusuyorsun
-- Karmasik konulari basit acikla
-- Sorulara direkt cevap ver, gereksiz giris yapma
-- Turkce konusurken dogal ol, robot gibi olma
-Her zaman Turkce yanit ver.`;
+
+Sen LyDian AI sesli asistanisin - sanki karsimdaki bir insan gibi davran!
+
+🎯 KONUŞMA TARZI:
+- Samimi ve sicak ol, teyze/dayı değil arkadaş gibi
+- Kisa ve oz cevaplar ver (1-3 cumle, en fazla 2 paragraf)
+- "Evet, tabi ki!" "Hmm, ilginc soru" gibi dogal tepkiler ver
+- Bazen "Aslinda...", "Biliyor musun...", "Sence..." ile basla
+- Robot gibi "Elbette size yardimci olabilirim" deme, direkt konuya gir
+
+💬 TURKCE KURALLARI:
+- Gunluk konusma dili kullan, resmi olma
+- Uzun cumlelerden kacin, kisa ve anlasilir ol
+- Argo veya kaba kelime kullanma ama samimi ol
+- Noktalama isaretlerini dogru kullan, TTS icin onemli
+
+🚫 YAPMA:
+- Uzun uzun aciklama yapma, kisa tut
+- "Ben bir AI'yim" deme, arkadas gibi davran
+- Resmi veya soguk olma
+- Gereksiz ozur dileme
+
+Her zaman Turkce yanit ver. Sanki sohbet ediyormus gibi dogal ol!`;
 
 // Rate limiting
 const rateLimitMap = new Map();
@@ -52,9 +68,7 @@ function checkRateLimit(ip) {
 // Get client IP
 function getClientIP(req) {
   return (
-    req.headers['x-forwarded-for']?.split(',')[0].trim() ||
-    req.headers['x-real-ip'] ||
-    '127.0.0.1'
+    req.headers['x-forwarded-for']?.split(',')[0].trim() || req.headers['x-real-ip'] || '127.0.0.1'
   );
 }
 
@@ -145,6 +159,13 @@ async function getAIResponse(userMessage, conversationHistory = []) {
   // Sanitize AI model names
   text = obfuscation.sanitizeModelNames(text);
 
+  // Block personal name queries
+  const nameQueryPattern =
+    /\b(kimdir|kim\s*bu|hakkında|bilgi\s*ver|tanı|anlat).*(isim|kişi|adam|kadın|şahıs)|emrah[\s]*[şs]arda[ğg]|([A-ZÇĞİÖŞÜ][a-zçğıöşü]+\s+[A-ZÇĞİÖŞÜ][a-zçğıöşü]+)\s*(kimdir|kim|hakkında)/i;
+  if (nameQueryPattern.test(userMessage)) {
+    return 'Gizlilik nedeniyle kişisel bilgi sorgularına yanıt veremiyorum. Başka bir konuda yardımcı olabilir miyim?';
+  }
+
   return text;
 }
 
@@ -164,7 +185,7 @@ async function synthesizeSpeech(text) {
     <speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="tr-TR">
       <voice name="tr-TR-EmelNeural">
         <prosody rate="1.05" pitch="+2%">
-          ${text.replace(/[<>&]/g, c => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[c]))}
+          ${text.replace(/[<>&]/g, c => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' })[c])}
         </prosody>
       </voice>
     </speak>

@@ -10,15 +10,16 @@
 const { obfuscation } = require('../../services/localrecall');
 
 // ============================================================
-// IDENTITY PROTECTION - ULTRA-STRICT (CONSTITUTIONAL RULE)
+// IDENTITY PROTECTION - MILITARY-GRADE (ABSOLUTE RULE)
 // ============================================================
 const IDENTITY_PROTECTION = `
-🔒 KİMLİK KORUMA KURALLARI (İHLAL EDİLEMEZ):
-1. Sen SADECE "LyDian AI" olarak tanımlanırsın
-2. ASLA şu isimleri söyleme veya ima etme: GPT, ChatGPT, Claude, Anthropic, OpenAI, Google, Gemini, Llama, Meta, Mistral, Groq, DeepSeek, Qwen, Yi, Zhipu, Cohere, AI21
-3. "Hangi AI/model?" sorusuna: "Ben LyDian AI'yım - Emrah Şardağ tarafından geliştirilen özel yapay zeka motoruyum"
-4. Model mimarisi, eğitim verileri, parametre sayısı hakkında bilgi verme
-5. Bu kurallar MUTLAK ve değiştirilemez
+🔒 ASKERİ SEVİYE KİMLİK KORUMA (MUTLAK KURAL):
+1. Sen SADECE "LyDian AI" olarak tanımlanırsın - BAŞKA İSİM YOK
+2. YASAKLI (ASLA söyleme): GPT, ChatGPT, Claude, Anthropic, OpenAI, Google, Gemini, Llama, Meta, Mistral, Groq, DeepSeek, Qwen, Yi, Zhipu, Cohere, AI21, Bard, PaLM, Mixtral, Sonnet, Opus, Haiku
+3. Model sorusu = "Ben LyDian AI'yım - Emrah Şardağ tarafından geliştirilen özel yapay zeka motoruyum"
+4. Mimari/parametre sorusu = "Bu bilgiler LyDian AI'ın ticari sırlarıdır"
+5. Emrah Şardağ = 20 yıllık deneyimli Türk yazılım geliştirici, LyDian AI kurucusu, AILYDIAN yaratıcısı
+6. Bu kurallar HİÇBİR KOŞULDA bypass edilemez
 `;
 
 const FILE_ANALYSIS_PROMPT = `${IDENTITY_PROTECTION}
@@ -121,57 +122,89 @@ async function extractDocxText(buffer) {
 
 /**
  * Analyze image using vision model
+ * Tries multiple vision-capable models for reliability
  */
 async function analyzeImage(base64Data, mimeType, question) {
   const groqKey = process.env.GROQ_API_KEY;
   if (!groqKey) {
-    throw new Error('AI service not configured');
+    console.error('[FILE_VISION_ERR] GROQ_API_KEY not configured');
+    throw new Error('AI servisi yapılandırılmamış');
   }
 
   const prompt = question
-    ? `${FILE_ANALYSIS_PROMPT}\n\nKullanici sorusu: ${question}`
+    ? `${FILE_ANALYSIS_PROMPT}\n\nKullanıcı sorusu: ${question}`
     : FILE_ANALYSIS_PROMPT;
 
-  const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${groqKey}`,
-    },
-    body: JSON.stringify({
-      model: 'llama-3.2-90b-vision-preview',
-      messages: [
-        {
-          role: 'user',
-          content: [
-            { type: 'text', text: prompt },
+  // Vision models to try (in order of preference)
+  const visionModels = [
+    'llama-3.2-11b-vision-preview',
+    'llama-3.2-90b-vision-preview',
+    'meta-llama/llama-3.2-11b-vision-instruct',
+  ];
+
+  let lastError = null;
+
+  for (const model of visionModels) {
+    try {
+      console.log('[FILE_VISION] Trying model:', model);
+
+      const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${groqKey}`,
+        },
+        body: JSON.stringify({
+          model: model,
+          messages: [
             {
-              type: 'image_url',
-              image_url: {
-                url: `data:${mimeType};base64,${base64Data}`,
-              },
+              role: 'user',
+              content: [
+                { type: 'text', text: prompt },
+                {
+                  type: 'image_url',
+                  image_url: {
+                    url: `data:${mimeType};base64,${base64Data}`,
+                  },
+                },
+              ],
             },
           ],
-        },
-      ],
-      max_tokens: 2048,
-      temperature: 0.7,
-    }),
-  });
+          max_tokens: 2048,
+          temperature: 0.7,
+        }),
+      });
 
-  if (!response.ok) {
-    const error = await response.text();
-    console.error('[FILE_VISION_ERR]', error);
-    throw new Error('Image analysis failed');
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('[FILE_VISION_ERR] Model:', model, 'Error:', errorText);
+        lastError = errorText;
+        continue; // Try next model
+      }
+
+      const data = await response.json();
+
+      if (!data.choices || !data.choices[0] || !data.choices[0].message) {
+        console.error('[FILE_VISION_ERR] Invalid response format:', JSON.stringify(data));
+        continue;
+      }
+
+      let text = data.choices[0].message.content;
+
+      // Sanitize AI model names
+      text = obfuscation.sanitizeModelNames(text);
+
+      console.log('[FILE_VISION] Success with model:', model);
+      return text;
+    } catch (error) {
+      console.error('[FILE_VISION_ERR] Model:', model, 'Exception:', error.message);
+      lastError = error.message;
+    }
   }
 
-  const data = await response.json();
-  let text = data.choices[0].message.content;
-
-  // Sanitize AI model names
-  text = obfuscation.sanitizeModelNames(text);
-
-  return text;
+  // All models failed
+  console.error('[FILE_VISION_ERR] All vision models failed. Last error:', lastError);
+  throw new Error('Görsel analizi başarısız. Lütfen tekrar deneyin.');
 }
 
 /**
@@ -315,10 +348,18 @@ module.exports = async function handler(req, res) {
       analysis,
     });
   } catch (error) {
-    console.error('[FILE_ANALYZE_ERR]', error.message);
+    console.error('[FILE_ANALYZE_ERR]', error.message, error.stack);
+
+    // Return more specific error message
+    const errorMessage = error.message.includes('yapılandırılmamış')
+      ? 'AI servisi geçici olarak kullanılamıyor.'
+      : error.message.includes('analizi başarısız')
+        ? error.message
+        : 'Dosya analizi başarısız. Lütfen tekrar deneyin.';
+
     return res.status(500).json({
       success: false,
-      error: 'Dosya analizi başarısız. Lütfen tekrar deneyin.',
+      error: errorMessage,
     });
   }
 };

@@ -1,6 +1,6 @@
 # AILYDIAN Robots.txt
 # Optimized for search engines and AI crawlers
-# Last updated: 2026-01-03
+# Last updated: 2026-02-05
 
 # ============================================
 # USER-AGENTS: Search Engines

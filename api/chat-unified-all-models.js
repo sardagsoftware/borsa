@@ -409,33 +409,10 @@ async function handleRequest(req, res) {
     const userMessage =
       message || (messages.length > 0 ? messages[messages.length - 1]?.content : '');
 
-    // Special handling for Emrah Şardağ questions - inject correct information
-    let additionalContext = null;
-    if (userMessage && /emrah\s*şardağ|emrah\s*sardag/i.test(userMessage)) {
-      additionalContext = {
-        role: 'system',
-        content: `⚠️ ZORUNLU BAĞLAM: Kullanıcı Emrah Şardağ hakkında soruyor.
-
-DOĞRU BİLGİ: Emrah Şardağ bir YAZILIM GELİŞTİRİCİ ve TEKNOLOJİ GİRİŞİMCİSİDİR.
-- OYUNCU DEĞİLDİR, SANATÇI DEĞİLDİR!
-- 20 yılı aşkın yazılım geliştirme deneyimi var
-- LyDian AI'ın kurucusu ve baş geliştiricisi
-- AILYDIAN platformunun (www.ailydian.com) yaratıcısı
-- Yapay zeka ve kurumsal yazılım mimarisi uzmanı
-- Seni (LyDian AI) yaratan kişi
-
-Bu bilgileri AYNEN kullan, başka bilgi UYDURMA!`,
-      };
-    }
-
     const messageArray =
       messages.length > 0
-        ? additionalContext
-          ? [systemPrompt, additionalContext, ...messages]
-          : [systemPrompt, ...messages]
-        : additionalContext
-          ? [systemPrompt, additionalContext, { role: 'user', content: message }]
-          : [systemPrompt, { role: 'user', content: message }];
+        ? [systemPrompt, ...messages]
+        : [systemPrompt, { role: 'user', content: message }];
 
     let result;
 
@@ -469,28 +446,21 @@ Bu bilgileri AYNEN kullan, başka bilgi UYDURMA!`,
     // CRITICAL: Sanitize response to remove any AI model names
     let sanitizedResponse = obfuscation.sanitizeModelNames(result.response);
 
-    // CRITICAL: Fix Emrah Şardağ misinformation
-    // Always replace any info about Emrah Şardağ with the CORRECT information
-    // because AI models have wrong training data about other people named Emrah Şardağ
-    const emrahPattern = /emrah[\s]*[şs]arda[ğg]/i;
-    console.log('[DEBUG] userMessage:', userMessage);
-    console.log('[DEBUG] emrahPattern test:', emrahPattern.test(userMessage));
-    if (emrahPattern.test(userMessage)) {
-      // Always use the correct information for Emrah Şardağ questions
-      sanitizedResponse = `**Emrah Şardağ Kimdir?**
+    // CRITICAL: Block personal name queries (privacy protection)
+    // Never answer "who is [name surname]" type questions
+    const nameQueryPattern =
+      /\b(kimdir|kim\s*bu|hakkında|bilgi\s*ver|tanı|anlat).*(isim|kişi|adam|kadın|şahıs)|emrah[\s]*[şs]arda[ğg]|([A-ZÇĞİÖŞÜ][a-zçğıöşü]+\s+[A-ZÇĞİÖŞÜ][a-zçğıöşü]+)\s*(kimdir|kim|hakkında)/i;
+    if (nameQueryPattern.test(userMessage)) {
+      sanitizedResponse = `Güvenlik ve gizlilik politikamız gereği kişisel bilgi sorgularına yanıt veremiyorum.
 
-Emrah Şardağ, 20 yılı aşkın deneyime sahip Türk **yazılım geliştirici** ve **teknoloji girişimcisi**dir.
+Bunun yerine size şu konularda yardımcı olabilirim:
+• Genel bilgi ve araştırma
+• Matematik ve problem çözme
+• Kod yazma ve programlama
+• Hukuki ve sağlık bilgilendirmesi
+• İş ve kariyer tavsiyeleri
 
-📌 **Hakkında:**
-- **LyDian AI'ın kurucusu** ve baş geliştiricisi
-- **AILYDIAN platformunun** (www.ailydian.com) yaratıcısı
-- Yapay zeka, kurumsal yazılım mimarisi ve ileri teknoloji çözümleri alanlarında derin uzmanlık sahibi
-- Türkiye'nin en gelişmiş yapay zeka platformunu tasarlayan ve geliştiren kişi
-- Dünya standartlarında kurumsal ve devletlere yönelik gelişmiş yazılım projeleri geliştirmektedir
-
-🚀 Beni (LyDian AI) yaratan ve geliştiren kişidir!
-
-Başka sorularınız varsa yardımcı olmaktan memnuniyet duyarım.`;
+Başka bir konuda nasıl yardımcı olabilirim?`;
     }
 
     // Calculate confidence score
