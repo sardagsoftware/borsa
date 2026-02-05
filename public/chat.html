@@ -2972,11 +2972,27 @@
           gap: 0.5rem;
           margin: 0;
           background: #1a1a1a;
-          z-index: 100;
+          z-index: 9999 !important;
           box-sizing: border-box;
-          /* Keyboard awareness - iOS/Android fix */
           padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
-          transition: transform 0.3s ease;
+          transition:
+            top 0.15s ease-out,
+            bottom 0.15s ease-out;
+        }
+
+        /* Keyboard open state - input stays above keyboard */
+        body.keyboard-open .input-container {
+          position: fixed !important;
+          z-index: 99999 !important;
+        }
+
+        body.keyboard-open .messages-container {
+          padding-bottom: 200px !important;
+        }
+
+        body.keyboard-open {
+          overflow: hidden;
+          height: 100%;
         }
 
         /* Neon white glow for mobile input */
@@ -2990,27 +3006,58 @@
           background: rgba(26, 26, 26, 0.95) !important;
         }
 
-        /* Neon white plus button */
+        /* Neon white plus button with icon */
         .mobile-plus-btn,
-        #mobilePlusBtn {
-          color: rgba(255, 255, 255, 0.9) !important;
-          border: 1px solid rgba(255, 255, 255, 0.4) !important;
-          box-shadow: 0 0 8px rgba(255, 255, 255, 0.3) !important;
+        #mobilePlusBtn,
+        .neon-icon-btn {
+          color: #ffffff !important;
+          border: 1px solid rgba(255, 255, 255, 0.5) !important;
+          box-shadow:
+            0 0 10px rgba(255, 255, 255, 0.4),
+            0 0 20px rgba(255, 255, 255, 0.2) !important;
           background: transparent !important;
+          border-radius: 12px !important;
         }
 
-        /* Neon white send button */
+        .mobile-plus-btn svg,
+        #mobilePlusBtn svg,
+        .neon-icon-btn svg {
+          fill: #ffffff !important;
+          stroke: #ffffff !important;
+          filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.8)) !important;
+        }
+
+        /* Neon white send button with icon */
         #sendBtn {
-          color: rgba(255, 255, 255, 0.9) !important;
-          border: 1px solid rgba(255, 255, 255, 0.4) !important;
-          box-shadow: 0 0 8px rgba(255, 255, 255, 0.3) !important;
+          color: #ffffff !important;
+          border: 1px solid rgba(255, 255, 255, 0.5) !important;
+          box-shadow:
+            0 0 10px rgba(255, 255, 255, 0.4),
+            0 0 20px rgba(255, 255, 255, 0.2) !important;
           background: transparent !important;
+          border-radius: 12px !important;
+        }
+
+        #sendBtn svg,
+        #sendBtn path {
+          fill: #ffffff !important;
+          stroke: #ffffff !important;
+          filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.8)) !important;
         }
 
         #sendBtn:not(:disabled):hover,
         .mobile-plus-btn:hover,
         #mobilePlusBtn:hover {
-          box-shadow: 0 0 15px rgba(255, 255, 255, 0.5) !important;
+          box-shadow:
+            0 0 15px rgba(255, 255, 255, 0.6),
+            0 0 30px rgba(255, 255, 255, 0.3) !important;
+        }
+
+        /* Input actions icons neon white */
+        .input-actions button svg,
+        .input-actions button path {
+          fill: #ffffff !important;
+          filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.6)) !important;
         }
 
         .chat-header {
@@ -7396,33 +7443,71 @@
           elements.sidebar.classList.add('collapsed');
         }
 
-        // Mobile keyboard handler - keep input visible above keyboard
-        if (window.visualViewport && window.innerWidth <= 768) {
+        // Mobile keyboard handler - ROBUST solution for iOS/Android
+        if (window.innerWidth <= 768) {
           const inputContainer = document.querySelector('.input-container');
-          if (inputContainer) {
-            window.visualViewport.addEventListener('resize', () => {
-              const viewportHeight = window.visualViewport.height;
-              const windowHeight = window.innerHeight;
-              const keyboardHeight = windowHeight - viewportHeight;
+          const messageInput = document.getElementById('messageInput');
+          const messagesContainer = document.getElementById('messagesContainer');
+          let initialHeight = window.innerHeight;
+          let isKeyboardOpen = false;
 
-              if (keyboardHeight > 100) {
-                // Keyboard is open - adjust input container position
-                inputContainer.style.transform = `translateY(-${keyboardHeight}px)`;
-                inputContainer.style.paddingBottom = '0.5rem';
-                // Scroll to bottom
-                setTimeout(() => {
-                  const messagesContainer = document.getElementById('messagesContainer');
-                  if (messagesContainer) {
-                    messagesContainer.scrollTop = messagesContainer.scrollHeight;
-                  }
-                }, 100);
-              } else {
-                // Keyboard is closed
-                inputContainer.style.transform = 'translateY(0)';
-                inputContainer.style.paddingBottom = '';
-              }
+          // Method 1: Focus/Blur events
+          if (messageInput && inputContainer) {
+            messageInput.addEventListener('focus', () => {
+              isKeyboardOpen = true;
+              document.body.classList.add('keyboard-open');
+              // iOS fix: scroll input into view
+              setTimeout(() => {
+                messageInput.scrollIntoView({ behavior: 'smooth', block: 'end' });
+                if (messagesContainer) {
+                  messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                }
+              }, 300);
+            });
+
+            messageInput.addEventListener('blur', () => {
+              isKeyboardOpen = false;
+              document.body.classList.remove('keyboard-open');
             });
           }
+
+          // Method 2: visualViewport API (modern browsers)
+          if (window.visualViewport && inputContainer) {
+            const updatePosition = () => {
+              const viewportHeight = window.visualViewport.height;
+              const offsetTop = window.visualViewport.offsetTop;
+              const keyboardHeight = initialHeight - viewportHeight - offsetTop;
+
+              if (keyboardHeight > 150) {
+                // Keyboard open
+                inputContainer.style.position = 'fixed';
+                inputContainer.style.bottom = 'auto';
+                inputContainer.style.top = `${viewportHeight - inputContainer.offsetHeight + offsetTop}px`;
+                document.body.classList.add('keyboard-open');
+              } else {
+                // Keyboard closed
+                inputContainer.style.position = 'fixed';
+                inputContainer.style.bottom = '0';
+                inputContainer.style.top = 'auto';
+                document.body.classList.remove('keyboard-open');
+              }
+            };
+
+            window.visualViewport.addEventListener('resize', updatePosition);
+            window.visualViewport.addEventListener('scroll', updatePosition);
+          }
+
+          // Method 3: Window resize fallback
+          window.addEventListener('resize', () => {
+            const currentHeight = window.innerHeight;
+            if (currentHeight < initialHeight - 150) {
+              // Keyboard likely open
+              document.body.classList.add('keyboard-open');
+            } else {
+              document.body.classList.remove('keyboard-open');
+              initialHeight = currentHeight;
+            }
+          });
         }
 
         // Load saved theme
