@@ -2022,9 +2022,11 @@
         display: none !important;
       }
 
-      /* 📊 Desktop Stats & Disclaimer - Hidden completely */
+      /* 📊 Desktop Stats & Disclaimer - Visible with disclaimer */
       .desktop-stats-disclaimer {
-        display: none !important;
+        display: flex;
+        justify-content: center;
+        margin-top: 0.5rem;
       }
 
       .desktop-stats-row {
@@ -2977,69 +2979,84 @@
           padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
         }
 
-        /* Neon white glow for mobile input */
+        /* Clean mobile input - no neon glow */
         .input-wrapper {
-          border: 1px solid rgba(255, 255, 255, 0.4) !important;
-          box-shadow:
-            0 0 10px rgba(255, 255, 255, 0.2),
-            0 0 20px rgba(255, 255, 255, 0.1),
-            inset 0 0 10px rgba(255, 255, 255, 0.05) !important;
+          border: 1px solid rgba(255, 255, 255, 0.2) !important;
           border-radius: 16px !important;
           background: rgba(26, 26, 26, 0.95) !important;
+          box-shadow: none !important;
         }
 
-        /* Neon white plus button with icon */
+        /* Clean plus button - no neon glow */
         .mobile-plus-btn,
         #mobilePlusBtn,
         .neon-icon-btn {
-          color: #ffffff !important;
-          border: 1px solid rgba(255, 255, 255, 0.5) !important;
-          box-shadow:
-            0 0 10px rgba(255, 255, 255, 0.4),
-            0 0 20px rgba(255, 255, 255, 0.2) !important;
+          color: rgba(255, 255, 255, 0.8) !important;
+          border: 1px solid rgba(255, 255, 255, 0.2) !important;
           background: transparent !important;
-          border-radius: 12px !important;
+          border-radius: 10px !important;
+          box-shadow: none !important;
         }
 
         .mobile-plus-btn svg,
         #mobilePlusBtn svg,
         .neon-icon-btn svg {
-          fill: #ffffff !important;
-          stroke: #ffffff !important;
-          filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.8)) !important;
+          fill: rgba(255, 255, 255, 0.8) !important;
+          filter: none !important;
         }
 
-        /* Neon white send button with icon */
+        /* Clean send button - no neon glow */
         #sendBtn {
-          color: #ffffff !important;
-          border: 1px solid rgba(255, 255, 255, 0.5) !important;
-          box-shadow:
-            0 0 10px rgba(255, 255, 255, 0.4),
-            0 0 20px rgba(255, 255, 255, 0.2) !important;
+          color: rgba(255, 255, 255, 0.8) !important;
+          border: 1px solid rgba(255, 255, 255, 0.2) !important;
           background: transparent !important;
-          border-radius: 12px !important;
+          border-radius: 10px !important;
+          box-shadow: none !important;
         }
 
         #sendBtn svg,
         #sendBtn path {
-          fill: #ffffff !important;
-          stroke: #ffffff !important;
-          filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.8)) !important;
+          fill: rgba(255, 255, 255, 0.8) !important;
+          filter: none !important;
         }
 
-        #sendBtn:not(:disabled):hover,
-        .mobile-plus-btn:hover,
-        #mobilePlusBtn:hover {
-          box-shadow:
-            0 0 15px rgba(255, 255, 255, 0.6),
-            0 0 30px rgba(255, 255, 255, 0.3) !important;
-        }
-
-        /* Input actions icons neon white */
+        /* Input actions icons - clean */
         .input-actions button svg,
         .input-actions button path {
-          fill: #ffffff !important;
-          filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.6)) !important;
+          fill: rgba(255, 255, 255, 0.7) !important;
+          filter: none !important;
+        }
+
+        /* Mobile disclaimer styling */
+        .desktop-stats-disclaimer {
+          display: flex !important;
+          justify-content: center;
+          margin-top: 0.375rem;
+          padding: 0 0.5rem;
+        }
+
+        .desktop-stats-row {
+          padding: 0.25rem 0.75rem;
+          font-size: 0.7rem;
+          background: transparent;
+          border: none;
+        }
+
+        /* Hide stats on mobile, only show disclaimer */
+        .desktop-stat-item,
+        .desktop-stat-divider {
+          display: none !important;
+        }
+
+        .desktop-disclaimer {
+          display: flex !important;
+          font-size: 0.7rem;
+          color: rgba(255, 255, 255, 0.4);
+        }
+
+        .desktop-disclaimer svg {
+          width: 12px;
+          height: 12px;
         }
 
         .chat-header {
@@ -5115,7 +5132,7 @@
                   <line x1="12" y1="8" x2="12" y2="12" />
                   <line x1="12" y1="16" x2="12.01" y2="16" />
                 </svg>
-                LyDian hata yapabilir
+                LyDian hata yapabilir. Önemli bilgileri doğrulayınız.
               </span>
             </div>
           </div>
