@@ -7,7 +7,7 @@
     <meta charset="UTF-8" />
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover"
+      content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover, interactive-widget=resizes-content"
     />
 
     <!-- Favicon - Lydian Grape Logo -->
@@ -2975,24 +2975,6 @@
           z-index: 9999 !important;
           box-sizing: border-box;
           padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
-          transition:
-            top 0.15s ease-out,
-            bottom 0.15s ease-out;
-        }
-
-        /* Keyboard open state - input stays above keyboard */
-        body.keyboard-open .input-container {
-          position: fixed !important;
-          z-index: 99999 !important;
-        }
-
-        body.keyboard-open .messages-container {
-          padding-bottom: 200px !important;
-        }
-
-        body.keyboard-open {
-          overflow: hidden;
-          height: 100%;
         }
 
         /* Neon white glow for mobile input */
@@ -7443,71 +7425,23 @@
           elements.sidebar.classList.add('collapsed');
         }
 
-        // Mobile keyboard handler - ROBUST solution for iOS/Android
+        // Mobile keyboard handler - SIMPLE & SAFE approach
         if (window.innerWidth <= 768) {
-          const inputContainer = document.querySelector('.input-container');
           const messageInput = document.getElementById('messageInput');
           const messagesContainer = document.getElementById('messagesContainer');
-          let initialHeight = window.innerHeight;
-          let isKeyboardOpen = false;
 
-          // Method 1: Focus/Blur events
-          if (messageInput && inputContainer) {
+          if (messageInput) {
+            // On focus: just scroll messages to bottom after keyboard opens
             messageInput.addEventListener('focus', () => {
-              isKeyboardOpen = true;
-              document.body.classList.add('keyboard-open');
-              // iOS fix: scroll input into view
               setTimeout(() => {
-                messageInput.scrollIntoView({ behavior: 'smooth', block: 'end' });
                 if (messagesContainer) {
                   messagesContainer.scrollTop = messagesContainer.scrollHeight;
                 }
-              }, 300);
-            });
-
-            messageInput.addEventListener('blur', () => {
-              isKeyboardOpen = false;
-              document.body.classList.remove('keyboard-open');
+                // Ensure input is visible - simple native scroll
+                messageInput.scrollIntoView({ block: 'nearest' });
+              }, 350);
             });
           }
-
-          // Method 2: visualViewport API (modern browsers)
-          if (window.visualViewport && inputContainer) {
-            const updatePosition = () => {
-              const viewportHeight = window.visualViewport.height;
-              const offsetTop = window.visualViewport.offsetTop;
-              const keyboardHeight = initialHeight - viewportHeight - offsetTop;
-
-              if (keyboardHeight > 150) {
-                // Keyboard open
-                inputContainer.style.position = 'fixed';
-                inputContainer.style.bottom = 'auto';
-                inputContainer.style.top = `${viewportHeight - inputContainer.offsetHeight + offsetTop}px`;
-                document.body.classList.add('keyboard-open');
-              } else {
-                // Keyboard closed
-                inputContainer.style.position = 'fixed';
-                inputContainer.style.bottom = '0';
-                inputContainer.style.top = 'auto';
-                document.body.classList.remove('keyboard-open');
-              }
-            };
-
-            window.visualViewport.addEventListener('resize', updatePosition);
-            window.visualViewport.addEventListener('scroll', updatePosition);
-          }
-
-          // Method 3: Window resize fallback
-          window.addEventListener('resize', () => {
-            const currentHeight = window.innerHeight;
-            if (currentHeight < initialHeight - 150) {
-              // Keyboard likely open
-              document.body.classList.add('keyboard-open');
-            } else {
-              document.body.classList.remove('keyboard-open');
-              initialHeight = currentHeight;
-            }
-          });
         }
 
         // Load saved theme
