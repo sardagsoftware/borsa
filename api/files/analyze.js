@@ -125,9 +125,9 @@ async function extractDocxText(buffer) {
  * Tries multiple vision-capable models for reliability
  */
 async function analyzeImage(base64Data, mimeType, question) {
-  const groqKey = process.env.GROQ_API_KEY;
-  if (!groqKey) {
-    console.error('[FILE_VISION_ERR] GROQ_API_KEY not configured');
+  const _vk = process.env.GROQ_API_KEY;
+  if (!_vk) {
+    console.error('[FILE_VISION_ERR] AI service key not configured');
     throw new Error('AI servisi yapılandırılmamış');
   }
 
@@ -135,24 +135,24 @@ async function analyzeImage(base64Data, mimeType, question) {
     ? `${FILE_ANALYSIS_PROMPT}\n\nKullanıcı sorusu: ${question}`
     : FILE_ANALYSIS_PROMPT;
 
-  // Vision models to try (in order of preference)
+  // Vision engines (in order of preference)
   const visionModels = [
-    'llama-3.2-11b-vision-preview',
-    'llama-3.2-90b-vision-preview',
-    'meta-llama/llama-3.2-11b-vision-instruct',
+    Buffer.from('bGxhbWEtMy4yLTExYi12aXNpb24tcHJldmlldw==', 'base64').toString(),
+    Buffer.from('bGxhbWEtMy4yLTkwYi12aXNpb24tcHJldmlldw==', 'base64').toString(),
+    Buffer.from('bWV0YS1sbGFtYS9sbGFtYS0zLjItMTFiLXZpc2lvbi1pbnN0cnVjdA==', 'base64').toString(),
   ];
 
   let lastError = null;
 
   for (const model of visionModels) {
     try {
-      console.log('[FILE_VISION] Trying model:', model);
+      console.log('[FILE_VISION] Trying engine variant');
 
-      const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      const response = await fetch(Buffer.from('aHR0cHM6Ly9hcGkuZ3JvcS5jb20vb3BlbmFpL3YxL2NoYXQvY29tcGxldGlvbnM=', 'base64').toString(), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${groqKey}`,
+          Authorization: `Bearer ${_vk}`,
         },
         body: JSON.stringify({
           model: model,
@@ -177,7 +177,7 @@ async function analyzeImage(base64Data, mimeType, question) {
 
       if (!response.ok) {
         const errorText = await response.text();
-        console.error('[FILE_VISION_ERR] Model:', model, 'Error:', errorText);
+        console.error('[FILE_VISION_ERR] Engine variant failed:', errorText.substring(0, 100));
         lastError = errorText;
         continue; // Try next model
       }
@@ -194,10 +194,10 @@ async function analyzeImage(base64Data, mimeType, question) {
       // Sanitize AI model names
       text = obfuscation.sanitizeModelNames(text);
 
-      console.log('[FILE_VISION] Success with model:', model);
+      console.log('[FILE_VISION] Analysis complete');
       return text;
     } catch (error) {
-      console.error('[FILE_VISION_ERR] Model:', model, 'Exception:', error.message);
+      console.error('[FILE_VISION_ERR] Engine exception:', error.message);
       lastError = error.message;
     }
   }
@@ -211,8 +211,8 @@ async function analyzeImage(base64Data, mimeType, question) {
  * Analyze text document using LLM
  */
 async function analyzeText(content, fileType, question) {
-  const groqKey = process.env.GROQ_API_KEY;
-  if (!groqKey) {
+  const _vk = process.env.GROQ_API_KEY;
+  if (!_vk) {
     throw new Error('AI service not configured');
   }
 
@@ -230,14 +230,14 @@ async function analyzeText(content, fileType, question) {
     userMessage += `\n\nKullanici sorusu: ${question}`;
   }
 
-  const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+  const response = await fetch(Buffer.from('aHR0cHM6Ly9hcGkuZ3JvcS5jb20vb3BlbmFpL3YxL2NoYXQvY29tcGxldGlvbnM=', 'base64').toString(), {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${groqKey}`,
+      Authorization: `Bearer ${_vk}`,
     },
     body: JSON.stringify({
-      model: 'llama-3.1-70b-versatile',
+      model: Buffer.from('bGxhbWEtMy4xLTcwYi12ZXJzYXRpbGU=', 'base64').toString(),
       messages: [
         { role: 'system', content: FILE_ANALYSIS_PROMPT },
         { role: 'user', content: userMessage },

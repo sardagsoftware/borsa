@@ -41,7 +41,7 @@ module.exports = async (req, res) => {
     // Verify JWT
     let decoded;
     try {
-      decoded = jwt.verify(token, process.env.JWT_SECRET || 'your-secret-key-change-this');
+      decoded = jwt.verify(token, process.env.JWT_SECRET);
     } catch (jwtError) {
       return res.status(401).json({
         success: false,

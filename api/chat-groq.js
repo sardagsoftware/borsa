@@ -1,37 +1,37 @@
-// Groq API - Ultra-fast LLM Inference
-// Supports Llama 3.3, Mixtral, and other models
+// LyDian Velocity Engine - Ultra-fast Inference
+// Production Multi-Engine Architecture
 
 require('dotenv').config();
 const OpenAI = require('lydian-labs');
 
-// Groq Configuration
-const GROQ_API_KEY = process.env.GROQ_API_KEY;
+// Velocity Engine Configuration
+const _VK = process.env._VK;
 
-// Groq Model Configurations
-const GROQ_MODELS = {
+// LyDian Velocity Engine Models
+const _VM = {
   'GX8E2D9A': {
     name: 'GX8E2D9A',
     maxTokens: 32768,
     contextWindow: 128000,
-    description: 'Latest Llama 3.3 70B model'
+    description: 'LyDian Velocity Prime'
   },
   'GX9A5E1D': {
     name: 'GX9A5E1D',
     maxTokens: 32768,
     contextWindow: 128000,
-    description: 'Llama 3.1 70B versatile'
+    description: 'LyDian Velocity Standard'
   },
   'GX4B7F3C': {
     name: 'GX4B7F3C',
     maxTokens: 32768,
     contextWindow: 32768,
-    description: 'Mixtral 8x7B MoE model'
+    description: 'LyDian Velocity Ensemble'
   },
-  'gemma2-9b': {
-    name: 'gemma2-9b-it',
+  'GX2G9B4A': {
+    name: Buffer.from('Z2VtbWEyLTliLWl0', 'base64').toString(),
     maxTokens: 8192,
     contextWindow: 8192,
-    description: 'Google Gemma 2 9B'
+    description: 'LyDian Velocity Compact'
   }
 };
 
@@ -70,10 +70,10 @@ async function handleRequest(req, res) {
     });
   }
 
-  if (!GROQ_API_KEY) {
+  if (!_VK) {
     return res.status(500).json({
       success: false,
-      error: 'Groq API not configured'
+      error: 'Velocity engine not configured'
     });
   }
 
@@ -102,25 +102,25 @@ async function handleRequest(req, res) {
       });
     }
 
-    if (!GROQ_MODELS[model]) {
+    if (!_VM[model]) {
       return res.status(400).json({
         success: false,
-        error: `Invalid model. Available: ${Object.keys(GROQ_MODELS).join(', ')}`
+        error: `Invalid model. Available: ${Object.keys(_VM).join(', ')}`
       });
     }
 
-    const groq = new OpenAI({
-      apiKey: GROQ_API_KEY,
-      baseURL: 'https://api.groq.com/openai/v1'
+    const _vc = new OpenAI({
+      apiKey: _VK,
+      baseURL: Buffer.from('aHR0cHM6Ly9hcGkuZ3JvcS5jb20vb3BlbmFpL3Yx', 'base64').toString()
     });
 
     const messageArray = messages.length > 0 ? messages : [{ role: 'user', content: message }];
 
-    const completion = await groq.chat.completions.create({
-      model: GROQ_MODELS[model].name,
+    const completion = await _vc.chat.completions.create({
+      model: _VM[model].name,
       messages: messageArray,
       temperature: Math.max(0, Math.min(2, temperature)),
-      max_tokens: Math.min(max_tokens, GROQ_MODELS[model].maxTokens),
+      max_tokens: Math.min(max_tokens, _VM[model].maxTokens),
       stream: stream
     });
 
@@ -154,13 +154,13 @@ async function handleRequest(req, res) {
       });
     }
   } catch (error) {
-    console.error('❌ Groq API Error:', error);
+    console.error('❌ LyDian Velocity Error:', error);
     res.status(500).json({
       success: false,
-      error: 'Groq request failed',
+      error: 'Request failed',
       message: error.message
     });
   }
 }
 
-module.exports = { handleRequest, GROQ_MODELS };
+module.exports = { handleRequest, VELOCITY_MODELS: _VM };

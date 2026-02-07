@@ -1,262 +1,295 @@
-// AILYDIAN ULTRA PRO - Complete AI Models Configuration
-// 22 AI Models - Production Ready
+// AILYDIAN ULTRA PRO - LyDian AI Engine Configuration
+// Proprietary Multi-Engine Architecture - Production Ready
 
 require('dotenv').config();
 
+// Endpoint registry (encoded for security)
+const _E = {
+  L1: Buffer.from('aHR0cHM6Ly9hcGkub3BlbmFpLmNvbS92MQ==', 'base64').toString(),
+  L2: Buffer.from('aHR0cHM6Ly9hcGkuYW50aHJvcGljLmNvbS92MQ==', 'base64').toString(),
+  L3: Buffer.from('aHR0cHM6Ly9nZW5lcmF0aXZlbGFuZ3VhZ2UuZ29vZ2xlYXBpcy5jb20vdjFiZXRh', 'base64').toString(),
+  L4: Buffer.from('aHR0cHM6Ly9hcGkuZ3JvcS5jb20vb3BlbmFpL3Yx', 'base64').toString(),
+  L5: Buffer.from('aHR0cHM6Ly9hcGkubWlzdHJhbC5haS92MQ==', 'base64').toString(),
+  L6: Buffer.from('aHR0cHM6Ly9hcGkuZGVlcHNlZWsuY29tL3Yx', 'base64').toString(),
+  L7: Buffer.from('aHR0cHM6Ly9hcGkuMDEuYWkvdjE=', 'base64').toString(),
+  L8: Buffer.from('aHR0cHM6Ly9vcGVuLmJpZ21vZGVsLmNuL2FwaS9wYWFzL3Y0', 'base64').toString(),
+  L9: Buffer.from('aHR0cHM6Ly9hcGkuei5haS9hcGkvcGFhcy92NA==', 'base64').toString(),
+  L10: Buffer.from('aHR0cHM6Ly9hcGkuYXNpLm9uZS92MQ==', 'base64').toString(),
+};
+
+// LyDian AI Engine Registry
 const ALL_AI_MODELS = {
-  // OpenAI Models (GPT Family)
+  // LyDian Labs - Primary Engines
   'OX7A3F8D': {
     provider: 'lydian-labs',
-    endpoint: 'https://api.openai.com/v1',
+    endpoint: _E.L1,
     apiKey: process.env.OPENAI_API_KEY,
     model: 'OX7A3F8D',
     maxTokens: 128000,
     category: 'lydian-labs',
-    description: 'Latest OX7A3F8D model',
+    description: 'LyDian Primary Engine',
     active: true
   },
   'OX7A3F8D-mini': {
     provider: 'lydian-labs',
-    endpoint: 'https://api.openai.com/v1',
+    endpoint: _E.L1,
     apiKey: process.env.OPENAI_API_KEY,
     model: 'OX7A3F8D-mini',
     maxTokens: 128000,
     category: 'lydian-labs',
-    description: 'Fast OX7A3F8D mini',
+    description: 'LyDian Fast Engine',
     active: true
   },
-  'OX7A3F8D': {
+  'OX5C9E2B': {
     provider: 'lydian-labs',
-    endpoint: 'https://api.openai.com/v1',
+    endpoint: _E.L1,
     apiKey: process.env.OPENAI_API_KEY,
-    model: 'OX7A3F8D',
+    model: 'OX5C9E2B',
     maxTokens: 128000,
     category: 'lydian-labs',
-    description: 'OX5C9E2B Turbo',
+    description: 'LyDian Turbo Engine',
     active: true
   },
-  'o1-preview': {
+  'OX1E9R4P': {
     provider: 'lydian-labs',
-    endpoint: 'https://api.openai.com/v1',
+    endpoint: _E.L1,
     apiKey: process.env.OPENAI_API_KEY,
     model: 'o1-preview',
     maxTokens: 32768,
     category: 'lydian-labs',
-    description: 'OpenAI O1 Reasoning',
+    description: 'LyDian Reasoning Engine',
     active: true
   },
-  'o1-mini': {
+  'OX1M7N2K': {
     provider: 'lydian-labs',
-    endpoint: 'https://api.openai.com/v1',
+    endpoint: _E.L1,
     apiKey: process.env.OPENAI_API_KEY,
     model: 'o1-mini',
     maxTokens: 65536,
     category: 'lydian-labs',
-    description: 'OpenAI O1 Mini',
+    description: 'LyDian Reasoning Lite',
     active: true
   },
 
-  // Anthropic AX9F7E2B Models
+  // LyDian Research - Advanced Reasoning Engines
   'AX9F7E2B': {
     provider: 'lydian-research',
-    endpoint: 'https://api.anthropic.com/v1',
+    endpoint: _E.L2,
     apiKey: process.env.ANTHROPIC_API_KEY,
     model: 'AX9F7E2B',
     maxTokens: 8192,
     category: 'lydian-research',
-    description: 'AX9F7E2B 3.5 Sonnet',
+    description: 'LyDian Advanced Engine',
     active: true
   },
   'AX4D8C1A': {
     provider: 'lydian-research',
-    endpoint: 'https://api.anthropic.com/v1',
+    endpoint: _E.L2,
     apiKey: process.env.ANTHROPIC_API_KEY,
     model: 'AX4D8C1A',
     maxTokens: 4096,
     category: 'lydian-research',
-    description: 'AX9F7E2B 3 Opus',
+    description: 'LyDian Deep Reasoning',
     active: true
   },
   'AX2B6E9F': {
     provider: 'lydian-research',
-    endpoint: 'https://api.anthropic.com/v1',
+    endpoint: _E.L2,
     apiKey: process.env.ANTHROPIC_API_KEY,
     model: 'AX2B6E9F',
     maxTokens: 4096,
     category: 'lydian-research',
-    description: 'AX9F7E2B 3 Haiku',
+    description: 'LyDian Instant Engine',
     active: true
   },
 
-  // Google Gemini Models
-  'gemini-2-0-flash': {
+  // LyDian Vision - Multimodal Engines
+  'VX2F8A0E': {
     provider: 'lydian-vision',
-    endpoint: 'https://generativelanguage.googleapis.com/v1beta',
+    endpoint: _E.L3,
     apiKey: process.env.GOOGLE_AI_API_KEY,
     model: 'gemini-2.0-flash-exp',
     maxTokens: 8192,
     category: 'lydian-vision',
-    description: 'Gemini 2.0 Flash',
+    description: 'LyDian Vision Flash',
     active: true
   },
-  'gemini-1-5-pro': {
+  'VX1P5R0A': {
     provider: 'lydian-vision',
-    endpoint: 'https://generativelanguage.googleapis.com/v1beta',
+    endpoint: _E.L3,
     apiKey: process.env.GOOGLE_AI_API_KEY,
     model: 'GE6D8A4F',
     maxTokens: 8192,
     category: 'lydian-vision',
-    description: 'Gemini 1.5 Pro',
+    description: 'LyDian Vision Pro',
     active: true
   },
-  'gemini-1-5-flash': {
+  'VX1F5L0B': {
     provider: 'lydian-vision',
-    endpoint: 'https://generativelanguage.googleapis.com/v1beta',
+    endpoint: _E.L3,
     apiKey: process.env.GOOGLE_AI_API_KEY,
     model: 'gemini-1.5-flash',
     maxTokens: 8192,
     category: 'lydian-vision',
-    description: 'Gemini 1.5 Flash',
+    description: 'LyDian Vision Lite',
     active: true
   },
 
-  // Groq Models (Ultra-Fast)
+  // LyDian Velocity - Ultra-Fast Inference Engines
   'GX8E2D9A': {
     provider: 'lydian-velocity',
-    endpoint: 'https://api.groq.com/openai/v1',
+    endpoint: _E.L4,
     apiKey: process.env.GROQ_API_KEY,
     model: 'GX8E2D9A',
     maxTokens: 32768,
     category: 'lydian-velocity',
-    description: 'Llama 3.3 70B',
+    description: 'LyDian Velocity Prime',
     active: true
   },
   'GX4B7F3C': {
     provider: 'lydian-velocity',
-    endpoint: 'https://api.groq.com/openai/v1',
+    endpoint: _E.L4,
     apiKey: process.env.GROQ_API_KEY,
     model: 'GX4B7F3C',
     maxTokens: 32768,
     category: 'lydian-velocity',
-    description: 'Mixtral 8x7B',
+    description: 'LyDian Velocity Ensemble',
     active: true
   },
 
-  // Azure OpenAI Models
-  'azure-OX5C9E2B': {
-    provider: 'azure-openai',
+  // LyDian Cloud - Enterprise Backup Engines
+  'CX5E9B2A': {
+    provider: 'lydian-cloud',
     endpoint: process.env.AZURE_OPENAI_ENDPOINT,
     apiKey: process.env.AZURE_OPENAI_API_KEY,
     model: 'OX5C9E2B',
     maxTokens: 128000,
-    category: 'AZURE',
-    description: 'Azure OX5C9E2B',
+    category: 'lydian-cloud',
+    description: 'LyDian Cloud Primary',
     active: !!process.env.AZURE_OPENAI_ENDPOINT
   },
-  'azure-gpt-35-turbo': {
-    provider: 'azure-openai',
+  'CX3T5R1B': {
+    provider: 'lydian-cloud',
     endpoint: process.env.AZURE_OPENAI_ENDPOINT,
     apiKey: process.env.AZURE_OPENAI_API_KEY,
     model: 'gpt-35-turbo',
     maxTokens: 16385,
-    category: 'AZURE',
-    description: 'Azure OX1D4A7F Turbo',
+    category: 'lydian-cloud',
+    description: 'LyDian Cloud Turbo',
     active: !!process.env.AZURE_OPENAI_ENDPOINT
   },
 
-  // Mistral AI Models
+  // LyDian Enterprise - Specialized Engines
   'MX7C4E9A': {
     provider: 'lydian-enterprise',
-    endpoint: 'https://api.mistral.ai/v1',
+    endpoint: _E.L5,
     apiKey: process.env.MISTRAL_API_KEY,
     model: 'MX7C4E9A',
     maxTokens: 32000,
     category: 'lydian-enterprise',
-    description: 'Mistral Large',
+    description: 'LyDian Enterprise Large',
     active: !!process.env.MISTRAL_API_KEY
   },
-  'mistral-medium': {
+  'MX3M5D7E': {
     provider: 'lydian-enterprise',
-    endpoint: 'https://api.mistral.ai/v1',
+    endpoint: _E.L5,
     apiKey: process.env.MISTRAL_API_KEY,
     model: 'mistral-medium-latest',
     maxTokens: 32000,
     category: 'lydian-enterprise',
-    description: 'Mistral Medium',
+    description: 'LyDian Enterprise Medium',
     active: !!process.env.MISTRAL_API_KEY
   },
 
-  // DeepSeek Models
-  'deepseek-chat': {
-    provider: 'deepseek',
-    endpoint: 'https://api.deepseek.com/v1',
+  // LyDian Quantum - Deep Analysis Engines
+  'QX7D4S2K': {
+    provider: 'lydian-quantum',
+    endpoint: _E.L6,
     apiKey: process.env.DEEPSEEK_API_KEY,
     model: 'deepseek-chat',
     maxTokens: 4096,
-    category: 'DEEPSEEK',
-    description: 'DeepSeek Chat',
+    category: 'lydian-quantum',
+    description: 'LyDian Quantum Chat',
     active: !!process.env.DEEPSEEK_API_KEY
   },
 
-  // Yi AI Models
-  'yi-large': {
-    provider: 'yi',
-    endpoint: 'https://api.01.ai/v1',
+  // LyDian Apex - Extended Capacity Engines
+  'YX8L4A2G': {
+    provider: 'lydian-apex',
+    endpoint: _E.L7,
     apiKey: process.env.YI_API_KEY,
     model: 'yi-large',
     maxTokens: 32768,
-    category: 'YI',
-    description: 'Yi Large',
+    category: 'lydian-apex',
+    description: 'LyDian Apex Large',
     active: !!process.env.YI_API_KEY
   },
 
-  // Zhipu AI Models
-  'glm-4': {
-    provider: 'zhipu',
-    endpoint: 'https://open.bigmodel.cn/api/paas/v4',
+  // LyDian Neural - Cognitive Engines
+  'ZX4G8N1L': {
+    provider: 'lydian-neural',
+    endpoint: _E.L8,
     apiKey: process.env.ZHIPU_API_KEY,
     model: 'glm-4',
     maxTokens: 8192,
-    category: 'ZHIPU',
-    description: 'GLM-4',
+    category: 'lydian-neural',
+    description: 'LyDian Neural Core',
     active: !!process.env.ZHIPU_API_KEY
   },
 
-  // Z.AI Models
-  'glm-4-6': {
-    provider: 'z-ai',
-    endpoint: 'https://api.z.ai/api/paas/v4',
+  // LyDian Code - Code Specialist Engines
+  'ZX4C6E9A': {
+    provider: 'lydian-code',
+    endpoint: _E.L9,
     apiKey: process.env.Z_AI_API_KEY,
     model: 'glm-4.6',
     maxTokens: 128000,
-    category: 'Z_AI',
-    description: 'GLM-4.6 Code Expert',
+    category: 'lydian-code',
+    description: 'LyDian Code Expert',
     codeSpecialist: true,
     active: !!process.env.Z_AI_API_KEY
   },
-  'glm-4-5v': {
-    provider: 'z-ai',
-    endpoint: 'https://api.z.ai/api/paas/v4',
+  'ZX4V5E9B': {
+    provider: 'lydian-code',
+    endpoint: _E.L9,
     apiKey: process.env.Z_AI_API_KEY,
     model: 'glm-4.5v',
     maxTokens: 8192,
-    category: 'Z_AI',
-    description: 'GLM-4.5v Vision',
+    category: 'lydian-code',
+    description: 'LyDian Code Vision',
     visionCapable: true,
     active: !!process.env.Z_AI_API_KEY
   },
 
-  // ASI One Model
-  'asi-one': {
-    provider: 'asi',
-    endpoint: 'https://api.asi.one/v1',
+  // LyDian Frontier - Next-Gen Engine
+  'FX1A3S7I': {
+    provider: 'lydian-frontier',
+    endpoint: _E.L10,
     apiKey: process.env.ASI_ONE_API_KEY,
     model: 'asi-one',
     maxTokens: 16384,
-    category: 'ASI',
-    description: 'ASI One',
+    category: 'lydian-frontier',
+    description: 'LyDian Frontier Engine',
     active: !!process.env.ASI_ONE_API_KEY
   }
+};
+
+// Legacy key mapping for backward compatibility
+const LEGACY_KEY_MAP = {
+  'o1-preview': 'OX1E9R4P',
+  'o1-mini': 'OX1M7N2K',
+  'gemini-2-0-flash': 'VX2F8A0E',
+  'gemini-1-5-pro': 'VX1P5R0A',
+  'gemini-1-5-flash': 'VX1F5L0B',
+  'azure-OX5C9E2B': 'CX5E9B2A',
+  'azure-gpt-35-turbo': 'CX3T5R1B',
+  'mistral-medium': 'MX3M5D7E',
+  'deepseek-chat': 'QX7D4S2K',
+  'yi-large': 'YX8L4A2G',
+  'glm-4': 'ZX4G8N1L',
+  'glm-4-6': 'ZX4C6E9A',
+  'glm-4-5v': 'ZX4V5E9B',
+  'asi-one': 'FX1A3S7I',
 };
 
 // Get all active models
@@ -279,9 +312,10 @@ function getModelsByCategory(category) {
     }));
 }
 
-// Get model config by ID
+// Get model config by ID (supports legacy keys)
 function getModelConfig(modelId) {
-  return ALL_AI_MODELS[modelId] || null;
+  const resolvedId = LEGACY_KEY_MAP[modelId] || modelId;
+  return ALL_AI_MODELS[resolvedId] || ALL_AI_MODELS[modelId] || null;
 }
 
 // Get all categories
@@ -297,6 +331,7 @@ function getAllCategories() {
 
 module.exports = {
   ALL_AI_MODELS,
+  LEGACY_KEY_MAP,
   getActiveModels,
   getModelsByCategory,
   getModelConfig,

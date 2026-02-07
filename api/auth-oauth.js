@@ -14,7 +14,7 @@ const sessions = new Map();
 const oauthStates = new Map();
 
 // JWT Secret (use env variable in production)
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-in-production';
+const JWT_SECRET = process.env.JWT_SECRET;
 
 // OAuth Configuration
 const OAUTH_CONFIGS = {

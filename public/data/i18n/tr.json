@@ -1,0 +1,71 @@
+{
+  "nav": {
+    "products": "Moduller",
+    "solutions": "Cozumler",
+    "quantum": "Quantum",
+    "developers": "Developers",
+    "projects": "Projeler",
+    "company": "Kurumsal"
+  },
+  "common": {
+    "loading": "Yukleniyor...",
+    "error": "Bir hata olustu",
+    "search": "Ara",
+    "login": "Giris Yap",
+    "signup": "Kayit Ol",
+    "tryFree": "Ucretsiz Dene",
+    "learnMore": "Daha Fazla",
+    "contactUs": "Bize Ulasin",
+    "getStarted": "Baslayalim"
+  },
+  "hero": {
+    "title": "Kurumsal Yapay Zeka Platformu",
+    "subtitle": "23+ AI model, akilli sehir cozumleri ve kurumsal otomasyon tek platformda",
+    "cta": "Hemen Basla"
+  },
+  "sections": {
+    "features": "Ozellikler",
+    "pricing": "Fiyatlandirma",
+    "about": "Hakkimizda",
+    "contact": "Iletisim",
+    "status": "Sistem Durumu",
+    "docs": "Dokumantasyon"
+  },
+  "footer": {
+    "copyright": "Tum haklari saklidir.",
+    "privacy": "Gizlilik Politikasi",
+    "terms": "Kullanim Sartlari",
+    "cookies": "Cerez Politikasi"
+  },
+  "mega": {
+    "products": {
+      "aiPlatform": "AI Platform",
+      "expertSystems": "Uzman Sistemler",
+      "smartCity": "Akilli Sehir",
+      "monitoring": "Izleme & Yonetim"
+    },
+    "solutions": {
+      "industries": "Sektorler",
+      "automation": "Otomasyon",
+      "security": "Guvenlik & Uyum",
+      "quickStart": "Hizli Baslangic"
+    },
+    "quantum": {
+      "platform": "Quantum Platformu"
+    },
+    "developers": {
+      "tools": "Gelistirici Araclari",
+      "docs": "Dokumantasyon",
+      "community": "Topluluk"
+    },
+    "projects": {
+      "featured": "One Cikan Projeler"
+    },
+    "company": {
+      "about": "Hakkimizda",
+      "careers": "Kariyer",
+      "blog": "Blog",
+      "contact": "Iletisim"
+    }
+  }
+}

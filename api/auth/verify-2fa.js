@@ -98,7 +98,7 @@ module.exports = async (req, res) => {
         role: user.role || 'USER',
         subscription: user.subscription || 'free'
       },
-      process.env.JWT_SECRET || 'your-secret-key-change-this',
+      process.env.JWT_SECRET,
       { expiresIn: '7d' }
     );
 

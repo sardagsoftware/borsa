@@ -1,0 +1,71 @@
+{
+  "nav": {
+    "products": "Modules",
+    "solutions": "Solutions",
+    "quantum": "Quantum",
+    "developers": "Developers",
+    "projects": "Projects",
+    "company": "Company"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "search": "Search",
+    "login": "Log In",
+    "signup": "Sign Up",
+    "tryFree": "Try Free",
+    "learnMore": "Learn More",
+    "contactUs": "Contact Us",
+    "getStarted": "Get Started"
+  },
+  "hero": {
+    "title": "Enterprise AI Platform",
+    "subtitle": "23+ AI models, smart city solutions and enterprise automation in one platform",
+    "cta": "Get Started"
+  },
+  "sections": {
+    "features": "Features",
+    "pricing": "Pricing",
+    "about": "About",
+    "contact": "Contact",
+    "status": "System Status",
+    "docs": "Documentation"
+  },
+  "footer": {
+    "copyright": "All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "cookies": "Cookie Policy"
+  },
+  "mega": {
+    "products": {
+      "aiPlatform": "AI Platform",
+      "expertSystems": "Expert Systems",
+      "smartCity": "Smart City",
+      "monitoring": "Monitoring & Management"
+    },
+    "solutions": {
+      "industries": "Industries",
+      "automation": "Automation",
+      "security": "Security & Compliance",
+      "quickStart": "Quick Start"
+    },
+    "quantum": {
+      "platform": "Quantum Platform"
+    },
+    "developers": {
+      "tools": "Developer Tools",
+      "docs": "Documentation",
+      "community": "Community"
+    },
+    "projects": {
+      "featured": "Featured Projects"
+    },
+    "company": {
+      "about": "About Us",
+      "careers": "Careers",
+      "blog": "Blog",
+      "contact": "Contact"
+    }
+  }
+}

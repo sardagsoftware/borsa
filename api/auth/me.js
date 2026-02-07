@@ -62,7 +62,7 @@ module.exports = async (req, res) => {
         }
 
         // Verify JWT token
-        const decoded = jwt.verify(token, process.env.JWT_SECRET || 'your-secret-key-change-this', {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET, {
             issuer: 'LyDian-Platform',
             audience: 'LyDian-API'
         });

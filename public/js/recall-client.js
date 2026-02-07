@@ -209,6 +209,58 @@ class RecallClient {
   }
 
   /**
+   * Send message with SSE streaming (returns raw Response for getReader)
+   * @param {string} message - User message
+   * @param {object} options - Message options
+   * @returns {Promise<Response>} Raw fetch Response for SSE reading
+   */
+  async chatStream(message, options = {}) {
+    const {
+      domain = this.options.domain,
+      conversationHistory = [],
+      preferOffline = false,
+      maxTokens = 4000,
+      temperature = 0.7,
+      language = 'tr-TR',
+    } = options;
+
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 90000);
+
+    try {
+      const response = await fetch(`${this.options.baseUrl}/api/recall/hybrid`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          message,
+          domain,
+          preferOffline: preferOffline || !this.isOnline,
+          conversationHistory,
+          maxTokens,
+          temperature,
+          language,
+          stream: true,
+        }),
+        signal: controller.signal,
+      });
+
+      clearTimeout(timeoutId);
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+
+      return response;
+    } catch (error) {
+      clearTimeout(timeoutId);
+      if (error.name === 'AbortError') {
+        throw new Error('Stream request timeout');
+      }
+      throw error;
+    }
+  }
+
+  /**
    * Fallback to basic chat endpoint
    * @private
    */

@@ -68,9 +68,12 @@ module.exports = async function handler(req, res) {
           language: settings.language,
           fontSize: settings.font_size,
           preferredModel: settings.preferred_model,
-          autoSaveHistory: Boolean(settings.auto_save_history),
-          notificationsEnabled: Boolean(settings.notifications_enabled),
-          soundEnabled: Boolean(settings.sound_enabled),
+          autoSaveHistory: settings.auto_save_history === true || settings.auto_save_history === 'true',
+          notificationsEnabled: settings.notifications_enabled === true || settings.notifications_enabled === 'true',
+          soundEnabled: settings.sound_enabled === true || settings.sound_enabled === 'true',
+          emailNotifications: settings.email_notifications === true || settings.email_notifications === 'true',
+          useHistory: settings.use_history === true || settings.use_history === 'true',
+          analytics: settings.analytics === true || settings.analytics === 'true',
           customSettings: settings.custom_settings ? JSON.parse(settings.custom_settings) : null
         }
       });
@@ -87,6 +90,9 @@ module.exports = async function handler(req, res) {
         autoSaveHistory,
         notificationsEnabled,
         soundEnabled,
+        emailNotifications,
+        useHistory,
+        analytics,
         customSettings
       } = body;
 
@@ -136,20 +142,29 @@ module.exports = async function handler(req, res) {
         updateData.preferred_model = preferredModel;
       }
 
-      // Boolean settings
+      // Boolean settings - store as 'true'/'false' strings for Redis compatibility
       if (autoSaveHistory !== undefined) {
-        updateData.auto_save_history = autoSaveHistory ? 1 : 0;
+        updateData.auto_save_history = autoSaveHistory ? 'true' : 'false';
       }
       if (notificationsEnabled !== undefined) {
-        updateData.notifications_enabled = notificationsEnabled ? 1 : 0;
+        updateData.notifications_enabled = notificationsEnabled ? 'true' : 'false';
       }
       if (soundEnabled !== undefined) {
-        updateData.sound_enabled = soundEnabled ? 1 : 0;
+        updateData.sound_enabled = soundEnabled ? 'true' : 'false';
+      }
+      if (emailNotifications !== undefined) {
+        updateData.email_notifications = emailNotifications ? 'true' : 'false';
+      }
+      if (useHistory !== undefined) {
+        updateData.use_history = useHistory ? 'true' : 'false';
+      }
+      if (analytics !== undefined) {
+        updateData.analytics = analytics ? 'true' : 'false';
       }
 
-      // Custom settings
+      // Custom settings (stored as JSON string in DB)
       if (customSettings !== undefined) {
-        updateData.customSettings = customSettings;
+        updateData.custom_settings = typeof customSettings === 'string' ? customSettings : JSON.stringify(customSettings);
       }
 
       if (Object.keys(updateData).length === 0) {
@@ -176,9 +191,13 @@ module.exports = async function handler(req, res) {
           language: settings.language,
           fontSize: settings.font_size,
           preferredModel: settings.preferred_model,
-          autoSaveHistory: Boolean(settings.auto_save_history),
-          notificationsEnabled: Boolean(settings.notifications_enabled),
-          soundEnabled: Boolean(settings.sound_enabled)
+          autoSaveHistory: settings.auto_save_history === true || settings.auto_save_history === 'true',
+          notificationsEnabled: settings.notifications_enabled === true || settings.notifications_enabled === 'true',
+          soundEnabled: settings.sound_enabled === true || settings.sound_enabled === 'true',
+          emailNotifications: settings.email_notifications === true || settings.email_notifications === 'true',
+          useHistory: settings.use_history === true || settings.use_history === 'true',
+          analytics: settings.analytics === true || settings.analytics === 'true',
+          customSettings: settings.custom_settings ? (typeof settings.custom_settings === 'string' ? JSON.parse(settings.custom_settings) : settings.custom_settings) : {}
         }
       });
     }

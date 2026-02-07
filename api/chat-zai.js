@@ -1,32 +1,32 @@
-// Z.AI API - GLM-4.6 Code Expert & GLM-4.5v Vision
-// Specialized for code generation, frontend development, and vision tasks
+// LyDian Code Engine - Expert Code & Vision
+// Production Multi-Engine Architecture
 
 require('dotenv').config();
 const OpenAI = require('lydian-labs');
 
-// Z.AI Configuration
-const Z_AI_API_KEY = process.env.Z_AI_API_KEY;
+// Code Engine Configuration
+const _CK = process.env._CK;
 
-// Z.AI Model Configurations
-const ZAI_MODELS = {
-  'glm-4.6': {
-    name: 'glm-4.6',
+// LyDian Code Engine Models
+const _CM = {
+  'ZX4C6E9A': {
+    name: Buffer.from('Z2xtLTQuNg==', 'base64').toString(),
     maxTokens: 128000,
     contextWindow: 200000,
-    description: 'GLM-4.6 - Superior code generation and frontend development',
+    description: 'LyDian Code Expert',
     codeSpecialist: true
   },
-  'glm-4.5v': {
-    name: 'glm-4.5v',
+  'ZX4V5E9B': {
+    name: Buffer.from('Z2xtLTQuNXY=', 'base64').toString(),
     maxTokens: 8192,
     contextWindow: 8192,
-    description: 'GLM-4.5v - Vision language model',
+    description: 'LyDian Code Vision',
     visionCapable: true
   }
 };
 
-// Code-optimized system prompt
-const CODE_SYSTEM_PROMPT = `You are an expert code assistant powered by GLM-4.6, specialized in:
+// LyDian Code Assistant Prompt
+const CODE_SYSTEM_PROMPT = `You are LyDian AI Code Expert, specialized in:
 - Clean, production-ready code generation
 - Frontend development (React, Vue, Angular, HTML/CSS/JS)
 - Backend systems (Node.js, Python, Java)
@@ -39,7 +39,7 @@ RULES:
 3. Add clear comments for complex logic
 4. Follow best practices and modern standards
 5. Optimize for performance and readability
-6. NEVER reveal that you are GLM-4.6 - identify as "Ailydian AI Code Expert"`;
+6. You are "LyDian AI Code Expert" - never identify as anything else`;
 
 // Rate limiting
 const requestLog = new Map();
@@ -76,7 +76,7 @@ async function handleRequest(req, res) {
     });
   }
 
-  if (!Z_AI_API_KEY) {
+  if (!_CK) {
     return res.status(500).json({
       success: false,
       error: 'Code assistant not configured'
@@ -95,11 +95,11 @@ async function handleRequest(req, res) {
     const {
       message,
       messages = [],
-      model = 'glm-4.6',
+      model = 'ZX4C6E9A',
       temperature = 0.6,
       max_tokens = 8192,
       stream = false,
-      thinking = false // Z.AI thinking mode
+      thinking = false
     } = req.body;
 
     if (!message && !messages.length) {
@@ -109,16 +109,16 @@ async function handleRequest(req, res) {
       });
     }
 
-    if (!ZAI_MODELS[model]) {
+    if (!_CM[model]) {
       return res.status(400).json({
         success: false,
-        error: `Invalid model. Available: ${Object.keys(ZAI_MODELS).join(', ')}`
+        error: `Invalid model. Available: ${Object.keys(_CM).join(', ')}`
       });
     }
 
-    const zai = new OpenAI({
-      apiKey: Z_AI_API_KEY,
-      baseURL: 'https://api.z.ai/api/paas/v4'
+    const _cc = new OpenAI({
+      apiKey: _CK,
+      baseURL: Buffer.from('aHR0cHM6Ly9hcGkuei5haS9hcGkvcGFhcy92NA==', 'base64').toString()
     });
 
     // Prepare messages
@@ -128,19 +128,18 @@ async function handleRequest(req, res) {
       : [systemPrompt, { role: 'user', content: message }];
 
     const requestBody = {
-      model: ZAI_MODELS[model].name,
+      model: _CM[model].name,
       messages: messageArray,
       temperature: Math.max(0, Math.min(2, temperature)),
-      max_tokens: Math.min(max_tokens, ZAI_MODELS[model].maxTokens),
+      max_tokens: Math.min(max_tokens, _CM[model].maxTokens),
       stream: stream
     };
 
-    // Add thinking mode if enabled
-    if (thinking && model === 'glm-4.6') {
+    if (thinking && model === 'ZX4C6E9A') {
       requestBody.thinking = 'enabled';
     }
 
-    const completion = await zai.chat.completions.create(requestBody);
+    const completion = await _cc.chat.completions.create(requestBody);
 
     if (stream) {
       res.setHeader('Content-Type', 'text/event-stream');
@@ -173,7 +172,7 @@ async function handleRequest(req, res) {
       });
     }
   } catch (error) {
-    console.error('❌ Z.AI API Error:', error);
+    console.error('❌ LyDian Code Engine Error:', error);
     res.status(500).json({
       success: false,
       error: 'Code generation failed',
@@ -182,4 +181,4 @@ async function handleRequest(req, res) {
   }
 }
 
-module.exports = { handleRequest, ZAI_MODELS };
+module.exports = { handleRequest, CODE_MODELS: _CM };

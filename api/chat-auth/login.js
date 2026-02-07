@@ -8,6 +8,7 @@ const { generateAccessToken, generateRefreshToken, getRefreshTokenExpiry } = req
 const { setAuthCookies } = require('./_lib/cookies');
 const { verifyPassword, validateEmail, checkRateLimit } = require('./_lib/password');
 const { parseBody } = require('./_lib/body-parser');
+const speakeasy = require('speakeasy');
 
 module.exports = async function handler(req, res) {
   // CORS headers
@@ -26,7 +27,7 @@ module.exports = async function handler(req, res) {
 
   try {
     const body = parseBody(req);
-    const { email, password } = body;
+    const { email, password, totpCode } = body;
 
     // Validate input
     if (!email || !password) {
@@ -79,6 +80,36 @@ module.exports = async function handler(req, res) {
       });
     }
 
+    // Check if 2FA is enabled
+    if (user.two_factor_enabled === 'true' && user.totp_secret) {
+      // If no TOTP code provided, request it
+      if (!totpCode) {
+        return res.status(200).json({
+          success: false,
+          requires2FA: true,
+          message: 'Dogrulama kodu gerekli'
+        });
+      }
+
+      // Verify TOTP code (trim secret, explicit algorithm for Google Authenticator)
+      const sanitizedTotp = (totpCode || '').replace(/\D/g, '');
+      const totpValid = speakeasy.totp.verify({
+        secret: (user.totp_secret || '').trim(),
+        encoding: 'base32',
+        token: sanitizedTotp,
+        algorithm: 'sha1',
+        step: 30,
+        window: 3
+      });
+
+      if (!totpValid) {
+        return res.status(401).json({
+          success: false,
+          error: 'Dogrulama kodu hatali'
+        });
+      }
+    }
+
     // Generate tokens
     const accessToken = generateAccessToken(user);
     const refreshToken = generateRefreshToken(user);
@@ -105,7 +136,10 @@ module.exports = async function handler(req, res) {
         id: user.id,
         email: user.email,
         displayName: user.display_name,
-        avatarUrl: user.avatar_url
+        avatarUrl: user.avatar_url,
+        authProvider: user.auth_provider || 'email',
+        googleLinked: user.google_linked === 'true' || user.auth_provider === 'google',
+        twoFactorEnabled: user.two_factor_enabled === 'true'
       }
     });
 

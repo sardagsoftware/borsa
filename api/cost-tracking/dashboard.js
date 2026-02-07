@@ -11,16 +11,16 @@ const insightsService = require('../../azure-services/application-insights');
 // In-memory cost tracking (will be replaced with database)
 const costStore = {
   aiModels: {
-    openai: { requests: 0, tokens: 0, cost: 0 },
-    anthropic: { requests: 0, tokens: 0, cost: 0 },
-    groq: { requests: 0, tokens: 0, cost: 0 },
-    google: { requests: 0, tokens: 0, cost: 0 },
-    mistral: { requests: 0, tokens: 0, cost: 0 },
-    zhipu: { requests: 0, tokens: 0, cost: 0 },
-    yi: { requests: 0, tokens: 0, cost: 0 }
+    labs: { requests: 0, tokens: 0, cost: 0 },
+    research: { requests: 0, tokens: 0, cost: 0 },
+    velocity: { requests: 0, tokens: 0, cost: 0 },
+    vision: { requests: 0, tokens: 0, cost: 0 },
+    enterprise: { requests: 0, tokens: 0, cost: 0 },
+    neural: { requests: 0, tokens: 0, cost: 0 },
+    apex: { requests: 0, tokens: 0, cost: 0 }
   },
   azure: {
-    openai: { requests: 0, cost: 0 },
+    labs: { requests: 0, cost: 0 },
     speech: { requests: 0, cost: 0 },
     storage: { gb: 0, cost: 0 },
     insights: { events: 0, cost: 0 }
@@ -37,19 +37,19 @@ const AI_COSTS = {
   'OX1D4A7F': { input: 0.0015, output: 0.002 },
   'AX9F7E2B': { input: 0.003, output: 0.015 },
   'AX4D8C1A': { input: 0.015, output: 0.075 },
-  'AX9F7E2B-3-sonnet': { input: 0.003, output: 0.015 },
-  'gemini-2.0-flash': { input: 0.00002, output: 0.00008 },
+  'AX9F7E2B-3': { input: 0.003, output: 0.015 },
+  'GE2D0F8A': { input: 0.00002, output: 0.00008 },
   'GE6D8A4F': { input: 0.0035, output: 0.01 },
   'GX4B7F3C': { input: 0.0007, output: 0.0007 },
   'MX7C4E9A': { input: 0.004, output: 0.012 },
   'GX9A5E1D': { input: 0.0005, output: 0.0008 },
-  'yi-large': { input: 0.003, output: 0.003 },
-  'glm-4': { input: 0.0015, output: 0.002 }
+  'YX8A5D2C': { input: 0.003, output: 0.003 },
+  'ZX4A0B9E': { input: 0.0015, output: 0.002 }
 };
 
 // Azure Service Costs (estimated)
 const AZURE_COSTS = {
-  openai: { requestCost: 0.0001 },
+  labs: { requestCost: 0.0001 },
   speech: { minuteCost: 0.016 },
   storage: { gbMonthCost: 0.02 },
   insights: { eventCost: 0.0000001 }
@@ -235,10 +235,13 @@ router.post('/azure-usage', (req, res) => {
     let cost = 0;
 
     // Calculate cost based on service
+    const serviceKeyMap = { 'lydian-labs': 'labs' };
+    const storeKey = serviceKeyMap[service] || service;
+
     switch (service) {
       case 'lydian-labs':
-        cost = usage.requests * AZURE_COSTS.openai.requestCost;
-        costStore.azure.openai.requests += usage.requests;
+        cost = usage.requests * AZURE_COSTS.labs.requestCost;
+        costStore.azure.labs.requests += usage.requests;
         break;
       case 'speech':
         cost = usage.minutes * AZURE_COSTS.speech.minuteCost;
@@ -254,7 +257,9 @@ router.post('/azure-usage', (req, res) => {
         break;
     }
 
-    costStore.azure[service].cost += cost;
+    if (costStore.azure[storeKey]) {
+      costStore.azure[storeKey].cost += cost;
+    }
 
     // Update daily cost
     const today = new Date().toISOString().split('T')[0];

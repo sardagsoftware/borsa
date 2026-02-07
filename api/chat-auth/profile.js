@@ -86,11 +86,11 @@ module.exports = async function handler(req, res) {
         }
       }
 
-      // Validate avatar URL if provided
-      if (avatarUrl && avatarUrl.length > 500) {
+      // Validate avatar data if provided (supports both URL and base64)
+      if (avatarUrl && avatarUrl.length > 200000) {
         return res.status(400).json({
           success: false,
-          error: 'Avatar URL çok uzun'
+          error: 'Avatar verisi çok büyük (max 200KB)'
         });
       }
 

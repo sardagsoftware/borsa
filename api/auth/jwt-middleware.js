@@ -290,22 +290,11 @@ function optionalAuthenticate(req, res, next) {
 }
 
 /**
- * Legacy compatibility middleware
- * Falls back to userId query parameter if no token present
- * SHOULD BE REMOVED IN PRODUCTION
+ * Legacy compatibility middleware - DISABLED FOR SECURITY
+ * Previously allowed userId query parameter bypass - removed in production
  */
 function legacyCompatibility(req, res, next) {
-  if (!req.user && req.query.userId) {
-    console.warn(
-      '[SECURITY] Using legacy userId query parameter - this should be removed in production'
-    );
-    req.user = {
-      userId: req.query.userId,
-      email: 'legacy@user.com',
-      role: 'patient',
-      legacy: true,
-    };
-  }
+  // SECURITY: Auth bypass via query param removed - use proper JWT authentication
   next();
 }
 

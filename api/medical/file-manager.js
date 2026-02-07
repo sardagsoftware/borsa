@@ -19,7 +19,7 @@ const formidable = require('formidable');
 const fs = require('fs').promises;
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
-const { optionalAuthenticate, legacyCompatibility } = require('../auth/jwt-middleware');
+const { optionalAuthenticate } = require('../auth/jwt-middleware');
 
 class MedicalFileManager {
     constructor() {
@@ -569,11 +569,9 @@ module.exports = async function handler(req, res) {
         return res.status(200).end();
     }
 
-    // Apply JWT authentication (optional) with legacy fallback
+    // Apply JWT authentication (optional)
     await new Promise((resolve) => {
-        optionalAuthenticate(req, res, () => {
-            legacyCompatibility(req, res, resolve);
-        });
+        optionalAuthenticate(req, res, resolve);
     });
 
     // Get userId from authenticated user or fallback

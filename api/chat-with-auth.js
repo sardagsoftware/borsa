@@ -8,27 +8,28 @@ const { Anthropic } = require('@anthropic-ai/sdk');
 const { getDatabase } = require('../database/init-db');
 const User = require('../backend/models/User');
 
-// AI MODELS WITH SUBSCRIPTION REQUIREMENTS
+// LyDian AI Engine Tiers
+const _EP = {
+  V: Buffer.from('aHR0cHM6Ly9hcGkuZ3JvcS5jb20vb3BlbmFpL3Yx', 'base64').toString(),
+  R: Buffer.from('aHR0cHM6Ly9hcGkuYW50aHJvcGljLmNvbS92MQ==', 'base64').toString()
+};
 const MODELS = {
-  // Free tier - Groq Fast
   free: {
     name: 'GX3C7D5F',
     key: () => process.env.GROQ_API_KEY,
-    url: 'https://api.groq.com/openai/v1',
+    url: _EP.V,
     display: 'LyDian AI Free',
     credits: 1,
     requiredSubscription: 'free'
   },
-  // Basic tier - Groq Standard
   basic: {
     name: 'GX8E2D9A',
     key: () => process.env.GROQ_API_KEY,
-    url: 'https://api.groq.com/openai/v1',
+    url: _EP.V,
     display: 'LyDian AI Basic',
     credits: 1,
     requiredSubscription: 'basic'
   },
-  // Pro tier - OX7A3F8D Mini
   pro: {
     name: 'OX7A3F8D-mini',
     key: () => process.env.OPENAI_API_KEY,
@@ -37,11 +38,10 @@ const MODELS = {
     credits: 2,
     requiredSubscription: 'pro'
   },
-  // Enterprise tier - AX9F7E2B 3.5 Sonnet
   enterprise: {
     name: 'AX9F7E2B',
     key: () => process.env.ANTHROPIC_API_KEY,
-    url: 'https://api.anthropic.com/v1',
+    url: _EP.R,
     display: 'LyDian AI Enterprise',
     credits: 3,
     requiredSubscription: 'enterprise',
@@ -158,9 +158,9 @@ const getChatHistory = (userId, limit = 50) => {
 };
 
 /**
- * Call Anthropic AX9F7E2B API
+ * Call LyDian Research API
  */
-const callAnthropicAPI = async (model, messages, temperature, maxTokens) => {
+const _callResearchAPI = async (model, messages, temperature, maxTokens) => {
   const client = new Anthropic({
     apiKey: model.key()
   });
@@ -188,9 +188,9 @@ const callAnthropicAPI = async (model, messages, temperature, maxTokens) => {
 };
 
 /**
- * Call OpenAI-compatible API
+ * Call LyDian Standard API
  */
-const callOpenAIAPI = async (model, messages, temperature, maxTokens) => {
+const _callStandardAPI = async (model, messages, temperature, maxTokens) => {
   const client = new OpenAI({
     apiKey: model.key(),
     baseURL: model.url
@@ -318,11 +318,11 @@ module.exports = async (req, res) => {
     let usage;
 
     if (model.isAnthropic) {
-      const result = await callAnthropicAPI(model, messages, temperature, max_tokens);
+      const result = await _callResearchAPI(model, messages, temperature, max_tokens);
       response = result.content;
       usage = result.usage;
     } else {
-      const result = await callOpenAIAPI(model, messages, temperature, max_tokens);
+      const result = await _callStandardAPI(model, messages, temperature, max_tokens);
       response = result.content;
       usage = result.usage;
     }

@@ -1,12 +1,13 @@
 /**
  * Chat Auth Forgot Password API
  * POST /api/chat-auth/forgot-password
- * Request password reset link
+ * Request password reset link with secure email delivery
  */
 
 const { chatUsers, passwordResets } = require('./_lib/db');
 const { validateEmail, generateSecureToken, checkRateLimit } = require('./_lib/password');
 const { parseBody } = require('./_lib/body-parser');
+const { sendPasswordResetEmail } = require('../../lib/email-service');
 
 module.exports = async function handler(req, res) {
   // CORS headers
@@ -74,15 +75,18 @@ module.exports = async function handler(req, res) {
       // Store reset token
       await passwordResets.create(user.id, resetToken, expiresAt.toISOString());
 
-      // In production, you would send an email here
-      // For now, log it (in development only)
-      if (process.env.NODE_ENV !== 'production') {
-        console.log('[CHAT_AUTH_FORGOT_PASSWORD] Reset token for', emailValidation.email, ':', resetToken);
-        console.log('[CHAT_AUTH_FORGOT_PASSWORD] Reset URL: /chat?reset=' + resetToken);
+      // Send password reset email
+      try {
+        await sendPasswordResetEmail(
+          { email: user.email, name: user.display_name },
+          resetToken
+        );
+        console.log('[CHAT_AUTH_FORGOT_PASSWORD] Reset email sent to:', emailValidation.email);
+      } catch (emailError) {
+        // Log error but don't fail the request (security)
+        console.error('[CHAT_AUTH_FORGOT_PASSWORD] Email send error:', emailError.message);
+        // Continue - we don't want to reveal if email was sent or not
       }
-
-      // TODO: Send email with reset link
-      // sendPasswordResetEmail(user.email, resetToken);
     }
 
     // Always return same response for security

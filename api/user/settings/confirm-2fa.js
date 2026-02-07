@@ -29,7 +29,7 @@ module.exports = async (req, res) => {
       });
     }
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'your-secret-key-change-this');
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const userId = decoded.id;
 
     // Get verification code from request

@@ -66,13 +66,16 @@ function now() {
  * Chat User Operations
  */
 const chatUsers = {
-  create: async (email, passwordHash, displayName) => {
+  create: async (email, passwordHash, displayName, options = {}) => {
     const id = generateId();
     const user = {
       id,
-      email: email.toLowerCase().trim(),
-      password_hash: passwordHash,
-      display_name: displayName.trim(),
+      email: email ? email.toLowerCase().trim() : '',
+      password_hash: passwordHash || '',
+      display_name: (displayName || '').trim(),
+      phone_number: options.phoneNumber || '',
+      avatar_url: options.avatarUrl || '',
+      auth_provider: options.authProvider || 'email',
       status: 'active',
       created_at: now(),
       updated_at: now()
@@ -80,13 +83,45 @@ const chatUsers = {
 
     if (useUpstash) {
       await redis('HSET', `chat:user:${id}`, ...Object.entries(user).flat());
-      await redis('SET', `chat:email:${user.email}`, id);
+      if (user.email) {
+        await redis('SET', `chat:email:${user.email}`, id);
+      }
+      if (user.phone_number) {
+        await redis('SET', `chat:phone:${user.phone_number}`, id);
+      }
     } else {
       memoryStore.users.set(id, user);
-      memoryStore.users.set(`email:${user.email}`, id);
+      if (user.email) {
+        memoryStore.users.set(`email:${user.email}`, id);
+      }
+      if (user.phone_number) {
+        memoryStore.users.set(`phone:${user.phone_number}`, id);
+      }
     }
 
     return id;
+  },
+
+  findByPhone: async (phoneNumber) => {
+    const normalized = phoneNumber.replace(/\s/g, '');
+
+    if (useUpstash) {
+      const userId = await redis('GET', `chat:phone:${normalized}`);
+      if (!userId) return null;
+      const userData = await redis('HGETALL', `chat:user:${userId}`);
+      if (!userData || userData.length === 0) return null;
+
+      const user = {};
+      for (let i = 0; i < userData.length; i += 2) {
+        user[userData[i]] = userData[i + 1];
+      }
+      return user.status === 'active' ? user : null;
+    } else {
+      const userId = memoryStore.users.get(`phone:${normalized}`);
+      if (!userId) return null;
+      const user = memoryStore.users.get(userId);
+      return user?.status === 'active' ? user : null;
+    }
   },
 
   findByEmail: async (email) => {
@@ -145,6 +180,7 @@ const chatUsers = {
     const updates = { updated_at: now() };
     if (data.displayName) updates.display_name = data.displayName.trim();
     if (data.avatarUrl !== undefined) updates.avatar_url = data.avatarUrl;
+    if (data.googleLinked !== undefined) updates.google_linked = data.googleLinked ? 'true' : 'false';
 
     if (Object.keys(updates).length === 1) return false;
 
@@ -165,6 +201,37 @@ const chatUsers = {
       const user = memoryStore.users.get(id);
       if (user) {
         user.password_hash = passwordHash;
+        user.updated_at = timestamp;
+      }
+    }
+  },
+
+  deactivate: async (id) => {
+    const timestamp = now();
+    if (useUpstash) {
+      await redis('HSET', `chat:user:${id}`, 'status', 'deleted', 'updated_at', timestamp);
+    } else {
+      const user = memoryStore.users.get(id);
+      if (user) {
+        user.status = 'deleted';
+        user.updated_at = timestamp;
+      }
+    }
+  },
+
+  update2FA: async (id, totpSecret, enabled) => {
+    const timestamp = now();
+    if (useUpstash) {
+      await redis('HSET', `chat:user:${id}`,
+        'totp_secret', totpSecret || '',
+        'two_factor_enabled', enabled ? 'true' : 'false',
+        'updated_at', timestamp
+      );
+    } else {
+      const user = memoryStore.users.get(id);
+      if (user) {
+        user.totp_secret = totpSecret || '';
+        user.two_factor_enabled = enabled ? 'true' : 'false';
         user.updated_at = timestamp;
       }
     }
@@ -295,6 +362,9 @@ const chatSettings = {
       settings.auto_save_history = settings.auto_save_history === 'true';
       settings.notifications_enabled = settings.notifications_enabled === 'true';
       settings.sound_enabled = settings.sound_enabled === 'true';
+      settings.email_notifications = settings.email_notifications === 'true';
+      settings.use_history = settings.use_history === 'true';
+      settings.analytics = settings.analytics === 'true';
       return settings;
     } else {
       const settings = memoryStore.settings.get(userId);
@@ -303,7 +373,10 @@ const chatSettings = {
           ...settings,
           auto_save_history: settings.auto_save_history === 'true',
           notifications_enabled: settings.notifications_enabled === 'true',
-          sound_enabled: settings.sound_enabled === 'true'
+          sound_enabled: settings.sound_enabled === 'true',
+          email_notifications: settings.email_notifications === 'true',
+          use_history: settings.use_history === 'true',
+          analytics: settings.analytics === 'true'
         };
       }
       return null;
@@ -312,7 +385,7 @@ const chatSettings = {
 
   update: async (userId, updates) => {
     const data = { updated_at: now() };
-    const allowedFields = ['theme', 'language', 'font_size', 'preferred_model', 'auto_save_history', 'notifications_enabled', 'sound_enabled'];
+    const allowedFields = ['theme', 'language', 'font_size', 'preferred_model', 'auto_save_history', 'notifications_enabled', 'sound_enabled', 'email_notifications', 'use_history', 'analytics', 'custom_settings'];
 
     for (const field of allowedFields) {
       if (updates[field] !== undefined) {
@@ -329,6 +402,14 @@ const chatSettings = {
       if (settings) Object.assign(settings, data);
     }
     return true;
+  },
+
+  delete: async (userId) => {
+    if (useUpstash) {
+      await redis('DEL', `chat:settings:${userId}`);
+    } else {
+      memoryStore.settings.delete(userId);
+    }
   }
 };
 
@@ -439,6 +520,38 @@ const chatConversations = {
         const index = userConvs.indexOf(id);
         if (index > -1) userConvs.splice(index, 1);
       }
+    }
+  },
+
+  deleteAllForUser: async (userId) => {
+    if (useUpstash) {
+      const convIds = await redis('LRANGE', `chat:user:${userId}:convs`, 0, -1);
+      if (convIds && convIds.length > 0) {
+        for (const id of convIds) {
+          // Delete messages for this conversation
+          const msgIds = await redis('LRANGE', `chat:conv:${id}:msgs`, 0, -1);
+          if (msgIds) {
+            for (const msgId of msgIds) {
+              await redis('DEL', `chat:msg:${msgId}`);
+            }
+          }
+          await redis('DEL', `chat:conv:${id}:msgs`);
+          await redis('DEL', `chat:conv:${id}`);
+        }
+        await redis('DEL', `chat:user:${userId}:convs`);
+      }
+    } else {
+      const userConvs = memoryStore.conversations.get(`user:${userId}`) || [];
+      for (const id of userConvs) {
+        // Delete messages
+        const convMsgs = memoryStore.messages.get(`conv:${id}`) || [];
+        for (const msgId of convMsgs) {
+          memoryStore.messages.delete(msgId);
+        }
+        memoryStore.messages.delete(`conv:${id}`);
+        memoryStore.conversations.delete(id);
+      }
+      memoryStore.conversations.delete(`user:${userId}`);
     }
   }
 };

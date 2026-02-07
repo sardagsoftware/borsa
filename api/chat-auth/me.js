@@ -71,6 +71,9 @@ module.exports = async function handler(req, res) {
         email: user.email,
         displayName: user.display_name,
         avatarUrl: user.avatar_url,
+        authProvider: user.auth_provider || 'email',
+        googleLinked: user.google_linked === 'true' || user.auth_provider === 'google',
+        twoFactorEnabled: user.two_factor_enabled === 'true',
         createdAt: user.created_at
       },
       settings: settings ? {

@@ -181,7 +181,7 @@ module.exports = async (req, res) => {
                 subscription: user.subscription || 'free',
                 provider: 'lydian-vision'
             },
-            process.env.JWT_SECRET || 'your-secret-key-change-this',
+            process.env.JWT_SECRET,
             { expiresIn: '7d' }
         );
 
