@@ -86,13 +86,7 @@ module.exports = async (req, res) => {
     }
 
     // Fetch real service metrics from Redis
-    const [
-      nextjsMetrics,
-      apiMetrics,
-      dbMetrics,
-      redisMetrics,
-      searchMetrics,
-    ] = await Promise.all([
+    const [nextjsMetrics, apiMetrics, dbMetrics, redisMetrics, searchMetrics] = await Promise.all([
       checkServiceHealth('Next.js', 'lydian:service:nextjs'),
       checkServiceHealth('API Gateway', 'lydian:service:api'),
       checkServiceHealth('Database', 'lydian:service:database'),
@@ -103,7 +97,9 @@ module.exports = async (req, res) => {
     // Get real system metrics
     const systemMetrics = {
       cpu: process.cpuUsage ? Math.round((process.cpuUsage().user / 1000000) % 100) : 15,
-      memory: process.memoryUsage ? Math.round((process.memoryUsage().heapUsed / process.memoryUsage().heapTotal) * 100) : 35,
+      memory: process.memoryUsage
+        ? Math.round((process.memoryUsage().heapUsed / process.memoryUsage().heapTotal) * 100)
+        : 35,
       uptime: Math.floor(process.uptime()),
     };
 
@@ -115,7 +111,7 @@ module.exports = async (req, res) => {
       {
         name: 'Web Server (Next.js)',
         status: 'healthy',
-        uptime: systemMetrics.uptime > 0 ? 99.98 : 99.50,
+        uptime: systemMetrics.uptime > 0 ? 99.98 : 99.5,
         responseTime: responseTime,
         lastCheck: Date.now(),
         cpu: systemMetrics.cpu,
@@ -138,12 +134,12 @@ module.exports = async (req, res) => {
       {
         name: 'File Storage (Vercel Blob)',
         status: 'healthy',
-        uptime: 100.00,
+        uptime: 100.0,
         responseTime: 234,
         lastCheck: Date.now(),
         cpu: 2.1,
         memory: 5.6,
-        errorRate: 0.00,
+        errorRate: 0.0,
       },
       {
         name: 'Email Service (SendGrid)',
@@ -193,9 +189,12 @@ module.exports = async (req, res) => {
       healthy: services.filter(s => s.status === 'healthy').length,
       degraded: services.filter(s => s.status === 'degraded').length,
       down: services.filter(s => s.status === 'down').length,
-      avgResponseTime: Math.round(services.reduce((sum, s) => sum + s.responseTime, 0) / services.length),
-      avgCpu: Math.round(services.reduce((sum, s) => sum + s.cpu, 0) / services.length * 10) / 10,
-      avgMemory: Math.round(services.reduce((sum, s) => sum + s.memory, 0) / services.length * 10) / 10,
+      avgResponseTime: Math.round(
+        services.reduce((sum, s) => sum + s.responseTime, 0) / services.length
+      ),
+      avgCpu: Math.round((services.reduce((sum, s) => sum + s.cpu, 0) / services.length) * 10) / 10,
+      avgMemory:
+        Math.round((services.reduce((sum, s) => sum + s.memory, 0) / services.length) * 10) / 10,
     };
 
     return res.status(200).json({
@@ -209,7 +208,6 @@ module.exports = async (req, res) => {
         apiResponseTime: responseTime,
       },
     });
-
   } catch (error) {
     console.error('Services health check error:', error);
 
@@ -224,7 +222,7 @@ module.exports = async (req, res) => {
       },
       timestamp: new Date().toISOString(),
       error: {
-        message: error.message,
+        message: 'Servis bilgisi alınamadı',
         type: error.name,
       },
     });

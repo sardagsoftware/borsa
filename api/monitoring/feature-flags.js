@@ -10,38 +10,38 @@ const FEATURE_FLAGS = {
   'intent-ui': {
     enabled: true,
     description: 'Intent-First Natural Language UI',
-    rollout: 100 // percentage
+    rollout: 100, // percentage
   },
   'voice-input': {
     enabled: false,
     description: 'Voice Input Support',
-    rollout: 0
+    rollout: 0,
   },
   'real-time-collaboration': {
     enabled: false,
     description: 'Real-time Collaboration',
-    rollout: 0
+    rollout: 0,
   },
   'advanced-analytics': {
     enabled: true,
     description: 'Advanced Analytics Dashboard',
-    rollout: 100
+    rollout: 100,
   },
   'multi-modal-ai': {
     enabled: true,
     description: 'Multi-modal AI (Vision, Audio, Text)',
-    rollout: 100
+    rollout: 100,
   },
   'premium-connectors': {
     enabled: true,
     description: 'Premium Connector Integrations',
-    rollout: 100
+    rollout: 100,
   },
   'batch-processing': {
     enabled: false,
     description: 'Batch Processing',
-    rollout: 0
-  }
+    rollout: 0,
+  },
 };
 
 /**
@@ -56,21 +56,21 @@ async function getFeatureFlags(req, res) {
       key,
       enabled: config.enabled,
       description: config.description,
-      rollout: config.rollout
+      rollout: config.rollout,
     }));
 
     res.json({
       success: true,
       userId,
       flags,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
   } catch (error) {
     console.error('Feature flags error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to fetch feature flags',
-      message: error.message
+      message: 'Özellik bayrakları hatası',
     });
   }
 }
@@ -89,7 +89,7 @@ async function checkFeature(req, res) {
       return res.status(404).json({
         success: false,
         error: 'Feature not found',
-        featureKey
+        featureKey,
       });
     }
 
@@ -103,14 +103,14 @@ async function checkFeature(req, res) {
       description: feature.description,
       rollout: feature.rollout,
       userId,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
   } catch (error) {
     console.error('Feature check error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to check feature',
-      message: error.message
+      message: 'Özellik bayrakları hatası',
     });
   }
 }
@@ -127,7 +127,7 @@ async function updateFeatureFlag(req, res) {
       return res.status(404).json({
         success: false,
         error: 'Feature not found',
-        featureKey
+        featureKey,
       });
     }
 
@@ -143,14 +143,14 @@ async function updateFeatureFlag(req, res) {
       success: true,
       featureKey,
       updated: FEATURE_FLAGS[featureKey],
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
   } catch (error) {
     console.error('Feature update error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to update feature flag',
-      message: error.message
+      message: 'Özellik bayrakları hatası',
     });
   }
 }
@@ -158,5 +158,5 @@ async function updateFeatureFlag(req, res) {
 module.exports = {
   getFeatureFlags,
   checkFeature,
-  updateFeatureFlag
+  updateFeatureFlag,
 };

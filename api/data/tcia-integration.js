@@ -20,29 +20,29 @@ const TCIA_VERSION = 'v2';
 // Available cancer collections in TCIA
 const CANCER_COLLECTIONS = {
   LUNG: [
-    'LIDC-IDRI',           // Lung Image Database Consortium (1,018 cases)
-    'NSCLC-Radiomics',     // Non-Small Cell Lung Cancer (422 cases)
-    'Lung-PET-CT-Dx'       // Lung PET-CT Diagnosis (355 cases)
+    'LIDC-IDRI', // Lung Image Database Consortium (1,018 cases)
+    'NSCLC-Radiomics', // Non-Small Cell Lung Cancer (422 cases)
+    'Lung-PET-CT-Dx', // Lung PET-CT Diagnosis (355 cases)
   ],
   BREAST: [
-    'BREAST-DIAGNOSIS',     // Breast Cancer Diagnosis (88 cases)
-    'Breast-MRI-NACT-Pilot' // Breast MRI (64 cases)
+    'BREAST-DIAGNOSIS', // Breast Cancer Diagnosis (88 cases)
+    'Breast-MRI-NACT-Pilot', // Breast MRI (64 cases)
   ],
   COLON: [
-    'CT COLONOGRAPHY',      // Colon CT (825 cases)
+    'CT COLONOGRAPHY', // Colon CT (825 cases)
   ],
   PROSTATE: [
-    'PROSTATE-MRI',         // Prostate MRI (204 cases)
-    'PROSTATEx'             // Prostate X Challenge (346 cases)
+    'PROSTATE-MRI', // Prostate MRI (204 cases)
+    'PROSTATEx', // Prostate X Challenge (346 cases)
   ],
   BRAIN: [
-    'CPTAC-GBM',           // Glioblastoma (99 cases)
-    'TCGA-GBM',            // Brain Tumor (262 cases)
-    'TCGA-LGG'             // Low Grade Glioma (199 cases)
+    'CPTAC-GBM', // Glioblastoma (99 cases)
+    'TCGA-GBM', // Brain Tumor (262 cases)
+    'TCGA-LGG', // Low Grade Glioma (199 cases)
   ],
   SKIN: [
-    'Soft-tissue-Sarcoma'   // Skin/Soft Tissue (51 cases)
-  ]
+    'Soft-tissue-Sarcoma', // Skin/Soft Tissue (51 cases)
+  ],
 };
 
 // ============================================================================
@@ -67,13 +67,13 @@ class TCIADataPipeline {
       return {
         success: true,
         token: this.apiKey,
-        expiresIn: 3600
+        expiresIn: 3600,
       };
     } catch (error) {
       console.error('[TCIA Auth] Error:', error);
       return {
         success: false,
-        error: error.message
+        error: 'Veri entegrasyon hatası',
       };
     }
   }
@@ -85,9 +85,9 @@ class TCIADataPipeline {
     try {
       const response = await axios.get(`${this.baseURL}/v1/getCollectionValues`, {
         headers: {
-          'api_key': this.apiKey
+          api_key: this.apiKey,
         },
-        timeout: 30000
+        timeout: 30000,
       });
 
       const collections = response.data;
@@ -95,22 +95,21 @@ class TCIADataPipeline {
       // Filter by cancer type if specified
       if (cancerType && CANCER_COLLECTIONS[cancerType.toUpperCase()]) {
         const relevantCollections = CANCER_COLLECTIONS[cancerType.toUpperCase()];
-        return collections.filter(c =>
-          relevantCollections.some(rc => c.Collection.includes(rc))
-        );
+        return collections.filter(c => relevantCollections.some(rc => c.Collection.includes(rc)));
       }
 
       return collections;
-
     } catch (error) {
       console.error('[TCIA Collections] Error:', error);
 
       // Return mock data for development
-      return Object.values(CANCER_COLLECTIONS).flat().map(name => ({
-        Collection: name,
-        Description: `Cancer imaging collection: ${name}`,
-        Subjects: Math.floor(Math.random() * 500) + 50
-      }));
+      return Object.values(CANCER_COLLECTIONS)
+        .flat()
+        .map(name => ({
+          Collection: name,
+          Description: `Cancer imaging collection: ${name}`,
+          Subjects: Math.floor(Math.random() * 500) + 50,
+        }));
     }
   }
 
@@ -122,12 +121,12 @@ class TCIADataPipeline {
       const response = await axios.get(`${this.baseURL}/v1/getPatient`, {
         params: {
           Collection: collectionName,
-          format: 'json'
+          format: 'json',
         },
         headers: {
-          'api_key': this.apiKey
+          api_key: this.apiKey,
         },
-        timeout: 30000
+        timeout: 30000,
       });
 
       const patients = response.data.slice(0, limit);
@@ -138,10 +137,9 @@ class TCIADataPipeline {
         patients: patients.map(p => ({
           patientId: p.PatientID,
           collection: p.Collection,
-          studyCount: p.NumberOfStudies || 0
-        }))
+          studyCount: p.NumberOfStudies || 0,
+        })),
       };
-
     } catch (error) {
       console.error('[TCIA Patients] Error:', error);
 
@@ -152,8 +150,8 @@ class TCIADataPipeline {
         patients: Array.from({ length: Math.min(limit, 20) }, (_, i) => ({
           patientId: `${collectionName}-${String(i + 1).padStart(4, '0')}`,
           collection: collectionName,
-          studyCount: Math.floor(Math.random() * 5) + 1
-        }))
+          studyCount: Math.floor(Math.random() * 5) + 1,
+        })),
       };
     }
   }
@@ -167,12 +165,12 @@ class TCIADataPipeline {
         params: {
           PatientID: patientId,
           Collection: collectionName,
-          format: 'json'
+          format: 'json',
         },
         headers: {
-          'api_key': this.apiKey
+          api_key: this.apiKey,
         },
-        timeout: 30000
+        timeout: 30000,
       });
 
       return response.data.map(study => ({
@@ -181,21 +179,22 @@ class TCIADataPipeline {
         studyDescription: study.StudyDescription,
         modality: study.ModalitiesInStudy,
         seriesCount: study.SeriesCount || 0,
-        imageCount: study.ImageCount || 0
+        imageCount: study.ImageCount || 0,
       }));
-
     } catch (error) {
       console.error('[TCIA Studies] Error:', error);
 
       // Return mock data
-      return [{
-        studyInstanceUID: crypto.randomUUID(),
-        studyDate: new Date().toISOString().split('T')[0],
-        studyDescription: 'CT Chest with Contrast',
-        modality: 'CT',
-        seriesCount: 3,
-        imageCount: 150
-      }];
+      return [
+        {
+          studyInstanceUID: crypto.randomUUID(),
+          studyDate: new Date().toISOString().split('T')[0],
+          studyDescription: 'CT Chest with Contrast',
+          modality: 'CT',
+          seriesCount: 3,
+          imageCount: 150,
+        },
+      ];
     }
   }
 
@@ -207,12 +206,12 @@ class TCIADataPipeline {
       const response = await axios.get(`${this.baseURL}/v1/getSeries`, {
         params: {
           StudyInstanceUID: studyInstanceUID,
-          format: 'json'
+          format: 'json',
         },
         headers: {
-          'api_key': this.apiKey
+          api_key: this.apiKey,
         },
-        timeout: 30000
+        timeout: 30000,
       });
 
       return response.data.map(series => ({
@@ -223,23 +222,24 @@ class TCIADataPipeline {
         seriesDescription: series.SeriesDescription,
         imageCount: series.ImageCount,
         bodyPartExamined: series.BodyPartExamined,
-        manufacturer: series.Manufacturer
+        manufacturer: series.Manufacturer,
       }));
-
     } catch (error) {
       console.error('[TCIA Series] Error:', error);
 
       // Return mock data
-      return [{
-        seriesInstanceUID: crypto.randomUUID(),
-        seriesNumber: 1,
-        modality: 'CT',
-        protocolName: 'Chest Standard',
-        seriesDescription: 'Chest CT Axial',
-        imageCount: 150,
-        bodyPartExamined: 'CHEST',
-        manufacturer: 'SIEMENS'
-      }];
+      return [
+        {
+          seriesInstanceUID: crypto.randomUUID(),
+          seriesNumber: 1,
+          modality: 'CT',
+          protocolName: 'Chest Standard',
+          seriesDescription: 'Chest CT Axial',
+          imageCount: 150,
+          bodyPartExamined: 'CHEST',
+          manufacturer: 'SIEMENS',
+        },
+      ];
     }
   }
 
@@ -251,13 +251,13 @@ class TCIADataPipeline {
       // TCIA provides ZIP files of DICOM series
       const response = await axios.get(`${this.baseURL}/v1/getImage`, {
         params: {
-          SeriesInstanceUID: seriesInstanceUID
+          SeriesInstanceUID: seriesInstanceUID,
         },
         headers: {
-          'api_key': this.apiKey
+          api_key: this.apiKey,
         },
         responseType: 'arraybuffer',
-        timeout: 300000 // 5 minutes for large downloads
+        timeout: 300000, // 5 minutes for large downloads
       });
 
       const zipBuffer = Buffer.from(response.data);
@@ -267,14 +267,13 @@ class TCIADataPipeline {
         size: zipBuffer.length,
         seriesInstanceUID,
         downloadPath: outputPath,
-        message: 'Images downloaded successfully'
+        message: 'Images downloaded successfully',
       };
-
     } catch (error) {
       console.error('[TCIA Download] Error:', error);
       return {
         success: false,
-        error: error.message
+        error: 'Veri entegrasyon hatası',
       };
     }
   }
@@ -287,7 +286,7 @@ class TCIADataPipeline {
       maxPatients = 50,
       maxImages = 1000,
       modality = 'CT',
-      requireAnnotations = true
+      requireAnnotations = true,
     } = options;
 
     console.log(`[TCIA Bulk Download] Starting for ${cancerType}...`);
@@ -304,11 +303,12 @@ class TCIADataPipeline {
         totalStudies: 0,
         totalImages: 0,
         downloadedImages: 0,
-        errors: []
+        errors: [],
       };
 
       // 2. Process each collection
-      for (const collection of collections.slice(0, 3)) { // Limit to 3 collections
+      for (const collection of collections.slice(0, 3)) {
+        // Limit to 3 collections
         const collectionName = collection.Collection;
         console.log(`Processing collection: ${collectionName}`);
 
@@ -321,7 +321,7 @@ class TCIADataPipeline {
             name: collectionName,
             patients: [],
             studiesCount: 0,
-            imagesCount: 0
+            imagesCount: 0,
           };
 
           // Process each patient
@@ -334,7 +334,7 @@ class TCIADataPipeline {
 
               const patientResult = {
                 patientId: patient.patientId,
-                studies: []
+                studies: [],
               };
 
               // Process each study
@@ -344,16 +344,14 @@ class TCIADataPipeline {
                   const series = await this.getSeries(study.studyInstanceUID);
 
                   // Filter by modality
-                  const filteredSeries = series.filter(s =>
-                    !modality || s.modality === modality
-                  );
+                  const filteredSeries = series.filter(s => !modality || s.modality === modality);
 
                   for (const s of filteredSeries) {
                     patientResult.studies.push({
                       studyInstanceUID: study.studyInstanceUID,
                       seriesInstanceUID: s.seriesInstanceUID,
                       imageCount: s.imageCount,
-                      modality: s.modality
+                      modality: s.modality,
                     });
 
                     results.totalImages += s.imageCount;
@@ -362,13 +360,12 @@ class TCIADataPipeline {
 
                   // Stop if we've reached the image limit
                   if (results.totalImages >= maxImages) break;
-
                 } catch (error) {
                   console.error(`Error processing study ${study.studyInstanceUID}:`, error);
                   results.errors.push({
                     type: 'study',
                     id: study.studyInstanceUID,
-                    error: error.message
+                    error: 'Veri entegrasyon hatası',
                   });
                 }
               }
@@ -376,13 +373,12 @@ class TCIADataPipeline {
               collectionResult.patients.push(patientResult);
 
               if (results.totalImages >= maxImages) break;
-
             } catch (error) {
               console.error(`Error processing patient ${patient.patientId}:`, error);
               results.errors.push({
                 type: 'patient',
                 id: patient.patientId,
-                error: error.message
+                error: 'Veri entegrasyon hatası',
               });
             }
           }
@@ -390,31 +386,29 @@ class TCIADataPipeline {
           results.collections.push(collectionResult);
 
           if (results.totalImages >= maxImages) break;
-
         } catch (error) {
           console.error(`Error processing collection ${collectionName}:`, error);
           results.errors.push({
             type: 'collection',
             id: collectionName,
-            error: error.message
+            error: 'Veri entegrasyon hatası',
           });
         }
       }
 
-      console.log(`[TCIA Bulk Download] Complete!`);
+      console.log('[TCIA Bulk Download] Complete!');
       console.log(`  - Patients: ${results.totalPatients}`);
       console.log(`  - Studies: ${results.totalStudies}`);
       console.log(`  - Images: ${results.totalImages}`);
       console.log(`  - Errors: ${results.errors.length}`);
 
       return results;
-
     } catch (error) {
       console.error('[TCIA Bulk Download] Fatal error:', error);
       return {
         success: false,
-        error: error.message,
-        cancerType
+        error: 'Veri entegrasyon hatası',
+        cancerType,
       };
     }
   }
@@ -430,7 +424,7 @@ class TCIADataPipeline {
         totalCollections: collections.length,
         totalSubjects: 0,
         byModality: {},
-        byCancerType: {}
+        byCancerType: {},
       };
 
       for (const collection of collections) {
@@ -444,11 +438,10 @@ class TCIADataPipeline {
       }
 
       return stats;
-
     } catch (error) {
       console.error('[TCIA Statistics] Error:', error);
       return {
-        error: error.message
+        error: 'Veri entegrasyon hatası',
       };
     }
   }
@@ -481,11 +474,7 @@ class NIHCancerDataConnector {
    */
   async searchCases(params = {}) {
     try {
-      const {
-        cancerType = 'lung',
-        dataType = 'Clinical',
-        limit = 100
-      } = params;
+      const { cancerType = 'lung', dataType = 'Clinical', limit = 100 } = params;
 
       const response = await axios.get(`${this.apiBase}/cases`, {
         params: {
@@ -496,15 +485,15 @@ class NIHCancerDataConnector {
                 op: 'in',
                 content: {
                   field: 'primary_site',
-                  value: [cancerType]
-                }
-              }
-            ]
+                  value: [cancerType],
+                },
+              },
+            ],
           }),
           size: limit,
-          fields: 'case_id,primary_site,disease_type,diagnoses.age_at_diagnosis'
+          fields: 'case_id,primary_site,disease_type,diagnoses.age_at_diagnosis',
         },
-        timeout: 30000
+        timeout: 30000,
       });
 
       return {
@@ -514,10 +503,9 @@ class NIHCancerDataConnector {
           caseId: c.case_id,
           primarySite: c.primary_site,
           diseaseType: c.disease_type,
-          ageAtDiagnosis: c.diagnoses?.[0]?.age_at_diagnosis
-        }))
+          ageAtDiagnosis: c.diagnoses?.[0]?.age_at_diagnosis,
+        })),
       };
-
     } catch (error) {
       console.error('[NIH GDC] Error:', error);
 
@@ -529,8 +517,8 @@ class NIHCancerDataConnector {
           caseId: `TCGA-${String(i + 1).padStart(4, '0')}`,
           primarySite: params.cancerType || 'lung',
           diseaseType: 'Adenocarcinoma',
-          ageAtDiagnosis: Math.floor(Math.random() * 40) + 40
-        }))
+          ageAtDiagnosis: Math.floor(Math.random() * 40) + 40,
+        })),
       };
     }
   }
@@ -542,9 +530,9 @@ class NIHCancerDataConnector {
     try {
       const response = await axios.get(`${this.apiBase}/cases/${caseId}`, {
         params: {
-          expand: 'diagnoses,exposures,demographic'
+          expand: 'diagnoses,exposures,demographic',
         },
-        timeout: 30000
+        timeout: 30000,
       });
 
       const caseData = response.data.data;
@@ -555,14 +543,13 @@ class NIHCancerDataConnector {
         diagnoses: caseData.diagnoses,
         exposures: caseData.exposures,
         mutations: [], // Would query separate mutations endpoint
-        geneExpression: [] // Would query separate expression endpoint
+        geneExpression: [], // Would query separate expression endpoint
       };
-
     } catch (error) {
       console.error('[NIH Genomic Data] Error:', error);
       return {
-        error: error.message,
-        caseId
+        error: 'Veri entegrasyon hatası',
+        caseId,
       };
     }
   }
@@ -592,51 +579,57 @@ export default async function handler(req, res) {
     const nihConnector = new NIHCancerDataConnector();
 
     switch (action) {
-      case 'collections':
+      case 'collections': {
         const collections = await pipeline.getCollections(cancerType);
         return res.status(200).json({
           success: true,
-          data: collections
+          data: collections,
         });
+      }
 
-      case 'patients':
+      case 'patients': {
         const patients = await pipeline.getPatients(collectionName);
         return res.status(200).json({
           success: true,
-          data: patients
+          data: patients,
         });
+      }
 
-      case 'studies':
+      case 'studies': {
         const studies = await pipeline.getStudies(patientId, collectionName);
         return res.status(200).json({
           success: true,
-          data: studies
+          data: studies,
         });
+      }
 
-      case 'statistics':
+      case 'statistics': {
         const stats = await pipeline.getStatistics(cancerType);
         return res.status(200).json({
           success: true,
-          data: stats
+          data: stats,
         });
+      }
 
-      case 'bulk-download':
+      case 'bulk-download': {
         const bulkResult = await pipeline.bulkDownload(cancerType, {
           maxPatients: parseInt(req.query.maxPatients) || 50,
           maxImages: parseInt(req.query.maxImages) || 1000,
-          modality: req.query.modality || 'CT'
+          modality: req.query.modality || 'CT',
         });
         return res.status(200).json({
           success: true,
-          data: bulkResult
+          data: bulkResult,
         });
+      }
 
-      case 'nih-cases':
+      case 'nih-cases': {
         const cases = await nihConnector.searchCases({ cancerType });
         return res.status(200).json({
           success: true,
-          data: cases
+          data: cases,
         });
+      }
 
       default:
         return res.status(400).json({
@@ -647,16 +640,15 @@ export default async function handler(req, res) {
             'studies',
             'statistics',
             'bulk-download',
-            'nih-cases'
-          ]
+            'nih-cases',
+          ],
         });
     }
-
   } catch (error) {
     console.error('[TCIA Integration API] Error:', error);
     return res.status(500).json({
       success: false,
-      error: error.message
+      error: 'Veri entegrasyon hatası',
     });
   }
 }

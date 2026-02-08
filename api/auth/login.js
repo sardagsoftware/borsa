@@ -172,7 +172,7 @@ export default async function handler(req, res) {
     if (error.message.includes('Account is')) {
       return res.status(403).json({
         success: false,
-        error: error.message,
+        error: 'Hesap devre disi. Lutfen destekle iletisime gecin.',
         code: 'ACCOUNT_DISABLED',
       });
     }
@@ -181,7 +181,6 @@ export default async function handler(req, res) {
       success: false,
       error: 'Login failed',
       code: 'SERVER_ERROR',
-      details: error.message,
     });
   }
 }

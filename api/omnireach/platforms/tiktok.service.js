@@ -16,8 +16,10 @@ class TikTokService {
     this.config = {
       clientKey: process.env.TIKTOK_CLIENT_KEY,
       clientSecret: process.env.TIKTOK_CLIENT_SECRET,
-      redirectUri: process.env.TIKTOK_REDIRECT_URI || 'http://localhost:3500/api/omnireach/platforms/tiktok/callback',
-      apiUrl: 'https://open.tiktokapis.com/v2'
+      redirectUri:
+        process.env.TIKTOK_REDIRECT_URI ||
+        'http://localhost:3500/api/omnireach/platforms/tiktok/callback',
+      apiUrl: 'https://open.tiktokapis.com/v2',
     };
 
     console.log('✅ TikTok service initialized');
@@ -44,16 +46,13 @@ class TikTokService {
   getAuthUrl() {
     const state = this.generateState();
 
-    const scopes = [
-      'user.info.basic',
-      'video.upload',
-      'video.publish'
-    ].join(',');
+    const scopes = ['user.info.basic', 'video.upload', 'video.publish'].join(',');
 
-    const authUrl = `https://www.tiktok.com/v2/auth/authorize?` +
+    const authUrl =
+      'https://www.tiktok.com/v2/auth/authorize?' +
       `client_key=${this.config.clientKey}` +
       `&scope=${scopes}` +
-      `&response_type=code` +
+      '&response_type=code' +
       `&redirect_uri=${encodeURIComponent(this.config.redirectUri)}` +
       `&state=${state}`;
 
@@ -84,12 +83,12 @@ class TikTokService {
           client_secret: this.config.clientSecret,
           code: code,
           grant_type: 'authorization_code',
-          redirect_uri: this.config.redirectUri
+          redirect_uri: this.config.redirectUri,
         },
         {
           headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-          }
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
         }
       );
 
@@ -99,17 +98,15 @@ class TikTokService {
       const openId = tokenData.open_id;
 
       // Get user info
-      const userResponse = await axios.get(
-        `${this.config.apiUrl}/user/info/`,
-        {
-          headers: {
-            'Authorization': `Bearer ${accessToken}`
-          },
-          params: {
-            fields: 'open_id,union_id,avatar_url,display_name,follower_count,following_count,likes_count,video_count'
-          }
-        }
-      );
+      const userResponse = await axios.get(`${this.config.apiUrl}/user/info/`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+        params: {
+          fields:
+            'open_id,union_id,avatar_url,display_name,follower_count,following_count,likes_count,video_count',
+        },
+      });
 
       const user = userResponse.data.data.user;
 
@@ -130,14 +127,14 @@ class TikTokService {
           followerCount: user.follower_count,
           followingCount: user.following_count,
           likesCount: user.likes_count,
-          videoCount: user.video_count
-        }
+          videoCount: user.video_count,
+        },
       };
     } catch (error) {
       console.error('❌ [TikTok] OAuth connection failed:', error.message);
       return {
         success: false,
-        error: error.message
+        error: 'Platform islemi basarisiz.',
       };
     }
   }
@@ -157,12 +154,12 @@ class TikTokService {
           client_key: this.config.clientKey,
           client_secret: this.config.clientSecret,
           grant_type: 'refresh_token',
-          refresh_token: refreshToken
+          refresh_token: refreshToken,
         },
         {
           headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-          }
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
         }
       );
 
@@ -170,13 +167,13 @@ class TikTokService {
       return {
         success: true,
         accessToken: response.data.access_token,
-        refreshToken: response.data.refresh_token
+        refreshToken: response.data.refresh_token,
       };
     } catch (error) {
       console.error('❌ [TikTok] Token refresh failed:', error.message);
       return {
         success: false,
-        error: error.message
+        error: 'Platform islemi basarisiz.',
       };
     }
   }
@@ -204,27 +201,27 @@ class TikTokService {
             disable_duet: videoData.disableDuet || false,
             disable_comment: videoData.disableComment || false,
             disable_stitch: videoData.disableStitch || false,
-            video_cover_timestamp_ms: videoData.coverTimestamp || 1000
+            video_cover_timestamp_ms: videoData.coverTimestamp || 1000,
           },
           source_info: {
             source: 'FILE_UPLOAD',
             video_size: videoData.fileSize,
             chunk_size: videoData.chunkSize || 5000000, // 5MB chunks
-            total_chunk_count: Math.ceil(videoData.fileSize / (videoData.chunkSize || 5000000))
-          }
+            total_chunk_count: Math.ceil(videoData.fileSize / (videoData.chunkSize || 5000000)),
+          },
         },
         {
           headers: {
-            'Authorization': `Bearer ${accessToken}`,
-            'Content-Type': 'application/json'
-          }
+            Authorization: `Bearer ${accessToken}`,
+            'Content-Type': 'application/json',
+          },
         }
       );
 
       const uploadUrl = initResponse.data.data.upload_url;
       const publishId = initResponse.data.data.publish_id;
 
-      console.log(`   Upload URL received`);
+      console.log('   Upload URL received');
       console.log(`   Publish ID: ${publishId}`);
 
       // Step 2: Upload video chunks
@@ -239,17 +236,13 @@ class TikTokService {
         const endOffset = Math.min(startOffset + chunkSize, videoBuffer.length);
         const chunk = videoBuffer.slice(startOffset, endOffset);
 
-        await axios.put(
-          uploadUrl,
-          chunk,
-          {
-            headers: {
-              'Content-Type': 'video/mp4',
-              'Content-Range': `bytes ${startOffset}-${endOffset - 1}/${videoBuffer.length}`,
-              'Content-Length': chunk.length
-            }
-          }
-        );
+        await axios.put(uploadUrl, chunk, {
+          headers: {
+            'Content-Type': 'video/mp4',
+            'Content-Range': `bytes ${startOffset}-${endOffset - 1}/${videoBuffer.length}`,
+            'Content-Length': chunk.length,
+          },
+        });
 
         const progress = ((endOffset / videoBuffer.length) * 100).toFixed(1);
         console.log(`   Chunk ${++chunkNumber} uploaded (${progress}%)`);
@@ -269,13 +262,13 @@ class TikTokService {
         const statusResponse = await axios.post(
           `${this.config.apiUrl}/post/publish/status/fetch/`,
           {
-            publish_id: publishId
+            publish_id: publishId,
           },
           {
             headers: {
-              'Authorization': `Bearer ${accessToken}`,
-              'Content-Type': 'application/json'
-            }
+              Authorization: `Bearer ${accessToken}`,
+              'Content-Type': 'application/json',
+            },
           }
         );
 
@@ -303,13 +296,13 @@ class TikTokService {
       return {
         success: true,
         publishId: publishId,
-        message: 'Video published to TikTok'
+        message: 'Video published to TikTok',
       };
     } catch (error) {
       console.error('❌ [TikTok] Video publishing failed:', error.message);
       return {
         success: false,
-        error: error.message
+        error: 'Platform islemi basarisiz.',
       };
     }
   }
@@ -326,27 +319,27 @@ class TikTokService {
         `${this.config.apiUrl}/video/query/`,
         {
           filters: {
-            video_ids: videoIds
-          }
+            video_ids: videoIds,
+          },
         },
         {
           headers: {
-            'Authorization': `Bearer ${accessToken}`,
-            'Content-Type': 'application/json'
-          }
+            Authorization: `Bearer ${accessToken}`,
+            'Content-Type': 'application/json',
+          },
         }
       );
 
       console.log('✅ [TikTok] Video info retrieved');
       return {
         success: true,
-        videos: response.data.data.videos
+        videos: response.data.data.videos,
       };
     } catch (error) {
       console.error('❌ [TikTok] Failed to get video info:', error.message);
       return {
         success: false,
-        error: error.message
+        error: 'Platform islemi basarisiz.',
       };
     }
   }

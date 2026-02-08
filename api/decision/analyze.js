@@ -2,7 +2,7 @@ const Anthropic = require('@anthropic-ai/sdk');
 const { getCorsOrigin } = require('../_middleware/cors');
 
 const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY
+  apiKey: process.env.ANTHROPIC_API_KEY,
 });
 
 module.exports = async (req, res) => {
@@ -49,13 +49,14 @@ Bu seçeneği bu kritere göre 1-10 arasında puanla. Sadece sayıyı döndür, 
           const response = await anthropic.messages.create({
             model: 'AX9F7E2B',
             max_tokens: 10,
-            system: 'Sen bir karar analizi uzmanısın. Verilen kriterlere göre seçenekleri objektif bir şekilde puanlıyorsun.',
+            system:
+              'Sen bir karar analizi uzmanısın. Verilen kriterlere göre seçenekleri objektif bir şekilde puanlıyorsun.',
             messages: [
               {
                 role: 'user',
-                content: prompt
-              }
-            ]
+                content: prompt,
+              },
+            ],
           });
 
           const rawScore = parseFloat(response.content[0].text.trim()) || 5;
@@ -66,7 +67,7 @@ Bu seçeneği bu kritere göre 1-10 arasında puanla. Sadece sayıyı döndür, 
             criterion: criterion.name,
             score: weightedScore,
             rawScore: score,
-            weight: criterion.weight
+            weight: criterion.weight,
           });
 
           totalScore += weightedScore;
@@ -79,7 +80,7 @@ Bu seçeneği bu kritere göre 1-10 arasında puanla. Sadece sayıyı döndür, 
             criterion: criterion.name,
             score: weightedScore,
             rawScore: fallbackScore,
-            weight: criterion.weight
+            weight: criterion.weight,
           });
           totalScore += weightedScore;
         }
@@ -88,7 +89,7 @@ Bu seçeneği bu kritere göre 1-10 arasında puanla. Sadece sayıyı döndür, 
       scores.push({
         option,
         totalScore,
-        breakdown
+        breakdown,
       });
     }
 
@@ -118,9 +119,9 @@ Kısa ve net bir şekilde (2-3 cümle) neden bu seçeneğin en iyi olduğunu ve 
         messages: [
           {
             role: 'user',
-            content: recommendationPrompt
-          }
-        ]
+            content: recommendationPrompt,
+          },
+        ],
       });
 
       recommendation = recResponse.content[0].text.trim();
@@ -134,13 +135,13 @@ Kısa ve net bir şekilde (2-3 cümle) neden bu seçeneğin en iyi olduğunu ve 
       scores: sortedScores,
       winner: winner.option,
       recommendation,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
   } catch (error) {
     console.error('Decision analysis error:', error);
     res.status(500).json({
       error: 'Analysis failed',
-      message: error.message
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
     });
   }
 };

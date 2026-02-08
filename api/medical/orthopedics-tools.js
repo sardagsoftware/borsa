@@ -29,51 +29,51 @@ const { logMedicalAudit } = require('../../config/white-hat-policy');
  */
 function classifySalterHarris(type) {
   const classifications = {
-    'I': {
+    I: {
       description: 'Fracture through physis only',
       mnemonic: 'Slip - Slipped through physis',
       involvement: 'Physis only',
       xrayFindings: 'Often normal X-ray, widened physis on comparison views',
       treatment: 'Closed reduction, immobilization',
       prognosis: 'Excellent - minimal growth disturbance risk',
-      complications: 'Rare growth arrest (<1%)'
+      complications: 'Rare growth arrest (<1%)',
     },
-    'II': {
+    II: {
       description: 'Fracture through physis and metaphysis',
       mnemonic: 'Above - Above the physis (metaphysis)',
       involvement: 'Physis + metaphyseal fragment (Thurston-Holland fragment)',
       xrayFindings: 'Metaphyseal corner fragment visible',
       treatment: 'Closed reduction usually adequate',
       prognosis: 'Very good - low risk of growth disturbance',
-      complications: 'Growth arrest (<5%)'
+      complications: 'Growth arrest (<5%)',
     },
-    'III': {
+    III: {
       description: 'Fracture through physis and epiphysis',
       mnemonic: 'Lower - Below the physis (epiphysis)',
       involvement: 'Physis + epiphysis, intra-articular',
       xrayFindings: 'Epiphyseal fracture line extends to joint',
       treatment: 'Often requires open reduction and internal fixation (ORIF)',
       prognosis: 'Good if anatomically reduced',
-      complications: 'Growth arrest possible (10-15%), joint incongruity'
+      complications: 'Growth arrest possible (10-15%), joint incongruity',
     },
-    'IV': {
+    IV: {
       description: 'Fracture through metaphysis, physis, and epiphysis',
       mnemonic: 'Through - Through everything',
       involvement: 'All components: metaphysis + physis + epiphysis',
       xrayFindings: 'Fracture crosses all three zones',
       treatment: 'ORIF required for anatomic alignment',
       prognosis: 'Guarded - higher risk of complications',
-      complications: 'Growth arrest common (25-30%), angular deformity'
+      complications: 'Growth arrest common (25-30%), angular deformity',
     },
-    'V': {
+    V: {
       description: 'Crush injury to physis',
       mnemonic: 'Rammed - Crushed/compression of physis',
       involvement: 'Compressive injury to physis',
       xrayFindings: 'Often normal initially, premature physeal closure on follow-up',
       treatment: 'Immobilization, observation',
       prognosis: 'Poor - high risk of growth arrest',
-      complications: 'Growth arrest very common (>50%), limb length discrepancy'
-    }
+      complications: 'Growth arrest very common (>50%), limb length discrepancy',
+    },
   };
 
   const result = classifications[type] || classifications['I'];
@@ -84,7 +84,7 @@ function classifySalterHarris(type) {
     monitoring: 'Serial X-rays every 3-6 months for 2 years to detect growth arrest',
     referral: ['III', 'IV', 'V'].includes(type)
       ? '⚠️ Orthopedic surgery consultation recommended'
-      : 'Orthopedic follow-up in 1-2 weeks'
+      : 'Orthopedic follow-up in 1-2 weeks',
   };
 }
 
@@ -100,12 +100,12 @@ function classifySalterHarris(type) {
  */
 function applyOttawaAnkleRules(data) {
   const {
-    boneTendernessLateralMalleolus,    // 6cm proximal
-    boneTendernessMedialMalleolus,     // 6cm proximal
+    boneTendernessLateralMalleolus, // 6cm proximal
+    boneTendernessMedialMalleolus, // 6cm proximal
     boneTendernessNavicular,
     boneTendernessBase5thMetatarsal,
-    unableToWalkImmediately,           // 4 steps immediately after injury
-    unableToWalkInED                   // 4 steps in emergency department
+    unableToWalkImmediately, // 4 steps immediately after injury
+    unableToWalkInED, // 4 steps in emergency department
   } = data;
 
   // Ankle series indicated if:
@@ -136,7 +136,8 @@ function applyOttawaAnkleRules(data) {
     }
   } else {
     xrayRequired = false;
-    recommendation = '✓ X-rays NOT needed - Ottawa Ankle Rules negative. Ankle sprain likely. Treat with RICE protocol.';
+    recommendation =
+      '✓ X-rays NOT needed - Ottawa Ankle Rules negative. Ankle sprain likely. Treat with RICE protocol.';
   }
 
   return {
@@ -149,16 +150,18 @@ function applyOttawaAnkleRules(data) {
         lateralMalleolus: boneTendernessLateralMalleolus,
         medialMalleolus: boneTendernessMedialMalleolus,
         navicular: boneTendernessNavicular,
-        base5thMetatarsal: boneTendernessBase5thMetatarsal
+        base5thMetatarsal: boneTendernessBase5thMetatarsal,
       },
       walkingAbility: {
         immediately: !unableToWalkImmediately,
-        inED: !unableToWalkInED
-      }
+        inED: !unableToWalkInED,
+      },
     },
-    treatment: !xrayRequired ? 'RICE (Rest, Ice, Compression, Elevation), NSAIDs, weight-bearing as tolerated' : 'Await X-ray results',
+    treatment: !xrayRequired
+      ? 'RICE (Rest, Ice, Compression, Elevation), NSAIDs, weight-bearing as tolerated'
+      : 'Await X-ray results',
     sensitivity: '100% for clinically significant fractures',
-    specificity: '~40% (reduces unnecessary X-rays by 30-40%)'
+    specificity: '~40% (reduces unnecessary X-rays by 30-40%)',
   };
 }
 
@@ -177,7 +180,7 @@ function applyOttawaKneeRules(data) {
     isolatedTendernessPatellar,
     tendernessHeadFibula,
     unableToFlex90Degrees,
-    unableToWalk4Steps
+    unableToWalk4Steps,
   } = data;
 
   const xrayRequired =
@@ -192,7 +195,8 @@ function applyOttawaKneeRules(data) {
   if (xrayRequired) {
     recommendation = '📷 X-rays INDICATED - Order knee series (AP, lateral, sunrise/skyline views)';
   } else {
-    recommendation = '✓ X-rays NOT needed - Ottawa Knee Rules negative. Knee sprain/soft tissue injury likely.';
+    recommendation =
+      '✓ X-rays NOT needed - Ottawa Knee Rules negative. Knee sprain/soft tissue injury likely.';
   }
 
   return {
@@ -203,13 +207,13 @@ function applyOttawaKneeRules(data) {
       isolatedTendernessPatellar,
       tendernessHeadFibula,
       unableToFlex90Degrees,
-      unableToWalk4Steps
+      unableToWalk4Steps,
     },
     treatment: !xrayRequired
       ? 'RICE protocol, NSAIDs, consider MRI if persistent symptoms or concern for meniscal/ligamentous injury'
       : 'Await X-ray results, consider MRI if X-ray negative but high suspicion for ligament/meniscus injury',
     sensitivity: '97-99% for fractures',
-    note: 'Rules apply to acute knee injuries (within 7 days) in patients ≥5 years old'
+    note: 'Rules apply to acute knee injuries (within 7 days) in patients ≥5 years old',
   };
 }
 
@@ -228,18 +232,18 @@ function classifyAOFracture(data) {
 
   // Simplified classification
   const boneSegments = {
-    'humerus': { proximal: '11', diaphysis: '12', distal: '13' },
-    'radius': { proximal: '21', diaphysis: '22', distal: '23' },
-    'ulna': { proximal: '21', diaphysis: '22', distal: '23' },
-    'femur': { proximal: '31', diaphysis: '32', distal: '33' },
-    'tibia': { proximal: '41', diaphysis: '42', distal: '43' },
-    'fibula': { proximal: '41', diaphysis: '42', distal: '43' }
+    humerus: { proximal: '11', diaphysis: '12', distal: '13' },
+    radius: { proximal: '21', diaphysis: '22', distal: '23' },
+    ulna: { proximal: '21', diaphysis: '22', distal: '23' },
+    femur: { proximal: '31', diaphysis: '32', distal: '33' },
+    tibia: { proximal: '41', diaphysis: '42', distal: '43' },
+    fibula: { proximal: '41', diaphysis: '42', distal: '43' },
   };
 
   const patternTypes = {
-    'simple': 'A (Simple fracture - 2 fragments)',
-    'wedge': 'B (Wedge/butterfly fragment - 3 fragments)',
-    'complex': 'C (Complex/comminuted - >3 fragments)'
+    simple: 'A (Simple fracture - 2 fragments)',
+    wedge: 'B (Wedge/butterfly fragment - 3 fragments)',
+    complex: 'C (Complex/comminuted - >3 fragments)',
   };
 
   const segment = boneSegments[bone]?.[location] || 'XX';
@@ -262,10 +266,11 @@ function classifyAOFracture(data) {
     aoCode: `${segment}-${type.charAt(0)}`,
     classification: type,
     treatmentGuideline,
-    referral: pattern === 'complex' || location === 'proximal'
-      ? '⚠️ Orthopedic surgery consultation recommended'
-      : 'Orthopedic follow-up required',
-    note: 'This is a simplified AO/OTA classification. Full system has subcategories and qualifiers.'
+    referral:
+      pattern === 'complex' || location === 'proximal'
+        ? '⚠️ Orthopedic surgery consultation recommended'
+        : 'Orthopedic follow-up required',
+    note: 'This is a simplified AO/OTA classification. Full system has subcategories and qualifiers.',
   };
 }
 
@@ -283,48 +288,49 @@ function assessRangeOfMotion(data) {
 
   // Normal ROM values (degrees)
   const normalROM = {
-    'shoulder': {
-      'flexion': 180,
-      'extension': 50,
-      'abduction': 180,
-      'adduction': 50,
+    shoulder: {
+      flexion: 180,
+      extension: 50,
+      abduction: 180,
+      adduction: 50,
       'internal-rotation': 90,
-      'external-rotation': 90
+      'external-rotation': 90,
     },
-    'elbow': {
-      'flexion': 150,
-      'extension': 0,
-      'pronation': 90,
-      'supination': 90
+    elbow: {
+      flexion: 150,
+      extension: 0,
+      pronation: 90,
+      supination: 90,
     },
-    'wrist': {
-      'flexion': 80,
-      'extension': 70,
+    wrist: {
+      flexion: 80,
+      extension: 70,
       'radial-deviation': 20,
-      'ulnar-deviation': 30
+      'ulnar-deviation': 30,
     },
-    'hip': {
-      'flexion': 120,
-      'extension': 30,
-      'abduction': 45,
-      'adduction': 30,
+    hip: {
+      flexion: 120,
+      extension: 30,
+      abduction: 45,
+      adduction: 30,
       'internal-rotation': 45,
-      'external-rotation': 45
+      'external-rotation': 45,
     },
-    'knee': {
-      'flexion': 135,
-      'extension': 0
+    knee: {
+      flexion: 135,
+      extension: 0,
     },
-    'ankle': {
-      'dorsiflexion': 20,
-      'plantarflexion': 50,
-      'inversion': 35,
-      'eversion': 15
-    }
+    ankle: {
+      dorsiflexion: 20,
+      plantarflexion: 50,
+      inversion: 35,
+      eversion: 15,
+    },
   };
 
   const normalValue = normalROM[joint]?.[movement] || 0;
-  const percentageOfNormal = normalValue > 0 ? ((measuredDegrees / normalValue) * 100).toFixed(0) : 0;
+  const percentageOfNormal =
+    normalValue > 0 ? ((measuredDegrees / normalValue) * 100).toFixed(0) : 0;
 
   let interpretation, recommendation;
 
@@ -339,7 +345,8 @@ function assessRangeOfMotion(data) {
     recommendation = 'Physical therapy referral, structured exercise program';
   } else if (percentageOfNormal >= 25) {
     interpretation = 'Severe limitation';
-    recommendation = 'Urgent physical therapy, consider underlying pathology (adhesive capsulitis, arthritis)';
+    recommendation =
+      'Urgent physical therapy, consider underlying pathology (adhesive capsulitis, arthritis)';
   } else {
     interpretation = 'Very severe limitation';
     recommendation = '⚠️ Investigate for severe pathology, consider surgical consultation';
@@ -353,7 +360,7 @@ function assessRangeOfMotion(data) {
     percentageOfNormal: `${percentageOfNormal}%`,
     interpretation,
     recommendation,
-    documentation: `${joint} ${movement}: ${measuredDegrees}°/${normalValue}° (${percentageOfNormal}% of normal)`
+    documentation: `${joint} ${movement}: ${measuredDegrees}°/${normalValue}° (${percentageOfNormal}% of normal)`,
   };
 }
 
@@ -369,33 +376,33 @@ function assessRangeOfMotion(data) {
  */
 function classifyGartland(type) {
   const classifications = {
-    'I': {
+    I: {
       description: 'Non-displaced or minimally displaced fracture',
       xrayFindings: 'Anterior humeral line intact, no displacement',
       treatment: 'Long arm cast or posterior splint, 3-4 weeks',
       hospitalization: 'Not required',
       prognosis: 'Excellent',
       complications: 'Minimal risk',
-      followUp: 'Weekly X-rays for 2 weeks to ensure no displacement'
+      followUp: 'Weekly X-rays for 2 weeks to ensure no displacement',
     },
-    'II': {
+    II: {
       description: 'Displaced fracture with intact posterior cortex',
       xrayFindings: 'Anterior humeral line disrupted, posterior cortex intact (acts as hinge)',
       treatment: 'Closed reduction and pinning (percutaneous K-wires) vs casting',
       hospitalization: 'Observation overnight recommended',
       prognosis: 'Very good if adequately reduced',
       complications: 'Low risk if properly treated',
-      followUp: 'Pin removal at 3-4 weeks'
+      followUp: 'Pin removal at 3-4 weeks',
     },
-    'III': {
+    III: {
       description: 'Completely displaced fracture',
       xrayFindings: 'Complete displacement, no cortical contact',
       treatment: 'URGENT closed reduction and percutaneous pinning (CRPP)',
       hospitalization: 'Admission required',
       prognosis: 'Good if urgently treated',
       complications: 'Risk of neurovascular injury (median, radial, ulnar nerves; brachial artery)',
-      followUp: 'Neurovascular checks every 1-2 hours post-op, pin removal 3-4 weeks'
-    }
+      followUp: 'Neurovascular checks every 1-2 hours post-op, pin removal 3-4 weeks',
+    },
   };
 
   const result = classifications[type] || classifications['I'];
@@ -403,14 +410,16 @@ function classifyGartland(type) {
   return {
     type: `Gartland Type ${type}`,
     ...result,
-    neurovascularCheck: type === 'III'
-      ? '🚨 CRITICAL - Check radial pulse, check median/radial/ulnar nerve function IMMEDIATELY'
-      : 'Perform thorough neurovascular examination',
-    urgency: type === 'III'
-      ? '⚠️ EMERGENT - Surgery within 12-24 hours to prevent complications'
-      : type === 'II'
-      ? 'Urgent - Orthopedic consultation same day'
-      : 'Non-urgent - Orthopedic follow-up within 1 week'
+    neurovascularCheck:
+      type === 'III'
+        ? '🚨 CRITICAL - Check radial pulse, check median/radial/ulnar nerve function IMMEDIATELY'
+        : 'Perform thorough neurovascular examination',
+    urgency:
+      type === 'III'
+        ? '⚠️ EMERGENT - Surgery within 12-24 hours to prevent complications'
+        : type === 'II'
+          ? 'Urgent - Orthopedic consultation same day'
+          : 'Non-urgent - Orthopedic follow-up within 1 week',
   };
 }
 
@@ -426,42 +435,43 @@ function classifyGartland(type) {
  */
 function classifyGarden(type) {
   const classifications = {
-    'I': {
+    I: {
       description: 'Incomplete fracture - valgus impacted',
       displacement: 'Non-displaced or incomplete',
       stability: 'Stable',
       treatment: 'Internal fixation (cannulated screws) or hemiarthroplasty in elderly',
       avascullarNecrosisRisk: 'Low (<10%)',
       nonunionRisk: 'Low',
-      prognosis: 'Good'
+      prognosis: 'Good',
     },
-    'II': {
+    II: {
       description: 'Complete fracture without displacement',
       displacement: 'Complete but non-displaced',
       stability: 'Stable',
       treatment: 'Internal fixation (cannulated screws)',
       avascullarNecrosisRisk: 'Low-moderate (10-20%)',
       nonunionRisk: 'Low-moderate',
-      prognosis: 'Good'
+      prognosis: 'Good',
     },
-    'III': {
+    III: {
       description: 'Complete fracture with partial displacement',
       displacement: 'Partially displaced',
       stability: 'Unstable',
       treatment: 'Hemiarthroplasty (elderly) or internal fixation (young)',
       avascullarNecrosisRisk: 'High (30-40%)',
       nonunionRisk: 'Moderate-high',
-      prognosis: 'Fair to poor'
+      prognosis: 'Fair to poor',
     },
-    'IV': {
+    IV: {
       description: 'Complete fracture with full displacement',
       displacement: 'Completely displaced',
       stability: 'Unstable',
-      treatment: 'Hemiarthroplasty or total hip arthroplasty (elderly), reduction + fixation (young)',
+      treatment:
+        'Hemiarthroplasty or total hip arthroplasty (elderly), reduction + fixation (young)',
       avascullarNecrosisRisk: 'Very high (40-100%)',
       nonunionRisk: 'High',
-      prognosis: 'Poor'
-    }
+      prognosis: 'Poor',
+    },
   };
 
   const result = classifications[type] || classifications['I'];
@@ -472,7 +482,8 @@ function classifyGarden(type) {
     urgency: ['III', 'IV'].includes(type)
       ? '⚠️ URGENT - Surgery within 24-48 hours to minimize AVN risk'
       : 'Semi-urgent - Surgery within 48-72 hours',
-    ageConsideration: 'Arthroplasty preferred in patients >65-70 years with displaced fractures; fixation in younger patients'
+    ageConsideration:
+      'Arthroplasty preferred in patients >65-70 years with displaced fractures; fixation in younger patients',
   };
 }
 
@@ -496,7 +507,7 @@ async function handleSalterHarris(req, res) {
       user_id,
       patient_id,
       action: 'SALTER_HARRIS_CLASSIFICATION',
-      details: { type: result.type }
+      details: { type: result.type },
     });
 
     res.json({
@@ -504,16 +515,15 @@ async function handleSalterHarris(req, res) {
       result,
       metadata: {
         calculator: 'Salter-Harris Classification',
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ Salter-Harris Classification Error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to classify Salter-Harris fracture',
-      message: error.message
+      message: 'Tibbi islem hatasi. Lutfen tekrar deneyin.',
     });
   }
 }
@@ -532,7 +542,7 @@ async function handleOttawaAnkle(req, res) {
       user_id: data.user_id,
       patient_id: data.patient_id,
       action: 'OTTAWA_ANKLE_RULES',
-      details: { xrayRequired: result.xrayRequired }
+      details: { xrayRequired: result.xrayRequired },
     });
 
     res.json({
@@ -540,16 +550,15 @@ async function handleOttawaAnkle(req, res) {
       result,
       metadata: {
         calculator: 'Ottawa Ankle Rules',
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ Ottawa Ankle Rules Error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to apply Ottawa Ankle Rules',
-      message: error.message
+      message: 'Tibbi islem hatasi. Lutfen tekrar deneyin.',
     });
   }
 }
@@ -568,7 +577,7 @@ async function handleOttawaKnee(req, res) {
       user_id: data.user_id,
       patient_id: data.patient_id,
       action: 'OTTAWA_KNEE_RULES',
-      details: { xrayRequired: result.xrayRequired }
+      details: { xrayRequired: result.xrayRequired },
     });
 
     res.json({
@@ -576,16 +585,15 @@ async function handleOttawaKnee(req, res) {
       result,
       metadata: {
         calculator: 'Ottawa Knee Rules',
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ Ottawa Knee Rules Error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to apply Ottawa Knee Rules',
-      message: error.message
+      message: 'Tibbi islem hatasi. Lutfen tekrar deneyin.',
     });
   }
 }
@@ -604,7 +612,7 @@ async function handleAOClassification(req, res) {
       user_id: data.user_id,
       patient_id: data.patient_id,
       action: 'AO_FRACTURE_CLASSIFICATION',
-      details: { aoCode: result.aoCode }
+      details: { aoCode: result.aoCode },
     });
 
     res.json({
@@ -612,16 +620,15 @@ async function handleAOClassification(req, res) {
       result,
       metadata: {
         calculator: 'AO/OTA Fracture Classification',
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ AO Classification Error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to classify fracture',
-      message: error.message
+      message: 'Tibbi islem hatasi. Lutfen tekrar deneyin.',
     });
   }
 }
@@ -640,7 +647,11 @@ async function handleROMAssessment(req, res) {
       user_id: data.user_id,
       patient_id: data.patient_id,
       action: 'ROM_ASSESSMENT',
-      details: { joint: data.joint, movement: data.movement, percentageOfNormal: result.percentageOfNormal }
+      details: {
+        joint: data.joint,
+        movement: data.movement,
+        percentageOfNormal: result.percentageOfNormal,
+      },
     });
 
     res.json({
@@ -648,16 +659,15 @@ async function handleROMAssessment(req, res) {
       result,
       metadata: {
         calculator: 'Range of Motion Assessment',
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ ROM Assessment Error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to assess range of motion',
-      message: error.message
+      message: 'Tibbi islem hatasi. Lutfen tekrar deneyin.',
     });
   }
 }
@@ -676,7 +686,7 @@ async function handleGartland(req, res) {
       user_id,
       patient_id,
       action: 'GARTLAND_CLASSIFICATION',
-      details: { type: result.type }
+      details: { type: result.type },
     });
 
     res.json({
@@ -684,16 +694,15 @@ async function handleGartland(req, res) {
       result,
       metadata: {
         calculator: 'Gartland Classification',
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ Gartland Classification Error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to classify Gartland fracture',
-      message: error.message
+      message: 'Tibbi islem hatasi. Lutfen tekrar deneyin.',
     });
   }
 }
@@ -712,7 +721,7 @@ async function handleGarden(req, res) {
       user_id,
       patient_id,
       action: 'GARDEN_CLASSIFICATION',
-      details: { type: result.type }
+      details: { type: result.type },
     });
 
     res.json({
@@ -720,16 +729,15 @@ async function handleGarden(req, res) {
       result,
       metadata: {
         calculator: 'Garden Classification',
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ Garden Classification Error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to classify Garden fracture',
-      message: error.message
+      message: 'Tibbi islem hatasi. Lutfen tekrar deneyin.',
     });
   }
 }
@@ -748,5 +756,5 @@ module.exports = {
   classifyAOFracture,
   assessRangeOfMotion,
   classifyGartland,
-  classifyGarden
+  classifyGarden,
 };

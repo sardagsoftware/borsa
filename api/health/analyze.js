@@ -5,7 +5,7 @@ const { getCorsOrigin } = require('../_middleware/cors');
 
 // Anthropic AX9F7E2B Client (Vision capable)
 const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY
+  apiKey: process.env.ANTHROPIC_API_KEY,
 });
 
 module.exports = async (req, res) => {
@@ -53,16 +53,16 @@ module.exports = async (req, res) => {
                     source: {
                       type: 'base64',
                       media_type: 'image/jpeg',
-                      data: base64Image
-                    }
+                      data: base64Image,
+                    },
                   },
                   {
                     type: 'text',
-                    text: 'Sen bir beslenme uzmanısın. Bu yemeği analiz et ve JSON formatında döndür: {"kalori": number, "protein": number, "karbonhidrat": number, "yag": number, "degerlendirme": "string"}'
-                  }
-                ]
-              }
-            ]
+                    text: 'Sen bir beslenme uzmanısın. Bu yemeği analiz et ve JSON formatında döndür: {"kalori": number, "protein": number, "karbonhidrat": number, "yag": number, "degerlendirme": "string"}',
+                  },
+                ],
+              },
+            ],
           });
 
           const visionResult = visionResponse.content[0].text;
@@ -75,7 +75,7 @@ module.exports = async (req, res) => {
               protein: parsed.protein || 'N/A',
               carbs: parsed.karbonhidrat || parsed.carbs || 'N/A',
               fat: parsed.yag || parsed.fat || 'N/A',
-              verdict: parsed.degerlendirme || parsed.verdict || 'Analiz tamamlandı'
+              verdict: parsed.degerlendirme || parsed.verdict || 'Analiz tamamlandı',
             };
           } catch (parseErr) {
             // Fallback: extract numbers from text
@@ -84,7 +84,7 @@ module.exports = async (req, res) => {
               protein: extractNumber(visionResult, 'protein') || '25',
               carbs: extractNumber(visionResult, 'karbonhidrat|carbs') || '60',
               fat: extractNumber(visionResult, 'yağ|fat') || '15',
-              verdict: visionResult.substring(0, 200)
+              verdict: visionResult.substring(0, 200),
             };
           }
         } catch (visionErr) {
@@ -94,7 +94,7 @@ module.exports = async (req, res) => {
             protein: '20',
             carbs: '55',
             fat: '12',
-            verdict: 'Dengeli bir öğün gibi görünüyor (Tahmin)'
+            verdict: 'Dengeli bir öğün gibi görünüyor (Tahmin)',
           };
         }
       }
@@ -111,7 +111,7 @@ module.exports = async (req, res) => {
             stressLevel: stressLevels[Math.floor(Math.random() * 2)],
             sleepQuality: sleepQualities[Math.floor(Math.random() * 2)],
             energyLevel: `%${70 + Math.floor(Math.random() * 25)}`,
-            verdict: 'Ses tonunuzdan genel olarak dengeli bir ruh hali algılanıyor.'
+            verdict: 'Ses tonunuzdan genel olarak dengeli bir ruh hali algılanıyor.',
           };
         } catch (voiceErr) {
           console.error('Voice analysis error:', voiceErr);
@@ -119,7 +119,7 @@ module.exports = async (req, res) => {
             stressLevel: 'Orta',
             sleepQuality: 'İyi',
             energyLevel: '%75',
-            verdict: 'Ses analizi tamamlandı'
+            verdict: 'Ses analizi tamamlandı',
           };
         }
       }
@@ -132,14 +132,16 @@ module.exports = async (req, res) => {
       }
       if (voiceAnalysis) {
         if (voiceAnalysis.stressLevel === 'Düşük') healthScore += 10;
-        if (voiceAnalysis.sleepQuality === 'Mükemmel' || voiceAnalysis.sleepQuality === 'İyi') healthScore += 5;
+        if (voiceAnalysis.sleepQuality === 'Mükemmel' || voiceAnalysis.sleepQuality === 'İyi')
+          healthScore += 5;
       }
 
       // Generate Recommendations
       const recommendations = [];
       if (nutritionAnalysis) {
         const cal = parseInt(nutritionAnalysis.calories) || 500;
-        if (cal > 700) recommendations.push('Kalori alımınızı dengelemek için porsiyon kontrolü yapın');
+        if (cal > 700)
+          recommendations.push('Kalori alımınızı dengelemek için porsiyon kontrolü yapın');
         if (cal < 300) recommendations.push('Yeterli enerji için porsiyon miktarını artırın');
       }
       if (voiceAnalysis && voiceAnalysis.stressLevel === 'Yüksek') {
@@ -155,14 +157,14 @@ module.exports = async (req, res) => {
         nutrition: nutritionAnalysis,
         voice: voiceAnalysis,
         recommendations,
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
       });
     });
   } catch (error) {
     console.error('Health analysis error:', error);
     res.status(500).json({
       error: 'Analysis failed',
-      message: error.message
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
     });
   }
 };

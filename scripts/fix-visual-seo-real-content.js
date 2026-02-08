@@ -22,83 +22,95 @@ const BASE_URL = 'https://www.ailydian.com';
  */
 function getRealAuthorInfo(pagePath, pageTitle) {
   // Tıbbi sayfalar için
-  if (pagePath.includes('medical') || pagePath.includes('health') ||
-      pagePath.includes('cancer') || pagePath.includes('hospital')) {
+  if (
+    pagePath.includes('medical') ||
+    pagePath.includes('health') ||
+    pagePath.includes('cancer') ||
+    pagePath.includes('hospital')
+  ) {
     return {
-      "@type": "Person",
-      "name": "Dr. Emrah Sarda\u011F",
-      "jobTitle": "Tıbbi AI Uzmanı",
-      "image": {
-        "@type": "ImageObject",
-        "url": `${BASE_URL}/images/authors/dr-emrah-sardag.jpg`,
-        "width": 400,
-        "height": 400
+      '@type': 'Person',
+      name: 'AILYDIAN Medikal Ekibi',
+      jobTitle: 'Tibbi AI Uzmani',
+      image: {
+        '@type': 'ImageObject',
+        url: `${BASE_URL}/images/authors/ailydian-team.jpg`,
+        width: 400,
+        height: 400,
       },
-      "url": `${BASE_URL}/about`
+      url: `${BASE_URL}/about`,
     };
   }
 
   // Hukuki sayfalar için
   if (pagePath.includes('legal') || pagePath.includes('hukuk')) {
     return {
-      "@type": "Person",
-      "name": "Av. LyDian Hukuk Ekibi",
-      "jobTitle": "Hukuki AI Uzmanları",
-      "image": {
-        "@type": "ImageObject",
-        "url": `${BASE_URL}/images/authors/legal-team.jpg`,
-        "width": 400,
-        "height": 400
+      '@type': 'Person',
+      name: 'Av. LyDian Hukuk Ekibi',
+      jobTitle: 'Hukuki AI Uzmanları',
+      image: {
+        '@type': 'ImageObject',
+        url: `${BASE_URL}/images/authors/legal-team.jpg`,
+        width: 400,
+        height: 400,
       },
-      "url": `${BASE_URL}/about`
+      url: `${BASE_URL}/about`,
     };
   }
 
   // IQ ve eğitim sayfaları için
-  if (pagePath.includes('iq') || pagePath.includes('education') ||
-      pagePath.includes('learning') || pagePath.includes('course')) {
+  if (
+    pagePath.includes('iq') ||
+    pagePath.includes('education') ||
+    pagePath.includes('learning') ||
+    pagePath.includes('course')
+  ) {
     return {
-      "@type": "Person",
-      "name": "LyDian E\u011Fitim Ekibi",
-      "jobTitle": "E\u011Fitim Teknolojileri Uzmanı",
-      "image": {
-        "@type": "ImageObject",
-        "url": `${BASE_URL}/images/authors/education-team.jpg`,
-        "width": 400,
-        "height": 400
+      '@type': 'Person',
+      name: 'LyDian E\u011Fitim Ekibi',
+      jobTitle: 'E\u011Fitim Teknolojileri Uzmanı',
+      image: {
+        '@type': 'ImageObject',
+        url: `${BASE_URL}/images/authors/education-team.jpg`,
+        width: 400,
+        height: 400,
       },
-      "url": `${BASE_URL}/about`
+      url: `${BASE_URL}/about`,
     };
   }
 
   // Teknik/API sayfaları için
-  if (pagePath.includes('api') || pagePath.includes('developer') ||
-      pagePath.includes('docs') || pagePath.includes('console')) {
+  if (
+    pagePath.includes('api') ||
+    pagePath.includes('developer') ||
+    pagePath.includes('docs') ||
+    pagePath.includes('console')
+  ) {
     return {
-      "@type": "Person",
-      "name": "LyDian Geliştirici Ekibi",
-      "jobTitle": "Yazılım Mimarı",
-      "image": {
-        "@type": "ImageObject",
-        "url": `${BASE_URL}/images/authors/dev-team.jpg`,
-        "width": 400,
-        "height": 400
+      '@type': 'Person',
+      name: 'LyDian Geliştirici Ekibi',
+      jobTitle: 'Yazılım Mimarı',
+      image: {
+        '@type': 'ImageObject',
+        url: `${BASE_URL}/images/authors/dev-team.jpg`,
+        width: 400,
+        height: 400,
       },
-      "url": `${BASE_URL}/developers`
+      url: `${BASE_URL}/developers`,
     };
   }
 
   // Genel/Kurumsal sayfalar için
   return {
-    "@type": "Organization",
-    "name": "LyDian AI",
-    "logo": {
-      "@type": "ImageObject",
-      "url": `${BASE_URL}/images/lydian-logo-square.png`,
-      "width": 400,
-      "height": 400
+    '@type': 'Organization',
+    name: 'LyDian AI',
+    logo: {
+      '@type': 'ImageObject',
+      url: `${BASE_URL}/images/lydian-logo-square.png`,
+      width: 400,
+      height: 400,
     },
-    "url": BASE_URL
+    url: BASE_URL,
   };
 }
 
@@ -118,7 +130,7 @@ function getQualityImageURLs(pagePath, pageTitle) {
     // OG görselleri (her sayfa için benzersiz)
     ogImages: [
       `${BASE_URL}/images/og/${category}${pagePath}-main.jpg`,
-      `${BASE_URL}/images/og/${category}${pagePath}-alt.jpg`
+      `${BASE_URL}/images/og/${category}${pagePath}-alt.jpg`,
     ],
 
     // Twitter kartı
@@ -128,7 +140,7 @@ function getQualityImageURLs(pagePath, pageTitle) {
     productImages: [
       `${BASE_URL}/images/products${pagePath}/view-1.jpg`,
       `${BASE_URL}/images/products${pagePath}/view-2.jpg`,
-      `${BASE_URL}/images/products${pagePath}/view-3.jpg`
+      `${BASE_URL}/images/products${pagePath}/view-3.jpg`,
     ],
 
     // Video küçük resmi
@@ -138,8 +150,8 @@ function getQualityImageURLs(pagePath, pageTitle) {
     howToSteps: [
       `${BASE_URL}/images/howto${pagePath}/step-1.jpg`,
       `${BASE_URL}/images/howto${pagePath}/step-2.jpg`,
-      `${BASE_URL}/images/howto${pagePath}/step-3.jpg`
-    ]
+      `${BASE_URL}/images/howto${pagePath}/step-3.jpg`,
+    ],
   };
 }
 
@@ -169,30 +181,30 @@ function generateRealProductSchema(pagePath, pageTitle) {
     education: 'Yapay zeka destekli eğitim ve öğrenme platformu',
     tech: 'Gelişmiş API ve geliştirici araçları',
     business: 'Kurumsal iş zekası ve analitik çözümleri',
-    general: 'Çok modelli yapay zeka platformu'
+    general: 'Çok modelli yapay zeka platformu',
   };
 
   return {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": pageTitle,
-    "applicationCategory": "BusinessApplication",
-    "operatingSystem": "Web, iOS, Android",
-    "image": images.productImages,
-    "screenshot": images.ogImages,
-    "description": descriptions[category],
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "reviewCount": "1247",
-      "bestRating": "5"
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: pageTitle,
+    applicationCategory: 'BusinessApplication',
+    operatingSystem: 'Web, iOS, Android',
+    image: images.productImages,
+    screenshot: images.ogImages,
+    description: descriptions[category],
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.8',
+      reviewCount: '1247',
+      bestRating: '5',
     },
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "TRY",
-      "availability": "https://schema.org/InStock"
-    }
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'TRY',
+      availability: 'https://schema.org/InStock',
+    },
   };
 }
 
@@ -204,30 +216,30 @@ function generateRealArticleSchema(pagePath, pageTitle, description) {
   const images = getQualityImageURLs(pagePath, pageTitle);
 
   return {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": pageTitle,
-    "description": description,
-    "image": {
-      "@type": "ImageObject",
-      "url": images.mainImage,
-      "width": 1200,
-      "height": 675,
-      "caption": pageTitle
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: pageTitle,
+    description: description,
+    image: {
+      '@type': 'ImageObject',
+      url: images.mainImage,
+      width: 1200,
+      height: 675,
+      caption: pageTitle,
     },
-    "author": author,
-    "publisher": {
-      "@type": "Organization",
-      "name": "LyDian AI",
-      "logo": {
-        "@type": "ImageObject",
-        "url": `${BASE_URL}/images/lydian-logo-amp.png`,
-        "width": 600,
-        "height": 60
-      }
+    author: author,
+    publisher: {
+      '@type': 'Organization',
+      name: 'LyDian AI',
+      logo: {
+        '@type': 'ImageObject',
+        url: `${BASE_URL}/images/lydian-logo-amp.png`,
+        width: 600,
+        height: 60,
+      },
     },
-    "datePublished": "2024-01-15",
-    "dateModified": new Date().toISOString().split('T')[0]
+    datePublished: '2024-01-15',
+    dateModified: new Date().toISOString().split('T')[0],
   };
 }
 
@@ -238,15 +250,15 @@ function generateRealVideoSchema(pagePath, pageTitle) {
   const images = getQualityImageURLs(pagePath, pageTitle);
 
   return {
-    "@context": "https://schema.org",
-    "@type": "VideoObject",
-    "name": `${pageTitle} - Video Rehber`,
-    "description": `${pageTitle} hakkında detaylı video anlatım`,
-    "thumbnailUrl": images.videoThumbnail,
-    "uploadDate": "2024-01-15",
-    "duration": "PT5M30S",
-    "contentUrl": `${BASE_URL}/videos${pagePath}.mp4`,
-    "embedUrl": `${BASE_URL}${pagePath}#video`
+    '@context': 'https://schema.org',
+    '@type': 'VideoObject',
+    name: `${pageTitle} - Video Rehber`,
+    description: `${pageTitle} hakkında detaylı video anlatım`,
+    thumbnailUrl: images.videoThumbnail,
+    uploadDate: '2024-01-15',
+    duration: 'PT5M30S',
+    contentUrl: `${BASE_URL}/videos${pagePath}.mp4`,
+    embedUrl: `${BASE_URL}${pagePath}#video`,
   };
 }
 
@@ -257,30 +269,30 @@ function generateRealHowToSchema(pagePath, pageTitle) {
   const images = getQualityImageURLs(pagePath, pageTitle);
 
   return {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    "name": `${pageTitle} Nasıl Kullanılır`,
-    "image": images.mainImage,
-    "step": [
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: `${pageTitle} Nasıl Kullanılır`,
+    image: images.mainImage,
+    step: [
       {
-        "@type": "HowToStep",
-        "name": "Hesap Oluşturun",
-        "text": "LyDian AI platformunda ücretsiz hesap oluşturun",
-        "image": images.howToSteps[0]
+        '@type': 'HowToStep',
+        name: 'Hesap Oluşturun',
+        text: 'LyDian AI platformunda ücretsiz hesap oluşturun',
+        image: images.howToSteps[0],
       },
       {
-        "@type": "HowToStep",
-        "name": "Özelliği Seçin",
-        "text": "İhtiyacınıza göre AI özelliğini seçin",
-        "image": images.howToSteps[1]
+        '@type': 'HowToStep',
+        name: 'Özelliği Seçin',
+        text: 'İhtiyacınıza göre AI özelliğini seçin',
+        image: images.howToSteps[1],
       },
       {
-        "@type": "HowToStep",
-        "name": "Kullanmaya Başlayın",
-        "text": "Yapay zeka asistanınızla çalışmaya başlayın",
-        "image": images.howToSteps[2]
-      }
-    ]
+        '@type': 'HowToStep',
+        name: 'Kullanmaya Başlayın',
+        text: 'Yapay zeka asistanınızla çalışmaya başlayın',
+        image: images.howToSteps[2],
+      },
+    ],
   };
 }
 
@@ -294,22 +306,28 @@ function generateQualityImageMetaTags(pagePath, pageTitle) {
   // Open Graph - Ana görsel
   tags.push(`<meta property="og:image" content="${images.mainImage}" />`);
   tags.push(`<meta property="og:image:secure_url" content="${images.mainImage}" />`);
-  tags.push(`<meta property="og:image:width" content="1200" />`);
-  tags.push(`<meta property="og:image:height" content="675" />`);
+  tags.push('<meta property="og:image:width" content="1200" />');
+  tags.push('<meta property="og:image:height" content="675" />');
   tags.push(`<meta property="og:image:alt" content="${pageTitle}" />`);
-  tags.push(`<meta property="og:image:type" content="image/jpeg" />`);
+  tags.push('<meta property="og:image:type" content="image/jpeg" />');
 
   // Twitter Card
-  tags.push(`<meta name="twitter:card" content="summary_large_image" />`);
+  tags.push('<meta name="twitter:card" content="summary_large_image" />');
   tags.push(`<meta name="twitter:image" content="${images.twitterCard}" />`);
   tags.push(`<meta name="twitter:image:alt" content="${pageTitle}" />`);
 
   // Apple Touch Icon
-  tags.push(`<link rel="apple-touch-icon" sizes="180x180" href="${BASE_URL}/images/icons/apple-touch-icon.png" />`);
+  tags.push(
+    `<link rel="apple-touch-icon" sizes="180x180" href="${BASE_URL}/images/icons/apple-touch-icon.png" />`
+  );
 
   // Favicon
-  tags.push(`<link rel="icon" type="image/png" sizes="32x32" href="${BASE_URL}/images/icons/favicon-32x32.png" />`);
-  tags.push(`<link rel="icon" type="image/png" sizes="16x16" href="${BASE_URL}/images/icons/favicon-16x16.png" />`);
+  tags.push(
+    `<link rel="icon" type="image/png" sizes="32x32" href="${BASE_URL}/images/icons/favicon-32x32.png" />`
+  );
+  tags.push(
+    `<link rel="icon" type="image/png" sizes="16x16" href="${BASE_URL}/images/icons/favicon-16x16.png" />`
+  );
 
   return tags;
 }
@@ -335,7 +353,8 @@ function fixHTMLWithRealContent(filePath) {
   // TÜM eski schema'ları ve visual SEO section'larını kaldır
 
   // Visual Rich Results section
-  const visualSeoRegex = /<!-- Visual Rich Results SEO -->[\s\S]*?<!-- \/Visual Rich Results SEO -->/g;
+  const visualSeoRegex =
+    /<!-- Visual Rich Results SEO -->[\s\S]*?<!-- \/Visual Rich Results SEO -->/g;
   content = content.replace(visualSeoRegex, '');
 
   // Advanced SEO & Schema.org section
@@ -343,11 +362,13 @@ function fixHTMLWithRealContent(filePath) {
   content = content.replace(advancedSeoRegex, '');
 
   // Tüm "LyDian AI Team" içeren schema'ları temizle
-  const teamSchemaRegex = /<script type="application\/ld\+json">[\s\S]*?LyDian AI Team[\s\S]*?<\/script>/g;
+  const teamSchemaRegex =
+    /<script type="application\/ld\+json">[\s\S]*?LyDian AI Team[\s\S]*?<\/script>/g;
   content = content.replace(teamSchemaRegex, '');
 
   // author-images/lydian-team.jpg içeren schema'ları temizle
-  const authorImageRegex = /<script type="application\/ld\+json">[\s\S]*?author-images\/lydian-team\.jpg[\s\S]*?<\/script>/g;
+  const authorImageRegex =
+    /<script type="application\/ld\+json">[\s\S]*?author-images\/lydian-team\.jpg[\s\S]*?<\/script>/g;
   content = content.replace(authorImageRegex, '');
 
   // Yeni gerçek içerikli schema'ları oluştur
@@ -391,7 +412,7 @@ function fixHTMLWithRealContent(filePath) {
     file: pagePath,
     fixed: true,
     schemasAdded: schemas.length,
-    imagesAdded: imageTags.length
+    imagesAdded: imageTags.length,
   };
 }
 
@@ -435,7 +456,7 @@ async function main() {
     fixed: results.filter(r => r.fixed).length,
     skipped: results.filter(r => !r.fixed).length,
     totalSchemas: results.reduce((sum, r) => sum + (r.schemasAdded || 0), 0),
-    totalImages: results.reduce((sum, r) => sum + (r.imagesAdded || 0), 0)
+    totalImages: results.reduce((sum, r) => sum + (r.imagesAdded || 0), 0),
   };
 
   console.log('='.repeat(60));
@@ -461,11 +482,19 @@ async function main() {
 
   // Rapor kaydet
   const reportPath = path.join(__dirname, '../REAL-CONTENT-SEO-REPORT.json');
-  fs.writeFileSync(reportPath, JSON.stringify({
-    timestamp: new Date().toISOString(),
-    stats,
-    results
-  }, null, 2), 'utf8');
+  fs.writeFileSync(
+    reportPath,
+    JSON.stringify(
+      {
+        timestamp: new Date().toISOString(),
+        stats,
+        results,
+      },
+      null,
+      2
+    ),
+    'utf8'
+  );
 
   console.log(`\n✅ Report saved: ${reportPath}`);
   console.log('\n🏆 REAL CONTENT SEO FIX COMPLETE!');

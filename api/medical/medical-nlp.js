@@ -38,6 +38,7 @@
 
 const express = require('express');
 const router = express.Router();
+const { applySanitization } = require('../_middleware/sanitize');
 
 // ============================================================================
 // CLINICAL NOTES TEMPLATES
@@ -241,6 +242,7 @@ const CLINICAL_ENTITIES = {
  * Generate SOAP notes from clinical conversation/dictation
  */
 router.post('/soap-notes-generation', async (req, res) => {
+  applySanitization(req, res);
   try {
     const { clinicalText, patientInfo, encounterType } = req.body;
 
@@ -268,7 +270,7 @@ router.post('/soap-notes-generation', async (req, res) => {
   } catch (error) {
     res.status(500).json({
       success: false,
-      error: error.message,
+      error: 'NLP işlem hatası',
     });
   }
 });
@@ -278,6 +280,7 @@ router.post('/soap-notes-generation', async (req, res) => {
  * Automated ICD-10 medical coding from clinical text
  */
 router.post('/icd10-coding', async (req, res) => {
+  applySanitization(req, res);
   try {
     const { clinicalText } = req.body;
 
@@ -308,7 +311,7 @@ router.post('/icd10-coding', async (req, res) => {
   } catch (error) {
     res.status(500).json({
       success: false,
-      error: error.message,
+      error: 'NLP işlem hatası',
     });
   }
 });
@@ -318,6 +321,7 @@ router.post('/icd10-coding', async (req, res) => {
  * Clinical Named Entity Recognition (NER)
  */
 router.post('/clinical-ner', async (req, res) => {
+  applySanitization(req, res);
   try {
     const { clinicalText } = req.body;
 
@@ -344,7 +348,7 @@ router.post('/clinical-ner', async (req, res) => {
   } catch (error) {
     res.status(500).json({
       success: false,
-      error: error.message,
+      error: 'NLP işlem hatası',
     });
   }
 });
@@ -354,6 +358,7 @@ router.post('/clinical-ner', async (req, res) => {
  * Analyze radiology reports and extract structured data
  */
 router.post('/radiology-report-analysis', async (req, res) => {
+  applySanitization(req, res);
   try {
     const { reportText, modality } = req.body;
 
@@ -381,7 +386,7 @@ router.post('/radiology-report-analysis', async (req, res) => {
   } catch (error) {
     res.status(500).json({
       success: false,
-      error: error.message,
+      error: 'NLP işlem hatası',
     });
   }
 });
@@ -391,6 +396,7 @@ router.post('/radiology-report-analysis', async (req, res) => {
  * Get Medical NLP Platform statistics
  */
 router.get('/database-stats', (req, res) => {
+  applySanitization(req, res);
   res.json({
     success: true,
     nlpModels: {

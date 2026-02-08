@@ -88,14 +88,17 @@ module.exports = async (req, res) => {
 
     // Calculate real-time metrics
     const requestsPerMinute = requestMetrics.lastMinute.length;
-    const avgResponseTime = requestMetrics.total > 0
-      ? Math.round(requestMetrics.totalResponseTime / requestMetrics.total)
-      : 342;
+    const avgResponseTime =
+      requestMetrics.total > 0
+        ? Math.round(requestMetrics.totalResponseTime / requestMetrics.total)
+        : 342;
 
     // Get system performance (if available)
     const performance = {
       cpu: process.cpuUsage ? Math.round((process.cpuUsage().user / 1000000) % 100) : 45,
-      memory: process.memoryUsage ? Math.round((process.memoryUsage().heapUsed / process.memoryUsage().heapTotal) * 100) : 62,
+      memory: process.memoryUsage
+        ? Math.round((process.memoryUsage().heapUsed / process.memoryUsage().heapTotal) * 100)
+        : 62,
       uptime: Math.floor(process.uptime()),
     };
 
@@ -144,7 +147,7 @@ module.exports = async (req, res) => {
       status: 'error',
       timestamp: new Date().toISOString(),
       error: {
-        message: error.message,
+        message: 'Sistem durumu kontrol hatası',
         type: error.name,
       },
       metrics: {

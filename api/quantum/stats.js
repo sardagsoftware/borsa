@@ -13,71 +13,70 @@ const { getQuantumGateway } = require('../../services/quantum-gateway');
 const { getCorsOrigin } = require('../_middleware/cors');
 
 module.exports = async (req, res) => {
-    // CORS headers
-    res.setHeader('Access-Control-Allow-Credentials', 'true');
-    res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
-    res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS');
-    res.setHeader(
-        'Access-Control-Allow-Headers',
-        'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
-    );
+  // CORS headers
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS');
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+  );
 
-    // Handle preflight
-    if (req.method === 'OPTIONS') {
-        res.status(200).end();
-        return;
-    }
+  // Handle preflight
+  if (req.method === 'OPTIONS') {
+    res.status(200).end();
+    return;
+  }
 
-    // Only GET allowed
-    if (req.method !== 'GET') {
-        return res.status(405).json({
-            error: 'Method not allowed',
-            message: 'Use GET to retrieve stats'
-        });
-    }
+  // Only GET allowed
+  if (req.method !== 'GET') {
+    return res.status(405).json({
+      error: 'Method not allowed',
+      message: 'Use GET to retrieve stats',
+    });
+  }
 
-    try {
-        // Get Quantum Gateway
-        const quantum = getQuantumGateway();
+  try {
+    // Get Quantum Gateway
+    const quantum = getQuantumGateway();
 
-        // Get stats
-        const stats = quantum.getStats();
+    // Get stats
+    const stats = quantum.getStats();
 
-        // Prepare response
-        const response = {
-            success: true,
-            data: {
-                performance: {
-                    totalJobs: stats.totalJobs,
-                    successfulJobs: stats.successfulJobs,
-                    failedJobs: stats.failedJobs,
-                    successRate: stats.successRate
-                },
-                cache: {
-                    hits: stats.cacheHits,
-                    hitRate: stats.cacheHitRate
-                },
-                cost: {
-                    total: `$${stats.totalCost.toFixed(2)}`,
-                    breakdown: stats.deviceUsage
-                },
-                devices: stats.deviceUsage
-            },
-            meta: {
-                timestamp: new Date().toISOString(),
-                apiVersion: '1.0.0'
-            }
-        };
+    // Prepare response
+    const response = {
+      success: true,
+      data: {
+        performance: {
+          totalJobs: stats.totalJobs,
+          successfulJobs: stats.successfulJobs,
+          failedJobs: stats.failedJobs,
+          successRate: stats.successRate,
+        },
+        cache: {
+          hits: stats.cacheHits,
+          hitRate: stats.cacheHitRate,
+        },
+        cost: {
+          total: `$${stats.totalCost.toFixed(2)}`,
+          breakdown: stats.deviceUsage,
+        },
+        devices: stats.deviceUsage,
+      },
+      meta: {
+        timestamp: new Date().toISOString(),
+        apiVersion: '1.0.0',
+      },
+    };
 
-        res.status(200).json(response);
+    res.status(200).json(response);
+  } catch (error) {
+    console.error('Stats Error:', error);
 
-    } catch (error) {
-        console.error('Stats Error:', error);
-
-        res.status(500).json({
-            error: 'Internal server error',
-            message: error.message,
-            timestamp: new Date().toISOString()
-        });
-    }
+    res.status(500).json({
+      error: 'Internal server error',
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
+      timestamp: new Date().toISOString(),
+    });
+  }
 };

@@ -2,7 +2,7 @@ const Anthropic = require('@anthropic-ai/sdk');
 const { getCorsOrigin } = require('../_middleware/cors');
 
 const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY
+  apiKey: process.env.ANTHROPIC_API_KEY,
 });
 
 module.exports = async (req, res) => {
@@ -19,14 +19,7 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const {
-      originCountry,
-      destinationCountry,
-      purpose,
-      duration,
-      concerns,
-      industry
-    } = req.body;
+    const { originCountry, destinationCountry, purpose, duration, concerns, industry } = req.body;
 
     if (!originCountry || !destinationCountry) {
       return res.status(400).json({ error: 'Origin and destination countries are required' });
@@ -90,13 +83,14 @@ Lütfen JSON formatında şu yapıda yanıt ver:
     const response = await anthropic.messages.create({
       model: 'AX9F7E2B',
       max_tokens: 2500,
-      system: 'Sen kültürlerarası iletişim uzmanısın. İnsanların farklı kültürlere uyum sağlamalarına ve kültürel engelleri aşmalarına yardımcı olursun.',
+      system:
+        'Sen kültürlerarası iletişim uzmanısın. İnsanların farklı kültürlere uyum sağlamalarına ve kültürel engelleri aşmalarına yardımcı olursun.',
       messages: [
         {
           role: 'user',
-          content: prompt
-        }
-      ]
+          content: prompt,
+        },
+      ],
     });
 
     let result;
@@ -107,127 +101,107 @@ Lütfen JSON formatında şu yapıda yanıt ver:
       result = {
         culturalOverview: {
           keyDifferences: [
-            "İş kültürü ve çalışma saatleri farklılığı",
-            "İletişim tarzı farklılıkları",
-            "Sosyal normlar ve beklentiler"
+            'İş kültürü ve çalışma saatleri farklılığı',
+            'İletişim tarzı farklılıkları',
+            'Sosyal normlar ve beklentiler',
           ],
           commonMisconceptions: [
-            "Klişe algılar gerçeği yansıtmayabilir",
-            "Bireysel farklılıklar her zaman vardır"
+            'Klişe algılar gerçeği yansıtmayabilir',
+            'Bireysel farklılıklar her zaman vardır',
           ],
-          adaptationDifficulty: "Orta",
-          estimatedAdjustmentPeriod: "3-6 ay"
+          adaptationDifficulty: 'Orta',
+          estimatedAdjustmentPeriod: '3-6 ay',
         },
         businessEtiquette: {
-          communicationStyle: "İletişim tarzı kültüre göre değişir",
-          meetingProtocol: [
-            "Zamanında olun",
-            "Resmi kıyafet giyin",
-            "Hiyerarşiye saygı gösterin"
-          ],
+          communicationStyle: 'İletişim tarzı kültüre göre değişir',
+          meetingProtocol: ['Zamanında olun', 'Resmi kıyafet giyin', 'Hiyerarşiye saygı gösterin'],
           negotiationTips: [
-            "Sabırlı olun",
-            "Uzun vadeli ilişki kurmaya odaklanın",
-            "Kültürel duyarlılık gösterin"
+            'Sabırlı olun',
+            'Uzun vadeli ilişki kurmaya odaklanın',
+            'Kültürel duyarlılık gösterin',
           ],
-          hierarchyDynamics: "Hiyerarşi yapısını anlayın ve ona göre davranın",
-          dresscode: "İş ortamına uygun, profesyonel kıyafet"
+          hierarchyDynamics: 'Hiyerarşi yapısını anlayın ve ona göre davranın',
+          dresscode: 'İş ortamına uygun, profesyonel kıyafet',
         },
         socialNorms: {
-          greetings: "Yerel selamlaşma şeklini öğrenin",
-          personalSpace: "Kültürel normlara göre ayarlayın",
-          giftGiving: "Küçük, düşünceli hediyeler uygundur",
+          greetings: 'Yerel selamlaşma şeklini öğrenin',
+          personalSpace: 'Kültürel normlara göre ayarlayın',
+          giftGiving: 'Küçük, düşünceli hediyeler uygundur',
           diningEtiquette: [
-            "Sofra adabına dikkat edin",
-            "Yerel yemek alışkanlıklarını gözlemleyin"
+            'Sofra adabına dikkat edin',
+            'Yerel yemek alışkanlıklarını gözlemleyin',
           ],
-          taboos: [
-            "Hassas konulardan kaçının",
-            "Kültürel sembollere saygı gösterin"
-          ]
+          taboos: ['Hassas konulardan kaçının', 'Kültürel sembollere saygı gösterin'],
         },
         practicalTips: {
-          languageTips: [
-            "Temel ifadeleri öğrenin",
-            "Günlük pratik yapın",
-            "Yerel medya tüketin"
-          ],
+          languageTips: ['Temel ifadeleri öğrenin', 'Günlük pratik yapın', 'Yerel medya tüketin'],
           networkingStrategies: [
-            "Yerel etkinliklere katılın",
-            "Profesyonel topluluklar bulun",
-            "Mentor arayın"
+            'Yerel etkinliklere katılın',
+            'Profesyonel topluluklar bulun',
+            'Mentor arayın',
           ],
           culturalActivities: [
-            "Kültürel festivallere katılın",
-            "Yerel müzeleri ziyaret edin",
-            "Topluluk etkinliklerine dahil olun"
+            'Kültürel festivallere katılın',
+            'Yerel müzeleri ziyaret edin',
+            'Topluluk etkinliklerine dahil olun',
           ],
           stressCopingMethods: [
-            "Destek grubu bulun",
-            "Kendi kültürünüzle bağlantıyı koruyun",
-            "Profesyonel yardım almaktan çekinmeyin"
-          ]
+            'Destek grubu bulun',
+            'Kendi kültürünüzle bağlantıyı koruyun',
+            'Profesyonel yardım almaktan çekinmeyin',
+          ],
         },
         weeklyRoadmap: [
           {
-            week: "Hafta 1-2",
-            focus: "Temel yerleşim ve keşif",
+            week: 'Hafta 1-2',
+            focus: 'Temel yerleşim ve keşif',
             activities: [
-              "Çevreyi keşfedin",
-              "Temel hizmetleri bulun",
-              "İlk sosyal bağlantıları kurun"
+              'Çevreyi keşfedin',
+              'Temel hizmetleri bulun',
+              'İlk sosyal bağlantıları kurun',
             ],
-            goals: [
-              "Güvenli hissetmek",
-              "Temel ihtiyaçları karşılamak"
-            ]
+            goals: ['Güvenli hissetmek', 'Temel ihtiyaçları karşılamak'],
           },
           {
-            week: "Hafta 3-4",
-            focus: "Kültürel öğrenme",
+            week: 'Hafta 3-4',
+            focus: 'Kültürel öğrenme',
             activities: [
-              "Dil dersleri başlatın",
-              "Kültürel etkinliklere katılın",
-              "Yerel insanlarla tanışın"
+              'Dil dersleri başlatın',
+              'Kültürel etkinliklere katılın',
+              'Yerel insanlarla tanışın',
             ],
-            goals: [
-              "Temel iletişim kurabilmek",
-              "Kültürel normları anlamak"
-            ]
+            goals: ['Temel iletişim kurabilmek', 'Kültürel normları anlamak'],
           },
           {
-            week: "Hafta 5-8",
-            focus: "Entegrasyon",
+            week: 'Hafta 5-8',
+            focus: 'Entegrasyon',
             activities: [
-              "Düzenli sosyal rutinler oluşturun",
+              'Düzenli sosyal rutinler oluşturun',
               "İş/okul network'ünü genişletin",
-              "Hobi toplulukları bulun"
+              'Hobi toplulukları bulun',
             ],
-            goals: [
-              "Rahat hissetmek",
-              "Anlamlı ilişkiler kurmak"
-            ]
-          }
+            goals: ['Rahat hissetmek', 'Anlamlı ilişkiler kurmak'],
+          },
         ],
         resources: {
-          languageApps: ["Duolingo", "Babbel", "HelloTalk"],
-          localCommunities: ["Expat grupları", "Meetup grupları", "Profesyonel dernekler"],
-          culturalTraining: ["Online kültürel farkındalık kursları", "Yerel kültür merkezleri"],
-          emergencyContacts: ["Büyükelçilik/Konsolosluk", "Yerel acil servisler"]
-        }
+          languageApps: ['Duolingo', 'Babbel', 'HelloTalk'],
+          localCommunities: ['Expat grupları', 'Meetup grupları', 'Profesyonel dernekler'],
+          culturalTraining: ['Online kültürel farkındalık kursları', 'Yerel kültür merkezleri'],
+          emergencyContacts: ['Büyükelçilik/Konsolosluk', 'Yerel acil servisler'],
+        },
       };
     }
 
     res.status(200).json({
       success: true,
       ...result,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
   } catch (error) {
     console.error('Cultural advisor analysis error:', error);
     res.status(500).json({
       error: 'Analysis failed',
-      message: error.message
+      message: 'Kültürel analiz hatası',
     });
   }
 };

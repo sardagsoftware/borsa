@@ -9,6 +9,7 @@
 
 const { obfuscation, MODES } = require('../../services/localrecall');
 const { getCorsOrigin } = require('../_middleware/cors');
+const { applySanitization } = require('../_middleware/sanitize');
 
 // Identity protection instruction - MILITARY-GRADE
 const IDENTITY_PROTECTION = `
@@ -257,6 +258,7 @@ async function callAIStream(userMessage, domain, conversationHistory, res) {
 }
 
 module.exports = async function handler(req, res) {
+  applySanitization(req, res);
   // CORS headers
   res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');

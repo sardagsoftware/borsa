@@ -33,7 +33,11 @@ module.exports = async (req, res) => {
       });
     }
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'your-secret-key-change-this');
+    if (!process.env.JWT_SECRET) {
+      console.error('JWT_SECRET environment variable not set');
+      return res.status(500).json({ success: false, message: 'Sunucu yapılandırma hatası' });
+    }
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const userId = decoded.id;
 
     // Get password from request body

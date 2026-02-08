@@ -24,20 +24,19 @@ router.get('/profile', authenticateToken, async (req, res) => {
     if (!user) {
       return res.status(404).json({
         success: false,
-        error: 'User not found'
+        error: 'User not found',
       });
     }
 
     res.json({
       success: true,
-      user
+      user,
     });
-
   } catch (error) {
     console.error('Get profile error:', error);
     res.status(500).json({
       success: false,
-      error: 'Failed to get profile'
+      error: 'Failed to get profile',
     });
   }
 });
@@ -56,7 +55,7 @@ router.put('/profile', authenticateToken, async (req, res) => {
       if (!emailRegex.test(updates.email)) {
         return res.status(400).json({
           success: false,
-          error: 'Invalid email format'
+          error: 'Invalid email format',
         });
       }
 
@@ -65,7 +64,7 @@ router.put('/profile', authenticateToken, async (req, res) => {
       if (existing && existing.id !== req.user.id) {
         return res.status(400).json({
           success: false,
-          error: 'Email already in use'
+          error: 'Email already in use',
         });
       }
     }
@@ -75,20 +74,19 @@ router.put('/profile', authenticateToken, async (req, res) => {
     User.logActivity({
       userId: req.user.id,
       action: 'profile_updated',
-      description: 'User updated profile'
+      description: 'User updated profile',
     });
 
     res.json({
       success: true,
       message: 'Profile updated successfully',
-      user
+      user,
     });
-
   } catch (error) {
     console.error('Update profile error:', error);
     res.status(400).json({
       success: false,
-      error: error.message || 'Failed to update profile'
+      error: 'Profil guncelleme hatasi. Lutfen tekrar deneyin.',
     });
   }
 });
@@ -104,21 +102,21 @@ router.post('/password', authenticateToken, async (req, res) => {
     if (!currentPassword || !newPassword || !confirmPassword) {
       return res.status(400).json({
         success: false,
-        error: 'All fields are required'
+        error: 'All fields are required',
       });
     }
 
     if (newPassword !== confirmPassword) {
       return res.status(400).json({
         success: false,
-        error: 'New passwords do not match'
+        error: 'New passwords do not match',
       });
     }
 
     if (newPassword.length < 8) {
       return res.status(400).json({
         success: false,
-        error: 'Password must be at least 8 characters long'
+        error: 'Password must be at least 8 characters long',
       });
     }
 
@@ -129,7 +127,7 @@ router.post('/password', authenticateToken, async (req, res) => {
       if (!user) {
         return res.status(404).json({
           success: false,
-          error: 'User not found'
+          error: 'User not found',
         });
       }
 
@@ -138,7 +136,7 @@ router.post('/password', authenticateToken, async (req, res) => {
       if (!isValid) {
         return res.status(401).json({
           success: false,
-          error: 'Current password is incorrect'
+          error: 'Current password is incorrect',
         });
       }
 
@@ -151,23 +149,21 @@ router.post('/password', authenticateToken, async (req, res) => {
       User.logActivity({
         userId: req.user.id,
         action: 'password_changed',
-        description: 'User changed password'
+        description: 'User changed password',
       });
 
       res.json({
         success: true,
-        message: 'Password changed successfully'
+        message: 'Password changed successfully',
       });
-
     } finally {
       db.close();
     }
-
   } catch (error) {
     console.error('Change password error:', error);
     res.status(500).json({
       success: false,
-      error: 'Failed to change password'
+      error: 'Failed to change password',
     });
   }
 });
@@ -184,18 +180,16 @@ router.get('/2fa-status', authenticateToken, async (req, res) => {
 
       res.json({
         success: true,
-        enabled: Boolean(user.twoFactorEnabled)
+        enabled: Boolean(user.twoFactorEnabled),
       });
-
     } finally {
       db.close();
     }
-
   } catch (error) {
     console.error('Get 2FA status error:', error);
     res.status(500).json({
       success: false,
-      error: 'Failed to get 2FA status'
+      error: 'Failed to get 2FA status',
     });
   }
 });
@@ -215,14 +209,13 @@ router.post('/2fa-enable', authenticateToken, async (req, res) => {
       success: true,
       message: 'Scan this QR code with your authenticator app',
       secret: result.secret,
-      qrCode: qrCodeDataURL
+      qrCode: qrCodeDataURL,
     });
-
   } catch (error) {
     console.error('Enable 2FA error:', error);
     res.status(500).json({
       success: false,
-      error: 'Failed to enable 2FA'
+      error: 'Failed to enable 2FA',
     });
   }
 });
@@ -238,7 +231,7 @@ router.post('/2fa-confirm', authenticateToken, async (req, res) => {
     if (!code) {
       return res.status(400).json({
         success: false,
-        error: 'Verification code is required'
+        error: 'Verification code is required',
       });
     }
 
@@ -247,7 +240,7 @@ router.post('/2fa-confirm', authenticateToken, async (req, res) => {
     User.logActivity({
       userId: req.user.id,
       action: 'two_factor_enabled',
-      description: 'Two-factor authentication enabled'
+      description: 'Two-factor authentication enabled',
     });
 
     // Send email notification
@@ -260,14 +253,13 @@ router.post('/2fa-confirm', authenticateToken, async (req, res) => {
 
     res.json({
       success: true,
-      message: 'Two-factor authentication enabled successfully'
+      message: 'Two-factor authentication enabled successfully',
     });
-
   } catch (error) {
     console.error('Confirm 2FA error:', error);
     res.status(400).json({
       success: false,
-      error: error.message || 'Verification failed'
+      error: 'Dogrulama hatasi. Lutfen tekrar deneyin.',
     });
   }
 });
@@ -283,7 +275,7 @@ router.post('/2fa-disable', authenticateToken, async (req, res) => {
     if (!password) {
       return res.status(400).json({
         success: false,
-        error: 'Password is required to disable 2FA'
+        error: 'Password is required to disable 2FA',
       });
     }
 
@@ -296,33 +288,33 @@ router.post('/2fa-disable', authenticateToken, async (req, res) => {
       if (!isValid) {
         return res.status(401).json({
           success: false,
-          error: 'Incorrect password'
+          error: 'Incorrect password',
         });
       }
 
       // Disable 2FA
-      db.prepare('UPDATE users SET twoFactorEnabled = 0, twoFactorSecret = NULL WHERE id = ?').run(req.user.id);
+      db.prepare('UPDATE users SET twoFactorEnabled = 0, twoFactorSecret = NULL WHERE id = ?').run(
+        req.user.id
+      );
 
       User.logActivity({
         userId: req.user.id,
         action: 'two_factor_disabled',
-        description: 'Two-factor authentication disabled'
+        description: 'Two-factor authentication disabled',
       });
 
       res.json({
         success: true,
-        message: 'Two-factor authentication disabled'
+        message: 'Two-factor authentication disabled',
       });
-
     } finally {
       db.close();
     }
-
   } catch (error) {
     console.error('Disable 2FA error:', error);
     res.status(500).json({
       success: false,
-      error: 'Failed to disable 2FA'
+      error: 'Failed to disable 2FA',
     });
   }
 });
@@ -335,27 +327,29 @@ router.get('/api-keys', authenticateToken, async (req, res) => {
   try {
     const db = getDatabase();
     try {
-      const keys = db.prepare(`
+      const keys = db
+        .prepare(
+          `
         SELECT id, keyName, keyPrefix, permissions, lastUsed, expiresAt, createdAt, status
         FROM api_keys
         WHERE userId = ?
         ORDER BY createdAt DESC
-      `).all(req.user.id);
+      `
+        )
+        .all(req.user.id);
 
       res.json({
         success: true,
-        keys
+        keys,
       });
-
     } finally {
       db.close();
     }
-
   } catch (error) {
     console.error('Get API keys error:', error);
     res.status(500).json({
       success: false,
-      error: 'Failed to get API keys'
+      error: 'Failed to get API keys',
     });
   }
 });
@@ -371,7 +365,7 @@ router.post('/api-keys', authenticateToken, async (req, res) => {
     if (!keyName) {
       return res.status(400).json({
         success: false,
-        error: 'Key name is required'
+        error: 'Key name is required',
       });
     }
 
@@ -382,33 +376,33 @@ router.post('/api-keys', authenticateToken, async (req, res) => {
 
     const db = getDatabase();
     try {
-      db.prepare(`
+      db.prepare(
+        `
         INSERT INTO api_keys (userId, keyName, keyHash, keyPrefix, permissions)
         VALUES (?, ?, ?, ?, ?)
-      `).run(req.user.id, keyName, keyHash, keyPrefix, permissions);
+      `
+      ).run(req.user.id, keyName, keyHash, keyPrefix, permissions);
 
       User.logActivity({
         userId: req.user.id,
         action: 'api_key_created',
-        description: `Created API key: ${keyName}`
+        description: `Created API key: ${keyName}`,
       });
 
       res.json({
         success: true,
         message: 'API key created successfully',
         apiKey: apiKey,
-        warning: 'Save this key now. You will not be able to see it again!'
+        warning: 'Save this key now. You will not be able to see it again!',
       });
-
     } finally {
       db.close();
     }
-
   } catch (error) {
     console.error('Create API key error:', error);
     res.status(500).json({
       success: false,
-      error: 'Failed to create API key'
+      error: 'Failed to create API key',
     });
   }
 });
@@ -423,12 +417,14 @@ router.delete('/api-keys/:id', authenticateToken, async (req, res) => {
 
     const db = getDatabase();
     try {
-      const key = db.prepare('SELECT * FROM api_keys WHERE id = ? AND userId = ?').get(keyId, req.user.id);
+      const key = db
+        .prepare('SELECT * FROM api_keys WHERE id = ? AND userId = ?')
+        .get(keyId, req.user.id);
 
       if (!key) {
         return res.status(404).json({
           success: false,
-          error: 'API key not found'
+          error: 'API key not found',
         });
       }
 
@@ -437,23 +433,21 @@ router.delete('/api-keys/:id', authenticateToken, async (req, res) => {
       User.logActivity({
         userId: req.user.id,
         action: 'api_key_revoked',
-        description: `Revoked API key: ${key.keyName}`
+        description: `Revoked API key: ${key.keyName}`,
       });
 
       res.json({
         success: true,
-        message: 'API key revoked successfully'
+        message: 'API key revoked successfully',
       });
-
     } finally {
       db.close();
     }
-
   } catch (error) {
     console.error('Revoke API key error:', error);
     res.status(500).json({
       success: false,
-      error: 'Failed to revoke API key'
+      error: 'Failed to revoke API key',
     });
   }
 });

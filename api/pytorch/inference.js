@@ -29,10 +29,14 @@ const modelCache = new Map();
 async function getModelMetadata(modelName) {
   const db = getDatabase();
   try {
-    const model = db.prepare(`
+    const model = db
+      .prepare(
+        `
       SELECT * FROM pytorch_models
       WHERE model_name = ? AND deployment_status = 'active'
-    `).get(modelName);
+    `
+      )
+      .get(modelName);
 
     if (!model) {
       throw new Error(`Model not found or not active: ${modelName}`);
@@ -69,7 +73,7 @@ async function loadModel(modelPath, modelName) {
     executionProviders: ['cpu'], // Use 'cuda' if GPU available
     graphOptimizationLevel: 'all',
     enableCpuMemArena: true,
-    enableMemPattern: true
+    enableMemPattern: true,
   });
 
   // Cache the session
@@ -100,7 +104,7 @@ async function preprocessMedicalImage(imageBuffer) {
     const processedBuffer = await sharp(imageBuffer)
       .resize(224, 224, {
         fit: 'cover',
-        position: 'center'
+        position: 'center',
       })
       .removeAlpha()
       .raw()
@@ -156,7 +160,7 @@ async function runInference(session, inputTensor, modelMetadata) {
     return {
       output: output.data,
       outputShape: output.dims,
-      inferenceTime
+      inferenceTime,
     };
   } catch (error) {
     console.error('Inference error:', error);
@@ -183,14 +187,14 @@ function postprocessClassification(logits, classes) {
   classes.forEach((className, index) => {
     allProbabilities[className] = {
       probability: probabilities[index],
-      percentage: (probabilities[index] * 100).toFixed(2) + '%'
+      percentage: (probabilities[index] * 100).toFixed(2) + '%',
     };
   });
 
   return {
     prediction,
     confidence,
-    probabilities: allProbabilities
+    probabilities: allProbabilities,
   };
 }
 
@@ -200,11 +204,13 @@ function postprocessClassification(logits, classes) {
 function logInference(modelId, userId, inputHash, inferenceTime, confidence, result) {
   const db = getDatabase();
   try {
-    db.prepare(`
+    db.prepare(
+      `
       INSERT INTO pytorch_inference_logs (
         model_id, user_id, input_hash, inference_time_ms, confidence, result, result_class
       ) VALUES (?, ?, ?, ?, ?, ?, ?)
-    `).run(
+    `
+    ).run(
       modelId,
       userId || null,
       inputHash,
@@ -230,7 +236,7 @@ module.exports = async (req, res) => {
   if (req.method !== 'POST') {
     return res.status(405).json({
       success: false,
-      error: 'Method not allowed'
+      error: 'Method not allowed',
     });
   }
 
@@ -245,7 +251,7 @@ module.exports = async (req, res) => {
       return res.status(400).json({
         success: false,
         error: 'Image data required',
-        usage: 'Send base64-encoded image in "image" field'
+        usage: 'Send base64-encoded image in "image" field',
       });
     }
 
@@ -257,7 +263,7 @@ module.exports = async (req, res) => {
     } catch (error) {
       return res.status(400).json({
         success: false,
-        error: 'Invalid base64 image data'
+        error: 'Invalid base64 image data',
       });
     }
 
@@ -306,7 +312,7 @@ module.exports = async (req, res) => {
         name: modelMetadata.model_name,
         version: modelMetadata.model_version,
         type: modelMetadata.model_type,
-        domain: modelMetadata.domain
+        domain: modelMetadata.domain,
       },
       prediction: result.prediction,
       confidence: (result.confidence * 100).toFixed(2) + '%',
@@ -314,14 +320,13 @@ module.exports = async (req, res) => {
       performance: {
         preprocessing_ms: preprocessTime,
         inference_ms: inferenceTime,
-        total_ms: totalTime
+        total_ms: totalTime,
       },
       metadata: {
         input_hash: inputHash.substring(0, 16) + '...',
-        timestamp: new Date().toISOString()
-      }
+        timestamp: new Date().toISOString(),
+      },
     });
-
   } catch (error) {
     console.error('❌ PyTorch Inference Error:', error);
 
@@ -330,11 +335,11 @@ module.exports = async (req, res) => {
 
     res.status(500).json({
       success: false,
-      error: error.message || 'Inference failed',
+      error: 'Çıkarım işlemi başarısız',
       details: process.env.NODE_ENV === 'development' ? error.stack : undefined,
       performance: {
-        total_ms: totalTime
-      }
+        total_ms: totalTime,
+      },
     });
   }
 };

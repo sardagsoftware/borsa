@@ -268,7 +268,7 @@ async function registerHospital(req, res) {
     res.status(500).json({
       success: false,
       error: 'Failed to register hospital',
-      message: error.message,
+      message: 'İşlem başarısız. Lütfen tekrar deneyin.',
     });
   }
 }
@@ -459,7 +459,7 @@ async function login(req, res) {
     res.status(500).json({
       success: false,
       error: 'Login failed',
-      message: error.message,
+      message: 'İşlem başarısız. Lütfen tekrar deneyin.',
     });
   }
 }
@@ -504,7 +504,7 @@ async function setup2FA(req, res) {
     res.status(500).json({
       success: false,
       error: 'Failed to setup 2FA',
-      message: error.message,
+      message: 'İşlem başarısız. Lütfen tekrar deneyin.',
     });
   }
 }
@@ -560,7 +560,7 @@ async function enable2FA(req, res) {
     res.status(500).json({
       success: false,
       error: 'Failed to enable 2FA',
-      message: error.message,
+      message: 'İşlem başarısız. Lütfen tekrar deneyin.',
     });
   }
 }
@@ -596,7 +596,7 @@ async function logout(req, res) {
     res.status(500).json({
       success: false,
       error: 'Logout failed',
-      message: error.message,
+      message: 'İşlem başarısız. Lütfen tekrar deneyin.',
     });
   }
 }
@@ -629,7 +629,7 @@ async function getAuditLogs(req, res) {
     res.status(500).json({
       success: false,
       error: 'Failed to fetch audit logs',
-      message: error.message,
+      message: 'İşlem başarısız. Lütfen tekrar deneyin.',
     });
   }
 }

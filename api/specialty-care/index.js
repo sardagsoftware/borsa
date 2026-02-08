@@ -34,10 +34,10 @@ module.exports = async (req, res) => {
           criticalityLevel: s.criticalityLevel,
           aiModels: s.aiModels,
           quantumFeatures: s.quantumFeatures,
-          requiredExpertise: s.requiredExpertise
+          requiredExpertise: s.requiredExpertise,
         })),
         total: specialties.length,
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
       });
     }
 
@@ -48,7 +48,7 @@ module.exports = async (req, res) => {
       if (!specialtyId || !patientData || !symptoms) {
         return res.status(400).json({
           success: false,
-          error: 'Missing required fields: specialtyId, patientData, symptoms'
+          error: 'Missing required fields: specialtyId, patientData, symptoms',
         });
       }
 
@@ -58,7 +58,7 @@ module.exports = async (req, res) => {
       if (!specialty) {
         return res.status(404).json({
           success: false,
-          error: `Specialty not found: ${specialtyId}`
+          error: `Specialty not found: ${specialtyId}`,
         });
       }
 
@@ -74,25 +74,24 @@ module.exports = async (req, res) => {
         specialty: {
           id: specialty.id,
           name: specialty.name,
-          criticalityLevel: specialty.criticalityLevel
+          criticalityLevel: specialty.criticalityLevel,
         },
         analysis,
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
       });
     }
 
     return res.status(405).json({
       success: false,
-      error: 'Method not allowed'
+      error: 'Method not allowed',
     });
-
   } catch (error) {
     console.error('❌ Specialty Care API Error:', error);
 
     return res.status(500).json({
       success: false,
-      error: error.message || 'Internal server error',
-      timestamp: new Date().toISOString()
+      error: 'Saglik servisi hatasi. Lutfen tekrar deneyin.',
+      timestamp: new Date().toISOString(),
     });
   }
 };

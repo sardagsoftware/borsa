@@ -275,7 +275,8 @@ async function fetchUrl(url) {
       return { success: false, error: 'İstek zaman aşımına uğradı (15 saniye)' };
     }
 
-    return { success: false, error: `URL erişim hatası: ${error.message}` };
+    console.error('URL erişim hatası:', error.message);
+    return { success: false, error: 'URL erişim hatası. Lütfen tekrar deneyin.' };
   }
 }
 

@@ -1,3 +1,4 @@
+/* global URL */
 /**
  * Health Check & System Metrics Endpoint
  * /api/monitoring/health
@@ -44,12 +45,12 @@ async function handleHealthCheck(req, res) {
       checks.database = {
         status: dbError ? 'unhealthy' : 'healthy',
         responseTime: Date.now() - startTime,
-        error: dbError?.message || null,
+        error: dbError ? 'Veritabani baglantisi basarisiz.' : null,
       };
     } catch (err) {
       checks.database = {
         status: 'unhealthy',
-        error: err.message,
+        error: 'Veritabani baglantisi basarisiz.',
       };
     }
 
@@ -74,7 +75,9 @@ async function handleHealthCheck(req, res) {
     };
 
     // Overall status
-    const allHealthy = Object.values(checks).every(check => check.status === 'healthy' || check.status === 'not_configured');
+    const allHealthy = Object.values(checks).every(
+      check => check.status === 'healthy' || check.status === 'not_configured'
+    );
     const overallStatus = allHealthy ? 'healthy' : 'degraded';
 
     return res.status(overallStatus === 'healthy' ? 200 : 503).json({
@@ -88,7 +91,7 @@ async function handleHealthCheck(req, res) {
     return res.status(503).json({
       status: 'unhealthy',
       timestamp: new Date().toISOString(),
-      error: error.message,
+      error: 'Izleme islemi basarisiz.',
     });
   }
 }

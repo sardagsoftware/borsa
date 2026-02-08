@@ -12,7 +12,7 @@ function getCacheInstance() {
   if (!globalCache) {
     globalCache = new CacheManager({
       l1Enabled: true,
-      l2Enabled: process.env.UPSTASH_REDIS_URL ? true : false
+      l2Enabled: process.env.UPSTASH_REDIS_URL ? true : false,
     });
   }
   return globalCache;
@@ -33,15 +33,14 @@ module.exports = async (req, res) => {
       data: {
         stats: stats,
         health: health,
-        timestamp: new Date().toISOString()
-      }
+        timestamp: new Date().toISOString(),
+      },
     });
-
   } catch (error) {
     console.error('Cache stats error:', error);
     return res.status(500).json({
       success: false,
-      error: error.message
+      error: 'Onbellek islemi basarisiz.',
     });
   }
 };

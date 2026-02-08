@@ -76,7 +76,7 @@ const DICOM_TAGS = {
   // Quality Control
   IMAGE_TYPE: '00080008',
   ACQUISITION_DATE: '00080022',
-  ACQUISITION_TIME: '00080032'
+  ACQUISITION_TIME: '00080032',
 };
 
 // Comprehensive Device Manufacturer Database
@@ -87,115 +87,115 @@ const DEVICE_MANUFACTURERS = {
     country: 'USA',
     devices: {
       'Revolution CT': { type: 'CT Scanner', modality: 'CT' },
-      'Optima': { type: 'X-Ray / CT', modality: 'CR/CT' },
-      'Discovery': { type: 'MRI / PET-CT', modality: 'MR/PT' },
-      'LOGIQ': { type: 'Ultrasound', modality: 'US' },
-      'Senographe': { type: 'Mammography', modality: 'MG' },
-      'Definium': { type: 'Digital Radiography', modality: 'DX' }
-    }
+      Optima: { type: 'X-Ray / CT', modality: 'CR/CT' },
+      Discovery: { type: 'MRI / PET-CT', modality: 'MR/PT' },
+      LOGIQ: { type: 'Ultrasound', modality: 'US' },
+      Senographe: { type: 'Mammography', modality: 'MG' },
+      Definium: { type: 'Digital Radiography', modality: 'DX' },
+    },
   },
-  'SIEMENS': {
+  SIEMENS: {
     fullName: 'Siemens Healthineers',
     country: 'Germany',
     devices: {
-      'SOMATOM': { type: 'CT Scanner', modality: 'CT' },
-      'MAGNETOM': { type: 'MRI Scanner', modality: 'MR' },
-      'Artis': { type: 'Angiography', modality: 'XA' },
-      'ACUSON': { type: 'Ultrasound', modality: 'US' },
-      'Luminos': { type: 'Fluoroscopy', modality: 'RF' },
-      'MAMMOMAT': { type: 'Mammography', modality: 'MG' }
-    }
+      SOMATOM: { type: 'CT Scanner', modality: 'CT' },
+      MAGNETOM: { type: 'MRI Scanner', modality: 'MR' },
+      Artis: { type: 'Angiography', modality: 'XA' },
+      ACUSON: { type: 'Ultrasound', modality: 'US' },
+      Luminos: { type: 'Fluoroscopy', modality: 'RF' },
+      MAMMOMAT: { type: 'Mammography', modality: 'MG' },
+    },
   },
-  'PHILIPS': {
+  PHILIPS: {
     fullName: 'Philips Healthcare',
     country: 'Netherlands',
     devices: {
-      'Ingenuity': { type: 'PET-CT / CT', modality: 'PT/CT' },
-      'Achieva': { type: 'MRI Scanner', modality: 'MR' },
-      'Azurion': { type: 'Interventional X-ray', modality: 'XA' },
-      'EPIQ': { type: 'Ultrasound', modality: 'US' },
-      'MicroDose': { type: 'Mammography', modality: 'MG' },
-      'DigitalDiagnost': { type: 'Digital Radiography', modality: 'DX' }
-    }
+      Ingenuity: { type: 'PET-CT / CT', modality: 'PT/CT' },
+      Achieva: { type: 'MRI Scanner', modality: 'MR' },
+      Azurion: { type: 'Interventional X-ray', modality: 'XA' },
+      EPIQ: { type: 'Ultrasound', modality: 'US' },
+      MicroDose: { type: 'Mammography', modality: 'MG' },
+      DigitalDiagnost: { type: 'Digital Radiography', modality: 'DX' },
+    },
   },
-  'CANON': {
+  CANON: {
     fullName: 'Canon Medical Systems',
     country: 'Japan',
     devices: {
-      'Aquilion': { type: 'CT Scanner', modality: 'CT' },
-      'Vantage': { type: 'MRI Scanner', modality: 'MR' },
-      'Aplio': { type: 'Ultrasound', modality: 'US' },
-      'Alphenix': { type: 'Angiography', modality: 'XA' }
-    }
+      Aquilion: { type: 'CT Scanner', modality: 'CT' },
+      Vantage: { type: 'MRI Scanner', modality: 'MR' },
+      Aplio: { type: 'Ultrasound', modality: 'US' },
+      Alphenix: { type: 'Angiography', modality: 'XA' },
+    },
   },
-  'FUJIFILM': {
+  FUJIFILM: {
     fullName: 'Fujifilm Medical Systems',
     country: 'Japan',
     devices: {
-      'SCENARIA': { type: 'CT Scanner', modality: 'CT' },
-      'FDR': { type: 'Digital Radiography', modality: 'DX' },
-      'AMULET': { type: 'Mammography', modality: 'MG' }
-    }
+      SCENARIA: { type: 'CT Scanner', modality: 'CT' },
+      FDR: { type: 'Digital Radiography', modality: 'DX' },
+      AMULET: { type: 'Mammography', modality: 'MG' },
+    },
   },
-  'HOLOGIC': {
+  HOLOGIC: {
     fullName: 'Hologic Inc.',
     country: 'USA',
     devices: {
-      'Selenia': { type: 'Mammography', modality: 'MG' },
-      'Dimensions': { type: 'Tomosynthesis', modality: 'MG' },
-      'Affirm': { type: 'Breast Biopsy', modality: 'MG' }
-    }
+      Selenia: { type: 'Mammography', modality: 'MG' },
+      Dimensions: { type: 'Tomosynthesis', modality: 'MG' },
+      Affirm: { type: 'Breast Biopsy', modality: 'MG' },
+    },
   },
-  'CARESTREAM': {
+  CARESTREAM: {
     fullName: 'Carestream Health',
     country: 'USA',
     devices: {
-      'DRX': { type: 'Digital Radiography', modality: 'DX' },
-      'OnSight': { type: 'Extremity Imaging', modality: 'DX' }
-    }
+      DRX: { type: 'Digital Radiography', modality: 'DX' },
+      OnSight: { type: 'Extremity Imaging', modality: 'DX' },
+    },
   },
-  'AGFA': {
+  AGFA: {
     fullName: 'Agfa Healthcare',
     country: 'Belgium',
     devices: {
-      'DR': { type: 'Digital Radiography', modality: 'DX' },
-      'CR': { type: 'Computed Radiography', modality: 'CR' }
-    }
+      DR: { type: 'Digital Radiography', modality: 'DX' },
+      CR: { type: 'Computed Radiography', modality: 'CR' },
+    },
   },
-  'HITACHI': {
+  HITACHI: {
     fullName: 'Hitachi Healthcare',
     country: 'Japan',
     devices: {
-      'ECLOS': { type: 'MRI Scanner', modality: 'MR' },
-      'ARIETTA': { type: 'Ultrasound', modality: 'US' }
-    }
+      ECLOS: { type: 'MRI Scanner', modality: 'MR' },
+      ARIETTA: { type: 'Ultrasound', modality: 'US' },
+    },
   },
-  'SAMSUNG': {
+  SAMSUNG: {
     fullName: 'Samsung Medison',
     country: 'South Korea',
     devices: {
-      'HERA': { type: 'Ultrasound', modality: 'US' },
-      'RS80A': { type: 'Premium Ultrasound', modality: 'US' }
-    }
-  }
+      HERA: { type: 'Ultrasound', modality: 'US' },
+      RS80A: { type: 'Premium Ultrasound', modality: 'US' },
+    },
+  },
 };
 
 // Modality Full Names
 const MODALITY_NAMES = {
-  'CR': 'Computed Radiography',
-  'CT': 'Computed Tomography',
-  'MR': 'Magnetic Resonance Imaging',
-  'US': 'Ultrasound',
-  'XA': 'X-Ray Angiography',
-  'RF': 'Radiofluoroscopy',
-  'DX': 'Digital Radiography',
-  'MG': 'Mammography',
-  'PT': 'Positron Emission Tomography',
-  'NM': 'Nuclear Medicine',
-  'OT': 'Other',
-  'BI': 'Biomagnetic Imaging',
-  'ES': 'Endoscopy',
-  'GM': 'General Microscopy'
+  CR: 'Computed Radiography',
+  CT: 'Computed Tomography',
+  MR: 'Magnetic Resonance Imaging',
+  US: 'Ultrasound',
+  XA: 'X-Ray Angiography',
+  RF: 'Radiofluoroscopy',
+  DX: 'Digital Radiography',
+  MG: 'Mammography',
+  PT: 'Positron Emission Tomography',
+  NM: 'Nuclear Medicine',
+  OT: 'Other',
+  BI: 'Biomagnetic Imaging',
+  ES: 'Endoscopy',
+  GM: 'General Microscopy',
 };
 
 /**
@@ -251,15 +251,14 @@ async function parseDICOMFile(filePath) {
     return {
       success: true,
       metadata,
-      isDICOM: true
+      isDICOM: true,
     };
-
   } catch (error) {
     console.error('DICOM parsing error:', error.message);
     return {
       success: false,
-      error: error.message,
-      isDICOM: false
+      error: 'Tıbbi veri hatası. Lütfen tekrar deneyin.',
+      isDICOM: false,
     };
   }
 }
@@ -325,7 +324,7 @@ function identifyDevice(metadata) {
     deviceType: null,
     modality: null,
     modalityFull: null,
-    confidence: 0
+    confidence: 0,
   };
 
   if (!metadata.manufacturer) {
@@ -429,13 +428,13 @@ export default async function handler(req, res) {
         'Modality detection',
         'Study protocol identification',
         'Patient positioning metadata',
-        'Image quality parameters'
+        'Image quality parameters',
       ],
 
       endpoints: {
         POST: '/api/medical/device-detection',
-        GET: '/api/medical/device-detection (this endpoint)'
-      }
+        GET: '/api/medical/device-detection (this endpoint)',
+      },
     });
   }
 
@@ -447,7 +446,7 @@ export default async function handler(req, res) {
       const form = formidable({
         maxFileSize: 100 * 1024 * 1024, // 100MB max for DICOM files
         keepExtensions: true,
-        multiples: false
+        multiples: false,
       });
 
       const [fields, files] = await new Promise((resolve, reject) => {
@@ -460,7 +459,7 @@ export default async function handler(req, res) {
       if (!files.file) {
         return res.status(400).json({
           success: false,
-          error: 'No file uploaded. Please upload a DICOM file.'
+          error: 'No file uploaded. Please upload a DICOM file.',
         });
       }
 
@@ -481,7 +480,7 @@ export default async function handler(req, res) {
         return res.status(400).json({
           success: false,
           error: 'Failed to parse DICOM file',
-          details: dicomResult.error
+          details: dicomResult.error,
         });
       }
 
@@ -491,8 +490,16 @@ export default async function handler(req, res) {
       const processingTime = Date.now() - startTime;
 
       // Save device detection to database (if fileId provided)
-      const fileId = fields.fileId ? (Array.isArray(fields.fileId) ? fields.fileId[0] : fields.fileId) : null;
-      const userId = fields.userId ? (Array.isArray(fields.userId) ? fields.userId[0] : fields.userId) : null;
+      const fileId = fields.fileId
+        ? Array.isArray(fields.fileId)
+          ? fields.fileId[0]
+          : fields.fileId
+        : null;
+      const userId = fields.userId
+        ? Array.isArray(fields.userId)
+          ? fields.userId[0]
+          : fields.userId
+        : null;
 
       if (fileId && userId) {
         try {
@@ -505,36 +512,40 @@ export default async function handler(req, res) {
           );
 
           // Save device detection results
-          await fileManager.saveDeviceDetection(fileId, {
-            detected: deviceInfo.detected,
-            manufacturer: deviceInfo.manufacturer,
-            manufacturerFullName: deviceInfo.manufacturer,
-            deviceModel: deviceInfo.deviceModel,
-            deviceType: deviceInfo.deviceType,
-            deviceSerial: dicomResult.metadata.serialNumber,
-            modality: deviceInfo.modality,
-            modalityFull: deviceInfo.modalityFull,
-            studyDescription: dicomResult.metadata.studyDescription,
-            stationName: dicomResult.metadata.stationName,
-            institutionName: dicomResult.metadata.institutionName,
-            softwareVersions: dicomResult.metadata.softwareVersion,
-            confidence: deviceInfo.confidence,
-            detectionMethod: 'dicom_tags',
-            dicomTags: dicomResult.metadata,
-            metadata: dicomResult.metadata
-          }, session.id);
+          await fileManager.saveDeviceDetection(
+            fileId,
+            {
+              detected: deviceInfo.detected,
+              manufacturer: deviceInfo.manufacturer,
+              manufacturerFullName: deviceInfo.manufacturer,
+              deviceModel: deviceInfo.deviceModel,
+              deviceType: deviceInfo.deviceType,
+              deviceSerial: dicomResult.metadata.serialNumber,
+              modality: deviceInfo.modality,
+              modalityFull: deviceInfo.modalityFull,
+              studyDescription: dicomResult.metadata.studyDescription,
+              stationName: dicomResult.metadata.stationName,
+              institutionName: dicomResult.metadata.institutionName,
+              softwareVersions: dicomResult.metadata.softwareVersion,
+              confidence: deviceInfo.confidence,
+              detectionMethod: 'dicom_tags',
+              dicomTags: dicomResult.metadata,
+              metadata: dicomResult.metadata,
+            },
+            session.id
+          );
 
           // Update analysis session as completed
           await fileManager.updateAnalysisSession(session.id, {
             status: 'completed',
             result: deviceInfo,
             confidence: deviceInfo.confidence,
-            processingTime: processingTime
+            processingTime: processingTime,
           });
 
           // Update user stats
           await fileManager.updateUserStats(userId, {
-            deviceDetections: 1
+            deviceDetections: 1,
           });
         } catch (dbError) {
           console.error('Database save error (non-critical):', dbError);
@@ -552,27 +563,26 @@ export default async function handler(req, res) {
           stationName: dicomResult.metadata.stationName,
           softwareVersion: dicomResult.metadata.softwareVersion,
           modality: dicomResult.metadata.modality,
-          studyDescription: dicomResult.metadata.studyDescription
+          studyDescription: dicomResult.metadata.studyDescription,
         },
         processing: {
           timeMs: processingTime,
-          timestamp: new Date().toISOString()
+          timestamp: new Date().toISOString(),
         },
-        saved: fileId && userId ? true : false
+        saved: fileId && userId ? true : false,
       });
-
     } catch (error) {
       console.error('Device detection error:', error);
       return res.status(500).json({
         success: false,
         error: 'Device detection failed',
-        details: error.message
+        details: 'Tıbbi veri hatası. Lütfen tekrar deneyin.',
       });
     }
   }
 
   return res.status(405).json({
     success: false,
-    error: 'Method not allowed'
+    error: 'Method not allowed',
   });
 }

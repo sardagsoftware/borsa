@@ -17,8 +17,10 @@ class FacebookService {
     this.config = {
       appId: process.env.FACEBOOK_APP_ID,
       appSecret: process.env.FACEBOOK_APP_SECRET,
-      redirectUri: process.env.FACEBOOK_REDIRECT_URI || 'http://localhost:3500/api/omnireach/platforms/facebook/callback',
-      graphApiUrl: 'https://graph.facebook.com/v18.0'
+      redirectUri:
+        process.env.FACEBOOK_REDIRECT_URI ||
+        'http://localhost:3500/api/omnireach/platforms/facebook/callback',
+      graphApiUrl: 'https://graph.facebook.com/v18.0',
     };
 
     console.log('✅ Facebook service initialized');
@@ -48,16 +50,17 @@ class FacebookService {
       'pages_read_engagement',
       'pages_manage_posts',
       'pages_manage_engagement',
-      'publish_video'
+      'publish_video',
     ].join(',');
 
     const state = this.generateState();
 
-    const authUrl = `https://www.facebook.com/v18.0/dialog/oauth?` +
+    const authUrl =
+      'https://www.facebook.com/v18.0/dialog/oauth?' +
       `client_id=${this.config.appId}` +
       `&redirect_uri=${encodeURIComponent(this.config.redirectUri)}` +
       `&scope=${scopes}` +
-      `&response_type=code` +
+      '&response_type=code' +
       `&state=${state}`;
 
     console.log('🔗 Facebook Auth URL generated with state protection');
@@ -84,8 +87,8 @@ class FacebookService {
           client_id: this.config.appId,
           client_secret: this.config.appSecret,
           redirect_uri: this.config.redirectUri,
-          code: code
-        }
+          code: code,
+        },
       });
 
       const userAccessToken = tokenResponse.data.access_token;
@@ -94,8 +97,8 @@ class FacebookService {
       const pagesResponse = await axios.get(`${this.config.graphApiUrl}/me/accounts`, {
         params: {
           access_token: userAccessToken,
-          fields: 'id,name,access_token,category,fan_count,picture'
-        }
+          fields: 'id,name,access_token,category,fan_count,picture',
+        },
       });
 
       if (!pagesResponse.data.data || pagesResponse.data.data.length === 0) {
@@ -108,7 +111,7 @@ class FacebookService {
         accessToken: page.access_token,
         category: page.category,
         fanCount: page.fan_count,
-        picture: page.picture?.data?.url
+        picture: page.picture?.data?.url,
       }));
 
       console.log('✅ [Facebook] OAuth connection successful');
@@ -124,17 +127,17 @@ class FacebookService {
         tokens: {
           access_token: userAccessToken,
           page_access_token: primaryPage.accessToken,
-          token_type: 'bearer'
+          token_type: 'bearer',
         },
         accountName: primaryPage.name,
         userAccessToken: userAccessToken,
-        pages: pages
+        pages: pages,
       };
     } catch (error) {
       console.error('❌ [Facebook] OAuth connection failed:', error.message);
       return {
         success: false,
-        error: error.message
+        error: 'Platform işlem hatası',
       };
     }
   }
@@ -148,8 +151,8 @@ class FacebookService {
           grant_type: 'fb_exchange_token',
           client_id: this.config.appId,
           client_secret: this.config.appSecret,
-          fb_exchange_token: accessToken
-        }
+          fb_exchange_token: accessToken,
+        },
       });
 
       console.log('✅ [Facebook] Access token refreshed');
@@ -158,12 +161,12 @@ class FacebookService {
         tokens: {
           access_token: response.data.access_token,
           token_type: 'bearer',
-          expires_in: response.data.expires_in
-        }
+          expires_in: response.data.expires_in,
+        },
       };
     } catch (error) {
       console.error('❌ [Facebook] Token refresh failed:', error.message);
-      return { success: false, error: error.message };
+      return { success: false, error: 'Token yenileme hatası' };
     }
   }
 
@@ -182,14 +185,11 @@ class FacebookService {
 
       // Step 1: Initialize video upload
       console.log('🎬 Initializing video upload...');
-      const initResponse = await axios.post(
-        `${this.config.graphApiUrl}/${pageId}/videos`,
-        {
-          upload_phase: 'start',
-          file_size: videoData.fileSize,
-          access_token: pageAccessToken
-        }
-      );
+      const initResponse = await axios.post(`${this.config.graphApiUrl}/${pageId}/videos`, {
+        upload_phase: 'start',
+        file_size: videoData.fileSize,
+        access_token: pageAccessToken,
+      });
 
       const uploadSessionId = initResponse.data.upload_session_id;
       const videoId = initResponse.data.video_id;
@@ -205,16 +205,13 @@ class FacebookService {
         const endOffset = Math.min(startOffset + chunkSize, videoBuffer.length);
         const chunk = videoBuffer.slice(startOffset, endOffset);
 
-        await axios.post(
-          `${this.config.graphApiUrl}/${pageId}/videos`,
-          {
-            upload_phase: 'transfer',
-            start_offset: startOffset,
-            upload_session_id: uploadSessionId,
-            video_file_chunk: chunk.toString('base64'),
-            access_token: pageAccessToken
-          }
-        );
+        await axios.post(`${this.config.graphApiUrl}/${pageId}/videos`, {
+          upload_phase: 'transfer',
+          start_offset: startOffset,
+          upload_session_id: uploadSessionId,
+          video_file_chunk: chunk.toString('base64'),
+          access_token: pageAccessToken,
+        });
 
         const progress = ((endOffset / videoBuffer.length) * 100).toFixed(1);
         console.log(`   Progress: ${progress}%`);
@@ -224,30 +221,24 @@ class FacebookService {
 
       // Step 3: Finalize upload
       console.log('✅ Finalizing upload...');
-      const finalResponse = await axios.post(
-        `${this.config.graphApiUrl}/${pageId}/videos`,
-        {
-          upload_phase: 'finish',
-          upload_session_id: uploadSessionId,
-          title: videoData.title,
-          description: videoData.description || '',
-          access_token: pageAccessToken
-        }
-      );
+      const finalResponse = await axios.post(`${this.config.graphApiUrl}/${pageId}/videos`, {
+        upload_phase: 'finish',
+        upload_session_id: uploadSessionId,
+        title: videoData.title,
+        description: videoData.description || '',
+        access_token: pageAccessToken,
+      });
 
       const publishSuccess = finalResponse.data.success;
 
       if (publishSuccess) {
         // Get video details
-        const videoDetailsResponse = await axios.get(
-          `${this.config.graphApiUrl}/${videoId}`,
-          {
-            params: {
-              fields: 'id,permalink_url,created_time,picture',
-              access_token: pageAccessToken
-            }
-          }
-        );
+        const videoDetailsResponse = await axios.get(`${this.config.graphApiUrl}/${videoId}`, {
+          params: {
+            fields: 'id,permalink_url,created_time,picture',
+            access_token: pageAccessToken,
+          },
+        });
 
         const video = videoDetailsResponse.data;
 
@@ -260,7 +251,7 @@ class FacebookService {
           videoId: video.id,
           url: video.permalink_url,
           thumbnailUrl: video.picture,
-          createdTime: video.created_time
+          createdTime: video.created_time,
         };
       } else {
         throw new Error('Video publishing failed');
@@ -269,7 +260,7 @@ class FacebookService {
       console.error('❌ [Facebook] Video publishing failed:', error.message);
       return {
         success: false,
-        error: error.message
+        error: 'Platform işlem hatası',
       };
     }
   }
@@ -285,29 +276,23 @@ class FacebookService {
 
       const { pageAccessToken, pageId } = videoData;
 
-      const response = await axios.post(
-        `${this.config.graphApiUrl}/${pageId}/videos`,
-        {
-          title: videoData.title,
-          description: videoData.description || '',
-          file_url: videoData.videoUrl, // Publicly accessible URL
-          published: videoData.published !== false, // Default true
-          access_token: pageAccessToken
-        }
-      );
+      const response = await axios.post(`${this.config.graphApiUrl}/${pageId}/videos`, {
+        title: videoData.title,
+        description: videoData.description || '',
+        file_url: videoData.videoUrl, // Publicly accessible URL
+        published: videoData.published !== false, // Default true
+        access_token: pageAccessToken,
+      });
 
       const videoId = response.data.id;
 
       // Get video details
-      const videoDetailsResponse = await axios.get(
-        `${this.config.graphApiUrl}/${videoId}`,
-        {
-          params: {
-            fields: 'id,permalink_url,created_time,picture',
-            access_token: pageAccessToken
-          }
-        }
-      );
+      const videoDetailsResponse = await axios.get(`${this.config.graphApiUrl}/${videoId}`, {
+        params: {
+          fields: 'id,permalink_url,created_time,picture',
+          access_token: pageAccessToken,
+        },
+      });
 
       const video = videoDetailsResponse.data;
 
@@ -320,13 +305,13 @@ class FacebookService {
         videoId: video.id,
         url: video.permalink_url,
         thumbnailUrl: video.picture,
-        createdTime: video.created_time
+        createdTime: video.created_time,
       };
     } catch (error) {
       console.error('❌ [Facebook] Video publishing failed:', error.message);
       return {
         success: false,
-        error: error.message
+        error: 'Platform işlem hatası',
       };
     }
   }
@@ -339,15 +324,13 @@ class FacebookService {
    */
   async getVideoInsights(videoId, pageAccessToken) {
     try {
-      const response = await axios.get(
-        `${this.config.graphApiUrl}/${videoId}/video_insights`,
-        {
-          params: {
-            metric: 'total_video_views,total_video_impressions,total_video_reactions,total_video_comments,total_video_shares',
-            access_token: pageAccessToken
-          }
-        }
-      );
+      const response = await axios.get(`${this.config.graphApiUrl}/${videoId}/video_insights`, {
+        params: {
+          metric:
+            'total_video_views,total_video_impressions,total_video_reactions,total_video_comments,total_video_shares',
+          access_token: pageAccessToken,
+        },
+      });
 
       const insights = {};
       response.data.data.forEach(metric => {
@@ -357,13 +340,13 @@ class FacebookService {
       console.log('✅ [Facebook] Video insights retrieved');
       return {
         success: true,
-        insights: insights
+        insights: insights,
       };
     } catch (error) {
       console.error('❌ [Facebook] Failed to get insights:', error.message);
       return {
         success: false,
-        error: error.message
+        error: 'Platform işlem hatası',
       };
     }
   }
@@ -376,16 +359,13 @@ class FacebookService {
    */
   async getPageInsights(pageId, pageAccessToken) {
     try {
-      const response = await axios.get(
-        `${this.config.graphApiUrl}/${pageId}/insights`,
-        {
-          params: {
-            metric: 'page_views_total,page_fans,page_impressions,page_engaged_users',
-            period: 'day',
-            access_token: pageAccessToken
-          }
-        }
-      );
+      const response = await axios.get(`${this.config.graphApiUrl}/${pageId}/insights`, {
+        params: {
+          metric: 'page_views_total,page_fans,page_impressions,page_engaged_users',
+          period: 'day',
+          access_token: pageAccessToken,
+        },
+      });
 
       const insights = {};
       response.data.data.forEach(metric => {
@@ -395,13 +375,13 @@ class FacebookService {
       console.log('✅ [Facebook] Page insights retrieved');
       return {
         success: true,
-        insights: insights
+        insights: insights,
       };
     } catch (error) {
       console.error('❌ [Facebook] Failed to get page insights:', error.message);
       return {
         success: false,
-        error: error.message
+        error: 'Platform işlem hatası',
       };
     }
   }

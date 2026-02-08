@@ -55,9 +55,7 @@ export default async function handler(req: any, res: any) {
     }
 
     // Get explainer with language preference
-    const engine = language
-      ? new ExplainabilityEngine({ language })
-      : getExplainer();
+    const engine = language ? new ExplainabilityEngine({ language }) : getExplainer();
 
     // Generate explanation
     const explanation = engine.explain({
@@ -78,10 +76,10 @@ export default async function handler(req: any, res: any) {
   } catch (error: any) {
     console.error('Explanation error:', error);
 
-    if (error.message.includes('validation')) {
+    if (error.message?.includes('validation')) {
       return res.status(400).json({
         error: 'Validation error',
-        message: error.message,
+        message: 'Dogrulama hatasi. Lutfen girisleri kontrol edin.',
       });
     }
 

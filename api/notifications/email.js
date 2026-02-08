@@ -21,9 +21,9 @@ const MAX_LOG_SIZE = 1000;
 
 // Email templates
 const EMAIL_TEMPLATES = {
-    consultation_alert: {
-        subject: 'New Consultation Alert - Medical LyDian',
-        template: (data) => `
+  consultation_alert: {
+    subject: 'New Consultation Alert - Medical LyDian',
+    template: data => `
             <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
                 <div style="background: #000; color: #fff; padding: 20px; text-align: center;">
                     <h1 style="margin: 0;">Medical LyDian</h1>
@@ -55,12 +55,12 @@ const EMAIL_TEMPLATES = {
                     <p style="margin: 5px 0 0 0;">This is an automated notification. Please do not reply.</p>
                 </div>
             </div>
-        `
-    },
+        `,
+  },
 
-    system_alert: {
-        subject: 'System Alert - Medical LyDian',
-        template: (data) => `
+  system_alert: {
+    subject: 'System Alert - Medical LyDian',
+    template: data => `
             <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
                 <div style="background: ${data.severity === 'critical' ? '#d32f2f' : '#ff9800'}; color: #fff; padding: 20px; text-align: center;">
                     <h1 style="margin: 0;">⚠️ System Alert</h1>
@@ -92,12 +92,12 @@ const EMAIL_TEMPLATES = {
                     <p style="margin: 5px 0 0 0;">This is an automated alert. Immediate action may be required.</p>
                 </div>
             </div>
-        `
-    },
+        `,
+  },
 
-    daily_report: {
-        subject: 'Daily Report - Medical LyDian',
-        template: (data) => `
+  daily_report: {
+    subject: 'Daily Report - Medical LyDian',
+    template: data => `
             <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
                 <div style="background: #000; color: #fff; padding: 20px; text-align: center;">
                     <h1 style="margin: 0;">Daily Report</h1>
@@ -138,12 +138,12 @@ const EMAIL_TEMPLATES = {
                     <p style="margin: 5px 0 0 0;">This is an automated report.</p>
                 </div>
             </div>
-        `
-    },
+        `,
+  },
 
-    user_invitation: {
-        subject: 'Welcome to Medical LyDian',
-        template: (data) => `
+  user_invitation: {
+    subject: 'Welcome to Medical LyDian',
+    template: data => `
             <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
                 <div style="background: #000; color: #fff; padding: 20px; text-align: center;">
                     <h1 style="margin: 0;">Welcome to Medical LyDian</h1>
@@ -175,156 +175,156 @@ const EMAIL_TEMPLATES = {
                     <p style="margin: 5px 0 0 0;">If you did not request this, please contact support.</p>
                 </div>
             </div>
-        `
-    }
+        `,
+  },
 };
 
 class EmailService {
-    constructor() {
-        this.queue = [];
-        this.deliveryLog = [];
-        this.maxRetries = 3;
+  constructor() {
+    this.queue = [];
+    this.deliveryLog = [];
+    this.maxRetries = 3;
+  }
+
+  /**
+   * Send email
+   */
+  async sendEmail(emailData) {
+    const email = {
+      id: this.generateId(),
+      to: emailData.to,
+      from: emailData.from || 'noreply@medicallydian.com',
+      subject: emailData.subject,
+      html: emailData.html,
+      template: emailData.template,
+      templateData: emailData.templateData,
+      priority: emailData.priority || 'normal',
+      createdAt: new Date().toISOString(),
+      status: 'queued',
+      retryCount: 0,
+    };
+
+    // Use template if provided
+    if (email.template && EMAIL_TEMPLATES[email.template]) {
+      const template = EMAIL_TEMPLATES[email.template];
+      email.subject = template.subject;
+      email.html = template.template(email.templateData);
     }
 
-    /**
-     * Send email
-     */
-    async sendEmail(emailData) {
-        const email = {
-            id: this.generateId(),
-            to: emailData.to,
-            from: emailData.from || 'noreply@medicallydian.com',
-            subject: emailData.subject,
-            html: emailData.html,
-            template: emailData.template,
-            templateData: emailData.templateData,
-            priority: emailData.priority || 'normal',
-            createdAt: new Date().toISOString(),
-            status: 'queued',
-            retryCount: 0
-        };
+    this.queue.push(email);
 
-        // Use template if provided
-        if (email.template && EMAIL_TEMPLATES[email.template]) {
-            const template = EMAIL_TEMPLATES[email.template];
-            email.subject = template.subject;
-            email.html = template.template(email.templateData);
-        }
+    // Simulate email sending
+    const result = await this.processEmail(email);
 
-        this.queue.push(email);
+    return result;
+  }
 
-        // Simulate email sending
-        const result = await this.processEmail(email);
+  /**
+   * Process email (simulated)
+   */
+  async processEmail(email) {
+    try {
+      // Simulate network delay
+      await new Promise(resolve => setTimeout(resolve, 100));
 
-        return result;
-    }
+      // Simulate success (90% success rate)
+      const success = Math.random() > 0.1;
 
-    /**
-     * Process email (simulated)
-     */
-    async processEmail(email) {
-        try {
-            // Simulate network delay
-            await new Promise(resolve => setTimeout(resolve, 100));
+      if (success) {
+        email.status = 'delivered';
+        email.deliveredAt = new Date().toISOString();
 
-            // Simulate success (90% success rate)
-            const success = Math.random() > 0.1;
-
-            if (success) {
-                email.status = 'delivered';
-                email.deliveredAt = new Date().toISOString();
-
-                this.logDelivery(email, 'success');
-
-                return {
-                    success: true,
-                    emailId: email.id,
-                    status: 'delivered',
-                    message: 'Email sent successfully'
-                };
-            } else {
-                throw new Error('Email delivery failed');
-            }
-        } catch (error) {
-            email.status = 'failed';
-            email.error = error.message;
-            email.retryCount++;
-
-            this.logDelivery(email, 'failed', error.message);
-
-            // Retry if under max retries
-            if (email.retryCount < this.maxRetries) {
-                email.status = 'queued';
-                return {
-                    success: false,
-                    emailId: email.id,
-                    status: 'queued_retry',
-                    message: `Email failed, will retry (${email.retryCount}/${this.maxRetries})`
-                };
-            }
-
-            return {
-                success: false,
-                emailId: email.id,
-                status: 'failed',
-                error: error.message,
-                message: 'Email delivery failed after retries'
-            };
-        }
-    }
-
-    /**
-     * Log delivery
-     */
-    logDelivery(email, status, error = null) {
-        const log = {
-            emailId: email.id,
-            to: email.to,
-            subject: email.subject,
-            status,
-            error,
-            timestamp: new Date().toISOString()
-        };
-
-        this.deliveryLog.unshift(log);
-
-        // Keep only recent logs
-        if (this.deliveryLog.length > MAX_LOG_SIZE) {
-            this.deliveryLog = this.deliveryLog.slice(0, MAX_LOG_SIZE);
-        }
-    }
-
-    /**
-     * Get email statistics
-     */
-    getStatistics() {
-        const total = this.deliveryLog.length;
-        const delivered = this.deliveryLog.filter(log => log.status === 'success').length;
-        const failed = this.deliveryLog.filter(log => log.status === 'failed').length;
+        this.logDelivery(email, 'success');
 
         return {
-            total,
-            delivered,
-            failed,
-            deliveryRate: total > 0 ? ((delivered / total) * 100).toFixed(2) + '%' : '0%',
-            queueSize: this.queue.filter(e => e.status === 'queued').length,
-            recentDeliveries: this.deliveryLog.slice(0, 10)
+          success: true,
+          emailId: email.id,
+          status: 'delivered',
+          message: 'Email sent successfully',
         };
-    }
+      } else {
+        throw new Error('Email delivery failed');
+      }
+    } catch (error) {
+      email.status = 'failed';
+      email.error = error.message;
+      email.retryCount++;
 
-    /**
-     * Get delivery logs
-     */
-    getDeliveryLogs(limit = 100) {
-        return this.deliveryLog.slice(0, limit);
-    }
+      this.logDelivery(email, 'failed', error.message);
 
-    /**
-     * Generate ID
-     */
-    generateId() {
-        return `email_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+      // Retry if under max retries
+      if (email.retryCount < this.maxRetries) {
+        email.status = 'queued';
+        return {
+          success: false,
+          emailId: email.id,
+          status: 'queued_retry',
+          message: `Email failed, will retry (${email.retryCount}/${this.maxRetries})`,
+        };
+      }
+
+      return {
+        success: false,
+        emailId: email.id,
+        status: 'failed',
+        error: 'E-posta gönderim hatası',
+        message: 'Email delivery failed after retries',
+      };
     }
+  }
+
+  /**
+   * Log delivery
+   */
+  logDelivery(email, status, error = null) {
+    const log = {
+      emailId: email.id,
+      to: email.to,
+      subject: email.subject,
+      status,
+      error,
+      timestamp: new Date().toISOString(),
+    };
+
+    this.deliveryLog.unshift(log);
+
+    // Keep only recent logs
+    if (this.deliveryLog.length > MAX_LOG_SIZE) {
+      this.deliveryLog = this.deliveryLog.slice(0, MAX_LOG_SIZE);
+    }
+  }
+
+  /**
+   * Get email statistics
+   */
+  getStatistics() {
+    const total = this.deliveryLog.length;
+    const delivered = this.deliveryLog.filter(log => log.status === 'success').length;
+    const failed = this.deliveryLog.filter(log => log.status === 'failed').length;
+
+    return {
+      total,
+      delivered,
+      failed,
+      deliveryRate: total > 0 ? ((delivered / total) * 100).toFixed(2) + '%' : '0%',
+      queueSize: this.queue.filter(e => e.status === 'queued').length,
+      recentDeliveries: this.deliveryLog.slice(0, 10),
+    };
+  }
+
+  /**
+   * Get delivery logs
+   */
+  getDeliveryLogs(limit = 100) {
+    return this.deliveryLog.slice(0, limit);
+  }
+
+  /**
+   * Generate ID
+   */
+  generateId() {
+    return `email_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+  }
 }
 
 // Singleton instance
@@ -332,119 +332,125 @@ const emailService = new EmailService();
 
 // API Handler
 export default async function handler(req, res) {
-    // CORS Headers
-    res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  // CORS Headers
+  res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
-    if (req.method === 'OPTIONS') {
-        return res.status(200).end();
-    }
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
 
-    // Authentication check
-    const token = req.headers.authorization?.replace('Bearer ', '');
-    if (!token || token !== process.env.ADMIN_TOKEN) {
-        return res.status(401).json({
-            success: false,
-            error: 'Unauthorized - Admin access required'
-        });
-    }
-
-    if (req.method === 'POST') {
-        const { action, data } = req.body;
-
-        // Send email
-        if (action === 'send') {
-            const result = await emailService.sendEmail(data);
-            return res.status(result.success ? 200 : 500).json(result);
-        }
-
-        // Send consultation alert
-        if (action === 'send-consultation-alert') {
-            const result = await emailService.sendEmail({
-                to: data.to,
-                template: 'consultation_alert',
-                templateData: data,
-                priority: 'high'
-            });
-            return res.status(result.success ? 200 : 500).json(result);
-        }
-
-        // Send system alert
-        if (action === 'send-system-alert') {
-            const result = await emailService.sendEmail({
-                to: data.to,
-                template: 'system_alert',
-                templateData: data,
-                priority: 'critical'
-            });
-            return res.status(result.success ? 200 : 500).json(result);
-        }
-
-        // Send daily report
-        if (action === 'send-daily-report') {
-            const result = await emailService.sendEmail({
-                to: data.to,
-                template: 'daily_report',
-                templateData: data,
-                priority: 'normal'
-            });
-            return res.status(result.success ? 200 : 500).json(result);
-        }
-
-        // Send user invitation
-        if (action === 'send-invitation') {
-            const result = await emailService.sendEmail({
-                to: data.to,
-                template: 'user_invitation',
-                templateData: data,
-                priority: 'high'
-            });
-            return res.status(result.success ? 200 : 500).json(result);
-        }
-
-        return res.status(400).json({
-            success: false,
-            error: 'Invalid action'
-        });
-    }
-
-    if (req.method === 'GET') {
-        const { action, limit } = req.query;
-
-        // Get statistics
-        if (action === 'statistics') {
-            const stats = emailService.getStatistics();
-            return res.status(200).json({
-                success: true,
-                statistics: stats
-            });
-        }
-
-        // Get delivery logs
-        if (action === 'logs') {
-            const logs = emailService.getDeliveryLogs(parseInt(limit) || 100);
-            return res.status(200).json({
-                success: true,
-                count: logs.length,
-                logs
-            });
-        }
-
-        return res.status(200).json({
-            success: true,
-            message: 'Medical LyDian Email Notification System',
-            version: '1.0.0',
-            templates: Object.keys(EMAIL_TEMPLATES),
-            endpoints: {
-                POST: ['send', 'send-consultation-alert', 'send-system-alert', 'send-daily-report', 'send-invitation'],
-                GET: ['statistics', 'logs']
-            }
-        });
-    }
-
-    return res.status(405).json({
-        success: false,
-        error: 'Method not allowed'
+  // Authentication check
+  const token = req.headers.authorization?.replace('Bearer ', '');
+  if (!token || token !== process.env.ADMIN_TOKEN) {
+    return res.status(401).json({
+      success: false,
+      error: 'Unauthorized - Admin access required',
     });
+  }
+
+  if (req.method === 'POST') {
+    const { action, data } = req.body;
+
+    // Send email
+    if (action === 'send') {
+      const result = await emailService.sendEmail(data);
+      return res.status(result.success ? 200 : 500).json(result);
+    }
+
+    // Send consultation alert
+    if (action === 'send-consultation-alert') {
+      const result = await emailService.sendEmail({
+        to: data.to,
+        template: 'consultation_alert',
+        templateData: data,
+        priority: 'high',
+      });
+      return res.status(result.success ? 200 : 500).json(result);
+    }
+
+    // Send system alert
+    if (action === 'send-system-alert') {
+      const result = await emailService.sendEmail({
+        to: data.to,
+        template: 'system_alert',
+        templateData: data,
+        priority: 'critical',
+      });
+      return res.status(result.success ? 200 : 500).json(result);
+    }
+
+    // Send daily report
+    if (action === 'send-daily-report') {
+      const result = await emailService.sendEmail({
+        to: data.to,
+        template: 'daily_report',
+        templateData: data,
+        priority: 'normal',
+      });
+      return res.status(result.success ? 200 : 500).json(result);
+    }
+
+    // Send user invitation
+    if (action === 'send-invitation') {
+      const result = await emailService.sendEmail({
+        to: data.to,
+        template: 'user_invitation',
+        templateData: data,
+        priority: 'high',
+      });
+      return res.status(result.success ? 200 : 500).json(result);
+    }
+
+    return res.status(400).json({
+      success: false,
+      error: 'Invalid action',
+    });
+  }
+
+  if (req.method === 'GET') {
+    const { action, limit } = req.query;
+
+    // Get statistics
+    if (action === 'statistics') {
+      const stats = emailService.getStatistics();
+      return res.status(200).json({
+        success: true,
+        statistics: stats,
+      });
+    }
+
+    // Get delivery logs
+    if (action === 'logs') {
+      const logs = emailService.getDeliveryLogs(parseInt(limit) || 100);
+      return res.status(200).json({
+        success: true,
+        count: logs.length,
+        logs,
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: 'Medical LyDian Email Notification System',
+      version: '1.0.0',
+      templates: Object.keys(EMAIL_TEMPLATES),
+      endpoints: {
+        POST: [
+          'send',
+          'send-consultation-alert',
+          'send-system-alert',
+          'send-daily-report',
+          'send-invitation',
+        ],
+        GET: ['statistics', 'logs'],
+      },
+    });
+  }
+
+  return res.status(405).json({
+    success: false,
+    error: 'Method not allowed',
+  });
 }

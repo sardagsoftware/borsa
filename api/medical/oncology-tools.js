@@ -33,7 +33,7 @@ function calculateTNMStage(data) {
     cancerType,
     t, // T stage (0, 1, 2, 3, 4)
     n, // N stage (0, 1, 2, 3)
-    m  // M stage (0, 1)
+    m, // M stage (0, 1)
   } = data;
 
   // Determine overall stage based on TNM
@@ -75,13 +75,13 @@ function calculateTNMStage(data) {
   let fiveYearSurvival;
 
   if (cancerType === 'breast') {
-    const survivalRates = { '0': '99%', 'I': '98%', 'II': '93%', 'III': '72%', 'IV': '27%' };
+    const survivalRates = { 0: '99%', I: '98%', II: '93%', III: '72%', IV: '27%' };
     fiveYearSurvival = survivalRates[stage] || 'N/A';
   } else if (cancerType === 'lung') {
-    const survivalRates = { '0': '90%', 'I': '68%', 'II': '53%', 'III': '26%', 'IV': '6%' };
+    const survivalRates = { 0: '90%', I: '68%', II: '53%', III: '26%', IV: '6%' };
     fiveYearSurvival = survivalRates[stage] || 'N/A';
   } else if (cancerType === 'colon') {
-    const survivalRates = { '0': '95%', 'I': '92%', 'II': '87%', 'III': '69%', 'IV': '14%' };
+    const survivalRates = { 0: '95%', I: '92%', II: '87%', III: '69%', IV: '14%' };
     fiveYearSurvival = survivalRates[stage] || 'N/A';
   } else {
     fiveYearSurvival = 'Varies by cancer type';
@@ -95,7 +95,7 @@ function calculateTNMStage(data) {
     treatment,
     fiveYearSurvival,
     cancerType,
-    note: 'TNM staging varies by cancer type. Consult AJCC Cancer Staging Manual for specific details.'
+    note: 'TNM staging varies by cancer type. Consult AJCC Cancer Staging Manual for specific details.',
   };
 }
 
@@ -115,44 +115,47 @@ function interpretECOG(score) {
       description: 'Fully active, no restrictions',
       details: 'Able to carry on all pre-disease activities without restriction',
       prognosticImplication: 'Best prognosis, suitable for all treatments',
-      treatmentEligibility: 'Eligible for all clinical trials and aggressive therapy'
+      treatmentEligibility: 'Eligible for all clinical trials and aggressive therapy',
     },
     1: {
       description: 'Restricted in strenuous activity',
-      details: 'Restricted in physically strenuous activity but ambulatory and able to carry out light work',
+      details:
+        'Restricted in physically strenuous activity but ambulatory and able to carry out light work',
       prognosticImplication: 'Good prognosis, suitable for most treatments',
-      treatmentEligibility: 'Eligible for most clinical trials and standard chemotherapy'
+      treatmentEligibility: 'Eligible for most clinical trials and standard chemotherapy',
     },
     2: {
       description: 'Ambulatory, unable to work',
-      details: 'Ambulatory and capable of all self-care but unable to work; up and about >50% of waking hours',
+      details:
+        'Ambulatory and capable of all self-care but unable to work; up and about >50% of waking hours',
       prognosticImplication: 'Moderate prognosis',
-      treatmentEligibility: 'May be eligible for some trials; standard therapy with caution'
+      treatmentEligibility: 'May be eligible for some trials; standard therapy with caution',
     },
     3: {
       description: 'Limited self-care, confined to bed/chair >50% of day',
       details: 'Capable of only limited self-care; confined to bed or chair >50% of waking hours',
       prognosticImplication: 'Poor prognosis',
-      treatmentEligibility: 'Limited treatment options; consider palliative care'
+      treatmentEligibility: 'Limited treatment options; consider palliative care',
     },
     4: {
       description: 'Completely disabled',
-      details: 'Completely disabled; cannot carry out any self-care; totally confined to bed or chair',
+      details:
+        'Completely disabled; cannot carry out any self-care; totally confined to bed or chair',
       prognosticImplication: 'Very poor prognosis',
-      treatmentEligibility: 'Palliative care and supportive measures only'
+      treatmentEligibility: 'Palliative care and supportive measures only',
     },
     5: {
       description: 'Dead',
       details: 'Death',
       prognosticImplication: 'N/A',
-      treatmentEligibility: 'N/A'
-    }
+      treatmentEligibility: 'N/A',
+    },
   };
 
   return {
     score,
-    ...ecogScales[score] || ecogScales[0],
-    scale: 'ECOG Performance Status (0-5)'
+    ...(ecogScales[score] || ecogScales[0]),
+    scale: 'ECOG Performance Status (0-5)',
   };
 }
 
@@ -231,7 +234,7 @@ function interpretKarnofsky(score) {
     prognosis,
     ecogEquivalent,
     scale: 'Karnofsky Performance Status (0-100)',
-    note: 'Higher scores indicate better functional status'
+    note: 'Higher scores indicate better functional status',
   };
 }
 
@@ -247,13 +250,13 @@ function interpretKarnofsky(score) {
  */
 function calculateChemoDose(data) {
   const {
-    weight,              // kg
-    height,              // cm
+    weight, // kg
+    height, // cm
     drugName,
-    dosePerM2,          // mg/m²
-    maxDose,            // optional maximum dose cap
-    renalAdjustment,    // CrCl if needed
-    hepaticAdjustment   // liver function if needed
+    dosePerM2, // mg/m²
+    maxDose, // optional maximum dose cap
+    renalAdjustment, // CrCl if needed
+    hepaticAdjustment, // liver function if needed
   } = data;
 
   // Calculate BSA using Mosteller formula
@@ -302,7 +305,7 @@ function calculateChemoDose(data) {
     renalNote,
     hepaticNote,
     warning: '⚠️ Always verify dose with pharmacy and drug-specific guidelines',
-    supportiveCare: 'Consider antiemetics, hydration, and prophylactic growth factors as indicated'
+    supportiveCare: 'Consider antiemetics, hydration, and prophylactic growth factors as indicated',
   };
 }
 
@@ -319,7 +322,7 @@ function interpretTumorMarker(data) {
   const { marker, value, cancerType, baseline } = data;
 
   const markerReference = {
-    'CEA': {
+    CEA: {
       normalRange: '<3.0 ng/mL (non-smoker), <5.0 ng/mL (smoker)',
       cancers: 'Colorectal, pancreatic, lung, breast, medullary thyroid',
       interpretation: value => {
@@ -327,7 +330,7 @@ function interpretTumorMarker(data) {
         if (value < 10) return 'Mildly elevated - benign or early malignancy';
         if (value < 20) return 'Moderately elevated - likely malignancy';
         return 'Significantly elevated - advanced disease or metastatic';
-      }
+      },
     },
     'CA 19-9': {
       normalRange: '<37 U/mL',
@@ -337,7 +340,7 @@ function interpretTumorMarker(data) {
         if (value < 100) return 'Mildly elevated';
         if (value < 1000) return 'Moderately elevated - possible resectable disease';
         return 'Significantly elevated - advanced/unresectable disease';
-      }
+      },
     },
     'CA 125': {
       normalRange: '<35 U/mL',
@@ -347,9 +350,9 @@ function interpretTumorMarker(data) {
         if (value < 100) return 'Mildly elevated - investigate further';
         if (value < 500) return 'Moderately elevated - likely malignancy';
         return 'Significantly elevated - advanced ovarian cancer likely';
-      }
+      },
     },
-    'PSA': {
+    PSA: {
       normalRange: '<4.0 ng/mL',
       cancers: 'Prostate',
       interpretation: value => {
@@ -357,9 +360,9 @@ function interpretTumorMarker(data) {
         if (value < 10) return 'Borderline - consider biopsy, monitor';
         if (value < 20) return 'Elevated - biopsy recommended';
         return 'Significantly elevated - high risk for prostate cancer';
-      }
+      },
     },
-    'AFP': {
+    AFP: {
       normalRange: '<10 ng/mL',
       cancers: 'Hepatocellular carcinoma, germ cell tumors',
       interpretation: value => {
@@ -367,9 +370,9 @@ function interpretTumorMarker(data) {
         if (value < 200) return 'Mildly elevated - monitor, investigate';
         if (value < 1000) return 'Moderately elevated - likely HCC';
         return 'Significantly elevated - advanced HCC';
-      }
+      },
     },
-    'HCG': {
+    HCG: {
       normalRange: '<5 mIU/mL (non-pregnant)',
       cancers: 'Germ cell tumors, gestational trophoblastic disease',
       interpretation: value => {
@@ -377,14 +380,14 @@ function interpretTumorMarker(data) {
         if (value < 100) return 'Mildly elevated';
         if (value < 10000) return 'Moderately elevated - germ cell tumor likely';
         return 'Significantly elevated - choriocarcinoma or advanced GCT';
-      }
-    }
+      },
+    },
   };
 
   const markerInfo = markerReference[marker] || {
     normalRange: 'N/A',
     cancers: 'Unknown',
-    interpretation: () => 'Marker not in database'
+    interpretation: () => 'Marker not in database',
   };
 
   const interpretation = markerInfo.interpretation(value);
@@ -409,9 +412,10 @@ function interpretTumorMarker(data) {
     associatedCancers: markerInfo.cancers,
     interpretation,
     trend,
-    recommendation: value > parseFloat(markerInfo.normalRange.match(/\d+\.?\d*/)?.[0] || 0)
-      ? 'Elevated - correlate with imaging and clinical findings'
-      : 'Normal range - continue monitoring per protocol'
+    recommendation:
+      value > parseFloat(markerInfo.normalRange.match(/\d+\.?\d*/)?.[0] || 0)
+        ? 'Elevated - correlate with imaging and clinical findings'
+        : 'Normal range - continue monitoring per protocol',
   };
 }
 
@@ -462,7 +466,7 @@ function assessRECIST(data) {
     newLesions: newLesions ? 'Yes' : 'No',
     recommendation,
     criteria: 'RECIST 1.1',
-    note: 'CR = disappearance, PR = ≥30% decrease, PD = ≥20% increase or new lesions, SD = neither PR nor PD'
+    note: 'CR = disappearance, PR = ≥30% decrease, PD = ≥20% increase or new lesions, SD = neither PR nor PD',
   };
 }
 
@@ -486,7 +490,7 @@ async function handleTNMStaging(req, res) {
       user_id: data.user_id,
       patient_id: data.patient_id,
       action: 'TNM_STAGING',
-      details: { stage: result.stage, cancerType: data.cancerType }
+      details: { stage: result.stage, cancerType: data.cancerType },
     });
 
     res.json({
@@ -494,16 +498,15 @@ async function handleTNMStaging(req, res) {
       result,
       metadata: {
         calculator: 'TNM Staging System',
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ TNM Staging Error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to calculate TNM stage',
-      message: error.message
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
     });
   }
 }
@@ -522,7 +525,7 @@ async function handleECOG(req, res) {
       user_id,
       patient_id,
       action: 'ECOG_ASSESSMENT',
-      details: { score }
+      details: { score },
     });
 
     res.json({
@@ -530,16 +533,15 @@ async function handleECOG(req, res) {
       result,
       metadata: {
         calculator: 'ECOG Performance Status',
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ ECOG Assessment Error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to interpret ECOG',
-      message: error.message
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
     });
   }
 }
@@ -558,7 +560,7 @@ async function handleKarnofsky(req, res) {
       user_id,
       patient_id,
       action: 'KARNOFSKY_ASSESSMENT',
-      details: { score }
+      details: { score },
     });
 
     res.json({
@@ -566,16 +568,15 @@ async function handleKarnofsky(req, res) {
       result,
       metadata: {
         calculator: 'Karnofsky Performance Status',
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ Karnofsky Assessment Error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to interpret Karnofsky',
-      message: error.message
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
     });
   }
 }
@@ -594,7 +595,7 @@ async function handleChemoDose(req, res) {
       user_id: data.user_id,
       patient_id: data.patient_id,
       action: 'CHEMO_DOSE_CALCULATION',
-      details: { drug: data.drugName, dose: result.calculatedDose }
+      details: { drug: data.drugName, dose: result.calculatedDose },
     });
 
     res.json({
@@ -602,16 +603,15 @@ async function handleChemoDose(req, res) {
       result,
       metadata: {
         calculator: 'Chemotherapy Dose Calculator',
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ Chemo Dose Calculation Error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to calculate chemotherapy dose',
-      message: error.message
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
     });
   }
 }
@@ -630,7 +630,7 @@ async function handleTumorMarker(req, res) {
       user_id: data.user_id,
       patient_id: data.patient_id,
       action: 'TUMOR_MARKER_INTERPRETATION',
-      details: { marker: data.marker, value: data.value }
+      details: { marker: data.marker, value: data.value },
     });
 
     res.json({
@@ -638,16 +638,15 @@ async function handleTumorMarker(req, res) {
       result,
       metadata: {
         calculator: 'Tumor Marker Interpretation',
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ Tumor Marker Interpretation Error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to interpret tumor marker',
-      message: error.message
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
     });
   }
 }
@@ -666,7 +665,7 @@ async function handleRECIST(req, res) {
       user_id: data.user_id,
       patient_id: data.patient_id,
       action: 'RECIST_ASSESSMENT',
-      details: { response: result.response }
+      details: { response: result.response },
     });
 
     res.json({
@@ -674,16 +673,15 @@ async function handleRECIST(req, res) {
       result,
       metadata: {
         calculator: 'RECIST 1.1 Criteria',
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ RECIST Assessment Error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to assess tumor response',
-      message: error.message
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
     });
   }
 }
@@ -700,5 +698,5 @@ module.exports = {
   interpretKarnofsky,
   calculateChemoDose,
   interpretTumorMarker,
-  assessRECIST
+  assessRECIST,
 };

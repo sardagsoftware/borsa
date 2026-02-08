@@ -1,29 +1,30 @@
+/* global document, window, localStorage, performance, fetch, navigator, IntersectionObserver, exploreCategory */
 /* ========================================
    AiLydian Knowledge Base - Interactive JavaScript
-   Version: 2.1 Sardag Edition
+   Version: 2.1 LyDian Edition
    Features: Search, Voice Search, AI Integration, Analytics
    ======================================== */
 
 // ========== Global Configuration ==========
 const CONFIG = {
-    apiBaseUrl: '/api',
-    knowledgeBaseEndpoint: '/api/knowledge/search',
-    aiChatEndpoint: '/api/knowledge/chat',
-    defaultLanguage: 'tr',
-    resultsPerPage: 20,
-    searchDebounceMs: 500
+  apiBaseUrl: '/api',
+  knowledgeBaseEndpoint: '/api/knowledge/search',
+  aiChatEndpoint: '/api/knowledge/chat',
+  defaultLanguage: 'tr',
+  resultsPerPage: 20,
+  searchDebounceMs: 500,
 };
 
 // ========== State Management ==========
 const state = {
-    currentQuery: '',
-    currentLanguage: 'tr',
-    currentDomain: 'all',
-    searchResults: [],
-    totalResults: 0,
-    currentPage: 1,
-    isLoading: false,
-    voiceRecording: false
+  currentQuery: '',
+  currentLanguage: 'tr',
+  currentDomain: 'all',
+  searchResults: [],
+  totalResults: 0,
+  currentPage: 1,
+  isLoading: false,
+  voiceRecording: false,
 };
 
 // ========== DOM Elements ==========
@@ -31,249 +32,248 @@ let elements = {};
 
 // ========== Initialization ==========
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('🚀 AiLydian Knowledge Base Loading...');
+  console.log('🚀 AiLydian Knowledge Base Loading...');
 
-    initializeElements();
-    initializeEventListeners();
-    animateOnScroll();
-    updateTotalArticles();
+  initializeElements();
+  initializeEventListeners();
+  animateOnScroll();
+  updateTotalArticles();
 
-    console.log('✅ Knowledge Base Ready!');
+  console.log('✅ Knowledge Base Ready!');
 });
 
 // ========== Initialize DOM Elements ==========
 function initializeElements() {
-    elements = {
-        // Navigation
-        navbarToggle: document.getElementById('navbarToggle'),
-        navbarMenu: document.getElementById('navbarMenu'),
+  elements = {
+    // Navigation
+    navbarToggle: document.getElementById('navbarToggle'),
+    navbarMenu: document.getElementById('navbarMenu'),
 
-        // Search
-        searchInput: document.getElementById('knowledgeSearch'),
-        searchBtn: document.getElementById('searchBtn'),
-        voiceSearchBtn: document.getElementById('voiceSearchBtn'),
-        languageFilter: document.getElementById('languageFilter'),
-        domainFilter: document.getElementById('domainFilter'),
-        advancedFilterBtn: document.getElementById('advancedFilterBtn'),
+    // Search
+    searchInput: document.getElementById('knowledgeSearch'),
+    searchBtn: document.getElementById('searchBtn'),
+    voiceSearchBtn: document.getElementById('voiceSearchBtn'),
+    languageFilter: document.getElementById('languageFilter'),
+    domainFilter: document.getElementById('domainFilter'),
+    advancedFilterBtn: document.getElementById('advancedFilterBtn'),
 
-        // Results
-        searchResultsSection: document.getElementById('searchResultsSection'),
-        resultsGrid: document.getElementById('resultsGrid'),
-        resultsCount: document.getElementById('resultsCount'),
-        resultsTime: document.getElementById('resultsTime'),
+    // Results
+    searchResultsSection: document.getElementById('searchResultsSection'),
+    resultsGrid: document.getElementById('resultsGrid'),
+    resultsCount: document.getElementById('resultsCount'),
+    resultsTime: document.getElementById('resultsTime'),
 
-        // Loading
-        loadingOverlay: document.getElementById('loadingOverlay'),
+    // Loading
+    loadingOverlay: document.getElementById('loadingOverlay'),
 
-        // Categories
-        categoriesGrid: document.getElementById('categoriesGrid'),
-        viewAllCategoriesBtn: document.getElementById('viewAllCategoriesBtn'),
+    // Categories
+    categoriesGrid: document.getElementById('categoriesGrid'),
+    viewAllCategoriesBtn: document.getElementById('viewAllCategoriesBtn'),
 
-        // Stats
-        totalArticles: document.getElementById('totalArticles')
-    };
+    // Stats
+    totalArticles: document.getElementById('totalArticles'),
+  };
 }
 
 // ========== Event Listeners ==========
 function initializeEventListeners() {
-    // Mobile Navigation Toggle
-    if (elements.navbarToggle) {
-        elements.navbarToggle.addEventListener('click', toggleMobileMenu);
-    }
+  // Mobile Navigation Toggle
+  if (elements.navbarToggle) {
+    elements.navbarToggle.addEventListener('click', toggleMobileMenu);
+  }
 
-    // Search Input
-    if (elements.searchInput) {
-        elements.searchInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                performSearch();
-            }
-        });
-
-        // Auto-search on typing (debounced)
-        let debounceTimer;
-        elements.searchInput.addEventListener('input', () => {
-            clearTimeout(debounceTimer);
-            debounceTimer = setTimeout(() => {
-                if (elements.searchInput.value.length > 2) {
-                    showSearchSuggestions(elements.searchInput.value);
-                }
-            }, CONFIG.searchDebounceMs);
-        });
-    }
-
-    // Search Button
-    if (elements.searchBtn) {
-        elements.searchBtn.addEventListener('click', performSearch);
-    }
-
-    // Voice Search
-    if (elements.voiceSearchBtn) {
-        elements.voiceSearchBtn.addEventListener('click', toggleVoiceSearch);
-    }
-
-    // Language Filter
-    if (elements.languageFilter) {
-        elements.languageFilter.addEventListener('change', (e) => {
-            state.currentLanguage = e.target.value;
-            console.log('🌐 Language changed to:', state.currentLanguage);
-            if (state.currentQuery) {
-                performSearch();
-            }
-        });
-    }
-
-    // Domain Filter
-    if (elements.domainFilter) {
-        elements.domainFilter.addEventListener('change', (e) => {
-            state.currentDomain = e.target.value;
-            console.log('📂 Domain changed to:', state.currentDomain);
-            if (state.currentQuery) {
-                performSearch();
-            }
-        });
-    }
-
-    // Advanced Filters
-    if (elements.advancedFilterBtn) {
-        elements.advancedFilterBtn.addEventListener('click', showAdvancedFilters);
-    }
-
-    // View All Categories
-    if (elements.viewAllCategoriesBtn) {
-        elements.viewAllCategoriesBtn.addEventListener('click', showAllCategories);
-    }
-
-    // Category Cards Click Animation
-    const categoryCards = document.querySelectorAll('.category-card');
-    categoryCards.forEach(card => {
-        card.addEventListener('click', function() {
-            const category = this.getAttribute('data-category');
-            if (category) {
-                exploreCategory(category);
-            }
-        });
+  // Search Input
+  if (elements.searchInput) {
+    elements.searchInput.addEventListener('keypress', e => {
+      if (e.key === 'Enter') {
+        performSearch();
+      }
     });
+
+    // Auto-search on typing (debounced)
+    let debounceTimer;
+    elements.searchInput.addEventListener('input', () => {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        if (elements.searchInput.value.length > 2) {
+          showSearchSuggestions(elements.searchInput.value);
+        }
+      }, CONFIG.searchDebounceMs);
+    });
+  }
+
+  // Search Button
+  if (elements.searchBtn) {
+    elements.searchBtn.addEventListener('click', performSearch);
+  }
+
+  // Voice Search
+  if (elements.voiceSearchBtn) {
+    elements.voiceSearchBtn.addEventListener('click', toggleVoiceSearch);
+  }
+
+  // Language Filter
+  if (elements.languageFilter) {
+    elements.languageFilter.addEventListener('change', e => {
+      state.currentLanguage = e.target.value;
+      console.log('🌐 Language changed to:', state.currentLanguage);
+      if (state.currentQuery) {
+        performSearch();
+      }
+    });
+  }
+
+  // Domain Filter
+  if (elements.domainFilter) {
+    elements.domainFilter.addEventListener('change', e => {
+      state.currentDomain = e.target.value;
+      console.log('📂 Domain changed to:', state.currentDomain);
+      if (state.currentQuery) {
+        performSearch();
+      }
+    });
+  }
+
+  // Advanced Filters
+  if (elements.advancedFilterBtn) {
+    elements.advancedFilterBtn.addEventListener('click', showAdvancedFilters);
+  }
+
+  // View All Categories
+  if (elements.viewAllCategoriesBtn) {
+    elements.viewAllCategoriesBtn.addEventListener('click', showAllCategories);
+  }
+
+  // Category Cards Click Animation
+  const categoryCards = document.querySelectorAll('.category-card');
+  categoryCards.forEach(card => {
+    card.addEventListener('click', function () {
+      const category = this.getAttribute('data-category');
+      if (category) {
+        exploreCategory(category);
+      }
+    });
+  });
 }
 
 // ========== Mobile Menu Toggle ==========
 function toggleMobileMenu() {
-    if (elements.navbarMenu) {
-        elements.navbarMenu.classList.toggle('active');
-    }
+  if (elements.navbarMenu) {
+    elements.navbarMenu.classList.toggle('active');
+  }
 }
 
 // ========== Search Functions ==========
 async function performSearch() {
-    const query = elements.searchInput?.value?.trim();
+  const query = elements.searchInput?.value?.trim();
 
-    if (!query || query.length < 2) {
-        showNotification('Lütfen en az 2 karakter girin', 'warning');
-        return;
+  if (!query || query.length < 2) {
+    showNotification('Lütfen en az 2 karakter girin', 'warning');
+    return;
+  }
+
+  state.currentQuery = query;
+  state.currentPage = 1;
+
+  console.log('🔍 Searching for:', query);
+
+  showLoading(true);
+
+  try {
+    const startTime = performance.now();
+
+    const response = await fetch(CONFIG.knowledgeBaseEndpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query: query,
+        language: state.currentLanguage,
+        domain: state.currentDomain,
+        page: state.currentPage,
+        perPage: CONFIG.resultsPerPage,
+      }),
+    });
+
+    const endTime = performance.now();
+    const searchTime = ((endTime - startTime) / 1000).toFixed(2);
+
+    if (!response.ok) {
+      throw new Error('Arama başarısız oldu');
     }
 
-    state.currentQuery = query;
-    state.currentPage = 1;
+    const data = await response.json();
 
-    console.log('🔍 Searching for:', query);
+    state.searchResults = data.results || [];
+    state.totalResults = data.totalFound || 0;
 
-    showLoading(true);
+    displaySearchResults(searchTime);
 
-    try {
-        const startTime = performance.now();
-
-        const response = await fetch(CONFIG.knowledgeBaseEndpoint, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                query: query,
-                language: state.currentLanguage,
-                domain: state.currentDomain,
-                page: state.currentPage,
-                perPage: CONFIG.resultsPerPage
-            })
-        });
-
-        const endTime = performance.now();
-        const searchTime = ((endTime - startTime) / 1000).toFixed(2);
-
-        if (!response.ok) {
-            throw new Error('Arama başarısız oldu');
-        }
-
-        const data = await response.json();
-
-        state.searchResults = data.results || [];
-        state.totalResults = data.totalFound || 0;
-
-        displaySearchResults(searchTime);
-
-        // Analytics
-        trackSearch(query, state.totalResults);
-
-    } catch (error) {
-        console.error('❌ Search error:', error);
-        showNotification('Arama sırasında bir hata oluştu', 'error');
-    } finally {
-        showLoading(false);
-    }
+    // Analytics
+    trackSearch(query, state.totalResults);
+  } catch (error) {
+    console.error('❌ Search error:', error);
+    showNotification('Arama sırasında bir hata oluştu', 'error');
+  } finally {
+    showLoading(false);
+  }
 }
 
 // ========== Display Search Results ==========
 function displaySearchResults(searchTime) {
-    if (!elements.resultsGrid) return;
+  if (!elements.resultsGrid) return;
 
-    // Show results section
-    if (elements.searchResultsSection) {
-        elements.searchResultsSection.style.display = 'block';
-        elements.searchResultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+  // Show results section
+  if (elements.searchResultsSection) {
+    elements.searchResultsSection.style.display = 'block';
+    elements.searchResultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 
-    // Update results info
-    if (elements.resultsCount) {
-        elements.resultsCount.textContent = `${state.totalResults.toLocaleString('tr-TR')} sonuç bulundu`;
-    }
+  // Update results info
+  if (elements.resultsCount) {
+    elements.resultsCount.textContent = `${state.totalResults.toLocaleString('tr-TR')} sonuç bulundu`;
+  }
 
-    if (elements.resultsTime) {
-        elements.resultsTime.textContent = `${searchTime} saniye`;
-    }
+  if (elements.resultsTime) {
+    elements.resultsTime.textContent = `${searchTime} saniye`;
+  }
 
-    // Clear previous results
-    elements.resultsGrid.innerHTML = '';
+  // Clear previous results
+  elements.resultsGrid.innerHTML = '';
 
-    if (state.searchResults.length === 0) {
-        elements.resultsGrid.innerHTML = `
+  if (state.searchResults.length === 0) {
+    elements.resultsGrid.innerHTML = `
             <div class="no-results">
                 <i class="fas fa-search" style="font-size: 4rem; color: var(--gray-400); margin-bottom: 1rem;"></i>
                 <h3>Sonuç bulunamadı</h3>
                 <p>Farklı anahtar kelimeler veya filtreler deneyebilirsiniz.</p>
             </div>
         `;
-        return;
-    }
+    return;
+  }
 
-    // Display results
-    state.searchResults.forEach((result, index) => {
-        const resultCard = createResultCard(result, index);
-        elements.resultsGrid.appendChild(resultCard);
-    });
+  // Display results
+  state.searchResults.forEach((result, index) => {
+    const resultCard = createResultCard(result, index);
+    elements.resultsGrid.appendChild(resultCard);
+  });
 
-    // Add animation
-    animateResults();
+  // Add animation
+  animateResults();
 }
 
 // ========== Create Result Card ==========
 function createResultCard(result, index) {
-    const card = document.createElement('div');
-    card.className = 'result-card';
-    card.style.animationDelay = `${index * 0.05}s`;
+  const card = document.createElement('div');
+  card.className = 'result-card';
+  card.style.animationDelay = `${index * 0.05}s`;
 
-    const relevanceScore = result.relevance || 95;
-    const domain = result.domain || 'general';
-    const language = result.language || state.currentLanguage;
+  const relevanceScore = result.relevance || 95;
+  const domain = result.domain || 'general';
+  const language = result.language || state.currentLanguage;
 
-    card.innerHTML = `
+  card.innerHTML = `
         <div class="result-header">
             <div class="result-meta">
                 <span class="result-domain">${getDomainIcon(domain)} ${getDomainName(domain)}</span>
@@ -315,154 +315,154 @@ function createResultCard(result, index) {
         </div>
     `;
 
-    return card;
+  return card;
 }
 
 // ========== Voice Search ==========
 function toggleVoiceSearch() {
-    if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
-        showNotification('Tarayıcınız sesli aramayı desteklemiyor', 'warning');
-        return;
-    }
+  if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+    showNotification('Tarayıcınız sesli aramayı desteklemiyor', 'warning');
+    return;
+  }
 
-    if (state.voiceRecording) {
-        stopVoiceRecognition();
-    } else {
-        startVoiceRecognition();
-    }
+  if (state.voiceRecording) {
+    stopVoiceRecognition();
+  } else {
+    startVoiceRecognition();
+  }
 }
 
 function startVoiceRecognition() {
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    const recognition = new SpeechRecognition();
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const recognition = new SpeechRecognition();
 
-    recognition.lang = state.currentLanguage;
-    recognition.continuous = false;
-    recognition.interimResults = false;
+  recognition.lang = state.currentLanguage;
+  recognition.continuous = false;
+  recognition.interimResults = false;
 
-    recognition.onstart = () => {
-        state.voiceRecording = true;
-        elements.voiceSearchBtn?.classList.add('recording');
-        showNotification('Dinleniyor... Konuşabilirsiniz', 'info');
-    };
+  recognition.onstart = () => {
+    state.voiceRecording = true;
+    elements.voiceSearchBtn?.classList.add('recording');
+    showNotification('Dinleniyor... Konuşabilirsiniz', 'info');
+  };
 
-    recognition.onresult = (event) => {
-        const transcript = event.results[0][0].transcript;
-        if (elements.searchInput) {
-            elements.searchInput.value = transcript;
-        }
-        performSearch();
-    };
+  recognition.onresult = event => {
+    const transcript = event.results[0][0].transcript;
+    if (elements.searchInput) {
+      elements.searchInput.value = transcript;
+    }
+    performSearch();
+  };
 
-    recognition.onerror = (event) => {
-        console.error('❌ Voice recognition error:', event.error);
-        showNotification('Ses tanıma hatası', 'error');
-        stopVoiceRecognition();
-    };
+  recognition.onerror = event => {
+    console.error('❌ Voice recognition error:', event.error);
+    showNotification('Ses tanıma hatası', 'error');
+    stopVoiceRecognition();
+  };
 
-    recognition.onend = () => {
-        stopVoiceRecognition();
-    };
+  recognition.onend = () => {
+    stopVoiceRecognition();
+  };
 
-    recognition.start();
+  recognition.start();
 }
 
 function stopVoiceRecognition() {
-    state.voiceRecording = false;
-    elements.voiceSearchBtn?.classList.remove('recording');
+  state.voiceRecording = false;
+  elements.voiceSearchBtn?.classList.remove('recording');
 }
 
 // ========== Category Exploration ==========
-window.exploreCategory = function(category) {
-    console.log('📂 Exploring category:', category);
+window.exploreCategory = function (category) {
+  console.log('📂 Exploring category:', category);
 
-    if (elements.searchInput) {
-        elements.searchInput.value = '';
-    }
+  if (elements.searchInput) {
+    elements.searchInput.value = '';
+  }
 
-    if (elements.domainFilter) {
-        elements.domainFilter.value = category;
-    }
+  if (elements.domainFilter) {
+    elements.domainFilter.value = category;
+  }
 
-    state.currentDomain = category;
-    state.currentQuery = getCategoryKeyword(category);
+  state.currentDomain = category;
+  state.currentQuery = getCategoryKeyword(category);
 
-    performSearch();
+  performSearch();
 };
 
 function getCategoryKeyword(category) {
-    const keywords = {
-        agriculture: 'Tarım ve hayvancılık',
-        space: 'Uzay ve astronomi',
-        medicine: 'Tıp ve sağlık',
-        climate: 'İklim değişikliği',
-        technology: 'Teknoloji',
-        science: 'Bilim',
-        education: 'Eğitim',
-        business: 'İş ve ekonomi',
-        law: 'Hukuk'
-    };
-    return keywords[category] || category;
+  const keywords = {
+    agriculture: 'Tarım ve hayvancılık',
+    space: 'Uzay ve astronomi',
+    medicine: 'Tıp ve sağlık',
+    climate: 'İklim değişikliği',
+    technology: 'Teknoloji',
+    science: 'Bilim',
+    education: 'Eğitim',
+    business: 'İş ve ekonomi',
+    law: 'Hukuk',
+  };
+  return keywords[category] || category;
 }
 
 // ========== AI Chat Integration ==========
-window.openAIChat = function() {
-    console.log('🤖 Opening AI Chat...');
+window.openAIChat = function () {
+  console.log('🤖 Opening AI Chat...');
 
-    // Store current search context
-    const context = {
-        query: state.currentQuery,
-        domain: state.currentDomain,
-        language: state.currentLanguage
-    };
+  // Store current search context
+  const context = {
+    query: state.currentQuery,
+    domain: state.currentDomain,
+    language: state.currentLanguage,
+  };
 
-    localStorage.setItem('knowledgeBaseContext', JSON.stringify(context));
+  localStorage.setItem('knowledgeBaseContext', JSON.stringify(context));
 
-    // Redirect to chat page with context
-    window.location.href = `/chat.html?mode=knowledge&query=${encodeURIComponent(state.currentQuery || '')}`;
+  // Redirect to chat page with context
+  window.location.href = `/chat.html?mode=knowledge&query=${encodeURIComponent(state.currentQuery || '')}`;
 };
 
-window.openWithAI = function(resultIndex) {
-    const result = state.searchResults[resultIndex];
-    if (!result) return;
+window.openWithAI = function (resultIndex) {
+  const result = state.searchResults[resultIndex];
+  if (!result) return;
 
-    console.log('🤖 Opening result with AI:', result.title);
+  console.log('🤖 Opening result with AI:', result.title);
 
-    const context = {
-        title: result.title,
-        snippet: result.snippet,
-        url: result.url,
-        source: result.source
-    };
+  const context = {
+    title: result.title,
+    snippet: result.snippet,
+    url: result.url,
+    source: result.source,
+  };
 
-    localStorage.setItem('aiChatContext', JSON.stringify(context));
-    window.location.href = `/chat.html?mode=knowledge&context=result`;
+  localStorage.setItem('aiChatContext', JSON.stringify(context));
+  window.location.href = '/chat.html?mode=knowledge&context=result';
 };
 
 // ========== Utility Functions ==========
 function showLoading(show) {
-    if (elements.loadingOverlay) {
-        if (show) {
-            elements.loadingOverlay.classList.add('active');
-        } else {
-            elements.loadingOverlay.classList.remove('active');
-        }
+  if (elements.loadingOverlay) {
+    if (show) {
+      elements.loadingOverlay.classList.add('active');
+    } else {
+      elements.loadingOverlay.classList.remove('active');
     }
-    state.isLoading = show;
+  }
+  state.isLoading = show;
 }
 
 function showNotification(message, type = 'info') {
-    console.log(`[${type.toUpperCase()}] ${message}`);
+  console.log(`[${type.toUpperCase()}] ${message}`);
 
-    // Create notification element
-    const notification = document.createElement('div');
-    notification.className = `notification notification-${type}`;
-    notification.innerHTML = `
+  // Create notification element
+  const notification = document.createElement('div');
+  notification.className = `notification notification-${type}`;
+  notification.innerHTML = `
         <i class="fas fa-${getNotificationIcon(type)}"></i>
         <span>${message}</span>
     `;
 
-    notification.style.cssText = `
+  notification.style.cssText = `
         position: fixed;
         top: 100px;
         right: 20px;
@@ -477,129 +477,129 @@ function showNotification(message, type = 'info') {
         animation: slideInRight 0.3s ease;
     `;
 
-    document.body.appendChild(notification);
+  document.body.appendChild(notification);
 
-    setTimeout(() => {
-        notification.style.animation = 'slideOutRight 0.3s ease';
-        setTimeout(() => notification.remove(), 300);
-    }, 3000);
+  setTimeout(() => {
+    notification.style.animation = 'slideOutRight 0.3s ease';
+    setTimeout(() => notification.remove(), 300);
+  }, 3000);
 }
 
 function getNotificationIcon(type) {
-    const icons = {
-        info: 'info-circle',
-        success: 'check-circle',
-        warning: 'exclamation-triangle',
-        error: 'times-circle'
-    };
-    return icons[type] || 'info-circle';
+  const icons = {
+    info: 'info-circle',
+    success: 'check-circle',
+    warning: 'exclamation-triangle',
+    error: 'times-circle',
+  };
+  return icons[type] || 'info-circle';
 }
 
 function highlightQuery(text) {
-    if (!state.currentQuery || !text) return text;
+  if (!state.currentQuery || !text) return text;
 
-    const regex = new RegExp(`(${state.currentQuery})`, 'gi');
-    return text.replace(regex, '<mark>$1</mark>');
+  const regex = new RegExp(`(${state.currentQuery})`, 'gi');
+  return text.replace(regex, '<mark>$1</mark>');
 }
 
 function getDomainIcon(domain) {
-    const icons = {
-        agriculture: '🌾',
-        space: '🚀',
-        medicine: '⚕️',
-        climate: '🌍',
-        technology: '💻',
-        science: '🔬',
-        education: '🎓',
-        business: '💼',
-        law: '⚖️',
-        general: '📚'
-    };
-    return icons[domain] || '📚';
+  const icons = {
+    agriculture: '🌾',
+    space: '🚀',
+    medicine: '⚕️',
+    climate: '🌍',
+    technology: '💻',
+    science: '🔬',
+    education: '🎓',
+    business: '💼',
+    law: '⚖️',
+    general: '📚',
+  };
+  return icons[domain] || '📚';
 }
 
 function getDomainName(domain) {
-    const names = {
-        agriculture: 'Tarım',
-        space: 'Uzay',
-        medicine: 'Tıp',
-        climate: 'İklim',
-        technology: 'Teknoloji',
-        science: 'Bilim',
-        education: 'Eğitim',
-        business: 'İş',
-        law: 'Hukuk',
-        general: 'Genel'
-    };
-    return names[domain] || 'Genel';
+  const names = {
+    agriculture: 'Tarım',
+    space: 'Uzay',
+    medicine: 'Tıp',
+    climate: 'İklim',
+    technology: 'Teknoloji',
+    science: 'Bilim',
+    education: 'Eğitim',
+    business: 'İş',
+    law: 'Hukuk',
+    general: 'Genel',
+  };
+  return names[domain] || 'Genel';
 }
 
 function getLanguageFlag(lang) {
-    const flags = {
-        tr: '🇹🇷',
-        en: '🇬🇧',
-        ar: '🇸🇦',
-        de: '🇩🇪',
-        fr: '🇫🇷',
-        es: '🇪🇸',
-        ru: '🇷🇺',
-        zh: '🇨🇳'
-    };
-    return flags[lang] || '🌐';
+  const flags = {
+    tr: '🇹🇷',
+    en: '🇬🇧',
+    ar: '🇸🇦',
+    de: '🇩🇪',
+    fr: '🇫🇷',
+    es: '🇪🇸',
+    ru: '🇷🇺',
+    zh: '🇨🇳',
+  };
+  return flags[lang] || '🌐';
 }
 
 // ========== Advanced Filters ==========
 function showAdvancedFilters() {
-    showNotification('Gelişmiş filtreler yakında eklenecek', 'info');
-    console.log('🔧 Advanced filters requested');
+  showNotification('Gelişmiş filtreler yakında eklenecek', 'info');
+  console.log('🔧 Advanced filters requested');
 }
 
 // ========== Show All Categories ==========
 function showAllCategories() {
-    showNotification('67 kategori yükleniyor...', 'info');
-    console.log('📂 Loading all 67 categories');
+  showNotification('67 kategori yükleniyor...', 'info');
+  console.log('📂 Loading all 67 categories');
 
-    if (!window.KNOWLEDGE_CATEGORIES) {
-        showNotification('Kategori verileri yüklenemedi', 'error');
-        return;
-    }
+  if (!window.KNOWLEDGE_CATEGORIES) {
+    showNotification('Kategori verileri yüklenemedi', 'error');
+    return;
+  }
 
-    // Clear existing categories
-    if (elements.categoriesGrid) {
-        elements.categoriesGrid.innerHTML = '';
+  // Clear existing categories
+  if (elements.categoriesGrid) {
+    elements.categoriesGrid.innerHTML = '';
 
-        // Load all 67 categories
-        window.KNOWLEDGE_CATEGORIES.forEach((category, index) => {
-            const categoryCard = createCategoryCard(category, index);
-            elements.categoriesGrid.appendChild(categoryCard);
-        });
+    // Load all 67 categories
+    window.KNOWLEDGE_CATEGORIES.forEach((category, index) => {
+      const categoryCard = createCategoryCard(category, index);
+      elements.categoriesGrid.appendChild(categoryCard);
+    });
 
-        // Scroll to categories
-        elements.categoriesGrid.scrollIntoView({ behavior: 'smooth' });
+    // Scroll to categories
+    elements.categoriesGrid.scrollIntoView({ behavior: 'smooth' });
 
-        // Update button text
-        if (elements.viewAllCategoriesBtn) {
-            elements.viewAllCategoriesBtn.innerHTML = `
+    // Update button text
+    if (elements.viewAllCategoriesBtn) {
+      elements.viewAllCategoriesBtn.innerHTML = `
                 <i class="fas fa-check"></i>
                 Tüm 67 Kategori Yüklendi
             `;
-            elements.viewAllCategoriesBtn.disabled = true;
-            elements.viewAllCategoriesBtn.style.opacity = '0.7';
-        }
-
-        showNotification('Tüm kategoriler yüklendi!', 'success');
+      elements.viewAllCategoriesBtn.disabled = true;
+      elements.viewAllCategoriesBtn.style.opacity = '0.7';
     }
+
+    showNotification('Tüm kategoriler yüklendi!', 'success');
+  }
 }
 
 // ========== Create Category Card ==========
 function createCategoryCard(category, index) {
-    const card = document.createElement('div');
-    card.className = 'category-card';
-    card.setAttribute('data-category', category.id);
-    card.setAttribute('data-count', category.dataCount);
-    card.style.animationDelay = `${(index % 20) * 0.05}s`;
+  const card = document.createElement('div');
+  card.className = 'category-card';
+  card.setAttribute('data-category', category.id);
+  card.setAttribute('data-count', category.dataCount);
+  card.style.animationDelay = `${(index % 20) * 0.05}s`;
 
-    card.innerHTML = `
+  card.innerHTML = `
         <div class="category-icon ${category.color}">
             <span style="font-size: 2rem;">${category.icon}</span>
         </div>
@@ -610,9 +610,14 @@ function createCategoryCard(category, index) {
             <span class="category-sources">${category.sources.join(', ')}</span>
         </div>
         <div class="category-professions">
-            ${category.professions.slice(0, 3).map(prof => `
+            ${category.professions
+              .slice(0, 3)
+              .map(
+                prof => `
                 <span class="profession-tag">${prof}</span>
-            `).join('')}
+            `
+              )
+              .join('')}
         </div>
         <button class="category-btn" onclick="exploreCategory('${category.id}')">
             <i class="fas fa-arrow-right"></i>
@@ -620,161 +625,169 @@ function createCategoryCard(category, index) {
         </button>
     `;
 
-    // Add click handler
-    card.addEventListener('click', function(e) {
-        if (!e.target.classList.contains('category-btn')) {
-            exploreCategory(category.id);
-        }
-    });
+  // Add click handler
+  card.addEventListener('click', function (e) {
+    if (!e.target.classList.contains('category-btn')) {
+      exploreCategory(category.id);
+    }
+  });
 
-    return card;
+  return card;
 }
 
 // ========== Bookmark Result ==========
-window.bookmarkResult = function(resultIndex) {
-    const result = state.searchResults[resultIndex];
-    if (!result) return;
+window.bookmarkResult = function (resultIndex) {
+  const result = state.searchResults[resultIndex];
+  if (!result) return;
 
-    console.log('🔖 Bookmarking:', result.title);
+  console.log('🔖 Bookmarking:', result.title);
 
-    // Get existing bookmarks
-    const bookmarks = JSON.parse(localStorage.getItem('knowledgeBookmarks') || '[]');
+  // Get existing bookmarks
+  const bookmarks = JSON.parse(localStorage.getItem('knowledgeBookmarks') || '[]');
 
-    // Check if already bookmarked
-    const exists = bookmarks.find(b => b.url === result.url);
+  // Check if already bookmarked
+  const exists = bookmarks.find(b => b.url === result.url);
 
-    if (exists) {
-        showNotification('Bu sonuç zaten kayıtlı', 'info');
-        return;
-    }
+  if (exists) {
+    showNotification('Bu sonuç zaten kayıtlı', 'info');
+    return;
+  }
 
-    // Add bookmark
-    bookmarks.push({
-        title: result.title,
-        url: result.url,
-        snippet: result.snippet,
-        domain: result.domain,
-        timestamp: new Date().toISOString()
-    });
+  // Add bookmark
+  bookmarks.push({
+    title: result.title,
+    url: result.url,
+    snippet: result.snippet,
+    domain: result.domain,
+    timestamp: new Date().toISOString(),
+  });
 
-    localStorage.setItem('knowledgeBookmarks', JSON.stringify(bookmarks));
-    showNotification('Kayıtlara eklendi', 'success');
+  localStorage.setItem('knowledgeBookmarks', JSON.stringify(bookmarks));
+  showNotification('Kayıtlara eklendi', 'success');
 };
 
 // ========== Share Result ==========
-window.shareResult = function(resultIndex) {
-    const result = state.searchResults[resultIndex];
-    if (!result) return;
+window.shareResult = function (resultIndex) {
+  const result = state.searchResults[resultIndex];
+  if (!result) return;
 
-    console.log('📤 Sharing:', result.title);
+  console.log('📤 Sharing:', result.title);
 
-    if (navigator.share) {
-        navigator.share({
-            title: result.title,
-            text: result.snippet,
-            url: result.url
-        }).catch(err => console.log('Share cancelled'));
-    } else {
-        // Fallback: Copy to clipboard
-        const text = `${result.title}\n${result.url}`;
-        navigator.clipboard.writeText(text).then(() => {
-            showNotification('Bağlantı kopyalandı', 'success');
-        });
-    }
+  if (navigator.share) {
+    navigator
+      .share({
+        title: result.title,
+        text: result.snippet,
+        url: result.url,
+      })
+      .catch(err => console.log('Share cancelled'));
+  } else {
+    // Fallback: Copy to clipboard
+    const text = `${result.title}\n${result.url}`;
+    navigator.clipboard.writeText(text).then(() => {
+      showNotification('Bağlantı kopyalandı', 'success');
+    });
+  }
 };
 
 // ========== Animate Results ==========
 function animateResults() {
-    const resultCards = document.querySelectorAll('.result-card');
+  const resultCards = document.querySelectorAll('.result-card');
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.animation = 'fadeInUp 0.5s ease forwards';
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1 });
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animation = 'fadeInUp 0.5s ease forwards';
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
 
-    resultCards.forEach(card => observer.observe(card));
+  resultCards.forEach(card => observer.observe(card));
 }
 
 // ========== Scroll Animations ==========
 function animateOnScroll() {
-    const elements = document.querySelectorAll('.category-card, .source-card, .ai-assistant-card');
+  const elements = document.querySelectorAll('.category-card, .source-card, .ai-assistant-card');
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, { threshold: 0.1 });
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
 
-    elements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-        observer.observe(el);
-    });
+  elements.forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
 }
 
 // ========== Update Total Articles Counter ==========
 function updateTotalArticles() {
-    if (!elements.totalArticles) return;
+  if (!elements.totalArticles) return;
 
-    let count = 0;
-    const target = 65000000;
-    const duration = 2000;
-    const increment = target / (duration / 16);
+  let count = 0;
+  const target = 65000000;
+  const duration = 2000;
+  const increment = target / (duration / 16);
 
-    const counter = setInterval(() => {
-        count += increment;
-        if (count >= target) {
-            count = target;
-            clearInterval(counter);
-        }
-        elements.totalArticles.textContent = formatNumber(Math.floor(count));
-    }, 16);
+  const counter = setInterval(() => {
+    count += increment;
+    if (count >= target) {
+      count = target;
+      clearInterval(counter);
+    }
+    elements.totalArticles.textContent = formatNumber(Math.floor(count));
+  }, 16);
 }
 
 function formatNumber(num) {
-    if (num >= 1000000) {
-        return (num / 1000000).toFixed(1) + 'M+';
-    }
-    return num.toLocaleString('tr-TR');
+  if (num >= 1000000) {
+    return (num / 1000000).toFixed(1) + 'M+';
+  }
+  return num.toLocaleString('tr-TR');
 }
 
 // ========== Analytics ==========
 function trackSearch(query, resultsCount) {
-    const event = {
-        type: 'search',
-        query: query,
-        language: state.currentLanguage,
-        domain: state.currentDomain,
-        resultsCount: resultsCount,
-        timestamp: new Date().toISOString()
-    };
+  const event = {
+    type: 'search',
+    query: query,
+    language: state.currentLanguage,
+    domain: state.currentDomain,
+    resultsCount: resultsCount,
+    timestamp: new Date().toISOString(),
+  };
 
-    console.log('📊 Analytics:', event);
+  console.log('📊 Analytics:', event);
 
-    // Store locally
-    const analytics = JSON.parse(localStorage.getItem('knowledgeAnalytics') || '[]');
-    analytics.push(event);
+  // Store locally
+  const analytics = JSON.parse(localStorage.getItem('knowledgeAnalytics') || '[]');
+  analytics.push(event);
 
-    // Keep only last 100 events
-    if (analytics.length > 100) {
-        analytics.shift();
-    }
+  // Keep only last 100 events
+  if (analytics.length > 100) {
+    analytics.shift();
+  }
 
-    localStorage.setItem('knowledgeAnalytics', JSON.stringify(analytics));
+  localStorage.setItem('knowledgeAnalytics', JSON.stringify(analytics));
 }
 
 // ========== Search Suggestions (Auto-complete) ==========
 function showSearchSuggestions(query) {
-    // TODO: Implement auto-complete suggestions
-    console.log('💡 Suggestions for:', query);
+  // TODO: Implement auto-complete suggestions
+  console.log('💡 Suggestions for:', query);
 }
 
 // ========== Add CSS Animations ==========

@@ -26,7 +26,8 @@
       }
     </style>
     <link
-      rel="preload" as="style"
+      rel="preload"
+      as="style"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Righteous&amp;display=swap"
       crossorigin="anonymous"
     />
@@ -60,7 +61,8 @@
       }
       body {
         font-family: 'Inter', sans-serif;
-        background: radial-gradient(1400px 900px at 70% 15%, rgba(184, 107, 255, 0.1), transparent 60%),
+        background:
+          radial-gradient(1400px 900px at 70% 15%, rgba(184, 107, 255, 0.1), transparent 60%),
           radial-gradient(1200px 700px at 20% 80%, rgba(110, 132, 255, 0.1), transparent 65%),
           #0a0b0d;
         color: var(--gray-900);
@@ -125,7 +127,11 @@
         min-height: 80vh;
         display: flex;
         align-items: center;
-        background: linear-gradient(135deg, rgba(0, 224, 174, 0.15) 0%, rgba(110, 132, 255, 0.15) 100%);
+        background: linear-gradient(
+          135deg,
+          rgba(0, 224, 174, 0.15) 0%,
+          rgba(110, 132, 255, 0.15) 100%
+        );
         padding-top: 72px;
       }
       .hero-content {
@@ -344,9 +350,22 @@
       /* ========== RESPONSIVE ========== */
 
       /* Touch targets & font safety */
-      button, a, input, select, textarea { min-height: 44px; }
-      input, select, textarea { font-size: max(16px, 1rem); }
-      html, body { overflow-x: hidden; }
+      button,
+      a,
+      input,
+      select,
+      textarea {
+        min-height: 44px;
+      }
+      input,
+      select,
+      textarea {
+        font-size: max(16px, 1rem);
+      }
+      html,
+      body {
+        overflow-x: hidden;
+      }
 
       @media (max-width: 1024px) {
         .features-grid {
@@ -360,7 +379,8 @@
         .footer-grid {
           grid-template-columns: repeat(2, 1fr);
         }
-        .hero-section, .section {
+        .hero-section,
+        .section {
           padding: 3rem 1.5rem;
         }
       }
@@ -373,7 +393,8 @@
         .mobile-menu-btn {
           display: block;
         }
-        .hero-title, .section-title {
+        .hero-title,
+        .section-title {
           font-size: 2rem;
         }
         .hero-description {
@@ -393,7 +414,8 @@
         .footer-grid {
           grid-template-columns: 1fr;
         }
-        .hero-section, .section {
+        .hero-section,
+        .section {
           padding: 2rem 1rem;
         }
       }
@@ -422,6 +444,178 @@
         .footer-legal {
           flex-wrap: wrap;
           justify-content: center;
+        }
+      }
+
+      /* ========== ENHANCED RESPONSIVE DESIGN ========== */
+
+      /* Fluid Typography with clamp() */
+      .hero-title {
+        font-size: clamp(1.75rem, 5vw + 1rem, 4.5rem);
+      }
+
+      .hero-description {
+        font-size: clamp(1rem, 2vw + 0.5rem, 1.5rem);
+      }
+
+      .section-title {
+        font-size: clamp(1.5rem, 3vw + 0.75rem, 3rem);
+      }
+
+      .feature-title {
+        font-size: clamp(1.125rem, 2vw + 0.5rem, 1.5rem);
+      }
+
+      .pricing-name {
+        font-size: clamp(1.125rem, 2vw + 0.5rem, 1.5rem);
+      }
+
+      .pricing-price {
+        font-size: clamp(2rem, 3vw + 1rem, 3rem);
+      }
+
+      /* Large Desktop - 1440px */
+      @media (max-width: 1440px) {
+        .hero-content,
+        .features-container,
+        .pricing-container,
+        .footer-container {
+          max-width: 1200px;
+          padding-left: 1.5rem;
+          padding-right: 1.5rem;
+        }
+      }
+
+      /* Enhanced 1024px - Tablet Landscape */
+      @media (max-width: 1024px) {
+        .hero {
+          min-height: 60vh;
+          padding-top: 80px;
+        }
+
+        .hero-content {
+          padding: 3rem 1.5rem;
+        }
+
+        .features-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 1.5rem;
+        }
+
+        .pricing-grid {
+          grid-template-columns: 1fr;
+          max-width: 500px;
+          margin: 3rem auto 0;
+        }
+
+        .footer-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 3rem;
+        }
+
+        .features,
+        .pricing {
+          padding: 5rem 1.5rem;
+        }
+      }
+
+      /* Enhanced 768px - Tablet Portrait */
+      @media (max-width: 768px) {
+        .hero {
+          min-height: 50vh;
+        }
+
+        .hero-content {
+          padding: 2rem 1rem;
+        }
+
+        .features-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .feature-card {
+          padding: 2rem;
+        }
+
+        .pricing-card {
+          padding: 2rem;
+        }
+
+        .footer-grid {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+
+        .features,
+        .pricing {
+          padding: 4rem 1rem;
+        }
+      }
+
+      /* Enhanced 480px - Mobile */
+      @media (max-width: 480px) {
+        .hero-content {
+          padding: 1.5rem 0.75rem;
+        }
+
+        .btn-white {
+          padding: 0.875rem 1.5rem;
+          font-size: 1rem;
+        }
+
+        .feature-card {
+          padding: 1.5rem;
+        }
+
+        .feature-icon {
+          width: 44px;
+          height: 44px;
+        }
+
+        .feature-icon svg {
+          width: 22px;
+          height: 22px;
+        }
+
+        .pricing-card {
+          padding: 1.5rem;
+        }
+
+        .pricing-features li {
+          font-size: 0.875rem;
+          padding: 0.5rem 0;
+        }
+
+        .features,
+        .pricing {
+          padding: 3rem 0.75rem;
+        }
+
+        .footer {
+          padding: 3rem 1rem 1.5rem;
+        }
+      }
+
+      /* Extra small devices - 320px minimum support */
+      @media (max-width: 360px) {
+        .feature-card,
+        .pricing-card {
+          padding: 1rem;
+        }
+
+        .feature-title {
+          font-size: 1rem;
+        }
+
+        .feature-description {
+          font-size: 0.875rem;
+        }
+
+        .btn,
+        .btn-white,
+        .btn-primary {
+          font-size: 0.875rem;
+          padding: 0.75rem 1.25rem;
         }
       }
     </style>
@@ -675,7 +869,7 @@
     />
 
     <!-- /Premium SEO -->
-<!-- PWA Manifest -->
+    <!-- PWA Manifest -->
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#C4A962" />
     <!-- iOS Safari -->
@@ -733,34 +927,50 @@
     <link rel="shortcut icon" href="/icons/favicon.ico" />
     <!-- Schema.org: WebPage + Product + BreadcrumbList -->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "WebPage",
-          "name": "Kurumsal Çözümler — LyDian AI",
-          "url": "https://www.ailydian.com/enterprise",
-          "description": "LyDian AI kurumsal yapay zeka çözümleri. Ölçeklenebilir AI platformu, özel model entegrasyonu, kurumsal güvenlik ve uyumluluk.",
-          "publisher": {"@id": "https://www.ailydian.com/#organization"},
-          "isPartOf": {"@id": "https://www.ailydian.com/#website"}
-        },
-        {
-          "@type": "Product",
-          "name": "LyDian AI Enterprise Platform",
-          "description": "Scalable enterprise AI platform with custom model integration, SSO, RBAC, audit logging, and compliance features.",
-          "brand": {"@id": "https://www.ailydian.com/#organization"},
-          "category": "Enterprise Software",
-          "offers": {"@type": "Offer", "availability": "https://schema.org/InStock", "priceCurrency": "USD", "price": "0", "priceValidUntil": "2026-12-31"}
-        },
-        {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            {"@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://www.ailydian.com/"},
-            {"@type": "ListItem", "position": 2, "name": "Kurumsal", "item": "https://www.ailydian.com/enterprise"}
-          ]
-        }
-      ]
-    }
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebPage",
+            "name": "Kurumsal Çözümler — LyDian AI",
+            "url": "https://www.ailydian.com/enterprise",
+            "description": "LyDian AI kurumsal yapay zeka çözümleri. Ölçeklenebilir AI platformu, özel model entegrasyonu, kurumsal güvenlik ve uyumluluk.",
+            "publisher": { "@id": "https://www.ailydian.com/#organization" },
+            "isPartOf": { "@id": "https://www.ailydian.com/#website" }
+          },
+          {
+            "@type": "Product",
+            "name": "LyDian AI Enterprise Platform",
+            "description": "Scalable enterprise AI platform with custom model integration, SSO, RBAC, audit logging, and compliance features.",
+            "brand": { "@id": "https://www.ailydian.com/#organization" },
+            "category": "Enterprise Software",
+            "offers": {
+              "@type": "Offer",
+              "availability": "https://schema.org/InStock",
+              "priceCurrency": "USD",
+              "price": "0",
+              "priceValidUntil": "2026-12-31"
+            }
+          },
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Ana Sayfa",
+                "item": "https://www.ailydian.com/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Kurumsal",
+                "item": "https://www.ailydian.com/enterprise"
+              }
+            ]
+          }
+        ]
+      }
     </script>
   </head>
   <body>

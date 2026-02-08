@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "created": "2025-10-06",
   "status": "IA Complete - Ready for Content",
-  "location": "/Users/sardag/Desktop/ailydian-ultra-pro/docs/",
-  
+  "location": "/docs/",
+
   "statistics": {
     "total_directories": 204,
     "total_files": 31,
@@ -13,7 +13,7 @@
     "sdk_support": 5,
     "api_specs": 6
   },
-  
+
   "languages": [
     { "code": "tr", "name": "Turkish", "flag": "🇹🇷" },
     { "code": "en", "name": "English", "flag": "🇬🇧" },
@@ -26,7 +26,7 @@
     { "code": "ja", "name": "Japanese", "flag": "🇯🇵" },
     { "code": "zh-CN", "name": "Chinese (Simplified)", "flag": "🇨🇳" }
   ],
-  
+
   "modules": [
     {
       "id": "smart-cities",
@@ -56,15 +56,20 @@
       }
     }
   ],
-  
+
   "sdks": [
-    { "id": "typescript", "name": "TypeScript/JavaScript", "path": "sdks/typescript/", "examples": "examples/sdk-ts/" },
+    {
+      "id": "typescript",
+      "name": "TypeScript/JavaScript",
+      "path": "sdks/typescript/",
+      "examples": "examples/sdk-ts/"
+    },
     { "id": "python", "name": "Python", "path": "sdks/python/", "examples": "examples/sdk-py/" },
     { "id": "go", "name": "Go", "path": "sdks/go/", "examples": "examples/sdk-go/" },
     { "id": "java", "name": "Java", "path": "sdks/java/", "examples": "examples/sdk-java/" },
     { "id": "csharp", "name": "C#", "path": "sdks/csharp/", "examples": "examples/sdk-csharp/" }
   ],
-  
+
   "documentation_sections": [
     { "id": "getting-started", "order": 1, "description": "Quick start guides and onboarding" },
     { "id": "guides", "order": 2, "description": "Step-by-step how-to guides" },
@@ -81,7 +86,7 @@
     { "id": "sla-slo", "order": 13, "description": "Service level agreements" },
     { "id": "glossary", "order": 14, "description": "Term definitions" }
   ],
-  
+
   "infrastructure": {
     "navigation": "nav.yml",
     "structure_diagram": "STRUCTURE.txt",
@@ -93,7 +98,7 @@
       "briefs": "ops/brief/"
     }
   },
-  
+
   "next_steps": [
     "Populate content for each language section",
     "Complete OpenAPI/AsyncAPI specifications",

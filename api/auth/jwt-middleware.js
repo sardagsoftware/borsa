@@ -227,9 +227,8 @@ function authenticate(req, res, next) {
 
     return res.status(401).json({
       success: false,
-      error: 'Invalid token',
+      error: 'Gecersiz token',
       code: 'INVALID_TOKEN',
-      details: error.message,
     });
   }
 }

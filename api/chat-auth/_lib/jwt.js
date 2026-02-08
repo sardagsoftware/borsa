@@ -8,7 +8,8 @@ const crypto = require('crypto');
 
 // Chat-specific JWT secrets (independent from main auth)
 const CHAT_JWT_SECRET = process.env.CHAT_JWT_SECRET || crypto.randomBytes(64).toString('hex');
-const CHAT_JWT_REFRESH_SECRET = process.env.CHAT_JWT_REFRESH_SECRET || crypto.randomBytes(64).toString('hex');
+const CHAT_JWT_REFRESH_SECRET =
+  process.env.CHAT_JWT_REFRESH_SECRET || crypto.randomBytes(64).toString('hex');
 
 // Token expiration times
 const ACCESS_TOKEN_EXPIRY = process.env.CHAT_JWT_EXPIRATION || '30m';
@@ -23,13 +24,13 @@ function generateAccessToken(user) {
       userId: user.id,
       email: user.email,
       displayName: user.display_name || user.displayName,
-      type: 'chat_access'
+      type: 'chat_access',
     },
     CHAT_JWT_SECRET,
     {
       expiresIn: ACCESS_TOKEN_EXPIRY,
       issuer: 'ailydian-chat',
-      audience: 'ailydian-chat-api'
+      audience: 'ailydian-chat-api',
     }
   );
 }
@@ -42,13 +43,13 @@ function generateRefreshToken(user) {
     {
       userId: user.id,
       email: user.email,
-      type: 'chat_refresh'
+      type: 'chat_refresh',
     },
     CHAT_JWT_REFRESH_SECRET,
     {
       expiresIn: REFRESH_TOKEN_EXPIRY,
       issuer: 'ailydian-chat',
-      audience: 'ailydian-chat-api'
+      audience: 'ailydian-chat-api',
     }
   );
 }
@@ -60,7 +61,7 @@ function verifyAccessToken(token) {
   try {
     const decoded = jwt.verify(token, CHAT_JWT_SECRET, {
       issuer: 'ailydian-chat',
-      audience: 'ailydian-chat-api'
+      audience: 'ailydian-chat-api',
     });
 
     if (decoded.type !== 'chat_access') {
@@ -69,7 +70,8 @@ function verifyAccessToken(token) {
 
     return { valid: true, payload: decoded };
   } catch (error) {
-    return { valid: false, error: error.message };
+    console.error('Token verification failed:', error.message);
+    return { valid: false, error: 'Token doğrulama hatası' };
   }
 }
 
@@ -80,7 +82,7 @@ function verifyRefreshToken(token) {
   try {
     const decoded = jwt.verify(token, CHAT_JWT_REFRESH_SECRET, {
       issuer: 'ailydian-chat',
-      audience: 'ailydian-chat-api'
+      audience: 'ailydian-chat-api',
     });
 
     if (decoded.type !== 'chat_refresh') {
@@ -89,7 +91,8 @@ function verifyRefreshToken(token) {
 
     return { valid: true, payload: decoded };
   } catch (error) {
-    return { valid: false, error: error.message };
+    console.error('Refresh token verification failed:', error.message);
+    return { valid: false, error: 'Token doğrulama hatası' };
   }
 }
 
@@ -143,7 +146,7 @@ function getRefreshTokenExpiry() {
     s: 1000,
     m: 60 * 1000,
     h: 60 * 60 * 1000,
-    d: 24 * 60 * 60 * 1000
+    d: 24 * 60 * 60 * 1000,
   };
 
   return new Date(Date.now() + value * multipliers[unit]);
@@ -158,7 +161,7 @@ function authenticateChatUser(req, res, next) {
   if (!token) {
     return res.status(401).json({
       success: false,
-      error: 'Authentication required'
+      error: 'Authentication required',
     });
   }
 
@@ -167,7 +170,7 @@ function authenticateChatUser(req, res, next) {
   if (!result.valid) {
     return res.status(401).json({
       success: false,
-      error: 'Invalid or expired token'
+      error: 'Invalid or expired token',
     });
   }
 
@@ -201,5 +204,5 @@ module.exports = {
   extractRefreshToken,
   getRefreshTokenExpiry,
   authenticateChatUser,
-  optionalChatAuth
+  optionalChatAuth,
 };

@@ -28,7 +28,7 @@ const router = express.Router();
 
 const PEDIATRIC_DRUGS = {
   // Antibiotics
-  'amoxicillin': {
+  amoxicillin: {
     name: 'Amoxicillin',
     class: 'Antibiotic (Penicillin)',
     fdaApprovedAges: '≥3 months',
@@ -36,20 +36,21 @@ const PEDIATRIC_DRUGS = {
       standard: {
         mg_kg_day: [25, 50],
         frequency: 'q8h or q12h',
-        maxDose: '1000 mg/dose'
+        maxDose: '1000 mg/dose',
       },
-      highDose: { // For resistant S. pneumoniae
+      highDose: {
+        // For resistant S. pneumoniae
         mg_kg_day: [80, 90],
         frequency: 'q12h',
-        maxDose: '2000 mg/dose'
-      }
+        maxDose: '2000 mg/dose',
+      },
     },
     offLabelUses: ['Neonatal sepsis (with gentamicin)', 'Lyme disease'],
     contraindications: ['Penicillin allergy', 'Mononucleosis'],
     sideEffects: ['Diarrhea (mild)', 'Rash', 'Hypersensitivity'],
-    interactions: ['Probenecid (increases levels)', 'Allopurinol (rash risk)']
+    interactions: ['Probenecid (increases levels)', 'Allopurinol (rash risk)'],
   },
-  'acetaminophen': {
+  acetaminophen: {
     name: 'Acetaminophen (Paracetamol)',
     class: 'Antipyretic/Analgesic',
     fdaApprovedAges: '≥0 months',
@@ -57,19 +58,19 @@ const PEDIATRIC_DRUGS = {
       oral: {
         mg_kg_dose: [10, 15],
         frequency: 'q4-6h PRN',
-        maxDose: '75 mg/kg/day or 4000 mg/day'
+        maxDose: '75 mg/kg/day or 4000 mg/day',
       },
       rectal: {
         mg_kg_dose: [15, 20],
-        frequency: 'q4-6h PRN'
-      }
+        frequency: 'q4-6h PRN',
+      },
     },
     offLabelUses: [],
     contraindications: ['Severe hepatic impairment'],
     sideEffects: ['Rare: Hepatotoxicity (overdose)', 'Rash'],
-    interactions: ['Warfarin (potentiation)', 'Chronic alcohol use']
+    interactions: ['Warfarin (potentiation)', 'Chronic alcohol use'],
   },
-  'ibuprofen': {
+  ibuprofen: {
     name: 'Ibuprofen',
     class: 'NSAID',
     fdaApprovedAges: '≥6 months',
@@ -77,20 +78,20 @@ const PEDIATRIC_DRUGS = {
       antipyretic: {
         mg_kg_dose: [5, 10],
         frequency: 'q6-8h PRN',
-        maxDose: '40 mg/kg/day or 1200 mg/day'
+        maxDose: '40 mg/kg/day or 1200 mg/day',
       },
       antiinflammatory: {
         mg_kg_dose: 10,
         frequency: 'q6-8h',
-        maxDose: '50 mg/kg/day or 2400 mg/day'
-      }
+        maxDose: '50 mg/kg/day or 2400 mg/day',
+      },
     },
     offLabelUses: ['Closure of PDA (patent ductus arteriosus) in neonates'],
     contraindications: ['<6 months age', 'Dehydration', 'Bleeding disorders', 'Renal impairment'],
     sideEffects: ['GI upset', 'Renal dysfunction', 'Bleeding'],
-    interactions: ['Aspirin', 'Warfarin', 'ACE inhibitors']
+    interactions: ['Aspirin', 'Warfarin', 'ACE inhibitors'],
   },
-  'methylphenidate': {
+  methylphenidate: {
     name: 'Methylphenidate',
     class: 'CNS Stimulant (ADHD)',
     fdaApprovedAges: '≥6 years',
@@ -99,20 +100,20 @@ const PEDIATRIC_DRUGS = {
         mg_dose_start: 5,
         frequency: 'BID (before breakfast and lunch)',
         titration: 'Increase by 5-10 mg weekly',
-        maxDose: '60 mg/day'
+        maxDose: '60 mg/day',
       },
       extended_release: {
         mg_dose_start: 18,
         frequency: 'Daily',
         titration: 'Increase by 9-18 mg weekly',
-        maxDose: '72 mg/day'
-      }
+        maxDose: '72 mg/day',
+      },
     },
     offLabelUses: ['ADHD in children 4-5 years', 'Narcolepsy'],
     contraindications: ['Glaucoma', 'Motor tics', 'Tourette syndrome', 'MAO inhibitor use'],
     sideEffects: ['Decreased appetite', 'Insomnia', 'Growth suppression', 'Cardiovascular effects'],
-    interactions: ['MAO inhibitors', 'Anticoagulants', 'Anticonvulsants']
-  }
+    interactions: ['MAO inhibitors', 'Anticoagulants', 'Anticonvulsants'],
+  },
 };
 
 // ============================================================================
@@ -161,8 +162,12 @@ function calculatePediatricDose(drugName, ageMonths, weightKg, indication = 'sta
   const recommendedDose = Math.min(calculatedDose, maxDosePerDose);
 
   // Safety check: Extremely high or low doses
-  const safetyFlag = (recommendedDose > maxDosePerDose * 0.9) ? 'APPROACHING_MAX' :
-                     (recommendedDose < dosePerKg * weightKg * 0.5) ? 'UNUSUALLY_LOW' : 'SAFE';
+  const safetyFlag =
+    recommendedDose > maxDosePerDose * 0.9
+      ? 'APPROACHING_MAX'
+      : recommendedDose < dosePerKg * weightKg * 0.5
+        ? 'UNUSUALLY_LOW'
+        : 'SAFE';
 
   return {
     drug: drug.name,
@@ -170,13 +175,13 @@ function calculatePediatricDose(drugName, ageMonths, weightKg, indication = 'sta
     patient: {
       ageMonths,
       ageYears: (ageMonths / 12).toFixed(1),
-      weightKg
+      weightKg,
     },
     dosing: {
       recommendedDose: Math.round(recommendedDose * 10) / 10, // Round to 1 decimal
       frequency: regimen.frequency,
       route: regimen.route || 'oral',
-      duration: regimen.duration || 'as directed by provider'
+      duration: regimen.duration || 'as directed by provider',
     },
     dailyMax: parseMaxDose(regimen.maxDose),
     offLabel: isOffLabel,
@@ -185,7 +190,7 @@ function calculatePediatricDose(drugName, ageMonths, weightKg, indication = 'sta
     warnings: generateDoseWarnings(drug, ageMonths, weightKg, recommendedDose, safetyFlag),
     interactions: drug.interactions,
     sideEffects: drug.sideEffects,
-    contraindications: drug.contraindications
+    contraindications: drug.contraindications,
   };
 }
 
@@ -212,14 +217,14 @@ function generateDoseWarnings(drug, ageMonths, weightKg, dose, safetyFlag) {
   if (safetyFlag === 'APPROACHING_MAX') {
     warnings.push({
       severity: 'MEDIUM',
-      message: `Dose approaching maximum limit. Consider toxicity monitoring.`
+      message: 'Dose approaching maximum limit. Consider toxicity monitoring.',
     });
   }
 
   if (safetyFlag === 'UNUSUALLY_LOW') {
     warnings.push({
       severity: 'LOW',
-      message: `Calculated dose unusually low. Verify patient weight and indication.`
+      message: 'Calculated dose unusually low. Verify patient weight and indication.',
     });
   }
 
@@ -227,14 +232,14 @@ function generateDoseWarnings(drug, ageMonths, weightKg, dose, safetyFlag) {
   if (ageMonths < 6 && drug.name === 'Ibuprofen') {
     warnings.push({
       severity: 'HIGH',
-      message: `⚠️ Ibuprofen NOT recommended for infants <6 months. Use acetaminophen.`
+      message: '⚠️ Ibuprofen NOT recommended for infants <6 months. Use acetaminophen.',
     });
   }
 
   if (ageMonths < 12 && drug.name === 'Honey-based cough syrup') {
     warnings.push({
       severity: 'HIGH',
-      message: `⚠️ NEVER give honey to infants <12 months (botulism risk).`
+      message: '⚠️ NEVER give honey to infants <12 months (botulism risk).',
     });
   }
 
@@ -242,7 +247,7 @@ function generateDoseWarnings(drug, ageMonths, weightKg, dose, safetyFlag) {
   if (weightKg < 2.5) {
     warnings.push({
       severity: 'MEDIUM',
-      message: `Patient weight <2.5 kg (likely preterm). Use neonatal dosing guidelines.`
+      message: 'Patient weight <2.5 kg (likely preterm). Use neonatal dosing guidelines.',
     });
   }
 
@@ -268,20 +273,20 @@ function checkPediatricInteractions(medications) {
       drugs: ['ibuprofen', 'aspirin'],
       severity: 'HIGH',
       mechanism: 'Increased bleeding risk + GI toxicity',
-      recommendation: 'Avoid combination. Use single NSAID.'
+      recommendation: 'Avoid combination. Use single NSAID.',
     },
     {
       drugs: ['acetaminophen', 'oxycodone'],
       severity: 'MEDIUM',
       mechanism: 'Many opioid formulations already contain acetaminophen',
-      recommendation: 'Check for duplicate acetaminophen to avoid hepatotoxicity'
+      recommendation: 'Check for duplicate acetaminophen to avoid hepatotoxicity',
     },
     {
       drugs: ['methylphenidate', 'clonidine'],
       severity: 'MEDIUM',
       mechanism: 'Case reports of sudden death (though combination often used)',
-      recommendation: 'Use with caution. Monitor cardiovascular status.'
-    }
+      recommendation: 'Use with caution. Monitor cardiovascular status.',
+    },
   ];
 
   // Check all pairs
@@ -290,14 +295,14 @@ function checkPediatricInteractions(medications) {
       const drug1 = medications[i].toLowerCase();
       const drug2 = medications[j].toLowerCase();
 
-      const interaction = dangerousPairs.find(pair =>
-        (pair.drugs.includes(drug1) && pair.drugs.includes(drug2))
+      const interaction = dangerousPairs.find(
+        pair => pair.drugs.includes(drug1) && pair.drugs.includes(drug2)
       );
 
       if (interaction) {
         interactions.push({
           medications: [drug1, drug2],
-          ...interaction
+          ...interaction,
         });
       }
     }
@@ -307,8 +312,11 @@ function checkPediatricInteractions(medications) {
     hasInteractions: interactions.length > 0,
     count: interactions.length,
     interactions,
-    overallRisk: interactions.some(i => i.severity === 'HIGH') ? 'HIGH' :
-                 interactions.some(i => i.severity === 'MEDIUM') ? 'MEDIUM' : 'LOW'
+    overallRisk: interactions.some(i => i.severity === 'HIGH')
+      ? 'HIGH'
+      : interactions.some(i => i.severity === 'MEDIUM')
+        ? 'MEDIUM'
+        : 'LOW',
   };
 }
 
@@ -321,50 +329,54 @@ const DEVELOPMENTAL_MILESTONES = {
     { domain: 'Social-Emotional', milestone: 'Smiles at people', met: null },
     { domain: 'Language', milestone: 'Coos and makes gurgling sounds', met: null },
     { domain: 'Cognitive', milestone: 'Pays attention to faces', met: null },
-    { domain: 'Motor', milestone: 'Holds head up when on tummy', met: null }
+    { domain: 'Motor', milestone: 'Holds head up when on tummy', met: null },
   ],
   '4_months': [
     { domain: 'Social-Emotional', milestone: 'Smiles spontaneously', met: null },
     { domain: 'Language', milestone: 'Babbles with expression', met: null },
     { domain: 'Cognitive', milestone: 'Recognizes familiar people', met: null },
-    { domain: 'Motor', milestone: 'Holds a toy when placed in hand', met: null }
+    { domain: 'Motor', milestone: 'Holds a toy when placed in hand', met: null },
   ],
   '6_months': [
     { domain: 'Social-Emotional', milestone: 'Knows familiar faces', met: null },
     { domain: 'Language', milestone: 'Responds to sounds by making sounds', met: null },
     { domain: 'Cognitive', milestone: 'Looks around at nearby things', met: null },
-    { domain: 'Motor', milestone: 'Rolls over in both directions', met: null }
+    { domain: 'Motor', milestone: 'Rolls over in both directions', met: null },
   ],
   '9_months': [
     { domain: 'Social-Emotional', milestone: 'May be afraid of strangers', met: null },
     { domain: 'Language', milestone: 'Makes different sounds like "mamamama"', met: null },
     { domain: 'Cognitive', milestone: 'Looks for things they see you hide', met: null },
-    { domain: 'Motor', milestone: 'Sits without support', met: null }
+    { domain: 'Motor', milestone: 'Sits without support', met: null },
   ],
   '12_months': [
     { domain: 'Social-Emotional', milestone: 'Shy or nervous with strangers', met: null },
     { domain: 'Language', milestone: 'Says "mama" and "dada" correctly', met: null },
     { domain: 'Cognitive', milestone: 'Finds hidden things easily', met: null },
-    { domain: 'Motor', milestone: 'Stands alone', met: null }
+    { domain: 'Motor', milestone: 'Stands alone', met: null },
   ],
   '18_months': [
-    { domain: 'Social-Emotional', milestone: 'Points to show others something interesting', met: null },
+    {
+      domain: 'Social-Emotional',
+      milestone: 'Points to show others something interesting',
+      met: null,
+    },
     { domain: 'Language', milestone: 'Says several single words', met: null },
     { domain: 'Cognitive', milestone: 'Knows what ordinary things are for', met: null },
-    { domain: 'Motor', milestone: 'Walks alone', met: null }
+    { domain: 'Motor', milestone: 'Walks alone', met: null },
   ],
   '24_months': [
     { domain: 'Social-Emotional', milestone: 'Shows defiant behavior', met: null },
     { domain: 'Language', milestone: 'Says sentences with 2-4 words', met: null },
     { domain: 'Cognitive', milestone: 'Sorts shapes and colors', met: null },
-    { domain: 'Motor', milestone: 'Kicks a ball', met: null }
+    { domain: 'Motor', milestone: 'Kicks a ball', met: null },
   ],
   '36_months': [
     { domain: 'Social-Emotional', milestone: 'Shows affection for friends', met: null },
     { domain: 'Language', milestone: 'Can say first name, age, and sex', met: null },
     { domain: 'Cognitive', milestone: 'Can work toys with parts (levers, handles)', met: null },
-    { domain: 'Motor', milestone: 'Climbs well', met: null }
-  ]
+    { domain: 'Motor', milestone: 'Climbs well', met: null },
+  ],
 };
 
 /**
@@ -376,7 +388,16 @@ const DEVELOPMENTAL_MILESTONES = {
  */
 function assessDevelopmentalMilestones(ageMonths, milestonesAchieved) {
   // Find closest age bracket
-  const ageBrackets = ['2_months', '4_months', '6_months', '9_months', '12_months', '18_months', '24_months', '36_months'];
+  const ageBrackets = [
+    '2_months',
+    '4_months',
+    '6_months',
+    '9_months',
+    '12_months',
+    '18_months',
+    '24_months',
+    '36_months',
+  ];
   const closestBracket = ageBrackets.reduce((prev, curr) => {
     const prevAge = parseInt(prev.split('_')[0]);
     const currAge = parseInt(curr.split('_')[0]);
@@ -390,7 +411,7 @@ function assessDevelopmentalMilestones(ageMonths, milestonesAchieved) {
     expectedMilestones: expectedMilestones.length,
     metMilestones: 0,
     delayedDomains: [],
-    onTrack: true
+    onTrack: true,
   };
 
   // Check each milestone
@@ -408,7 +429,8 @@ function assessDevelopmentalMilestones(ageMonths, milestonesAchieved) {
   // Flag if <75% of milestones met
   if (assessment.metMilestones / assessment.expectedMilestones < 0.75) {
     assessment.onTrack = false;
-    assessment.recommendation = 'Developmental screening recommended (M-CHAT-R/F for autism, ASQ-3 for global delay)';
+    assessment.recommendation =
+      'Developmental screening recommended (M-CHAT-R/F for autism, ASQ-3 for global delay)';
     assessment.urgency = 'MEDIUM';
   } else {
     assessment.recommendation = 'Continue monitoring. Next screening at next well-child visit.';
@@ -433,7 +455,7 @@ router.post('/dose-calculator', async (req, res) => {
     if (!medication || !age || !weight) {
       return res.status(400).json({
         success: false,
-        error: 'Missing required fields: medication, age, weight'
+        error: 'Missing required fields: medication, age, weight',
       });
     }
 
@@ -443,15 +465,15 @@ router.post('/dose-calculator', async (req, res) => {
     res.json({
       success: true,
       dosing,
-      disclaimer: 'This calculator provides evidence-based dosing guidance. Always verify with primary literature and use clinical judgment.',
-      timestamp: new Date().toISOString()
+      disclaimer:
+        'This calculator provides evidence-based dosing guidance. Always verify with primary literature and use clinical judgment.',
+      timestamp: new Date().toISOString(),
     });
-
   } catch (error) {
     console.error('❌ Dose calculator error:', error);
     res.status(500).json({
       success: false,
-      error: error.message
+      error: 'Pediatrik guvenlik islemi hatasi. Lutfen tekrar deneyin.',
     });
   }
 });
@@ -467,7 +489,7 @@ router.post('/interaction-check', async (req, res) => {
     if (!medications || !Array.isArray(medications) || medications.length < 2) {
       return res.status(400).json({
         success: false,
-        error: 'Provide at least 2 medications to check interactions'
+        error: 'Provide at least 2 medications to check interactions',
       });
     }
 
@@ -476,14 +498,13 @@ router.post('/interaction-check', async (req, res) => {
     res.json({
       success: true,
       interactions,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
-
   } catch (error) {
     console.error('❌ Interaction check error:', error);
     res.status(500).json({
       success: false,
-      error: error.message
+      error: 'Pediatrik guvenlik islemi hatasi. Lutfen tekrar deneyin.',
     });
   }
 });
@@ -499,7 +520,7 @@ router.post('/developmental-screening', async (req, res) => {
     if (!age || !milestones) {
       return res.status(400).json({
         success: false,
-        error: 'Missing required fields: age, milestones'
+        error: 'Missing required fields: age, milestones',
       });
     }
 
@@ -512,16 +533,15 @@ router.post('/developmental-screening', async (req, res) => {
       resources: [
         'CDC Developmental Milestones: https://www.cdc.gov/ncbddd/actearly/milestones/index.html',
         'M-CHAT-R/F (Autism Screening): https://mchatscreen.com/',
-        'ASQ-3 (Ages & Stages Questionnaire): https://agesandstages.com/'
+        'ASQ-3 (Ages & Stages Questionnaire): https://agesandstages.com/',
       ],
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
-
   } catch (error) {
     console.error('❌ Developmental screening error:', error);
     res.status(500).json({
       success: false,
-      error: error.message
+      error: 'Pediatrik guvenlik islemi hatasi. Lutfen tekrar deneyin.',
     });
   }
 });
@@ -536,14 +556,15 @@ router.get('/drug-database', (req, res) => {
     name: drug.name,
     class: drug.class,
     fdaApprovedAges: drug.fdaApprovedAges,
-    hasOffLabelUses: drug.offLabelUses.length > 0
+    hasOffLabelUses: drug.offLabelUses.length > 0,
   }));
 
   res.json({
     success: true,
     drugs,
     totalDrugs: drugs.length,
-    disclaimer: 'This database provides common pediatric medications. Not comprehensive. Always consult Lexicomp/Micromedex for complete information.'
+    disclaimer:
+      'This database provides common pediatric medications. Not comprehensive. Always consult Lexicomp/Micromedex for complete information.',
   });
 });
 

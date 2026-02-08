@@ -29,7 +29,7 @@ class VideoComposerService {
           videoBitrate: '5000k',
           audioBitrate: '192k',
           format: 'mp4',
-          codec: 'libx264'
+          codec: 'libx264',
         },
         'youtube-shorts': {
           resolution: '1080x1920',
@@ -37,7 +37,7 @@ class VideoComposerService {
           videoBitrate: '4000k',
           audioBitrate: '192k',
           format: 'mp4',
-          codec: 'libx264'
+          codec: 'libx264',
         },
         instagram: {
           resolution: '1080x1920',
@@ -45,7 +45,7 @@ class VideoComposerService {
           videoBitrate: '3500k',
           audioBitrate: '128k',
           format: 'mp4',
-          codec: 'libx264'
+          codec: 'libx264',
         },
         tiktok: {
           resolution: '1080x1920',
@@ -53,7 +53,7 @@ class VideoComposerService {
           videoBitrate: '3000k',
           audioBitrate: '128k',
           format: 'mp4',
-          codec: 'libx264'
+          codec: 'libx264',
         },
         facebook: {
           resolution: '1920x1080',
@@ -61,7 +61,7 @@ class VideoComposerService {
           videoBitrate: '4000k',
           audioBitrate: '192k',
           format: 'mp4',
-          codec: 'libx264'
+          codec: 'libx264',
         },
         x: {
           resolution: '1280x720',
@@ -69,8 +69,8 @@ class VideoComposerService {
           videoBitrate: '2500k',
           audioBitrate: '128k',
           format: 'mp4',
-          codec: 'libx264'
-        }
+          codec: 'libx264',
+        },
       },
 
       // Watermark settings
@@ -80,8 +80,8 @@ class VideoComposerService {
         position: 'bottom-right',
         fontSize: 24,
         fontColor: 'white',
-        backgroundColor: 'rgba(0,0,0,0.5)'
-      }
+        backgroundColor: 'rgba(0,0,0,0.5)',
+      },
     };
 
     // Ensure temp directory exists
@@ -121,7 +121,7 @@ class VideoComposerService {
 
       // Step 2: Create video composition
       console.log('🎨 Creating video composition...');
-      const videoPath = await this.createComposition(assets, preset, options, jobId);
+      let videoPath = await this.createComposition(assets, preset, options, jobId);
 
       // Step 3: Add audio
       console.log('🎵 Adding audio track...');
@@ -152,13 +152,13 @@ class VideoComposerService {
         jobId: jobId,
         videoPath: videoPath,
         metadata: metadata,
-        preset: preset
+        preset: preset,
       };
     } catch (error) {
       console.error('❌ [VideoComposer] Composition failed:', error.message);
       return {
         success: false,
-        error: error.message
+        error: 'Video işlem hatası',
       };
     }
   }
@@ -226,17 +226,22 @@ class VideoComposerService {
       this.config.ffmpegPath,
       '-loop 1',
       `-i "${assets.avatarPath}"`,
-      '-c:v', preset.codec,
-      '-t', audioDuration,
+      '-c:v',
+      preset.codec,
+      '-t',
+      audioDuration,
       '-pix_fmt yuv420p',
-      '-vf', `scale=${preset.resolution.replace('x', ':')}:force_original_aspect_ratio=decrease,pad=${preset.resolution.replace('x', ':')}:(ow-iw)/2:(oh-ih)/2`,
-      '-r', preset.fps,
-      '-b:v', preset.videoBitrate,
+      '-vf',
+      `scale=${preset.resolution.replace('x', ':')}:force_original_aspect_ratio=decrease,pad=${preset.resolution.replace('x', ':')}:(ow-iw)/2:(oh-ih)/2`,
+      '-r',
+      preset.fps,
+      '-b:v',
+      preset.videoBitrate,
       '-y',
-      `"${outputPath}"`
+      `"${outputPath}"`,
     ].join(' ');
 
-    console.log(`   Executing FFmpeg...`);
+    console.log('   Executing FFmpeg...');
     await execPromise(command);
 
     return outputPath;
@@ -259,10 +264,11 @@ class VideoComposerService {
       `-i "${audioPath}"`,
       '-c:v copy',
       '-c:a aac',
-      '-b:a', preset.audioBitrate,
+      '-b:a',
+      preset.audioBitrate,
       '-shortest',
       '-y',
-      `"${outputPath}"`
+      `"${outputPath}"`,
     ].join(' ');
 
     await execPromise(command);
@@ -297,19 +303,20 @@ class VideoComposerService {
       `text='${watermarkSettings.text}'`,
       `fontsize=${watermarkSettings.fontSize}`,
       `fontcolor=${watermarkSettings.fontColor}`,
-      `box=1`,
+      'box=1',
       `boxcolor=${watermarkSettings.backgroundColor}`,
-      `boxborderw=5`,
-      position
+      'boxborderw=5',
+      position,
     ].join(':');
 
     const command = [
       this.config.ffmpegPath,
       `-i "${videoPath}"`,
-      '-vf', `"${drawtext}"`,
+      '-vf',
+      `"${drawtext}"`,
       '-codec:a copy',
       '-y',
-      `"${outputPath}"`
+      `"${outputPath}"`,
     ].join(' ');
 
     await execPromise(command);
@@ -341,7 +348,7 @@ class VideoComposerService {
       `-vf "subtitles='${srtPath}'"`,
       '-c:a copy',
       '-y',
-      `"${outputPath}"`
+      `"${outputPath}"`,
     ].join(' ');
 
     await execPromise(command);
@@ -418,7 +425,7 @@ class VideoComposerService {
         size: stats.size,
         duration: duration,
         created: stats.birthtime,
-        modified: stats.mtime
+        modified: stats.mtime,
       };
     } catch (error) {
       console.error('❌ Failed to get video metadata:', error.message);

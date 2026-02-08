@@ -41,7 +41,7 @@ function authenticateToken(req, res, next) {
   if (!token) {
     return res.status(401).json({
       success: false,
-      error: 'Authentication required'
+      error: 'Authentication required',
     });
   }
 
@@ -52,7 +52,7 @@ function authenticateToken(req, res, next) {
   } catch (error) {
     return res.status(403).json({
       success: false,
-      error: 'Invalid or expired token'
+      error: 'Invalid or expired token',
     });
   }
 }
@@ -62,14 +62,14 @@ function requireRole(...allowedRoles) {
     if (!req.user) {
       return res.status(401).json({
         success: false,
-        error: 'Authentication required'
+        error: 'Authentication required',
       });
     }
 
     if (!allowedRoles.includes(req.user.role)) {
       return res.status(403).json({
         success: false,
-        error: 'Insufficient permissions'
+        error: 'Insufficient permissions',
       });
     }
 
@@ -102,34 +102,31 @@ async function getHospitalConfig(req, res) {
     if (!hospital) {
       return res.status(404).json({
         success: false,
-        error: 'Hospital not found'
+        error: 'Hospital not found',
       });
     }
 
     // Get hospital departments
-    const departments = Array.from(DEPARTMENTS.values())
-      .filter(d => d.hospital_id === hospital.id);
+    const departments = Array.from(DEPARTMENTS.values()).filter(d => d.hospital_id === hospital.id);
 
     // Get hospital staff count
-    const staffCount = Array.from(STAFF.values())
-      .filter(s => s.hospital_id === hospital.id).length;
+    const staffCount = Array.from(STAFF.values()).filter(s => s.hospital_id === hospital.id).length;
 
     res.json({
       success: true,
       hospital: {
         ...hospital,
         departments_count: departments.length,
-        staff_count: staffCount
+        staff_count: staffCount,
       },
-      departments
+      departments,
     });
-
   } catch (error) {
     console.error('Error fetching hospital config:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to fetch hospital configuration',
-      message: error.message
+      message: 'İşlem başarısız. Lütfen tekrar deneyin.',
     });
   }
 }
@@ -141,22 +138,14 @@ async function getHospitalConfig(req, res) {
 async function updateHospitalConfig(req, res) {
   try {
     const { hospital_id } = req.user;
-    const {
-      name,
-      country_code,
-      city,
-      address,
-      phone,
-      email,
-      website
-    } = req.body;
+    const { name, country_code, city, address, phone, email, website } = req.body;
 
     const hospital = Array.from(HOSPITALS.values()).find(h => h.id === hospital_id);
 
     if (!hospital) {
       return res.status(404).json({
         success: false,
-        error: 'Hospital not found'
+        error: 'Hospital not found',
       });
     }
 
@@ -174,15 +163,14 @@ async function updateHospitalConfig(req, res) {
     res.json({
       success: true,
       message: 'Hospital configuration updated successfully',
-      hospital
+      hospital,
     });
-
   } catch (error) {
     console.error('Error updating hospital config:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to update hospital configuration',
-      message: error.message
+      message: 'İşlem başarısız. Lütfen tekrar deneyin.',
     });
   }
 }
@@ -194,18 +182,14 @@ async function updateHospitalConfig(req, res) {
 async function updateBranding(req, res) {
   try {
     const { hospital_id } = req.user;
-    const {
-      logo_url,
-      primary_color,
-      secondary_color
-    } = req.body;
+    const { logo_url, primary_color, secondary_color } = req.body;
 
     const hospital = Array.from(HOSPITALS.values()).find(h => h.id === hospital_id);
 
     if (!hospital) {
       return res.status(404).json({
         success: false,
-        error: 'Hospital not found'
+        error: 'Hospital not found',
       });
     }
 
@@ -215,14 +199,14 @@ async function updateBranding(req, res) {
     if (primary_color && !colorRegex.test(primary_color)) {
       return res.status(400).json({
         success: false,
-        error: 'Invalid primary_color format. Use hex format (e.g., #0066cc)'
+        error: 'Invalid primary_color format. Use hex format (e.g., #0066cc)',
       });
     }
 
     if (secondary_color && !colorRegex.test(secondary_color)) {
       return res.status(400).json({
         success: false,
-        error: 'Invalid secondary_color format. Use hex format (e.g., #00aaff)'
+        error: 'Invalid secondary_color format. Use hex format (e.g., #00aaff)',
       });
     }
 
@@ -239,16 +223,15 @@ async function updateBranding(req, res) {
       branding: {
         logo_url: hospital.logo_url,
         primary_color: hospital.primary_color,
-        secondary_color: hospital.secondary_color
-      }
+        secondary_color: hospital.secondary_color,
+      },
     });
-
   } catch (error) {
     console.error('Error updating branding:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to update hospital branding',
-      message: error.message
+      message: 'İşlem başarısız. Lütfen tekrar deneyin.',
     });
   }
 }
@@ -260,17 +243,14 @@ async function updateBranding(req, res) {
 async function updateModules(req, res) {
   try {
     const { hospital_id } = req.user;
-    const {
-      enabled_specializations,
-      enabled_ai_models
-    } = req.body;
+    const { enabled_specializations, enabled_ai_models } = req.body;
 
     const hospital = Array.from(HOSPITALS.values()).find(h => h.id === hospital_id);
 
     if (!hospital) {
       return res.status(404).json({
         success: false,
-        error: 'Hospital not found'
+        error: 'Hospital not found',
       });
     }
 
@@ -283,7 +263,7 @@ async function updateModules(req, res) {
       'oncology',
       'pediatrics',
       'psychiatry',
-      'orthopedics'
+      'orthopedics',
     ];
 
     // Available AI models
@@ -292,7 +272,7 @@ async function updateModules(req, res) {
       'lydian-labs',
       'lydian-vision',
       'lydian-velocity',
-      'lydian-cloud'
+      'lydian-cloud',
     ];
 
     // Validate specializations
@@ -300,7 +280,7 @@ async function updateModules(req, res) {
       if (!Array.isArray(enabled_specializations)) {
         return res.status(400).json({
           success: false,
-          error: 'enabled_specializations must be an array'
+          error: 'enabled_specializations must be an array',
         });
       }
 
@@ -309,7 +289,7 @@ async function updateModules(req, res) {
         return res.status(400).json({
           success: false,
           error: `Invalid specializations: ${invalid.join(', ')}`,
-          available: AVAILABLE_SPECIALIZATIONS
+          available: AVAILABLE_SPECIALIZATIONS,
         });
       }
 
@@ -321,7 +301,7 @@ async function updateModules(req, res) {
       if (!Array.isArray(enabled_ai_models)) {
         return res.status(400).json({
           success: false,
-          error: 'enabled_ai_models must be an array'
+          error: 'enabled_ai_models must be an array',
         });
       }
 
@@ -330,7 +310,7 @@ async function updateModules(req, res) {
         return res.status(400).json({
           success: false,
           error: `Invalid AI models: ${invalid.join(', ')}`,
-          available: AVAILABLE_AI_MODELS
+          available: AVAILABLE_AI_MODELS,
         });
       }
 
@@ -344,16 +324,15 @@ async function updateModules(req, res) {
       message: 'Hospital modules updated successfully',
       modules: {
         enabled_specializations: hospital.enabled_specializations,
-        enabled_ai_models: hospital.enabled_ai_models
-      }
+        enabled_ai_models: hospital.enabled_ai_models,
+      },
     });
-
   } catch (error) {
     console.error('Error updating modules:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to update hospital modules',
-      message: error.message
+      message: 'İşlem başarısız. Lütfen tekrar deneyin.',
     });
   }
 }
@@ -371,19 +350,13 @@ async function updateModules(req, res) {
 async function createDepartment(req, res) {
   try {
     const { hospital_id } = req.user;
-    const {
-      name,
-      specialization,
-      head_of_department,
-      contact_phone,
-      contact_email,
-      location
-    } = req.body;
+    const { name, specialization, head_of_department, contact_phone, contact_email, location } =
+      req.body;
 
     if (!name || !specialization) {
       return res.status(400).json({
         success: false,
-        error: 'Missing required fields: name, specialization'
+        error: 'Missing required fields: name, specialization',
       });
     }
 
@@ -399,7 +372,7 @@ async function createDepartment(req, res) {
       location: location || null,
       active: true,
       created_at: new Date().toISOString(),
-      updated_at: new Date().toISOString()
+      updated_at: new Date().toISOString(),
     };
 
     DEPARTMENTS.set(departmentId, department);
@@ -407,15 +380,14 @@ async function createDepartment(req, res) {
     res.status(201).json({
       success: true,
       message: 'Department created successfully',
-      department
+      department,
     });
-
   } catch (error) {
     console.error('Error creating department:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to create department',
-      message: error.message
+      message: 'İşlem başarısız. Lütfen tekrar deneyin.',
     });
   }
 }
@@ -428,21 +400,19 @@ async function getDepartments(req, res) {
   try {
     const { hospital_id } = req.user;
 
-    const departments = Array.from(DEPARTMENTS.values())
-      .filter(d => d.hospital_id === hospital_id);
+    const departments = Array.from(DEPARTMENTS.values()).filter(d => d.hospital_id === hospital_id);
 
     res.json({
       success: true,
       total: departments.length,
-      departments
+      departments,
     });
-
   } catch (error) {
     console.error('Error fetching departments:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to fetch departments',
-      message: error.message
+      message: 'İşlem başarısız. Lütfen tekrar deneyin.',
     });
   }
 }
@@ -455,21 +425,14 @@ async function updateDepartment(req, res) {
   try {
     const { hospital_id } = req.user;
     const { id } = req.params;
-    const {
-      name,
-      head_of_department,
-      contact_phone,
-      contact_email,
-      location,
-      active
-    } = req.body;
+    const { name, head_of_department, contact_phone, contact_email, location, active } = req.body;
 
     const department = DEPARTMENTS.get(id);
 
     if (!department || department.hospital_id !== hospital_id) {
       return res.status(404).json({
         success: false,
-        error: 'Department not found'
+        error: 'Department not found',
       });
     }
 
@@ -486,15 +449,14 @@ async function updateDepartment(req, res) {
     res.json({
       success: true,
       message: 'Department updated successfully',
-      department
+      department,
     });
-
   } catch (error) {
     console.error('Error updating department:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to update department',
-      message: error.message
+      message: 'İşlem başarısız. Lütfen tekrar deneyin.',
     });
   }
 }
@@ -513,7 +475,7 @@ async function deleteDepartment(req, res) {
     if (!department || department.hospital_id !== hospital_id) {
       return res.status(404).json({
         success: false,
-        error: 'Department not found'
+        error: 'Department not found',
       });
     }
 
@@ -521,15 +483,14 @@ async function deleteDepartment(req, res) {
 
     res.json({
       success: true,
-      message: 'Department deleted successfully'
+      message: 'Department deleted successfully',
     });
-
   } catch (error) {
     console.error('Error deleting department:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to delete department',
-      message: error.message
+      message: 'İşlem başarısız. Lütfen tekrar deneyin.',
     });
   }
 }
@@ -555,13 +516,13 @@ async function createStaff(req, res) {
       specialization,
       license_number,
       phone,
-      email
+      email,
     } = req.body;
 
     if (!full_name || !role) {
       return res.status(400).json({
         success: false,
-        error: 'Missing required fields: full_name, role'
+        error: 'Missing required fields: full_name, role',
       });
     }
 
@@ -579,7 +540,7 @@ async function createStaff(req, res) {
       email: email || null,
       active: true,
       created_at: new Date().toISOString(),
-      updated_at: new Date().toISOString()
+      updated_at: new Date().toISOString(),
     };
 
     STAFF.set(staffId, staff);
@@ -587,15 +548,14 @@ async function createStaff(req, res) {
     res.status(201).json({
       success: true,
       message: 'Staff member created successfully',
-      staff
+      staff,
     });
-
   } catch (error) {
     console.error('Error creating staff:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to create staff member',
-      message: error.message
+      message: 'İşlem başarısız. Lütfen tekrar deneyin.',
     });
   }
 }
@@ -609,8 +569,7 @@ async function getStaff(req, res) {
     const { hospital_id } = req.user;
     const { department_id, role } = req.query;
 
-    let staff = Array.from(STAFF.values())
-      .filter(s => s.hospital_id === hospital_id);
+    let staff = Array.from(STAFF.values()).filter(s => s.hospital_id === hospital_id);
 
     // Filter by department
     if (department_id) {
@@ -625,15 +584,14 @@ async function getStaff(req, res) {
     res.json({
       success: true,
       total: staff.length,
-      staff
+      staff,
     });
-
   } catch (error) {
     console.error('Error fetching staff:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to fetch staff',
-      message: error.message
+      message: 'İşlem başarısız. Lütfen tekrar deneyin.',
     });
   }
 }
@@ -646,23 +604,15 @@ async function updateStaff(req, res) {
   try {
     const { hospital_id } = req.user;
     const { id } = req.params;
-    const {
-      department_id,
-      full_name,
-      role,
-      specialization,
-      license_number,
-      phone,
-      email,
-      active
-    } = req.body;
+    const { department_id, full_name, role, specialization, license_number, phone, email, active } =
+      req.body;
 
     const staff = STAFF.get(id);
 
     if (!staff || staff.hospital_id !== hospital_id) {
       return res.status(404).json({
         success: false,
-        error: 'Staff member not found'
+        error: 'Staff member not found',
       });
     }
 
@@ -681,15 +631,14 @@ async function updateStaff(req, res) {
     res.json({
       success: true,
       message: 'Staff member updated successfully',
-      staff
+      staff,
     });
-
   } catch (error) {
     console.error('Error updating staff:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to update staff member',
-      message: error.message
+      message: 'İşlem başarısız. Lütfen tekrar deneyin.',
     });
   }
 }
@@ -708,7 +657,7 @@ async function deleteStaff(req, res) {
     if (!staff || staff.hospital_id !== hospital_id) {
       return res.status(404).json({
         success: false,
-        error: 'Staff member not found'
+        error: 'Staff member not found',
       });
     }
 
@@ -716,15 +665,14 @@ async function deleteStaff(req, res) {
 
     res.json({
       success: true,
-      message: 'Staff member deleted successfully'
+      message: 'Staff member deleted successfully',
     });
-
   } catch (error) {
     console.error('Error deleting staff:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to delete staff member',
-      message: error.message
+      message: 'İşlem başarısız. Lütfen tekrar deneyin.',
     });
   }
 }
@@ -744,12 +692,10 @@ async function getMetrics(req, res) {
     const { hospital_id } = req.user;
 
     // Count departments
-    const departments = Array.from(DEPARTMENTS.values())
-      .filter(d => d.hospital_id === hospital_id);
+    const departments = Array.from(DEPARTMENTS.values()).filter(d => d.hospital_id === hospital_id);
 
     // Count staff
-    const staff = Array.from(STAFF.values())
-      .filter(s => s.hospital_id === hospital_id);
+    const staff = Array.from(STAFF.values()).filter(s => s.hospital_id === hospital_id);
 
     // Staff by role
     const staffByRole = staff.reduce((acc, s) => {
@@ -774,16 +720,15 @@ async function getMetrics(req, res) {
         departments_by_specialization: departments.reduce((acc, d) => {
           acc[d.specialization] = (acc[d.specialization] || 0) + 1;
           return acc;
-        }, {})
-      }
+        }, {}),
+      },
     });
-
   } catch (error) {
     console.error('Error fetching metrics:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to fetch hospital metrics',
-      message: error.message
+      message: 'İşlem başarısız. Lütfen tekrar deneyin.',
     });
   }
 }
@@ -819,5 +764,5 @@ module.exports = {
   // Export stores for access in other modules
   HOSPITALS,
   DEPARTMENTS,
-  STAFF
+  STAFF,
 };

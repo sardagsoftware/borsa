@@ -29,14 +29,14 @@ class VoiceService {
           'en-US-male-professional': 'en-US-DavisNeural',
           'en-US-female-professional': 'en-US-AriaNeural',
           'tr-TR-male': 'tr-TR-AhmetNeural',
-          'tr-TR-female': 'tr-TR-EmelNeural'
+          'tr-TR-female': 'tr-TR-EmelNeural',
         },
         elevenLabs: {
-          'conversational': 'pNInz6obpgDQGcFmaJgB', // Adam
-          'narrative': '21m00Tcm4TlvDq8ikWAM', // Rachel
-          'professional': 'AZnzlk1XvdvUeBnXmlld', // Domi
-          'energetic': 'EXAVITQu4vr4xnSDxMaL' // Bella
-        }
+          conversational: 'pNInz6obpgDQGcFmaJgB', // Adam
+          narrative: '21m00Tcm4TlvDq8ikWAM', // Rachel
+          professional: 'AZnzlk1XvdvUeBnXmlld', // Domi
+          energetic: 'EXAVITQu4vr4xnSDxMaL', // Bella
+        },
       },
 
       // Audio settings
@@ -44,8 +44,8 @@ class VoiceService {
         format: 'audio-24khz-48kbitrate-mono-mp3',
         speed: '1.0',
         pitch: '0',
-        volume: '0'
-      }
+        volume: '0',
+      },
     };
 
     console.log('✅ Voice Synthesis Service initialized');
@@ -77,7 +77,7 @@ class VoiceService {
       console.error('❌ [Voice] Generation failed:', error.message);
       return {
         success: false,
-        error: error.message
+        error: 'Ses isleme hatasi.',
       };
     }
   }
@@ -96,19 +96,15 @@ class VoiceService {
 
       console.log(`   Voice: ${voiceName}`);
 
-      const response = await axios.post(
-        this.config.azureSpeechEndpoint,
-        ssml,
-        {
-          headers: {
-            'Ocp-Apim-Subscription-Key': this.config.azureSpeechKey,
-            'Content-Type': 'application/ssml+xml',
-            'X-Microsoft-OutputFormat': params.format || this.config.defaultSettings.format,
-            'User-Agent': 'OmniReach-AI-Creator'
-          },
-          responseType: 'arraybuffer'
-        }
-      );
+      const response = await axios.post(this.config.azureSpeechEndpoint, ssml, {
+        headers: {
+          'Ocp-Apim-Subscription-Key': this.config.azureSpeechKey,
+          'Content-Type': 'application/ssml+xml',
+          'X-Microsoft-OutputFormat': params.format || this.config.defaultSettings.format,
+          'User-Agent': 'OmniReach-AI-Creator',
+        },
+        responseType: 'arraybuffer',
+      });
 
       const audioBuffer = Buffer.from(response.data);
       const audioBase64 = audioBuffer.toString('base64');
@@ -130,8 +126,8 @@ class VoiceService {
           language: params.language || 'en-US',
           duration: duration,
           format: params.format || this.config.defaultSettings.format,
-          size: audioBuffer.length
-        }
+          size: audioBuffer.length,
+        },
       };
     } catch (error) {
       console.error('❌ Azure Speech generation failed:', error.message);
@@ -161,16 +157,16 @@ class VoiceService {
             stability: params.stability || 0.5,
             similarity_boost: params.similarityBoost || 0.75,
             style: params.style || 0.0,
-            use_speaker_boost: params.speakerBoost || true
-          }
+            use_speaker_boost: params.speakerBoost || true,
+          },
         },
         {
           headers: {
             'xi-api-key': this.config.elevenLabsApiKey,
             'Content-Type': 'application/json',
-            'Accept': 'audio/mpeg'
+            Accept: 'audio/mpeg',
           },
-          responseType: 'arraybuffer'
+          responseType: 'arraybuffer',
         }
       );
 
@@ -189,8 +185,8 @@ class VoiceService {
         metadata: {
           voiceId: voiceId,
           duration: duration,
-          size: audioBuffer.length
-        }
+          size: audioBuffer.length,
+        },
       };
     } catch (error) {
       console.error('❌ ElevenLabs generation failed:', error.message);
@@ -236,7 +232,9 @@ class VoiceService {
    * @returns {String} ElevenLabs voice ID
    */
   getElevenLabsVoiceId(voiceType) {
-    return this.config.voices.elevenLabs[voiceType] || this.config.voices.elevenLabs['conversational'];
+    return (
+      this.config.voices.elevenLabs[voiceType] || this.config.voices.elevenLabs['conversational']
+    );
   }
 
   /**
@@ -278,7 +276,7 @@ class VoiceService {
       excited: 'excited',
       calm: 'calm',
       angry: 'angry',
-      fearful: 'fearful'
+      fearful: 'fearful',
     };
 
     const style = emotionStyles[emotion] || 'neutral';
@@ -310,7 +308,7 @@ class VoiceService {
     return {
       success: true,
       message: 'Voice cloning requires premium AI provider integration',
-      recommendation: 'Use ElevenLabs Voice Lab or Azure Custom Neural Voice'
+      recommendation: 'Use ElevenLabs Voice Lab or Azure Custom Neural Voice',
     };
   }
 
@@ -337,7 +335,7 @@ class VoiceService {
       success: true,
       audioBuffer: audioBuffer,
       effects: effects,
-      message: 'Audio processing ready for production implementation'
+      message: 'Audio processing ready for production implementation',
     };
   }
 
@@ -361,8 +359,8 @@ class VoiceService {
         mode: 'demo',
         text: params.text,
         estimatedDuration: duration,
-        message: 'Demo mode - configure Azure Speech or ElevenLabs for production'
-      }
+        message: 'Demo mode - configure Azure Speech or ElevenLabs for production',
+      },
     };
   }
 
@@ -379,8 +377,8 @@ class VoiceService {
           `https://${this.config.azureSpeechRegion}.tts.speech.microsoft.com/cognitiveservices/voices/list`,
           {
             headers: {
-              'Ocp-Apim-Subscription-Key': this.config.azureSpeechKey
-            }
+              'Ocp-Apim-Subscription-Key': this.config.azureSpeechKey,
+            },
           }
         );
 
@@ -396,30 +394,27 @@ class VoiceService {
             displayName: voice.DisplayName,
             locale: voice.Locale,
             gender: voice.Gender,
-            voiceType: voice.VoiceType
-          }))
+            voiceType: voice.VoiceType,
+          })),
         };
       } else if (provider === 'elevenlabs') {
-        const response = await axios.get(
-          `${this.config.elevenLabsEndpoint}/voices`,
-          {
-            headers: {
-              'xi-api-key': this.config.elevenLabsApiKey
-            }
-          }
-        );
+        const response = await axios.get(`${this.config.elevenLabsEndpoint}/voices`, {
+          headers: {
+            'xi-api-key': this.config.elevenLabsApiKey,
+          },
+        });
 
         return {
           success: true,
           provider: 'elevenlabs',
-          voices: response.data.voices
+          voices: response.data.voices,
         };
       }
     } catch (error) {
       console.error('❌ Failed to get available voices:', error.message);
       return {
         success: false,
-        error: error.message
+        error: 'Ses isleme hatasi.',
       };
     }
   }
@@ -446,9 +441,9 @@ class VoiceService {
         validFormat: isValid,
         minDuration: isValid,
         audioQuality: isValid,
-        noCorruption: isValid
+        noCorruption: isValid,
       },
-      message: isValid ? '✅ Audio quality validated' : '❌ Audio validation failed'
+      message: isValid ? '✅ Audio quality validated' : '❌ Audio validation failed',
     };
   }
 
@@ -466,13 +461,13 @@ class VoiceService {
       return {
         success: true,
         path: outputPath,
-        size: audioBuffer.length
+        size: audioBuffer.length,
       };
     } catch (error) {
       console.error('❌ Failed to save audio:', error.message);
       return {
         success: false,
-        error: error.message
+        error: 'Ses isleme hatasi.',
       };
     }
   }

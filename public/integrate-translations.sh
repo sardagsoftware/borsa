@@ -27,7 +27,7 @@ SKIPPED=0
 
 # Loop through each file
 for file in "${HTML_FILES[@]}"; do
-    filepath="/Users/sardag/Desktop/ailydian-ultra-pro/public/$file"
+    filepath="$(dirname "$0")/$file"
 
     if [ ! -f "$filepath" ]; then
         echo "⚠️  Skipping $file (not found)"

@@ -11,7 +11,13 @@
  */
 
 const express = require('express');
-const { requireAuth, requireRole, requireModelOwnership, requirePermission, ROLES } = require('../../../middleware/auth-governance');
+const {
+  requireAuth,
+  requireRole,
+  requireModelOwnership,
+  requirePermission,
+  ROLES,
+} = require('../../../middleware/auth-governance');
 const { getPrismaClient, safeQuery } = require('../prisma-client');
 
 const router = express.Router();
@@ -77,6 +83,7 @@ router.post('/register', requireAuth, requirePermission('register_model'), async
     }
 
     // Version validation (semver format)
+    // eslint-disable-next-line security/detect-unsafe-regex
     if (!/^\d+\.\d+\.\d+(-[a-zA-Z0-9]+)?$/.test(version)) {
       return res.status(400).json({
         success: false,
@@ -87,7 +94,7 @@ router.post('/register', requireAuth, requirePermission('register_model'), async
 
     // Register model
     const result = await safeQuery(
-      async (prisma) => {
+      async prisma => {
         // Check if model already exists
         const existing = await prisma.governanceModel.findFirst({
           where: {
@@ -137,23 +144,25 @@ router.post('/register', requireAuth, requirePermission('register_model'), async
         });
 
         // Audit log
-        await prisma.governanceAuditLog.create({
-          data: {
-            userId: req.user.id,
-            modelId: model.id,
-            action: 'MODEL_REGISTERED',
-            resource: 'model',
-            details: {
-              name: model.name,
-              version: model.version,
-              provider: model.provider,
+        await prisma.governanceAuditLog
+          .create({
+            data: {
+              userId: req.user.id,
+              modelId: model.id,
+              action: 'MODEL_REGISTERED',
+              resource: 'model',
+              details: {
+                name: model.name,
+                version: model.version,
+                provider: model.provider,
+              },
+              ipAddress: req.ip || req.connection.remoteAddress,
+              userAgent: req.headers['user-agent'],
             },
-            ipAddress: req.ip || req.connection.remoteAddress,
-            userAgent: req.headers['user-agent'],
-          },
-        }).catch(() => {
-          // Ignore audit log errors
-        });
+          })
+          .catch(() => {
+            // Ignore audit log errors
+          });
 
         return {
           success: true,
@@ -196,7 +205,10 @@ router.post('/register', requireAuth, requirePermission('register_model'), async
     res.status(500).json({
       success: false,
       error: 'Registration failed',
-      message: process.env.NODE_ENV === 'development' ? error.message : 'An error occurred during model registration',
+      message:
+        process.env.NODE_ENV === 'development'
+          ? error.message
+          : 'An error occurred during model registration',
     });
   }
 });
@@ -263,7 +275,7 @@ router.get('/', requireAuth, async (req, res) => {
 
     // Fetch models
     const result = await safeQuery(
-      async (prisma) => {
+      async prisma => {
         const [models, total] = await Promise.all([
           prisma.governanceModel.findMany({
             where,
@@ -356,7 +368,7 @@ router.get('/', requireAuth, async (req, res) => {
     res.status(500).json({
       success: false,
       error: 'Failed to fetch models',
-      message: error.message,
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
     });
   }
 });
@@ -371,7 +383,7 @@ router.get('/:modelId', requireAuth, async (req, res) => {
     const { modelId } = req.params;
 
     const result = await safeQuery(
-      async (prisma) => {
+      async prisma => {
         const model = await prisma.governanceModel.findUnique({
           where: { id: modelId },
           include: {
@@ -504,7 +516,7 @@ router.get('/:modelId', requireAuth, async (req, res) => {
     res.status(500).json({
       success: false,
       error: 'Failed to fetch model details',
-      message: error.message,
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
     });
   }
 });
@@ -521,7 +533,7 @@ router.put('/:modelId', requireAuth, requireModelOwnership, async (req, res) => 
     const { description, metadata } = req.body;
 
     const result = await safeQuery(
-      async (prisma) => {
+      async prisma => {
         const updateData = {};
 
         if (description !== undefined) {
@@ -548,19 +560,21 @@ router.put('/:modelId', requireAuth, requireModelOwnership, async (req, res) => 
         });
 
         // Audit log
-        await prisma.governanceAuditLog.create({
-          data: {
-            userId: req.user.id,
-            modelId: model.id,
-            action: 'MODEL_UPDATED',
-            resource: 'model',
-            details: {
-              updated: Object.keys(updateData),
+        await prisma.governanceAuditLog
+          .create({
+            data: {
+              userId: req.user.id,
+              modelId: model.id,
+              action: 'MODEL_UPDATED',
+              resource: 'model',
+              details: {
+                updated: Object.keys(updateData),
+              },
+              ipAddress: req.ip || req.connection.remoteAddress,
+              userAgent: req.headers['user-agent'],
             },
-            ipAddress: req.ip || req.connection.remoteAddress,
-            userAgent: req.headers['user-agent'],
-          },
-        }).catch(() => {});
+          })
+          .catch(() => {});
 
         return {
           success: true,
@@ -586,7 +600,7 @@ router.put('/:modelId', requireAuth, requireModelOwnership, async (req, res) => 
     res.status(500).json({
       success: false,
       error: 'Update failed',
-      message: error.message,
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
     });
   }
 });
@@ -602,7 +616,7 @@ router.delete('/:modelId', requireAuth, requireModelOwnership, async (req, res) 
     const { modelId } = req.params;
 
     const result = await safeQuery(
-      async (prisma) => {
+      async prisma => {
         // Soft delete: Set status to ARCHIVED
         const model = await prisma.governanceModel.update({
           where: { id: modelId },
@@ -618,20 +632,22 @@ router.delete('/:modelId', requireAuth, requireModelOwnership, async (req, res) 
         });
 
         // Audit log
-        await prisma.governanceAuditLog.create({
-          data: {
-            userId: req.user.id,
-            modelId: model.id,
-            action: 'MODEL_DELETED',
-            resource: 'model',
-            details: {
-              name: model.name,
-              version: model.version,
+        await prisma.governanceAuditLog
+          .create({
+            data: {
+              userId: req.user.id,
+              modelId: model.id,
+              action: 'MODEL_DELETED',
+              resource: 'model',
+              details: {
+                name: model.name,
+                version: model.version,
+              },
+              ipAddress: req.ip || req.connection.remoteAddress,
+              userAgent: req.headers['user-agent'],
             },
-            ipAddress: req.ip || req.connection.remoteAddress,
-            userAgent: req.headers['user-agent'],
-          },
-        }).catch(() => {});
+          })
+          .catch(() => {});
 
         return {
           success: true,
@@ -653,7 +669,7 @@ router.delete('/:modelId', requireAuth, requireModelOwnership, async (req, res) 
     res.status(500).json({
       success: false,
       error: 'Delete failed',
-      message: error.message,
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
     });
   }
 });
@@ -691,7 +707,7 @@ router.post('/:modelId/status', requireAuth, requireModelOwnership, async (req, 
     }
 
     const result = await safeQuery(
-      async (prisma) => {
+      async prisma => {
         // Get current model
         const currentModel = await prisma.governanceModel.findUnique({
           where: { id: modelId },
@@ -734,20 +750,22 @@ router.post('/:modelId/status', requireAuth, requireModelOwnership, async (req, 
         });
 
         // Audit log
-        await prisma.governanceAuditLog.create({
-          data: {
-            userId: req.user.id,
-            modelId: model.id,
-            action: 'MODEL_STATUS_CHANGED',
-            resource: 'model',
-            details: {
-              from: currentStatus,
-              to: status,
+        await prisma.governanceAuditLog
+          .create({
+            data: {
+              userId: req.user.id,
+              modelId: model.id,
+              action: 'MODEL_STATUS_CHANGED',
+              resource: 'model',
+              details: {
+                from: currentStatus,
+                to: status,
+              },
+              ipAddress: req.ip || req.connection.remoteAddress,
+              userAgent: req.headers['user-agent'],
             },
-            ipAddress: req.ip || req.connection.remoteAddress,
-            userAgent: req.headers['user-agent'],
-          },
-        }).catch(() => {});
+          })
+          .catch(() => {});
 
         return {
           success: true,
@@ -787,7 +805,7 @@ router.post('/:modelId/status', requireAuth, requireModelOwnership, async (req, 
     res.status(500).json({
       success: false,
       error: 'Status update failed',
-      message: error.message,
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
     });
   }
 });
@@ -800,7 +818,7 @@ router.post('/:modelId/status', requireAuth, requireModelOwnership, async (req, 
 router.get('/stats/summary', requireAuth, async (req, res) => {
   try {
     const result = await safeQuery(
-      async (prisma) => {
+      async prisma => {
         const where = {};
 
         // Filter by owner for non-admin users
@@ -808,12 +826,7 @@ router.get('/stats/summary', requireAuth, async (req, res) => {
           where.ownerId = req.user.id;
         }
 
-        const [
-          total,
-          byStatus,
-          byProvider,
-          recentModels,
-        ] = await Promise.all([
+        const [total, byStatus, byProvider, recentModels] = await Promise.all([
           prisma.governanceModel.count({ where }),
           prisma.governanceModel.groupBy({
             by: ['status'],
@@ -881,7 +894,7 @@ router.get('/stats/summary', requireAuth, async (req, res) => {
     res.status(500).json({
       success: false,
       error: 'Failed to fetch statistics',
-      message: error.message,
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
     });
   }
 });

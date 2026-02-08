@@ -16,13 +16,13 @@ module.exports = async (req, res) => {
     if (!operation || !tableName || !items || !Array.isArray(items)) {
       return res.status(400).json({
         success: false,
-        error: 'operation, tableName ve items (array) gerekli'
+        error: 'operation, tableName ve items (array) gerekli',
       });
     }
 
     const processor = new BatchProcessor({
       batchSize: req.body.batchSize || 100,
-      parallelBatches: req.body.parallelBatches || 3
+      parallelBatches: req.body.parallelBatches || 3,
     });
 
     let result;
@@ -32,7 +32,7 @@ module.exports = async (req, res) => {
         if (!columns || !Array.isArray(columns)) {
           return res.status(400).json({
             success: false,
-            error: 'columns (array) gerekli'
+            error: 'columns (array) gerekli',
           });
         }
         result = await processor.batchInsert(tableName, items, columns);
@@ -42,34 +42,28 @@ module.exports = async (req, res) => {
         if (!columns || !Array.isArray(columns)) {
           return res.status(400).json({
             success: false,
-            error: 'columns (array) gerekli'
+            error: 'columns (array) gerekli',
           });
         }
-        result = await processor.batchUpdate(
-          tableName,
-          items,
-          columns,
-          whereColumn || 'id'
-        );
+        result = await processor.batchUpdate(tableName, items, columns, whereColumn || 'id');
         break;
 
       default:
         return res.status(400).json({
           success: false,
-          error: 'Geçersiz operation. insert, update destekleniyor.'
+          error: 'Geçersiz operation. insert, update destekleniyor.',
         });
     }
 
     return res.status(200).json({
       success: true,
-      data: result
+      data: result,
     });
-
   } catch (error) {
     console.error('Batch processing error:', error);
     return res.status(500).json({
       success: false,
-      error: error.message
+      error: 'İşlem başarısız. Lütfen tekrar deneyin.',
     });
   }
 };

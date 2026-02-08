@@ -34,7 +34,8 @@ function validatePassword(password) {
   if (!PASSWORD_REGEX.test(password)) {
     return {
       valid: false,
-      error: 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character',
+      error:
+        'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character',
     };
   }
 
@@ -121,7 +122,7 @@ router.post('/', async (req, res) => {
 
     // Create user
     const result = await safeQuery(
-      async (prisma) => {
+      async prisma => {
         // Check if user already exists
         const existingUser = await prisma.user.findUnique({
           where: { email: email.toLowerCase() },
@@ -169,21 +170,23 @@ router.post('/', async (req, res) => {
         });
 
         // Audit log
-        await prisma.governanceAuditLog.create({
-          data: {
-            userId: user.id,
-            action: 'USER_REGISTERED',
-            resource: 'user',
-            details: {
-              email: user.email,
-              role: user.role,
+        await prisma.governanceAuditLog
+          .create({
+            data: {
+              userId: user.id,
+              action: 'USER_REGISTERED',
+              resource: 'user',
+              details: {
+                email: user.email,
+                role: user.role,
+              },
+              ipAddress: req.ip || req.connection.remoteAddress,
+              userAgent: req.headers['user-agent'],
             },
-            ipAddress: req.ip || req.connection.remoteAddress,
-            userAgent: req.headers['user-agent'],
-          },
-        }).catch(() => {
-          // Ignore audit log errors
-        });
+          })
+          .catch(() => {
+            // Ignore audit log errors
+          });
 
         return {
           success: true,
@@ -231,7 +234,10 @@ router.post('/', async (req, res) => {
     res.status(500).json({
       success: false,
       error: 'Registration failed',
-      message: process.env.NODE_ENV === 'development' ? error.message : 'An error occurred during registration',
+      message:
+        process.env.NODE_ENV === 'development'
+          ? error.message
+          : 'An error occurred during registration',
     });
   }
 });
@@ -256,7 +262,7 @@ router.get('/validate-email', async (req, res) => {
     }
 
     const exists = await safeQuery(
-      async (prisma) => {
+      async prisma => {
         const user = await prisma.user.findUnique({
           where: { email: email.toLowerCase() },
           select: { id: true },
@@ -276,7 +282,7 @@ router.get('/validate-email', async (req, res) => {
     res.status(500).json({
       success: false,
       error: 'Validation failed',
-      message: error.message,
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
     });
   }
 });

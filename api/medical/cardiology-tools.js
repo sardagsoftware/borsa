@@ -33,7 +33,7 @@ function calculateFraminghamScore(data) {
     systolicBP,
     isSmoker,
     isDiabetic,
-    onBPMeds
+    onBPMeds,
   } = data;
 
   let points = 0;
@@ -69,7 +69,6 @@ function calculateFraminghamScore(data) {
     // Smoking & Diabetes
     if (isSmoker) points += 2;
     if (isDiabetic) points += 2;
-
   } else {
     // Female scoring
     if (age >= 70) points += 12;
@@ -130,7 +129,7 @@ function calculateFraminghamScore(data) {
     risk: `${risk}%`,
     riskCategory,
     recommendation,
-    timeframe: '10 years'
+    timeframe: '10 years',
   };
 }
 
@@ -148,7 +147,7 @@ function calculateCHADS2VASc(data) {
     hasHypertension,
     hasDiabetes,
     hasStrokeTIA,
-    hasVascularDisease
+    hasVascularDisease,
   } = data;
 
   let score = 0;
@@ -208,7 +207,7 @@ function calculateCHADS2VASc(data) {
     score,
     annualStrokeRisk,
     recommendation,
-    riskLevel: score >= 2 ? 'High' : score === 1 ? 'Moderate' : 'Low'
+    riskLevel: score >= 2 ? 'High' : score === 1 ? 'Moderate' : 'Low',
   };
 }
 
@@ -226,21 +225,21 @@ function calculateHASBLED(data) {
     hasStrokeHistory,
     hasPriorBleed,
     hasLabileINR,
-    isElderly,        // Age > 65
+    isElderly, // Age > 65
     usesDrugsAlcohol,
-    usesAntiplatelets
+    usesAntiplatelets,
   } = data;
 
   let score = 0;
 
-  if (hasHypertension) score += 1;       // H
+  if (hasHypertension) score += 1; // H
   if (hasRenalDisease || hasLiverDisease) score += 1; // A (Abnormal renal/liver function)
-  if (hasStrokeHistory) score += 1;      // S
-  if (hasPriorBleed) score += 1;         // B
-  if (hasLabileINR) score += 1;          // L
-  if (isElderly) score += 1;             // E
-  if (usesDrugsAlcohol) score += 1;      // D
-  if (usesAntiplatelets) score += 1;     // Drugs (antiplatelets, NSAIDs)
+  if (hasStrokeHistory) score += 1; // S
+  if (hasPriorBleed) score += 1; // B
+  if (hasLabileINR) score += 1; // L
+  if (isElderly) score += 1; // E
+  if (usesDrugsAlcohol) score += 1; // D
+  if (usesAntiplatelets) score += 1; // Drugs (antiplatelets, NSAIDs)
 
   let bleedingRisk, recommendation;
 
@@ -262,7 +261,7 @@ function calculateHASBLED(data) {
     score,
     bleedingRisk,
     recommendation,
-    note: 'HAS-BLED ≥3 indicates high bleeding risk but does NOT contraindicate anticoagulation'
+    note: 'HAS-BLED ≥3 indicates high bleeding risk but does NOT contraindicate anticoagulation',
   };
 }
 
@@ -273,7 +272,7 @@ function calculateHASBLED(data) {
  */
 
 function calculateQTc(qt, heartRate, formula = 'bazett') {
-  const rr = 60 / heartRate;  // RR interval in seconds
+  const rr = 60 / heartRate; // RR interval in seconds
 
   let qtc;
 
@@ -282,7 +281,7 @@ function calculateQTc(qt, heartRate, formula = 'bazett') {
     qtc = qt / Math.sqrt(rr);
   } else if (formula === 'fridericia') {
     // Fridericia's formula: QTc = QT / ∛RR (more accurate for extreme HRs)
-    qtc = qt / Math.pow(rr, 1/3);
+    qtc = qt / Math.pow(rr, 1 / 3);
   } else {
     qtc = qt / Math.sqrt(rr); // Default to Bazett
   }
@@ -312,7 +311,7 @@ function calculateQTc(qt, heartRate, formula = 'bazett') {
     heartRate,
     formula: formula.charAt(0).toUpperCase() + formula.slice(1),
     interpretation,
-    risk
+    risk,
   };
 }
 
@@ -365,8 +364,8 @@ function calculateCardiacOutput(data) {
     ciInterpretation,
     units: {
       co: 'L/min',
-      ci: 'L/min/m²'
-    }
+      ci: 'L/min/m²',
+    },
   };
 }
 
@@ -390,7 +389,7 @@ async function handleFraminghamRisk(req, res) {
       user_id: data.user_id,
       patient_id: data.patient_id,
       action: 'FRAMINGHAM_RISK_CALCULATION',
-      details: { risk: result.risk, riskCategory: result.riskCategory }
+      details: { risk: result.risk, riskCategory: result.riskCategory },
     });
 
     res.json({
@@ -398,16 +397,15 @@ async function handleFraminghamRisk(req, res) {
       result,
       metadata: {
         calculator: 'Framingham Risk Score',
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ Framingham Calculation Error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to calculate Framingham risk',
-      message: error.message
+      message: 'Tibbi islem hatasi. Lutfen tekrar deneyin.',
     });
   }
 }
@@ -426,7 +424,7 @@ async function handleCHADS2VASc(req, res) {
       user_id: data.user_id,
       patient_id: data.patient_id,
       action: 'CHADS2VASC_CALCULATION',
-      details: { score: result.score, riskLevel: result.riskLevel }
+      details: { score: result.score, riskLevel: result.riskLevel },
     });
 
     res.json({
@@ -434,16 +432,15 @@ async function handleCHADS2VASc(req, res) {
       result,
       metadata: {
         calculator: 'CHA2DS2-VASc Score',
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ CHA2DS2-VASc Calculation Error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to calculate CHA2DS2-VASc score',
-      message: error.message
+      message: 'Tibbi islem hatasi. Lutfen tekrar deneyin.',
     });
   }
 }
@@ -462,7 +459,7 @@ async function handleHASBLED(req, res) {
       user_id: data.user_id,
       patient_id: data.patient_id,
       action: 'HASBLED_CALCULATION',
-      details: { score: result.score }
+      details: { score: result.score },
     });
 
     res.json({
@@ -470,16 +467,15 @@ async function handleHASBLED(req, res) {
       result,
       metadata: {
         calculator: 'HAS-BLED Score',
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ HAS-BLED Calculation Error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to calculate HAS-BLED score',
-      message: error.message
+      message: 'Tibbi islem hatasi. Lutfen tekrar deneyin.',
     });
   }
 }
@@ -498,7 +494,7 @@ async function handleQTc(req, res) {
       user_id,
       patient_id,
       action: 'QTC_CALCULATION',
-      details: { qtc: result.qtc, interpretation: result.interpretation }
+      details: { qtc: result.qtc, interpretation: result.interpretation },
     });
 
     res.json({
@@ -506,16 +502,15 @@ async function handleQTc(req, res) {
       result,
       metadata: {
         calculator: 'QTc Calculator',
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ QTc Calculation Error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to calculate QTc',
-      message: error.message
+      message: 'Tibbi islem hatasi. Lutfen tekrar deneyin.',
     });
   }
 }
@@ -534,7 +529,7 @@ async function handleCardiacOutput(req, res) {
       user_id: data.user_id,
       patient_id: data.patient_id,
       action: 'CARDIAC_OUTPUT_CALCULATION',
-      details: { co: result.cardiacOutput, ci: result.cardiacIndex }
+      details: { co: result.cardiacOutput, ci: result.cardiacIndex },
     });
 
     res.json({
@@ -542,16 +537,15 @@ async function handleCardiacOutput(req, res) {
       result,
       metadata: {
         calculator: 'Cardiac Output Calculator',
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ Cardiac Output Calculation Error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to calculate cardiac output',
-      message: error.message
+      message: 'Tibbi islem hatasi. Lutfen tekrar deneyin.',
     });
   }
 }
@@ -566,5 +560,5 @@ module.exports = {
   calculateCHADS2VASc,
   calculateHASBLED,
   calculateQTc,
-  calculateCardiacOutput
+  calculateCardiacOutput,
 };

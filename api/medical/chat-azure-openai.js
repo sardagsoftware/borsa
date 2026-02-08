@@ -15,7 +15,12 @@
 
 require('dotenv').config();
 const axios = require('axios');
-const { detectEmergency, logMedicalAudit, PER_RESPONSE_FOOTER } = require('../../config/white-hat-policy');
+const {
+  detectEmergency,
+  logMedicalAudit,
+  PER_RESPONSE_FOOTER,
+} = require('../../config/white-hat-policy');
+const { applySanitization } = require('../_middleware/sanitize');
 
 // Azure OpenAI Configuration
 const AZURE_OPENAI_ENDPOINT = process.env.AZURE_OPENAI_ENDPOINT;
@@ -31,19 +36,23 @@ if (!AZURE_OPENAI_ENDPOINT || !AZURE_OPENAI_API_KEY) {
 async function callAzureOpenAI(messages, options = {}) {
   const apiUrl = `${AZURE_OPENAI_ENDPOINT}/openai/deployments/${AZURE_OPENAI_DEPLOYMENT}/chat/completions?api-version=2024-02-15-preview`;
 
-  const response = await axios.post(apiUrl, {
-    messages,
-    temperature: options.temperature || 0.3,
-    max_tokens: options.maxTokens || 800,
-    top_p: options.topP || 0.95,
-    frequency_penalty: options.frequencyPenalty || 0,
-    presence_penalty: options.presencePenalty || 0
-  }, {
-    headers: {
-      'Content-Type': 'application/json',
-      'api-key': AZURE_OPENAI_API_KEY
+  const response = await axios.post(
+    apiUrl,
+    {
+      messages,
+      temperature: options.temperature || 0.3,
+      max_tokens: options.maxTokens || 800,
+      top_p: options.topP || 0.95,
+      frequency_penalty: options.frequencyPenalty || 0,
+      presence_penalty: options.presencePenalty || 0,
+    },
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        'api-key': AZURE_OPENAI_API_KEY,
+      },
     }
-  });
+  );
 
   return response.data;
 }
@@ -66,9 +75,9 @@ CRITICAL RULES:
 4. Flag uncertainty clearly
 5. Detect emergency situations and redirect to emergency services
 
-Remember: This is NOT a medical device. All outputs are informational only.`
+Remember: This is NOT a medical device. All outputs are informational only.`,
   },
-  'cardiology': {
+  cardiology: {
     name: { en: 'Cardiology', tr: 'Kardiyoloji' },
     systemPrompt: `You are a medical AI assistant specializing in Cardiology. Provide evidence-based cardiovascular information.
 
@@ -79,9 +88,9 @@ CRITICAL RULES:
 4. Always recommend cardiology consultation for clinical decisions
 5. Flag high-risk presentations (STEMI, unstable angina, heart failure)
 
-Remember: This is NOT a medical device. Cardiologist review mandatory.`
+Remember: This is NOT a medical device. Cardiologist review mandatory.`,
   },
-  'neurology': {
+  neurology: {
     name: { en: 'Neurology', tr: 'Nöroloji' },
     systemPrompt: `You are a medical AI assistant specializing in Neurology. Provide evidence-based neurological information.
 
@@ -92,9 +101,9 @@ CRITICAL RULES:
 4. Recommend neurology consultation for all clinical decisions
 5. Flag high-risk: stroke, meningitis, encephalitis, status epilepticus
 
-Remember: This is NOT a medical device. Neurologist review mandatory.`
+Remember: This is NOT a medical device. Neurologist review mandatory.`,
   },
-  'radiology': {
+  radiology: {
     name: { en: 'Radiology', tr: 'Radyoloji' },
     systemPrompt: `You are a medical AI assistant specializing in Radiology (image interpretation support).
 
@@ -105,9 +114,9 @@ CRITICAL RULES:
 4. Reference ACR appropriateness criteria
 5. For critical findings (pneumothorax, intracranial hemorrhage) - flag for URGENT review
 
-Remember: This is NON-DIAGNOSTIC. Radiologist interpretation is MANDATORY.`
+Remember: This is NON-DIAGNOSTIC. Radiologist interpretation is MANDATORY.`,
   },
-  'oncology': {
+  oncology: {
     name: { en: 'Oncology', tr: 'Onkoloji' },
     systemPrompt: `You are a medical AI assistant specializing in Oncology. Provide evidence-based cancer information.
 
@@ -118,9 +127,9 @@ CRITICAL RULES:
 4. Be sensitive - cancer discussions require empathy and clear communication
 5. Recommend clinical trials when appropriate
 
-Remember: This is NOT a medical device. Oncologist review mandatory.`
+Remember: This is NOT a medical device. Oncologist review mandatory.`,
   },
-  'pediatrics': {
+  pediatrics: {
     name: { en: 'Pediatrics', tr: 'Pediatri' },
     systemPrompt: `You are a medical AI assistant specializing in Pediatrics. Provide evidence-based pediatric information.
 
@@ -131,9 +140,9 @@ CRITICAL RULES:
 4. For fever in neonate (<28 days), respiratory distress, dehydration - FLAG as EMERGENCY
 5. Always recommend pediatrician consultation
 
-Remember: This is NOT a medical device. Pediatrician review mandatory.`
+Remember: This is NOT a medical device. Pediatrician review mandatory.`,
   },
-  'psychiatry': {
+  psychiatry: {
     name: { en: 'Psychiatry', tr: 'Psikiyatri' },
     systemPrompt: `You are a medical AI assistant specializing in Psychiatry/Mental Health. Provide evidence-based mental health information.
 
@@ -144,9 +153,9 @@ CRITICAL RULES:
 4. Emphasize importance of psychiatrist/psychologist consultation
 5. Provide crisis hotline numbers for at-risk patients
 
-Remember: This is NOT a medical device. Mental health professional evaluation mandatory.`
+Remember: This is NOT a medical device. Mental health professional evaluation mandatory.`,
   },
-  'orthopedics': {
+  orthopedics: {
     name: { en: 'Orthopedics', tr: 'Ortopedi' },
     systemPrompt: `You are a medical AI assistant specializing in Orthopedics. Provide evidence-based musculoskeletal information.
 
@@ -157,8 +166,8 @@ CRITICAL RULES:
 4. Recommend orthopedic consultation for clinical decisions
 5. Consider red flags: infection, compartment syndrome, vascular injury
 
-Remember: This is NOT a medical device. Orthopedic surgeon review mandatory.`
-  }
+Remember: This is NOT a medical device. Orthopedic surgeon review mandatory.`,
+  },
 };
 
 /**
@@ -194,6 +203,7 @@ function detectLanguage(text) {
  */
 
 async function handleMedicalChat(req, res) {
+  applySanitization(req, res);
   const startTime = Date.now();
 
   try {
@@ -203,14 +213,14 @@ async function handleMedicalChat(req, res) {
       language,
       conversation_id,
       user_id,
-      hospital_id
+      hospital_id,
     } = req.body;
 
     // Validate required fields
     if (!message) {
       return res.status(400).json({
         success: false,
-        error: 'Message is required'
+        error: 'Message is required',
       });
     }
 
@@ -221,7 +231,7 @@ async function handleMedicalChat(req, res) {
     if (!MEDICAL_SPECIALIZATIONS[specialization]) {
       return res.status(400).json({
         success: false,
-        error: `Invalid specialization. Supported: ${Object.keys(MEDICAL_SPECIALIZATIONS).join(', ')}`
+        error: `Invalid specialization. Supported: ${Object.keys(MEDICAL_SPECIALIZATIONS).join(', ')}`,
       });
     }
 
@@ -237,8 +247,8 @@ async function handleMedicalChat(req, res) {
         details: {
           keyword: emergencyCheck.keyword,
           language: detectedLanguage,
-          message_preview: message.substring(0, 100)
-        }
+          message_preview: message.substring(0, 100),
+        },
       });
 
       // Return emergency response (no AI processing)
@@ -249,8 +259,8 @@ async function handleMedicalChat(req, res) {
         metadata: {
           emergency_keyword: emergencyCheck.keyword,
           language: detectedLanguage,
-          response_time_ms: Date.now() - startTime
-        }
+          response_time_ms: Date.now() - startTime,
+        },
       });
     }
 
@@ -265,23 +275,25 @@ async function handleMedicalChat(req, res) {
         role: 'system',
         content: `${systemPrompt}
 
-IMPORTANT INSTRUCTION: You MUST respond in English, regardless of the input language. Always provide your medical information in English for consistency and professional medical communication.`
+IMPORTANT INSTRUCTION: You MUST respond in English, regardless of the input language. Always provide your medical information in English for consistency and professional medical communication.`,
       },
       {
         role: 'user',
-        content: `Patient Query: ${message}`
-      }
+        content: `Patient Query: ${message}`,
+      },
     ];
 
     // Call Azure OpenAI API (REAL REST API CALL)
-    console.log(`🩺 Calling Azure OpenAI (${AZURE_OPENAI_DEPLOYMENT}) for specialization: ${specialization}`);
+    console.log(
+      `🩺 Calling Azure OpenAI (${AZURE_OPENAI_DEPLOYMENT}) for specialization: ${specialization}`
+    );
 
     const response = await callAzureOpenAI(messages, {
       temperature: 0.3, // Low temperature for medical consistency
       maxTokens: 800,
       topP: 0.95,
       frequencyPenalty: 0,
-      presencePenalty: 0
+      presencePenalty: 0,
     });
 
     // Extract AI response
@@ -305,8 +317,8 @@ IMPORTANT INSTRUCTION: You MUST respond in English, regardless of the input lang
         prompt_tokens: response.usage?.promptTokens || 0,
         completion_tokens: response.usage?.completionTokens || 0,
         total_tokens: response.usage?.totalTokens || 0,
-        finish_reason: response.choices[0]?.finishReason
-      }
+        finish_reason: response.choices[0]?.finishReason,
+      },
     });
 
     // Return response
@@ -323,11 +335,10 @@ IMPORTANT INSTRUCTION: You MUST respond in English, regardless of the input lang
         clinical_safety: {
           footer_included: false, // Footer removed per user request
           emergency_detected: false,
-          requires_clinician_review: true
-        }
-      }
+          requires_clinician_review: true,
+        },
+      },
     });
-
   } catch (error) {
     console.error('❌ Azure OpenAI Medical Chat Error:', error);
 
@@ -336,15 +347,15 @@ IMPORTANT INSTRUCTION: You MUST respond in English, regardless of the input lang
       action: 'MEDICAL_CHAT_ERROR',
       details: {
         error: error.message,
-        stack: error.stack
-      }
+        stack: error.stack,
+      },
     });
 
     res.status(500).json({
       success: false,
       error: 'Failed to process medical chat request',
-      message: error.message,
-      response_time_ms: Date.now() - startTime
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
+      response_time_ms: Date.now() - startTime,
     });
   }
 }
@@ -389,7 +400,7 @@ Göğüs ağrısı, felç, ciddi kanama, nefes darlığı veya bilinç kaybı du
 → En yakın acil servise gidin
 → Acil tıbbi yardım aramayı ASLA ertelemeyin
 
-Bu yapay zeka sistemi acil durumlar için DEĞİLDİR ve acil sağlık hizmetlerinin yerini tutamaz.`
+Bu yapay zeka sistemi acil durumlar için DEĞİLDİR ve acil sağlık hizmetlerinin yerini tutamaz.`,
   };
 
   return responses[language] || responses.en;
@@ -406,13 +417,13 @@ async function getSpecializations(req, res) {
 
   const specializations = Object.entries(MEDICAL_SPECIALIZATIONS).map(([key, config]) => ({
     id: key,
-    name: config.name[language] || config.name.en
+    name: config.name[language] || config.name.en,
   }));
 
   res.json({
     success: true,
     specializations,
-    total: specializations.length
+    total: specializations.length,
   });
 }
 
@@ -423,5 +434,5 @@ module.exports = {
   handleMedicalChat,
   getSpecializations,
   MEDICAL_SPECIALIZATIONS,
-  SUPPORTED_LANGUAGES
+  SUPPORTED_LANGUAGES,
 };

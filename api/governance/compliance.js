@@ -165,7 +165,7 @@ router.post('/validate', async (req, res) => {
 
     // Get model from database
     const result = await safeQuery(
-      async (prisma) => {
+      async prisma => {
         const model = await prisma.governanceModel.findUnique({
           where: { id: modelId },
           include: {
@@ -312,7 +312,10 @@ router.post('/validate', async (req, res) => {
             compliant: validationResult.compliant,
             score: Math.round(validationResult.score * 100),
             criticalIssues: validationResult.criticalIssues || [],
-            warnings: [...(validationResult.warnings || []), 'Using mock mode (database not available)'],
+            warnings: [
+              ...(validationResult.warnings || []),
+              'Using mock mode (database not available)',
+            ],
             recommendations: validationResult.recommendations || [],
             criteriaResults: validationResult.criteriaResults || {},
             timestamp: new Date().toISOString(),
@@ -338,7 +341,7 @@ router.post('/validate', async (req, res) => {
     res.status(500).json({
       success: false,
       error: 'Internal server error',
-      message: error.message,
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
     });
   }
 });
@@ -349,7 +352,7 @@ router.post('/validate', async (req, res) => {
  */
 router.get('/frameworks', (req, res) => {
   try {
-    const frameworks = Object.values(complianceFrameworks).map((f) => ({
+    const frameworks = Object.values(complianceFrameworks).map(f => ({
       id: f.id,
       name: f.name,
       version: f.version,

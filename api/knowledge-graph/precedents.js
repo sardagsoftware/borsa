@@ -6,6 +6,8 @@
  * Vercel Serverless Function - Neo4j Integration
  */
 
+const { handleCORS } = require('../_lib/cors-simple');
+
 // Mock precedents data for demo (until Neo4j is fully configured)
 const mockPrecedents = {
   'TCK 141': [
@@ -15,7 +17,7 @@ const mockPrecedents = {
       date: '2021-03-15',
       summary: 'Hırsızlık suçunda fail tarafından yapılan savunmanın değerlendirilmesi',
       decision: 'Bozma',
-      relevance: 0.95
+      relevance: 0.95,
     },
     {
       id: '2020/67890',
@@ -23,8 +25,8 @@ const mockPrecedents = {
       date: '2020-11-22',
       summary: 'Hırsızlık suçunda cezanın infaz aşaması',
       decision: 'Onama',
-      relevance: 0.88
-    }
+      relevance: 0.88,
+    },
   ],
   'TMK 185': [
     {
@@ -33,8 +35,8 @@ const mockPrecedents = {
       date: '2022-05-10',
       summary: 'Taşınmaz mülkiyetinin geçişinde tapu sicilinin önemi',
       decision: 'Bozma',
-      relevance: 0.92
-    }
+      relevance: 0.92,
+    },
   ],
   'BK 120': [
     {
@@ -43,9 +45,9 @@ const mockPrecedents = {
       date: '2021-09-30',
       summary: 'Borç ilişkisinde ifa gecikmeleri ve tazminat',
       decision: 'Onama',
-      relevance: 0.90
-    }
-  ]
+      relevance: 0.9,
+    },
+  ],
 };
 
 module.exports = async (req, res) => {
@@ -56,7 +58,7 @@ module.exports = async (req, res) => {
   if (req.method !== 'GET') {
     return res.status(405).json({
       success: false,
-      error: 'Method not allowed'
+      error: 'Method not allowed',
     });
   }
 
@@ -77,7 +79,7 @@ module.exports = async (req, res) => {
     if (!article) {
       return res.status(400).json({
         success: false,
-        error: 'article parameter is required (query or path)'
+        error: 'article parameter is required (query or path)',
       });
     }
 
@@ -86,7 +88,7 @@ module.exports = async (req, res) => {
 
     // TODO: When Neo4j is configured, use real service
     // const knowledgeGraph = require('../../services/neo4j-knowledge-graph');
-const { handleCORS } = require('../../middleware/cors-handler');
+    const { handleCORS } = require('../../middleware/cors-handler');
     // const precedents = await knowledgeGraph.searchPrecedents(decodedArticle);
 
     // For now, use mock data
@@ -100,7 +102,7 @@ const { handleCORS } = require('../../middleware/cors-handler');
         count: 0,
         precedents: [],
         message: 'No precedents found for this article. Neo4j integration pending.',
-        mockMode: true
+        mockMode: true,
       });
     }
 
@@ -110,14 +112,13 @@ const { handleCORS } = require('../../middleware/cors-handler');
       count: precedents.length,
       precedents: precedents,
       mockMode: true,
-      note: 'Using mock data. Full Neo4j integration coming soon.'
+      note: 'Using mock data. Full Neo4j integration coming soon.',
     });
-
   } catch (error) {
     console.error('❌ Knowledge Graph API error:', error);
     return res.status(500).json({
       success: false,
-      error: error.message || 'Internal server error'
+      error: 'Emsal arama hatası',
     });
   }
 };

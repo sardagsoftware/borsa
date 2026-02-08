@@ -31,19 +31,20 @@ module.exports = async (req, res) => {
       return res.status(503).json({
         error: 'Azure Speech Services not configured',
         message: 'Please set AZURE_SPEECH_KEY environment variable',
-        fallback: 'Using text input instead'
+        fallback: 'Using text input instead',
       });
     }
 
     // Parse multipart form data
     const form = new multiparty.Form();
 
-    const parseForm = () => new Promise((resolve, reject) => {
-      form.parse(req, (err, fields, files) => {
-        if (err) reject(err);
-        else resolve({ fields, files });
+    const parseForm = () =>
+      new Promise((resolve, reject) => {
+        form.parse(req, (err, fields, files) => {
+          if (err) reject(err);
+          else resolve({ fields, files });
+        });
       });
-    });
 
     const { fields, files } = await parseForm();
 
@@ -57,14 +58,14 @@ module.exports = async (req, res) => {
 
     // Language code mapping
     const languageMap = {
-      'tr': 'tr-TR',
-      'en': 'en-US',
-      'de': 'de-DE',
-      'fr': 'fr-FR',
-      'es': 'es-ES',
-      'ar': 'ar-SA',
-      'ru': 'ru-RU',
-      'zh': 'zh-CN'
+      tr: 'tr-TR',
+      en: 'en-US',
+      de: 'de-DE',
+      fr: 'fr-FR',
+      es: 'es-ES',
+      ar: 'ar-SA',
+      ru: 'ru-RU',
+      zh: 'zh-CN',
     };
 
     const speechLanguage = languageMap[language] || 'en-US';
@@ -112,7 +113,7 @@ module.exports = async (req, res) => {
         () => {
           // Started successfully
         },
-        (err) => {
+        err => {
           recognizer.stopContinuousRecognitionAsync();
           reject(err);
         }
@@ -140,14 +141,12 @@ module.exports = async (req, res) => {
       medicalEntities: medicalEntities,
       confidence: 0.85,
       duration: audioFile.size / 16000, // Approximate duration in seconds (assuming 16kHz)
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
-
   } catch (error) {
     console.error('Speech transcription error:', error);
     res.status(500).json({
-      error: error.message,
-      stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
+      error: 'Ses isleme hatasi. Lutfen tekrar deneyin.',
     });
   }
 };
@@ -158,30 +157,74 @@ module.exports = async (req, res) => {
 function addMedicalPhrases(phraseList, specialty) {
   const medicalPhrases = {
     cardiology: [
-      'myocardial infarction', 'atrial fibrillation', 'coronary artery disease',
-      'echocardiogram', 'electrocardiogram', 'troponin', 'angina', 'arrhythmia',
-      'stenosis', 'cardiomyopathy', 'pericarditis', 'endocarditis'
+      'myocardial infarction',
+      'atrial fibrillation',
+      'coronary artery disease',
+      'echocardiogram',
+      'electrocardiogram',
+      'troponin',
+      'angina',
+      'arrhythmia',
+      'stenosis',
+      'cardiomyopathy',
+      'pericarditis',
+      'endocarditis',
     ],
     neurology: [
-      'cerebrovascular accident', 'transient ischemic attack', 'migraine',
-      'epilepsy', 'seizure', 'encephalopathy', 'neuropathy', 'sclerosis',
-      'Parkinson', 'Alzheimer', 'dementia', 'meningitis', 'stroke'
+      'cerebrovascular accident',
+      'transient ischemic attack',
+      'migraine',
+      'epilepsy',
+      'seizure',
+      'encephalopathy',
+      'neuropathy',
+      'sclerosis',
+      'Parkinson',
+      'Alzheimer',
+      'dementia',
+      'meningitis',
+      'stroke',
     ],
     oncology: [
-      'malignant neoplasm', 'carcinoma', 'adenocarcinoma', 'lymphoma',
-      'leukemia', 'metastasis', 'chemotherapy', 'radiation therapy',
-      'biopsy', 'staging', 'remission', 'recurrence'
+      'malignant neoplasm',
+      'carcinoma',
+      'adenocarcinoma',
+      'lymphoma',
+      'leukemia',
+      'metastasis',
+      'chemotherapy',
+      'radiation therapy',
+      'biopsy',
+      'staging',
+      'remission',
+      'recurrence',
     ],
     radiology: [
-      'computed tomography', 'magnetic resonance imaging', 'radiograph',
-      'ultrasound', 'mammography', 'fluoroscopy', 'DICOM', 'contrast medium',
-      'tomography', 'angiography', 'densitometry'
+      'computed tomography',
+      'magnetic resonance imaging',
+      'radiograph',
+      'ultrasound',
+      'mammography',
+      'fluoroscopy',
+      'DICOM',
+      'contrast medium',
+      'tomography',
+      'angiography',
+      'densitometry',
     ],
     general: [
-      'hypertension', 'diabetes mellitus', 'hyperlipidemia', 'pneumonia',
-      'bronchitis', 'gastroenteritis', 'urinary tract infection',
-      'anemia', 'thyroid', 'arthritis', 'osteoporosis'
-    ]
+      'hypertension',
+      'diabetes mellitus',
+      'hyperlipidemia',
+      'pneumonia',
+      'bronchitis',
+      'gastroenteritis',
+      'urinary tract infection',
+      'anemia',
+      'thyroid',
+      'arthritis',
+      'osteoporosis',
+    ],
   };
 
   const phrases = medicalPhrases[specialty] || medicalPhrases.general;
@@ -199,16 +242,28 @@ function extractMedicalEntities(text, specialty) {
     diagnoses: [],
     medications: [],
     procedures: [],
-    bodyParts: []
+    bodyParts: [],
   };
 
   const lowerText = text.toLowerCase();
 
   // Symptom detection
   const symptoms = [
-    'chest pain', 'headache', 'fever', 'cough', 'shortness of breath',
-    'fatigue', 'nausea', 'vomiting', 'diarrhea', 'abdominal pain',
-    'dizziness', 'weakness', 'numbness', 'palpitations', 'bleeding'
+    'chest pain',
+    'headache',
+    'fever',
+    'cough',
+    'shortness of breath',
+    'fatigue',
+    'nausea',
+    'vomiting',
+    'diarrhea',
+    'abdominal pain',
+    'dizziness',
+    'weakness',
+    'numbness',
+    'palpitations',
+    'bleeding',
   ];
 
   symptoms.forEach(symptom => {
@@ -219,9 +274,18 @@ function extractMedicalEntities(text, specialty) {
 
   // Diagnosis detection
   const diagnoses = [
-    'hypertension', 'diabetes', 'pneumonia', 'bronchitis', 'asthma',
-    'copd', 'heart failure', 'stroke', 'cancer', 'infection',
-    'myocardial infarction', 'atrial fibrillation'
+    'hypertension',
+    'diabetes',
+    'pneumonia',
+    'bronchitis',
+    'asthma',
+    'copd',
+    'heart failure',
+    'stroke',
+    'cancer',
+    'infection',
+    'myocardial infarction',
+    'atrial fibrillation',
   ];
 
   diagnoses.forEach(diagnosis => {
@@ -232,9 +296,19 @@ function extractMedicalEntities(text, specialty) {
 
   // Medication detection
   const medications = [
-    'aspirin', 'metformin', 'lisinopril', 'atorvastatin', 'omeprazole',
-    'levothyroxine', 'amlodipine', 'metoprolol', 'losartan', 'gabapentin',
-    'warfarin', 'insulin', 'amoxicillin'
+    'aspirin',
+    'metformin',
+    'lisinopril',
+    'atorvastatin',
+    'omeprazole',
+    'levothyroxine',
+    'amlodipine',
+    'metoprolol',
+    'losartan',
+    'gabapentin',
+    'warfarin',
+    'insulin',
+    'amoxicillin',
   ];
 
   medications.forEach(medication => {
@@ -245,8 +319,17 @@ function extractMedicalEntities(text, specialty) {
 
   // Procedure detection
   const procedures = [
-    'ecg', 'ekg', 'x-ray', 'ct scan', 'mri', 'ultrasound', 'biopsy',
-    'endoscopy', 'colonoscopy', 'blood test', 'urinalysis'
+    'ecg',
+    'ekg',
+    'x-ray',
+    'ct scan',
+    'mri',
+    'ultrasound',
+    'biopsy',
+    'endoscopy',
+    'colonoscopy',
+    'blood test',
+    'urinalysis',
   ];
 
   procedures.forEach(procedure => {
@@ -257,8 +340,19 @@ function extractMedicalEntities(text, specialty) {
 
   // Body part detection
   const bodyParts = [
-    'head', 'chest', 'abdomen', 'heart', 'lungs', 'liver', 'kidney',
-    'brain', 'spine', 'leg', 'arm', 'back', 'stomach'
+    'head',
+    'chest',
+    'abdomen',
+    'heart',
+    'lungs',
+    'liver',
+    'kidney',
+    'brain',
+    'spine',
+    'leg',
+    'arm',
+    'back',
+    'stomach',
   ];
 
   bodyParts.forEach(part => {
@@ -277,15 +371,15 @@ function applyMedicalTerminology(text, specialty, language) {
   // Common medical term corrections
   const corrections = {
     'heart attack': 'myocardial infarction',
-    'stroke': 'cerebrovascular accident',
+    stroke: 'cerebrovascular accident',
     'high blood pressure': 'hypertension',
     'sugar diabetes': 'diabetes mellitus',
     'water on the lungs': 'pleural effusion',
     'blood clot': 'thrombus',
-    'swelling': 'edema',
+    swelling: 'edema',
     'shortness of breath': 'dyspnea',
     'chest pain': 'angina pectoris',
-    'irregular heartbeat': 'arrhythmia'
+    'irregular heartbeat': 'arrhythmia',
   };
 
   let correctedText = text;

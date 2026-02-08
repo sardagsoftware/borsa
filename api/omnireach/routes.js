@@ -33,7 +33,7 @@ const platformServices = {
   instagram: new InstagramService(),
   facebook: new FacebookService(),
   tiktok: new TikTokService(),
-  x: new XService()
+  x: new XService(),
 };
 
 console.log('🎬 OmniReach API Routes initialized');
@@ -59,25 +59,25 @@ router.post('/avatar/generate', async (req, res) => {
       gender,
       age,
       ethnicity,
-      provider
+      provider,
     });
 
     if (result.success) {
       res.json({
         success: true,
-        data: result
+        data: result,
       });
     } else {
       res.status(500).json({
         success: false,
-        error: result.error
+        error: result.error,
       });
     }
   } catch (error) {
     console.error('❌ [API] Avatar generation error:', error);
     res.status(500).json({
       success: false,
-      error: error.message
+      error: 'Islem basarisiz. Lutfen tekrar deneyin.',
     });
   }
 });
@@ -99,7 +99,7 @@ router.post('/script/generate', async (req, res) => {
       tone,
       keyPoints,
       duration,
-      provider
+      provider,
     });
 
     if (result.success) {
@@ -109,19 +109,19 @@ router.post('/script/generate', async (req, res) => {
       res.json({
         success: true,
         data: result,
-        compliance: validation
+        compliance: validation,
       });
     } else {
       res.status(500).json({
         success: false,
-        error: result.error
+        error: result.error,
       });
     }
   } catch (error) {
     console.error('❌ [API] Script generation error:', error);
     res.status(500).json({
       success: false,
-      error: error.message
+      error: 'Islem basarisiz. Lutfen tekrar deneyin.',
     });
   }
 });
@@ -142,7 +142,7 @@ router.post('/voice/generate', async (req, res) => {
       language,
       speed,
       pitch,
-      provider
+      provider,
     });
 
     if (result.success) {
@@ -150,20 +150,20 @@ router.post('/voice/generate', async (req, res) => {
         success: true,
         data: {
           audioBase64: result.audioBase64,
-          metadata: result.metadata
-        }
+          metadata: result.metadata,
+        },
       });
     } else {
       res.status(500).json({
         success: false,
-        error: result.error
+        error: result.error,
       });
     }
   } catch (error) {
     console.error('❌ [API] Voice generation error:', error);
     res.status(500).json({
       success: false,
-      error: error.message
+      error: 'Islem basarisiz. Lutfen tekrar deneyin.',
     });
   }
 });
@@ -182,14 +182,7 @@ router.post('/create', async (req, res) => {
   try {
     console.log('📥 [API] Content creation request');
 
-    const {
-      topic,
-      style,
-      platform,
-      avatarSettings,
-      voiceSettings,
-      scriptSettings
-    } = req.body;
+    const { topic, style, platform, avatarSettings, voiceSettings, scriptSettings } = req.body;
 
     // Step 1: Generate script
     console.log('📝 Step 1: Generating script...');
@@ -197,7 +190,7 @@ router.post('/create', async (req, res) => {
       topic,
       style,
       platform,
-      ...scriptSettings
+      ...scriptSettings,
     });
 
     if (!scriptResult.success) {
@@ -212,7 +205,7 @@ router.post('/create', async (req, res) => {
       return res.status(400).json({
         success: false,
         error: 'Script failed compliance checks',
-        validation: scriptValidation
+        validation: scriptValidation,
       });
     }
 
@@ -228,7 +221,7 @@ router.post('/create', async (req, res) => {
     console.log('🎙️ Step 4: Generating voice...');
     const voiceResult = await voiceService.generateVoice({
       text: scriptResult.script,
-      ...voiceSettings
+      ...voiceSettings,
     });
 
     if (!voiceResult.success) {
@@ -241,11 +234,11 @@ router.post('/create', async (req, res) => {
       {
         avatar: avatarResult,
         voice: voiceResult,
-        script: { text: scriptResult.script }
+        script: { text: scriptResult.script },
       },
       {
         platform: platform,
-        watermark: true
+        watermark: true,
       }
     );
 
@@ -261,21 +254,20 @@ router.post('/create', async (req, res) => {
         script: scriptResult,
         avatar: avatarResult,
         voice: {
-          duration: voiceResult.metadata.duration
+          duration: voiceResult.metadata.duration,
         },
         video: {
           path: videoResult.videoPath,
-          metadata: videoResult.metadata
-        }
+          metadata: videoResult.metadata,
+        },
       },
-      message: 'Content created successfully'
+      message: 'Content created successfully',
     });
-
   } catch (error) {
     console.error('❌ [API] Content creation error:', error);
     res.status(500).json({
       success: false,
-      error: error.message
+      error: 'Islem basarisiz. Lutfen tekrar deneyin.',
     });
   }
 });
@@ -298,7 +290,7 @@ router.get('/platforms/:platform/auth', (req, res) => {
     if (!service) {
       return res.status(404).json({
         success: false,
-        error: 'Platform not supported'
+        error: 'Platform not supported',
       });
     }
 
@@ -312,13 +304,13 @@ router.get('/platforms/:platform/auth', (req, res) => {
       success: true,
       authUrl: authUrl,
       state: state,
-      platform: platform
+      platform: platform,
     });
   } catch (error) {
     console.error('❌ [API] Auth URL error:', error);
     res.status(500).json({
       success: false,
-      error: error.message
+      error: 'Islem basarisiz. Lutfen tekrar deneyin.',
     });
   }
 });
@@ -337,7 +329,7 @@ router.post('/platforms/:platform/connect', async (req, res) => {
     if (!service) {
       return res.status(404).json({
         success: false,
-        error: 'Platform not supported'
+        error: 'Platform not supported',
       });
     }
 
@@ -352,7 +344,7 @@ router.post('/platforms/:platform/connect', async (req, res) => {
       req.session.platformTokens[platform] = {
         tokens: result.tokens,
         accountName: result.channel?.title || result.username || result.accountName || '',
-        connectedAt: new Date().toISOString()
+        connectedAt: new Date().toISOString(),
       };
 
       console.log(`✅ [API] ${platform} tokens stored in session`);
@@ -363,7 +355,7 @@ router.post('/platforms/:platform/connect', async (req, res) => {
     console.error('❌ [API] Platform connect error:', error);
     res.status(500).json({
       success: false,
-      error: error.message
+      error: 'Islem basarisiz. Lutfen tekrar deneyin.',
     });
   }
 });
@@ -384,20 +376,20 @@ router.get('/platforms/:platform/status', (req, res) => {
         success: true,
         connected: true,
         accountName: platformTokens.accountName,
-        connectedAt: platformTokens.connectedAt
+        connectedAt: platformTokens.connectedAt,
       });
     } else {
       res.json({
         success: true,
         connected: false,
-        accountName: ''
+        accountName: '',
       });
     }
   } catch (error) {
     console.error('❌ [API] Platform status error:', error);
     res.status(500).json({
       success: false,
-      error: error.message
+      error: 'Islem basarisiz. Lutfen tekrar deneyin.',
     });
   }
 });
@@ -416,19 +408,19 @@ router.delete('/platforms/:platform/disconnect', (req, res) => {
 
       res.json({
         success: true,
-        message: `${platform} disconnected successfully`
+        message: `${platform} disconnected successfully`,
       });
     } else {
       res.json({
         success: true,
-        message: `${platform} was not connected`
+        message: `${platform} was not connected`,
       });
     }
   } catch (error) {
     console.error('❌ [API] Platform disconnect error:', error);
     res.status(500).json({
       success: false,
-      error: error.message
+      error: 'Islem basarisiz. Lutfen tekrar deneyin.',
     });
   }
 });
@@ -441,12 +433,7 @@ router.post('/publish', async (req, res) => {
   try {
     console.log('📥 [API] Publish request');
 
-    const {
-      jobId,
-      videoPath,
-      platforms,
-      metadata
-    } = req.body;
+    const { jobId, videoPath, platforms, metadata } = req.body;
 
     const publishResults = {};
 
@@ -458,7 +445,7 @@ router.post('/publish', async (req, res) => {
       if (!service) {
         publishResults[platform] = {
           success: false,
-          error: 'Platform not supported'
+          error: 'Platform not supported',
         };
         continue;
       }
@@ -475,7 +462,7 @@ router.post('/publish', async (req, res) => {
               title: metadata.title,
               description: metadata.description,
               tags: metadata.tags,
-              privacyStatus: settings.privacyStatus || 'private'
+              privacyStatus: settings.privacyStatus || 'private',
             });
             break;
 
@@ -484,7 +471,7 @@ router.post('/publish', async (req, res) => {
               videoUrl: metadata.videoUrl,
               caption: metadata.caption,
               accessToken: credentials.accessToken,
-              igAccountId: credentials.igAccountId
+              igAccountId: credentials.igAccountId,
             });
             break;
 
@@ -494,7 +481,7 @@ router.post('/publish', async (req, res) => {
               title: metadata.title,
               description: metadata.description,
               pageAccessToken: credentials.pageAccessToken,
-              pageId: credentials.pageId
+              pageId: credentials.pageId,
             });
             break;
 
@@ -503,7 +490,7 @@ router.post('/publish', async (req, res) => {
               filePath: videoPath,
               caption: metadata.caption,
               accessToken: credentials.accessToken,
-              fileSize: metadata.fileSize
+              fileSize: metadata.fileSize,
             });
             break;
 
@@ -512,24 +499,23 @@ router.post('/publish', async (req, res) => {
               text: metadata.text,
               videoPath: videoPath,
               accessToken: credentials.accessToken,
-              accessSecret: credentials.accessSecret
+              accessSecret: credentials.accessSecret,
             });
             break;
 
           default:
             result = {
               success: false,
-              error: 'Platform handler not implemented'
+              error: 'Platform handler not implemented',
             };
         }
 
         publishResults[platform] = result;
-
       } catch (error) {
         console.error(`❌ ${platform} publish error:`, error);
         publishResults[platform] = {
           success: false,
-          error: error.message
+          error: 'Islem basarisiz. Lutfen tekrar deneyin.',
         };
       }
     }
@@ -537,14 +523,13 @@ router.post('/publish', async (req, res) => {
     res.json({
       success: true,
       jobId: jobId,
-      results: publishResults
+      results: publishResults,
     });
-
   } catch (error) {
     console.error('❌ [API] Publish error:', error);
     res.status(500).json({
       success: false,
-      error: error.message
+      error: 'Islem basarisiz. Lutfen tekrar deneyin.',
     });
   }
 });
@@ -568,18 +553,18 @@ router.post('/validate', async (req, res) => {
     const validation = await ethicsGuard.validateContent({
       script,
       avatar,
-      settings
+      settings,
     });
 
     res.json({
       success: true,
-      validation: validation
+      validation: validation,
     });
   } catch (error) {
     console.error('❌ [API] Validation error:', error);
     res.status(500).json({
       success: false,
-      error: error.message
+      error: 'Islem basarisiz. Lutfen tekrar deneyin.',
     });
   }
 });
@@ -604,8 +589,8 @@ router.get('/health', (req, res) => {
       script: 'online',
       voice: 'online',
       video: 'online',
-      ethics: 'online'
-    }
+      ethics: 'online',
+    },
   });
 });
 
@@ -624,7 +609,7 @@ router.get('/voices', async (req, res) => {
     console.error('❌ [API] Get voices error:', error);
     res.status(500).json({
       success: false,
-      error: error.message
+      error: 'Islem basarisiz. Lutfen tekrar deneyin.',
     });
   }
 });
@@ -641,13 +626,13 @@ router.delete('/jobs/:jobId', (req, res) => {
 
     res.json({
       success: true,
-      message: `Job ${jobId} cleaned up`
+      message: `Job ${jobId} cleaned up`,
     });
   } catch (error) {
     console.error('❌ [API] Cleanup error:', error);
     res.status(500).json({
       success: false,
-      error: error.message
+      error: 'Islem basarisiz. Lutfen tekrar deneyin.',
     });
   }
 });

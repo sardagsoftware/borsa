@@ -266,7 +266,7 @@ router.post('/record-vitals', async (req, res) => {
   } catch (error) {
     res.status(500).json({
       success: false,
-      error: error.message,
+      error: 'Vital bulgu izleme hatasi. Lutfen tekrar deneyin.',
     });
   }
 });
@@ -313,7 +313,7 @@ router.post('/analyze-vitals', async (req, res) => {
   } catch (error) {
     res.status(500).json({
       success: false,
-      error: error.message,
+      error: 'Vital bulgu izleme hatasi. Lutfen tekrar deneyin.',
     });
   }
 });
@@ -367,7 +367,7 @@ router.post('/early-warning-score', async (req, res) => {
   } catch (error) {
     res.status(500).json({
       success: false,
-      error: error.message,
+      error: 'Vital bulgu izleme hatasi. Lutfen tekrar deneyin.',
     });
   }
 });
@@ -467,7 +467,7 @@ router.post('/wearable-sync', async (req, res) => {
   } catch (error) {
     res.status(500).json({
       success: false,
-      error: error.message,
+      error: 'Vital bulgu izleme hatasi. Lutfen tekrar deneyin.',
     });
   }
 });

@@ -24,7 +24,7 @@ module.exports = async (req, res) => {
         compliance_score: 98,
         pii_detected: 0,
         security_scans_passed: 24,
-        last_audit_days_ago: 5
+        last_audit_days_ago: 5,
       },
       standards: [
         {
@@ -34,7 +34,7 @@ module.exports = async (req, res) => {
           last_check: '2025-10-12',
           next_audit: '2025-11-12',
           certificate_url: null,
-          notes: 'Türkiye Kişisel Verileri Koruma Kanunu\'na tam uyumluluk'
+          notes: "Türkiye Kişisel Verileri Koruma Kanunu'na tam uyumluluk",
         },
         {
           standard: 'GDPR',
@@ -43,7 +43,7 @@ module.exports = async (req, res) => {
           last_check: '2025-10-12',
           next_audit: '2025-11-12',
           certificate_url: null,
-          notes: 'Avrupa Birliği veri koruma yönetmeliğine uyumluluk'
+          notes: 'Avrupa Birliği veri koruma yönetmeliğine uyumluluk',
         },
         {
           standard: 'ISO 27001',
@@ -52,7 +52,7 @@ module.exports = async (req, res) => {
           last_check: '2025-10-10',
           next_audit: '2025-12-10',
           certificate_url: '/certificates/iso27001.pdf',
-          notes: 'Bilgi güvenliği yönetim sistemi sertifikalı'
+          notes: 'Bilgi güvenliği yönetim sistemi sertifikalı',
         },
         {
           standard: 'SOC 2 Type II',
@@ -61,7 +61,7 @@ module.exports = async (req, res) => {
           last_check: '2025-10-08',
           next_audit: '2026-01-08',
           certificate_url: '/certificates/soc2.pdf',
-          notes: 'Servis organizasyonu kontrolleri sertifikalı'
+          notes: 'Servis organizasyonu kontrolleri sertifikalı',
         },
         {
           standard: 'PCI DSS',
@@ -70,8 +70,8 @@ module.exports = async (req, res) => {
           last_check: null,
           next_audit: null,
           certificate_url: null,
-          notes: 'Ödeme kartı işlemi yapılmadığı için gerekli değil'
-        }
+          notes: 'Ödeme kartı işlemi yapılmadığı için gerekli değil',
+        },
       ],
       security_metrics: {
         encryption: 'AES-256 + TLS 1.3',
@@ -80,11 +80,11 @@ module.exports = async (req, res) => {
           critical: 0,
           high: 0,
           medium: 0,
-          low: 2
+          low: 2,
         },
         penetration_testing: '3 ayda bir',
         last_pen_test: '2025-09-15',
-        next_pen_test: '2025-12-15'
+        next_pen_test: '2025-12-15',
       },
       pii_protection: {
         detection_active: true,
@@ -93,7 +93,7 @@ module.exports = async (req, res) => {
         access_control: true,
         audit_trail: true,
         incidents_30_days: 0,
-        false_positives_30_days: 3
+        false_positives_30_days: 3,
       },
       transparency: {
         data_processing_agreement: true,
@@ -105,24 +105,24 @@ module.exports = async (req, res) => {
           'Düzeltme hakkı',
           'Silme hakkı',
           'İtiraz hakkı',
-          'Veri taşınabilirliği'
-        ]
+          'Veri taşınabilirliği',
+        ],
       },
-      disclaimer: 'Uyumluluk verileri bağımsız denetim kuruluşları ve internal audit raporlarından alınmaktadır.',
-      last_updated: new Date().toISOString()
+      disclaimer:
+        'Uyumluluk verileri bağımsız denetim kuruluşları ve internal audit raporlarından alınmaktadır.',
+      last_updated: new Date().toISOString(),
     };
 
     res.status(200).json({
       success: true,
-      data: complianceData
+      data: complianceData,
     });
-
   } catch (error) {
     console.error('Compliance API error:', error);
     res.status(500).json({
       success: false,
       error: 'Uyumluluk verileri alınamadı',
-      message: error.message
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
     });
   }
 };

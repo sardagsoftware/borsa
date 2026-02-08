@@ -61,7 +61,7 @@ router.post('/', async (req, res) => {
 
     // Find user
     const result = await safeQuery(
-      async (prisma) => {
+      async prisma => {
         const user = await prisma.user.findUnique({
           where: { email: email.toLowerCase() },
           select: {
@@ -149,7 +149,8 @@ router.post('/', async (req, res) => {
     res.status(500).json({
       success: false,
       error: 'Login failed',
-      message: process.env.NODE_ENV === 'development' ? error.message : 'An error occurred during login',
+      message:
+        process.env.NODE_ENV === 'development' ? error.message : 'An error occurred during login',
     });
   }
 });
@@ -171,13 +172,11 @@ router.post('/logout', async (req, res) => {
       });
     }
 
-    const token = authHeader.startsWith('Bearer ')
-      ? authHeader.substring(7)
-      : authHeader;
+    const token = authHeader.startsWith('Bearer ') ? authHeader.substring(7) : authHeader;
 
     // Invalidate session in database
     await safeQuery(
-      async (prisma) => {
+      async prisma => {
         await prisma.session.deleteMany({
           where: { token },
         });
@@ -196,7 +195,7 @@ router.post('/logout', async (req, res) => {
     res.status(500).json({
       success: false,
       error: 'Logout failed',
-      message: error.message,
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
     });
   }
 });
@@ -218,9 +217,7 @@ router.get('/me', async (req, res) => {
       });
     }
 
-    const token = authHeader.startsWith('Bearer ')
-      ? authHeader.substring(7)
-      : authHeader;
+    const token = authHeader.startsWith('Bearer ') ? authHeader.substring(7) : authHeader;
 
     // Verify token
     const { verifyToken } = require('../../../middleware/auth-governance');
@@ -228,7 +225,7 @@ router.get('/me', async (req, res) => {
 
     // Get user from database
     const user = await safeQuery(
-      async (prisma) => {
+      async prisma => {
         return await prisma.user.findUnique({
           where: { id: decoded.userId },
           select: {
@@ -268,7 +265,7 @@ router.get('/me', async (req, res) => {
     res.status(401).json({
       success: false,
       error: 'Authentication failed',
-      message: error.message,
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
     });
   }
 });

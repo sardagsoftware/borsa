@@ -28,29 +28,29 @@ module.exports = async (req, res) => {
           description: 'Çok dilli anlama görevi - Türkçe',
           score: 0.724,
           rank: 3,
-          total_models: 12
+          total_models: 12,
         },
         {
           name: 'Belebele-TR',
           description: 'Okuma anlama - Türkçe',
           score: 0.689,
           rank: 4,
-          total_models: 12
+          total_models: 12,
         },
         {
           name: 'XNLI-TR',
           description: 'Doğal dil çıkarımı - Türkçe',
           score: 0.812,
           rank: 2,
-          total_models: 12
+          total_models: 12,
         },
         {
           name: 'HumanEval-TR',
           description: 'Kod üretimi - Türkçe',
           score: 0.654,
           rank: 5,
-          total_models: 12
-        }
+          total_models: 12,
+        },
       ],
       models: [
         {
@@ -61,10 +61,10 @@ module.exports = async (req, res) => {
             belebele: 0.795,
             xnli: 0.876,
             humaneval: 0.782,
-            average: 0.819
+            average: 0.819,
           },
           public: true,
-          api_only: true
+          api_only: true,
         },
         {
           name: 'AX9F7E2B 3.5 Sonnet',
@@ -74,10 +74,10 @@ module.exports = async (req, res) => {
             belebele: 0.812,
             xnli: 0.854,
             humaneval: 0.801,
-            average: 0.816
+            average: 0.816,
           },
           public: true,
-          api_only: true
+          api_only: true,
         },
         {
           name: 'Gemini 1.5 Pro',
@@ -87,10 +87,10 @@ module.exports = async (req, res) => {
             belebele: 0.743,
             xnli: 0.831,
             humaneval: 0.756,
-            average: 0.777
+            average: 0.777,
           },
           public: true,
-          api_only: true
+          api_only: true,
         },
         {
           name: 'Ailydian-TR-7B',
@@ -100,11 +100,11 @@ module.exports = async (req, res) => {
             belebele: 0.689,
             xnli: 0.812,
             humaneval: 0.654,
-            average: 0.720
+            average: 0.72,
           },
           public: false,
           api_only: false,
-          note: 'Şirket içi model, Azure Türkiye\'de barındırılmaktadır'
+          note: "Şirket içi model, Azure Türkiye'de barındırılmaktadır",
         },
         {
           name: 'Llama 3.1 70B',
@@ -114,10 +114,10 @@ module.exports = async (req, res) => {
             belebele: 0.678,
             xnli: 0.745,
             humaneval: 0.712,
-            average: 0.709
+            average: 0.709,
           },
           public: true,
-          api_only: false
+          api_only: false,
         },
         {
           name: 'Mistral Large 2',
@@ -127,27 +127,27 @@ module.exports = async (req, res) => {
             belebele: 0.654,
             xnli: 0.723,
             humaneval: 0.698,
-            average: 0.691
+            average: 0.691,
           },
           public: true,
-          api_only: false
-        }
+          api_only: false,
+        },
       ],
-      disclaimer: 'Benchmark skorları açık kaynak test setleri kullanılarak hesaplanmıştır. Gerçek performans kullanım senaryosuna göre değişebilir.',
-      last_updated: '2025-10-16T00:00:00Z'
+      disclaimer:
+        'Benchmark skorları açık kaynak test setleri kullanılarak hesaplanmıştır. Gerçek performans kullanım senaryosuna göre değişebilir.',
+      last_updated: '2025-10-16T00:00:00Z',
     };
 
     res.status(200).json({
       success: true,
-      data: benchmarkData
+      data: benchmarkData,
     });
-
   } catch (error) {
     console.error('Benchmarks API error:', error);
     res.status(500).json({
       success: false,
       error: 'Benchmark verileri alınamadı',
-      message: error.message
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
     });
   }
 };

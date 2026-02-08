@@ -19,6 +19,7 @@
  */
 
 const { getCorsOrigin } = require('../_middleware/cors');
+const { applySanitization } = require('../_middleware/sanitize');
 import Anthropic from '@anthropic-ai/sdk';
 import { hipaaManager } from '../hospitals/hipaa-security.js';
 
@@ -27,59 +28,59 @@ const RADIOLOGY_KNOWLEDGE_BASE = {
   // Chest X-Ray Findings
   'chest-xray': {
     diseases: {
-      'pneumonia': {
+      pneumonia: {
         findings: [
           'Consolidation (air space opacity)',
           'Air bronchograms',
           'Pleural effusion',
           'Increased opacity in affected lobe',
-          'Loss of silhouette sign'
+          'Loss of silhouette sign',
         ],
         earlyWarnings: [
           'Subtle ground-glass opacity',
           'Minimal pleural thickening',
           'Early air bronchogram formation',
-          'Asymmetric lung markings'
+          'Asymmetric lung markings',
         ],
         literature: [
           'Radiographics 2019: "Pneumonia Detection and Characterization"',
           'NEJM 2020: "AI-Assisted Chest X-ray Interpretation"',
-          'Radiology 2021: "Early Pneumonia Signs in CXR"'
+          'Radiology 2021: "Early Pneumonia Signs in CXR"',
         ],
         differentials: ['Pulmonary edema', 'Atelectasis', 'Lung cancer', 'TB'],
         recommendations: [
           'Consider lateral view for localization',
           'CT chest if diagnosis uncertain',
           'Sputum culture and sensitivity',
-          'Blood cultures if septic'
-        ]
+          'Blood cultures if septic',
+        ],
       },
-      'tuberculosis': {
+      tuberculosis: {
         findings: [
           'Upper lobe infiltrates',
           'Cavitation',
           'Tree-in-bud pattern',
           'Hilar lymphadenopathy',
-          'Ghon complex (primary TB)'
+          'Ghon complex (primary TB)',
         ],
         earlyWarnings: [
           'Subtle apical scarring',
           'Minimal upper lobe nodularity',
           'Early cavitation formation',
-          'Asymmetric hilar prominence'
+          'Asymmetric hilar prominence',
         ],
         literature: [
           'CHEST 2019: "Radiographic Patterns of Tuberculosis"',
           'Radiology 2020: "AI Detection of TB in CXR"',
-          'AJRCCM 2021: "Early TB Diagnosis"'
+          'AJRCCM 2021: "Early TB Diagnosis"',
         ],
         differentials: ['Fungal infection', 'Lung cancer', 'Sarcoidosis'],
         recommendations: [
           'Sputum AFB smear and culture',
           'Nucleic acid amplification test (GeneXpert)',
           'CT chest for extent evaluation',
-          'Contact tracing if positive'
-        ]
+          'Contact tracing if positive',
+        ],
       },
       'lung-cancer': {
         findings: [
@@ -88,19 +89,19 @@ const RADIOLOGY_KNOWLEDGE_BASE = {
           'Hilar/mediastinal lymphadenopathy',
           'Pleural effusion',
           'Atelectasis',
-          'Chest wall invasion'
+          'Chest wall invasion',
         ],
         earlyWarnings: [
           'Small nodule <8mm',
           'Subtle ground-glass nodule',
           'Minimal pleural irregularity',
           'Early lymph node enlargement',
-          'Subtle mediastinal widening'
+          'Subtle mediastinal widening',
         ],
         literature: [
           'NEJM 2020: "Lung Cancer Screening with LDCT"',
           'Radiology 2021: "AI for Lung Nodule Detection"',
-          'JAMA Oncology 2022: "Early Lung Cancer Signs"'
+          'JAMA Oncology 2022: "Early Lung Cancer Signs"',
         ],
         differentials: ['Infection', 'Granuloma', 'Metastasis', 'Hamartoma'],
         recommendations: [
@@ -108,8 +109,8 @@ const RADIOLOGY_KNOWLEDGE_BASE = {
           'PET-CT for staging',
           'Tissue diagnosis (bronchoscopy/biopsy)',
           'Tumor markers (CEA, NSE)',
-          'Multidisciplinary tumor board review'
-        ]
+          'Multidisciplinary tumor board review',
+        ],
       },
       'covid-19': {
         findings: [
@@ -117,28 +118,28 @@ const RADIOLOGY_KNOWLEDGE_BASE = {
           'Peripheral distribution',
           'Crazy-paving pattern',
           'Consolidation in advanced cases',
-          'Reverse halo sign'
+          'Reverse halo sign',
         ],
         earlyWarnings: [
           'Minimal peripheral GGO',
           'Subtle lower lobe opacity',
           'Early vascular thickening',
-          'Minimal pleural reaction'
+          'Minimal pleural reaction',
         ],
         literature: [
           'Radiology 2020: "COVID-19 Imaging Findings"',
           'NEJM 2021: "Chest Imaging in COVID-19"',
-          'RSNA 2022: "AI for COVID Detection"'
+          'RSNA 2022: "AI for COVID Detection"',
         ],
         differentials: ['Influenza', 'Other viral pneumonia', 'ARDS', 'Organizing pneumonia'],
         recommendations: [
           'RT-PCR testing',
           'CT chest for severity assessment',
           'Oxygen saturation monitoring',
-          'Consider hospitalization if severe findings'
-        ]
-      }
-    }
+          'Consider hospitalization if severe findings',
+        ],
+      },
+    },
   },
 
   // CT Scan Findings
@@ -150,19 +151,19 @@ const RADIOLOGY_KNOWLEDGE_BASE = {
           'Loss of gray-white matter differentiation',
           'Sulcal effacement',
           'Midline shift in large strokes',
-          'Hyperdense vessel sign (acute)'
+          'Hyperdense vessel sign (acute)',
         ],
         earlyWarnings: [
           'Subtle loss of insular ribbon',
           'Early sulcal effacement',
           'Asymmetric ventricle size',
           'Minimal gray-white blurring',
-          'Subtle hyperdense MCA sign'
+          'Subtle hyperdense MCA sign',
         ],
         literature: [
           'Stroke 2020: "Early CT Signs of Stroke"',
           'Radiology 2021: "AI Detection of Acute Stroke"',
-          'NEJM 2022: "Time-Sensitive Stroke Imaging"'
+          'NEJM 2022: "Time-Sensitive Stroke Imaging"',
         ],
         differentials: ['Hemorrhagic stroke', 'Tumor', 'Infection', 'Demyelination'],
         recommendations: [
@@ -170,8 +171,8 @@ const RADIOLOGY_KNOWLEDGE_BASE = {
           'Neurology consult immediately',
           'Consider tPA if within window',
           'Thrombectomy evaluation if large vessel',
-          'MRI for confirmation and extent'
-        ]
+          'MRI for confirmation and extent',
+        ],
       },
       'pulmonary-embolism': {
         findings: [
@@ -179,19 +180,19 @@ const RADIOLOGY_KNOWLEDGE_BASE = {
           'Enlarged right ventricle (RV strain)',
           'Mosaic attenuation',
           'Peripheral wedge-shaped opacity',
-          'Pleural effusion'
+          'Pleural effusion',
         ],
         earlyWarnings: [
           'Subtle filling defect',
           'Minimal RV enlargement',
           'Early mosaic pattern',
           'Small pleural effusion',
-          'Subtle pulmonary artery dilation'
+          'Subtle pulmonary artery dilation',
         ],
         literature: [
           'Radiology 2020: "CTPA for PE Detection"',
           'CHEST 2021: "AI-Assisted PE Diagnosis"',
-          'JAMA 2022: "Early PE Recognition"'
+          'JAMA 2022: "Early PE Recognition"',
         ],
         differentials: ['Pneumonia', 'Atelectasis', 'Artifact'],
         recommendations: [
@@ -199,8 +200,8 @@ const RADIOLOGY_KNOWLEDGE_BASE = {
           'D-dimer if not already done',
           'Echocardiogram for RV function',
           'Consider thrombolysis if massive PE',
-          'Lower extremity Doppler'
-        ]
+          'Lower extremity Doppler',
+        ],
       },
       'brain-tumor': {
         findings: [
@@ -209,19 +210,19 @@ const RADIOLOGY_KNOWLEDGE_BASE = {
           'Mass effect and midline shift',
           'Necrosis (high-grade)',
           'Hemorrhage',
-          'Hydrocephalus'
+          'Hydrocephalus',
         ],
         earlyWarnings: [
           'Small enhancing nodule',
           'Minimal perilesional edema',
           'Subtle mass effect',
           'Early vasogenic edema pattern',
-          'Minimal midline shift'
+          'Minimal midline shift',
         ],
         literature: [
           'Neuro-Oncology 2020: "Brain Tumor Imaging"',
           'Radiology 2021: "AI for Tumor Detection"',
-          'NEJM 2022: "Early Tumor Recognition"'
+          'NEJM 2022: "Early Tumor Recognition"',
         ],
         differentials: ['Metastasis', 'Abscess', 'Demyelination', 'Infarct'],
         recommendations: [
@@ -229,14 +230,14 @@ const RADIOLOGY_KNOWLEDGE_BASE = {
           'Neurosurgery consultation',
           'Tissue diagnosis (biopsy/resection)',
           'Staging workup if malignant',
-          'Molecular markers for treatment planning'
-        ]
-      }
-    }
+          'Molecular markers for treatment planning',
+        ],
+      },
+    },
   },
 
   // MRI Findings
-  'mri': {
+  mri: {
     diseases: {
       'multiple-sclerosis': {
         findings: [
@@ -245,18 +246,18 @@ const RADIOLOGY_KNOWLEDGE_BASE = {
           'Corpus callosum lesions',
           'Infratentorial lesions',
           'Spinal cord lesions',
-          'Enhancement indicates active lesions'
+          'Enhancement indicates active lesions',
         ],
         earlyWarnings: [
           'Single small periventricular lesion',
           'Subtle corpus callosum involvement',
           'Minimal T2 hyperintensity',
-          'Early Dawson finger formation'
+          'Early Dawson finger formation',
         ],
         literature: [
           'Neurology 2020: "MS Diagnostic Criteria"',
           'Radiology 2021: "MRI in MS Diagnosis"',
-          'JAMA Neurology 2022: "Early MS Detection"'
+          'JAMA Neurology 2022: "Early MS Detection"',
         ],
         differentials: ['Migraine', 'Vascular disease', 'ADEM', 'Vasculitis'],
         recommendations: [
@@ -264,18 +265,18 @@ const RADIOLOGY_KNOWLEDGE_BASE = {
           'Visual evoked potentials',
           'Follow-up MRI in 3-6 months',
           'Neurology referral',
-          'Consider disease-modifying therapy if confirmed'
-        ]
-      }
-    }
-  }
+          'Consider disease-modifying therapy if confirmed',
+        ],
+      },
+    },
+  },
 };
 
 // RAG Radiology Analysis Engine
 class RAGRadiologyEngine {
   constructor() {
     this.anthropic = new Anthropic({
-      apiKey: process.env.ANTHROPIC_API_KEY
+      apiKey: process.env.ANTHROPIC_API_KEY,
     });
     this.knowledgeBase = RADIOLOGY_KNOWLEDGE_BASE;
   }
@@ -297,8 +298,8 @@ class RAGRadiologyEngine {
         success: true,
         metadata: {
           imageType: clinicalContext.imageType,
-          bodyPart: clinicalContext.bodyPart
-        }
+          bodyPart: clinicalContext.bodyPart,
+        },
       });
 
       // Step 1: Primary AI Vision Analysis
@@ -345,7 +346,7 @@ class RAGRadiologyEngine {
         imageInfo: {
           type: clinicalContext.imageType,
           bodyPart: clinicalContext.bodyPart,
-          view: clinicalContext.view
+          view: clinicalContext.view,
         },
         primaryFindings: visionAnalysis.findings,
         enhancedFindings: enhancedAnalysis.findings,
@@ -355,7 +356,7 @@ class RAGRadiologyEngine {
         confidence: enhancedAnalysis.confidence,
         urgency: this.assessUrgency(enhancedAnalysis),
         aiModel: 'AX9F7E2B 3.5 Sonnet with Vision + RAG',
-        disclaimer: 'AI-generated analysis. Must be reviewed by licensed radiologist.'
+        disclaimer: 'AI-generated analysis. Must be reviewed by licensed radiologist.',
       };
     } catch (error) {
       console.error('RAG Radiology Analysis Error:', error);
@@ -394,20 +395,21 @@ Focus on:
     const message = await this.anthropic.messages.create({
       model: 'AX9F7E2B',
       max_tokens: 4000,
-      messages: [{
-        role: 'user',
-        content: [
-          {
-            type: 'image',
-            source: {
-              type: 'base64',
-              media_type: imageData.mediaType || 'image/jpeg',
-              data: imageData.base64
-            }
-          },
-          {
-            type: 'text',
-            text: `Analyze this radiology image systematically. Provide:
+      messages: [
+        {
+          role: 'user',
+          content: [
+            {
+              type: 'image',
+              source: {
+                type: 'base64',
+                media_type: imageData.mediaType || 'image/jpeg',
+                data: imageData.base64,
+              },
+            },
+            {
+              type: 'text',
+              text: `Analyze this radiology image systematically. Provide:
 
 1. IMAGE QUALITY ASSESSMENT
 2. NORMAL FINDINGS
@@ -417,17 +419,18 @@ Focus on:
 6. AREAS REQUIRING ATTENTION
 7. COMPARISON RECOMMENDATIONS
 
-Be extremely thorough and catch every detail.`
-          }
-        ]
-      }],
-      system: systemPrompt
+Be extremely thorough and catch every detail.`,
+            },
+          ],
+        },
+      ],
+      system: systemPrompt,
     });
 
     return {
       findings: message.content[0].text,
       tokenUsage: message.usage,
-      model: message.model
+      model: message.model,
     };
   }
 
@@ -439,7 +442,7 @@ Be extremely thorough and catch every detail.`
       diseases: [],
       earlyWarnings: [],
       literature: [],
-      recommendations: []
+      recommendations: [],
     };
 
     const imageKB = this.knowledgeBase[imageType] || {};
@@ -450,11 +453,9 @@ Be extremely thorough and catch every detail.`
       const findingsText = findings.toLowerCase();
 
       // Check if any disease findings match
-      const hasMatch = diseaseData.findings.some(finding =>
-        findingsText.includes(finding.toLowerCase())
-      ) || diseaseData.earlyWarnings.some(warning =>
-        findingsText.includes(warning.toLowerCase())
-      );
+      const hasMatch =
+        diseaseData.findings.some(finding => findingsText.includes(finding.toLowerCase())) ||
+        diseaseData.earlyWarnings.some(warning => findingsText.includes(warning.toLowerCase()));
 
       if (hasMatch) {
         relevant.diseases.push({
@@ -463,7 +464,7 @@ Be extremely thorough and catch every detail.`
           earlyWarnings: diseaseData.earlyWarnings,
           differentials: diseaseData.differentials,
           recommendations: diseaseData.recommendations,
-          literature: diseaseData.literature
+          literature: diseaseData.literature,
         });
       }
     });
@@ -475,12 +476,16 @@ Be extremely thorough and catch every detail.`
    * Enhanced analysis combining vision + RAG
    */
   async performRAGEnhancedAnalysis(visionAnalysis, knowledge, clinicalContext) {
-    const ragContext = knowledge.diseases.map(disease => `
+    const ragContext = knowledge.diseases
+      .map(
+        disease => `
 Disease: ${disease.name.toUpperCase()}
 Known Findings: ${disease.findings.join(', ')}
 Early Warning Signs: ${disease.earlyWarnings.join(', ')}
 Evidence: ${disease.literature.join('; ')}
-`).join('\n');
+`
+      )
+      .join('\n');
 
     const systemPrompt = `You are a senior radiologist performing a detailed analysis enhanced with medical literature.
 
@@ -498,9 +503,10 @@ Your task: Re-analyze the initial findings with this medical knowledge and ident
       model: 'AX9F7E2B',
       max_tokens: 3000,
       system: systemPrompt,
-      messages: [{
-        role: 'user',
-        content: `Initial Analysis:
+      messages: [
+        {
+          role: 'user',
+          content: `Initial Analysis:
 ${visionAnalysis.findings}
 
 Clinical Context:
@@ -518,14 +524,15 @@ Based on the medical literature and established criteria, provide:
 6. CONFIDENCE ASSESSMENT
 7. RISK STRATIFICATION (Low/Medium/High/Critical)
 
-Be precise and evidence-based.`
-      }]
+Be precise and evidence-based.`,
+        },
+      ],
     });
 
     return {
       findings: message.content[0].text,
       confidence: this.extractConfidence(message.content[0].text),
-      ragSources: knowledge.diseases.map(d => d.name)
+      ragSources: knowledge.diseases.map(d => d.name),
     };
   }
 
@@ -545,7 +552,7 @@ Be precise and evidence-based.`
             disease: disease.name,
             significance: 'EARLY WARNING SIGN',
             action: 'Close monitoring recommended',
-            evidence: disease.literature[0]
+            evidence: disease.literature[0],
           });
         }
       });
@@ -562,16 +569,18 @@ Be precise and evidence-based.`
       immediate: [],
       shortTerm: [],
       longTerm: [],
-      preventive: []
+      preventive: [],
     };
 
     // Immediate actions
-    if (enhancedAnalysis.findings.toLowerCase().includes('critical') ||
-        enhancedAnalysis.findings.toLowerCase().includes('urgent')) {
+    if (
+      enhancedAnalysis.findings.toLowerCase().includes('critical') ||
+      enhancedAnalysis.findings.toLowerCase().includes('urgent')
+    ) {
       roadmap.immediate.push({
         step: 'Emergency consultation',
         timeframe: 'Within 1 hour',
-        reason: 'Critical findings detected'
+        reason: 'Critical findings detected',
       });
     }
 
@@ -582,19 +591,19 @@ Be precise and evidence-based.`
           roadmap.immediate.push({
             step: rec,
             timeframe: 'Within 24 hours',
-            disease: disease.name
+            disease: disease.name,
           });
         } else if (index === 0 || index === 1) {
           roadmap.shortTerm.push({
             step: rec,
             timeframe: 'Within 1-2 weeks',
-            disease: disease.name
+            disease: disease.name,
           });
         } else {
           roadmap.longTerm.push({
             step: rec,
             timeframe: 'Within 1-3 months',
-            disease: disease.name
+            disease: disease.name,
           });
         }
       });
@@ -605,7 +614,7 @@ Be precise and evidence-based.`
       roadmap.preventive.push({
         step: `Monitor for progression of ${detail.finding}`,
         timeframe: 'Regular follow-up',
-        reason: 'Early warning sign detected'
+        reason: 'Early warning sign detected',
       });
     });
 
@@ -621,29 +630,39 @@ Be precise and evidence-based.`
       laboratory: [],
       referrals: [],
       treatment: [],
-      followUp: []
+      followUp: [],
     };
 
     knowledge.diseases.forEach(disease => {
       disease.recommendations.forEach(rec => {
-        if (rec.toLowerCase().includes('ct') || rec.toLowerCase().includes('mri') ||
-            rec.toLowerCase().includes('ultrasound') || rec.toLowerCase().includes('pet')) {
+        if (
+          rec.toLowerCase().includes('ct') ||
+          rec.toLowerCase().includes('mri') ||
+          rec.toLowerCase().includes('ultrasound') ||
+          rec.toLowerCase().includes('pet')
+        ) {
           recommendations.imaging.push({
             test: rec,
             indication: disease.name,
-            priority: rec.toLowerCase().includes('urgent') ? 'HIGH' : 'ROUTINE'
+            priority: rec.toLowerCase().includes('urgent') ? 'HIGH' : 'ROUTINE',
           });
-        } else if (rec.toLowerCase().includes('biopsy') || rec.toLowerCase().includes('culture') ||
-                   rec.toLowerCase().includes('markers')) {
+        } else if (
+          rec.toLowerCase().includes('biopsy') ||
+          rec.toLowerCase().includes('culture') ||
+          rec.toLowerCase().includes('markers')
+        ) {
           recommendations.laboratory.push({
             test: rec,
-            indication: disease.name
+            indication: disease.name,
           });
-        } else if (rec.toLowerCase().includes('consult') || rec.toLowerCase().includes('referral')) {
+        } else if (
+          rec.toLowerCase().includes('consult') ||
+          rec.toLowerCase().includes('referral')
+        ) {
           recommendations.referrals.push({
             specialty: rec,
             indication: disease.name,
-            urgency: rec.toLowerCase().includes('urgent') ? 'URGENT' : 'ROUTINE'
+            urgency: rec.toLowerCase().includes('urgent') ? 'URGENT' : 'ROUTINE',
           });
         }
       });
@@ -651,7 +670,7 @@ Be precise and evidence-based.`
       // Add literature references
       recommendations.followUp.push({
         action: `Review recent literature on ${disease.name}`,
-        references: disease.literature
+        references: disease.literature,
       });
     });
 
@@ -672,7 +691,11 @@ Be precise and evidence-based.`
   assessUrgency(enhancedAnalysis) {
     const text = enhancedAnalysis.findings.toLowerCase();
 
-    if (text.includes('critical') || text.includes('emergency') || text.includes('life-threatening')) {
+    if (
+      text.includes('critical') ||
+      text.includes('emergency') ||
+      text.includes('life-threatening')
+    ) {
       return 'CRITICAL';
     } else if (text.includes('urgent') || text.includes('immediate')) {
       return 'URGENT';
@@ -688,6 +711,7 @@ Be precise and evidence-based.`
 const ragEngine = new RAGRadiologyEngine();
 
 export default async function handler(req, res) {
+  applySanitization(req, res);
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
@@ -701,9 +725,10 @@ export default async function handler(req, res) {
     const { action, imageData, clinicalContext } = req.body || {};
 
     switch (action) {
-      case 'ANALYZE_IMAGE':
+      case 'ANALYZE_IMAGE': {
         const analysis = await ragEngine.analyzeRadiologyImage(imageData, clinicalContext);
         return res.json(analysis);
+      }
 
       case 'GET_KNOWLEDGE_BASE':
         return res.json({
@@ -711,8 +736,9 @@ export default async function handler(req, res) {
           knowledgeBase: RADIOLOGY_KNOWLEDGE_BASE,
           imageTypes: Object.keys(RADIOLOGY_KNOWLEDGE_BASE),
           totalDiseases: Object.values(RADIOLOGY_KNOWLEDGE_BASE).reduce(
-            (sum, kb) => sum + (kb.diseases ? Object.keys(kb.diseases).length : 0), 0
-          )
+            (sum, kb) => sum + (kb.diseases ? Object.keys(kb.diseases).length : 0),
+            0
+          ),
         });
 
       default:
@@ -727,16 +753,16 @@ export default async function handler(req, res) {
             'Diagnostic Roadmap Generation',
             'Evidence-Based Recommendations',
             'Medical Literature Integration',
-            'HIPAA-Compliant Audit Logging'
+            'HIPAA-Compliant Audit Logging',
           ],
-          supportedImageTypes: Object.keys(RADIOLOGY_KNOWLEDGE_BASE)
+          supportedImageTypes: Object.keys(RADIOLOGY_KNOWLEDGE_BASE),
         });
     }
   } catch (error) {
     console.error('RAG Radiology API Error:', error);
     return res.status(500).json({
       success: false,
-      error: error.message
+      error: 'Radyoloji analiz hatasi. Lutfen tekrar deneyin.',
     });
   }
 }

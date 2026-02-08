@@ -98,7 +98,7 @@ module.exports = async (req, res) => {
     console.error('Registration error:', error);
     return res.status(500).json({
       success: false,
-      message: error.message || 'Registration failed',
+      message: 'Kayit islemi basarisiz. Lutfen tekrar deneyin.',
     });
   }
 };

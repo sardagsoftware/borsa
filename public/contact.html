@@ -28,7 +28,8 @@
       }
     </style>
     <link
-      rel="preload" as="style"
+      rel="preload"
+      as="style"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Righteous&amp;display=swap"
       crossorigin="anonymous"
     />
@@ -73,7 +74,8 @@
           -apple-system,
           BlinkMacSystemFont,
           sans-serif;
-        background: radial-gradient(1400px 900px at 70% 15%, rgba(184, 107, 255, 0.1), transparent 60%),
+        background:
+          radial-gradient(1400px 900px at 70% 15%, rgba(184, 107, 255, 0.1), transparent 60%),
           radial-gradient(1200px 700px at 20% 80%, rgba(110, 132, 255, 0.1), transparent 65%),
           #0a0b0d;
         color: var(--gray-900);
@@ -703,9 +705,22 @@
       /* ========== RESPONSIVE ========== */
 
       /* Touch targets & font safety */
-      button, a, input, select, textarea { min-height: 44px; }
-      input, select, textarea { font-size: max(16px, 1rem); }
-      html, body { overflow-x: hidden; }
+      button,
+      a,
+      input,
+      select,
+      textarea {
+        min-height: 44px;
+      }
+      input,
+      select,
+      textarea {
+        font-size: max(16px, 1rem);
+      }
+      html,
+      body {
+        overflow-x: hidden;
+      }
 
       @media (max-width: 1024px) {
         .contact-container {
@@ -791,6 +806,216 @@
       .fade-in.visible {
         opacity: 1;
         transform: translateY(0);
+      }
+
+      /* ========== ENHANCED RESPONSIVE DESIGN ========== */
+
+      /* Fluid Typography with clamp() */
+      .hero-title {
+        font-size: clamp(1.5rem, 5vw + 1rem, 4rem);
+      }
+
+      .hero-description {
+        font-size: clamp(1rem, 2vw + 0.5rem, 1.25rem);
+      }
+
+      .section-title {
+        font-size: clamp(1.25rem, 3vw + 0.75rem, 2rem);
+      }
+
+      .faq-title {
+        font-size: clamp(1.5rem, 3vw + 1rem, 2.5rem);
+      }
+
+      .faq-question {
+        font-size: clamp(0.95rem, 2vw + 0.5rem, 1.125rem);
+      }
+
+      /* Large Desktop - 1440px */
+      @media (max-width: 1440px) {
+        .contact-container,
+        .faq-container,
+        .footer-container {
+          max-width: 1200px;
+          padding-left: 1.5rem;
+          padding-right: 1.5rem;
+        }
+      }
+
+      /* Enhanced 1024px - Tablet Landscape */
+      @media (max-width: 1024px) {
+        .contact-container {
+          grid-template-columns: 1fr;
+          gap: 3rem;
+          max-width: 700px;
+          margin: 0 auto;
+        }
+
+        .contact-form-wrapper,
+        .contact-info-wrapper {
+          max-width: 100%;
+        }
+
+        .contact-methods {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 3rem;
+        }
+
+        .contact-section,
+        .faq-section {
+          padding: 4rem 1.5rem;
+        }
+      }
+
+      /* Enhanced 768px - Tablet Portrait */
+      @media (max-width: 768px) {
+        .hero {
+          min-height: 40vh;
+        }
+
+        .hero-content {
+          padding: 3rem 1.5rem;
+        }
+
+        .contact-form-wrapper {
+          padding: 2rem 1.5rem;
+        }
+
+        .contact-method {
+          padding: 1.25rem;
+        }
+
+        .method-icon {
+          width: 44px;
+          height: 44px;
+        }
+
+        .method-icon svg {
+          width: 20px;
+          height: 20px;
+        }
+
+        .social-link {
+          width: 44px;
+          height: 44px;
+        }
+
+        .footer-grid {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+
+        .contact-section,
+        .faq-section {
+          padding: 3rem 1rem;
+        }
+      }
+
+      /* Enhanced 480px - Mobile */
+      @media (max-width: 480px) {
+        .hero-content {
+          padding: 2rem 1rem;
+        }
+
+        .contact-form-wrapper {
+          padding: 1.5rem 1rem;
+        }
+
+        .section-subtitle {
+          font-size: 0.875rem;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+          padding: 0.75rem;
+          font-size: 0.95rem;
+        }
+
+        .btn-submit {
+          padding: 0.875rem 1.5rem;
+        }
+
+        .contact-method {
+          padding: 1rem;
+          flex-direction: column;
+          text-align: center;
+          align-items: center;
+        }
+
+        .method-content h3 {
+          font-size: 1rem;
+        }
+
+        .method-content p {
+          font-size: 0.875rem;
+        }
+
+        .social-links {
+          justify-content: center;
+        }
+
+        .faq-question {
+          padding: 1.25rem;
+        }
+
+        .faq-answer {
+          padding: 0 1.25rem 1.25rem;
+          font-size: 0.9rem;
+        }
+
+        .contact-section,
+        .faq-section {
+          padding: 2.5rem 0.75rem;
+        }
+
+        .footer {
+          padding: 3rem 1rem 1.5rem;
+        }
+      }
+
+      /* Extra small devices - 320px minimum support */
+      @media (max-width: 360px) {
+        .contact-form-wrapper {
+          padding: 1.25rem 0.875rem;
+        }
+
+        .form-label {
+          font-size: 0.875rem;
+        }
+
+        .contact-method {
+          padding: 0.875rem;
+        }
+
+        .method-icon {
+          width: 40px;
+          height: 40px;
+        }
+
+        .social-link {
+          width: 40px;
+          height: 40px;
+        }
+
+        .btn-submit {
+          font-size: 0.875rem;
+          padding: 0.75rem 1.25rem;
+        }
+
+        .faq-question {
+          padding: 1rem;
+          font-size: 0.875rem;
+        }
+
+        .faq-answer {
+          padding: 0 1rem 1rem;
+          font-size: 0.85rem;
+        }
       }
     </style>
     <link rel="stylesheet" href="/css/global-lydian-branding.css" />
@@ -1014,7 +1239,7 @@
     />
 
     <!-- /Premium SEO -->
-<!-- PWA Manifest -->
+    <!-- PWA Manifest -->
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#C4A962" />
     <!-- iOS Safari -->
@@ -1069,7 +1294,8 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon-48.png" />
     <link rel="icon" type="image/x-icon" href="/icons/favicon.ico" />
-    <link rel="shortcut icon" href="/icons/favicon.ico" /></head>
+    <link rel="shortcut icon" href="/icons/favicon.ico" />
+  </head>
   <body>
     <!-- Navigation -->
     <nav class="navbar">

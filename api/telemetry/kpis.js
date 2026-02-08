@@ -20,7 +20,7 @@ module.exports = async (req, res) => {
         crash_free_rate: 98.7,
         p95_gpu_frame_time: 15.8,
         hitch_rate: 1.9,
-        p95_server_latency: 142
+        p95_server_latency: 142,
       },
 
       // Product Engagement
@@ -34,7 +34,7 @@ module.exports = async (req, res) => {
         ftue_completion: 76.8,
         season_task_completion: 62.4,
         boss_success_rate: 44.7,
-        nps: 52
+        nps: 52,
       },
 
       // Economy Health
@@ -44,7 +44,7 @@ module.exports = async (req, res) => {
         vendor_usage: 51.2,
         fraud_indicators: 2,
         arppu: 9.45,
-        attach_rate: 16.3
+        attach_rate: 16.3,
       },
 
       // A/B Experiments (if active)
@@ -55,7 +55,7 @@ module.exports = async (req, res) => {
           control_rate: 0.45,
           variant_rate: 0.52,
           p_value: 0.032,
-          significant: true
+          significant: true,
         },
         'abx-trial-rewards': {
           status: 'running',
@@ -63,15 +63,15 @@ module.exports = async (req, res) => {
           control_rate: 0.68,
           variant_rate: 0.73,
           p_value: 0.089,
-          significant: false
-        }
+          significant: false,
+        },
       },
 
       // Alerts (if any thresholds violated)
       alerts: [],
 
       // System status
-      status: 'healthy'
+      status: 'healthy',
     };
 
     // Check thresholds and add alerts
@@ -80,16 +80,16 @@ module.exports = async (req, res) => {
         severity: 'warning',
         metric: 'crash_free_rate',
         message: 'Crash-free rate below target (98.5%)',
-        value: kpis.technical_health.crash_free_rate
+        value: kpis.technical_health.crash_free_rate,
       });
     }
 
-    if (kpis.economy_health.inflation_index > 1.10) {
+    if (kpis.economy_health.inflation_index > 1.1) {
       kpis.alerts.push({
         severity: 'warning',
         metric: 'inflation_index',
         message: 'Inflation index above warning threshold (1.10)',
-        value: kpis.economy_health.inflation_index
+        value: kpis.economy_health.inflation_index,
       });
     }
 
@@ -98,12 +98,11 @@ module.exports = async (req, res) => {
     }
 
     res.json(kpis);
-
   } catch (error) {
     console.error('[KPI Export Error]', error);
     res.status(500).json({
       error: 'Failed to export KPIs',
-      message: error.message
+      message: 'KPI verisi alınamadı',
     });
   }
 };

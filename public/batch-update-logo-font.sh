@@ -5,7 +5,7 @@
 # lydian-hukukai.html, lydian-hukukai-pro.html, reset-password.html,
 # lydian-hukukai-v2.html, index-new.html, enterprise-index.html
 
-cd /Users/sardag/Desktop/ailydian-ultra-pro/public
+cd "$(dirname "$0")"
 
 FONT_FACE='        \/* Righteous font for Logo - Inline for instant load *\/\
         @font-face {\

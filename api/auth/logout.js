@@ -80,13 +80,10 @@ export default async function handler(req, res) {
     });
   } catch (error) {
     console.error('Logout error:', error);
-    return res
-      .status(500)
-      .json({
-        success: false,
-        error: 'Logout failed',
-        code: 'SERVER_ERROR',
-        details: error.message,
-      });
+    return res.status(500).json({
+      success: false,
+      error: 'Cikis basarisiz. Lutfen tekrar deneyin.',
+      code: 'SERVER_ERROR',
+    });
   }
 }

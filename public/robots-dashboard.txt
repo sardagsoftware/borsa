@@ -2,28 +2,28 @@
 # This file explicitly blocks all search engines from the dashboard
 
 User-agent: *
-Disallow: /dashboard-sardag.html
-Disallow: /dashboard-sardag
-Disallow: /*dashboard-sardag*
+Disallow: /dashboard-admin.html
+Disallow: /dashboard-admin
+Disallow: /*dashboard-admin*
 
 # Block specific bots
 User-agent: Googlebot
-Disallow: /dashboard-sardag.html
+Disallow: /dashboard-admin.html
 
 User-agent: Bingbot
-Disallow: /dashboard-sardag.html
+Disallow: /dashboard-admin.html
 
 User-agent: Slurp
-Disallow: /dashboard-sardag.html
+Disallow: /dashboard-admin.html
 
 User-agent: DuckDuckBot
-Disallow: /dashboard-sardag.html
+Disallow: /dashboard-admin.html
 
 User-agent: Baiduspider
-Disallow: /dashboard-sardag.html
+Disallow: /dashboard-admin.html
 
 User-agent: YandexBot
-Disallow: /dashboard-sardag.html
+Disallow: /dashboard-admin.html
 
 # No sitemap for dashboard
 Sitemap: none

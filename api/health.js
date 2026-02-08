@@ -29,13 +29,13 @@ module.exports = async (req, res) => {
         chat: true,
         translation: true,
         multimodel: true,
-        i18n: true
-      }
+        i18n: true,
+      },
     });
   } catch (error) {
     res.status(500).json({
       status: 'ERROR',
-      error: error.message
+      error: 'Sistem durumu kontrol hatası',
     });
   }
 };

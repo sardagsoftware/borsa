@@ -3,7 +3,7 @@ const Anthropic = require('@anthropic-ai/sdk');
 const { getCorsOrigin } = require('../_middleware/cors');
 
 const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY
+  apiKey: process.env.ANTHROPIC_API_KEY,
 });
 
 module.exports = async (req, res) => {
@@ -49,13 +49,14 @@ Katılımcı 1: Harika. Bu konuları aksiyon maddelerine ekleyelim.`;
       const summaryResponse = await anthropic.messages.create({
         model: 'AX9F7E2B',
         max_tokens: 300,
-        system: 'Sen bir toplantı analiz uzmanısın. Toplantı transkriptlerini özetleyip önemli noktaları çıkarırsın.',
+        system:
+          'Sen bir toplantı analiz uzmanısın. Toplantı transkriptlerini özetleyip önemli noktaları çıkarırsın.',
         messages: [
           {
             role: 'user',
-            content: `Toplantı: ${title}\n\nTranskript:\n${transcript}\n\nBu toplantının kısa bir özetini yaz (3-4 cümle).`
-          }
-        ]
+            content: `Toplantı: ${title}\n\nTranskript:\n${transcript}\n\nBu toplantının kısa bir özetini yaz (3-4 cümle).`,
+          },
+        ],
       });
 
       const summary = summaryResponse.content[0].text.trim();
@@ -68,9 +69,9 @@ Katılımcı 1: Harika. Bu konuları aksiyon maddelerine ekleyelim.`;
         messages: [
           {
             role: 'user',
-            content: `Transkript:\n${transcript}\n\nKatılımcıları belirle ve her biri için: name, sentiment (Pozitif/Nötr/Negatif), sentimentScore (0-100). JSON array döndür.`
-          }
-        ]
+            content: `Transkript:\n${transcript}\n\nKatılımcıları belirle ve her biri için: name, sentiment (Pozitif/Nötr/Negatif), sentimentScore (0-100). JSON array döndür.`,
+          },
+        ],
       });
 
       let participants = [];
@@ -80,7 +81,7 @@ Katılımcı 1: Harika. Bu konuları aksiyon maddelerine ekleyelim.`;
         participants = [
           { name: 'Katılımcı 1', sentiment: 'Pozitif', sentimentScore: 85 },
           { name: 'Katılımcı 2', sentiment: 'Pozitif', sentimentScore: 90 },
-          { name: 'Katılımcı 3', sentiment: 'Nötr', sentimentScore: 70 }
+          { name: 'Katılımcı 3', sentiment: 'Nötr', sentimentScore: 70 },
         ];
       }
 
@@ -92,9 +93,9 @@ Katılımcı 1: Harika. Bu konuları aksiyon maddelerine ekleyelim.`;
         messages: [
           {
             role: 'user',
-            content: `Transkript:\n${transcript}\n\nBu toplantıdan çıkan aksiyon maddelerini listele. Her madde için JSON: {task, assignee, deadline}. JSON array döndür.`
-          }
-        ]
+            content: `Transkript:\n${transcript}\n\nBu toplantıdan çıkan aksiyon maddelerini listele. Her madde için JSON: {task, assignee, deadline}. JSON array döndür.`,
+          },
+        ],
       });
 
       let actions = [];
@@ -102,9 +103,15 @@ Katılımcı 1: Harika. Bu konuları aksiyon maddelerine ekleyelim.`;
         actions = JSON.parse(actionResponse.content[0].text.trim());
       } catch {
         // Fallback: extract from transcript
-        const lines = transcript.split('\n').filter(l =>
-          l.includes('yapmalı') || l.includes('hazırla') || l.includes('ekle') || l.includes('öner')
-        );
+        const lines = transcript
+          .split('\n')
+          .filter(
+            l =>
+              l.includes('yapmalı') ||
+              l.includes('hazırla') ||
+              l.includes('ekle') ||
+              l.includes('öner')
+          );
         actions = lines.slice(0, 5).map(line => ({ task: line.trim() }));
       }
 
@@ -114,14 +121,14 @@ Katılımcı 1: Harika. Bu konuları aksiyon maddelerine ekleyelim.`;
         summary,
         participants,
         actions,
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
       });
     });
   } catch (error) {
     console.error('Meeting analysis error:', error);
     res.status(500).json({
       error: 'Analysis failed',
-      message: error.message
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
     });
   }
 };

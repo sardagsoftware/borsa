@@ -11,7 +11,7 @@ const {
   EarlyDiagnosisOrchestrator,
   NIHClinicalTrialsMatcher,
   FDATreatmentDatabase,
-  SDOHAnalyzer
+  SDOHAnalyzer,
 } = require('./usa-early-diagnosis');
 
 module.exports = async (req, res) => {
@@ -27,7 +27,7 @@ module.exports = async (req, res) => {
   if (req.method !== 'POST') {
     return res.status(405).json({
       error: 'Method not allowed',
-      allowedMethods: ['POST']
+      allowedMethods: ['POST'],
     });
   }
 
@@ -67,8 +67,8 @@ module.exports = async (req, res) => {
             'COMPREHENSIVE_ANALYSIS',
             'CLINICAL_TRIALS',
             'FDA_TREATMENTS',
-            'SDOH_ANALYSIS'
-          ]
+            'SDOH_ANALYSIS',
+          ],
         });
     }
 
@@ -78,17 +78,16 @@ module.exports = async (req, res) => {
       result,
       timestamp: new Date().toISOString(),
       apiVersion: '1.0.0',
-      compliance: ['HIPAA', 'CDC', 'FDA', 'NIH', 'USPSTF']
+      compliance: ['HIPAA', 'CDC', 'FDA', 'NIH', 'USPSTF'],
     });
-
   } catch (error) {
     console.error('USA Diagnosis API Error:', error);
 
     res.status(500).json({
       success: false,
       error: 'Internal server error',
-      message: error.message,
-      timestamp: new Date().toISOString()
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
+      timestamp: new Date().toISOString(),
     });
   }
 };

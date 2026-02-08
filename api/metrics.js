@@ -4,6 +4,8 @@
  * Format: OpenMetrics / Prometheus text format
  */
 
+const { handleCORS } = require('./_lib/cors-simple');
+
 module.exports = async (req, res) => {
   // CORS headers
   // Apply secure CORS
@@ -32,42 +34,43 @@ module.exports = async (req, res) => {
     // ========== API Metrics (placeholder) ==========
     metrics.push('# HELP lydian_api_requests_total Total number of API requests');
     metrics.push('# TYPE lydian_api_requests_total counter');
-    metrics.push(`lydian_api_requests_total{method="GET",path="/api/health",status="200"} 0`);
+    metrics.push('lydian_api_requests_total{method="GET",path="/api/health",status="200"} 0');
 
     metrics.push('# HELP lydian_api_latency_ms API latency in milliseconds');
     metrics.push('# TYPE lydian_api_latency_ms histogram');
-    metrics.push(`lydian_api_latency_ms_bucket{le="100"} 0`);
-    metrics.push(`lydian_api_latency_ms_bucket{le="500"} 0`);
-    metrics.push(`lydian_api_latency_ms_bucket{le="1000"} 0`);
-    metrics.push(`lydian_api_latency_ms_bucket{le="2000"} 0`);
-    metrics.push(`lydian_api_latency_ms_bucket{le="+Inf"} 0`);
+    metrics.push('lydian_api_latency_ms_bucket{le="100"} 0');
+    metrics.push('lydian_api_latency_ms_bucket{le="500"} 0');
+    metrics.push('lydian_api_latency_ms_bucket{le="1000"} 0');
+    metrics.push('lydian_api_latency_ms_bucket{le="2000"} 0');
+    metrics.push('lydian_api_latency_ms_bucket{le="+Inf"} 0');
 
     // ========== Connector Metrics (placeholder) ==========
     metrics.push('# HELP lydian_connector_success_ratio Connector success ratio');
     metrics.push('# TYPE lydian_connector_success_ratio gauge');
-    metrics.push(`lydian_connector_success_ratio{vendor="trendyol"} 1.0`);
+    metrics.push('lydian_connector_success_ratio{vendor="trendyol"} 1.0');
 
     metrics.push('# HELP lydian_connector_rate_limit_ratio 429 rate limit ratio');
     metrics.push('# TYPE lydian_connector_rate_limit_ratio gauge');
-    metrics.push(`lydian_connector_rate_limit_ratio{vendor="trendyol"} 0.0`);
+    metrics.push('lydian_connector_rate_limit_ratio{vendor="trendyol"} 0.0');
 
     // ========== AI Metrics (placeholder) ==========
     metrics.push('# HELP lydian_ai_decision_accuracy AI decision accuracy');
     metrics.push('# TYPE lydian_ai_decision_accuracy gauge');
-    metrics.push(`lydian_ai_decision_accuracy{model="OX7A3F8D"} 0.95`);
+    metrics.push('lydian_ai_decision_accuracy{model="OX7A3F8D"} 0.95');
 
     metrics.push('# HELP lydian_ai_tool_call_latency_ms AI tool call latency');
     metrics.push('# TYPE lydian_ai_tool_call_latency_ms gauge');
-    metrics.push(`lydian_ai_tool_call_latency_ms{action="product.sync"} 1200`);
+    metrics.push('lydian_ai_tool_call_latency_ms{action="product.sync"} 1200');
 
     // ========== Legal Gate Metrics ==========
     metrics.push('# HELP lydian_legal_gate_blocks_total Legal Gate blocks');
     metrics.push('# TYPE lydian_legal_gate_blocks_total counter');
-    metrics.push(`lydian_legal_gate_blocks_total{vendor="wildberries",reason="sanctions"} 0`);
+    metrics.push('lydian_legal_gate_blocks_total{vendor="wildberries",reason="sanctions"} 0');
 
     // Send response
     res.status(200).send(metrics.join('\n'));
   } catch (error) {
-    res.status(500).send(`# ERROR: ${error.message}`);
+    console.error('Metrics error:', error.message);
+    res.status(500).send('# ERROR: Internal server error');
   }
 };

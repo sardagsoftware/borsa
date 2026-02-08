@@ -46,7 +46,8 @@ function calculateGCS(data) {
   } else {
     severity = 'Severe Brain Injury';
     interpretation = 'Severe brain injury with coma';
-    recommendation = '⚠️ CRITICAL - ICU admission, intubation likely needed, immediate neurosurgical evaluation';
+    recommendation =
+      '⚠️ CRITICAL - ICU admission, intubation likely needed, immediate neurosurgical evaluation';
   }
 
   return {
@@ -54,7 +55,7 @@ function calculateGCS(data) {
     breakdown: {
       eyeOpening,
       verbalResponse,
-      motorResponse
+      motorResponse,
     },
     severity,
     interpretation,
@@ -63,8 +64,8 @@ function calculateGCS(data) {
     components: {
       eye: getEyeDescription(eyeOpening),
       verbal: getVerbalDescription(verbalResponse),
-      motor: getMotorDescription(motorResponse)
-    }
+      motor: getMotorDescription(motorResponse),
+    },
   };
 }
 
@@ -73,7 +74,7 @@ function getEyeDescription(score) {
     4: 'Spontaneous',
     3: 'To speech',
     2: 'To pain',
-    1: 'None'
+    1: 'None',
   };
   return descriptions[score] || 'Unknown';
 }
@@ -84,7 +85,7 @@ function getVerbalDescription(score) {
     4: 'Confused',
     3: 'Inappropriate words',
     2: 'Incomprehensible sounds',
-    1: 'None'
+    1: 'None',
   };
   return descriptions[score] || 'Unknown';
 }
@@ -96,7 +97,7 @@ function getMotorDescription(score) {
     4: 'Withdraws from pain',
     3: 'Flexion to pain (decorticate)',
     2: 'Extension to pain (decerebrate)',
-    1: 'None'
+    1: 'None',
   };
   return descriptions[score] || 'Unknown';
 }
@@ -114,28 +115,39 @@ function getMotorDescription(score) {
  */
 function calculateNIHSS(data) {
   const {
-    levelOfConsciousness = 0,     // 0-3
-    locQuestions = 0,              // 0-2
-    locCommands = 0,               // 0-2
-    bestGaze = 0,                  // 0-2
-    visual = 0,                    // 0-3
-    facialPalsy = 0,               // 0-3
-    motorLeftArm = 0,              // 0-4
-    motorRightArm = 0,             // 0-4
-    motorLeftLeg = 0,              // 0-4
-    motorRightLeg = 0,             // 0-4
-    limbAtaxia = 0,                // 0-2
-    sensory = 0,                   // 0-2
-    bestLanguage = 0,              // 0-3
-    dysarthria = 0,                // 0-2
-    extinctionInattention = 0      // 0-2
+    levelOfConsciousness = 0, // 0-3
+    locQuestions = 0, // 0-2
+    locCommands = 0, // 0-2
+    bestGaze = 0, // 0-2
+    visual = 0, // 0-3
+    facialPalsy = 0, // 0-3
+    motorLeftArm = 0, // 0-4
+    motorRightArm = 0, // 0-4
+    motorLeftLeg = 0, // 0-4
+    motorRightLeg = 0, // 0-4
+    limbAtaxia = 0, // 0-2
+    sensory = 0, // 0-2
+    bestLanguage = 0, // 0-3
+    dysarthria = 0, // 0-2
+    extinctionInattention = 0, // 0-2
   } = data;
 
   const totalScore =
-    levelOfConsciousness + locQuestions + locCommands +
-    bestGaze + visual + facialPalsy +
-    motorLeftArm + motorRightArm + motorLeftLeg + motorRightLeg +
-    limbAtaxia + sensory + bestLanguage + dysarthria + extinctionInattention;
+    levelOfConsciousness +
+    locQuestions +
+    locCommands +
+    bestGaze +
+    visual +
+    facialPalsy +
+    motorLeftArm +
+    motorRightArm +
+    motorLeftLeg +
+    motorRightLeg +
+    limbAtaxia +
+    sensory +
+    bestLanguage +
+    dysarthria +
+    extinctionInattention;
 
   let severity, interpretation, recommendation, tPAEligibility;
 
@@ -162,7 +174,8 @@ function calculateNIHSS(data) {
   } else {
     severity = 'Severe Stroke';
     interpretation = 'Severe neurological deficit';
-    recommendation = '⚠️ CRITICAL - Consider thrombectomy, ICU admission, neurosurgical consultation';
+    recommendation =
+      '⚠️ CRITICAL - Consider thrombectomy, ICU admission, neurosurgical consultation';
     tPAEligibility = 'Evaluate for mechanical thrombectomy';
   }
 
@@ -175,8 +188,8 @@ function calculateNIHSS(data) {
     scale: '0-42 (0 = no stroke)',
     timeWindow: {
       tPA: '4.5 hours from symptom onset',
-      thrombectomy: 'Up to 24 hours in selected patients'
-    }
+      thrombectomy: 'Up to 24 hours in selected patients',
+    },
   };
 }
 
@@ -192,12 +205,12 @@ function calculateNIHSS(data) {
  */
 function calculateABCD2(data) {
   const {
-    age,                    // ≥60 = 1 point
-    bloodPressure,          // SBP ≥140 or DBP ≥90 = 1 point
-    clinicalFeaturesUnilateralWeakness,  // 2 points
-    clinicalFeaturesSpeechImpairment,    // 1 point (without weakness)
-    durationMinutes,        // ≥60 min = 2, 10-59 min = 1
-    diabetes                // Yes = 1 point
+    age, // ≥60 = 1 point
+    bloodPressure, // SBP ≥140 or DBP ≥90 = 1 point
+    clinicalFeaturesUnilateralWeakness, // 2 points
+    clinicalFeaturesSpeechImpairment, // 1 point (without weakness)
+    durationMinutes, // ≥60 min = 2, 10-59 min = 1
+    diabetes, // Yes = 1 point
   } = data;
 
   let score = 0;
@@ -255,7 +268,7 @@ function calculateABCD2(data) {
     ninetyDayRisk,
     recommendation,
     scale: '0-7 (higher = higher stroke risk)',
-    workup: 'Carotid imaging, echocardiogram, MRI brain, antiplatelet therapy'
+    workup: 'Carotid imaging, echocardiogram, MRI brain, antiplatelet therapy',
   };
 }
 
@@ -273,38 +286,40 @@ function interpretModifiedRankinScale(score) {
     0: {
       description: 'No symptoms',
       interpretation: 'No symptoms at all',
-      functionalStatus: 'Completely independent'
+      functionalStatus: 'Completely independent',
     },
     1: {
       description: 'No significant disability',
       interpretation: 'Able to carry out all usual activities despite some symptoms',
-      functionalStatus: 'Independent'
+      functionalStatus: 'Independent',
     },
     2: {
       description: 'Slight disability',
-      interpretation: 'Unable to carry out all previous activities but able to look after own affairs without assistance',
-      functionalStatus: 'Functionally independent'
+      interpretation:
+        'Unable to carry out all previous activities but able to look after own affairs without assistance',
+      functionalStatus: 'Functionally independent',
     },
     3: {
       description: 'Moderate disability',
       interpretation: 'Requires some help, but able to walk unassisted',
-      functionalStatus: 'Modified independence'
+      functionalStatus: 'Modified independence',
     },
     4: {
       description: 'Moderately severe disability',
-      interpretation: 'Unable to walk without assistance, unable to attend to bodily needs without assistance',
-      functionalStatus: 'Dependent'
+      interpretation:
+        'Unable to walk without assistance, unable to attend to bodily needs without assistance',
+      functionalStatus: 'Dependent',
     },
     5: {
       description: 'Severe disability',
       interpretation: 'Bedridden, incontinent, requires constant nursing care and attention',
-      functionalStatus: 'Fully dependent'
+      functionalStatus: 'Fully dependent',
     },
     6: {
       description: 'Dead',
       interpretation: 'Death',
-      functionalStatus: 'Dead'
-    }
+      functionalStatus: 'Dead',
+    },
   };
 
   const result = scales[score] || scales[0];
@@ -312,7 +327,8 @@ function interpretModifiedRankinScale(score) {
   return {
     score,
     ...result,
-    prognosticSignificance: score <= 2 ? 'Good outcome' : score <= 4 ? 'Moderate outcome' : 'Poor outcome'
+    prognosticSignificance:
+      score <= 2 ? 'Good outcome' : score <= 4 ? 'Moderate outcome' : 'Poor outcome',
   };
 }
 
@@ -331,32 +347,33 @@ function huntAndHessScale(grade) {
       description: 'Asymptomatic or mild headache and slight nuchal rigidity',
       mortality: '0-5%',
       management: 'Aneurysm repair when stable',
-      prognosis: 'Excellent'
+      prognosis: 'Excellent',
     },
     2: {
-      description: 'Moderate to severe headache, nuchal rigidity, no neurologic deficit except cranial nerve palsy',
+      description:
+        'Moderate to severe headache, nuchal rigidity, no neurologic deficit except cranial nerve palsy',
       mortality: '5-10%',
       management: 'Early aneurysm repair',
-      prognosis: 'Good'
+      prognosis: 'Good',
     },
     3: {
       description: 'Drowsiness, confusion, or mild focal deficit',
       mortality: '10-15%',
       management: 'Stabilize then early repair',
-      prognosis: 'Fair'
+      prognosis: 'Fair',
     },
     4: {
       description: 'Stupor, moderate to severe hemiparesis, early decerebrate rigidity',
       mortality: '60-70%',
       management: 'Intensive care, delayed repair if survives',
-      prognosis: 'Poor'
+      prognosis: 'Poor',
     },
     5: {
       description: 'Deep coma, decerebrate rigidity, moribund appearance',
       mortality: '70-100%',
       management: 'Supportive care, rarely surgical candidates',
-      prognosis: 'Very poor'
-    }
+      prognosis: 'Very poor',
+    },
   };
 
   const result = scales[grade] || scales[1];
@@ -365,7 +382,7 @@ function huntAndHessScale(grade) {
     grade,
     ...result,
     scale: 'Hunt and Hess Grade 1-5',
-    urgency: grade >= 4 ? 'Critical' : grade >= 3 ? 'Urgent' : 'Semi-urgent'
+    urgency: grade >= 4 ? 'Critical' : grade >= 3 ? 'Urgent' : 'Semi-urgent',
   };
 }
 
@@ -380,10 +397,10 @@ function huntAndHessScale(grade) {
  */
 function classifySeizure(data) {
   const {
-    awarenessLevel,    // 'aware', 'impaired', 'unknown'
-    motorComponent,    // 'yes', 'no'
-    onset,            // 'focal', 'generalized', 'unknown'
-    progression       // 'none', 'bilateral-tonic-clonic', 'absence', 'tonic', 'clonic', 'myoclonic', 'atonic'
+    awarenessLevel, // 'aware', 'impaired', 'unknown'
+    motorComponent, // 'yes', 'no'
+    onset, // 'focal', 'generalized', 'unknown'
+    progression, // 'none', 'bilateral-tonic-clonic', 'absence', 'tonic', 'clonic', 'myoclonic', 'atonic'
   } = data;
 
   let seizureType, description, firstLineAED, workup;
@@ -405,12 +422,12 @@ function classifySeizure(data) {
 
     if (progression === 'bilateral-tonic-clonic') {
       seizureType = 'Focal to Bilateral Tonic-Clonic';
-      description = 'Focal onset evolving to generalized seizure (previously "secondary generalization")';
+      description =
+        'Focal onset evolving to generalized seizure (previously "secondary generalization")';
       firstLineAED = 'Levetiracetam, Lamotrigine, Valproate';
     }
 
     workup = 'MRI brain with epilepsy protocol, EEG, consider video-EEG monitoring';
-
   } else if (onset === 'generalized') {
     if (progression === 'absence') {
       seizureType = 'Generalized Absence';
@@ -439,7 +456,8 @@ function classifySeizure(data) {
     firstLineAED,
     workup,
     onset,
-    recommendation: 'Neurology consultation for new-onset seizures, consider AED after 2+ unprovoked seizures'
+    recommendation:
+      'Neurology consultation for new-onset seizures, consider AED after 2+ unprovoked seizures',
   };
 }
 
@@ -455,11 +473,11 @@ function classifySeizure(data) {
  */
 function assessMigraine(data) {
   const {
-    pulsatile,        // boolean
-    durationHours,    // 4-72 hours
-    unilateral,       // boolean
-    nausea,          // boolean or vomiting
-    disabling        // boolean
+    pulsatile, // boolean
+    durationHours, // 4-72 hours
+    unilateral, // boolean
+    nausea, // boolean or vomiting
+    disabling, // boolean
   } = data;
 
   let score = 0;
@@ -475,7 +493,8 @@ function assessMigraine(data) {
   if (score >= 4) {
     likelihood = '92%';
     diagnosis = 'Migraine highly likely';
-    recommendation = 'Start migraine-specific therapy (triptans for acute, consider prophylaxis if >4 attacks/month)';
+    recommendation =
+      'Start migraine-specific therapy (triptans for acute, consider prophylaxis if >4 attacks/month)';
   } else if (score === 3) {
     likelihood = '64%';
     diagnosis = 'Migraine probable';
@@ -483,7 +502,8 @@ function assessMigraine(data) {
   } else if (score === 2) {
     likelihood = '17%';
     diagnosis = 'Migraine possible but less likely';
-    recommendation = 'Consider other headache types (tension-type, cluster), neuroimaging if red flags';
+    recommendation =
+      'Consider other headache types (tension-type, cluster), neuroimaging if red flags';
   } else {
     likelihood = '<10%';
     diagnosis = 'Migraine unlikely';
@@ -500,9 +520,10 @@ function assessMigraine(data) {
       oneDayDuration: durationHours >= 4 && durationHours <= 72,
       unilateral,
       nausea,
-      disabling
+      disabling,
     },
-    redFlags: 'SNOOP4 - Systemic symptoms, Neurologic symptoms, Onset sudden, Older age (>50), Pattern change, Positional, Precipitated, Papilledema, Progressive, Pregnancy'
+    redFlags:
+      'SNOOP4 - Systemic symptoms, Neurologic symptoms, Onset sudden, Older age (>50), Pattern change, Positional, Precipitated, Papilledema, Progressive, Pregnancy',
   };
 }
 
@@ -526,7 +547,7 @@ async function handleGCS(req, res) {
       user_id: data.user_id,
       patient_id: data.patient_id,
       action: 'GCS_CALCULATION',
-      details: { score: result.totalScore, severity: result.severity }
+      details: { score: result.totalScore, severity: result.severity },
     });
 
     res.json({
@@ -534,16 +555,15 @@ async function handleGCS(req, res) {
       result,
       metadata: {
         calculator: 'Glasgow Coma Scale',
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ GCS Calculation Error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to calculate GCS',
-      message: error.message
+      message: 'Tibbi islem hatasi. Lutfen tekrar deneyin.',
     });
   }
 }
@@ -562,7 +582,7 @@ async function handleNIHSS(req, res) {
       user_id: data.user_id,
       patient_id: data.patient_id,
       action: 'NIHSS_CALCULATION',
-      details: { score: result.totalScore, severity: result.severity }
+      details: { score: result.totalScore, severity: result.severity },
     });
 
     res.json({
@@ -570,16 +590,15 @@ async function handleNIHSS(req, res) {
       result,
       metadata: {
         calculator: 'NIH Stroke Scale',
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ NIHSS Calculation Error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to calculate NIHSS',
-      message: error.message
+      message: 'Tibbi islem hatasi. Lutfen tekrar deneyin.',
     });
   }
 }
@@ -598,7 +617,7 @@ async function handleABCD2(req, res) {
       user_id: data.user_id,
       patient_id: data.patient_id,
       action: 'ABCD2_CALCULATION',
-      details: { score: result.score, riskCategory: result.riskCategory }
+      details: { score: result.score, riskCategory: result.riskCategory },
     });
 
     res.json({
@@ -606,16 +625,15 @@ async function handleABCD2(req, res) {
       result,
       metadata: {
         calculator: 'ABCD2 Score',
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ ABCD2 Calculation Error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to calculate ABCD2',
-      message: error.message
+      message: 'Tibbi islem hatasi. Lutfen tekrar deneyin.',
     });
   }
 }
@@ -634,7 +652,7 @@ async function handleModifiedRankin(req, res) {
       user_id,
       patient_id,
       action: 'MODIFIED_RANKIN_ASSESSMENT',
-      details: { score, functionalStatus: result.functionalStatus }
+      details: { score, functionalStatus: result.functionalStatus },
     });
 
     res.json({
@@ -642,16 +660,15 @@ async function handleModifiedRankin(req, res) {
       result,
       metadata: {
         calculator: 'Modified Rankin Scale',
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ Modified Rankin Error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to interpret Modified Rankin Scale',
-      message: error.message
+      message: 'Tibbi islem hatasi. Lutfen tekrar deneyin.',
     });
   }
 }
@@ -670,7 +687,7 @@ async function handleHuntHess(req, res) {
       user_id,
       patient_id,
       action: 'HUNT_HESS_ASSESSMENT',
-      details: { grade, mortality: result.mortality }
+      details: { grade, mortality: result.mortality },
     });
 
     res.json({
@@ -678,16 +695,15 @@ async function handleHuntHess(req, res) {
       result,
       metadata: {
         calculator: 'Hunt and Hess Scale',
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ Hunt and Hess Error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to assess Hunt and Hess scale',
-      message: error.message
+      message: 'Tibbi islem hatasi. Lutfen tekrar deneyin.',
     });
   }
 }
@@ -706,7 +722,7 @@ async function handleSeizureClassification(req, res) {
       user_id: data.user_id,
       patient_id: data.patient_id,
       action: 'SEIZURE_CLASSIFICATION',
-      details: { seizureType: result.seizureType }
+      details: { seizureType: result.seizureType },
     });
 
     res.json({
@@ -714,16 +730,15 @@ async function handleSeizureClassification(req, res) {
       result,
       metadata: {
         calculator: 'Seizure Classification Tool',
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ Seizure Classification Error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to classify seizure',
-      message: error.message
+      message: 'Tibbi islem hatasi. Lutfen tekrar deneyin.',
     });
   }
 }
@@ -742,7 +757,7 @@ async function handleMigraineAssessment(req, res) {
       user_id: data.user_id,
       patient_id: data.patient_id,
       action: 'MIGRAINE_ASSESSMENT',
-      details: { score: result.score, likelihood: result.likelihood }
+      details: { score: result.score, likelihood: result.likelihood },
     });
 
     res.json({
@@ -750,16 +765,15 @@ async function handleMigraineAssessment(req, res) {
       result,
       metadata: {
         calculator: 'POUND Criteria (Migraine)',
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ Migraine Assessment Error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to assess migraine',
-      message: error.message
+      message: 'Tibbi islem hatasi. Lutfen tekrar deneyin.',
     });
   }
 }
@@ -778,5 +792,5 @@ module.exports = {
   interpretModifiedRankinScale,
   huntAndHessScale,
   classifySeizure,
-  assessMigraine
+  assessMigraine,
 };

@@ -20,7 +20,7 @@ async function quickHealthCheck(req, res) {
     status: 'healthy',
     timestamp: new Date().toISOString(),
     uptime: process.uptime(),
-    environment: process.env.NODE_ENV || 'development'
+    environment: process.env.NODE_ENV || 'development',
   });
 }
 
@@ -35,7 +35,7 @@ async function detailedHealthCheck(req, res) {
     environment: process.env.NODE_ENV || 'development',
     uptime: process.uptime(),
     version: require('../package.json').version,
-    checks: {}
+    checks: {},
   };
 
   // 1. Database Health
@@ -47,13 +47,13 @@ async function detailedHealthCheck(req, res) {
       status: 'healthy',
       type: 'sqlite',
       users: result.count,
-      responseTime: `${Date.now() - startTime}ms`
+      responseTime: `${Date.now() - startTime}ms`,
     };
   } catch (error) {
     health.status = 'degraded';
     health.checks.database = {
       status: 'unhealthy',
-      error: error.message
+      error: 'Sistem durumu kontrol edilemedi.',
     };
   }
 
@@ -64,29 +64,29 @@ async function detailedHealthCheck(req, res) {
     health.checks.email = {
       status: emailStatus.enabled ? 'healthy' : 'disabled',
       provider: emailStatus.provider,
-      configured: emailStatus.configured
+      configured: emailStatus.configured,
     };
   } catch (error) {
     health.checks.email = {
       status: 'error',
-      error: error.message
+      error: 'Sistem durumu kontrol edilemedi.',
     };
   }
 
   // 3. AI Providers Health
   health.checks.aiProviders = {
     openai: {
-      status: process.env.OPENAI_API_KEY ? 'configured' : 'not-configured'
+      status: process.env.OPENAI_API_KEY ? 'configured' : 'not-configured',
     },
     anthropic: {
-      status: process.env.ANTHROPIC_API_KEY ? 'configured' : 'not-configured'
+      status: process.env.ANTHROPIC_API_KEY ? 'configured' : 'not-configured',
     },
     groq: {
-      status: process.env.GROQ_API_KEY ? 'configured' : 'not-configured'
+      status: process.env.GROQ_API_KEY ? 'configured' : 'not-configured',
     },
     google: {
-      status: process.env.GOOGLE_AI_API_KEY ? 'configured' : 'not-configured'
-    }
+      status: process.env.GOOGLE_AI_API_KEY ? 'configured' : 'not-configured',
+    },
   };
 
   // 4. Security Middleware Health
@@ -94,7 +94,7 @@ async function detailedHealthCheck(req, res) {
     https: process.env.NODE_ENV === 'production',
     csrf: true, // CSRF is now enabled
     rateLimiting: true,
-    helmet: true
+    helmet: true,
   };
 
   // 5. Memory Health
@@ -104,15 +104,11 @@ async function detailedHealthCheck(req, res) {
     heapUsed: `${Math.round(memUsage.heapUsed / 1024 / 1024)}MB`,
     heapTotal: `${Math.round(memUsage.heapTotal / 1024 / 1024)}MB`,
     external: `${Math.round(memUsage.external / 1024 / 1024)}MB`,
-    rss: `${Math.round(memUsage.rss / 1024 / 1024)}MB`
+    rss: `${Math.round(memUsage.rss / 1024 / 1024)}MB`,
   };
 
   // 6. Environment Variables Check
-  const criticalEnvVars = [
-    'JWT_SECRET',
-    'SESSION_SECRET',
-    'DATABASE_PATH'
-  ];
+  const criticalEnvVars = ['JWT_SECRET', 'SESSION_SECRET', 'DATABASE_PATH'];
 
   const missingEnvVars = criticalEnvVars.filter(v => !process.env[v]);
 
@@ -120,7 +116,7 @@ async function detailedHealthCheck(req, res) {
     status: missingEnvVars.length === 0 ? 'healthy' : 'warning',
     missing: missingEnvVars,
     nodeVersion: process.version,
-    platform: process.platform
+    platform: process.platform,
   };
 
   // 7. Overall Health Calculation
@@ -130,7 +126,11 @@ async function detailedHealthCheck(req, res) {
 
   if (unhealthyChecks.length > 0) {
     health.status = 'unhealthy';
-  } else if (Object.values(health.checks).some(check => check.status === 'warning' || check.status === 'degraded')) {
+  } else if (
+    Object.values(health.checks).some(
+      check => check.status === 'warning' || check.status === 'degraded'
+    )
+  ) {
     health.status = 'degraded';
   }
 
@@ -151,7 +151,7 @@ async function livenessProbe(req, res) {
   // Just check if Node.js process is responding
   res.status(200).json({
     status: 'alive',
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
   });
 }
 
@@ -167,13 +167,13 @@ async function readinessProbe(req, res) {
 
     res.status(200).json({
       status: 'ready',
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
   } catch (error) {
     res.status(503).json({
       status: 'not-ready',
-      error: error.message,
-      timestamp: new Date().toISOString()
+      error: 'Sistem durumu kontrol edilemedi.',
+      timestamp: new Date().toISOString(),
     });
   }
 }
@@ -219,5 +219,5 @@ module.exports = {
   detailedHealthCheck,
   livenessProbe,
   readinessProbe,
-  metricsEndpoint
+  metricsEndpoint,
 };

@@ -14,18 +14,18 @@ const metricsStore = {
     total: 0,
     successful: 0,
     failed: 0,
-    responseTimes: []
+    responseTimes: [],
   },
   aiModels: {
     requests: 0,
     totalTokens: 0,
-    totalCost: 0
+    totalCost: 0,
   },
   cache: {
     hits: 0,
-    misses: 0
+    misses: 0,
   },
-  endpoints: {}
+  endpoints: {},
 };
 
 /**
@@ -39,41 +39,43 @@ router.get('/dashboard', async (req, res) => {
         healthy: true,
         uptime: process.uptime(),
         nodeVersion: process.version,
-        platform: process.platform
+        platform: process.platform,
       },
       requests: {
         total: metricsStore.requests.total,
         successful: metricsStore.requests.successful,
         failed: metricsStore.requests.failed,
         errorRate: calculateErrorRate(),
-        avgResponseTime: calculateAvgResponseTime()
+        avgResponseTime: calculateAvgResponseTime(),
       },
       performance: {
         memoryMB: Math.round(process.memoryUsage().heapUsed / 1024 / 1024),
         memoryTotal: Math.round(os.totalmem() / 1024 / 1024),
         cpuPercent: await getCPUUsage(),
-        activeConnections: metricsStore.requests.total // Simplified
+        activeConnections: metricsStore.requests.total, // Simplified
       },
       cache: {
         hits: metricsStore.cache.hits,
         misses: metricsStore.cache.misses,
-        hitRate: calculateHitRate()
+        hitRate: calculateHitRate(),
       },
       aiModels: {
         requests: metricsStore.aiModels.requests,
-        avgTokens: Math.round(metricsStore.aiModels.totalTokens / Math.max(metricsStore.aiModels.requests, 1)),
-        totalCost: metricsStore.aiModels.totalCost.toFixed(2)
+        avgTokens: Math.round(
+          metricsStore.aiModels.totalTokens / Math.max(metricsStore.aiModels.requests, 1)
+        ),
+        totalCost: metricsStore.aiModels.totalCost.toFixed(2),
       },
       endpoints: Object.entries(metricsStore.endpoints).map(([path, data]) => ({
         path,
         requests: data.count,
-        avgResponseTime: Math.round(data.totalTime / data.count)
-      }))
+        avgResponseTime: Math.round(data.totalTime / data.count),
+      })),
     };
 
     // Track this metrics request
     insightsService.trackEvent('DashboardViewed', {
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
 
     res.json(metrics);
@@ -83,7 +85,7 @@ router.get('/dashboard', async (req, res) => {
 
     res.status(500).json({
       error: 'Failed to fetch metrics',
-      message: error.message
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
     });
   }
 });
@@ -133,16 +135,16 @@ router.get('/health', async (req, res) => {
       memory: {
         used: Math.round(process.memoryUsage().heapUsed / 1024 / 1024),
         total: Math.round(os.totalmem() / 1024 / 1024),
-        percentage: Math.round((process.memoryUsage().heapUsed / os.totalmem()) * 100)
+        percentage: Math.round((process.memoryUsage().heapUsed / os.totalmem()) * 100),
       },
       cpu: {
         usage: await getCPUUsage(),
-        cores: os.cpus().length
+        cores: os.cpus().length,
       },
       requests: {
         total: metricsStore.requests.total,
-        errorRate: calculateErrorRate()
-      }
+        errorRate: calculateErrorRate(),
+      },
     };
 
     // Track health check
@@ -155,7 +157,7 @@ router.get('/health', async (req, res) => {
 
     res.status(500).json({
       status: 'unhealthy',
-      error: error.message
+      error: 'Metrik islemi basarisiz.',
     });
   }
 });
@@ -174,7 +176,7 @@ router.get('/realtime', (req, res) => {
       timestamp: Date.now(),
       requests: metricsStore.requests.total,
       memory: Math.round(process.memoryUsage().heapUsed / 1024 / 1024),
-      errorRate: calculateErrorRate()
+      errorRate: calculateErrorRate(),
     };
 
     res.write(`data: ${JSON.stringify(data)}\n\n`);
@@ -214,7 +216,7 @@ function trackRequest(data) {
   // Track in Application Insights
   insightsService.trackMetric('RequestCount', 1, {
     statusCode: data.statusCode,
-    method: data.method
+    method: data.method,
   });
 }
 
@@ -248,7 +250,7 @@ function trackEndpoint(data) {
   if (!metricsStore.endpoints[data.path]) {
     metricsStore.endpoints[data.path] = {
       count: 0,
-      totalTime: 0
+      totalTime: 0,
     };
   }
 
@@ -279,7 +281,7 @@ function calculateHitRate() {
 }
 
 async function getCPUUsage() {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     const startUsage = process.cpuUsage();
     const startTime = Date.now();
 

@@ -26,12 +26,12 @@ const { logMedicalAudit } = require('../../config/white-hat-policy');
  */
 function assessVitalSigns(vitalSigns) {
   const {
-    systolic,      // mmHg
-    diastolic,     // mmHg
-    heartRate,     // bpm
-    temperature,   // Celsius
-    spO2,          // %
-    respiratoryRate // breaths/min
+    systolic, // mmHg
+    diastolic, // mmHg
+    heartRate, // bpm
+    temperature, // Celsius
+    spO2, // %
+    respiratoryRate, // breaths/min
   } = vitalSigns;
 
   const assessment = {
@@ -41,7 +41,7 @@ function assessVitalSigns(vitalSigns) {
     oxygenSaturation: assessSpO2(spO2),
     respiratoryRate: assessRespiratoryRate(respiratoryRate),
     overallStatus: 'normal',
-    alerts: []
+    alerts: [],
   };
 
   // Determine overall status
@@ -50,7 +50,7 @@ function assessVitalSigns(vitalSigns) {
     assessment.heartRate.status,
     assessment.temperature.status,
     assessment.oxygenSaturation.status,
-    assessment.respiratoryRate.status
+    assessment.respiratoryRate.status,
   ];
 
   if (statuses.includes('critical')) {
@@ -98,7 +98,7 @@ function assessBloodPressure(systolic, diastolic) {
     diastolic,
     category,
     status,
-    recommendation
+    recommendation,
   };
 }
 
@@ -208,7 +208,8 @@ function assessRespiratoryRate(rr) {
   } else {
     category = 'Severe Tachypnea';
     status = 'abnormal';
-    recommendation = 'High respiratory rate - evaluate for respiratory distress, metabolic acidosis';
+    recommendation =
+      'High respiratory rate - evaluate for respiratory distress, metabolic acidosis';
   }
 
   return { respiratoryRate: rr, category, status, recommendation };
@@ -227,7 +228,7 @@ function calculateBMI(weight, height, unit = 'metric') {
 
   if (unit === 'imperial') {
     weightKg = weight * 0.453592; // lbs to kg
-    heightM = height * 0.0254;    // inches to meters
+    heightM = height * 0.0254; // inches to meters
   }
 
   const bmi = weightKg / (heightM * heightM);
@@ -265,9 +266,7 @@ function calculateBMI(weight, height, unit = 'metric') {
 
   // Calculate ideal body weight (Devine formula)
   const heightCm = heightM * 100;
-  const idealWeightKg = heightCm > 150
-    ? (50 + 2.3 * ((heightCm - 150) / 2.54))
-    : 50;
+  const idealWeightKg = heightCm > 150 ? 50 + 2.3 * ((heightCm - 150) / 2.54) : 50;
 
   return {
     bmi: parseFloat(bmi.toFixed(1)),
@@ -275,7 +274,7 @@ function calculateBMI(weight, height, unit = 'metric') {
     status,
     recommendation,
     idealWeight: parseFloat(idealWeightKg.toFixed(1)),
-    weightDifference: parseFloat((weightKg - idealWeightKg).toFixed(1))
+    weightDifference: parseFloat((weightKg - idealWeightKg).toFixed(1)),
   };
 }
 
@@ -298,7 +297,7 @@ function calculateBSA(weight, height, unit = 'metric') {
     bsa: parseFloat(bsa.toFixed(2)),
     formula: 'Mosteller',
     unit: 'm²',
-    use: 'Drug dosing, burn assessment, cardiac index calculation'
+    use: 'Drug dosing, burn assessment, cardiac index calculation',
   };
 }
 
@@ -316,7 +315,7 @@ function formatPrescription(prescriptionData) {
     medications,
     physicianName,
     physicianLicense,
-    date = new Date().toISOString().split('T')[0]
+    date = new Date().toISOString().split('T')[0],
   } = prescriptionData;
 
   const prescriptionText = `
@@ -333,14 +332,18 @@ Patient Information:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Rx:
 
-${medications.map((med, index) => `
+${medications
+  .map(
+    (med, index) => `
 ${index + 1}. ${med.name} ${med.strength}
    Sig: ${med.dosage}
    Frequency: ${med.frequency}
    Duration: ${med.duration}
    Quantity: ${med.quantity}
    ${med.notes ? `Notes: ${med.notes}` : ''}
-`).join('\n')}
+`
+  )
+  .join('\n')}
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -358,7 +361,7 @@ This is a computer-generated prescription
   return {
     formatted: prescriptionText,
     medicationCount: medications.length,
-    date
+    date,
   };
 }
 
@@ -384,7 +387,7 @@ async function handleVitalSigns(req, res) {
       respiratoryRate,
       hospital_id,
       user_id,
-      patient_id
+      patient_id,
     } = req.body;
 
     console.log('🏥 Assessing vital signs...');
@@ -395,7 +398,7 @@ async function handleVitalSigns(req, res) {
       heartRate,
       temperature,
       spO2,
-      respiratoryRate
+      respiratoryRate,
     });
 
     // Log audit
@@ -406,24 +409,23 @@ async function handleVitalSigns(req, res) {
       action: 'VITAL_SIGNS_ASSESSMENT',
       details: {
         vitalSigns: { systolic, diastolic, heartRate, temperature, spO2, respiratoryRate },
-        overallStatus: assessment.overallStatus
-      }
+        overallStatus: assessment.overallStatus,
+      },
     });
 
     res.json({
       success: true,
       assessment,
       metadata: {
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ Vital Signs Error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to assess vital signs',
-      message: error.message
+      message: 'Tibbi islem hatasi. Lutfen tekrar deneyin.',
     });
   }
 }
@@ -447,7 +449,7 @@ async function handleBMI(req, res) {
       user_id,
       patient_id,
       action: 'BMI_CALCULATION',
-      details: { weight, height, unit, bmi: bmi.bmi }
+      details: { weight, height, unit, bmi: bmi.bmi },
     });
 
     res.json({
@@ -455,16 +457,15 @@ async function handleBMI(req, res) {
       bmi,
       bsa,
       metadata: {
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ BMI Calculation Error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to calculate BMI',
-      message: error.message
+      message: 'Tibbi islem hatasi. Lutfen tekrar deneyin.',
     });
   }
 }
@@ -489,24 +490,23 @@ async function handlePrescription(req, res) {
       action: 'PRESCRIPTION_GENERATED',
       details: {
         medicationCount: prescription.medicationCount,
-        patientName: prescriptionData.patientName
-      }
+        patientName: prescriptionData.patientName,
+      },
     });
 
     res.json({
       success: true,
       prescription,
       metadata: {
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ Prescription Error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to format prescription',
-      message: error.message
+      message: 'Tibbi islem hatasi. Lutfen tekrar deneyin.',
     });
   }
 }
@@ -518,5 +518,5 @@ module.exports = {
   assessVitalSigns,
   calculateBMI,
   calculateBSA,
-  formatPrescription
+  formatPrescription,
 };

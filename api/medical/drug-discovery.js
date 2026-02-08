@@ -333,7 +333,7 @@ router.post('/compound-search', async (req, res) => {
   } catch (error) {
     res.status(500).json({
       success: false,
-      error: error.message,
+      error: 'İlaç keşif analizi hatası',
     });
   }
 });
@@ -375,7 +375,7 @@ router.post('/clinical-trial-match', async (req, res) => {
   } catch (error) {
     res.status(500).json({
       success: false,
-      error: error.message,
+      error: 'İlaç keşif analizi hatası',
     });
   }
 });
@@ -422,7 +422,7 @@ router.post('/biomarker-analysis', async (req, res) => {
   } catch (error) {
     res.status(500).json({
       success: false,
-      error: error.message,
+      error: 'İlaç keşif analizi hatası',
     });
   }
 });

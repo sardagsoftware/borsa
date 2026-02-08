@@ -1,3 +1,4 @@
+/* global URLSearchParams, FormData */
 /**
  * OmniReach AI Creator - X (Twitter) Platform Service
  * X/Twitter Video Publishing Integration
@@ -18,24 +19,22 @@ class XService {
       apiSecret: process.env.X_API_SECRET,
       accessToken: process.env.X_ACCESS_TOKEN,
       accessSecret: process.env.X_ACCESS_SECRET,
-      callbackUrl: process.env.X_CALLBACK_URL || 'http://localhost:3500/api/omnireach/platforms/x/callback',
+      callbackUrl:
+        process.env.X_CALLBACK_URL || 'http://localhost:3500/api/omnireach/platforms/x/callback',
       apiUrl: 'https://api.twitter.com',
-      uploadUrl: 'https://upload.twitter.com'
+      uploadUrl: 'https://upload.twitter.com',
     };
 
     // OAuth 1.0a setup
     this.oauth = OAuth({
       consumer: {
         key: this.config.apiKey,
-        secret: this.config.apiSecret
+        secret: this.config.apiSecret,
       },
       signature_method: 'HMAC-SHA1',
       hash_function(base_string, key) {
-        return crypto
-          .createHmac('sha1', key)
-          .update(base_string)
-          .digest('base64');
-      }
+        return crypto.createHmac('sha1', key).update(base_string).digest('base64');
+      },
     });
 
     console.log('✅ X (Twitter) service initialized');
@@ -53,17 +52,13 @@ class XService {
         url: `${this.config.apiUrl}/oauth/request_token`,
         method: 'POST',
         data: {
-          oauth_callback: this.config.callbackUrl
-        }
+          oauth_callback: this.config.callbackUrl,
+        },
       };
 
-      const response = await axios.post(
-        requestData.url,
-        requestData.data,
-        {
-          headers: this.oauth.toHeader(this.oauth.authorize(requestData))
-        }
-      );
+      const response = await axios.post(requestData.url, requestData.data, {
+        headers: this.oauth.toHeader(this.oauth.authorize(requestData)),
+      });
 
       const params = new URLSearchParams(response.data);
       const oauthToken = params.get('oauth_token');
@@ -76,13 +71,13 @@ class XService {
         success: true,
         oauthToken: oauthToken,
         oauthTokenSecret: oauthTokenSecret,
-        authUrl: authUrl
+        authUrl: authUrl,
       };
     } catch (error) {
       console.error('❌ [X] Failed to get request token:', error.message);
       return {
         success: false,
-        error: error.message
+        error: 'Platform işlem hatası',
       };
     }
   }
@@ -102,17 +97,13 @@ class XService {
         method: 'POST',
         data: {
           oauth_token: oauthToken,
-          oauth_verifier: oauthVerifier
-        }
+          oauth_verifier: oauthVerifier,
+        },
       };
 
-      const response = await axios.post(
-        requestData.url,
-        requestData.data,
-        {
-          headers: this.oauth.toHeader(this.oauth.authorize(requestData))
-        }
-      );
+      const response = await axios.post(requestData.url, requestData.data, {
+        headers: this.oauth.toHeader(this.oauth.authorize(requestData)),
+      });
 
       const params = new URLSearchParams(response.data);
       const accessToken = params.get('oauth_token');
@@ -133,14 +124,14 @@ class XService {
         user: {
           id: userId,
           screenName: screenName,
-          ...userInfo
-        }
+          ...userInfo,
+        },
       };
     } catch (error) {
       console.error('❌ [X] OAuth connection failed:', error.message);
       return {
         success: false,
-        error: error.message
+        error: 'Platform işlem hatası',
       };
     }
   }
@@ -156,18 +147,18 @@ class XService {
     try {
       const token = {
         key: accessToken,
-        secret: accessSecret
+        secret: accessSecret,
       };
 
       const requestData = {
         url: `${this.config.apiUrl}/2/users/${userId}`,
-        method: 'GET'
+        method: 'GET',
       };
 
       const response = await axios.get(
         `${requestData.url}?user.fields=created_at,description,public_metrics,profile_image_url`,
         {
-          headers: this.oauth.toHeader(this.oauth.authorize(requestData, token))
+          headers: this.oauth.toHeader(this.oauth.authorize(requestData, token)),
         }
       );
 
@@ -192,7 +183,7 @@ class XService {
 
       const token = {
         key: accessToken,
-        secret: accessSecret
+        secret: accessSecret,
       };
 
       // Step 1: Upload video
@@ -208,26 +199,22 @@ class XService {
       const tweetData = {
         text: text,
         media: {
-          media_ids: [mediaId]
-        }
+          media_ids: [mediaId],
+        },
       };
 
       const requestData = {
         url: `${this.config.apiUrl}/2/tweets`,
         method: 'POST',
-        data: tweetData
+        data: tweetData,
       };
 
-      const response = await axios.post(
-        requestData.url,
-        requestData.data,
-        {
-          headers: {
-            ...this.oauth.toHeader(this.oauth.authorize(requestData, token)),
-            'Content-Type': 'application/json'
-          }
-        }
-      );
+      const response = await axios.post(requestData.url, requestData.data, {
+        headers: {
+          ...this.oauth.toHeader(this.oauth.authorize(requestData, token)),
+          'Content-Type': 'application/json',
+        },
+      });
 
       const tweet = response.data.data;
 
@@ -239,13 +226,13 @@ class XService {
         success: true,
         tweetId: tweet.id,
         url: `https://twitter.com/i/web/status/${tweet.id}`,
-        text: tweet.text
+        text: tweet.text,
       };
     } catch (error) {
       console.error('❌ [X] Post publishing failed:', error.message);
       return {
         success: false,
-        error: error.message
+        error: 'Platform işlem hatası',
       };
     }
   }
@@ -272,17 +259,13 @@ class XService {
           command: 'INIT',
           total_bytes: videoSize,
           media_type: 'video/mp4',
-          media_category: 'tweet_video'
-        }
+          media_category: 'tweet_video',
+        },
       };
 
-      const initResponse = await axios.post(
-        initData.url,
-        new URLSearchParams(initData.data),
-        {
-          headers: this.oauth.toHeader(this.oauth.authorize(initData, token))
-        }
-      );
+      const initResponse = await axios.post(initData.url, new URLSearchParams(initData.data), {
+        headers: this.oauth.toHeader(this.oauth.authorize(initData, token)),
+      });
 
       const mediaId = initResponse.data.media_id_string;
       console.log(`   Media ID: ${mediaId}`);
@@ -297,7 +280,7 @@ class XService {
 
         const appendData = {
           url: `${this.config.uploadUrl}/1.1/media/upload.json`,
-          method: 'POST'
+          method: 'POST',
         };
 
         const formData = new FormData();
@@ -306,18 +289,14 @@ class XService {
         formData.append('segment_index', segmentIndex);
         formData.append('media', chunk);
 
-        await axios.post(
-          appendData.url,
-          formData,
-          {
-            headers: {
-              ...this.oauth.toHeader(this.oauth.authorize(appendData, token)),
-              ...formData.getHeaders()
-            }
-          }
-        );
+        await axios.post(appendData.url, formData, {
+          headers: {
+            ...this.oauth.toHeader(this.oauth.authorize(appendData, token)),
+            ...formData.getHeaders(),
+          },
+        });
 
-        const progress = ((i + chunk.length) / videoSize * 100).toFixed(1);
+        const progress = (((i + chunk.length) / videoSize) * 100).toFixed(1);
         console.log(`   Segment ${segmentIndex} uploaded (${progress}%)`);
         segmentIndex++;
       }
@@ -329,15 +308,15 @@ class XService {
         method: 'POST',
         data: {
           command: 'FINALIZE',
-          media_id: mediaId
-        }
+          media_id: mediaId,
+        },
       };
 
       const finalizeResponse = await axios.post(
         finalizeData.url,
         new URLSearchParams(finalizeData.data),
         {
-          headers: this.oauth.toHeader(this.oauth.authorize(finalizeData, token))
+          headers: this.oauth.toHeader(this.oauth.authorize(finalizeData, token)),
         }
       );
 
@@ -372,17 +351,14 @@ class XService {
         method: 'GET',
         data: {
           command: 'STATUS',
-          media_id: mediaId
-        }
+          media_id: mediaId,
+        },
       };
 
-      const response = await axios.get(
-        statusData.url,
-        {
-          params: statusData.data,
-          headers: this.oauth.toHeader(this.oauth.authorize(statusData, token))
-        }
-      );
+      const response = await axios.get(statusData.url, {
+        params: statusData.data,
+        headers: this.oauth.toHeader(this.oauth.authorize(statusData, token)),
+      });
 
       const processingInfo = response.data.processing_info;
 

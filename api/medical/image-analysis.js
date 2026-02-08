@@ -34,20 +34,22 @@ module.exports = async (req, res) => {
     if (!AZURE_CV_KEY || !AZURE_CV_ENDPOINT) {
       return res.status(503).json({
         error: 'Azure Computer Vision not configured',
-        message: 'Please set AZURE_COMPUTER_VISION_KEY and AZURE_COMPUTER_VISION_ENDPOINT environment variables',
-        demo: true
+        message:
+          'Please set AZURE_COMPUTER_VISION_KEY and AZURE_COMPUTER_VISION_ENDPOINT environment variables',
+        demo: true,
       });
     }
 
     // Parse multipart form data
     const form = new multiparty.Form();
 
-    const parseForm = () => new Promise((resolve, reject) => {
-      form.parse(req, (err, fields, files) => {
-        if (err) reject(err);
-        else resolve({ fields, files });
+    const parseForm = () =>
+      new Promise((resolve, reject) => {
+        form.parse(req, (err, fields, files) => {
+          if (err) reject(err);
+          else resolve({ fields, files });
+        });
       });
-    });
 
     const { fields, files } = await parseForm();
 
@@ -65,22 +67,13 @@ module.exports = async (req, res) => {
     const computerVisionClient = new ComputerVisionClient(credentials, AZURE_CV_ENDPOINT);
 
     // Analyze image with Azure Computer Vision
-    const analysisFeatures = [
-      'ImageType',
-      'Objects',
-      'Tags',
-      'Description',
-      'Adult'
-    ];
+    const analysisFeatures = ['ImageType', 'Objects', 'Tags', 'Description', 'Adult'];
 
-    const cvAnalysis = await computerVisionClient.analyzeImageInStream(
-      imageBuffer,
-      {
-        visualFeatures: analysisFeatures,
-        details: ['Landmarks'],
-        language: language === 'tr' ? 'tr' : 'en'
-      }
-    );
+    const cvAnalysis = await computerVisionClient.analyzeImageInStream(imageBuffer, {
+      visualFeatures: analysisFeatures,
+      details: ['Landmarks'],
+      language: language === 'tr' ? 'tr' : 'en',
+    });
 
     // Medical-specific image analysis
     const medicalFindings = await analyzeMedicalImage(imageBuffer, specialty, language);
@@ -95,26 +88,25 @@ module.exports = async (req, res) => {
         description: cvAnalysis.description?.captions?.[0]?.text || 'No description available',
         confidence: cvAnalysis.description?.captions?.[0]?.confidence || 0,
         tags: cvAnalysis.tags?.map(t => ({ name: t.name, confidence: t.confidence })) || [],
-        objects: cvAnalysis.objects?.map(o => ({
-          object: o.object,
-          confidence: o.confidence,
-          rectangle: o.rectangle
-        })) || []
+        objects:
+          cvAnalysis.objects?.map(o => ({
+            object: o.object,
+            confidence: o.confidence,
+            rectangle: o.rectangle,
+          })) || [],
       },
       medicalAnalysis: medicalFindings,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
 
     // Medical disclaimer
     analysis.disclaimer = getDisclaimerText(language);
 
     res.status(200).json(analysis);
-
   } catch (error) {
     console.error('Medical image analysis error:', error);
     res.status(500).json({
-      error: error.message,
-      stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
+      error: 'Goruntu analizi hatasi. Lutfen tekrar deneyin.',
     });
   }
 };
@@ -130,38 +122,42 @@ async function analyzeMedicalImage(imageBuffer, specialty, language) {
     cardiology: {
       findings: ['Heart structure analysis', 'Cardiac chamber evaluation', 'Vessel assessment'],
       risks: ['Cardiovascular abnormalities', 'Structural anomalies'],
-      recommendations: ['Consult cardiologist', 'ECG correlation recommended']
+      recommendations: ['Consult cardiologist', 'ECG correlation recommended'],
     },
     neurology: {
       findings: ['Brain tissue analysis', 'Neurological structure evaluation', 'Lesion detection'],
       risks: ['Neurological abnormalities', 'Mass effects'],
-      recommendations: ['Neurologist consultation', 'MRI correlation if needed']
+      recommendations: ['Neurologist consultation', 'MRI correlation if needed'],
     },
     radiology: {
-      findings: ['Anatomical structure analysis', 'Tissue density evaluation', 'Abnormality detection'],
+      findings: [
+        'Anatomical structure analysis',
+        'Tissue density evaluation',
+        'Abnormality detection',
+      ],
       risks: ['Radiological findings', 'Anatomical variations'],
-      recommendations: ['Radiologist interpretation required', 'Clinical correlation necessary']
+      recommendations: ['Radiologist interpretation required', 'Clinical correlation necessary'],
     },
     oncology: {
       findings: ['Tissue abnormality detection', 'Mass characterization', 'Metastasis screening'],
       risks: ['Suspicious lesions', 'Mass effects'],
-      recommendations: ['Oncologist consultation urgent', 'Biopsy consideration']
+      recommendations: ['Oncologist consultation urgent', 'Biopsy consideration'],
     },
     orthopedics: {
       findings: ['Bone structure analysis', 'Joint evaluation', 'Fracture detection'],
       risks: ['Bone abnormalities', 'Joint pathology'],
-      recommendations: ['Orthopedic consultation', 'Weight-bearing status evaluation']
+      recommendations: ['Orthopedic consultation', 'Weight-bearing status evaluation'],
     },
     pediatrics: {
       findings: ['Age-appropriate anatomy', 'Growth plate assessment', 'Developmental evaluation'],
       risks: ['Developmental abnormalities', 'Congenital variations'],
-      recommendations: ['Pediatrician consultation', 'Growth monitoring']
+      recommendations: ['Pediatrician consultation', 'Growth monitoring'],
     },
     general: {
       findings: ['General anatomical assessment', 'Tissue evaluation', 'Abnormality screening'],
       risks: ['General medical findings', 'Further evaluation needed'],
-      recommendations: ['Physician consultation', 'Additional imaging if indicated']
-    }
+      recommendations: ['Physician consultation', 'Additional imaging if indicated'],
+    },
   };
 
   const context = medicalContext[specialty] || medicalContext.general;
@@ -179,8 +175,8 @@ async function analyzeMedicalImage(imageBuffer, specialty, language) {
     metadata: {
       imageQuality: 'good',
       diagnosticValue: 'high',
-      technicalAdequacy: 'suitable for analysis'
-    }
+      technicalAdequacy: 'suitable for analysis',
+    },
   };
 }
 
@@ -192,11 +188,11 @@ function getDisclaimerText(language) {
     tr: 'Bu analiz sadece bilgilendirme amaçlıdır. Kesin tanı için mutlaka bir sağlık uzmanına başvurunuz. Bu sistem tıbbi teşhis koyma yetkisine sahip değildir.',
     en: 'This analysis is for informational purposes only. Please consult a healthcare professional for accurate diagnosis. This system is not authorized to provide medical diagnosis.',
     de: 'Diese Analyse dient nur zu Informationszwecken. Bitte konsultieren Sie einen Arzt für eine genaue Diagnose. Dieses System ist nicht zur medizinischen Diagnose berechtigt.',
-    fr: 'Cette analyse est à titre informatif uniquement. Veuillez consulter un professionnel de santé pour un diagnostic précis. Ce système n\'est pas autorisé à fournir un diagnostic médical.',
+    fr: "Cette analyse est à titre informatif uniquement. Veuillez consulter un professionnel de santé pour un diagnostic précis. Ce système n'est pas autorisé à fournir un diagnostic médical.",
     es: 'Este análisis es solo para fines informativos. Consulte a un profesional de la salud para un diagnóstico preciso. Este sistema no está autorizado para proporcionar diagnóstico médico.',
     ar: 'هذا التحليل لأغراض إعلامية فقط. يرجى استشارة أخصائي رعاية صحية للحصول على تشخيص دقيق. هذا النظام غير مخول لتقديم تشخيص طبي.',
     ru: 'Этот анализ предназначен только для информационных целей. Пожалуйста, обратитесь к медицинскому специалисту для точного диагноза. Эта система не уполномочена ставить медицинский диагноз.',
-    zh: '此分析仅供参考。请咨询医疗专业人员以获得准确诊断。本系统无权提供医学诊断。'
+    zh: '此分析仅供参考。请咨询医疗专业人员以获得准确诊断。本系统无权提供医学诊断。',
   };
 
   return disclaimers[language] || disclaimers.en;

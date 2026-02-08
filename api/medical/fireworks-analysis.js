@@ -18,24 +18,24 @@ const FIREWORKS_BASE_URL = 'https://api.fireworks.ai/inference/v1';
 
 // Fireworks AI Vision Models
 const VISION_MODELS = {
-  'GX7F4B8C': {
+  GX7F4B8C: {
     id: 'accounts/fireworks/models/llama-v3p2-90b-vision-instruct',
     description: 'Advanced vision model for medical image analysis',
     maxTokens: 4096,
-    capabilities: ['image_analysis', 'medical_terminology', 'differential_diagnosis']
+    capabilities: ['image_analysis', 'medical_terminology', 'differential_diagnosis'],
   },
-  'GX2E9A4D': {
+  GX2E9A4D: {
     id: 'accounts/fireworks/models/llama-v3p2-11b-vision-instruct',
     description: 'Fast vision model for quick medical assessments',
     maxTokens: 4096,
-    capabilities: ['image_analysis', 'medical_terminology']
+    capabilities: ['image_analysis', 'medical_terminology'],
   },
   'phi-3.5-vision': {
     id: 'accounts/fireworks/models/phi-3-vision-128k-instruct',
     description: 'Specialized vision model with large context',
     maxTokens: 8192,
-    capabilities: ['document_analysis', 'lab_results', 'medical_records']
-  }
+    capabilities: ['document_analysis', 'lab_results', 'medical_records'],
+  },
 };
 
 // Supported file formats and MIME types
@@ -44,57 +44,83 @@ const SUPPORTED_FORMATS = {
     'image/jpeg': ['.jpg', '.jpeg'],
     'image/png': ['.png'],
     'image/tiff': ['.tiff', '.tif'],
-    'application/dicom': ['.dcm', '.dicom']
+    'application/dicom': ['.dcm', '.dicom'],
   },
   documents: {
-    'application/pdf': ['.pdf']
-  }
+    'application/pdf': ['.pdf'],
+  },
 };
 
 // Medical Imaging Knowledge Base
 const RADIOLOGY_KNOWLEDGE = {
   xray: {
     chest: {
-      findings: ['Pneumonia', 'Pleural Effusion', 'Pneumothorax', 'Cardiomegaly', 'Pulmonary Edema', 'Lung Mass', 'Rib Fracture'],
-      landmarks: ['Cardiac silhouette', 'Lung fields', 'Costophrenic angles', 'Hilum', 'Mediastinum']
+      findings: [
+        'Pneumonia',
+        'Pleural Effusion',
+        'Pneumothorax',
+        'Cardiomegaly',
+        'Pulmonary Edema',
+        'Lung Mass',
+        'Rib Fracture',
+      ],
+      landmarks: [
+        'Cardiac silhouette',
+        'Lung fields',
+        'Costophrenic angles',
+        'Hilum',
+        'Mediastinum',
+      ],
     },
     extremities: {
-      findings: ['Fracture', 'Dislocation', 'Osteoporosis', 'Joint Effusion', 'Soft Tissue Swelling'],
-      landmarks: ['Cortical margins', 'Joint spaces', 'Bone alignment', 'Soft tissues']
+      findings: [
+        'Fracture',
+        'Dislocation',
+        'Osteoporosis',
+        'Joint Effusion',
+        'Soft Tissue Swelling',
+      ],
+      landmarks: ['Cortical margins', 'Joint spaces', 'Bone alignment', 'Soft tissues'],
     },
     abdomen: {
       findings: ['Bowel Obstruction', 'Free Air', 'Kidney Stones', 'Organomegaly', 'Ascites'],
-      landmarks: ['Bowel gas pattern', 'Psoas margins', 'Organ borders']
-    }
+      landmarks: ['Bowel gas pattern', 'Psoas margins', 'Organ borders'],
+    },
   },
   ct: {
     brain: {
       findings: ['Hemorrhage', 'Stroke', 'Tumor', 'Trauma', 'Hydrocephalus', 'Midline Shift'],
-      landmarks: ['Ventricles', 'Gray-white matter', 'Skull base', 'Brainstem']
+      landmarks: ['Ventricles', 'Gray-white matter', 'Skull base', 'Brainstem'],
     },
     chest: {
-      findings: ['Pulmonary Embolism', 'Aortic Dissection', 'Pneumonia', 'Cancer', 'Lymphadenopathy'],
-      landmarks: ['Pulmonary vessels', 'Mediastinum', 'Aorta', 'Bronchi']
+      findings: [
+        'Pulmonary Embolism',
+        'Aortic Dissection',
+        'Pneumonia',
+        'Cancer',
+        'Lymphadenopathy',
+      ],
+      landmarks: ['Pulmonary vessels', 'Mediastinum', 'Aorta', 'Bronchi'],
     },
     abdomen: {
       findings: ['Appendicitis', 'Diverticulitis', 'Pancreatitis', 'Liver Lesions', 'Renal Masses'],
-      landmarks: ['Liver', 'Spleen', 'Pancreas', 'Kidneys', 'Bowel']
-    }
+      landmarks: ['Liver', 'Spleen', 'Pancreas', 'Kidneys', 'Bowel'],
+    },
   },
   mri: {
     brain: {
       findings: ['MS Plaques', 'Tumor', 'Stroke', 'Dementia', 'Infection'],
-      landmarks: ['White matter', 'Gray matter', 'Ventricles', 'Cerebellum']
+      landmarks: ['White matter', 'Gray matter', 'Ventricles', 'Cerebellum'],
     },
     spine: {
       findings: ['Disc Herniation', 'Stenosis', 'Cord Compression', 'Vertebral Fracture'],
-      landmarks: ['Spinal cord', 'Discs', 'Vertebral bodies', 'Neural foramina']
+      landmarks: ['Spinal cord', 'Discs', 'Vertebral bodies', 'Neural foramina'],
     },
     joints: {
       findings: ['Ligament Tear', 'Meniscal Tear', 'Cartilage Damage', 'Effusion'],
-      landmarks: ['Articular cartilage', 'Ligaments', 'Menisci', 'Joint space']
-    }
-  }
+      landmarks: ['Articular cartilage', 'Ligaments', 'Menisci', 'Joint space'],
+    },
+  },
 };
 
 // Lab Test Reference Ranges
@@ -104,26 +130,26 @@ const LAB_REFERENCE_RANGES = {
     rbc: { low: 4.5, high: 5.9, unit: 'M/μL', name: 'Red Blood Cells' },
     hemoglobin: { low: 13.5, high: 17.5, unit: 'g/dL', name: 'Hemoglobin' },
     hematocrit: { low: 38.8, high: 50.0, unit: '%', name: 'Hematocrit' },
-    platelets: { low: 150, high: 400, unit: 'K/μL', name: 'Platelets' }
+    platelets: { low: 150, high: 400, unit: 'K/μL', name: 'Platelets' },
   },
   cmp: {
     glucose: { low: 70, high: 100, unit: 'mg/dL', name: 'Glucose (Fasting)' },
     sodium: { low: 136, high: 145, unit: 'mEq/L', name: 'Sodium' },
     potassium: { low: 3.5, high: 5.0, unit: 'mEq/L', name: 'Potassium' },
     creatinine: { low: 0.7, high: 1.3, unit: 'mg/dL', name: 'Creatinine' },
-    bun: { low: 7, high: 20, unit: 'mg/dL', name: 'Blood Urea Nitrogen' }
+    bun: { low: 7, high: 20, unit: 'mg/dL', name: 'Blood Urea Nitrogen' },
   },
   liver: {
     alt: { low: 7, high: 56, unit: 'U/L', name: 'ALT (Alanine Aminotransferase)' },
     ast: { low: 10, high: 40, unit: 'U/L', name: 'AST (Aspartate Aminotransferase)' },
     bilirubin: { low: 0.1, high: 1.2, unit: 'mg/dL', name: 'Total Bilirubin' },
-    albumin: { low: 3.5, high: 5.5, unit: 'g/dL', name: 'Albumin' }
+    albumin: { low: 3.5, high: 5.5, unit: 'g/dL', name: 'Albumin' },
   },
   cardiac: {
     troponin: { low: 0, high: 0.04, unit: 'ng/mL', name: 'Troponin I' },
     bnp: { low: 0, high: 100, unit: 'pg/mL', name: 'BNP (B-type Natriuretic Peptide)' },
-    ck_mb: { low: 0, high: 5, unit: 'ng/mL', name: 'CK-MB' }
-  }
+    ck_mb: { low: 0, high: 5, unit: 'ng/mL', name: 'CK-MB' },
+  },
 };
 
 // Rate limiting
@@ -165,7 +191,11 @@ function detectFileType(filename, mimetype) {
   // Check images
   for (const [mime, extensions] of Object.entries(SUPPORTED_FORMATS.images)) {
     if (extensions.includes(ext) || mimetype === mime) {
-      return { type: 'image', mime: mime === 'application/dicom' ? 'application/dicom' : mimetype, ext };
+      return {
+        type: 'image',
+        mime: mime === 'application/dicom' ? 'application/dicom' : mimetype,
+        ext,
+      };
     }
   }
 
@@ -301,7 +331,7 @@ Provide response in structured JSON format with medical terminology.`,
    - Additional sequences needed
    - Biopsy or intervention recommendations
 
-Format as structured JSON with complete medical details.`
+Format as structured JSON with complete medical details.`,
     },
     lab_results: `You are an expert clinical pathologist analyzing laboratory results. Provide comprehensive analysis:
 
@@ -365,7 +395,7 @@ Provide structured JSON response with medical terminology.`,
    - Treatment modifications
    - Risk factors to address
 
-Provide comprehensive JSON-formatted analysis with medical precision.`
+Provide comprehensive JSON-formatted analysis with medical precision.`,
   };
 
   // Select appropriate prompt
@@ -380,7 +410,12 @@ Provide comprehensive JSON-formatted analysis with medical precision.`
 /**
  * Call Fireworks AI Vision API
  */
-async function callFireworksVisionAPI(imageBase64, prompt, model = 'GX7F4B8C', mediaType = 'image/jpeg') {
+async function callFireworksVisionAPI(
+  imageBase64,
+  prompt,
+  model = 'GX7F4B8C',
+  mediaType = 'image/jpeg'
+) {
   if (!FIREWORKS_API_KEY) {
     throw new Error('Fireworks API key not configured');
   }
@@ -403,34 +438,36 @@ async function callFireworksVisionAPI(imageBase64, prompt, model = 'GX7F4B8C', m
           {
             type: 'image_url',
             image_url: {
-              url: `data:${mediaType};base64,${imageBase64}`
-            }
+              url: `data:${mediaType};base64,${imageBase64}`,
+            },
           },
           {
             type: 'text',
-            text: prompt
-          }
-        ]
-      }
+            text: prompt,
+          },
+        ],
+      },
     ],
     response_format: {
-      type: 'json_object'
-    }
+      type: 'json_object',
+    },
   };
 
   try {
     const response = await axios.post(apiUrl, requestBody, {
       headers: {
-        'Authorization': `Bearer ${FIREWORKS_API_KEY}`,
-        'Content-Type': 'application/json'
+        Authorization: `Bearer ${FIREWORKS_API_KEY}`,
+        'Content-Type': 'application/json',
       },
-      timeout: 120000 // 2 minutes timeout for complex medical analysis
+      timeout: 120000, // 2 minutes timeout for complex medical analysis
     });
 
     return response.data;
   } catch (error) {
     if (error.response) {
-      throw new Error(`Fireworks API error: ${error.response.status} - ${JSON.stringify(error.response.data)}`);
+      throw new Error(
+        `Fireworks API error: ${error.response.status} - ${JSON.stringify(error.response.data)}`
+      );
     }
     throw error;
   }
@@ -454,31 +491,34 @@ async function callFireworksTextAPI(documentText, prompt, model = 'GX7F4B8C') {
     messages: [
       {
         role: 'system',
-        content: 'You are an expert medical AI assistant providing accurate medical analysis with proper medical terminology.'
+        content:
+          'You are an expert medical AI assistant providing accurate medical analysis with proper medical terminology.',
       },
       {
         role: 'user',
-        content: `${prompt}\n\nDocument content:\n${documentText}`
-      }
+        content: `${prompt}\n\nDocument content:\n${documentText}`,
+      },
     ],
     response_format: {
-      type: 'json_object'
-    }
+      type: 'json_object',
+    },
   };
 
   try {
     const response = await axios.post(apiUrl, requestBody, {
       headers: {
-        'Authorization': `Bearer ${FIREWORKS_API_KEY}`,
-        'Content-Type': 'application/json'
+        Authorization: `Bearer ${FIREWORKS_API_KEY}`,
+        'Content-Type': 'application/json',
       },
-      timeout: 120000
+      timeout: 120000,
     });
 
     return response.data;
   } catch (error) {
     if (error.response) {
-      throw new Error(`Fireworks API error: ${error.response.status} - ${JSON.stringify(error.response.data)}`);
+      throw new Error(
+        `Fireworks API error: ${error.response.status} - ${JSON.stringify(error.response.data)}`
+      );
     }
     throw error;
   }
@@ -513,13 +553,13 @@ function parseAIResponse(responseText) {
           rawResponse: responseText,
           error: 'Could not parse JSON response',
           findings: [{ description: 'See raw response for details' }],
-          recommendations: { urgency: 'Routine' }
+          recommendations: { urgency: 'Routine' },
         };
       }
     }
     return {
       rawResponse: responseText,
-      error: 'No JSON found in response'
+      error: 'No JSON found in response',
     };
   }
 }
@@ -541,10 +581,10 @@ async function analyzeRadiologyImage(filePath, fileInfo, bodyPart, imagingType) 
     analysisType: 'Radiology Image Analysis',
     imagingModality: imagingType.toUpperCase(),
     bodyPart: bodyPart,
-    aiModel: 'Fireworks AI - Llama 3.2 90B Vision',
+    aiModel: 'LyDian Medical Vision',
     analysis: analysis,
     usage: aiResponse.usage,
-    processingTime: Date.now()
+    processingTime: Date.now(),
   };
 }
 
@@ -560,20 +600,27 @@ async function analyzeLabResults(filePath, fileInfo) {
     // For images of lab results, use vision API
     const base64Image = fileToBase64(filePath);
     const mediaType = getMediaType(fileInfo);
-    const visionPrompt = 'Extract all laboratory test results from this image including test names, values, units, and reference ranges. Then ' + buildMedicalPrompt('lab_results', fileInfo.type);
+    const visionPrompt =
+      'Extract all laboratory test results from this image including test names, values, units, and reference ranges. Then ' +
+      buildMedicalPrompt('lab_results', fileInfo.type);
 
-    const aiResponse = await callFireworksVisionAPI(base64Image, visionPrompt, 'GX7F4B8C', mediaType);
+    const aiResponse = await callFireworksVisionAPI(
+      base64Image,
+      visionPrompt,
+      'GX7F4B8C',
+      mediaType
+    );
     const content = aiResponse.choices[0]?.message?.content || '{}';
     const analysis = parseAIResponse(content);
 
     return {
       analysisType: 'Lab Results Analysis',
       documentType: 'Laboratory Report',
-      aiModel: 'Fireworks AI - Llama 3.2 90B Vision',
+      aiModel: 'LyDian Medical Vision',
       analysis: analysis,
       referenceRanges: LAB_REFERENCE_RANGES,
       usage: aiResponse.usage,
-      processingTime: Date.now()
+      processingTime: Date.now(),
     };
   }
 
@@ -586,11 +633,11 @@ async function analyzeLabResults(filePath, fileInfo) {
   return {
     analysisType: 'Lab Results Analysis',
     documentType: 'Laboratory Report',
-    aiModel: 'Fireworks AI - Llama 3.2 90B Vision',
+    aiModel: 'LyDian Medical Vision',
     analysis: analysis,
     referenceRanges: LAB_REFERENCE_RANGES,
     usage: aiResponse.usage,
-    processingTime: Date.now()
+    processingTime: Date.now(),
   };
 }
 
@@ -606,19 +653,26 @@ async function analyzeMedicalRecords(filePath, fileInfo) {
     // For images of medical records, use vision API
     const base64Image = fileToBase64(filePath);
     const mediaType = getMediaType(fileInfo);
-    const visionPrompt = 'Extract all medical information from this document. Then ' + buildMedicalPrompt('medical_records', fileInfo.type);
+    const visionPrompt =
+      'Extract all medical information from this document. Then ' +
+      buildMedicalPrompt('medical_records', fileInfo.type);
 
-    const aiResponse = await callFireworksVisionAPI(base64Image, visionPrompt, 'phi-3.5-vision', mediaType);
+    const aiResponse = await callFireworksVisionAPI(
+      base64Image,
+      visionPrompt,
+      'phi-3.5-vision',
+      mediaType
+    );
     const content = aiResponse.choices[0]?.message?.content || '{}';
     const analysis = parseAIResponse(content);
 
     return {
       analysisType: 'Medical Records Analysis',
       documentType: 'Medical Record',
-      aiModel: 'Fireworks AI - Phi 3.5 Vision',
+      aiModel: 'LyDian Medical Vision',
       analysis: analysis,
       usage: aiResponse.usage,
-      processingTime: Date.now()
+      processingTime: Date.now(),
     };
   }
 
@@ -631,10 +685,10 @@ async function analyzeMedicalRecords(filePath, fileInfo) {
   return {
     analysisType: 'Medical Records Analysis',
     documentType: 'Medical Record',
-    aiModel: 'Fireworks AI - Phi 3.5 Vision',
+    aiModel: 'LyDian Medical Vision',
     analysis: analysis,
     usage: aiResponse.usage,
-    processingTime: Date.now()
+    processingTime: Date.now(),
   };
 }
 
@@ -662,39 +716,39 @@ module.exports = async (req, res) => {
         'Lab Results Analysis',
         'Medical Records Analysis',
         'DICOM Support',
-        'Multi-format Support (PDF, JPG, PNG, TIFF)'
+        'Multi-format Support (PDF, JPG, PNG, TIFF)',
       ],
       supportedFormats: SUPPORTED_FORMATS,
       availableModels: Object.keys(VISION_MODELS).map(key => ({
         name: key,
         description: VISION_MODELS[key].description,
-        capabilities: VISION_MODELS[key].capabilities
+        capabilities: VISION_MODELS[key].capabilities,
       })),
       endpoints: {
         analyze: 'POST /api/medical/fireworks-analysis',
-        info: 'GET /api/medical/fireworks-analysis'
+        info: 'GET /api/medical/fireworks-analysis',
       },
       usage: {
         method: 'POST',
         contentType: 'multipart/form-data',
         requiredFields: {
           file: 'Medical file to analyze (DICOM, PDF, JPG, PNG, TIFF)',
-          analysisType: 'Type of analysis (radiology|lab_results|medical_records)'
+          analysisType: 'Type of analysis (radiology|lab_results|medical_records)',
         },
         optionalFields: {
           bodyPart: 'Body part for radiology (chest|brain|abdomen|extremities|spine)',
           imagingType: 'Imaging modality (xray|ct|mri)',
-          model: 'AI model to use (GX7F4B8C|GX2E9A4D|phi-3.5-vision)'
-        }
+          model: 'AI model to use (GX7F4B8C|GX2E9A4D|phi-3.5-vision)',
+        },
       },
       radiologyKnowledge: {
         modalities: Object.keys(RADIOLOGY_KNOWLEDGE),
         bodyParts: {
           xray: Object.keys(RADIOLOGY_KNOWLEDGE.xray),
           ct: Object.keys(RADIOLOGY_KNOWLEDGE.ct),
-          mri: Object.keys(RADIOLOGY_KNOWLEDGE.mri)
-        }
-      }
+          mri: Object.keys(RADIOLOGY_KNOWLEDGE.mri),
+        },
+      },
     });
   }
 
@@ -702,7 +756,7 @@ module.exports = async (req, res) => {
     return res.status(405).json({
       success: false,
       error: 'Method not allowed',
-      allowedMethods: ['GET', 'POST', 'OPTIONS']
+      allowedMethods: ['GET', 'POST', 'OPTIONS'],
     });
   }
 
@@ -713,7 +767,7 @@ module.exports = async (req, res) => {
       success: false,
       error: 'Rate limit exceeded',
       message: `Maximum ${RATE_LIMIT} requests per minute allowed`,
-      retryAfter: 60
+      retryAfter: 60,
     });
   }
 
@@ -723,7 +777,7 @@ module.exports = async (req, res) => {
     return res.status(500).json({
       success: false,
       error: 'Service not configured',
-      message: 'FIREWORKS_API_KEY environment variable is not set'
+      message: 'FIREWORKS_API_KEY environment variable is not set',
     });
   }
 
@@ -734,7 +788,7 @@ module.exports = async (req, res) => {
     const form = formidable({
       multiples: false,
       maxFileSize: 50 * 1024 * 1024, // 50MB max
-      keepExtensions: true
+      keepExtensions: true,
     });
 
     form.parse(req, async (err, fields, files) => {
@@ -743,15 +797,21 @@ module.exports = async (req, res) => {
         return res.status(400).json({
           success: false,
           error: 'File upload error',
-          message: err.message
+          message: err.message,
         });
       }
 
       try {
         // Extract fields
-        const analysisType = Array.isArray(fields.analysisType) ? fields.analysisType[0] : fields.analysisType;
-        const bodyPart = Array.isArray(fields.bodyPart) ? fields.bodyPart[0] : fields.bodyPart || 'chest';
-        const imagingType = Array.isArray(fields.imagingType) ? fields.imagingType[0] : fields.imagingType || 'xray';
+        const analysisType = Array.isArray(fields.analysisType)
+          ? fields.analysisType[0]
+          : fields.analysisType;
+        const bodyPart = Array.isArray(fields.bodyPart)
+          ? fields.bodyPart[0]
+          : fields.bodyPart || 'chest';
+        const imagingType = Array.isArray(fields.imagingType)
+          ? fields.imagingType[0]
+          : fields.imagingType || 'xray';
         const model = Array.isArray(fields.model) ? fields.model[0] : fields.model || 'GX7F4B8C';
 
         // Validate file
@@ -759,7 +819,7 @@ module.exports = async (req, res) => {
           return res.status(400).json({
             success: false,
             error: 'No file provided',
-            message: 'Please upload a medical file (DICOM, PDF, JPG, PNG, or TIFF)'
+            message: 'Please upload a medical file (DICOM, PDF, JPG, PNG, or TIFF)',
           });
         }
 
@@ -777,7 +837,7 @@ module.exports = async (req, res) => {
             error: 'Unsupported file format',
             message: 'Supported formats: DICOM, PDF, JPG, PNG, TIFF',
             receivedType: mimetype,
-            receivedExtension: path.extname(filename)
+            receivedExtension: path.extname(filename),
           });
         }
 
@@ -788,7 +848,7 @@ module.exports = async (req, res) => {
             success: false,
             error: 'Invalid analysis type',
             message: `analysisType must be one of: ${validAnalysisTypes.join(', ')}`,
-            receivedType: analysisType
+            receivedType: analysisType,
           });
         }
 
@@ -798,7 +858,7 @@ module.exports = async (req, res) => {
             success: false,
             error: 'Invalid model',
             message: `model must be one of: ${Object.keys(VISION_MODELS).join(', ')}`,
-            receivedModel: model
+            receivedModel: model,
           });
         }
 
@@ -838,11 +898,11 @@ module.exports = async (req, res) => {
             bodyPart: analysisType === 'radiology' ? bodyPart : undefined,
             imagingType: analysisType === 'radiology' ? imagingType : undefined,
             processingTimeMs: totalTime,
-            timestamp: new Date().toISOString()
+            timestamp: new Date().toISOString(),
           },
-          disclaimer: 'This AI analysis is for educational and research purposes only. Always consult qualified healthcare professionals for medical decisions.'
+          disclaimer:
+            'This AI analysis is for educational and research purposes only. Always consult qualified healthcare professionals for medical decisions.',
         });
-
       } catch (analysisError) {
         console.error('Analysis error:', analysisError);
 
@@ -861,18 +921,17 @@ module.exports = async (req, res) => {
           success: false,
           error: 'Analysis failed',
           message: analysisError.message,
-          timestamp: new Date().toISOString()
+          timestamp: new Date().toISOString(),
         });
       }
     });
-
   } catch (error) {
     console.error('Request handling error:', error);
     return res.status(500).json({
       success: false,
       error: 'Internal server error',
-      message: error.message,
-      timestamp: new Date().toISOString()
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
+      timestamp: new Date().toISOString(),
     });
   }
 };

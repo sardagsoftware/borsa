@@ -24,7 +24,7 @@ class ScriptService {
         storytelling: 'narrative_engaging',
         motivational: 'inspirational_motivational',
         news: 'news_informative',
-        review: 'product_review'
+        review: 'product_review',
       },
 
       // Platform-specific optimization
@@ -33,8 +33,8 @@ class ScriptService {
         instagram: { maxDuration: 90, hookTime: 1, cta: true },
         tiktok: { maxDuration: 60, hookTime: 0.5, cta: false },
         facebook: { maxDuration: 240, hookTime: 2, cta: true },
-        x: { maxDuration: 140, hookTime: 1, cta: false }
-      }
+        x: { maxDuration: 140, hookTime: 1, cta: false },
+      },
     };
 
     console.log('✅ Script Generation Service initialized');
@@ -66,7 +66,7 @@ class ScriptService {
       console.error('❌ [Script] Generation failed:', error.message);
       return {
         success: false,
-        error: error.message
+        error: 'Senaryo isleme hatasi.',
       };
     }
   }
@@ -89,24 +89,24 @@ class ScriptService {
           messages: [
             {
               role: 'system',
-              content: systemPrompt
+              content: systemPrompt,
             },
             {
               role: 'user',
-              content: userPrompt
-            }
+              content: userPrompt,
+            },
           ],
           temperature: params.creativity || 0.7,
           max_tokens: 2000,
           top_p: 0.9,
           frequency_penalty: 0.5,
-          presence_penalty: 0.5
+          presence_penalty: 0.5,
         },
         {
           headers: {
             'api-key': this.config.azureApiKey,
-            'Content-Type': 'application/json'
-          }
+            'Content-Type': 'application/json',
+          },
         }
       );
 
@@ -126,8 +126,8 @@ class ScriptService {
           topic: params.topic,
           style: params.style,
           platform: params.platform,
-          timestamp: new Date().toISOString()
-        }
+          timestamp: new Date().toISOString(),
+        },
       };
     } catch (error) {
       console.error('❌ Azure OX5C9E2B generation failed:', error.message);
@@ -226,7 +226,7 @@ This video was created using AI technology.`;
       tone = 'friendly',
       targetAudience = 'general',
       keyPoints = [],
-      duration = 60
+      duration = 60,
     } = params;
 
     let prompt = `Create a ${duration}-second video script about: ${topic}\n\n`;
@@ -236,13 +236,13 @@ This video was created using AI technology.`;
     prompt += `Target Audience: ${targetAudience}\n`;
 
     if (keyPoints.length > 0) {
-      prompt += `\nKey Points to Cover:\n`;
+      prompt += '\nKey Points to Cover:\n';
       keyPoints.forEach((point, index) => {
         prompt += `${index + 1}. ${point}\n`;
       });
     }
 
-    prompt += `\nRemember: Original content only, no impersonation, include AI disclosure.`;
+    prompt += '\nRemember: Original content only, no impersonation, include AI disclosure.';
 
     return prompt;
   }
@@ -261,7 +261,7 @@ This video was created using AI technology.`;
       mainContent: this.extractSection(scriptText, 'MAIN CONTENT'),
       conclusion: this.extractSection(scriptText, 'CONCLUSION'),
       cta: this.extractSection(scriptText, 'CTA'),
-      aiDisclosure: this.extractSection(scriptText, 'AI DISCLOSURE')
+      aiDisclosure: this.extractSection(scriptText, 'AI DISCLOSURE'),
     };
 
     // Calculate metrics
@@ -274,7 +274,7 @@ This video was created using AI technology.`;
       wordCount: words,
       sentenceCount: scriptText.split(/[.!?]+/).length,
       avgWordsPerSentence: Math.round(words / scriptText.split(/[.!?]+/).length),
-      readabilityScore: this.calculateReadability(scriptText)
+      readabilityScore: this.calculateReadability(scriptText),
     };
 
     return {
@@ -283,7 +283,7 @@ This video was created using AI technology.`;
       estimatedDuration: estimatedDuration,
       analysis: analysis,
       platformOptimized: params.platform || 'youtube',
-      aiGenerated: true
+      aiGenerated: true,
     };
   }
 
@@ -323,10 +323,11 @@ This video was created using AI technology.`;
     let syllableCount = 0;
 
     words.forEach(word => {
-      syllableCount += word
-        .replace(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/, '')
-        .replace(/^y/, '')
-        .match(/[aeiouy]{1,2}/g)?.length || 1;
+      syllableCount +=
+        word
+          .replace(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/, '')
+          .replace(/^y/, '')
+          .match(/[aeiouy]{1,2}/g)?.length || 1;
     });
 
     return syllableCount;
@@ -349,7 +350,7 @@ This video was created using AI technology.`;
       instagram: { addHashtags: true, shortenHook: true },
       tiktok: { maxLength: 150, addTrending: true },
       facebook: { storytelling: true, emotionalTrigger: true },
-      x: { maxLength: 280, hashtagOptimization: true }
+      x: { maxLength: 280, hashtagOptimization: true },
     };
 
     return {
@@ -359,8 +360,8 @@ This video was created using AI technology.`;
       metadata: {
         platform: platform,
         maxDuration: platformConfig.maxDuration,
-        optimized: true
-      }
+        optimized: true,
+      },
     };
   }
 
@@ -406,8 +407,8 @@ This video was created using AI technology for educational purposes.`;
       metadata: {
         mode: 'demo',
         topic: params.topic,
-        message: 'Demo script - configure AI providers for production'
-      }
+        message: 'Demo script - configure AI providers for production',
+      },
     };
   }
 
@@ -423,7 +424,7 @@ This video was created using AI technology for educational purposes.`;
       aiDisclosure: script.toLowerCase().includes('ai'),
       noImpersonation: !this.detectImpersonation(script),
       noMisleading: !this.detectMisleading(script),
-      originalContent: true // Would use plagiarism detection in production
+      originalContent: true, // Would use plagiarism detection in production
     };
 
     const allPassed = Object.values(checks).every(check => check === true);
@@ -431,7 +432,7 @@ This video was created using AI technology for educational purposes.`;
     return {
       passed: allPassed,
       checks: checks,
-      recommendations: allPassed ? [] : this.generateRecommendations(checks)
+      recommendations: allPassed ? [] : this.generateRecommendations(checks),
     };
   }
 
@@ -443,7 +444,7 @@ This video was created using AI technology for educational purposes.`;
       /i am [A-Z][a-z]+ [A-Z][a-z]+/i, // "I am John Doe"
       /this is [A-Z][a-z]+ [A-Z][a-z]+/i,
       /official account/i,
-      /verified channel/i
+      /verified channel/i,
     ];
 
     return impersonationFlags.some(pattern => pattern.test(script));
@@ -458,7 +459,7 @@ This video was created using AI technology for educational purposes.`;
       /get rich quick/i,
       /miracle cure/i,
       /100% proven/i,
-      /doctors hate this/i
+      /doctors hate this/i,
     ];
 
     return misleadingFlags.some(pattern => pattern.test(script));
@@ -473,21 +474,21 @@ This video was created using AI technology for educational purposes.`;
     if (!checks.aiDisclosure) {
       recommendations.push({
         priority: 'high',
-        message: 'Add AI disclosure statement to comply with transparency requirements'
+        message: 'Add AI disclosure statement to comply with transparency requirements',
       });
     }
 
     if (!checks.noImpersonation) {
       recommendations.push({
         priority: 'critical',
-        message: 'Remove impersonation content immediately'
+        message: 'Remove impersonation content immediately',
       });
     }
 
     if (!checks.noMisleading) {
       recommendations.push({
         priority: 'high',
-        message: 'Remove misleading claims to comply with platform policies'
+        message: 'Remove misleading claims to comply with platform policies',
       });
     }
 

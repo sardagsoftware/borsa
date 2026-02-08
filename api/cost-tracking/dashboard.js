@@ -17,34 +17,34 @@ const costStore = {
     vision: { requests: 0, tokens: 0, cost: 0 },
     enterprise: { requests: 0, tokens: 0, cost: 0 },
     neural: { requests: 0, tokens: 0, cost: 0 },
-    apex: { requests: 0, tokens: 0, cost: 0 }
+    apex: { requests: 0, tokens: 0, cost: 0 },
   },
   azure: {
     labs: { requests: 0, cost: 0 },
     speech: { requests: 0, cost: 0 },
     storage: { gb: 0, cost: 0 },
-    insights: { events: 0, cost: 0 }
+    insights: { events: 0, cost: 0 },
   },
-  daily: {},  // { '2025-10-02': { totalCost: 0, aiCost: 0, azureCost: 0 } }
-  monthly: {} // { '2025-10': { totalCost: 0, budget: 1000, alertsSent: 0 } }
+  daily: {}, // { '2025-10-02': { totalCost: 0, aiCost: 0, azureCost: 0 } }
+  monthly: {}, // { '2025-10': { totalCost: 0, budget: 1000, alertsSent: 0 } }
 };
 
 // AI Model Cost Rates (per 1K tokens)
 const AI_COSTS = {
-  'OX5C9E2B': { input: 0.03, output: 0.06 },
-  'OX7A3F8D': { input: 0.01, output: 0.03 },
-  'OX7A3F8D': { input: 0.005, output: 0.015 },
-  'OX1D4A7F': { input: 0.0015, output: 0.002 },
-  'AX9F7E2B': { input: 0.003, output: 0.015 },
-  'AX4D8C1A': { input: 0.015, output: 0.075 },
+  OX5C9E2B: { input: 0.03, output: 0.06 },
+  OX7A3F8D: { input: 0.01, output: 0.03 },
+  'OX7A3F8D-mini': { input: 0.005, output: 0.015 },
+  OX1D4A7F: { input: 0.0015, output: 0.002 },
+  AX9F7E2B: { input: 0.003, output: 0.015 },
+  AX4D8C1A: { input: 0.015, output: 0.075 },
   'AX9F7E2B-3': { input: 0.003, output: 0.015 },
-  'GE2D0F8A': { input: 0.00002, output: 0.00008 },
-  'GE6D8A4F': { input: 0.0035, output: 0.01 },
-  'GX4B7F3C': { input: 0.0007, output: 0.0007 },
-  'MX7C4E9A': { input: 0.004, output: 0.012 },
-  'GX9A5E1D': { input: 0.0005, output: 0.0008 },
-  'YX8A5D2C': { input: 0.003, output: 0.003 },
-  'ZX4A0B9E': { input: 0.0015, output: 0.002 }
+  GE2D0F8A: { input: 0.00002, output: 0.00008 },
+  GE6D8A4F: { input: 0.0035, output: 0.01 },
+  GX4B7F3C: { input: 0.0007, output: 0.0007 },
+  MX7C4E9A: { input: 0.004, output: 0.012 },
+  GX9A5E1D: { input: 0.0005, output: 0.0008 },
+  YX8A5D2C: { input: 0.003, output: 0.003 },
+  ZX4A0B9E: { input: 0.0015, output: 0.002 },
 };
 
 // Azure Service Costs (estimated)
@@ -52,7 +52,7 @@ const AZURE_COSTS = {
   labs: { requestCost: 0.0001 },
   speech: { minuteCost: 0.016 },
   storage: { gbMonthCost: 0.02 },
-  insights: { eventCost: 0.0000001 }
+  insights: { eventCost: 0.0000001 },
 };
 
 /**
@@ -66,8 +66,14 @@ router.get('/dashboard', rbac.requireRole(['ADMIN', 'SUPER_ADMIN']), (req, res) 
     const thisMonth = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
 
     // Calculate total costs
-    const aiTotalCost = Object.values(costStore.aiModels).reduce((sum, model) => sum + model.cost, 0);
-    const azureTotalCost = Object.values(costStore.azure).reduce((sum, service) => sum + service.cost, 0);
+    const aiTotalCost = Object.values(costStore.aiModels).reduce(
+      (sum, model) => sum + model.cost,
+      0
+    );
+    const azureTotalCost = Object.values(costStore.azure).reduce(
+      (sum, service) => sum + service.cost,
+      0
+    );
     const totalCost = aiTotalCost + azureTotalCost;
 
     // Get monthly data
@@ -77,7 +83,7 @@ router.get('/dashboard', rbac.requireRole(['ADMIN', 'SUPER_ADMIN']), (req, res) 
         aiCost: 0,
         azureCost: 0,
         budget: 1000, // Default $1000 budget
-        alertsSent: 0
+        alertsSent: 0,
       };
     }
 
@@ -102,7 +108,7 @@ router.get('/dashboard', rbac.requireRole(['ADMIN', 'SUPER_ADMIN']), (req, res) 
       const dateStr = date.toISOString().split('T')[0];
       dailyTrend.push({
         date: dateStr,
-        cost: costStore.daily[dateStr]?.totalCost || 0
+        cost: costStore.daily[dateStr]?.totalCost || 0,
       });
     }
 
@@ -115,52 +121,51 @@ router.get('/dashboard', rbac.requireRole(['ADMIN', 'SUPER_ADMIN']), (req, res) 
         aiCost: aiTotalCost.toFixed(2),
         azureCost: azureTotalCost.toFixed(2),
         currency: 'USD',
-        period: 'current_month'
+        period: 'current_month',
       },
       budget: {
         limit: monthlyData.budget,
         spent: totalCost.toFixed(2),
         remaining: (monthlyData.budget - totalCost).toFixed(2),
         usage: budgetUsage.toFixed(1),
-        status: budgetUsage > 90 ? 'critical' : budgetUsage > 75 ? 'warning' : 'healthy'
+        status: budgetUsage > 90 ? 'critical' : budgetUsage > 75 ? 'warning' : 'healthy',
       },
       aiModels: {
         totalRequests: Object.values(costStore.aiModels).reduce((sum, m) => sum + m.requests, 0),
         totalTokens: Object.values(costStore.aiModels).reduce((sum, m) => sum + m.tokens, 0),
         totalCost: aiTotalCost.toFixed(2),
-        topModels
+        topModels,
       },
       azureServices: {
         totalCost: azureTotalCost.toFixed(2),
         services: Object.entries(costStore.azure).map(([name, data]) => ({
           name,
           ...data,
-          cost: data.cost.toFixed(2)
-        }))
+          cost: data.cost.toFixed(2),
+        })),
       },
       trends: {
         daily: dailyTrend,
-        monthlyTotal: totalCost.toFixed(2)
+        monthlyTotal: totalCost.toFixed(2),
       },
       recommendations,
-      alerts: generateAlerts(budgetUsage, monthlyData)
+      alerts: generateAlerts(budgetUsage, monthlyData),
     };
 
     insightsService.trackEvent('Cost_Dashboard_Viewed', {
       userId: req.user.id,
       totalCost,
-      budgetUsage: budgetUsage.toFixed(1)
+      budgetUsage: budgetUsage.toFixed(1),
     });
 
     res.json(dashboard);
-
   } catch (error) {
     console.error('Error fetching cost dashboard:', error);
     insightsService.trackException(error, { endpoint: '/api/cost-tracking/dashboard' });
 
     res.status(500).json({
       error: 'Failed to fetch cost dashboard',
-      message: error.message
+      message: 'Maliyet takip hatası',
     });
   }
 });
@@ -179,7 +184,7 @@ router.post('/ai-usage', (req, res) => {
 
     // Calculate cost
     const modelCost = AI_COSTS[model] || { input: 0.003, output: 0.01 };
-    const cost = ((inputTokens / 1000) * modelCost.input) + ((outputTokens / 1000) * modelCost.output);
+    const cost = (inputTokens / 1000) * modelCost.input + (outputTokens / 1000) * modelCost.output;
 
     // Update store
     const providerLower = provider.toLowerCase();
@@ -211,9 +216,8 @@ router.post('/ai-usage', (req, res) => {
     res.json({
       success: true,
       cost: cost.toFixed(4),
-      currency: 'USD'
+      currency: 'USD',
     });
-
   } catch (error) {
     console.error('Error tracking AI usage:', error);
     res.status(500).json({ error: 'Failed to track AI usage' });
@@ -272,9 +276,8 @@ router.post('/azure-usage', (req, res) => {
     res.json({
       success: true,
       cost: cost.toFixed(4),
-      currency: 'USD'
+      currency: 'USD',
     });
-
   } catch (error) {
     console.error('Error tracking Azure usage:', error);
     res.status(500).json({ error: 'Failed to track Azure usage' });
@@ -302,7 +305,7 @@ router.put('/budget', rbac.requireRole(['ADMIN', 'SUPER_ADMIN']), (req, res) => 
         aiCost: 0,
         azureCost: 0,
         budget: budget,
-        alertsSent: 0
+        alertsSent: 0,
       };
     } else {
       costStore.monthly[thisMonth].budget = budget;
@@ -311,16 +314,15 @@ router.put('/budget', rbac.requireRole(['ADMIN', 'SUPER_ADMIN']), (req, res) => 
     insightsService.trackEvent('Budget_Updated', {
       userId: req.user.id,
       newBudget: budget,
-      month: thisMonth
+      month: thisMonth,
     });
 
     res.json({
       success: true,
       message: 'Budget updated successfully',
       budget,
-      month: thisMonth
+      month: thisMonth,
     });
-
   } catch (error) {
     console.error('Error updating budget:', error);
     res.status(500).json({ error: 'Failed to update budget' });
@@ -343,15 +345,17 @@ router.get('/export', rbac.requireRole(['ADMIN', 'SUPER_ADMIN']), (req, res) => 
     });
 
     res.setHeader('Content-Type', 'text/csv');
-    res.setHeader('Content-Disposition', `attachment; filename="cost-report-${new Date().toISOString().split('T')[0]}.csv"`);
+    res.setHeader(
+      'Content-Disposition',
+      `attachment; filename="cost-report-${new Date().toISOString().split('T')[0]}.csv"`
+    );
     res.send(csv);
 
     insightsService.trackEvent('Cost_Report_Exported', {
       userId: req.user.id,
       format,
-      period
+      period,
     });
-
   } catch (error) {
     console.error('Error exporting cost data:', error);
     res.status(500).json({ error: 'Failed to export cost data' });
@@ -372,7 +376,7 @@ function generateRecommendations(store) {
           type: 'cost_optimization',
           severity: 'medium',
           message: `Consider using a cheaper alternative to ${name}. Average cost per request: $${avgCost.toFixed(3)}`,
-          savings: (data.cost * 0.3).toFixed(2) // Estimated 30% savings
+          savings: (data.cost * 0.3).toFixed(2), // Estimated 30% savings
         });
       }
     }
@@ -384,8 +388,9 @@ function generateRecommendations(store) {
     recommendations.push({
       type: 'optimization',
       severity: 'low',
-      message: 'High token usage detected. Consider implementing prompt caching and response caching.',
-      savings: '100-200'
+      message:
+        'High token usage detected. Consider implementing prompt caching and response caching.',
+      savings: '100-200',
     });
   }
 
@@ -394,7 +399,7 @@ function generateRecommendations(store) {
       type: 'info',
       severity: 'low',
       message: 'Your cost usage is optimal. No recommendations at this time.',
-      savings: '0'
+      savings: '0',
     });
   }
 
@@ -408,13 +413,13 @@ function generateAlerts(budgetUsage, monthlyData) {
     alerts.push({
       type: 'critical',
       message: `Budget usage is at ${budgetUsage.toFixed(1)}%. Immediate action required!`,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
   } else if (budgetUsage >= 75) {
     alerts.push({
       type: 'warning',
       message: `Budget usage is at ${budgetUsage.toFixed(1)}%. Consider reducing costs.`,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
   }
 

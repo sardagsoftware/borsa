@@ -46,7 +46,7 @@ router.post('/calculate', async (req, res) => {
 
     // Fetch model and compliance checks from database, or use mock mode
     const result = await safeQuery(
-      async (prisma) => {
+      async prisma => {
         // Fetch model with owner info
         const model = await prisma.governanceModel.findUnique({
           where: { id: modelId },
@@ -158,7 +158,7 @@ router.post('/calculate', async (req, res) => {
               biasTesting: 'comprehensive',
               demographicParity: 0.85,
               equalOpportunity: 0.88,
-              fairnessAudits: [{ score: 0.90 }],
+              fairnessAudits: [{ score: 0.9 }],
             },
             security: {
               encryptionAtRest: true,
@@ -234,7 +234,7 @@ router.post('/calculate', async (req, res) => {
     res.status(500).json({
       success: false,
       error: 'Internal server error',
-      message: error.message,
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
     });
   }
 });
@@ -250,7 +250,7 @@ router.get('/:modelId', async (req, res) => {
 
     // Fetch from database, or use cache fallback
     const result = await safeQuery(
-      async (prisma) => {
+      async prisma => {
         // Fetch most recent trust index for this model
         const trustIndex = await prisma.trustIndex.findFirst({
           where: { modelId },
@@ -361,7 +361,7 @@ router.get('/:modelId', async (req, res) => {
     res.status(500).json({
       success: false,
       error: 'Internal server error',
-      message: error.message,
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
     });
   }
 });
@@ -379,12 +379,12 @@ router.get('/leaderboard', async (req, res) => {
 
     // Filter by tier if specified
     if (tier) {
-      allTrustIndices = allTrustIndices.filter((ti) => ti.tier === tier.toUpperCase());
+      allTrustIndices = allTrustIndices.filter(ti => ti.tier === tier.toUpperCase());
     }
 
     // Filter out expired
     const now = new Date();
-    allTrustIndices = allTrustIndices.filter((ti) => new Date(ti.expiresAt) > now);
+    allTrustIndices = allTrustIndices.filter(ti => new Date(ti.expiresAt) > now);
 
     // Sort by score (descending)
     allTrustIndices.sort((a, b) => b.globalTrustScore - a.globalTrustScore);
@@ -424,7 +424,7 @@ router.get('/stats', async (req, res) => {
   try {
     const allTrustIndices = Array.from(trustIndexCache.values());
     const now = new Date();
-    const activeTrustIndices = allTrustIndices.filter((ti) => new Date(ti.expiresAt) > now);
+    const activeTrustIndices = allTrustIndices.filter(ti => new Date(ti.expiresAt) > now);
 
     const totalModels = activeTrustIndices.length;
     const averageScore =
@@ -433,11 +433,11 @@ router.get('/stats', async (req, res) => {
         : 0;
 
     const tierDistribution = {
-      PLATINUM: activeTrustIndices.filter((ti) => ti.tier === 'PLATINUM').length,
-      GOLD: activeTrustIndices.filter((ti) => ti.tier === 'GOLD').length,
-      SILVER: activeTrustIndices.filter((ti) => ti.tier === 'SILVER').length,
-      BRONZE: activeTrustIndices.filter((ti) => ti.tier === 'BRONZE').length,
-      UNVERIFIED: activeTrustIndices.filter((ti) => ti.tier === 'UNVERIFIED').length,
+      PLATINUM: activeTrustIndices.filter(ti => ti.tier === 'PLATINUM').length,
+      GOLD: activeTrustIndices.filter(ti => ti.tier === 'GOLD').length,
+      SILVER: activeTrustIndices.filter(ti => ti.tier === 'SILVER').length,
+      BRONZE: activeTrustIndices.filter(ti => ti.tier === 'BRONZE').length,
+      UNVERIFIED: activeTrustIndices.filter(ti => ti.tier === 'UNVERIFIED').length,
     };
 
     res.status(200).json({
@@ -446,9 +446,10 @@ router.get('/stats', async (req, res) => {
         totalModels,
         averageScore: Math.round(averageScore * 100) / 100,
         tierDistribution,
-        lastCalculated: activeTrustIndices.length > 0
-          ? activeTrustIndices[activeTrustIndices.length - 1].calculatedAt
-          : null,
+        lastCalculated:
+          activeTrustIndices.length > 0
+            ? activeTrustIndices[activeTrustIndices.length - 1].calculatedAt
+            : null,
       },
     });
   } catch (error) {

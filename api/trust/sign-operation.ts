@@ -85,10 +85,10 @@ async function handleSignOperation(req: any, res: any) {
   } catch (error: any) {
     console.error('Signing error:', error);
 
-    if (error.message.includes('validation')) {
+    if (error.message?.includes('validation')) {
       return res.status(400).json({
         error: 'Validation error',
-        message: error.message,
+        message: 'Dogrulama hatasi. Lutfen girisleri kontrol edin.',
       });
     }
 

@@ -247,7 +247,7 @@ module.exports = async (req, res) => {
       console.error('Get history error:', error);
       return res.status(401).json({
         success: false,
-        error: error.message || 'Failed to get chat history',
+        error: 'Sohbet gecmisi alinamadi. Lutfen tekrar deneyin.',
       });
     }
   }

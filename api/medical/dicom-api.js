@@ -1,3 +1,4 @@
+/* global URLSearchParams */
 /**
  * 🏥 AZURE HEALTH DATA SERVICES - DICOM API
  * Production-ready DICOM (Digital Imaging and Communications in Medicine) integration
@@ -48,23 +49,26 @@ async function getAccessToken() {
   const tokenUrl = `https://login.microsoftonline.com/${AZURE_TENANT_ID}/oauth2/v2.0/token`;
 
   try {
-    const response = await axios.post(tokenUrl, new URLSearchParams({
-      grant_type: 'client_credentials',
-      client_id: AZURE_CLIENT_ID,
-      client_secret: AZURE_CLIENT_SECRET,
-      scope: 'https://dicom.healthcareapis.azure.com/.default'
-    }), {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
+    const response = await axios.post(
+      tokenUrl,
+      new URLSearchParams({
+        grant_type: 'client_credentials',
+        client_id: AZURE_CLIENT_ID,
+        client_secret: AZURE_CLIENT_SECRET,
+        scope: 'https://dicom.healthcareapis.azure.com/.default',
+      }),
+      {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
       }
-    });
+    );
 
     accessToken = response.data.access_token;
-    tokenExpiry = Date.now() + (response.data.expires_in * 1000);
+    tokenExpiry = Date.now() + response.data.expires_in * 1000;
 
     console.log('✅ Azure DICOM service access token obtained');
     return accessToken;
-
   } catch (error) {
     console.error('❌ Failed to get Azure AD token for DICOM:', error.message);
     throw new Error('DICOM authentication failed');
@@ -104,16 +108,25 @@ function deidentifyDicomMetadata(metadata) {
   });
 
   // Generate new anonymized UIDs
-  if (deidentified['0020000D']) { // Study Instance UID
-    deidentified['0020000D'].Value = [`2.25.${Date.now()}${Math.random().toString().substr(2, 10)}`];
+  if (deidentified['0020000D']) {
+    // Study Instance UID
+    deidentified['0020000D'].Value = [
+      `2.25.${Date.now()}${Math.random().toString().substr(2, 10)}`,
+    ];
   }
 
-  if (deidentified['0020000E']) { // Series Instance UID
-    deidentified['0020000E'].Value = [`2.25.${Date.now()}${Math.random().toString().substr(2, 10)}`];
+  if (deidentified['0020000E']) {
+    // Series Instance UID
+    deidentified['0020000E'].Value = [
+      `2.25.${Date.now()}${Math.random().toString().substr(2, 10)}`,
+    ];
   }
 
-  if (deidentified['00080018']) { // SOP Instance UID
-    deidentified['00080018'].Value = [`2.25.${Date.now()}${Math.random().toString().substr(2, 10)}`];
+  if (deidentified['00080018']) {
+    // SOP Instance UID
+    deidentified['00080018'].Value = [
+      `2.25.${Date.now()}${Math.random().toString().substr(2, 10)}`,
+    ];
   }
 
   return deidentified;
@@ -136,7 +149,7 @@ async function uploadDicom(req, res) {
     if (!req.file) {
       return res.status(400).json({
         success: false,
-        error: 'DICOM file is required'
+        error: 'DICOM file is required',
       });
     }
 
@@ -147,7 +160,7 @@ async function uploadDicom(req, res) {
     if (dicomBuffer.length < 132 || dicomBuffer.toString('ascii', 128, 132) !== 'DICM') {
       return res.status(400).json({
         success: false,
-        error: 'Invalid DICOM file format'
+        error: 'Invalid DICOM file format',
       });
     }
 
@@ -162,12 +175,12 @@ async function uploadDicom(req, res) {
     // Upload DICOM file
     const response = await axios.post(stowUrl, dicomBuffer, {
       headers: {
-        'Authorization': `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
         'Content-Type': 'application/dicom',
-        'Accept': 'application/dicom+json'
+        Accept: 'application/dicom+json',
       },
       maxBodyLength: Infinity,
-      maxContentLength: Infinity
+      maxContentLength: Infinity,
     });
 
     // Extract Study, Series, Instance UIDs from response
@@ -185,8 +198,8 @@ async function uploadDicom(req, res) {
         study_instance_uid: instanceInfo['0020000D']?.Value?.[0],
         series_instance_uid: instanceInfo['0020000E']?.Value?.[0],
         sop_instance_uid: instanceInfo['00080018']?.Value?.[0],
-        de_identified: de_identify
-      }
+        de_identified: de_identify,
+      },
     });
 
     res.status(201).json({
@@ -195,30 +208,29 @@ async function uploadDicom(req, res) {
       instance: {
         study_instance_uid: instanceInfo['0020000D']?.Value?.[0],
         series_instance_uid: instanceInfo['0020000E']?.Value?.[0],
-        sop_instance_uid: instanceInfo['00080018']?.Value?.[0]
+        sop_instance_uid: instanceInfo['00080018']?.Value?.[0],
       },
       metadata: {
         file_size_bytes: dicomBuffer.length,
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ DICOM Upload Error:', error);
 
     logMedicalAudit({
       action: 'DICOM_UPLOAD_ERROR',
       details: {
-        error: error.message,
-        stack: error.stack
-      }
+        error: 'Tıbbi veri hatası. Lütfen tekrar deneyin.',
+        stack: error.stack,
+      },
     });
 
     res.status(500).json({
       success: false,
       error: 'Failed to upload DICOM file',
-      message: error.message,
-      response_time_ms: Date.now() - startTime
+      message: 'Tıbbi veri hatası. Lütfen tekrar deneyin.',
+      response_time_ms: Date.now() - startTime,
     });
   }
 }
@@ -245,7 +257,7 @@ async function searchStudies(req, res) {
     if (study_date) searchParams.append('StudyDate', study_date);
     if (modality) searchParams.append('ModalitiesInStudy', modality);
 
-    console.log(`🏥 Searching DICOM studies with params:`, Object.fromEntries(searchParams));
+    console.log('🏥 Searching DICOM studies with params:', Object.fromEntries(searchParams));
 
     // Get Azure AD token
     const token = await getAccessToken();
@@ -255,9 +267,9 @@ async function searchStudies(req, res) {
 
     const response = await axios.get(qidoUrl, {
       headers: {
-        'Authorization': `Bearer ${token}`,
-        'Accept': 'application/dicom+json'
-      }
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/dicom+json',
+      },
     });
 
     // Log audit
@@ -267,8 +279,8 @@ async function searchStudies(req, res) {
       action: 'DICOM_SEARCH_STUDIES',
       details: {
         search_params: Object.fromEntries(searchParams),
-        result_count: response.data.length
-      }
+        result_count: response.data.length,
+      },
     });
 
     res.json({
@@ -276,18 +288,17 @@ async function searchStudies(req, res) {
       studies: response.data,
       metadata: {
         total: response.data.length,
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ DICOM Search Error:', error);
 
     res.status(500).json({
       success: false,
       error: 'Failed to search DICOM studies',
-      message: error.message,
-      response_time_ms: Date.now() - startTime
+      message: 'Tıbbi veri hatası. Lütfen tekrar deneyin.',
+      response_time_ms: Date.now() - startTime,
     });
   }
 }
@@ -313,9 +324,9 @@ async function getSeriesInStudy(req, res) {
 
     const response = await axios.get(qidoUrl, {
       headers: {
-        'Authorization': `Bearer ${token}`,
-        'Accept': 'application/dicom+json'
-      }
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/dicom+json',
+      },
     });
 
     // Log audit
@@ -325,8 +336,8 @@ async function getSeriesInStudy(req, res) {
       action: 'DICOM_GET_SERIES',
       details: {
         study_instance_uid: studyInstanceUid,
-        series_count: response.data.length
-      }
+        series_count: response.data.length,
+      },
     });
 
     res.json({
@@ -335,18 +346,17 @@ async function getSeriesInStudy(req, res) {
       metadata: {
         study_instance_uid: studyInstanceUid,
         total: response.data.length,
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ DICOM Get Series Error:', error);
 
     res.status(500).json({
       success: false,
       error: 'Failed to get DICOM series',
-      message: error.message,
-      response_time_ms: Date.now() - startTime
+      message: 'Tıbbi veri hatası. Lütfen tekrar deneyin.',
+      response_time_ms: Date.now() - startTime,
     });
   }
 }
@@ -378,10 +388,10 @@ async function retrieveInstance(req, res) {
 
     const response = await axios.get(wadoUrl, {
       headers: {
-        'Authorization': `Bearer ${token}`,
-        'Accept': 'application/dicom'
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/dicom',
       },
-      responseType: 'arraybuffer'
+      responseType: 'arraybuffer',
     });
 
     // Log audit
@@ -393,23 +403,22 @@ async function retrieveInstance(req, res) {
         study_instance_uid: studyInstanceUid,
         series_instance_uid: seriesInstanceUid,
         sop_instance_uid: sopInstanceUid,
-        file_size_bytes: response.data.length
-      }
+        file_size_bytes: response.data.length,
+      },
     });
 
     // Return DICOM file
     res.set('Content-Type', 'application/dicom');
     res.set('Content-Disposition', `attachment; filename="${sopInstanceUid}.dcm"`);
     res.send(Buffer.from(response.data));
-
   } catch (error) {
     console.error('❌ DICOM Retrieve Error:', error);
 
     res.status(500).json({
       success: false,
       error: 'Failed to retrieve DICOM instance',
-      message: error.message,
-      response_time_ms: Date.now() - startTime
+      message: 'Tıbbi veri hatası. Lütfen tekrar deneyin.',
+      response_time_ms: Date.now() - startTime,
     });
   }
 }
@@ -435,9 +444,9 @@ async function getMetadata(req, res) {
 
     const response = await axios.get(wadoUrl, {
       headers: {
-        'Authorization': `Bearer ${token}`,
-        'Accept': 'application/dicom+json'
-      }
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/dicom+json',
+      },
     });
 
     let metadata = response.data;
@@ -455,8 +464,8 @@ async function getMetadata(req, res) {
       details: {
         study_instance_uid: studyInstanceUid,
         instance_count: metadata.length,
-        de_identified: de_identify
-      }
+        de_identified: de_identify,
+      },
     });
 
     res.json({
@@ -466,18 +475,17 @@ async function getMetadata(req, res) {
         study_instance_uid: studyInstanceUid,
         instance_count: metadata.length,
         de_identified: de_identify === 'true' || de_identify === true,
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ DICOM Metadata Error:', error);
 
     res.status(500).json({
       success: false,
       error: 'Failed to get DICOM metadata',
-      message: error.message,
-      response_time_ms: Date.now() - startTime
+      message: 'Tıbbi veri hatası. Lütfen tekrar deneyin.',
+      response_time_ms: Date.now() - startTime,
     });
   }
 }
@@ -503,8 +511,8 @@ async function deleteStudy(req, res) {
 
     await axios.delete(deleteUrl, {
       headers: {
-        'Authorization': `Bearer ${token}`
-      }
+        Authorization: `Bearer ${token}`,
+      },
     });
 
     // Log audit
@@ -513,8 +521,8 @@ async function deleteStudy(req, res) {
       user_id,
       action: 'DICOM_DELETE_STUDY',
       details: {
-        study_instance_uid: studyInstanceUid
-      }
+        study_instance_uid: studyInstanceUid,
+      },
     });
 
     res.json({
@@ -522,18 +530,17 @@ async function deleteStudy(req, res) {
       message: 'DICOM study deleted successfully',
       metadata: {
         study_instance_uid: studyInstanceUid,
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ DICOM Delete Error:', error);
 
     res.status(500).json({
       success: false,
       error: 'Failed to delete DICOM study',
-      message: error.message,
-      response_time_ms: Date.now() - startTime
+      message: 'Tıbbi veri hatası. Lütfen tekrar deneyin.',
+      response_time_ms: Date.now() - startTime,
     });
   }
 }
@@ -547,5 +554,5 @@ module.exports = {
   getSeriesInStudy,
   retrieveInstance,
   getMetadata,
-  deleteStudy
+  deleteStudy,
 };

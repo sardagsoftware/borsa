@@ -5,8 +5,15 @@
  */
 
 const express = require('express');
+const { applySanitization } = require('./_middleware/sanitize');
 const router = express.Router();
 const knowledgeGraph = require('../services/neo4j-knowledge-graph');
+
+// Apply sanitization to all routes
+router.use((req, res, next) => {
+  applySanitization(req, res);
+  next();
+});
 
 /**
  * GET /api/knowledge-graph/precedents/:article
@@ -21,13 +28,12 @@ router.get('/precedents/:article', async (req, res) => {
       success: true,
       article,
       count: precedents.length,
-      precedents
+      precedents,
     });
-
   } catch (error) {
     res.status(500).json({
       success: false,
-      error: error.message
+      error: 'Bilgi grafi islemi basarisiz.',
     });
   }
 });
@@ -45,13 +51,12 @@ router.get('/related/:article', async (req, res) => {
       success: true,
       article,
       count: related.length,
-      related
+      related,
     });
-
   } catch (error) {
     res.status(500).json({
       success: false,
-      error: error.message
+      error: 'Bilgi grafi islemi basarisiz.',
     });
   }
 });
@@ -66,13 +71,12 @@ router.post('/article', async (req, res) => {
 
     res.json({
       success: true,
-      article
+      article,
     });
-
   } catch (error) {
     res.status(500).json({
       success: false,
-      error: error.message
+      error: 'Bilgi grafi islemi basarisiz.',
     });
   }
 });
@@ -88,13 +92,12 @@ router.post('/precedent', async (req, res) => {
 
     res.json({
       success: true,
-      precedent
+      precedent,
     });
-
   } catch (error) {
     res.status(500).json({
       success: false,
-      error: error.message
+      error: 'Bilgi grafi islemi basarisiz.',
     });
   }
 });
@@ -111,13 +114,12 @@ router.post('/rag-context', async (req, res) => {
     res.json({
       success: true,
       query,
-      context
+      context,
     });
-
   } catch (error) {
     res.status(500).json({
       success: false,
-      error: error.message
+      error: 'Bilgi grafi islemi basarisiz.',
     });
   }
 });
@@ -132,13 +134,12 @@ router.get('/stats', async (req, res) => {
 
     res.json({
       success: true,
-      stats
+      stats,
     });
-
   } catch (error) {
     res.status(500).json({
       success: false,
-      error: error.message
+      error: 'Bilgi grafi islemi basarisiz.',
     });
   }
 });

@@ -16,6 +16,7 @@
  */
 
 const crypto = require('crypto');
+const { applySanitization } = require('../_middleware/sanitize');
 
 // Medical specialties supported
 const MEDICAL_SPECIALTIES = {
@@ -28,7 +29,7 @@ const MEDICAL_SPECIALTIES = {
   PEDIATRICS: 'pediatrics',
   SURGERY: 'surgery',
   PSYCHIATRY: 'psychiatry',
-  EMERGENCY_MEDICINE: 'emergency_medicine'
+  EMERGENCY_MEDICINE: 'emergency_medicine',
 };
 
 // HIPAA audit logging
@@ -41,7 +42,7 @@ class HIPAALogger {
       patientId: this.maskPHI(patientId),
       ipAddress: data.ip || 'unknown',
       auditId: crypto.randomBytes(16).toString('hex'),
-      status: 'success'
+      status: 'success',
     };
 
     console.log('🏥 HIPAA Audit Log:', JSON.stringify(logEntry));
@@ -61,7 +62,13 @@ class MedicalDataValidator {
       throw new Error('Invalid FHIR resource: missing resourceType');
     }
 
-    const validResourceTypes = ['Patient', 'Observation', 'DiagnosticReport', 'MedicationRequest', 'Condition'];
+    const validResourceTypes = [
+      'Patient',
+      'Observation',
+      'DiagnosticReport',
+      'MedicationRequest',
+      'Condition',
+    ];
     if (!validResourceTypes.includes(resource.resourceType)) {
       throw new Error(`Unsupported FHIR resource type: ${resource.resourceType}`);
     }
@@ -109,39 +116,48 @@ class ClinicalDecisionSupport {
         probability: 0.78,
         icd10: 'G43.1',
         reasoning: 'Visual disturbances, unilateral headache, photophobia',
-        recommendations: ['Neurologist consultation', 'MRI if new onset', 'Triptans for acute treatment']
+        recommendations: [
+          'Neurologist consultation',
+          'MRI if new onset',
+          'Triptans for acute treatment',
+        ],
       },
       {
         condition: 'Tension-Type Headache',
         probability: 0.65,
         icd10: 'G44.2',
         reasoning: 'Bilateral pressure, stress-related',
-        recommendations: ['NSAIDs', 'Stress management', 'Physical therapy']
+        recommendations: ['NSAIDs', 'Stress management', 'Physical therapy'],
       },
       {
         condition: 'Cluster Headache',
         probability: 0.42,
         icd10: 'G44.0',
         reasoning: 'Unilateral pain pattern',
-        recommendations: ['High-flow oxygen', 'Sumatriptan injection', 'Verapamil prophylaxis']
-      }
+        recommendations: ['High-flow oxygen', 'Sumatriptan injection', 'Verapamil prophylaxis'],
+      },
     ];
 
     HIPAALogger.log('DIFFERENTIAL_DIAGNOSIS', patientData.userId, patientData.patientId, {
-      symptomsCount: symptoms.length
+      symptomsCount: symptoms.length,
     });
 
     return {
       diagnoses: diagnoses.sort((a, b) => b.probability - a.probability),
       confidenceScore: 0.85,
       urgencyLevel: this.calculateUrgency(symptoms),
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
   }
 
   static calculateUrgency(symptoms) {
     // Red flags for immediate attention
-    const redFlags = ['chest pain', 'difficulty breathing', 'severe headache', 'loss of consciousness'];
+    const redFlags = [
+      'chest pain',
+      'difficulty breathing',
+      'severe headache',
+      'loss of consciousness',
+    ];
     const hasRedFlag = symptoms.some(s => redFlags.some(rf => s.toLowerCase().includes(rf)));
 
     if (hasRedFlag) return 'URGENT';
@@ -155,25 +171,28 @@ class ClinicalDecisionSupport {
     const interactions = [];
 
     // Example: Warfarin + NSAIDs interaction
-    if (medications.includes('warfarin') && medications.some(m => m.includes('ibuprofen') || m.includes('aspirin'))) {
+    if (
+      medications.includes('warfarin') &&
+      medications.some(m => m.includes('ibuprofen') || m.includes('aspirin'))
+    ) {
       interactions.push({
         severity: 'HIGH',
         drugs: ['Warfarin', 'NSAIDs'],
         description: 'Increased bleeding risk',
         recommendation: 'Monitor INR closely, consider alternative pain management',
-        references: ['PMID: 12345678']
+        references: ['PMID: 12345678'],
       });
     }
 
     HIPAALogger.log('DRUG_INTERACTION_CHECK', null, null, {
       medicationCount: medications.length,
-      interactionsFound: interactions.length
+      interactionsFound: interactions.length,
     });
 
     return {
       interactions,
       safetyScore: interactions.length === 0 ? 100 : Math.max(0, 100 - interactions.length * 25),
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
   }
 }
@@ -190,7 +209,7 @@ class MedicalImagingAnalyzer {
       findings: [],
       impressions: [],
       biradsScore: modality === 'MAMMOGRAPHY' ? 2 : null,
-      recommendations: []
+      recommendations: [],
     };
 
     // Example findings based on modality
@@ -198,35 +217,35 @@ class MedicalImagingAnalyzer {
       findings.findings = [
         'Cardiomediastinal silhouette within normal limits',
         'No acute infiltrates or consolidations',
-        'No pleural effusion or pneumothorax'
+        'No pleural effusion or pneumothorax',
       ];
       findings.impressions = ['No acute cardiopulmonary findings'];
     } else if (modality === 'CT_HEAD') {
       findings.findings = [
         'No acute intracranial hemorrhage',
         'No mass effect or midline shift',
-        'Ventricles and sulci appropriate for age'
+        'Ventricles and sulci appropriate for age',
       ];
       findings.impressions = ['No acute intracranial abnormality'];
     } else if (modality === 'MRI_BRAIN') {
       findings.findings = [
         'Normal gray-white matter differentiation',
         'No restricted diffusion',
-        'No abnormal enhancement'
+        'No abnormal enhancement',
       ];
       findings.impressions = ['Normal brain MRI'];
     }
 
     HIPAALogger.log('MEDICAL_IMAGE_ANALYSIS', imageData.userId, imageData.patientId, {
       modality,
-      findingsCount: findings.findings.length
+      findingsCount: findings.findings.length,
     });
 
     return {
       ...findings,
       confidence: 0.92,
       timestamp: new Date().toISOString(),
-      aiModelVersion: 'LyDian-Medical-Vision-v2.5'
+      aiModelVersion: 'LyDian-Medical-Vision-v2.5',
     };
   }
 
@@ -236,7 +255,7 @@ class MedicalImagingAnalyzer {
       CT_HEAD: { name: 'CT Head', radiation: 'moderate', contrast: 'optional' },
       MRI_BRAIN: { name: 'MRI Brain', radiation: 'none', contrast: 'optional' },
       MAMMOGRAPHY: { name: 'Mammography', radiation: 'low', contrast: false },
-      ULTRASOUND: { name: 'Ultrasound', radiation: 'none', contrast: false }
+      ULTRASOUND: { name: 'Ultrasound', radiation: 'none', contrast: false },
     };
 
     return modalities[modality] || { name: 'Unknown', radiation: 'unknown', contrast: 'unknown' };
@@ -279,7 +298,7 @@ class LabResultInterpreter {
 
     HIPAALogger.log('LAB_RESULT_INTERPRETATION', labData.userId, labData.patientId, {
       testCount: interpretations.length,
-      abnormalCount: abnormalResults.length
+      abnormalCount: abnormalResults.length,
     });
 
     return {
@@ -287,7 +306,7 @@ class LabResultInterpreter {
       abnormalResults,
       summary: this.generateSummary(interpretations, abnormalResults),
       requiresFollowUp: abnormalResults.length > 0,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
   }
 
@@ -300,7 +319,8 @@ class LabResultInterpreter {
     if (value < normalRange.min) {
       status = 'LOW';
       interpretation = 'Leukopenia - Low white blood cell count';
-      clinicalSignificance = 'May indicate bone marrow suppression, viral infection, or immune system disorder';
+      clinicalSignificance =
+        'May indicate bone marrow suppression, viral infection, or immune system disorder';
     } else if (value > normalRange.max) {
       status = 'HIGH';
       interpretation = 'Leukocytosis - Elevated white blood cell count';
@@ -314,14 +334,12 @@ class LabResultInterpreter {
       normalRange,
       status,
       interpretation,
-      clinicalSignificance
+      clinicalSignificance,
     };
   }
 
   static interpretHemoglobin(value, gender) {
-    const normalRange = gender === 'male'
-      ? { min: 13.5, max: 17.5 }
-      : { min: 12.0, max: 15.5 };
+    const normalRange = gender === 'male' ? { min: 13.5, max: 17.5 } : { min: 12.0, max: 15.5 };
 
     let status = 'NORMAL';
     let interpretation = 'Hemoglobin within normal limits';
@@ -344,14 +362,12 @@ class LabResultInterpreter {
       normalRange,
       status,
       interpretation,
-      clinicalSignificance
+      clinicalSignificance,
     };
   }
 
   static interpretGlucose(value, fasting) {
-    const normalRange = fasting
-      ? { min: 70, max: 99 }
-      : { min: 70, max: 140 };
+    const normalRange = fasting ? { min: 70, max: 99 } : { min: 70, max: 140 };
 
     let status = 'NORMAL';
     let interpretation = 'Blood glucose within normal limits';
@@ -360,15 +376,18 @@ class LabResultInterpreter {
     if (value < normalRange.min) {
       status = 'LOW';
       interpretation = 'Hypoglycemia - Low blood glucose';
-      clinicalSignificance = 'May indicate excessive insulin, medication effect, or endocrine disorder';
+      clinicalSignificance =
+        'May indicate excessive insulin, medication effect, or endocrine disorder';
     } else if (value > normalRange.max && value < 126) {
       status = 'BORDERLINE';
       interpretation = 'Prediabetes - Impaired fasting glucose';
-      clinicalSignificance = 'Increased risk for type 2 diabetes, lifestyle modifications recommended';
+      clinicalSignificance =
+        'Increased risk for type 2 diabetes, lifestyle modifications recommended';
     } else if (value >= 126) {
       status = 'HIGH';
       interpretation = 'Diabetes range - Elevated blood glucose';
-      clinicalSignificance = 'Diagnostic for diabetes if confirmed on repeat testing, requires medical management';
+      clinicalSignificance =
+        'Diagnostic for diabetes if confirmed on repeat testing, requires medical management';
     }
 
     return {
@@ -379,7 +398,7 @@ class LabResultInterpreter {
       status,
       interpretation,
       clinicalSignificance,
-      testingCondition: fasting ? 'Fasting' : 'Random'
+      testingCondition: fasting ? 'Fasting' : 'Random',
     };
   }
 
@@ -388,7 +407,9 @@ class LabResultInterpreter {
       return 'All laboratory values within normal limits.';
     }
 
-    const criticalCount = abnormalResults.filter(r => r.status === 'HIGH' || r.status === 'LOW').length;
+    const criticalCount = abnormalResults.filter(
+      r => r.status === 'HIGH' || r.status === 'LOW'
+    ).length;
     return `${abnormalResults.length} abnormal result(s) found${criticalCount > 0 ? `, ${criticalCount} requiring attention` : ''}.`;
   }
 }
@@ -399,24 +420,32 @@ class FHIRResourceHandler {
     const fhirPatient = {
       resourceType: 'Patient',
       id: crypto.randomUUID(),
-      identifier: [{
-        system: 'https://lydian.ai/patient-id',
-        value: patientData.medicalRecordNumber
-      }],
-      name: [{
-        use: 'official',
-        family: patientData.lastName,
-        given: [patientData.firstName]
-      }],
+      identifier: [
+        {
+          system: 'https://lydian.ai/patient-id',
+          value: patientData.medicalRecordNumber,
+        },
+      ],
+      name: [
+        {
+          use: 'official',
+          family: patientData.lastName,
+          given: [patientData.firstName],
+        },
+      ],
       gender: patientData.gender,
       birthDate: patientData.birthDate,
-      address: patientData.address ? [{
-        use: 'home',
-        line: [patientData.address.street],
-        city: patientData.address.city,
-        state: patientData.address.state,
-        postalCode: patientData.address.zip
-      }] : []
+      address: patientData.address
+        ? [
+            {
+              use: 'home',
+              line: [patientData.address.street],
+              city: patientData.address.city,
+              state: patientData.address.state,
+              postalCode: patientData.address.zip,
+            },
+          ]
+        : [],
     };
 
     HIPAALogger.log('FHIR_PATIENT_CREATED', patientData.userId, fhirPatient.id);
@@ -429,29 +458,35 @@ class FHIRResourceHandler {
       resourceType: 'Observation',
       id: crypto.randomUUID(),
       status: 'final',
-      category: [{
-        coding: [{
-          system: 'http://terminology.hl7.org/CodeSystem/observation-category',
-          code: 'laboratory',
-          display: 'Laboratory'
-        }]
-      }],
+      category: [
+        {
+          coding: [
+            {
+              system: 'http://terminology.hl7.org/CodeSystem/observation-category',
+              code: 'laboratory',
+              display: 'Laboratory',
+            },
+          ],
+        },
+      ],
       code: {
-        coding: [{
-          system: 'http://loinc.org',
-          code: observationData.loincCode,
-          display: observationData.testName
-        }]
+        coding: [
+          {
+            system: 'http://loinc.org',
+            code: observationData.loincCode,
+            display: observationData.testName,
+          },
+        ],
       },
       subject: {
-        reference: `Patient/${observationData.patientId}`
+        reference: `Patient/${observationData.patientId}`,
       },
       effectiveDateTime: new Date().toISOString(),
       valueQuantity: {
         value: observationData.value,
         unit: observationData.unit,
-        system: 'http://unitsofmeasure.org'
-      }
+        system: 'http://unitsofmeasure.org',
+      },
     };
 
     HIPAALogger.log('FHIR_OBSERVATION_CREATED', observationData.userId, observationData.patientId);
@@ -462,6 +497,7 @@ class FHIRResourceHandler {
 
 // Medical Expert API Routes Handler
 async function handleMedicalExpertRequest(req, res) {
+  applySanitization(req, res);
   try {
     const { action, data } = req.body;
 
@@ -469,7 +505,7 @@ async function handleMedicalExpertRequest(req, res) {
     if (!req.headers['x-lydian-auth-token']) {
       return res.status(401).json({
         error: 'Unauthorized',
-        message: 'HIPAA-compliant authentication required'
+        message: 'HIPAA-compliant authentication required',
       });
     }
 
@@ -488,10 +524,7 @@ async function handleMedicalExpertRequest(req, res) {
         break;
 
       case 'ANALYZE_MEDICAL_IMAGE':
-        result = await MedicalImagingAnalyzer.analyzeMedicalImage(
-          data.imageData,
-          data.modality
-        );
+        result = await MedicalImagingAnalyzer.analyzeMedicalImage(data.imageData, data.modality);
         break;
 
       case 'INTERPRET_LAB_RESULTS':
@@ -515,8 +548,8 @@ async function handleMedicalExpertRequest(req, res) {
             'ANALYZE_MEDICAL_IMAGE',
             'INTERPRET_LAB_RESULTS',
             'CREATE_FHIR_PATIENT',
-            'CREATE_FHIR_OBSERVATION'
-          ]
+            'CREATE_FHIR_OBSERVATION',
+          ],
         });
     }
 
@@ -526,9 +559,8 @@ async function handleMedicalExpertRequest(req, res) {
       result,
       apiVersion: '2.0.0',
       compliance: ['HIPAA', 'FHIR R4', 'HL7 v2.x'],
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
-
   } catch (error) {
     console.error('❌ Medical Expert API Error:', error);
 
@@ -536,7 +568,7 @@ async function handleMedicalExpertRequest(req, res) {
       success: false,
       error: 'Internal server error',
       message: 'An error occurred while processing your medical request',
-      errorId: crypto.randomBytes(8).toString('hex')
+      errorId: crypto.randomBytes(8).toString('hex'),
     });
   }
 }
@@ -549,5 +581,5 @@ module.exports = {
   ClinicalDecisionSupport,
   MedicalImagingAnalyzer,
   LabResultInterpreter,
-  FHIRResourceHandler
+  FHIRResourceHandler,
 };

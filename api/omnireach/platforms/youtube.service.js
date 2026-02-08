@@ -20,7 +20,9 @@ class YouTubeService {
     this.config = {
       clientId: process.env.YOUTUBE_CLIENT_ID,
       clientSecret: process.env.YOUTUBE_CLIENT_SECRET,
-      redirectUri: process.env.YOUTUBE_REDIRECT_URI || 'http://localhost:3500/api/omnireach/platforms/youtube/callback'
+      redirectUri:
+        process.env.YOUTUBE_REDIRECT_URI ||
+        'http://localhost:3500/api/omnireach/platforms/youtube/callback',
     };
 
     this.initializeClient();
@@ -39,7 +41,7 @@ class YouTubeService {
 
       this.youtube = google.youtube({
         version: 'v3',
-        auth: this.oauth2Client
+        auth: this.oauth2Client,
       });
 
       console.log('✅ YouTube OAuth2 client initialized');
@@ -56,13 +58,16 @@ class YouTubeService {
     const state = crypto.randomBytes(32).toString('hex');
     this.stateStore.set(state, {
       createdAt: Date.now(),
-      validated: false
+      validated: false,
     });
 
     // Auto-cleanup after 10 minutes
-    setTimeout(() => {
-      this.stateStore.delete(state);
-    }, 10 * 60 * 1000);
+    setTimeout(
+      () => {
+        this.stateStore.delete(state);
+      },
+      10 * 60 * 1000
+    );
 
     return state;
   }
@@ -98,7 +103,7 @@ class YouTubeService {
     const scopes = [
       'https://www.googleapis.com/auth/youtube.upload',
       'https://www.googleapis.com/auth/youtube.readonly',
-      'https://www.googleapis.com/auth/youtube.force-ssl'
+      'https://www.googleapis.com/auth/youtube.force-ssl',
     ];
 
     const state = this.generateState();
@@ -107,7 +112,7 @@ class YouTubeService {
       access_type: 'offline',
       scope: scopes,
       prompt: 'consent',
-      state: state
+      state: state,
     });
 
     console.log('🔗 YouTube Auth URL generated with state protection');
@@ -138,7 +143,7 @@ class YouTubeService {
       // Get channel info
       const channelResponse = await this.youtube.channels.list({
         part: 'snippet,contentDetails,statistics',
-        mine: true
+        mine: true,
       });
 
       const channel = channelResponse.data.items[0];
@@ -159,14 +164,14 @@ class YouTubeService {
           thumbnails: channel.snippet.thumbnails,
           subscriberCount: channel.statistics.subscriberCount,
           videoCount: channel.statistics.videoCount,
-          viewCount: channel.statistics.viewCount
-        }
+          viewCount: channel.statistics.viewCount,
+        },
       };
     } catch (error) {
       console.error('❌ [YouTube] OAuth connection failed:', error.message);
       return {
         success: false,
-        error: error.message
+        error: 'Platform işlem hatası',
       };
     }
   }
@@ -187,13 +192,13 @@ class YouTubeService {
 
       return {
         success: true,
-        tokens: credentials
+        tokens: credentials,
       };
     } catch (error) {
       console.error('❌ [YouTube] Token refresh failed:', error.message);
       return {
         success: false,
-        error: error.message
+        error: 'Platform işlem hatası',
       };
     }
   }
@@ -229,14 +234,14 @@ class YouTubeService {
           tags: videoData.tags || [],
           categoryId: videoData.categoryId || '22', // People & Blogs
           defaultLanguage: 'tr',
-          defaultAudioLanguage: 'tr'
+          defaultAudioLanguage: 'tr',
         },
         status: {
           privacyStatus: videoData.privacyStatus || 'private', // private, unlisted, public
           selfDeclaredMadeForKids: videoData.madeForKids || false,
           embeddable: true,
-          publicStatsViewable: true
-        }
+          publicStatsViewable: true,
+        },
       };
 
       // If it's a Short, add #Shorts to description
@@ -249,8 +254,8 @@ class YouTubeService {
         part: 'snippet,status',
         requestBody: videoMetadata,
         media: {
-          body: fs.createReadStream(videoData.filePath)
-        }
+          body: fs.createReadStream(videoData.filePath),
+        },
       });
 
       const uploadedVideo = response.data;
@@ -265,13 +270,13 @@ class YouTubeService {
         url: `https://www.youtube.com/watch?v=${uploadedVideo.id}`,
         embedUrl: `https://www.youtube.com/embed/${uploadedVideo.id}`,
         title: uploadedVideo.snippet.title,
-        publishedAt: uploadedVideo.snippet.publishedAt
+        publishedAt: uploadedVideo.snippet.publishedAt,
       };
     } catch (error) {
       console.error('❌ [YouTube] Video upload failed:', error.message);
       return {
         success: false,
-        error: error.message
+        error: 'Platform işlem hatası',
       };
     }
   }
@@ -291,21 +296,21 @@ class YouTubeService {
       const response = await this.youtube.thumbnails.set({
         videoId: videoId,
         media: {
-          body: fs.createReadStream(thumbnailPath)
-        }
+          body: fs.createReadStream(thumbnailPath),
+        },
       });
 
       console.log('✅ [YouTube] Thumbnail uploaded successfully');
 
       return {
         success: true,
-        thumbnails: response.data.items[0]
+        thumbnails: response.data.items[0],
       };
     } catch (error) {
       console.error('❌ [YouTube] Thumbnail upload failed:', error.message);
       return {
         success: false,
-        error: error.message
+        error: 'Platform işlem hatası',
       };
     }
   }
@@ -324,20 +329,20 @@ class YouTubeService {
         part: 'snippet,status',
         requestBody: {
           id: videoId,
-          ...updates
-        }
+          ...updates,
+        },
       });
 
       console.log('✅ [YouTube] Video updated successfully');
       return {
         success: true,
-        video: response.data
+        video: response.data,
       };
     } catch (error) {
       console.error('❌ [YouTube] Video update failed:', error.message);
       return {
         success: false,
-        error: error.message
+        error: 'Platform işlem hatası',
       };
     }
   }
@@ -351,7 +356,7 @@ class YouTubeService {
     try {
       const response = await this.youtube.videos.list({
         part: 'statistics,snippet',
-        id: videoId
+        id: videoId,
       });
 
       const video = response.data.items[0];
@@ -363,14 +368,14 @@ class YouTubeService {
           likes: video.statistics.likeCount,
           comments: video.statistics.commentCount,
           title: video.snippet.title,
-          publishedAt: video.snippet.publishedAt
-        }
+          publishedAt: video.snippet.publishedAt,
+        },
       };
     } catch (error) {
       console.error('❌ [YouTube] Failed to get video stats:', error.message);
       return {
         success: false,
-        error: error.message
+        error: 'Platform işlem hatası',
       };
     }
   }

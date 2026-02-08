@@ -29,17 +29,17 @@ const { logMedicalAudit } = require('../../config/white-hat-policy');
  */
 function calculateCURB65(data) {
   const {
-    confusion,              // mental status altered
-    urea,                   // BUN >19 mg/dL (7 mmol/L)
-    respiratoryRate,        // ≥30 breaths/min
-    bloodPressure,          // SBP <90 or DBP ≤60
-    age                     // ≥65 years
+    confusion, // mental status altered
+    urea, // BUN >19 mg/dL (7 mmol/L)
+    respiratoryRate, // ≥30 breaths/min
+    bloodPressure, // SBP <90 or DBP ≤60
+    age, // ≥65 years
   } = data;
 
   let score = 0;
 
   if (confusion) score += 1;
-  if (urea > 19) score += 1;  // or >7 mmol/L
+  if (urea > 19) score += 1; // or >7 mmol/L
   if (respiratoryRate >= 30) score += 1;
   if (bloodPressure.systolic < 90 || bloodPressure.diastolic <= 60) score += 1;
   if (age >= 65) score += 1;
@@ -71,9 +71,10 @@ function calculateCURB65(data) {
       uremia: urea > 19,
       respiratoryRate: respiratoryRate >= 30,
       hypotension: bloodPressure.systolic < 90 || bloodPressure.diastolic <= 60,
-      age65Plus: age >= 65
+      age65Plus: age >= 65,
     },
-    treatment: 'Antibiotics (ceftriaxone + azithromycin or respiratory fluoroquinolone), O2 if hypoxemic, IV fluids'
+    treatment:
+      'Antibiotics (ceftriaxone + azithromycin or respiratory fluoroquinolone), O2 if hypoxemic, IV fluids',
   };
 }
 
@@ -88,15 +89,15 @@ function calculateCURB65(data) {
  */
 function calculateWellsDVT(data) {
   const {
-    activeCanser,                       // +1
-    paralysisRecent,                    // +1
-    recentImmobilization,               // +1
-    tendernessDVTArea,                  // +1
-    entireLegSwollen,                   // +1
-    calf3cmLarger,                      // +1
-    pittingEdema,                       // +1
-    collateralVeins,                    // +1
-    alternativeDiagnosisLikely          // -2
+    activeCanser, // +1
+    paralysisRecent, // +1
+    recentImmobilization, // +1
+    tendernessDVTArea, // +1
+    entireLegSwollen, // +1
+    calf3cmLarger, // +1
+    pittingEdema, // +1
+    collateralVeins, // +1
+    alternativeDiagnosisLikely, // -2
   } = data;
 
   let score = 0;
@@ -116,7 +117,8 @@ function calculateWellsDVT(data) {
   if (score <= 0) {
     probability = 'Low Probability';
     dvtRisk = '5%';
-    recommendation = 'D-dimer testing. If negative, DVT ruled out. If positive, proceed to ultrasound.';
+    recommendation =
+      'D-dimer testing. If negative, DVT ruled out. If positive, proceed to ultrasound.';
   } else if (score <= 2) {
     probability = 'Moderate Probability';
     dvtRisk = '17%';
@@ -124,7 +126,8 @@ function calculateWellsDVT(data) {
   } else {
     probability = 'High Probability';
     dvtRisk = '53%';
-    recommendation = '⚠️ Doppler ultrasound STAT. Consider empiric anticoagulation while awaiting results.';
+    recommendation =
+      '⚠️ Doppler ultrasound STAT. Consider empiric anticoagulation while awaiting results.';
   }
 
   return {
@@ -133,12 +136,14 @@ function calculateWellsDVT(data) {
     dvtRisk,
     recommendation,
     scale: 'Wells DVT Score',
-    nextSteps: score >= 2
-      ? 'Urgent lower extremity venous duplex ultrasound'
-      : 'D-dimer first (age-adjusted), then ultrasound if positive',
-    anticoagulation: score >= 3
-      ? 'Consider empiric LMWH or DOAC while awaiting imaging'
-      : 'Await diagnostic confirmation'
+    nextSteps:
+      score >= 2
+        ? 'Urgent lower extremity venous duplex ultrasound'
+        : 'D-dimer first (age-adjusted), then ultrasound if positive',
+    anticoagulation:
+      score >= 3
+        ? 'Consider empiric LMWH or DOAC while awaiting imaging'
+        : 'Await diagnostic confirmation',
   };
 }
 
@@ -153,13 +158,13 @@ function calculateWellsDVT(data) {
  */
 function calculateWellsPE(data) {
   const {
-    clinicalDVTSigns,                   // +3
-    peMoreLikely,                       // +3
-    heartRateOver100,                   // +1.5
-    immobilizationOrSurgery,            // +1.5
-    previousDVTPE,                      // +1.5
-    hemoptysis,                         // +1
-    malignancy                          // +1
+    clinicalDVTSigns, // +3
+    peMoreLikely, // +3
+    heartRateOver100, // +1.5
+    immobilizationOrSurgery, // +1.5
+    previousDVTPE, // +1.5
+    hemoptysis, // +1
+    malignancy, // +1
   } = data;
 
   let score = 0;
@@ -194,12 +199,11 @@ function calculateWellsPE(data) {
     peRisk,
     recommendation,
     scale: 'Wells PE Score',
-    imaging: score > 4
-      ? 'CT Pulmonary Angiography (CTPA) STAT'
-      : 'D-dimer first, CTPA if elevated',
-    anticoagulation: score > 6
-      ? '⚠️ Consider empiric anticoagulation (LMWH/DOAC) while awaiting CTPA'
-      : 'Await diagnostic confirmation'
+    imaging: score > 4 ? 'CT Pulmonary Angiography (CTPA) STAT' : 'D-dimer first, CTPA if elevated',
+    anticoagulation:
+      score > 6
+        ? '⚠️ Consider empiric anticoagulation (LMWH/DOAC) while awaiting CTPA'
+        : 'Await diagnostic confirmation',
   };
 }
 
@@ -222,7 +226,7 @@ function applyPERCRule(data) {
     noEstrogen,
     noPriorDVTPE,
     noSurgeryTrauma,
-    noUnilateralLegSwelling
+    noUnilateralLegSwelling,
   } = data;
 
   const allNegative =
@@ -238,10 +242,12 @@ function applyPERCRule(data) {
   let recommendation, peProbability;
 
   if (allNegative) {
-    recommendation = '✓ PERC NEGATIVE - PE ruled out. No further testing needed (D-dimer, CTPA not indicated).';
+    recommendation =
+      '✓ PERC NEGATIVE - PE ruled out. No further testing needed (D-dimer, CTPA not indicated).';
     peProbability = '<2%';
   } else {
-    recommendation = '✗ PERC POSITIVE - Cannot rule out PE. Proceed with Wells criteria and D-dimer/CTPA as indicated.';
+    recommendation =
+      '✗ PERC POSITIVE - Cannot rule out PE. Proceed with Wells criteria and D-dimer/CTPA as indicated.';
     peProbability = 'Cannot be excluded';
   }
 
@@ -257,10 +263,10 @@ function applyPERCRule(data) {
       noEstrogen,
       noPriorDVTPE,
       noSurgeryTrauma,
-      noUnilateralLegSwelling
+      noUnilateralLegSwelling,
     },
     note: 'PERC rule only applies to LOW-RISK patients (Wells PE score ≤1.5). Do not use in moderate/high-risk patients.',
-    validation: 'Sensitivity 97.4%, NPV 99.6% when applied correctly'
+    validation: 'Sensitivity 97.4%, NPV 99.6% when applied correctly',
   };
 }
 
@@ -289,7 +295,7 @@ function applyCanadianCSpine(data) {
     absenceMidlineTenderness,
 
     // Able to rotate neck?
-    ableRotate45Degrees
+    ableRotate45Degrees,
   } = data;
 
   let xrayRequired, recommendation;
@@ -297,12 +303,16 @@ function applyCanadianCSpine(data) {
   // Step 1: Any high-risk factor?
   if (age65OrOlder || dangerousMechanism || parestesias) {
     xrayRequired = true;
-    recommendation = '📷 C-SPINE IMAGING REQUIRED - High-risk factor present. Order cervical spine X-rays or CT.';
+    recommendation =
+      '📷 C-SPINE IMAGING REQUIRED - High-risk factor present. Order cervical spine X-rays or CT.';
   } else {
     // Step 2: Any low-risk factor allowing assessment?
     const hasLowRiskFactor =
-      simpleRearEnd || sittingPositionED || ambulatoryAnytime ||
-      delayedOnsetPain || absenceMidlineTenderness;
+      simpleRearEnd ||
+      sittingPositionED ||
+      ambulatoryAnytime ||
+      delayedOnsetPain ||
+      absenceMidlineTenderness;
 
     if (!hasLowRiskFactor) {
       xrayRequired = true;
@@ -311,7 +321,8 @@ function applyCanadianCSpine(data) {
       // Step 3: Able to rotate neck 45° left and right?
       if (ableRotate45Degrees) {
         xrayRequired = false;
-        recommendation = '✓ C-SPINE IMAGING NOT REQUIRED - Canadian C-Spine Rule negative. Collar can be removed.';
+        recommendation =
+          '✓ C-SPINE IMAGING NOT REQUIRED - Canadian C-Spine Rule negative. Collar can be removed.';
       } else {
         xrayRequired = true;
         recommendation = '📷 C-SPINE IMAGING REQUIRED - Unable to rotate neck 45°.';
@@ -329,15 +340,15 @@ function applyCanadianCSpine(data) {
         sittingPositionED,
         ambulatoryAnytime,
         delayedOnsetPain,
-        absenceMidlineTenderness
+        absenceMidlineTenderness,
       },
-      ableRotate45Degrees
+      ableRotate45Degrees,
     },
     imaging: xrayRequired
       ? 'Cervical spine X-rays (AP, lateral, odontoid) or CT C-spine if high-risk mechanism'
       : 'No imaging needed - clear cervical spine clinically',
     sensitivity: '99.4% for important injuries',
-    note: 'Rule applies to alert, stable trauma patients with GCS 15'
+    note: 'Rule applies to alert, stable trauma patients with GCS 15',
   };
 }
 
@@ -353,10 +364,10 @@ function applyCanadianCSpine(data) {
  */
 function assessSIRS(data) {
   const {
-    temperature,        // <36°C or >38°C
-    heartRate,          // >90 bpm
-    respiratoryRate,    // >20 or PaCO2 <32
-    wbc                 // <4,000 or >12,000 or >10% bands
+    temperature, // <36°C or >38°C
+    heartRate, // >90 bpm
+    respiratoryRate, // >20 or PaCO2 <32
+    wbc, // <4,000 or >12,000 or >10% bands
   } = data;
 
   let score = 0;
@@ -378,7 +389,8 @@ function assessSIRS(data) {
     recommendation = 'SIRS criteria not met. Monitor for infection if clinically indicated.';
   } else {
     interpretation = 'SIRS Positive';
-    recommendation = '⚠️ SIRS present - Assess for source of infection. If infection confirmed, patient has SEPSIS. Check lactate, blood cultures, initiate sepsis protocol.';
+    recommendation =
+      '⚠️ SIRS present - Assess for source of infection. If infection confirmed, patient has SEPSIS. Check lactate, blood cultures, initiate sepsis protocol.';
   }
 
   return {
@@ -389,12 +401,13 @@ function assessSIRS(data) {
       temperature: { value: temperature, abnormal: tempAbnormal },
       heartRate: { value: heartRate, abnormal: hrAbnormal },
       respiratoryRate: { value: respiratoryRate, abnormal: rrAbnormal },
-      wbc: { value: wbc, abnormal: wbcAbnormal }
+      wbc: { value: wbc, abnormal: wbcAbnormal },
     },
-    sepsisWorkup: score >= 2
-      ? 'Blood cultures x2, lactate, CBC, CMP, UA/UCx, CXR, consider procalcitonin'
-      : 'Not indicated unless clinical suspicion',
-    note: 'SIRS + confirmed infection = Sepsis. Use qSOFA for sepsis risk stratification.'
+    sepsisWorkup:
+      score >= 2
+        ? 'Blood cultures x2, lactate, CBC, CMP, UA/UCx, CXR, consider procalcitonin'
+        : 'Not indicated unless clinical suspicion',
+    note: 'SIRS + confirmed infection = Sepsis. Use qSOFA for sepsis risk stratification.',
   };
 }
 
@@ -410,9 +423,9 @@ function assessSIRS(data) {
  */
 function calculateQSOFA(data) {
   const {
-    respiratoryRate,    // ≥22
-    alteredMentation,   // GCS <15
-    systolicBP          // ≤100
+    respiratoryRate, // ≥22
+    alteredMentation, // GCS <15
+    systolicBP, // ≤100
   } = data;
 
   let score = 0;
@@ -430,7 +443,8 @@ function calculateQSOFA(data) {
   } else {
     interpretation = 'High Risk - Sepsis Likely';
     mortality = '10-40%';
-    recommendation = '⚠️ URGENT SEPSIS PROTOCOL - ICU evaluation, sepsis bundle (antibiotics within 1 hour, IV fluids, lactate, blood cultures)';
+    recommendation =
+      '⚠️ URGENT SEPSIS PROTOCOL - ICU evaluation, sepsis bundle (antibiotics within 1 hour, IV fluids, lactate, blood cultures)';
   }
 
   return {
@@ -441,12 +455,13 @@ function calculateQSOFA(data) {
     criteria: {
       respiratoryRate: respiratoryRate >= 22,
       alteredMentation,
-      systolicBP: systolicBP <= 100
+      systolicBP: systolicBP <= 100,
     },
-    sepsisBundle: score >= 2
-      ? '1) Blood cultures x2, 2) Lactate, 3) Broad-spectrum antibiotics within 1 hour, 4) IV crystalloid 30mL/kg if hypotensive or lactate ≥4'
-      : 'Not indicated',
-    note: 'qSOFA ≥2 should trigger full SOFA score calculation and sepsis workup'
+    sepsisBundle:
+      score >= 2
+        ? '1) Blood cultures x2, 2) Lactate, 3) Broad-spectrum antibiotics within 1 hour, 4) IV crystalloid 30mL/kg if hypotensive or lactate ≥4'
+        : 'Not indicated',
+    note: 'qSOFA ≥2 should trigger full SOFA score calculation and sepsis workup',
   };
 }
 
@@ -486,7 +501,7 @@ function calculateRevisedTraumaScore(data) {
   else if (respiratoryRate >= 1) rrCode = 1;
   else rrCode = 0;
 
-  const rts = (0.9368 * gcsCode) + (0.7326 * sbpCode) + (0.2908 * rrCode);
+  const rts = 0.9368 * gcsCode + 0.7326 * sbpCode + 0.2908 * rrCode;
 
   let survival, recommendation;
 
@@ -501,7 +516,8 @@ function calculateRevisedTraumaScore(data) {
     recommendation = '⚠️ Poor prognosis - aggressive resuscitation, trauma surgery consult';
   } else {
     survival = '<50%';
-    recommendation = '🚨 CRITICAL - Immediate resuscitation, activate massive transfusion protocol, trauma surgery STAT';
+    recommendation =
+      '🚨 CRITICAL - Immediate resuscitation, activate massive transfusion protocol, trauma surgery STAT';
   }
 
   return {
@@ -511,10 +527,10 @@ function calculateRevisedTraumaScore(data) {
     components: {
       gcs: { value: gcs, code: gcsCode },
       systolicBP: { value: systolicBP, code: sbpCode },
-      respiratoryRate: { value: respiratoryRate, code: rrCode }
+      respiratoryRate: { value: respiratoryRate, code: rrCode },
     },
     scale: 'RTS 0-7.84 (higher = better)',
-    triageDecision: rts < 4 ? 'Immediate trauma center transport' : 'Standard transport acceptable'
+    triageDecision: rts < 4 ? 'Immediate trauma center transport' : 'Standard transport acceptable',
   };
 }
 
@@ -538,7 +554,7 @@ async function handleCURB65(req, res) {
       user_id: data.user_id,
       patient_id: data.patient_id,
       action: 'CURB65_ASSESSMENT',
-      details: { score: result.score, disposition: result.disposition }
+      details: { score: result.score, disposition: result.disposition },
     });
 
     res.json({
@@ -546,16 +562,15 @@ async function handleCURB65(req, res) {
       result,
       metadata: {
         calculator: 'CURB-65 Score',
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ CURB-65 Error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to calculate CURB-65',
-      message: error.message
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
     });
   }
 }
@@ -574,7 +589,7 @@ async function handleWellsDVT(req, res) {
       user_id: data.user_id,
       patient_id: data.patient_id,
       action: 'WELLS_DVT_ASSESSMENT',
-      details: { score: result.score, probability: result.probability }
+      details: { score: result.score, probability: result.probability },
     });
 
     res.json({
@@ -582,16 +597,15 @@ async function handleWellsDVT(req, res) {
       result,
       metadata: {
         calculator: 'Wells DVT Criteria',
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ Wells DVT Error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to calculate Wells DVT',
-      message: error.message
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
     });
   }
 }
@@ -610,7 +624,7 @@ async function handleWellsPE(req, res) {
       user_id: data.user_id,
       patient_id: data.patient_id,
       action: 'WELLS_PE_ASSESSMENT',
-      details: { score: result.score, probability: result.probability }
+      details: { score: result.score, probability: result.probability },
     });
 
     res.json({
@@ -618,16 +632,15 @@ async function handleWellsPE(req, res) {
       result,
       metadata: {
         calculator: 'Wells PE Criteria',
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ Wells PE Error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to calculate Wells PE',
-      message: error.message
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
     });
   }
 }
@@ -646,7 +659,7 @@ async function handlePERC(req, res) {
       user_id: data.user_id,
       patient_id: data.patient_id,
       action: 'PERC_RULE_APPLICATION',
-      details: { percNegative: result.percNegative }
+      details: { percNegative: result.percNegative },
     });
 
     res.json({
@@ -654,16 +667,15 @@ async function handlePERC(req, res) {
       result,
       metadata: {
         calculator: 'PERC Rule',
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ PERC Rule Error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to apply PERC rule',
-      message: error.message
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
     });
   }
 }
@@ -682,7 +694,7 @@ async function handleCanadianCSpine(req, res) {
       user_id: data.user_id,
       patient_id: data.patient_id,
       action: 'CANADIAN_CSPINE_RULE',
-      details: { xrayRequired: result.xrayRequired }
+      details: { xrayRequired: result.xrayRequired },
     });
 
     res.json({
@@ -690,16 +702,15 @@ async function handleCanadianCSpine(req, res) {
       result,
       metadata: {
         calculator: 'Canadian C-Spine Rule',
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ Canadian C-Spine Rule Error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to apply Canadian C-Spine Rule',
-      message: error.message
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
     });
   }
 }
@@ -718,7 +729,7 @@ async function handleSIRS(req, res) {
       user_id: data.user_id,
       patient_id: data.patient_id,
       action: 'SIRS_ASSESSMENT',
-      details: { score: result.score, interpretation: result.interpretation }
+      details: { score: result.score, interpretation: result.interpretation },
     });
 
     res.json({
@@ -726,16 +737,15 @@ async function handleSIRS(req, res) {
       result,
       metadata: {
         calculator: 'SIRS Criteria',
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ SIRS Assessment Error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to assess SIRS',
-      message: error.message
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
     });
   }
 }
@@ -754,7 +764,7 @@ async function handleQSOFA(req, res) {
       user_id: data.user_id,
       patient_id: data.patient_id,
       action: 'QSOFA_ASSESSMENT',
-      details: { score: result.score, interpretation: result.interpretation }
+      details: { score: result.score, interpretation: result.interpretation },
     });
 
     res.json({
@@ -762,16 +772,15 @@ async function handleQSOFA(req, res) {
       result,
       metadata: {
         calculator: 'qSOFA Score',
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ qSOFA Error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to calculate qSOFA',
-      message: error.message
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
     });
   }
 }
@@ -790,7 +799,7 @@ async function handleRevisedTraumaScore(req, res) {
       user_id: data.user_id,
       patient_id: data.patient_id,
       action: 'REVISED_TRAUMA_SCORE',
-      details: { rts: result.rts, survival: result.survival }
+      details: { rts: result.rts, survival: result.survival },
     });
 
     res.json({
@@ -798,16 +807,15 @@ async function handleRevisedTraumaScore(req, res) {
       result,
       metadata: {
         calculator: 'Revised Trauma Score',
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ Revised Trauma Score Error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to calculate Revised Trauma Score',
-      message: error.message
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
     });
   }
 }
@@ -828,5 +836,5 @@ module.exports = {
   applyCanadianCSpine,
   assessSIRS,
   calculateQSOFA,
-  calculateRevisedTraumaScore
+  calculateRevisedTraumaScore,
 };

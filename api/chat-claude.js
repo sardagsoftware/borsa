@@ -4,42 +4,43 @@
 require('dotenv').config();
 const Anthropic = require('@anthropic-ai/sdk');
 const { getCorsOrigin } = require('./_middleware/cors');
+const { applySanitization } = require('./_middleware/sanitize');
 
 // AX9F7E2B Configuration
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
 
 // AX9F7E2B Model Configurations
 const AX9F7E2B_MODELS = {
-  'AX9F7E2B': {
+  AX9F7E2B: {
     name: 'AX9F7E2B',
     maxTokens: 8192,
     contextWindow: 200000,
-    description: 'Most intelligent AX9F7E2B model'
+    description: 'Most intelligent AX9F7E2B model',
   },
   'AX9F7E2B-latest': {
     name: 'AX9F7E2B',
     maxTokens: 8192,
     contextWindow: 200000,
-    description: 'Latest AX9F7E2B 3.5 Sonnet'
+    description: 'Latest AX9F7E2B 3.5 Sonnet',
   },
-  'AX4D8C1A': {
+  AX4D8C1A: {
     name: 'AX4D8C1A',
     maxTokens: 4096,
     contextWindow: 200000,
-    description: 'Most powerful AX9F7E2B model'
+    description: 'Most powerful AX9F7E2B model',
   },
   'AX9F7E2B-3-sonnet': {
     name: 'AX9F7E2B-3-sonnet-20240229',
     maxTokens: 4096,
     contextWindow: 200000,
-    description: 'Balanced performance and speed'
+    description: 'Balanced performance and speed',
   },
-  'AX2B6E9F': {
+  AX2B6E9F: {
     name: 'AX2B6E9F',
     maxTokens: 4096,
     contextWindow: 200000,
-    description: 'Fastest AX9F7E2B model'
-  }
+    description: 'Fastest AX9F7E2B model',
+  },
 };
 
 // Rate limiting
@@ -65,6 +66,7 @@ function checkRateLimit(userId = 'anonymous') {
 
 // Main request handler
 async function handleRequest(req, res) {
+  applySanitization(req, res);
   // CORS headers
   res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -77,7 +79,7 @@ async function handleRequest(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({
       success: false,
-      error: 'Method not allowed'
+      error: 'Method not allowed',
     });
   }
 
@@ -87,7 +89,7 @@ async function handleRequest(req, res) {
     return res.status(500).json({
       success: false,
       error: 'AX9F7E2B API not configured',
-      message: 'Please set ANTHROPIC_API_KEY environment variable'
+      message: 'Please set ANTHROPIC_API_KEY environment variable',
     });
   }
 
@@ -97,7 +99,7 @@ async function handleRequest(req, res) {
     return res.status(429).json({
       success: false,
       error: 'Rate limit exceeded',
-      message: `Maximum ${RATE_LIMIT} requests per minute`
+      message: `Maximum ${RATE_LIMIT} requests per minute`,
     });
   }
 
@@ -109,14 +111,14 @@ async function handleRequest(req, res) {
       temperature = 1.0,
       max_tokens = 4096,
       stream = false,
-      systemPrompt
+      systemPrompt,
     } = req.body;
 
     // Validate required fields
     if (!message && !messages.length) {
       return res.status(400).json({
         success: false,
-        error: 'Message or messages array required'
+        error: 'Message or messages array required',
       });
     }
 
@@ -124,13 +126,13 @@ async function handleRequest(req, res) {
     if (!AX9F7E2B_MODELS[model]) {
       return res.status(400).json({
         success: false,
-        error: `Invalid model. Available: ${Object.keys(AX9F7E2B_MODELS).join(', ')}`
+        error: `Invalid model. Available: ${Object.keys(AX9F7E2B_MODELS).join(', ')}`,
       });
     }
 
     // Initialize Anthropic client
     const anthropic = new Anthropic({
-      apiKey: ANTHROPIC_API_KEY
+      apiKey: ANTHROPIC_API_KEY,
     });
 
     // Prepare messages for AX9F7E2B
@@ -143,7 +145,7 @@ async function handleRequest(req, res) {
       // Single message
       AX9F7E2BMessages.push({
         role: 'user',
-        content: message
+        content: message,
       });
     }
 
@@ -154,7 +156,7 @@ async function handleRequest(req, res) {
       model: AX9F7E2B_MODELS[model].name,
       messages: AX9F7E2BMessages,
       temperature: Math.max(0, Math.min(1, temperature)),
-      max_tokens: Math.min(max_tokens, AX9F7E2B_MODELS[model].maxTokens)
+      max_tokens: Math.min(max_tokens, AX9F7E2B_MODELS[model].maxTokens),
     };
 
     // Add system prompt if provided
@@ -171,31 +173,37 @@ async function handleRequest(req, res) {
       try {
         const stream = await anthropic.messages.stream({
           ...requestParams,
-          stream: true
+          stream: true,
         });
 
         // Handle stream events
-        stream.on('text', (text) => {
-          res.write(`data: ${JSON.stringify({
-            type: 'content',
-            content: text
-          })}\n\n`);
+        stream.on('text', text => {
+          res.write(
+            `data: ${JSON.stringify({
+              type: 'content',
+              content: text,
+            })}\n\n`
+          );
         });
 
-        stream.on('message', (message) => {
+        stream.on('message', message => {
           // Stream completed
-          res.write(`data: ${JSON.stringify({
-            type: 'done',
-            usage: message.usage
-          })}\n\n`);
+          res.write(
+            `data: ${JSON.stringify({
+              type: 'done',
+              usage: message.usage,
+            })}\n\n`
+          );
         });
 
-        stream.on('error', (error) => {
+        stream.on('error', error => {
           console.error('❌ AX9F7E2B streaming error:', error.message);
-          res.write(`data: ${JSON.stringify({
-            type: 'error',
-            error: 'Baglanti hatasi olustu. Lutfen tekrar deneyin.'
-          })}\n\n`);
+          res.write(
+            `data: ${JSON.stringify({
+              type: 'error',
+              error: 'Baglanti hatasi olustu. Lutfen tekrar deneyin.',
+            })}\n\n`
+          );
           res.end();
         });
 
@@ -203,16 +211,16 @@ async function handleRequest(req, res) {
           res.write('data: [DONE]\n\n');
           res.end();
         });
-
       } catch (streamError) {
         console.error('❌ Stream initialization error:', streamError);
-        res.write(`data: ${JSON.stringify({
-          type: 'error',
-          error: streamError.message
-        })}\n\n`);
+        res.write(
+          `data: ${JSON.stringify({
+            type: 'error',
+            error: streamError.message,
+          })}\n\n`
+        );
         res.end();
       }
-
     } else {
       // Non-streaming response
       const response = await anthropic.messages.create(requestParams);
@@ -231,13 +239,12 @@ async function handleRequest(req, res) {
         provider: 'lydian-research',
         usage: {
           input_tokens: response.usage.input_tokens,
-          output_tokens: response.usage.output_tokens
+          output_tokens: response.usage.output_tokens,
         },
         stop_reason: response.stop_reason,
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
       });
     }
-
   } catch (error) {
     console.error('❌ AX9F7E2B API Error:', error);
 
@@ -247,7 +254,7 @@ async function handleRequest(req, res) {
         return res.status(401).json({
           success: false,
           error: 'Authentication failed',
-          message: 'Invalid Anthropic API key'
+          message: 'Invalid Anthropic API key',
         });
       }
 
@@ -255,7 +262,7 @@ async function handleRequest(req, res) {
         return res.status(429).json({
           success: false,
           error: 'Rate limit exceeded',
-          message: 'Anthropic API rate limit reached'
+          message: 'Anthropic API rate limit reached',
         });
       }
 
@@ -263,7 +270,7 @@ async function handleRequest(req, res) {
         return res.status(400).json({
           success: false,
           error: 'Invalid request',
-          message: 'Gecersiz istek. Lutfen tekrar deneyin.'
+          message: 'Gecersiz istek. Lutfen tekrar deneyin.',
         });
       }
 
@@ -271,7 +278,7 @@ async function handleRequest(req, res) {
         return res.status(503).json({
           success: false,
           error: 'Service overloaded',
-          message: 'AX9F7E2B API is temporarily overloaded'
+          message: 'AX9F7E2B API is temporarily overloaded',
         });
       }
     }
@@ -280,7 +287,7 @@ async function handleRequest(req, res) {
     res.status(500).json({
       success: false,
       error: 'Islem basarisiz oldu. Lutfen tekrar deneyin.',
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
   }
 }
@@ -292,8 +299,8 @@ function getModels(req, res) {
     success: true,
     models: Object.keys(AX9F7E2B_MODELS).map(key => ({
       id: key,
-      ...AX9F7E2B_MODELS[key]
-    }))
+      ...AX9F7E2B_MODELS[key],
+    })),
   });
 }
 
@@ -301,5 +308,5 @@ function getModels(req, res) {
 module.exports = {
   handleRequest,
   getModels,
-  AX9F7E2B_MODELS
+  AX9F7E2B_MODELS,
 };

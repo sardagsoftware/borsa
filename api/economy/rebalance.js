@@ -15,7 +15,7 @@ module.exports = async (req, res) => {
     if (!validPhases.includes(phase)) {
       return res.status(400).json({
         error: 'Invalid phase',
-        valid_phases: validPhases
+        valid_phases: validPhases,
       });
     }
 
@@ -23,7 +23,7 @@ module.exports = async (req, res) => {
     if (percent < 0 || percent > 100) {
       return res.status(400).json({
         error: 'Invalid percent',
-        message: 'Percent must be between 0 and 100'
+        message: 'Percent must be between 0 and 100',
       });
     }
 
@@ -45,14 +45,14 @@ module.exports = async (req, res) => {
         daily_earn_limit: phase === 'canary' ? 4800 : 5000, // Slightly reduced
         drop_rates: {
           common: { min: 0.65, max: 0.75 },
-          rare: { min: 0.20, max: 0.30 },
+          rare: { min: 0.2, max: 0.3 },
           epic: { min: 0.04, max: 0.08 },
-          legendary: { min: 0.005, max: 0.015 }
+          legendary: { min: 0.005, max: 0.015 },
         },
-        vendor_price_multiplier: 1.05 // 5% increase to combat inflation
+        vendor_price_multiplier: 1.05, // 5% increase to combat inflation
       },
       rollback_available: true,
-      monitoring_duration_hours: phase === 'canary' ? 24 : 48
+      monitoring_duration_hours: phase === 'canary' ? 24 : 48,
     };
 
     // Simulate applying the config
@@ -66,15 +66,14 @@ module.exports = async (req, res) => {
         'Monitor KPIs for next 24 hours',
         'Check inflation index and earn/spend ratio',
         `Rollout to ${percent * 2}% if stable`,
-        'Full rollout after 48h if no issues'
-      ]
+        'Full rollout after 48h if no issues',
+      ],
     });
-
   } catch (error) {
     console.error('[Economy Rebalance Error]', error);
     res.status(500).json({
       error: 'Failed to rebalance economy',
-      message: error.message
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
     });
   }
 };

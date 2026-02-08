@@ -34,12 +34,13 @@ module.exports = async (req, res) => {
     // Parse multipart form data
     const form = new multiparty.Form();
 
-    const parseForm = () => new Promise((resolve, reject) => {
-      form.parse(req, (err, fields, files) => {
-        if (err) reject(err);
-        else resolve({ fields, files });
+    const parseForm = () =>
+      new Promise((resolve, reject) => {
+        form.parse(req, (err, fields, files) => {
+          if (err) reject(err);
+          else resolve({ fields, files });
+        });
       });
-    });
 
     const { fields, files } = await parseForm();
 
@@ -83,7 +84,7 @@ module.exports = async (req, res) => {
 
       cvAnalysis = await client.analyzeImageInStream(imageBuffer, {
         visualFeatures: ['Objects', 'Tags', 'Description'],
-        language: language === 'tr' ? 'tr' : 'en'
+        language: language === 'tr' ? 'tr' : 'en',
       });
     }
 
@@ -95,22 +96,23 @@ module.exports = async (req, res) => {
       isDICOM: isDICOM,
       dicomMetadata: dicomMetadata,
       radiologyAnalysis: radiologyAnalysis,
-      computerVisionAnalysis: cvAnalysis ? {
-        description: cvAnalysis.description?.captions?.[0]?.text,
-        tags: cvAnalysis.tags?.map(t => t.name),
-        confidence: cvAnalysis.description?.captions?.[0]?.confidence
-      } : null,
+      computerVisionAnalysis: cvAnalysis
+        ? {
+            description: cvAnalysis.description?.captions?.[0]?.text,
+            tags: cvAnalysis.tags?.map(t => t.name),
+            confidence: cvAnalysis.description?.captions?.[0]?.confidence,
+          }
+        : null,
       disclaimer: getRadiologyDisclaimer(language),
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
 
     res.status(200).json(response);
-
   } catch (error) {
     console.error('Radiology analysis error:', error);
     res.status(500).json({
-      error: error.message,
-      stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
+      error: 'Radyoloji analiz hatası',
+      stack: process.env.NODE_ENV === 'development' ? error.stack : undefined,
     });
   }
 };
@@ -147,7 +149,6 @@ function extractDICOMMetadata(dataSet) {
     // Equipment information
     metadata.manufacturer = getString(dataSet, 'x00080070') || 'Unknown';
     metadata.manufacturerModel = getString(dataSet, 'x00081090') || 'Unknown';
-
   } catch (err) {
     console.error('DICOM metadata extraction error:', err.message);
   }
@@ -183,45 +184,79 @@ async function analyzeRadiologicalImage(imageBuffer, modality, bodyPart, dicomMe
     // X-Ray findings by body part
     XRAY: {
       CHEST: {
-        normalFindings: ['Clear lung fields', 'Normal heart size', 'No pleural effusion', 'Normal mediastinum'],
-        commonPathologies: ['Pneumonia', 'Pleural effusion', 'Cardiomegaly', 'Pneumothorax', 'Lung mass'],
+        normalFindings: [
+          'Clear lung fields',
+          'Normal heart size',
+          'No pleural effusion',
+          'Normal mediastinum',
+        ],
+        commonPathologies: [
+          'Pneumonia',
+          'Pleural effusion',
+          'Cardiomegaly',
+          'Pneumothorax',
+          'Lung mass',
+        ],
         criticalFindings: ['Pneumothorax', 'Mass lesion', 'Significant cardiomegaly'],
-        recommendations: ['PA and lateral views recommended', 'Clinical correlation necessary', 'Consider CT if abnormality detected']
+        recommendations: [
+          'PA and lateral views recommended',
+          'Clinical correlation necessary',
+          'Consider CT if abnormality detected',
+        ],
       },
       ABDOMEN: {
         normalFindings: ['Normal bowel gas pattern', 'No free air', 'Normal organ shadows'],
         commonPathologies: ['Bowel obstruction', 'Free air', 'Organomegaly', 'Calcifications'],
         criticalFindings: ['Free air - surgical emergency', 'Bowel obstruction'],
-        recommendations: ['CT abdomen for detailed evaluation', 'Surgical consultation if indicated']
+        recommendations: [
+          'CT abdomen for detailed evaluation',
+          'Surgical consultation if indicated',
+        ],
       },
       SPINE: {
         normalFindings: ['Normal vertebral alignment', 'Preserved disc spaces', 'No fracture'],
         commonPathologies: ['Degenerative changes', 'Compression fracture', 'Spondylolisthesis'],
         criticalFindings: ['Fracture', 'Spinal cord compression'],
-        recommendations: ['MRI for soft tissue evaluation', 'Neurosurgery consultation if needed']
-      }
+        recommendations: ['MRI for soft tissue evaluation', 'Neurosurgery consultation if needed'],
+      },
     },
 
     // CT findings
     CT: {
       HEAD: {
-        normalFindings: ['No intracranial hemorrhage', 'Normal gray-white differentiation', 'No mass effect'],
+        normalFindings: [
+          'No intracranial hemorrhage',
+          'Normal gray-white differentiation',
+          'No mass effect',
+        ],
         commonPathologies: ['Stroke', 'Hemorrhage', 'Mass lesion', 'Hydrocephalus'],
         criticalFindings: ['Acute hemorrhage', 'Large stroke', 'Herniation'],
-        recommendations: ['Neurology/Neurosurgery urgent consultation', 'MRI brain for further evaluation', 'Angiography if vascular pathology']
+        recommendations: [
+          'Neurology/Neurosurgery urgent consultation',
+          'MRI brain for further evaluation',
+          'Angiography if vascular pathology',
+        ],
       },
       CHEST: {
         normalFindings: ['Clear lungs', 'Normal mediastinum', 'No pleural effusion'],
         commonPathologies: ['Pulmonary embolism', 'Pneumonia', 'Lung nodules', 'Aortic pathology'],
         criticalFindings: ['Pulmonary embolism', 'Aortic dissection', 'Tension pneumothorax'],
-        recommendations: ['Cardiology/Thoracic surgery consultation', 'Follow-up imaging for nodules', 'Clinical correlation essential']
+        recommendations: [
+          'Cardiology/Thoracic surgery consultation',
+          'Follow-up imaging for nodules',
+          'Clinical correlation essential',
+        ],
       },
       ABDOMEN: {
         normalFindings: ['Normal solid organs', 'No free fluid', 'Normal vasculature'],
         commonPathologies: ['Appendicitis', 'Diverticulitis', 'Kidney stones', 'Abscess'],
         criticalFindings: ['Bowel perforation', 'Vascular emergency', 'Abscess requiring drainage'],
-        recommendations: ['Surgical consultation if indicated', 'IR consultation for drainage', 'Follow-up imaging as needed']
-      }
+        recommendations: [
+          'Surgical consultation if indicated',
+          'IR consultation for drainage',
+          'Follow-up imaging as needed',
+        ],
+      },
     },
 
     // MRI findings
@@ -230,14 +265,27 @@ async function analyzeRadiologicalImage(imageBuffer, modality, bodyPart, dicomMe
         normalFindings: ['Normal brain parenchyma', 'No abnormal enhancement', 'Normal ventricles'],
         commonPathologies: ['Multiple sclerosis', 'Brain tumor', 'Stroke', 'Dementia changes'],
         criticalFindings: ['Brain tumor', 'Large stroke', 'Abscess'],
-        recommendations: ['Neurology consultation', 'Neurosurgery if mass lesion', 'Contrast study if not done']
+        recommendations: [
+          'Neurology consultation',
+          'Neurosurgery if mass lesion',
+          'Contrast study if not done',
+        ],
       },
       SPINE: {
         normalFindings: ['Normal spinal cord', 'No disc herniation', 'No stenosis'],
-        commonPathologies: ['Disc herniation', 'Spinal stenosis', 'Spinal tumor', 'Degenerative changes'],
+        commonPathologies: [
+          'Disc herniation',
+          'Spinal stenosis',
+          'Spinal tumor',
+          'Degenerative changes',
+        ],
         criticalFindings: ['Cord compression', 'Cauda equina syndrome', 'Spinal tumor'],
-        recommendations: ['Neurosurgery urgent if cord compression', 'Pain management consultation', 'Physical therapy']
-      }
+        recommendations: [
+          'Neurosurgery urgent if cord compression',
+          'Pain management consultation',
+          'Physical therapy',
+        ],
+      },
     },
 
     // Ultrasound findings
@@ -246,22 +294,30 @@ async function analyzeRadiologicalImage(imageBuffer, modality, bodyPart, dicomMe
         normalFindings: ['Normal liver echotexture', 'Normal gallbladder', 'Normal kidneys'],
         commonPathologies: ['Gallstones', 'Kidney stones', 'Fatty liver', 'Ascites'],
         criticalFindings: ['Acute cholecystitis', 'Obstructive uropathy'],
-        recommendations: ['Surgical consultation if cholecystitis', 'Urology if hydronephrosis']
+        recommendations: ['Surgical consultation if cholecystitis', 'Urology if hydronephrosis'],
       },
       OBSTETRIC: {
-        normalFindings: ['Viable intrauterine pregnancy', 'Normal fetal heart rate', 'Appropriate fetal size'],
-        commonPathologies: ['Placental abnormalities', 'Fetal growth restriction', 'Oligohydramnios'],
+        normalFindings: [
+          'Viable intrauterine pregnancy',
+          'Normal fetal heart rate',
+          'Appropriate fetal size',
+        ],
+        commonPathologies: [
+          'Placental abnormalities',
+          'Fetal growth restriction',
+          'Oligohydramnios',
+        ],
         criticalFindings: ['Ectopic pregnancy', 'Placental abruption', 'Fetal distress'],
-        recommendations: ['Obstetrics consultation', 'Follow-up ultrasound', 'Fetal monitoring']
-      }
-    }
+        recommendations: ['Obstetrics consultation', 'Follow-up ultrasound', 'Fetal monitoring'],
+      },
+    },
   };
 
   const findings = radiologyFindings[modality]?.[bodyPart] || {
     normalFindings: ['Image quality assessment needed'],
     commonPathologies: ['Requires specialist interpretation'],
     criticalFindings: ['Radiologist review required'],
-    recommendations: ['Formal radiologist interpretation', 'Clinical correlation']
+    recommendations: ['Formal radiologist interpretation', 'Clinical correlation'],
   };
 
   // Calculate image quality score
@@ -276,16 +332,18 @@ async function analyzeRadiologicalImage(imageBuffer, modality, bodyPart, dicomMe
     potentialPathologies: findings.commonPathologies,
     criticalFindings: findings.criticalFindings,
     recommendations: findings.recommendations,
-    technicalDetails: dicomMetadata ? {
-      studyDate: dicomMetadata.studyDate,
-      modality: dicomMetadata.modality,
-      manufacturer: dicomMetadata.manufacturer,
-      imageResolution: `${dicomMetadata.rows}x${dicomMetadata.columns}`,
-      sliceThickness: dicomMetadata.sliceThickness
-    } : null,
+    technicalDetails: dicomMetadata
+      ? {
+          studyDate: dicomMetadata.studyDate,
+          modality: dicomMetadata.modality,
+          manufacturer: dicomMetadata.manufacturer,
+          imageResolution: `${dicomMetadata.rows}x${dicomMetadata.columns}`,
+          sliceThickness: dicomMetadata.sliceThickness,
+        }
+      : null,
     urgency: assessRadiologyUrgency(findings.criticalFindings),
     requiresRadiologistReview: true,
-    aiConfidence: 0.80
+    aiConfidence: 0.8,
   };
 
   return report;
@@ -300,12 +358,14 @@ function assessImageQuality(dicomMetadata) {
       overall: 'Unknown - Not DICOM format',
       resolution: 'Unknown',
       artifacts: 'Cannot assess',
-      diagnostic: 'Requires radiologist review'
+      diagnostic: 'Requires radiologist review',
     };
   }
 
-  const resolution = dicomMetadata.rows && dicomMetadata.columns ?
-    `${dicomMetadata.rows}x${dicomMetadata.columns}` : 'Unknown';
+  const resolution =
+    dicomMetadata.rows && dicomMetadata.columns
+      ? `${dicomMetadata.rows}x${dicomMetadata.columns}`
+      : 'Unknown';
 
   const isHighRes = dicomMetadata.rows >= 512 && dicomMetadata.columns >= 512;
 
@@ -313,7 +373,7 @@ function assessImageQuality(dicomMetadata) {
     overall: isHighRes ? 'Good - Diagnostic quality' : 'Acceptable - Review recommended',
     resolution: resolution,
     artifacts: 'Minimal expected',
-    diagnostic: isHighRes ? 'Suitable for diagnostic interpretation' : 'May require repeat study'
+    diagnostic: isHighRes ? 'Suitable for diagnostic interpretation' : 'May require repeat study',
   };
 }
 
@@ -322,8 +382,14 @@ function assessImageQuality(dicomMetadata) {
  */
 function assessRadiologyUrgency(criticalFindings) {
   const emergencyKeywords = [
-    'hemorrhage', 'dissection', 'perforation', 'pneumothorax',
-    'embolism', 'herniation', 'emergency', 'acute'
+    'hemorrhage',
+    'dissection',
+    'perforation',
+    'pneumothorax',
+    'embolism',
+    'herniation',
+    'emergency',
+    'acute',
   ];
 
   const findingsText = criticalFindings.join(' ').toLowerCase();
@@ -347,7 +413,7 @@ function getRadiologyDisclaimer(language) {
     es: 'Este análisis de IA es solo para evaluación preliminar. El diagnóstico definitivo debe ser realizado por un radiólogo.',
     ar: 'هذا التحليل بالذكاء الاصطناعي للتقييم الأولي فقط. يجب أن يتم التشخيص النهائي بواسطة أخصائي الأشعة.',
     ru: 'Этот анализ ИИ предназначен только для предварительной оценки. Окончательный диагноз должен быть поставлен рентгенологом.',
-    zh: '此AI分析仅用于初步评估。最终诊断必须由放射科医生做出。'
+    zh: '此AI分析仅用于初步评估。最终诊断必须由放射科医生做出。',
   };
 
   return disclaimers[language] || disclaimers.en;

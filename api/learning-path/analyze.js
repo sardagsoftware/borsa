@@ -2,7 +2,7 @@ const Anthropic = require('@anthropic-ai/sdk');
 const { getCorsOrigin } = require('../_middleware/cors');
 
 const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY
+  apiKey: process.env.ANTHROPIC_API_KEY,
 });
 
 module.exports = async (req, res) => {
@@ -19,14 +19,8 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const {
-      topic,
-      currentLevel,
-      targetLevel,
-      learningStyle,
-      timeCommitment,
-      goalDescription
-    } = req.body;
+    const { topic, currentLevel, targetLevel, learningStyle, timeCommitment, goalDescription } =
+      req.body;
 
     if (!topic || !currentLevel || !targetLevel) {
       return res.status(400).json({ error: 'Topic, current level, and target level are required' });
@@ -93,13 +87,14 @@ Lütfen JSON formatında şu yapıda yanıt ver:
     const response = await anthropic.messages.create({
       model: 'AX9F7E2B',
       max_tokens: 2500,
-      system: 'Sen deneyimli bir eğitim tasarımcısı ve öğrenme danışmanısın. İnsanların etkili ve sürdürülebilir şekilde öğrenmelerine yardımcı olursun.',
+      system:
+        'Sen deneyimli bir eğitim tasarımcısı ve öğrenme danışmanısın. İnsanların etkili ve sürdürülebilir şekilde öğrenmelerine yardımcı olursun.',
       messages: [
         {
           role: 'user',
-          content: prompt
-        }
-      ]
+          content: prompt,
+        },
+      ],
     });
 
     let result;
@@ -109,101 +104,113 @@ Lütfen JSON formatında şu yapıda yanıt ver:
       // Fallback if JSON parsing fails
       result = {
         pathOverview: {
-          estimatedDuration: "3-4 ay",
-          difficultyLevel: "Orta",
-          prerequisiteGap: "Temel bilgi yeterli",
+          estimatedDuration: '3-4 ay',
+          difficultyLevel: 'Orta',
+          prerequisiteGap: 'Temel bilgi yeterli',
           learningOutcomes: [
             `${topic} konusunda pratik beceri kazanma`,
-            "Gerçek projeler geliştirebilme",
-            "İleri seviye kavramları anlama"
-          ]
+            'Gerçek projeler geliştirebilme',
+            'İleri seviye kavramları anlama',
+          ],
         },
         phases: [
           {
-            phase: "Faz 1: Temeller",
-            duration: "2-3 hafta",
-            objectives: ["Temel kavramları öğrenmek", "İlk projeyi tamamlamak"],
+            phase: 'Faz 1: Temeller',
+            duration: '2-3 hafta',
+            objectives: ['Temel kavramları öğrenmek', 'İlk projeyi tamamlamak'],
             resources: [
               {
-                type: "Kurs",
+                type: 'Kurs',
                 title: `${topic} Temelleri`,
-                provider: "Online Platform",
-                estimatedTime: "10 saat",
-                difficulty: "Başlangıç",
-                priority: "Yüksek"
-              }
+                provider: 'Online Platform',
+                estimatedTime: '10 saat',
+                difficulty: 'Başlangıç',
+                priority: 'Yüksek',
+              },
             ],
-            practiceProjects: ["Basit başlangıç projesi"],
-            assessmentCriteria: ["Temel kavramları açıklayabilme"]
+            practiceProjects: ['Basit başlangıç projesi'],
+            assessmentCriteria: ['Temel kavramları açıklayabilme'],
           },
           {
-            phase: "Faz 2: Derinleşme",
-            duration: "3-4 hafta",
-            objectives: ["İleri konuları öğrenmek", "Orta seviye proje"],
+            phase: 'Faz 2: Derinleşme',
+            duration: '3-4 hafta',
+            objectives: ['İleri konuları öğrenmek', 'Orta seviye proje'],
             resources: [
               {
-                type: "Kitap",
+                type: 'Kitap',
                 title: `${topic} İleri Seviye`,
-                provider: "Yayınevi",
-                estimatedTime: "15 saat",
-                difficulty: "Orta",
-                priority: "Yüksek"
-              }
+                provider: 'Yayınevi',
+                estimatedTime: '15 saat',
+                difficulty: 'Orta',
+                priority: 'Yüksek',
+              },
             ],
-            practiceProjects: ["Orta seviye uygulama projesi"],
-            assessmentCriteria: ["Bağımsız proje geliştirebilme"]
+            practiceProjects: ['Orta seviye uygulama projesi'],
+            assessmentCriteria: ['Bağımsız proje geliştirebilme'],
           },
           {
-            phase: "Faz 3: Uzmanlık",
-            duration: "4-6 hafta",
-            objectives: ["Uzman seviye beceriler", "Kapsamlı proje"],
+            phase: 'Faz 3: Uzmanlık',
+            duration: '4-6 hafta',
+            objectives: ['Uzman seviye beceriler', 'Kapsamlı proje'],
             resources: [
               {
-                type: "Proje",
-                title: "Gerçek Dünya Projesi",
-                provider: "Kendi Portföyünüz",
-                estimatedTime: "20 saat",
-                difficulty: "İleri",
-                priority: "Yüksek"
-              }
+                type: 'Proje',
+                title: 'Gerçek Dünya Projesi',
+                provider: 'Kendi Portföyünüz',
+                estimatedTime: '20 saat',
+                difficulty: 'İleri',
+                priority: 'Yüksek',
+              },
             ],
-            practiceProjects: ["Portföy projesi"],
-            assessmentCriteria: ["Profesyonel seviye çıktı üretebilme"]
-          }
+            practiceProjects: ['Portföy projesi'],
+            assessmentCriteria: ['Profesyonel seviye çıktı üretebilme'],
+          },
         ],
         studySchedule: {
-          weeklyPattern: "Hafta içi her gün 1-2 saat, hafta sonu 3-4 saat derin çalışma",
+          weeklyPattern: 'Hafta içi her gün 1-2 saat, hafta sonu 3-4 saat derin çalışma',
           dailyTips: [
-            "Sabah en zor konulara odaklanın",
-            "Akşam tekrar ve pratik yapın",
-            "Günlük notlar alın"
+            'Sabah en zor konulara odaklanın',
+            'Akşam tekrar ve pratik yapın',
+            'Günlük notlar alın',
           ],
-          breakStrategy: "Her 45 dakikada 10 dakika mola (Pomodoro)"
+          breakStrategy: 'Her 45 dakikada 10 dakika mola (Pomodoro)',
         },
         resources: {
-          mustRead: [`${topic} resmi dokümantasyonu`, "Topluluk tarafından önerilen kaynaklar"],
-          communities: ["Reddit ilgili subreddit", "Discord toplulukları"],
-          tools: ["İlgili geliştirme araçları", "Pratik platformları"],
-          certifications: [`${topic} profesyonel sertifika`]
+          mustRead: [`${topic} resmi dokümantasyonu`, 'Topluluk tarafından önerilen kaynaklar'],
+          communities: ['Reddit ilgili subreddit', 'Discord toplulukları'],
+          tools: ['İlgili geliştirme araçları', 'Pratik platformları'],
+          certifications: [`${topic} profesyonel sertifika`],
         },
         milestones: [
-          { milestone: "Temel projeyi tamamlama", expectedWeek: "3", checkpointTest: "Peer review" },
-          { milestone: "Orta seviye proje", expectedWeek: "7", checkpointTest: "Teknik mülakat simulasyonu" },
-          { milestone: "Portföy projesi", expectedWeek: "12", checkpointTest: "Gerçek kullanıcı geri bildirimi" }
-        ]
+          {
+            milestone: 'Temel projeyi tamamlama',
+            expectedWeek: '3',
+            checkpointTest: 'Peer review',
+          },
+          {
+            milestone: 'Orta seviye proje',
+            expectedWeek: '7',
+            checkpointTest: 'Teknik mülakat simulasyonu',
+          },
+          {
+            milestone: 'Portföy projesi',
+            expectedWeek: '12',
+            checkpointTest: 'Gerçek kullanıcı geri bildirimi',
+          },
+        ],
       };
     }
 
     res.status(200).json({
       success: true,
       ...result,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
   } catch (error) {
     console.error('Learning path analysis error:', error);
     res.status(500).json({
       error: 'Analysis failed',
-      message: error.message
+      message: 'Analiz hatası. Lütfen tekrar deneyin.',
     });
   }
 };

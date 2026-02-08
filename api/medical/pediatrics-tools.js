@@ -35,7 +35,8 @@ function calculateGrowthPercentile(data) {
   let weightPercentile, heightPercentile, interpretation, nutritionalStatus;
 
   // Weight-for-age assessment (simplified)
-  if (ageMonths <= 36) { // 0-3 years
+  if (ageMonths <= 36) {
+    // 0-3 years
     if (weight < 3) {
       weightPercentile = '<3rd';
       nutritionalStatus = 'Severe malnutrition';
@@ -52,7 +53,8 @@ function calculateGrowthPercentile(data) {
       weightPercentile = '>95th';
       nutritionalStatus = 'Overweight';
     }
-  } else { // Older children
+  } else {
+    // Older children
     if (weight < 10) {
       weightPercentile = '<3rd';
       nutritionalStatus = 'Severe underweight';
@@ -97,20 +99,20 @@ function calculateGrowthPercentile(data) {
     measurements: {
       weight: `${weight} kg`,
       height: `${height} cm`,
-      headCircumference: headCircumference ? `${headCircumference} cm` : 'N/A'
+      headCircumference: headCircumference ? `${headCircumference} cm` : 'N/A',
     },
     percentiles: {
       weight: weightPercentile,
-      height: heightPercentile
+      height: heightPercentile,
     },
     nutritionalStatus,
     interpretation,
     recommendation: weightPercentile.includes('<3')
       ? 'Pediatric nutrition consult, investigate for underlying causes'
       : weightPercentile.includes('>95')
-      ? 'Dietary counseling, increase physical activity, screen for metabolic syndrome'
-      : 'Continue routine well-child visits and monitoring',
-    reference: 'WHO Child Growth Standards (0-5 years) / CDC Growth Charts (2-20 years)'
+        ? 'Dietary counseling, increase physical activity, screen for metabolic syndrome'
+        : 'Continue routine well-child visits and monitoring',
+    reference: 'WHO Child Growth Standards (0-5 years) / CDC Growth Charts (2-20 years)',
   };
 }
 
@@ -126,12 +128,12 @@ function calculateGrowthPercentile(data) {
  */
 function calculateAPGAR(data) {
   const {
-    appearance,       // Skin color: 0=blue/pale, 1=body pink/extremities blue, 2=completely pink
-    pulse,           // Heart rate: 0=absent, 1=<100, 2=≥100
-    grimace,         // Reflex irritability: 0=no response, 1=grimace, 2=cry/active withdrawal
-    activity,        // Muscle tone: 0=limp, 1=some flexion, 2=active motion
-    respiration,     // Breathing: 0=absent, 1=weak/irregular, 2=strong cry
-    timePoint        // '1-minute' or '5-minute'
+    appearance, // Skin color: 0=blue/pale, 1=body pink/extremities blue, 2=completely pink
+    pulse, // Heart rate: 0=absent, 1=<100, 2=≥100
+    grimace, // Reflex irritability: 0=no response, 1=grimace, 2=cry/active withdrawal
+    activity, // Muscle tone: 0=limp, 1=some flexion, 2=active motion
+    respiration, // Breathing: 0=absent, 1=weak/irregular, 2=strong cry
+    timePoint, // '1-minute' or '5-minute'
   } = data;
 
   const totalScore = appearance + pulse + grimace + activity + respiration;
@@ -160,17 +162,19 @@ function calculateAPGAR(data) {
       pulse,
       grimace,
       activity,
-      respiration
+      respiration,
     },
     interpretation,
     intervention,
     prognosis,
-    note: timePoint === '1-minute'
-      ? '1-minute APGAR assesses need for immediate resuscitation'
-      : '5-minute APGAR correlates with neurological outcomes',
-    followUp: totalScore < 7 && timePoint === '5-minute'
-      ? 'Continue APGAR scoring every 5 minutes until score ≥7 or 20 minutes elapsed'
-      : 'Continue routine newborn care'
+    note:
+      timePoint === '1-minute'
+        ? '1-minute APGAR assesses need for immediate resuscitation'
+        : '5-minute APGAR correlates with neurological outcomes',
+    followUp:
+      totalScore < 7 && timePoint === '5-minute'
+        ? 'Continue APGAR scoring every 5 minutes until score ≥7 or 20 minutes elapsed'
+        : 'Continue routine newborn care',
   };
 }
 
@@ -189,10 +193,10 @@ function calculatePediatricDose(data) {
     medication,
     weightKg,
     ageYears,
-    dosePerKg,        // mg/kg/dose
-    maxDose,          // maximum single dose
-    frequency,        // times per day
-    route             // oral, IV, IM, etc.
+    dosePerKg, // mg/kg/dose
+    maxDose, // maximum single dose
+    frequency, // times per day
+    route, // oral, IV, IM, etc.
   } = data;
 
   // Calculate dose based on weight
@@ -209,21 +213,21 @@ function calculatePediatricDose(data) {
   // Common pediatric medication safety checks
   let safetyWarning = '';
   const commonMeds = {
-    'acetaminophen': {
+    acetaminophen: {
       maxSingleDose: 15, // mg/kg
-      maxDailyDose: 75,  // mg/kg/day
-      maxAbsoluteDose: 1000 // mg single dose
+      maxDailyDose: 75, // mg/kg/day
+      maxAbsoluteDose: 1000, // mg single dose
     },
-    'ibuprofen': {
+    ibuprofen: {
       maxSingleDose: 10,
       maxDailyDose: 40,
-      maxAbsoluteDose: 800
+      maxAbsoluteDose: 800,
     },
-    'amoxicillin': {
+    amoxicillin: {
       maxSingleDose: 40,
       maxDailyDose: 90,
-      maxAbsoluteDose: 1000
-    }
+      maxAbsoluteDose: 1000,
+    },
   };
 
   const medLower = medication.toLowerCase();
@@ -240,7 +244,8 @@ function calculatePediatricDose(data) {
   // Age-appropriate route warnings
   let routeWarning = '';
   if (route === 'IM' && ageYears < 3) {
-    routeWarning = 'IM injections should be used cautiously in infants; consider alternative routes';
+    routeWarning =
+      'IM injections should be used cautiously in infants; consider alternative routes';
   }
 
   return {
@@ -254,7 +259,7 @@ function calculatePediatricDose(data) {
     dosageInstruction: `Give ${Math.round(calculatedDose)} mg ${route} every ${24 / (frequency || 1)} hours`,
     safetyWarning: safetyWarning || 'Dose within normal limits',
     routeWarning,
-    note: '⚠️ Always verify pediatric doses with pharmacy and drug references'
+    note: '⚠️ Always verify pediatric doses with pharmacy and drug references',
   };
 }
 
@@ -275,50 +280,50 @@ function checkDevelopmentalMilestones(data) {
       social: ['Smiles at people', 'Self-soothing'],
       language: ['Coos and makes gurgling sounds'],
       cognitive: ['Pays attention to faces', 'Begins to follow things with eyes'],
-      physical: ['Holds head up', 'Begins to push up when on tummy']
+      physical: ['Holds head up', 'Begins to push up when on tummy'],
     },
     4: {
       social: ['Smiles spontaneously', 'Likes to play with people'],
       language: ['Begins to babble', 'Copies sounds'],
       cognitive: ['Lets you know if happy or sad', 'Responds to affection'],
-      physical: ['Holds head steady', 'Pushes down on legs when feet on hard surface']
+      physical: ['Holds head steady', 'Pushes down on legs when feet on hard surface'],
     },
     6: {
       social: ['Knows familiar faces', 'Likes to look at self in mirror'],
       language: ['Responds to sounds', 'Strings vowels together'],
       cognitive: ['Looks at things nearby', 'Shows curiosity'],
-      physical: ['Rolls over', 'Begins to sit without support', 'Rocks back and forth']
+      physical: ['Rolls over', 'Begins to sit without support', 'Rocks back and forth'],
     },
     9: {
       social: ['May be afraid of strangers', 'Has favorite toys'],
       language: ['Understands "no"', 'Makes many different sounds'],
       cognitive: ['Watches path of falling things', 'Plays peek-a-boo'],
-      physical: ['Stands holding on', 'Sits without support', 'Gets to sitting position']
+      physical: ['Stands holding on', 'Sits without support', 'Gets to sitting position'],
     },
     12: {
       social: ['Shy or nervous with strangers', 'Repeats sounds to get attention'],
       language: ['Says "mama" and "dada"', 'Tries to say words you say'],
       cognitive: ['Explores objects different ways', 'Finds hidden things'],
-      physical: ['Pulls to stand', 'May walk holding on', 'May stand alone']
+      physical: ['Pulls to stand', 'May walk holding on', 'May stand alone'],
     },
     18: {
       social: ['Likes to hand things to others', 'Shows affection'],
       language: ['Says several single words', 'Says and shakes head "no"'],
       cognitive: ['Knows familiar objects', 'Points to get attention'],
-      physical: ['Walks alone', 'Walks up steps', 'Runs', 'Pulls toys while walking']
+      physical: ['Walks alone', 'Walks up steps', 'Runs', 'Pulls toys while walking'],
     },
     24: {
       social: ['Copies others', 'Gets excited with other children'],
       language: ['Points to things when named', 'Knows names of people', 'Says 2-4 word sentences'],
       cognitive: ['Finds things under multiple covers', 'Sorts shapes and colors'],
-      physical: ['Stands on tiptoe', 'Kicks a ball', 'Climbs on furniture']
+      physical: ['Stands on tiptoe', 'Kicks a ball', 'Climbs on furniture'],
     },
     36: {
       social: ['Copies adults and friends', 'Shows affection for friends'],
       language: ['Understands "in", "on", "under"', 'Says name, age, gender'],
       cognitive: ['Works toys with parts', 'Plays pretend'],
-      physical: ['Climbs well', 'Runs easily', 'Pedals tricycle']
-    }
+      physical: ['Climbs well', 'Runs easily', 'Pedals tricycle'],
+    },
   };
 
   // Find closest milestone age
@@ -355,8 +360,8 @@ function checkDevelopmentalMilestones(data) {
       'No gesturing by 12 months',
       'No single words by 16 months',
       'No 2-word phrases by 24 months',
-      'Loss of any previously acquired skills'
-    ]
+      'Loss of any previously acquired skills',
+    ],
   };
 }
 
@@ -374,15 +379,41 @@ function checkVaccineSchedule(data) {
 
   // Simplified CDC vaccine schedule
   const schedule = {
-    'Birth': ['Hepatitis B (dose 1)'],
-    '2 months': ['Hepatitis B (dose 2)', 'DTaP (dose 1)', 'Hib (dose 1)', 'PCV13 (dose 1)', 'IPV (dose 1)', 'Rotavirus (dose 1)'],
-    '4 months': ['DTaP (dose 2)', 'Hib (dose 2)', 'PCV13 (dose 2)', 'IPV (dose 2)', 'Rotavirus (dose 2)'],
-    '6 months': ['DTaP (dose 3)', 'Hib (dose 3)', 'PCV13 (dose 3)', 'IPV (dose 3)', 'Rotavirus (dose 3)', 'Influenza (annual)'],
-    '12 months': ['MMR (dose 1)', 'Varicella (dose 1)', 'Hepatitis A (dose 1)', 'Hib (dose 4)', 'PCV13 (dose 4)'],
+    Birth: ['Hepatitis B (dose 1)'],
+    '2 months': [
+      'Hepatitis B (dose 2)',
+      'DTaP (dose 1)',
+      'Hib (dose 1)',
+      'PCV13 (dose 1)',
+      'IPV (dose 1)',
+      'Rotavirus (dose 1)',
+    ],
+    '4 months': [
+      'DTaP (dose 2)',
+      'Hib (dose 2)',
+      'PCV13 (dose 2)',
+      'IPV (dose 2)',
+      'Rotavirus (dose 2)',
+    ],
+    '6 months': [
+      'DTaP (dose 3)',
+      'Hib (dose 3)',
+      'PCV13 (dose 3)',
+      'IPV (dose 3)',
+      'Rotavirus (dose 3)',
+      'Influenza (annual)',
+    ],
+    '12 months': [
+      'MMR (dose 1)',
+      'Varicella (dose 1)',
+      'Hepatitis A (dose 1)',
+      'Hib (dose 4)',
+      'PCV13 (dose 4)',
+    ],
     '15 months': ['DTaP (dose 4)'],
     '18 months': ['Hepatitis A (dose 2)'],
     '4-6 years': ['DTaP (dose 5)', 'IPV (dose 4)', 'MMR (dose 2)', 'Varicella (dose 2)'],
-    '11-12 years': ['Tdap', 'HPV (2 or 3 doses)', 'Meningococcal (MenACWY)']
+    '11-12 years': ['Tdap', 'HPV (2 or 3 doses)', 'Meningococcal (MenACWY)'],
   };
 
   let dueVaccines = [];
@@ -422,12 +453,13 @@ function checkVaccineSchedule(data) {
     dueVaccines: dueVaccines || [],
     overdueVaccines,
     vaccinesReceived: vaccinesReceived || [],
-    recommendation: overdueVaccines.length > 0
-      ? '⚠️ Catch-up vaccines needed - schedule immunization appointment'
-      : 'Vaccines up to date - continue per schedule',
+    recommendation:
+      overdueVaccines.length > 0
+        ? '⚠️ Catch-up vaccines needed - schedule immunization appointment'
+        : 'Vaccines up to date - continue per schedule',
     nextVisit: ageMonths < 6 ? '2 months' : ageMonths < 12 ? '6 months' : '12 months',
     reference: 'CDC/AAP Childhood Immunization Schedule',
-    note: 'Always check current CDC guidelines for most up-to-date recommendations'
+    note: 'Always check current CDC guidelines for most up-to-date recommendations',
   };
 }
 
@@ -451,7 +483,7 @@ async function handleGrowthChart(req, res) {
       user_id: data.user_id,
       patient_id: data.patient_id,
       action: 'GROWTH_CHART_ASSESSMENT',
-      details: { ageMonths: data.ageMonths, nutritionalStatus: result.nutritionalStatus }
+      details: { ageMonths: data.ageMonths, nutritionalStatus: result.nutritionalStatus },
     });
 
     res.json({
@@ -459,16 +491,15 @@ async function handleGrowthChart(req, res) {
       result,
       metadata: {
         calculator: 'WHO/CDC Growth Charts',
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ Growth Chart Error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to calculate growth percentiles',
-      message: error.message
+      message: 'Tibbi islem hatasi. Lutfen tekrar deneyin.',
     });
   }
 }
@@ -487,7 +518,7 @@ async function handleAPGAR(req, res) {
       user_id: data.user_id,
       patient_id: data.patient_id,
       action: 'APGAR_CALCULATION',
-      details: { score: result.totalScore, timePoint: data.timePoint }
+      details: { score: result.totalScore, timePoint: data.timePoint },
     });
 
     res.json({
@@ -495,16 +526,15 @@ async function handleAPGAR(req, res) {
       result,
       metadata: {
         calculator: 'APGAR Score',
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ APGAR Calculation Error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to calculate APGAR score',
-      message: error.message
+      message: 'Tibbi islem hatasi. Lutfen tekrar deneyin.',
     });
   }
 }
@@ -523,7 +553,7 @@ async function handlePediatricDose(req, res) {
       user_id: data.user_id,
       patient_id: data.patient_id,
       action: 'PEDIATRIC_DOSE_CALCULATION',
-      details: { medication: data.medication, dose: result.singleDose }
+      details: { medication: data.medication, dose: result.singleDose },
     });
 
     res.json({
@@ -531,16 +561,15 @@ async function handlePediatricDose(req, res) {
       result,
       metadata: {
         calculator: 'Pediatric Dosage Calculator',
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ Pediatric Dose Error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to calculate pediatric dose',
-      message: error.message
+      message: 'Tibbi islem hatasi. Lutfen tekrar deneyin.',
     });
   }
 }
@@ -559,7 +588,7 @@ async function handleDevelopmentalMilestones(req, res) {
       user_id: data.user_id,
       patient_id: data.patient_id,
       action: 'DEVELOPMENTAL_MILESTONES_CHECK',
-      details: { ageMonths: data.ageMonths, assessment: result.assessment }
+      details: { ageMonths: data.ageMonths, assessment: result.assessment },
     });
 
     res.json({
@@ -567,16 +596,15 @@ async function handleDevelopmentalMilestones(req, res) {
       result,
       metadata: {
         calculator: 'Developmental Milestones Checker',
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ Developmental Milestones Error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to check developmental milestones',
-      message: error.message
+      message: 'Tibbi islem hatasi. Lutfen tekrar deneyin.',
     });
   }
 }
@@ -595,7 +623,7 @@ async function handleVaccineSchedule(req, res) {
       user_id: data.user_id,
       patient_id: data.patient_id,
       action: 'VACCINE_SCHEDULE_CHECK',
-      details: { ageMonths: data.ageMonths, dueVaccines: result.dueVaccines.length }
+      details: { ageMonths: data.ageMonths, dueVaccines: result.dueVaccines.length },
     });
 
     res.json({
@@ -603,16 +631,15 @@ async function handleVaccineSchedule(req, res) {
       result,
       metadata: {
         calculator: 'Vaccine Schedule Checker',
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ Vaccine Schedule Error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to check vaccine schedule',
-      message: error.message
+      message: 'Tibbi islem hatasi. Lutfen tekrar deneyin.',
     });
   }
 }
@@ -627,5 +654,5 @@ module.exports = {
   calculateAPGAR,
   calculatePediatricDose,
   checkDevelopmentalMilestones,
-  checkVaccineSchedule
+  checkVaccineSchedule,
 };

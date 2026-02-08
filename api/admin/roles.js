@@ -23,12 +23,12 @@ router.get('/', rbac.requireRole(['ADMIN', 'SUPER_ADMIN']), (req, res) => {
 
     insightsService.trackEvent('Admin_Roles_Viewed', {
       userId: req.user.id,
-      userRole: req.user.role
+      userRole: req.user.role,
     });
 
     res.json({
       success: true,
-      roles
+      roles,
     });
   } catch (error) {
     console.error('Error fetching roles:', error);
@@ -36,7 +36,7 @@ router.get('/', rbac.requireRole(['ADMIN', 'SUPER_ADMIN']), (req, res) => {
 
     res.status(500).json({
       error: 'Failed to fetch roles',
-      message: error.message
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
     });
   }
 });
@@ -52,19 +52,19 @@ router.get('/:role/permissions', rbac.requireRole(['ADMIN', 'SUPER_ADMIN']), (re
 
     if (!permissions.length && role !== 'SUPER_ADMIN') {
       return res.status(404).json({
-        error: 'Role not found'
+        error: 'Role not found',
       });
     }
 
     res.json({
       success: true,
       role,
-      permissions
+      permissions,
     });
   } catch (error) {
     console.error('Error fetching permissions:', error);
     res.status(500).json({
-      error: 'Failed to fetch permissions'
+      error: 'Failed to fetch permissions',
     });
   }
 });
@@ -82,7 +82,7 @@ router.put('/users/:userId/role', rbac.requireRole(['ADMIN', 'SUPER_ADMIN']), as
     if (!rbac.ROLES[role]) {
       return res.status(400).json({
         error: 'Invalid role',
-        availableRoles: Object.keys(rbac.ROLES)
+        availableRoles: Object.keys(rbac.ROLES),
       });
     }
 
@@ -92,12 +92,12 @@ router.put('/users/:userId/role', rbac.requireRole(['ADMIN', 'SUPER_ADMIN']), as
         adminId: req.user.id,
         adminRole: req.user.role,
         targetUserId: userId,
-        targetRole: role
+        targetRole: role,
       });
 
       return res.status(403).json({
         error: 'Forbidden',
-        message: `You cannot assign ${role} role. Insufficient permissions.`
+        message: `You cannot assign ${role} role. Insufficient permissions.`,
       });
     }
 
@@ -106,7 +106,7 @@ router.put('/users/:userId/role', rbac.requireRole(['ADMIN', 'SUPER_ADMIN']), as
 
     if (!user) {
       return res.status(404).json({
-        error: 'User not found'
+        error: 'User not found',
       });
     }
 
@@ -115,7 +115,7 @@ router.put('/users/:userId/role', rbac.requireRole(['ADMIN', 'SUPER_ADMIN']), as
       adminRole: req.user.role,
       userId,
       newRole: role,
-      oldRole: user.previousRole
+      oldRole: user.previousRole,
     });
 
     res.json({
@@ -125,8 +125,8 @@ router.put('/users/:userId/role', rbac.requireRole(['ADMIN', 'SUPER_ADMIN']), as
         id: user.id,
         email: user.email,
         role: user.role,
-        previousRole: user.previousRole
-      }
+        previousRole: user.previousRole,
+      },
     });
   } catch (error) {
     console.error('Error updating user role:', error);
@@ -134,7 +134,7 @@ router.put('/users/:userId/role', rbac.requireRole(['ADMIN', 'SUPER_ADMIN']), as
 
     res.status(500).json({
       error: 'Failed to update user role',
-      message: error.message
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
     });
   }
 });
@@ -151,14 +151,14 @@ router.get('/users', rbac.requireRole(['ADMIN', 'SUPER_ADMIN']), async (req, res
       page: parseInt(page),
       limit: parseInt(limit),
       role,
-      search
+      search,
     });
 
     insightsService.trackEvent('Admin_Users_Viewed', {
       adminId: req.user.id,
       page,
       limit,
-      filters: { role, search }
+      filters: { role, search },
     });
 
     res.json({
@@ -169,13 +169,13 @@ router.get('/users', rbac.requireRole(['ADMIN', 'SUPER_ADMIN']), async (req, res
         name: u.name,
         role: u.role,
         createdAt: u.createdAt,
-        lastLogin: u.lastLogin
+        lastLogin: u.lastLogin,
       })),
       pagination: {
         page: parseInt(page),
         limit: parseInt(limit),
-        total: users.length
-      }
+        total: users.length,
+      },
     });
   } catch (error) {
     console.error('Error fetching users:', error);
@@ -183,7 +183,7 @@ router.get('/users', rbac.requireRole(['ADMIN', 'SUPER_ADMIN']), async (req, res
 
     res.status(500).json({
       error: 'Failed to fetch users',
-      message: error.message
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
     });
   }
 });
@@ -196,12 +196,12 @@ router.get('/permissions', rbac.requireRole(['ADMIN', 'SUPER_ADMIN']), (req, res
   try {
     res.json({
       success: true,
-      permissionGroups: rbac.PERMISSION_GROUPS
+      permissionGroups: rbac.PERMISSION_GROUPS,
     });
   } catch (error) {
     console.error('Error fetching permissions:', error);
     res.status(500).json({
-      error: 'Failed to fetch permissions'
+      error: 'Failed to fetch permissions',
     });
   }
 });
@@ -210,35 +210,39 @@ router.get('/permissions', rbac.requireRole(['ADMIN', 'SUPER_ADMIN']), (req, res
  * POST /api/admin/users/:userId/permissions/check
  * Check if user has specific permission
  */
-router.post('/users/:userId/permissions/check', rbac.requireRole(['ADMIN', 'SUPER_ADMIN']), async (req, res) => {
-  try {
-    const { userId } = req.params;
-    const { permission } = req.body;
+router.post(
+  '/users/:userId/permissions/check',
+  rbac.requireRole(['ADMIN', 'SUPER_ADMIN']),
+  async (req, res) => {
+    try {
+      const { userId } = req.params;
+      const { permission } = req.body;
 
-    const user = await User.findById(userId);
+      const user = await User.findById(userId);
 
-    if (!user) {
-      return res.status(404).json({
-        error: 'User not found'
+      if (!user) {
+        return res.status(404).json({
+          error: 'User not found',
+        });
+      }
+
+      const hasPermission = rbac.hasPermission(user, permission);
+
+      res.json({
+        success: true,
+        userId,
+        permission,
+        hasPermission,
+        userRole: user.role,
+      });
+    } catch (error) {
+      console.error('Error checking permission:', error);
+      res.status(500).json({
+        error: 'Failed to check permission',
       });
     }
-
-    const hasPermission = rbac.hasPermission(user, permission);
-
-    res.json({
-      success: true,
-      userId,
-      permission,
-      hasPermission,
-      userRole: user.role
-    });
-  } catch (error) {
-    console.error('Error checking permission:', error);
-    res.status(500).json({
-      error: 'Failed to check permission'
-    });
   }
-});
+);
 
 /**
  * GET /api/admin/audit-log
@@ -258,23 +262,23 @@ router.get('/audit-log', rbac.requireRole(['ADMIN', 'SUPER_ADMIN']), async (req,
           action: 'RBAC_Role_Assigned',
           userId: 'user123',
           performedBy: req.user.id,
-          details: 'Role changed from USER to ADMIN'
-        }
+          details: 'Role changed from USER to ADMIN',
+        },
       ],
       pagination: {
         page: parseInt(page),
-        limit: parseInt(limit)
-      }
+        limit: parseInt(limit),
+      },
     };
 
     res.json({
       success: true,
-      ...auditLog
+      ...auditLog,
     });
   } catch (error) {
     console.error('Error fetching audit log:', error);
     res.status(500).json({
-      error: 'Failed to fetch audit log'
+      error: 'Failed to fetch audit log',
     });
   }
 });

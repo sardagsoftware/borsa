@@ -23,7 +23,7 @@ module.exports = async (req, res) => {
         name: 'Echo of Sardis: First Chronicle',
         start: '2025-10-20T00:00:00Z',
         end: '2025-12-01T00:00:00Z',
-        status: 'scheduled'
+        status: 'scheduled',
       };
     }
 
@@ -62,17 +62,16 @@ module.exports = async (req, res) => {
         week_3: ['photomode-contest'],
         week_4: ['vendor-sale'],
         week_5: ['mini-boss-warden', 'trials-daily'],
-        week_6: ['season-finale', 'bonus-xp-1.5x']
-      }
+        week_6: ['season-finale', 'bonus-xp-1.5x'],
+      },
     };
 
     res.json(seasonInfo);
-
   } catch (error) {
     console.error('[LiveOps Season Error]', error);
     res.status(500).json({
       error: 'Failed to fetch current season',
-      message: error.message
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
     });
   }
 };

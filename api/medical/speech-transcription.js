@@ -1,3 +1,4 @@
+/* global URLSearchParams */
 /**
  * 🎙️ AZURE SPEECH STT - MEDICAL TRANSCRIPTION API
  * Real Azure Speech SDK for clinical documentation
@@ -31,38 +32,67 @@ if (!AZURE_SPEECH_KEY) {
  */
 const MEDICAL_PHRASE_LIST = {
   anatomy: [
-    'myocardium', 'ventricle', 'atrium', 'cerebellum', 'hippocampus',
-    'bronchioles', 'alveoli', 'thoracic', 'lumbar', 'cervical'
+    'myocardium',
+    'ventricle',
+    'atrium',
+    'cerebellum',
+    'hippocampus',
+    'bronchioles',
+    'alveoli',
+    'thoracic',
+    'lumbar',
+    'cervical',
   ],
   medications: [
-    'metformin', 'lisinopril', 'atorvastatin', 'levothyroxine', 'amlodipine',
-    'metoprolol', 'omeprazole', 'losartan', 'gabapentin', 'hydrochlorothiazide'
+    'metformin',
+    'lisinopril',
+    'atorvastatin',
+    'levothyroxine',
+    'amlodipine',
+    'metoprolol',
+    'omeprazole',
+    'losartan',
+    'gabapentin',
+    'hydrochlorothiazide',
   ],
   conditions: [
-    'hypertension', 'diabetes mellitus', 'coronary artery disease', 'atrial fibrillation',
-    'chronic obstructive pulmonary disease', 'congestive heart failure', 'pneumonia',
-    'myocardial infarction', 'stroke', 'sepsis'
+    'hypertension',
+    'diabetes mellitus',
+    'coronary artery disease',
+    'atrial fibrillation',
+    'chronic obstructive pulmonary disease',
+    'congestive heart failure',
+    'pneumonia',
+    'myocardial infarction',
+    'stroke',
+    'sepsis',
   ],
   procedures: [
-    'echocardiography', 'angiography', 'colonoscopy', 'bronchoscopy',
-    'laparoscopy', 'endoscopy', 'catheterization', 'intubation'
-  ]
+    'echocardiography',
+    'angiography',
+    'colonoscopy',
+    'bronchoscopy',
+    'laparoscopy',
+    'endoscopy',
+    'catheterization',
+    'intubation',
+  ],
 };
 
 /**
  * Supported Languages for Medical Transcription
  */
 const SUPPORTED_LANGUAGES = {
-  'en': 'en-US',
-  'tr': 'tr-TR',
-  'de': 'de-DE',
-  'fr': 'fr-FR',
-  'es': 'es-ES',
-  'ar': 'ar-SA',
-  'ru': 'ru-RU',
-  'it': 'it-IT',
-  'zh': 'zh-CN',
-  'ja': 'ja-JP'
+  en: 'en-US',
+  tr: 'tr-TR',
+  de: 'de-DE',
+  fr: 'fr-FR',
+  es: 'es-ES',
+  ar: 'ar-SA',
+  ru: 'ru-RU',
+  it: 'it-IT',
+  zh: 'zh-CN',
+  ja: 'ja-JP',
 };
 
 /**
@@ -77,7 +107,7 @@ async function transcribeAudio(audioBuffer, language = 'en', options = {}) {
   const params = new URLSearchParams({
     language: speechLanguage,
     format: 'detailed',
-    profanity: 'masked'
+    profanity: 'masked',
   });
 
   try {
@@ -85,9 +115,9 @@ async function transcribeAudio(audioBuffer, language = 'en', options = {}) {
       headers: {
         'Ocp-Apim-Subscription-Key': AZURE_SPEECH_KEY,
         'Content-Type': 'audio/wav',
-        'Accept': 'application/json'
+        Accept: 'application/json',
       },
-      timeout: 30000 // 30 second timeout
+      timeout: 30000, // 30 second timeout
     });
 
     return response.data;
@@ -108,7 +138,7 @@ async function handleTranscription(req, res) {
     if (!req.file) {
       return res.status(400).json({
         success: false,
-        error: 'Audio file is required'
+        error: 'Audio file is required',
       });
     }
 
@@ -119,7 +149,7 @@ async function handleTranscription(req, res) {
     if (!audioBuffer || audioBuffer.length === 0) {
       return res.status(400).json({
         success: false,
-        error: 'Invalid audio file'
+        error: 'Invalid audio file',
       });
     }
 
@@ -127,7 +157,7 @@ async function handleTranscription(req, res) {
     if (audioBuffer.length > 25 * 1024 * 1024) {
       return res.status(400).json({
         success: false,
-        error: 'Audio file too large (max 25MB)'
+        error: 'Audio file too large (max 25MB)',
       });
     }
 
@@ -150,8 +180,8 @@ async function handleTranscription(req, res) {
         audio_size_bytes: audioBuffer.length,
         recognition_status: transcriptionResult.RecognitionStatus,
         confidence,
-        duration_ms: transcriptionResult.Duration
-      }
+        duration_ms: transcriptionResult.Duration,
+      },
     });
 
     // Return response
@@ -167,27 +197,26 @@ async function handleTranscription(req, res) {
         medical_terms_detected: detectMedicalTerms(transcript),
         clinical_safety: {
           requires_clinician_review: true,
-          hipaa_compliant: true
-        }
-      }
+          hipaa_compliant: true,
+        },
+      },
     });
-
   } catch (error) {
     console.error('❌ Transcription Error:', error);
 
     logMedicalAudit({
       action: 'TRANSCRIPTION_ERROR',
       details: {
-        error: error.message,
-        stack: error.stack
-      }
+        error: 'Tıbbi veri hatası. Lütfen tekrar deneyin.',
+        stack: error.stack,
+      },
     });
 
     res.status(500).json({
       success: false,
       error: 'Failed to transcribe audio',
-      message: error.message,
-      response_time_ms: Date.now() - startTime
+      message: 'Tıbbi veri hatası. Lütfen tekrar deneyin.',
+      response_time_ms: Date.now() - startTime,
     });
   }
 }
@@ -223,24 +252,24 @@ async function getSupportedLanguages(req, res) {
     languages: Object.entries(SUPPORTED_LANGUAGES).map(([code, azure_code]) => ({
       code,
       azure_code,
-      name: getLanguageName(code)
+      name: getLanguageName(code),
     })),
-    total: Object.keys(SUPPORTED_LANGUAGES).length
+    total: Object.keys(SUPPORTED_LANGUAGES).length,
   });
 }
 
 function getLanguageName(code) {
   const names = {
-    'en': 'English',
-    'tr': 'Türkçe',
-    'de': 'Deutsch',
-    'fr': 'Français',
-    'es': 'Español',
-    'ar': 'العربية',
-    'ru': 'Русский',
-    'it': 'Italiano',
-    'zh': '中文',
-    'ja': '日本語'
+    en: 'English',
+    tr: 'Türkçe',
+    de: 'Deutsch',
+    fr: 'Français',
+    es: 'Español',
+    ar: 'العربية',
+    ru: 'Русский',
+    it: 'Italiano',
+    zh: '中文',
+    ja: '日本語',
   };
   return names[code] || code;
 }
@@ -257,7 +286,7 @@ async function getMedicalTerms(req, res) {
       success: true,
       category,
       terms: MEDICAL_PHRASE_LIST[category],
-      total: MEDICAL_PHRASE_LIST[category].length
+      total: MEDICAL_PHRASE_LIST[category].length,
     });
   }
 
@@ -265,7 +294,7 @@ async function getMedicalTerms(req, res) {
     success: true,
     categories: Object.keys(MEDICAL_PHRASE_LIST),
     total_terms: Object.values(MEDICAL_PHRASE_LIST).flat().length,
-    phrase_list: MEDICAL_PHRASE_LIST
+    phrase_list: MEDICAL_PHRASE_LIST,
   });
 }
 
@@ -274,5 +303,5 @@ module.exports = {
   getSupportedLanguages,
   getMedicalTerms,
   MEDICAL_PHRASE_LIST,
-  SUPPORTED_LANGUAGES
+  SUPPORTED_LANGUAGES,
 };

@@ -14,7 +14,7 @@ const IMAGE_GENERATION_COST = 10;
 /**
  * Verify token and get user
  */
-const authenticateRequest = (req) => {
+const authenticateRequest = req => {
   const token = req.headers.authorization?.replace('Bearer ', '') || req.body.token;
 
   if (!token) {
@@ -40,10 +40,12 @@ const authenticateRequest = (req) => {
 const saveGeneratedImage = (userId, prompt, imageUrl, modelUsed, parameters) => {
   const db = getDatabase();
   try {
-    db.prepare(`
+    db.prepare(
+      `
       INSERT INTO generated_images (userId, prompt, imageUrl, modelUsed, creditsUsed, parameters)
       VALUES (?, ?, ?, ?, ?, ?)
-    `).run(userId, prompt, imageUrl, modelUsed, IMAGE_GENERATION_COST, JSON.stringify(parameters));
+    `
+    ).run(userId, prompt, imageUrl, modelUsed, IMAGE_GENERATION_COST, JSON.stringify(parameters));
   } finally {
     db.close();
   }
@@ -55,23 +57,31 @@ const saveGeneratedImage = (userId, prompt, imageUrl, modelUsed, parameters) => 
 const getUserGallery = (userId, limit = 50, offset = 0) => {
   const db = getDatabase();
   try {
-    const images = db.prepare(`
+    const images = db
+      .prepare(
+        `
       SELECT id, prompt, imageUrl, modelUsed, creditsUsed, createdAt
       FROM generated_images
       WHERE userId = ?
       ORDER BY createdAt DESC
       LIMIT ? OFFSET ?
-    `).all(userId, limit, offset);
+    `
+      )
+      .all(userId, limit, offset);
 
-    const total = db.prepare(`
+    const total = db
+      .prepare(
+        `
       SELECT COUNT(*) as count FROM generated_images WHERE userId = ?
-    `).get(userId);
+    `
+      )
+      .get(userId);
 
     return {
       images,
       total: total.count,
       limit,
-      offset
+      offset,
     };
   } finally {
     db.close();
@@ -87,7 +97,7 @@ const generateWithDALLE = async (prompt, size = '1024x1024', quality = 'standard
   }
 
   const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY
+    apiKey: process.env.OPENAI_API_KEY,
   });
 
   const response = await openai.images.generate({
@@ -95,13 +105,13 @@ const generateWithDALLE = async (prompt, size = '1024x1024', quality = 'standard
     prompt: prompt,
     n: 1,
     size: size,
-    quality: quality
+    quality: quality,
   });
 
   return {
     url: response.data[0].url,
     revisedPrompt: response.data[0].revised_prompt,
-    model: 'DALL-E 3'
+    model: 'DALL-E 3',
   };
 };
 
@@ -131,15 +141,14 @@ module.exports = async (req, res) => {
           id: user.id,
           name: user.name,
           subscription: user.subscription,
-          credits: user.credits
-        }
+          credits: user.credits,
+        },
       });
-
     } catch (error) {
       console.error('Get gallery error:', error);
       return res.status(401).json({
         success: false,
-        error: error.message || 'Failed to get image gallery'
+        error: 'Galeri yüklenemedi. Lütfen tekrar deneyin.',
       });
     }
   }
@@ -153,16 +162,12 @@ module.exports = async (req, res) => {
     // Authenticate user
     const user = authenticateRequest(req);
 
-    const {
-      prompt,
-      size = '1024x1024',
-      quality = 'standard'
-    } = req.body;
+    const { prompt, size = '1024x1024', quality = 'standard' } = req.body;
 
     if (!prompt) {
       return res.status(400).json({
         success: false,
-        error: 'Prompt is required'
+        error: 'Prompt is required',
       });
     }
 
@@ -170,14 +175,14 @@ module.exports = async (req, res) => {
     if (prompt.length < 3) {
       return res.status(400).json({
         success: false,
-        error: 'Prompt must be at least 3 characters long'
+        error: 'Prompt must be at least 3 characters long',
       });
     }
 
     if (prompt.length > 4000) {
       return res.status(400).json({
         success: false,
-        error: 'Prompt must be less than 4000 characters'
+        error: 'Prompt must be less than 4000 characters',
       });
     }
 
@@ -187,7 +192,7 @@ module.exports = async (req, res) => {
         success: false,
         error: 'Insufficient credits',
         required: IMAGE_GENERATION_COST,
-        available: user.credits
+        available: user.credits,
       });
     }
 
@@ -196,7 +201,7 @@ module.exports = async (req, res) => {
     if (!validSizes.includes(size)) {
       return res.status(400).json({
         success: false,
-        error: 'Invalid size. Must be one of: ' + validSizes.join(', ')
+        error: 'Invalid size. Must be one of: ' + validSizes.join(', '),
       });
     }
 
@@ -205,7 +210,7 @@ module.exports = async (req, res) => {
     if (!validQualities.includes(quality)) {
       return res.status(400).json({
         success: false,
-        error: 'Invalid quality. Must be one of: ' + validQualities.join(', ')
+        error: 'Invalid quality. Must be one of: ' + validQualities.join(', '),
       });
     }
 
@@ -221,7 +226,7 @@ module.exports = async (req, res) => {
     // Deduct credits and update usage
     User.updateUsage(user.id, {
       imagesGenerated: 1,
-      creditsUsed: IMAGE_GENERATION_COST
+      creditsUsed: IMAGE_GENERATION_COST,
     });
 
     // Log activity
@@ -229,7 +234,7 @@ module.exports = async (req, res) => {
       userId: user.id,
       action: 'image_generated',
       description: `Generated image using ${result.model}`,
-      metadata: { prompt, size, quality, credits: IMAGE_GENERATION_COST }
+      metadata: { prompt, size, quality, credits: IMAGE_GENERATION_COST },
     });
 
     // Get updated user info
@@ -243,26 +248,36 @@ module.exports = async (req, res) => {
         revisedPrompt: result.revisedPrompt,
         model: result.model,
         size: size,
-        quality: quality
+        quality: quality,
       },
       credits: {
         used: IMAGE_GENERATION_COST,
-        remaining: updatedUser.credits
+        remaining: updatedUser.credits,
       },
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
-
   } catch (error) {
     console.error('Image Generation Error:', error);
 
-    const statusCode = error.message.includes('Authentication') ? 401 :
-                       error.message.includes('Insufficient') ? 403 :
-                       error.message.includes('not configured') ? 503 : 500;
+    const errorMsg = error.message || '';
+    const statusCode = errorMsg.includes('Authentication')
+      ? 401
+      : errorMsg.includes('Insufficient')
+        ? 403
+        : errorMsg.includes('not configured')
+          ? 503
+          : 500;
+
+    const userMessages = {
+      401: 'Kimlik doğrulama başarısız. Lütfen tekrar giriş yapın.',
+      403: 'Yetersiz kredi. Lütfen kredi satın alın.',
+      503: 'Servis geçici olarak kullanılamıyor.',
+      500: 'Görsel oluşturulamadı. Lütfen tekrar deneyin.',
+    };
 
     res.status(statusCode).json({
       success: false,
-      error: error.message || 'Failed to generate image',
-      details: process.env.NODE_ENV === 'development' ? error.stack : undefined
+      error: userMessages[statusCode] || userMessages[500],
     });
   }
 };

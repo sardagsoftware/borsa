@@ -1,3 +1,4 @@
+/* global URLSearchParams */
 /**
  * 🔍 RAG SEARCH API - Medical Literature Retrieval
  * Production-ready RAG (Retrieval-Augmented Generation) for medical literature
@@ -16,6 +17,7 @@
 require('dotenv').config();
 const axios = require('axios');
 const { logMedicalAudit } = require('../../config/white-hat-policy');
+const { applySanitization } = require('../_middleware/sanitize');
 
 // Azure AI Search Configuration (optional - for vector search)
 const AZURE_SEARCH_ENDPOINT = process.env.AZURE_SEARCH_ENDPOINT;
@@ -50,7 +52,7 @@ async function searchPubMed(query, maxResults = 10, language = 'en') {
       retmax: maxResults.toString(),
       retmode: 'json',
       email: PUBMED_EMAIL,
-      tool: 'ailydian-medical-ai'
+      tool: 'ailydian-medical-ai',
     });
 
     const searchResponse = await axios.get(`${searchUrl}?${searchParams}`);
@@ -67,37 +69,38 @@ async function searchPubMed(query, maxResults = 10, language = 'en') {
       id: pmids.join(','),
       retmode: 'json',
       email: PUBMED_EMAIL,
-      tool: 'ailydian-medical-ai'
+      tool: 'ailydian-medical-ai',
     });
 
     const summaryResponse = await axios.get(`${summaryUrl}?${summaryParams}`);
     const articles = summaryResponse.data.result || {};
 
     // Parse articles
-    const results = pmids.map(pmid => {
-      const article = articles[pmid];
-      if (!article) return null;
+    const results = pmids
+      .map(pmid => {
+        const article = articles[pmid];
+        if (!article) return null;
 
-      return {
-        pmid,
-        title: article.title || '',
-        authors: article.authors?.map(a => a.name).join(', ') || '',
-        journal: article.fulljournalname || article.source || '',
-        pub_date: article.pubdate || '',
-        abstract: article.abstract || '', // Note: eSummary doesn't always include abstract
-        doi: article.elocationid?.replace('doi: ', '') || '',
-        url: `https://pubmed.ncbi.nlm.nih.gov/${pmid}/`,
-        citation: formatCitation(article),
-        source: 'PubMed',
-        confidence: 0.85 // Default confidence for PubMed results
-      };
-    }).filter(Boolean);
+        return {
+          pmid,
+          title: article.title || '',
+          authors: article.authors?.map(a => a.name).join(', ') || '',
+          journal: article.fulljournalname || article.source || '',
+          pub_date: article.pubdate || '',
+          abstract: article.abstract || '', // Note: eSummary doesn't always include abstract
+          doi: article.elocationid?.replace('doi: ', '') || '',
+          url: `https://pubmed.ncbi.nlm.nih.gov/${pmid}/`,
+          citation: formatCitation(article),
+          source: 'PubMed',
+          confidence: 0.85, // Default confidence for PubMed results
+        };
+      })
+      .filter(Boolean);
 
     return {
       results,
-      total: parseInt(searchResponse.data.esearchresult?.count || 0)
+      total: parseInt(searchResponse.data.esearchresult?.count || 0),
     };
-
   } catch (error) {
     console.error('❌ PubMed Search Error:', error.message);
     throw error;
@@ -108,7 +111,11 @@ async function searchPubMed(query, maxResults = 10, language = 'en') {
  * Format citation in AMA style
  */
 function formatCitation(article) {
-  const authors = article.authors?.slice(0, 3).map(a => a.name).join(', ') || 'Unknown Authors';
+  const authors =
+    article.authors
+      ?.slice(0, 3)
+      .map(a => a.name)
+      .join(', ') || 'Unknown Authors';
   const title = article.title || 'Untitled';
   const journal = article.source || '';
   const year = article.pubdate ? new Date(article.pubdate).getFullYear() : '';
@@ -140,7 +147,7 @@ const WHO_GUIDELINES = [
     topic: 'infection-control',
     year: 2009,
     source: 'WHO',
-    confidence: 0.95
+    confidence: 0.95,
   },
   {
     id: 'who-002',
@@ -149,7 +156,7 @@ const WHO_GUIDELINES = [
     topic: 'infectious-disease',
     year: 2015,
     source: 'WHO',
-    confidence: 0.95
+    confidence: 0.95,
   },
   {
     id: 'who-003',
@@ -158,7 +165,7 @@ const WHO_GUIDELINES = [
     topic: 'infectious-disease',
     year: 2019,
     source: 'WHO',
-    confidence: 0.95
+    confidence: 0.95,
   },
   {
     id: 'who-004',
@@ -167,7 +174,7 @@ const WHO_GUIDELINES = [
     topic: 'public-health',
     year: 2020,
     source: 'WHO',
-    confidence: 0.95
+    confidence: 0.95,
   },
   {
     id: 'who-005',
@@ -176,8 +183,8 @@ const WHO_GUIDELINES = [
     topic: 'infectious-disease',
     year: 2021,
     source: 'WHO',
-    confidence: 0.95
-  }
+    confidence: 0.95,
+  },
 ];
 
 function searchWHOGuidelines(query) {
@@ -192,7 +199,7 @@ function searchWHOGuidelines(query) {
 
   return {
     results,
-    total: results.length
+    total: results.length,
   };
 }
 
@@ -211,33 +218,37 @@ async function searchAzureAI(query, maxResults = 10) {
   try {
     const searchUrl = `${AZURE_SEARCH_ENDPOINT}/indexes/${AZURE_SEARCH_INDEX}/docs/search?api-version=2023-11-01`;
 
-    const response = await axios.post(searchUrl, {
-      search: query,
-      top: maxResults,
-      select: 'title,content,source,url,confidence',
-      queryType: 'semantic',
-      semanticConfiguration: 'default'
-    }, {
-      headers: {
-        'Content-Type': 'application/json',
-        'api-key': AZURE_SEARCH_API_KEY
+    const response = await axios.post(
+      searchUrl,
+      {
+        search: query,
+        top: maxResults,
+        select: 'title,content,source,url,confidence',
+        queryType: 'semantic',
+        semanticConfiguration: 'default',
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'api-key': AZURE_SEARCH_API_KEY,
+        },
       }
-    });
+    );
 
-    const results = response.data.value?.map(doc => ({
-      title: doc.title,
-      content: doc.content,
-      source: doc.source || 'Azure AI Search',
-      url: doc.url,
-      confidence: doc['@search.score'] || 0.5,
-      citation: `${doc.title}. Retrieved from ${doc.url}`
-    })) || [];
+    const results =
+      response.data.value?.map(doc => ({
+        title: doc.title,
+        content: doc.content,
+        source: doc.source || 'Azure AI Search',
+        url: doc.url,
+        confidence: doc['@search.score'] || 0.5,
+        citation: `${doc.title}. Retrieved from ${doc.url}`,
+      })) || [];
 
     return {
       results,
-      total: response.data['@odata.count'] || results.length
+      total: response.data['@odata.count'] || results.length,
     };
-
   } catch (error) {
     console.error('❌ Azure AI Search Error:', error.message);
     return { results: [], total: 0 };
@@ -255,6 +266,7 @@ async function searchAzureAI(query, maxResults = 10) {
  * Unified RAG search across PubMed, WHO, and Azure AI Search
  */
 async function handleRagSearch(req, res) {
+  applySanitization(req, res);
   const startTime = Date.now();
 
   try {
@@ -264,14 +276,14 @@ async function handleRagSearch(req, res) {
       sources = ['pubmed', 'who', 'azure'],
       language = 'en',
       hospital_id,
-      user_id
+      user_id,
     } = req.body;
 
     // Validate query
     if (!query) {
       return res.status(400).json({
         success: false,
-        error: 'Query is required'
+        error: 'Query is required',
       });
     }
 
@@ -290,8 +302,7 @@ async function handleRagSearch(req, res) {
 
     if (sources.includes('who')) {
       searchPromises.push(
-        Promise.resolve(searchWHOGuidelines(query))
-          .then(r => ({ source: 'who', ...r }))
+        Promise.resolve(searchWHOGuidelines(query)).then(r => ({ source: 'who', ...r }))
       );
     }
 
@@ -310,14 +321,14 @@ async function handleRagSearch(req, res) {
     const aggregated = {
       pubmed: searchResults.find(r => r.source === 'pubmed') || { results: [], total: 0 },
       who: searchResults.find(r => r.source === 'who') || { results: [], total: 0 },
-      azure: searchResults.find(r => r.source === 'azure') || { results: [], total: 0 }
+      azure: searchResults.find(r => r.source === 'azure') || { results: [], total: 0 },
     };
 
     // Combine and sort by confidence
     const allResults = [
       ...aggregated.pubmed.results,
       ...aggregated.who.results,
-      ...aggregated.azure.results
+      ...aggregated.azure.results,
     ].sort((a, b) => (b.confidence || 0) - (a.confidence || 0));
 
     // Log audit
@@ -331,8 +342,8 @@ async function handleRagSearch(req, res) {
         total_results: allResults.length,
         pubmed_count: aggregated.pubmed.results.length,
         who_count: aggregated.who.results.length,
-        azure_count: aggregated.azure.results.length
-      }
+        azure_count: aggregated.azure.results.length,
+      },
     });
 
     res.json({
@@ -342,25 +353,24 @@ async function handleRagSearch(req, res) {
       sources: {
         pubmed: {
           count: aggregated.pubmed.results.length,
-          total: aggregated.pubmed.total
+          total: aggregated.pubmed.total,
         },
         who: {
           count: aggregated.who.results.length,
-          total: aggregated.who.total
+          total: aggregated.who.total,
         },
         azure: {
           count: aggregated.azure.results.length,
-          total: aggregated.azure.total
-        }
+          total: aggregated.azure.total,
+        },
       },
       metadata: {
         total_results: allResults.length,
         sources_queried: sources,
         language,
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ RAG Search Error:', error);
 
@@ -368,15 +378,15 @@ async function handleRagSearch(req, res) {
       action: 'RAG_SEARCH_ERROR',
       details: {
         error: error.message,
-        stack: error.stack
-      }
+        stack: error.stack,
+      },
     });
 
     res.status(500).json({
       success: false,
       error: 'Failed to perform RAG search',
-      message: error.message,
-      response_time_ms: Date.now() - startTime
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
+      response_time_ms: Date.now() - startTime,
     });
   }
 }
@@ -393,7 +403,7 @@ async function getAvailableSources(req, res) {
       description: 'NCBI PubMed - biomedical and life sciences literature',
       url: 'https://pubmed.ncbi.nlm.nih.gov/',
       available: true,
-      citation_style: 'AMA'
+      citation_style: 'AMA',
     },
     {
       id: 'who',
@@ -401,21 +411,21 @@ async function getAvailableSources(req, res) {
       description: 'World Health Organization clinical guidelines',
       url: 'https://www.who.int/publications/guidelines',
       available: true,
-      guidelines_count: WHO_GUIDELINES.length
+      guidelines_count: WHO_GUIDELINES.length,
     },
     {
       id: 'azure',
       name: 'Azure AI Search',
       description: 'Vector search over indexed medical literature',
       available: !!(AZURE_SEARCH_ENDPOINT && AZURE_SEARCH_API_KEY),
-      index: AZURE_SEARCH_INDEX
-    }
+      index: AZURE_SEARCH_INDEX,
+    },
   ];
 
   res.json({
     success: true,
     sources,
-    total: sources.length
+    total: sources.length,
   });
 }
 
@@ -426,5 +436,5 @@ module.exports = {
   handleRagSearch,
   getAvailableSources,
   searchPubMed,
-  searchWHOGuidelines
+  searchWHOGuidelines,
 };

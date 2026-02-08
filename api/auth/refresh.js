@@ -112,25 +112,21 @@ export default async function handler(req, res) {
     console.error('Token refresh error:', error);
 
     if (error.message.includes('expired')) {
-      return res
-        .status(401)
-        .json({
-          success: false,
-          error: 'Refresh token expired',
-          code: 'REFRESH_TOKEN_EXPIRED',
-          hint: 'Please login again',
-        });
+      return res.status(401).json({
+        success: false,
+        error: 'Refresh token expired',
+        code: 'REFRESH_TOKEN_EXPIRED',
+        hint: 'Please login again',
+      });
     }
 
     if (error.message.includes('revoked')) {
-      return res
-        .status(401)
-        .json({
-          success: false,
-          error: 'Refresh token has been revoked',
-          code: 'REFRESH_TOKEN_REVOKED',
-          hint: 'Please login again',
-        });
+      return res.status(401).json({
+        success: false,
+        error: 'Refresh token has been revoked',
+        code: 'REFRESH_TOKEN_REVOKED',
+        hint: 'Please login again',
+      });
     }
 
     if (error.message.includes('Invalid')) {
@@ -139,13 +135,10 @@ export default async function handler(req, res) {
         .json({ success: false, error: 'Invalid refresh token', code: 'INVALID_REFRESH_TOKEN' });
     }
 
-    return res
-      .status(500)
-      .json({
-        success: false,
-        error: 'Token refresh failed',
-        code: 'SERVER_ERROR',
-        details: error.message,
-      });
+    return res.status(500).json({
+      success: false,
+      error: 'Token yenileme basarisiz. Lutfen tekrar deneyin.',
+      code: 'SERVER_ERROR',
+    });
   }
 }

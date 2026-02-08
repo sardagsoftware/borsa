@@ -18,8 +18,10 @@ class InstagramService {
     this.config = {
       appId: process.env.INSTAGRAM_CLIENT_ID || process.env.INSTAGRAM_APP_ID,
       appSecret: process.env.INSTAGRAM_CLIENT_SECRET || process.env.INSTAGRAM_APP_SECRET,
-      redirectUri: process.env.INSTAGRAM_REDIRECT_URI || 'http://localhost:3500/api/omnireach/platforms/instagram/callback',
-      graphApiUrl: 'https://graph.facebook.com/v18.0'
+      redirectUri:
+        process.env.INSTAGRAM_REDIRECT_URI ||
+        'http://localhost:3500/api/omnireach/platforms/instagram/callback',
+      graphApiUrl: 'https://graph.facebook.com/v18.0',
     };
 
     console.log('✅ Instagram service initialized');
@@ -33,13 +35,16 @@ class InstagramService {
     const state = crypto.randomBytes(32).toString('hex');
     this.stateStore.set(state, {
       createdAt: Date.now(),
-      validated: false
+      validated: false,
     });
 
     // Auto-cleanup after 10 minutes
-    setTimeout(() => {
-      this.stateStore.delete(state);
-    }, 10 * 60 * 1000);
+    setTimeout(
+      () => {
+        this.stateStore.delete(state);
+      },
+      10 * 60 * 1000
+    );
 
     return state;
   }
@@ -76,16 +81,17 @@ class InstagramService {
       'instagram_basic',
       'instagram_content_publish',
       'pages_show_list',
-      'pages_read_engagement'
+      'pages_read_engagement',
     ].join(',');
 
     const state = this.generateState();
 
-    const authUrl = `https://www.facebook.com/v18.0/dialog/oauth?` +
+    const authUrl =
+      'https://www.facebook.com/v18.0/dialog/oauth?' +
       `client_id=${this.config.appId}` +
       `&redirect_uri=${encodeURIComponent(this.config.redirectUri)}` +
       `&scope=${scopes}` +
-      `&response_type=code` +
+      '&response_type=code' +
       `&state=${state}`;
 
     console.log('🔗 Instagram Auth URL generated with state protection');
@@ -116,8 +122,8 @@ class InstagramService {
           client_id: this.config.appId,
           client_secret: this.config.appSecret,
           redirect_uri: this.config.redirectUri,
-          code: code
-        }
+          code: code,
+        },
       });
 
       const accessToken = tokenResponse.data.access_token;
@@ -125,12 +131,14 @@ class InstagramService {
       // Step 2: Get user's Facebook Pages
       const pagesResponse = await axios.get(`${this.config.graphApiUrl}/me/accounts`, {
         params: {
-          access_token: accessToken
-        }
+          access_token: accessToken,
+        },
       });
 
       if (!pagesResponse.data.data || pagesResponse.data.data.length === 0) {
-        throw new Error('No Facebook Pages found. Please connect a Facebook Page to your Instagram Business Account.');
+        throw new Error(
+          'No Facebook Pages found. Please connect a Facebook Page to your Instagram Business Account.'
+        );
       }
 
       const page = pagesResponse.data.data[0];
@@ -140,8 +148,8 @@ class InstagramService {
       const igAccountResponse = await axios.get(`${this.config.graphApiUrl}/${page.id}`, {
         params: {
           fields: 'instagram_business_account',
-          access_token: pageAccessToken
-        }
+          access_token: pageAccessToken,
+        },
       });
 
       if (!igAccountResponse.data.instagram_business_account) {
@@ -154,8 +162,8 @@ class InstagramService {
       const igDetailsResponse = await axios.get(`${this.config.graphApiUrl}/${igAccountId}`, {
         params: {
           fields: 'username,name,profile_picture_url,followers_count,follows_count,media_count',
-          access_token: pageAccessToken
-        }
+          access_token: pageAccessToken,
+        },
       });
 
       const igAccount = igDetailsResponse.data;
@@ -168,7 +176,7 @@ class InstagramService {
         success: true,
         tokens: {
           access_token: pageAccessToken,
-          token_type: 'bearer'
+          token_type: 'bearer',
         },
         accountName: `@${igAccount.username}`,
         username: igAccount.username,
@@ -180,14 +188,14 @@ class InstagramService {
           profilePicture: igAccount.profile_picture_url,
           followers: igAccount.followers_count,
           following: igAccount.follows_count,
-          mediaCount: igAccount.media_count
-        }
+          mediaCount: igAccount.media_count,
+        },
       };
     } catch (error) {
       console.error('❌ [Instagram] OAuth connection failed:', error.message);
       return {
         success: false,
-        error: error.message
+        error: 'Platform işlem hatası',
       };
     }
   }
@@ -206,8 +214,8 @@ class InstagramService {
           grant_type: 'fb_exchange_token',
           client_id: this.config.appId,
           client_secret: this.config.appSecret,
-          fb_exchange_token: accessToken
-        }
+          fb_exchange_token: accessToken,
+        },
       });
 
       console.log('✅ [Instagram] Access token refreshed (valid for ~60 days)');
@@ -217,14 +225,14 @@ class InstagramService {
         tokens: {
           access_token: response.data.access_token,
           token_type: response.data.token_type,
-          expires_in: response.data.expires_in
-        }
+          expires_in: response.data.expires_in,
+        },
       };
     } catch (error) {
       console.error('❌ [Instagram] Token refresh failed:', error.message);
       return {
         success: false,
-        error: error.message
+        error: 'Platform işlem hatası',
       };
     }
   }
@@ -251,7 +259,7 @@ class InstagramService {
           video_url: reelData.videoUrl,
           caption: reelData.caption || '',
           share_to_feed: reelData.shareToFeed !== false, // Default true
-          access_token: accessToken
+          access_token: accessToken,
         }
       );
 
@@ -267,15 +275,12 @@ class InstagramService {
       while (!isProcessed && attempts < maxAttempts) {
         await this.sleep(10000); // Wait 10 seconds
 
-        const statusResponse = await axios.get(
-          `${this.config.graphApiUrl}/${containerId}`,
-          {
-            params: {
-              fields: 'status_code',
-              access_token: accessToken
-            }
-          }
-        );
+        const statusResponse = await axios.get(`${this.config.graphApiUrl}/${containerId}`, {
+          params: {
+            fields: 'status_code',
+            access_token: accessToken,
+          },
+        });
 
         const statusCode = statusResponse.data.status_code;
 
@@ -301,22 +306,19 @@ class InstagramService {
         `${this.config.graphApiUrl}/${igAccountId}/media_publish`,
         {
           creation_id: containerId,
-          access_token: accessToken
+          access_token: accessToken,
         }
       );
 
       const mediaId = publishResponse.data.id;
 
       // Step 4: Get published media details
-      const mediaResponse = await axios.get(
-        `${this.config.graphApiUrl}/${mediaId}`,
-        {
-          params: {
-            fields: 'id,media_type,permalink,thumbnail_url,timestamp',
-            access_token: accessToken
-          }
-        }
-      );
+      const mediaResponse = await axios.get(`${this.config.graphApiUrl}/${mediaId}`, {
+        params: {
+          fields: 'id,media_type,permalink,thumbnail_url,timestamp',
+          access_token: accessToken,
+        },
+      });
 
       const media = mediaResponse.data;
 
@@ -329,13 +331,13 @@ class InstagramService {
         mediaId: mediaId,
         permalink: media.permalink,
         thumbnailUrl: media.thumbnail_url,
-        timestamp: media.timestamp
+        timestamp: media.timestamp,
       };
     } catch (error) {
       console.error('❌ [Instagram] Reel publishing failed:', error.message);
       return {
         success: false,
-        error: error.message
+        error: 'Platform işlem hatası',
       };
     }
   }
@@ -348,15 +350,12 @@ class InstagramService {
    */
   async getMediaInsights(mediaId, accessToken) {
     try {
-      const response = await axios.get(
-        `${this.config.graphApiUrl}/${mediaId}/insights`,
-        {
-          params: {
-            metric: 'impressions,reach,likes,comments,shares,saves,plays,total_interactions',
-            access_token: accessToken
-          }
-        }
-      );
+      const response = await axios.get(`${this.config.graphApiUrl}/${mediaId}/insights`, {
+        params: {
+          metric: 'impressions,reach,likes,comments,shares,saves,plays,total_interactions',
+          access_token: accessToken,
+        },
+      });
 
       const insights = {};
       response.data.data.forEach(metric => {
@@ -366,13 +365,13 @@ class InstagramService {
       console.log('✅ [Instagram] Media insights retrieved');
       return {
         success: true,
-        insights: insights
+        insights: insights,
       };
     } catch (error) {
       console.error('❌ [Instagram] Failed to get insights:', error.message);
       return {
         success: false,
-        error: error.message
+        error: 'Platform işlem hatası',
       };
     }
   }
@@ -385,16 +384,13 @@ class InstagramService {
    */
   async getAccountInsights(igAccountId, accessToken) {
     try {
-      const response = await axios.get(
-        `${this.config.graphApiUrl}/${igAccountId}/insights`,
-        {
-          params: {
-            metric: 'impressions,reach,profile_views,follower_count',
-            period: 'day',
-            access_token: accessToken
-          }
-        }
-      );
+      const response = await axios.get(`${this.config.graphApiUrl}/${igAccountId}/insights`, {
+        params: {
+          metric: 'impressions,reach,profile_views,follower_count',
+          period: 'day',
+          access_token: accessToken,
+        },
+      });
 
       const insights = {};
       response.data.data.forEach(metric => {
@@ -404,13 +400,13 @@ class InstagramService {
       console.log('✅ [Instagram] Account insights retrieved');
       return {
         success: true,
-        insights: insights
+        insights: insights,
       };
     } catch (error) {
       console.error('❌ [Instagram] Failed to get account insights:', error.message);
       return {
         success: false,
-        error: error.message
+        error: 'Platform işlem hatası',
       };
     }
   }

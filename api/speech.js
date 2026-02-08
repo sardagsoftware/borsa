@@ -38,7 +38,7 @@ function validateCredentials() {
     return {
       valid: false,
       error: 'Azure Speech credentials not configured',
-      message: 'Please set AZURE_SPEECH_KEY and AZURE_SPEECH_REGION'
+      message: 'Please set AZURE_SPEECH_KEY and AZURE_SPEECH_REGION',
     };
   }
   return { valid: true };
@@ -58,7 +58,7 @@ async function handleTranscribe(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({
       success: false,
-      error: 'Method not allowed'
+      error: 'Method not allowed',
     });
   }
 
@@ -68,7 +68,7 @@ async function handleTranscribe(req, res) {
     return res.status(500).json({
       success: false,
       error: credCheck.error,
-      message: credCheck.message
+      message: credCheck.message,
     });
   }
 
@@ -78,7 +78,7 @@ async function handleTranscribe(req, res) {
     return res.status(429).json({
       success: false,
       error: 'Rate limit exceeded',
-      message: `Maximum ${RATE_LIMIT} requests per minute`
+      message: `Maximum ${RATE_LIMIT} requests per minute`,
     });
   }
 
@@ -87,13 +87,13 @@ async function handleTranscribe(req, res) {
       audioData, // Base64 encoded audio
       audioUrl, // URL to audio file
       language = 'tr-TR', // Turkish by default
-      format = 'wav' // Audio format: wav, mp3, ogg
+      format = 'wav', // Audio format: wav, mp3, ogg
     } = req.body;
 
     if (!audioData && !audioUrl) {
       return res.status(400).json({
         success: false,
-        error: 'Audio data or URL required'
+        error: 'Audio data or URL required',
       });
     }
 
@@ -136,7 +136,7 @@ async function handleTranscribe(req, res) {
             resolve({
               text: result.text,
               duration: result.duration,
-              offset: result.offset
+              offset: result.offset,
             });
           } else if (result.reason === sdk.ResultReason.NoMatch) {
             reject(new Error('No speech could be recognized'));
@@ -167,17 +167,16 @@ async function handleTranscribe(req, res) {
       text: transcription.text,
       language: language,
       duration: transcription.duration,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
-
   } catch (error) {
     console.error('❌ Transcription Error:', error.message);
 
     res.status(500).json({
       success: false,
       error: 'Transcription failed',
-      message: error.message,
-      timestamp: new Date().toISOString()
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
+      timestamp: new Date().toISOString(),
     });
   }
 }
@@ -196,7 +195,7 @@ async function handleSynthesize(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({
       success: false,
-      error: 'Method not allowed'
+      error: 'Method not allowed',
     });
   }
 
@@ -206,7 +205,7 @@ async function handleSynthesize(req, res) {
     return res.status(500).json({
       success: false,
       error: credCheck.error,
-      message: credCheck.message
+      message: credCheck.message,
     });
   }
 
@@ -216,7 +215,7 @@ async function handleSynthesize(req, res) {
     return res.status(429).json({
       success: false,
       error: 'Rate limit exceeded',
-      message: `Maximum ${RATE_LIMIT} requests per minute`
+      message: `Maximum ${RATE_LIMIT} requests per minute`,
     });
   }
 
@@ -227,13 +226,13 @@ async function handleSynthesize(req, res) {
       voice = 'tr-TR-EmelNeural', // Turkish female voice
       rate = '1.0', // Speech rate (0.5 - 2.0)
       pitch = '0%', // Pitch adjustment
-      format = 'audio-16khz-32kbitrate-mono-mp3' // Output format
+      format = 'audio-16khz-32kbitrate-mono-mp3', // Output format
     } = req.body;
 
     if (!text) {
       return res.status(400).json({
         success: false,
-        error: 'Text required'
+        error: 'Text required',
       });
     }
 
@@ -243,7 +242,8 @@ async function handleSynthesize(req, res) {
     const speechConfig = sdk.SpeechConfig.fromSubscription(AZURE_SPEECH_KEY, AZURE_SPEECH_REGION);
     speechConfig.speechSynthesisLanguage = language;
     speechConfig.speechSynthesisVoiceName = voice;
-    speechConfig.speechSynthesisOutputFormat = sdk.SpeechSynthesisOutputFormat[format] ||
+    speechConfig.speechSynthesisOutputFormat =
+      sdk.SpeechSynthesisOutputFormat[format] ||
       sdk.SpeechSynthesisOutputFormat.Audio16Khz32KBitRateMonoMp3;
 
     // Create synthesizer
@@ -292,17 +292,16 @@ async function handleSynthesize(req, res) {
       voice: voice,
       language: language,
       textLength: text.length,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
-
   } catch (error) {
     console.error('❌ Synthesis Error:', error.message);
 
     res.status(500).json({
       success: false,
       error: 'Synthesis failed',
-      message: error.message,
-      timestamp: new Date().toISOString()
+      message: 'Ses isleme hatasi. Lutfen tekrar deneyin.',
+      timestamp: new Date().toISOString(),
     });
   }
 }
@@ -317,7 +316,7 @@ async function getVoices(req, res) {
     return res.status(500).json({
       success: false,
       error: credCheck.error,
-      message: credCheck.message
+      message: credCheck.message,
     });
   }
 
@@ -332,7 +331,7 @@ async function getVoices(req, res) {
             name: v.shortName,
             displayName: v.localName,
             gender: v.gender,
-            locale: v.locale
+            locale: v.locale,
           }));
           resolve(voices);
           synthesizer.close();
@@ -347,15 +346,14 @@ async function getVoices(req, res) {
     res.status(200).json({
       success: true,
       voices: voicesList,
-      count: voicesList.length
+      count: voicesList.length,
     });
-
   } catch (error) {
     console.error('❌ Get voices error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to get voices',
-      message: error.message
+      message: 'Ses isleme hatasi. Lutfen tekrar deneyin.',
     });
   }
 }
@@ -364,5 +362,5 @@ async function getVoices(req, res) {
 module.exports = {
   handleTranscribe,
   handleSynthesize,
-  getVoices
+  getVoices,
 };

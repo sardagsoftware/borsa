@@ -42,13 +42,7 @@ export default async function handler(req: any, res: any) {
  */
 async function handleGeneratePack(req: any, res: any) {
   try {
-    const {
-      decision_id,
-      explanation,
-      signed_operation,
-      attestation_logs,
-      format,
-    } = req.body;
+    const { decision_id, explanation, signed_operation, attestation_logs, format } = req.body;
 
     // Validate required fields
     if (!decision_id) {
@@ -81,10 +75,10 @@ async function handleGeneratePack(req: any, res: any) {
   } catch (error: any) {
     console.error('Evidence pack generation error:', error);
 
-    if (error.message.includes('validation')) {
+    if (error.message?.includes('validation')) {
       return res.status(400).json({
         error: 'Validation error',
-        message: error.message,
+        message: 'Dogrulama hatasi. Lutfen girisleri kontrol edin.',
       });
     }
 

@@ -2,7 +2,7 @@ const Anthropic = require('@anthropic-ai/sdk');
 const { getCorsOrigin } = require('../_middleware/cors');
 
 const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY
+  apiKey: process.env.ANTHROPIC_API_KEY,
 });
 
 module.exports = async (req, res) => {
@@ -54,13 +54,14 @@ Bu startup için detaylı analiz yap ve JSON formatında döndür:
     const response = await anthropic.messages.create({
       model: 'AX9F7E2B',
       max_tokens: 1000,
-      system: 'Sen bir startup mentörü ve yatırım danışmanısın. Startupları objektif kriterlerle değerlendirip yol haritası çıkarırsın.',
+      system:
+        'Sen bir startup mentörü ve yatırım danışmanısın. Startupları objektif kriterlerle değerlendirip yol haritası çıkarırsın.',
       messages: [
         {
           role: 'user',
-          content: prompt
-        }
-      ]
+          content: prompt,
+        },
+      ],
     });
 
     let result;
@@ -72,36 +73,32 @@ Bu startup için detaylı analiz yap ve JSON formatında döndür:
         scores: {
           market: Math.floor(Math.random() * 3) + 7,
           product: Math.floor(Math.random() * 3) + 7,
-          team: Math.floor(Math.random() * 3) + 6
+          team: Math.floor(Math.random() * 3) + 6,
         },
-        strengths: [
-          'Yenilikçi ürün fikri',
-          'Büyüyen pazar segmenti',
-          'Teknoloji odaklı yaklaşım'
-        ],
+        strengths: ['Yenilikçi ürün fikri', 'Büyüyen pazar segmenti', 'Teknoloji odaklı yaklaşım'],
         weaknesses: [
           'Pazar araştırması güçlendirilmeli',
           'Ekip genişletilmesi gerekebilir',
-          'Go-to-market stratejisi netleştirilmeli'
+          'Go-to-market stratejisi netleştirilmeli',
         ],
         roadmap: [
           { phase: '0-3 Ay', description: 'MVP tamamlama ve ilk kullanıcı testleri' },
           { phase: '3-6 Ay', description: 'Product-market fit doğrulama ve pazara giriş' },
-          { phase: '6-12 Ay', description: 'Ölçekleme ve seed fonlama turu' }
-        ]
+          { phase: '6-12 Ay', description: 'Ölçekleme ve seed fonlama turu' },
+        ],
       };
     }
 
     res.status(200).json({
       success: true,
       ...result,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
   } catch (error) {
     console.error('Startup analysis error:', error);
     res.status(500).json({
       error: 'Analysis failed',
-      message: error.message
+      message: 'Analiz hatası',
     });
   }
 };

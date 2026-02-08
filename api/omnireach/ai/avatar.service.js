@@ -28,8 +28,8 @@ class AvatarService {
         'digital-art',
         '3d-render',
         'minimalist',
-        'professional'
-      ]
+        'professional',
+      ],
     };
 
     console.log('✅ Avatar Generation Service initialized');
@@ -61,7 +61,7 @@ class AvatarService {
       console.error('❌ [Avatar] Generation failed:', error.message);
       return {
         success: false,
-        error: error.message
+        error: 'Avatar isleme hatasi.',
       };
     }
   }
@@ -85,13 +85,13 @@ class AvatarService {
           size: params.size || '1024x1024',
           quality: params.quality || 'hd',
           style: params.style === 'photorealistic' ? 'natural' : 'vivid',
-          n: 1
+          n: 1,
         },
         {
           headers: {
             'api-key': this.config.azureApiKey,
-            'Content-Type': 'application/json'
-          }
+            'Content-Type': 'application/json',
+          },
         }
       );
 
@@ -108,8 +108,8 @@ class AvatarService {
         metadata: {
           size: params.size || '1024x1024',
           quality: params.quality || 'hd',
-          style: params.style || 'photorealistic'
-        }
+          style: params.style || 'photorealistic',
+        },
       };
     } catch (error) {
       console.error('❌ Azure DALL-E generation failed:', error.message);
@@ -136,26 +136,26 @@ class AvatarService {
           text_prompts: [
             {
               text: prompt,
-              weight: 1
+              weight: 1,
             },
             {
               text: 'blurry, bad anatomy, distorted, ugly',
-              weight: -1
-            }
+              weight: -1,
+            },
           ],
           cfg_scale: 7,
           height: 1024,
           width: 1024,
           steps: 30,
           samples: 1,
-          style_preset: this.getStabilityStyle(params.style)
+          style_preset: this.getStabilityStyle(params.style),
         },
         {
           headers: {
-            'Authorization': `Bearer ${this.config.stabilityApiKey}`,
+            Authorization: `Bearer ${this.config.stabilityApiKey}`,
             'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          }
+            Accept: 'application/json',
+          },
         }
       );
 
@@ -171,8 +171,8 @@ class AvatarService {
         metadata: {
           seed: image.seed,
           finishReason: image.finishReason,
-          style: params.style || 'photorealistic'
-        }
+          style: params.style || 'photorealistic',
+        },
       };
     } catch (error) {
       console.error('❌ Stability AI generation failed:', error.message);
@@ -196,7 +196,7 @@ class AvatarService {
       expression = 'friendly',
       background = 'solid color',
       clothing = 'casual professional',
-      customPrompt = ''
+      customPrompt = '',
     } = params;
 
     if (customPrompt) {
@@ -233,7 +233,7 @@ class AvatarService {
       style === 'photorealistic' ? 'hyperrealistic, detailed features, natural skin texture' : '',
 
       // AI-generated watermark compliance
-      'ethical AI-generated avatar for content creation'
+      'ethical AI-generated avatar for content creation',
     ];
 
     return promptParts.filter(Boolean).join(', ');
@@ -246,13 +246,13 @@ class AvatarService {
    */
   getStabilityStyle(style) {
     const styleMap = {
-      'photorealistic': 'photographic',
-      'cartoon': 'comic-book',
-      'anime': 'anime',
+      photorealistic: 'photographic',
+      cartoon: 'comic-book',
+      anime: 'anime',
       'digital-art': 'digital-art',
       '3d-render': '3d-model',
-      'minimalist': 'line-art',
-      'professional': 'photographic'
+      minimalist: 'line-art',
+      professional: 'photographic',
     };
 
     return styleMap[style] || 'photographic';
@@ -270,7 +270,7 @@ class AvatarService {
       photorealistic: 'https://i.pravatar.cc/1024?img=1',
       cartoon: 'https://i.pravatar.cc/1024?img=2',
       anime: 'https://i.pravatar.cc/1024?img=3',
-      professional: 'https://i.pravatar.cc/1024?img=4'
+      professional: 'https://i.pravatar.cc/1024?img=4',
     };
 
     const style = params.style || 'photorealistic';
@@ -282,8 +282,8 @@ class AvatarService {
       metadata: {
         mode: 'demo',
         style: style,
-        message: 'Demo avatar - configure AI providers for production'
-      }
+        message: 'Demo avatar - configure AI providers for production',
+      },
     };
   }
 
@@ -309,8 +309,8 @@ class AvatarService {
         lipSyncEnabled: animationParams.lipSync || true,
         expressionsEnabled: animationParams.expressions || true,
         blinkingEnabled: animationParams.blinking || true,
-        headMovementEnabled: animationParams.headMovement || true
-      }
+        headMovementEnabled: animationParams.headMovement || true,
+      },
     };
   }
 
@@ -334,8 +334,8 @@ class AvatarService {
         contentPolicy: { passed: true, message: '✅ Content policy compliant' },
         copyright: { passed: true, message: '✅ No copyright violations' },
         impersonation: { passed: true, message: '✅ No impersonation detected' },
-        aiWatermark: { passed: true, message: '✅ AI-generated disclosure present' }
-      }
+        aiWatermark: { passed: true, message: '✅ AI-generated disclosure present' },
+      },
     };
   }
 }

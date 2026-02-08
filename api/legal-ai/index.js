@@ -9,14 +9,18 @@
  * Priority: Judges → Prosecutors → Lawyers → Citizens
  */
 
+const { handleCORS } = require('../_lib/cors-simple');
+
 // For Vercel serverless functions, we need to use a different approach
 // Try to load Groq SDK if available
 let Groq, groq;
 try {
   Groq = require('groq-sdk');
-  groq = process.env.GROQ_API_KEY ? new Groq({
-    apiKey: process.env.GROQ_API_KEY
-  }) : null;
+  groq = process.env.GROQ_API_KEY
+    ? new Groq({
+        apiKey: process.env.GROQ_API_KEY,
+      })
+    : null;
 } catch (e) {
   // Groq SDK not available, will use mock responses
   groq = null;
@@ -25,15 +29,15 @@ try {
 // Mock legal responses for demo/fallback
 const mockLegalResponses = {
   tr: [
-    "Hukuki sorunuz için teşekkür ederim. Bu konuda size yardımcı olmak isterim. Ancak, lütfen unutmayın ki ben yapay zeka bir asistanım ve verdiğim bilgiler genel niteliktedir. Kesin hukuki görüş için mutlaka bir avukata danışmalısınız.",
-    "Yasal durumunuzu anlıyorum. Türk hukuku çerçevesinde bu tür davalar genellikle ilgili mahkemede açılır. Süreç, davanın türüne göre değişiklik gösterebilir. Daha detaylı bilgi için yetkili bir hukuk uzmanına başvurmanızı öneririm.",
+    'Hukuki sorunuz için teşekkür ederim. Bu konuda size yardımcı olmak isterim. Ancak, lütfen unutmayın ki ben yapay zeka bir asistanım ve verdiğim bilgiler genel niteliktedir. Kesin hukuki görüş için mutlaka bir avukata danışmalısınız.',
+    'Yasal durumunuzu anlıyorum. Türk hukuku çerçevesinde bu tür davalar genellikle ilgili mahkemede açılır. Süreç, davanın türüne göre değişiklik gösterebilir. Daha detaylı bilgi için yetkili bir hukuk uzmanına başvurmanızı öneririm.',
     "Sorununuz hakkında genel bilgi verebilirim. Türkiye'de hukuk sisteminde vatandaşların hakları anayasa ve ilgili kanunlarla korunmaktadır. Sizin durumunuzda hangi adımların atılması gerektiği konusunda bir avukattan profesyonel destek almanız faydalı olacaktır.",
   ],
   en: [
     "Thank you for your legal question. I'd be happy to help. However, please remember that I'm an AI assistant and the information I provide is general in nature. For specific legal advice, you should consult with a qualified attorney.",
-    "I understand your legal situation. In Turkish law, such cases are typically filed in the relevant court. The process may vary depending on the type of case. I recommend consulting with a qualified legal expert for more detailed information.",
+    'I understand your legal situation. In Turkish law, such cases are typically filed in the relevant court. The process may vary depending on the type of case. I recommend consulting with a qualified legal expert for more detailed information.',
     "I can provide general information about your issue. In Turkey's legal system, citizens' rights are protected by the constitution and relevant laws. For guidance on what steps to take in your situation, it would be beneficial to seek professional support from an attorney.",
-  ]
+  ],
 };
 
 /**
@@ -56,19 +60,19 @@ module.exports = async (req, res) => {
         status: 'healthy',
         services: {
           groq: groq ? 'ready' : 'not configured',
-          legalAI: 'ready'
+          legalAI: 'ready',
         },
         features: {
           legalAnalysis: true,
           turkishLaw: true,
-          multiLanguage: true
+          multiLanguage: true,
         },
         securityRules: {
           whiteHat: 'active',
           kvkkCompliance: 'active',
-          gdprCompliance: 'active'
+          gdprCompliance: 'active',
         },
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
       });
     }
 
@@ -79,7 +83,7 @@ module.exports = async (req, res) => {
       if (!message) {
         return res.status(400).json({
           success: false,
-          error: 'message is required'
+          error: 'message is required',
         });
       }
 
@@ -94,12 +98,14 @@ module.exports = async (req, res) => {
             messages: [
               {
                 role: 'system',
-                content: systemPrompt || `Sen LyDian AI, Türk hukuku konusunda uzmanlaşmış yapay zeka asistanısın. ${language === 'tr' ? 'Türkçe' : 'İngilizce'} yanıt ver. Profesyonel, etik ve beyaz şapkalı güvenlik kurallarına uygun yanıtlar ver.`
+                content:
+                  systemPrompt ||
+                  `Sen LyDian AI, Türk hukuku konusunda uzmanlaşmış yapay zeka asistanısın. ${language === 'tr' ? 'Türkçe' : 'İngilizce'} yanıt ver. Profesyonel, etik ve beyaz şapkalı güvenlik kurallarına uygun yanıtlar ver.`,
               },
               {
                 role: 'user',
-                content: message
-              }
+                content: message,
+              },
             ],
             temperature: settings.temperature || 0.7,
             max_tokens: settings.maxTokens || 1024,
@@ -128,21 +134,20 @@ module.exports = async (req, res) => {
         language: language,
         role: 'citizen',
         tokensUsed: response.length,
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
       });
     }
 
     // Method not allowed
     return res.status(405).json({
       success: false,
-      error: 'Method not allowed'
+      error: 'Method not allowed',
     });
-
   } catch (error) {
     console.error('❌ Legal AI API error:', error);
     return res.status(500).json({
       success: false,
-      error: error.message || 'Internal server error'
+      error: 'Islem basarisiz. Lutfen tekrar deneyin.',
     });
   }
 };

@@ -40,7 +40,7 @@ module.exports = async (req, res) => {
       gender,
       specialty = 'general',
       language = 'en',
-      imageAnalysis = null
+      imageAnalysis = null,
     } = req.body;
 
     if (!symptoms || symptoms.length === 0) {
@@ -64,7 +64,7 @@ module.exports = async (req, res) => {
       pubmedResults,
       snomedConcepts,
       icdCodes,
-      imageAnalysis
+      imageAnalysis,
     });
 
     // Step 4: Generate diagnosis using Azure OpenAI with RAG
@@ -89,17 +89,15 @@ module.exports = async (req, res) => {
       timestamp: new Date().toISOString(),
       rag: {
         sources: ragContext.sources.length,
-        confidence: diagnosis.confidence || 0.75
-      }
+        confidence: diagnosis.confidence || 0.75,
+      },
     };
 
     res.status(200).json(response);
-
   } catch (error) {
     console.error('RAG diagnosis error:', error);
     res.status(500).json({
-      error: error.message,
-      stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
+      error: 'Tani islemi basarisiz. Lutfen tekrar deneyin.',
     });
   }
 };
@@ -128,7 +126,7 @@ async function searchPubMed(symptoms, specialty) {
         source: article.source,
         pubdate: article.pubdate,
         authors: article.authors?.slice(0, 3).map(a => a.name) || [],
-        url: `https://pubmed.ncbi.nlm.nih.gov/${pmid}/`
+        url: `https://pubmed.ncbi.nlm.nih.gov/${pmid}/`,
       };
     });
 
@@ -148,14 +146,14 @@ async function querySNOMED(symptoms) {
 
   const snomedMapping = {
     'chest pain': { code: '29857009', term: 'Chest pain', category: 'Symptom' },
-    'headache': { code: '25064002', term: 'Headache', category: 'Symptom' },
-    'fever': { code: '386661006', term: 'Fever', category: 'Symptom' },
-    'cough': { code: '49727002', term: 'Cough', category: 'Symptom' },
+    headache: { code: '25064002', term: 'Headache', category: 'Symptom' },
+    fever: { code: '386661006', term: 'Fever', category: 'Symptom' },
+    cough: { code: '49727002', term: 'Cough', category: 'Symptom' },
     'shortness of breath': { code: '267036007', term: 'Dyspnea', category: 'Symptom' },
-    'fatigue': { code: '84229001', term: 'Fatigue', category: 'Symptom' },
-    'nausea': { code: '422587007', term: 'Nausea', category: 'Symptom' },
-    'dizziness': { code: '404640003', term: 'Dizziness', category: 'Symptom' },
-    'abdominal pain': { code: '21522001', term: 'Abdominal pain', category: 'Symptom' }
+    fatigue: { code: '84229001', term: 'Fatigue', category: 'Symptom' },
+    nausea: { code: '422587007', term: 'Nausea', category: 'Symptom' },
+    dizziness: { code: '404640003', term: 'Dizziness', category: 'Symptom' },
+    'abdominal pain': { code: '21522001', term: 'Abdominal pain', category: 'Symptom' },
   };
 
   const concepts = [];
@@ -182,22 +180,22 @@ async function queryICD(symptoms, specialty) {
     cardiology: [
       { code: 'I20', description: 'Angina pectoris', category: 'Cardiovascular' },
       { code: 'I21', description: 'Acute myocardial infarction', category: 'Cardiovascular' },
-      { code: 'I50', description: 'Heart failure', category: 'Cardiovascular' }
+      { code: 'I50', description: 'Heart failure', category: 'Cardiovascular' },
     ],
     neurology: [
       { code: 'G43', description: 'Migraine', category: 'Neurological' },
       { code: 'G40', description: 'Epilepsy', category: 'Neurological' },
-      { code: 'I64', description: 'Stroke, not specified', category: 'Neurological' }
+      { code: 'I64', description: 'Stroke, not specified', category: 'Neurological' },
     ],
     oncology: [
       { code: 'C78', description: 'Secondary malignant neoplasm', category: 'Oncology' },
-      { code: 'C79', description: 'Secondary malignant neoplasm', category: 'Oncology' }
+      { code: 'C79', description: 'Secondary malignant neoplasm', category: 'Oncology' },
     ],
     general: [
       { code: 'R50', description: 'Fever of unknown origin', category: 'General' },
       { code: 'R51', description: 'Headache', category: 'General' },
-      { code: 'R07', description: 'Pain in throat and chest', category: 'General' }
-    ]
+      { code: 'R07', description: 'Pain in throat and chest', category: 'General' },
+    ],
   };
 
   return icdMapping[specialty] || icdMapping.general;
@@ -212,14 +210,14 @@ function buildRAGContext(data) {
   // Add patient context
   sources.push({
     type: 'patient',
-    content: `Patient: ${data.age || 'Unknown'} years old, ${data.gender || 'Unknown'} gender. Presenting symptoms: ${data.symptoms.join(', ')}.`
+    content: `Patient: ${data.age || 'Unknown'} years old, ${data.gender || 'Unknown'} gender. Presenting symptoms: ${data.symptoms.join(', ')}.`,
   });
 
   // Add medical history
   if (data.medicalHistory.length > 0) {
     sources.push({
       type: 'history',
-      content: `Medical history: ${data.medicalHistory.join(', ')}.`
+      content: `Medical history: ${data.medicalHistory.join(', ')}.`,
     });
   }
 
@@ -227,7 +225,7 @@ function buildRAGContext(data) {
   data.pubmedResults.forEach(article => {
     sources.push({
       type: 'literature',
-      content: `${article.title} (${article.pubdate}) - ${article.source}`
+      content: `${article.title} (${article.pubdate}) - ${article.source}`,
     });
   });
 
@@ -235,7 +233,7 @@ function buildRAGContext(data) {
   data.snomedConcepts.forEach(concept => {
     sources.push({
       type: 'ontology',
-      content: `SNOMED CT: ${concept.term} (${concept.code})`
+      content: `SNOMED CT: ${concept.term} (${concept.code})`,
     });
   });
 
@@ -243,7 +241,7 @@ function buildRAGContext(data) {
   data.icdCodes.forEach(code => {
     sources.push({
       type: 'classification',
-      content: `ICD-10: ${code.code} - ${code.description}`
+      content: `ICD-10: ${code.code} - ${code.description}`,
     });
   });
 
@@ -251,14 +249,14 @@ function buildRAGContext(data) {
   if (data.imageAnalysis) {
     sources.push({
       type: 'imaging',
-      content: `Medical imaging findings: ${JSON.stringify(data.imageAnalysis.findings)}`
+      content: `Medical imaging findings: ${JSON.stringify(data.imageAnalysis.findings)}`,
     });
   }
 
   return {
     sources,
     specialty: data.specialty,
-    language: data.language
+    language: data.language,
   };
 }
 
@@ -272,12 +270,15 @@ async function generateDiagnosis(ragContext, language) {
       primaryDiagnosis: 'Diagnosis requires medical professional evaluation',
       reasoning: 'System operating in limited mode - AI services not configured',
       confidence: 0.5,
-      recommendations: ['Consult healthcare provider', 'Clinical examination required']
+      recommendations: ['Consult healthcare provider', 'Clinical examination required'],
     };
   }
 
   try {
-    const client = new OpenAIClient(AZURE_OPENAI_ENDPOINT, new AzureKeyCredential(AZURE_OPENAI_KEY));
+    const client = new OpenAIClient(
+      AZURE_OPENAI_ENDPOINT,
+      new AzureKeyCredential(AZURE_OPENAI_KEY)
+    );
 
     const systemPrompt = `You are a medical AI assistant using RAG (Retrieval-Augmented Generation) for diagnosis support.
 Based on the provided medical evidence, suggest possible diagnoses with reasoning.
@@ -297,11 +298,11 @@ Provide:
       AZURE_OPENAI_DEPLOYMENT,
       [
         { role: 'system', content: systemPrompt },
-        { role: 'user', content: userPrompt }
+        { role: 'user', content: userPrompt },
       ],
       {
         temperature: 0.3,
-        maxTokens: 1000
+        maxTokens: 1000,
       }
     );
 
@@ -311,16 +312,15 @@ Provide:
       primaryDiagnosis: extractDiagnosis(response),
       reasoning: response,
       confidence: 0.75,
-      recommendations: extractRecommendations(response)
+      recommendations: extractRecommendations(response),
     };
-
   } catch (error) {
     console.error('Azure OpenAI error:', error.message);
     return {
       primaryDiagnosis: 'AI diagnosis unavailable',
       reasoning: 'Please consult healthcare provider for evaluation',
       confidence: 0,
-      recommendations: ['Seek medical attention']
+      recommendations: ['Seek medical attention'],
     };
   }
 }
@@ -333,18 +333,18 @@ async function getDifferentialDiagnoses(symptoms, specialty) {
     cardiology: [
       { diagnosis: 'Acute Coronary Syndrome', probability: 'high', icd: 'I24' },
       { diagnosis: 'Stable Angina', probability: 'medium', icd: 'I20' },
-      { diagnosis: 'Pericarditis', probability: 'low', icd: 'I30' }
+      { diagnosis: 'Pericarditis', probability: 'low', icd: 'I30' },
     ],
     neurology: [
       { diagnosis: 'Migraine', probability: 'high', icd: 'G43' },
       { diagnosis: 'Tension Headache', probability: 'medium', icd: 'G44' },
-      { diagnosis: 'Cluster Headache', probability: 'low', icd: 'G44.0' }
+      { diagnosis: 'Cluster Headache', probability: 'low', icd: 'G44.0' },
     ],
     general: [
       { diagnosis: 'Viral Infection', probability: 'high', icd: 'B34' },
       { diagnosis: 'Bacterial Infection', probability: 'medium', icd: 'A49' },
-      { diagnosis: 'Inflammatory Process', probability: 'medium', icd: 'M79' }
-    ]
+      { diagnosis: 'Inflammatory Process', probability: 'medium', icd: 'M79' },
+    ],
   };
 
   return differentials[specialty] || differentials.general;
@@ -359,7 +359,13 @@ function getRecommendedTests(symptoms, specialty) {
     neurology: ['CT Brain', 'MRI Brain', 'EEG', 'Lumbar Puncture', 'Neurological Examination'],
     radiology: ['X-Ray', 'CT Scan', 'MRI', 'Ultrasound', 'DICOM Analysis'],
     oncology: ['Biopsy', 'PET Scan', 'Tumor Markers', 'CT Chest/Abdomen/Pelvis', 'Bone Scan'],
-    general: ['Complete Blood Count', 'Metabolic Panel', 'Urinalysis', 'Chest X-Ray', 'Physical Examination']
+    general: [
+      'Complete Blood Count',
+      'Metabolic Panel',
+      'Urinalysis',
+      'Chest X-Ray',
+      'Physical Examination',
+    ],
   };
 
   return tests[specialty] || tests.general;
@@ -369,7 +375,14 @@ function getRecommendedTests(symptoms, specialty) {
  * Assess urgency level
  */
 function assessUrgency(symptoms, diagnosis) {
-  const emergencyKeywords = ['chest pain', 'shortness of breath', 'stroke', 'myocardial infarction', 'acute', 'severe'];
+  const emergencyKeywords = [
+    'chest pain',
+    'shortness of breath',
+    'stroke',
+    'myocardial infarction',
+    'acute',
+    'severe',
+  ];
   const urgentKeywords = ['bleeding', 'high fever', 'severe pain', 'confusion'];
 
   const symptomsText = symptoms.join(' ').toLowerCase();
@@ -403,7 +416,10 @@ function extractRecommendations(response) {
   const recStart = lines.findIndex(l => l.toLowerCase().includes('recommendation'));
   if (recStart === -1) return ['Consult healthcare provider'];
 
-  return lines.slice(recStart + 1).filter(l => l.trim()).slice(0, 5);
+  return lines
+    .slice(recStart + 1)
+    .filter(l => l.trim())
+    .slice(0, 5);
 }
 
 /**
@@ -414,11 +430,11 @@ function getDisclaimerText(language) {
     tr: 'Bu sistem tıbbi bilgilendirme amaçlıdır. Kesin tanı ve tedavi için mutlaka bir sağlık uzmanına başvurunuz. Bu sistem tıbbi teşhis veya tedavi yetkisine sahip değildir.',
     en: 'This system is for medical information purposes only. Please consult a healthcare professional for accurate diagnosis and treatment. This system is not authorized to provide medical diagnosis or treatment.',
     de: 'Dieses System dient nur zu medizinischen Informationszwecken. Bitte konsultieren Sie einen Arzt für eine genaue Diagnose und Behandlung.',
-    fr: 'Ce système est à des fins d\'information médicale uniquement. Veuillez consulter un professionnel de santé pour un diagnostic et un traitement précis.',
+    fr: "Ce système est à des fins d'information médicale uniquement. Veuillez consulter un professionnel de santé pour un diagnostic et un traitement précis.",
     es: 'Este sistema es solo para fines de información médica. Consulte a un profesional de la salud para un diagnóstico y tratamiento precisos.',
     ar: 'هذا النظام لأغراض المعلومات الطبية فقط. يرجى استشارة أخصائي رعاية صحية للحصول على تشخيص وعلاج دقيقين.',
     ru: 'Эта система предназначена только для медицинской информации. Пожалуйста, обратитесь к медицинскому специалисту для точного диагноза и лечения.',
-    zh: '本系统仅用于医疗信息目的。请咨询医疗专业人员以获得准确的诊断和治疗。'
+    zh: '本系统仅用于医疗信息目的。请咨询医疗专业人员以获得准确的诊断和治疗。',
   };
 
   return disclaimers[language] || disclaimers.en;

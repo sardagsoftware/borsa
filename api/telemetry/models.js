@@ -66,7 +66,7 @@ async function telemetryHandler(req, res) {
     console.error('Telemetry API error:', error);
     return res.status(500).json({
       error: 'Internal server error',
-      message: error.message,
+      message: 'Model verisi alınamadı',
     });
   }
 }

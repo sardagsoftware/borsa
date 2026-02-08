@@ -21,11 +21,11 @@ import * as tf from '@tensorflow/tfjs-node';
 // ============================================================================
 
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY
+  apiKey: process.env.OPENAI_API_KEY,
 });
 
 const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY
+  apiKey: process.env.ANTHROPIC_API_KEY,
 });
 
 // FDA-compliant medical device metadata
@@ -35,7 +35,7 @@ const FDA_DEVICE_INFO = {
   clearanceNumber: '510(k) K242891',
   intendedUse: 'Adjunct to physician interpretation of medical images for cancer detection',
   modelVersion: '2.5.0',
-  lastValidation: '2025-12-18'
+  lastValidation: '2025-12-18',
 };
 
 // ============================================================================
@@ -49,7 +49,7 @@ class DICOMProcessor {
       minResolution: 128,
       minBitDepth: 8,
       minContrast: 0.3,
-      maxNoise: 0.15
+      maxNoise: 0.15,
     };
   }
 
@@ -65,12 +65,12 @@ class DICOMProcessor {
       const processed = await sharp(imageBuffer)
         .resize(512, 512, {
           fit: 'contain',
-          background: { r: 0, g: 0, b: 0, alpha: 1 }
+          background: { r: 0, g: 0, b: 0, alpha: 1 },
         })
         .normalize() // Normalize contrast
         .modulate({
           brightness: 1.0,
-          saturation: 1.0
+          saturation: 1.0,
         })
         .toColorspace('b-w') // Convert to grayscale for medical imaging
         .toBuffer();
@@ -83,7 +83,7 @@ class DICOMProcessor {
           success: false,
           error: 'Image quality insufficient for reliable analysis',
           quality,
-          recommendation: 'Please provide higher quality DICOM images'
+          recommendation: 'Please provide higher quality DICOM images',
         };
       }
 
@@ -104,16 +104,15 @@ class DICOMProcessor {
           height: 512,
           channels: 1,
           bitDepth: 8,
-          modality: metadata.modality || 'UNKNOWN'
-        }
+          modality: metadata.modality || 'UNKNOWN',
+        },
       };
-
     } catch (error) {
       console.error('[DICOM Processor] Error:', error);
       return {
         success: false,
-        error: error.message,
-        stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
+        error: 'Tanı işlem hatası',
+        stack: process.env.NODE_ENV === 'development' ? error.stack : undefined,
       };
     }
   }
@@ -130,11 +129,7 @@ class DICOMProcessor {
     const sharpness = await this.calculateSharpness(imageBuffer);
     const noise = await this.estimateNoise(stats);
 
-    const score = (
-      contrast * 0.4 +
-      sharpness * 0.4 +
-      (1 - noise) * 0.2
-    );
+    const score = contrast * 0.4 + sharpness * 0.4 + (1 - noise) * 0.2;
 
     return {
       score,
@@ -145,8 +140,8 @@ class DICOMProcessor {
       details: {
         resolution: `${info.width}x${info.height}`,
         channels: info.channels,
-        bitDepth: info.depth
-      }
+        bitDepth: info.depth,
+      },
     };
   }
 
@@ -196,13 +191,11 @@ class DICOMProcessor {
     const levels = [];
 
     for (const size of [512, 256, 128, 64]) {
-      const resized = await sharp(imageBuffer)
-        .resize(size, size)
-        .toBuffer();
+      const resized = await sharp(imageBuffer).resize(size, size).toBuffer();
 
       levels.push({
         size,
-        buffer: resized
+        buffer: resized,
       });
     }
 
@@ -222,8 +215,8 @@ class DICOMProcessor {
       percentiles: {
         p25: channel.percentile25 || 0,
         p50: channel.percentile50 || 0,
-        p75: channel.percentile75 || 0
-      }
+        p75: channel.percentile75 || 0,
+      },
     };
   }
 }
@@ -253,7 +246,7 @@ class CancerDiagnosisAI {
         return {
           success: false,
           error: validation.error,
-          code: 'INVALID_INPUT'
+          code: 'INVALID_INPUT',
         };
       }
 
@@ -269,7 +262,7 @@ class CancerDiagnosisAI {
         medicalHistory: input.medicalHistory,
         familyHistory: input.familyHistory,
         patientAge: input.patientAge,
-        patientSex: input.patientSex
+        patientSex: input.patientSex,
       });
 
       // 4. Multi-modal fusion and risk calculation
@@ -278,22 +271,22 @@ class CancerDiagnosisAI {
         clinicalAnalysis,
         demographics: {
           age: input.patientAge,
-          sex: input.patientSex
-        }
+          sex: input.patientSex,
+        },
       });
 
       // 5. Generate explainable AI insights
       const explanations = await this.generateExplanations({
         riskAssessment,
         imageAnalysis,
-        clinicalAnalysis
+        clinicalAnalysis,
       });
 
       // 6. Clinical decision support
       const recommendations = await this.generateRecommendations({
         riskAssessment,
         explanations,
-        patientContext: input
+        patientContext: input,
       });
 
       // 7. FDA-compliant report
@@ -301,7 +294,7 @@ class CancerDiagnosisAI {
         riskAssessment,
         explanations,
         recommendations,
-        processingTime: Date.now() - startTime
+        processingTime: Date.now() - startTime,
       });
 
       return {
@@ -311,17 +304,16 @@ class CancerDiagnosisAI {
           modelVersion: this.modelVersion,
           processingTime: Date.now() - startTime,
           timestamp: new Date().toISOString(),
-          fdaCompliance: FDA_DEVICE_INFO
-        }
+          fdaCompliance: FDA_DEVICE_INFO,
+        },
       };
-
     } catch (error) {
       console.error('[Cancer Diagnosis AI] Error:', error);
       return {
         success: false,
-        error: error.message,
+        error: 'Tanı işlem hatası',
         code: 'ANALYSIS_FAILED',
-        stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
+        stack: process.env.NODE_ENV === 'development' ? error.stack : undefined,
       };
     }
   }
@@ -350,12 +342,11 @@ class CancerDiagnosisAI {
   async processImages(images) {
     const results = [];
 
-    for (const image of images.slice(0, 10)) { // Limit to 10 images
+    for (const image of images.slice(0, 10)) {
+      // Limit to 10 images
       try {
         // Convert base64 to buffer if needed
-        const buffer = Buffer.isBuffer(image.data)
-          ? image.data
-          : Buffer.from(image.data, 'base64');
+        const buffer = Buffer.isBuffer(image.data) ? image.data : Buffer.from(image.data, 'base64');
 
         // Process with DICOM processor
         const processed = await this.dicomProcessor.processDICOMImage(buffer, image.metadata);
@@ -368,21 +359,21 @@ class CancerDiagnosisAI {
             imageId: image.id || crypto.randomUUID(),
             quality: processed.quality,
             visionAnalysis,
-            processed: true
+            processed: true,
           });
         } else {
           results.push({
             imageId: image.id || crypto.randomUUID(),
             error: processed.error,
-            processed: false
+            processed: false,
           });
         }
       } catch (error) {
         console.error('[Image Processing] Error:', error);
         results.push({
           imageId: image.id || crypto.randomUUID(),
-          error: error.message,
-          processed: false
+          error: 'Tanı işlem hatası',
+          processed: false,
         });
       }
     }
@@ -390,7 +381,7 @@ class CancerDiagnosisAI {
     return {
       totalImages: images.length,
       processedImages: results.filter(r => r.processed).length,
-      results
+      results,
     };
   }
 
@@ -404,20 +395,21 @@ class CancerDiagnosisAI {
         model: 'AX9F7E2B',
         max_tokens: 2048,
         temperature: 0.1, // Low temperature for medical analysis
-        messages: [{
-          role: 'user',
-          content: [
-            {
-              type: 'image',
-              source: {
-                type: 'base64',
-                media_type: 'image/jpeg',
-                data: base64Image
-              }
-            },
-            {
-              type: 'text',
-              text: `As an advanced medical imaging AI, analyze this radiology image for potential cancer indicators.
+        messages: [
+          {
+            role: 'user',
+            content: [
+              {
+                type: 'image',
+                source: {
+                  type: 'base64',
+                  media_type: 'image/jpeg',
+                  data: base64Image,
+                },
+              },
+              {
+                type: 'text',
+                text: `As an advanced medical imaging AI, analyze this radiology image for potential cancer indicators.
 
 Provide a detailed analysis including:
 1. Image quality and diagnostic utility
@@ -434,11 +426,13 @@ Format your response as structured JSON:
   "cancerIndicators": [],
   "confidence": 0-1,
   "recommendations": []
-}`
-            }
-          ]
-        }],
-        system: 'You are an expert radiologist AI analyzing medical images for cancer detection. Provide precise, evidence-based observations. If uncertain, clearly state limitations.'
+}`,
+              },
+            ],
+          },
+        ],
+        system:
+          'You are an expert radiologist AI analyzing medical images for cancer detection. Provide precise, evidence-based observations. If uncertain, clearly state limitations.',
       });
 
       const analysisText = response.content[0].text;
@@ -452,21 +446,20 @@ Format your response as structured JSON:
         parsedAnalysis = {
           findings: [analysisText],
           confidence: 0.7,
-          rawResponse: analysisText
+          rawResponse: analysisText,
         };
       }
 
       return {
         model: 'AX9F7E2B',
         ...parsedAnalysis,
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
       };
-
     } catch (error) {
       console.error('[Vision Analysis] Error:', error);
       return {
-        error: error.message,
-        confidence: 0
+        error: 'Tanı işlem hatası',
+        confidence: 0,
       };
     }
   }
@@ -497,16 +490,17 @@ Provide a comprehensive clinical analysis in JSON format:
         messages: [
           {
             role: 'system',
-            content: 'You are an expert oncologist AI analyzing patient data for cancer risk assessment. Provide evidence-based, structured analysis.'
+            content:
+              'You are an expert oncologist AI analyzing patient data for cancer risk assessment. Provide evidence-based, structured analysis.',
           },
           {
             role: 'user',
-            content: prompt
-          }
+            content: prompt,
+          },
         ],
         temperature: 0.2,
         max_tokens: 1500,
-        response_format: { type: 'json_object' }
+        response_format: { type: 'json_object' },
       });
 
       const analysis = JSON.parse(response.choices[0].message.content);
@@ -514,15 +508,14 @@ Provide a comprehensive clinical analysis in JSON format:
       return {
         model: 'OX7A3F8D',
         ...analysis,
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
       };
-
     } catch (error) {
       console.error('[Clinical Analysis] Error:', error);
       return {
-        error: error.message,
+        error: 'Tanı işlem hatası',
         riskFactors: [],
-        urgencyLevel: 'moderate'
+        urgencyLevel: 'moderate',
       };
     }
   }
@@ -542,17 +535,18 @@ Provide a comprehensive clinical analysis in JSON format:
     // Image findings contribution
     let imageRiskMultiplier = 1.0;
     if (imageAnalysis && imageAnalysis.processedImages > 0) {
-      const avgConfidence = imageAnalysis.results
-        .filter(r => r.processed && r.visionAnalysis)
-        .map(r => r.visionAnalysis.confidence || 0)
-        .reduce((sum, c) => sum + c, 0) / (imageAnalysis.processedImages || 1);
+      const avgConfidence =
+        imageAnalysis.results
+          .filter(r => r.processed && r.visionAnalysis)
+          .map(r => r.visionAnalysis.confidence || 0)
+          .reduce((sum, c) => sum + c, 0) / (imageAnalysis.processedImages || 1);
 
-      const suspiciousCount = imageAnalysis.results
-        .filter(r => r.visionAnalysis?.suspiciousRegions?.length > 0)
-        .length;
+      const suspiciousCount = imageAnalysis.results.filter(
+        r => r.visionAnalysis?.suspiciousRegions?.length > 0
+      ).length;
 
       if (suspiciousCount > 0) {
-        imageRiskMultiplier = 1.5 + (suspiciousCount * 0.5);
+        imageRiskMultiplier = 1.5 + suspiciousCount * 0.5;
       }
       imageRiskMultiplier *= avgConfidence;
     }
@@ -563,7 +557,7 @@ Provide a comprehensive clinical analysis in JSON format:
       const riskFactorCount = clinicalAnalysis.riskFactors?.length || 0;
       const significantSymptomCount = clinicalAnalysis.significantSymptoms?.length || 0;
 
-      clinicalRiskMultiplier = 1.0 + (riskFactorCount * 0.2) + (significantSymptomCount * 0.3);
+      clinicalRiskMultiplier = 1.0 + riskFactorCount * 0.2 + significantSymptomCount * 0.3;
 
       if (clinicalAnalysis.urgencyLevel === 'high') clinicalRiskMultiplier *= 1.5;
       if (clinicalAnalysis.urgencyLevel === 'critical') clinicalRiskMultiplier *= 2.0;
@@ -575,13 +569,13 @@ Provide a comprehensive clinical analysis in JSON format:
     // Uncertainty quantification (simplified Monte Carlo)
     const uncertainty = this.calculateUncertainty({
       imageQuality: imageAnalysis?.results[0]?.quality?.score || 0.7,
-      clinicalCompleteness: this.assessClinicalCompleteness(clinicalAnalysis)
+      clinicalCompleteness: this.assessClinicalCompleteness(clinicalAnalysis),
     });
 
     // Confidence interval (95%)
     const confidenceInterval = {
-      lower: Math.max(combinedRisk - (uncertainty * 1.96), 0),
-      upper: Math.min(combinedRisk + (uncertainty * 1.96), 1)
+      lower: Math.max(combinedRisk - uncertainty * 1.96, 0),
+      upper: Math.min(combinedRisk + uncertainty * 1.96, 1),
     };
 
     // Risk categorization
@@ -595,13 +589,13 @@ Provide a comprehensive clinical analysis in JSON format:
       uncertainty: {
         total: uncertainty,
         epistemic: uncertainty * 0.6, // Model uncertainty
-        aleatoric: uncertainty * 0.4   // Data uncertainty
+        aleatoric: uncertainty * 0.4, // Data uncertainty
       },
       contributors: {
         baseRisk,
         imageRiskMultiplier,
-        clinicalRiskMultiplier
-      }
+        clinicalRiskMultiplier,
+      },
     };
   }
 
@@ -632,7 +626,7 @@ Provide a comprehensive clinical analysis in JSON format:
         level: 'INDETERMINATE',
         description: 'Insufficient data for reliable risk assessment',
         color: '#FFA500',
-        action: 'Additional imaging or clinical evaluation recommended'
+        action: 'Additional imaging or clinical evaluation recommended',
       };
     }
 
@@ -641,28 +635,28 @@ Provide a comprehensive clinical analysis in JSON format:
         level: 'LOW',
         description: 'Low cancer risk detected',
         color: '#4CAF50',
-        action: 'Routine screening schedule recommended'
+        action: 'Routine screening schedule recommended',
       };
     } else if (probability < 0.45) {
       return {
         level: 'MODERATE',
         description: 'Moderate cancer risk detected',
         color: '#FF9800',
-        action: 'Enhanced surveillance and follow-up recommended'
+        action: 'Enhanced surveillance and follow-up recommended',
       };
     } else if (probability < 0.75) {
       return {
         level: 'HIGH',
         description: 'High cancer risk detected',
         color: '#FF5722',
-        action: 'Immediate specialist consultation recommended'
+        action: 'Immediate specialist consultation recommended',
       };
     } else {
       return {
         level: 'CRITICAL',
         description: 'Critical cancer indicators detected',
         color: '#F44336',
-        action: 'URGENT: Immediate oncology referral required'
+        action: 'URGENT: Immediate oncology referral required',
       };
     }
   }
@@ -673,7 +667,7 @@ Provide a comprehensive clinical analysis in JSON format:
       keyFindings: [],
       visualEvidence: [],
       clinicalEvidence: [],
-      riskFactors: []
+      riskFactors: [],
     };
 
     // Extract image findings
@@ -684,7 +678,7 @@ Provide a comprehensive clinical analysis in JSON format:
             explanations.visualEvidence.push({
               imageId: idx + 1,
               finding: region,
-              confidence: result.visionAnalysis.confidence
+              confidence: result.visionAnalysis.confidence,
             });
           });
         }
@@ -693,7 +687,7 @@ Provide a comprehensive clinical analysis in JSON format:
           result.visionAnalysis.findings.forEach(finding => {
             explanations.keyFindings.push({
               type: 'imaging',
-              description: finding
+              description: finding,
             });
           });
         }
@@ -706,7 +700,7 @@ Provide a comprehensive clinical analysis in JSON format:
         clinicalAnalysis.significantSymptoms.forEach(symptom => {
           explanations.clinicalEvidence.push({
             type: 'symptom',
-            description: symptom
+            description: symptom,
           });
         });
       }
@@ -721,7 +715,7 @@ Provide a comprehensive clinical analysis in JSON format:
       riskLevel: riskAssessment.category.level,
       probability: riskAssessment.probability,
       keyFindings: explanations.keyFindings,
-      riskFactors: explanations.riskFactors
+      riskFactors: explanations.riskFactors,
     });
 
     return explanations;
@@ -740,7 +734,8 @@ Provide a comprehensive clinical analysis in JSON format:
       summary += `Patient presents with ${riskFactors.length} risk factor(s) that may elevate cancer probability. `;
     }
 
-    summary += `This assessment combines advanced medical imaging analysis with clinical data evaluation to provide evidence-based risk stratification.`;
+    summary +=
+      'This assessment combines advanced medical imaging analysis with clinical data evaluation to provide evidence-based risk stratification.';
 
     return summary;
   }
@@ -751,7 +746,7 @@ Provide a comprehensive clinical analysis in JSON format:
       shortTerm: [],
       longTerm: [],
       diagnostic: [],
-      preventive: []
+      preventive: [],
     };
 
     const riskLevel = riskAssessment.category.level;
@@ -761,18 +756,18 @@ Provide a comprehensive clinical analysis in JSON format:
       recommendations.immediate.push({
         action: 'Urgent oncology consultation',
         priority: 'STAT',
-        timeframe: 'Within 24-48 hours'
+        timeframe: 'Within 24-48 hours',
       });
       recommendations.immediate.push({
         action: 'Comprehensive diagnostic workup',
         priority: 'HIGH',
-        timeframe: 'Within 1 week'
+        timeframe: 'Within 1 week',
       });
     } else if (riskLevel === 'HIGH') {
       recommendations.immediate.push({
         action: 'Specialist consultation',
         priority: 'HIGH',
-        timeframe: 'Within 1-2 weeks'
+        timeframe: 'Within 1-2 weeks',
       });
     }
 
@@ -781,49 +776,49 @@ Provide a comprehensive clinical analysis in JSON format:
       recommendations.diagnostic.push({
         test: 'Confirmatory imaging (CT/MRI/PET scan)',
         rationale: 'Enhanced visualization of suspicious findings',
-        urgency: riskLevel === 'CRITICAL' ? 'URGENT' : 'ROUTINE'
+        urgency: riskLevel === 'CRITICAL' ? 'URGENT' : 'ROUTINE',
       });
 
       if (explanations.keyFindings.length > 0) {
         recommendations.diagnostic.push({
           test: 'Tissue biopsy',
           rationale: 'Definitive histopathological diagnosis',
-          urgency: riskLevel === 'CRITICAL' ? 'URGENT' : 'SCHEDULED'
+          urgency: riskLevel === 'CRITICAL' ? 'URGENT' : 'SCHEDULED',
         });
       }
 
       recommendations.diagnostic.push({
         test: 'Tumor markers (CEA, CA 19-9, PSA as appropriate)',
         rationale: 'Serological cancer screening',
-        urgency: 'ROUTINE'
+        urgency: 'ROUTINE',
       });
     }
 
     // Follow-up schedule
     const followUpIntervals = {
-      'LOW': '12 months',
-      'MODERATE': '6 months',
-      'HIGH': '3 months',
-      'CRITICAL': '1 month',
-      'INDETERMINATE': '3 months'
+      LOW: '12 months',
+      MODERATE: '6 months',
+      HIGH: '3 months',
+      CRITICAL: '1 month',
+      INDETERMINATE: '3 months',
     };
 
     recommendations.shortTerm.push({
       action: 'Follow-up imaging',
       timeframe: followUpIntervals[riskLevel] || '6 months',
-      rationale: 'Monitor for progression or resolution'
+      rationale: 'Monitor for progression or resolution',
     });
 
     // Preventive measures
     recommendations.preventive.push({
       measure: 'Lifestyle modification counseling',
-      focus: 'Diet, exercise, smoking cessation'
+      focus: 'Diet, exercise, smoking cessation',
     });
 
     if (patientContext.familyHistory) {
       recommendations.preventive.push({
         measure: 'Genetic counseling',
-        focus: 'Hereditary cancer syndromes evaluation'
+        focus: 'Hereditary cancer syndromes evaluation',
       });
     }
 
@@ -838,7 +833,7 @@ Provide a comprehensive clinical analysis in JSON format:
         riskProbability: riskAssessment.probability,
         confidenceInterval: riskAssessment.confidenceInterval,
         confidence: riskAssessment.confidence,
-        urgency: riskAssessment.category.action
+        urgency: riskAssessment.category.action,
       },
 
       // Detailed Findings
@@ -847,7 +842,7 @@ Provide a comprehensive clinical analysis in JSON format:
         keyFindings: explanations.keyFindings,
         visualEvidence: explanations.visualEvidence,
         clinicalEvidence: explanations.clinicalEvidence,
-        riskFactors: explanations.riskFactors
+        riskFactors: explanations.riskFactors,
       },
 
       // Risk Assessment
@@ -855,7 +850,7 @@ Provide a comprehensive clinical analysis in JSON format:
         category: riskAssessment.category,
         probability: riskAssessment.probability,
         uncertainty: riskAssessment.uncertainty,
-        contributors: riskAssessment.contributors
+        contributors: riskAssessment.contributors,
       },
 
       // Clinical Recommendations
@@ -863,21 +858,22 @@ Provide a comprehensive clinical analysis in JSON format:
         immediate: recommendations.immediate,
         diagnostic: recommendations.diagnostic,
         followUp: recommendations.shortTerm,
-        preventive: recommendations.preventive
+        preventive: recommendations.preventive,
       },
 
       // FDA Compliance & Disclaimers
       compliance: {
         deviceInformation: FDA_DEVICE_INFO,
-        disclaimer: 'This AI-enabled medical device provides clinical decision support and does not replace professional medical judgment. All findings and recommendations must be reviewed and validated by a licensed healthcare provider before clinical application.',
+        disclaimer:
+          'This AI-enabled medical device provides clinical decision support and does not replace professional medical judgment. All findings and recommendations must be reviewed and validated by a licensed healthcare provider before clinical application.',
         limitations: [
           'Performance may vary with image quality and patient-specific factors',
           'Not intended as a sole basis for clinical decision-making',
           'Requires physician interpretation and correlation with clinical context',
-          'May not detect all cancer types or early-stage malignancies'
+          'May not detect all cancer types or early-stage malignancies',
         ],
         intendedUse: 'Adjunct tool for healthcare providers in cancer risk assessment',
-        userQualification: 'Licensed healthcare professionals only'
+        userQualification: 'Licensed healthcare professionals only',
       },
 
       // Metadata
@@ -889,9 +885,9 @@ Provide a comprehensive clinical analysis in JSON format:
         aiModels: [
           'AX9F7E2B 3.5 Sonnet (Vision Analysis)',
           'OX5C9E2B Turbo (Clinical NLP)',
-          'Bayesian Risk Calculator v2.5'
-        ]
-      }
+          'Bayesian Risk Calculator v2.5',
+        ],
+      },
     };
   }
 }
@@ -914,30 +910,23 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({
       error: 'Method not allowed',
-      allowedMethods: ['POST']
+      allowedMethods: ['POST'],
     });
   }
 
   try {
-    const diagnosis AI = new CancerDiagnosisAI();
+    const diagnosisAI = new CancerDiagnosisAI();
 
     // Extract request data
-    const {
-      symptoms,
-      medicalHistory,
-      familyHistory,
-      images,
-      patientAge,
-      patientSex,
-      consent
-    } = req.body;
+    const { symptoms, medicalHistory, familyHistory, images, patientAge, patientSex, consent } =
+      req.body;
 
     // Verify patient consent (HIPAA & State compliance)
     if (!consent || !consent.aiAnalysisAgreed) {
       return res.status(400).json({
         error: 'Patient consent required for AI analysis',
         code: 'CONSENT_REQUIRED',
-        compliance: 'HIPAA, CA AB 3030, TX TRAIGA'
+        compliance: 'HIPAA, CA AB 3030, TX TRAIGA',
       });
     }
 
@@ -948,7 +937,7 @@ export default async function handler(req, res) {
       familyHistory,
       images,
       patientAge,
-      patientSex
+      patientSex,
     });
 
     if (!result.success) {
@@ -963,18 +952,18 @@ export default async function handler(req, res) {
       compliance: {
         hipaa: 'Compliant',
         fda: '510(k) Cleared',
-        stateRegulations: ['CA AB 3030', 'TX TRAIGA', 'NY A9149']
-      }
+        stateRegulations: ['CA AB 3030', 'TX TRAIGA', 'NY A9149'],
+      },
     });
-
   } catch (error) {
     console.error('[Cancer Diagnosis API] Error:', error);
 
     return res.status(500).json({
       success: false,
       error: 'Internal server error during cancer analysis',
-      message: process.env.NODE_ENV === 'development' ? error.message : 'An unexpected error occurred',
-      code: 'INTERNAL_ERROR'
+      message:
+        process.env.NODE_ENV === 'development' ? error.message : 'An unexpected error occurred',
+      code: 'INTERNAL_ERROR',
     });
   }
 }

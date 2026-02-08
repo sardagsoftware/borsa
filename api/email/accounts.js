@@ -64,7 +64,7 @@ module.exports = async (req, res) => {
       {
         id: 'personal',
         name: 'Personal',
-        email: 'emrah@ailydian.com',
+        email: 'admin@ailydian.com',
         password: EMAIL_PASSWORD,
         icon: '👤',
         description: 'Kişisel hesap',

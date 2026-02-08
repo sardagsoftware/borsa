@@ -30,22 +30,28 @@ const { logMedicalAudit } = require('../../config/white-hat-policy');
  */
 function calculatePHQ9(data) {
   const {
-    littleInterest,           // 0-3
-    feelingDown,              // 0-3
-    sleepProblems,            // 0-3
-    feelingTired,             // 0-3
-    appetiteProblems,         // 0-3
-    feelingBad,               // 0-3
-    troubleConcentrating,     // 0-3
-    movingSpeaking,           // 0-3
-    thoughtsHurting,          // 0-3
-    functionalImpairment      // 'not-difficult', 'somewhat', 'very', 'extremely'
+    littleInterest, // 0-3
+    feelingDown, // 0-3
+    sleepProblems, // 0-3
+    feelingTired, // 0-3
+    appetiteProblems, // 0-3
+    feelingBad, // 0-3
+    troubleConcentrating, // 0-3
+    movingSpeaking, // 0-3
+    thoughtsHurting, // 0-3
+    functionalImpairment, // 'not-difficult', 'somewhat', 'very', 'extremely'
   } = data;
 
   const totalScore =
-    littleInterest + feelingDown + sleepProblems + feelingTired +
-    appetiteProblems + feelingBad + troubleConcentrating +
-    movingSpeaking + thoughtsHurting;
+    littleInterest +
+    feelingDown +
+    sleepProblems +
+    feelingTired +
+    appetiteProblems +
+    feelingBad +
+    troubleConcentrating +
+    movingSpeaking +
+    thoughtsHurting;
 
   let severity, interpretation, recommendation, suicideRisk;
 
@@ -76,7 +82,8 @@ function calculatePHQ9(data) {
   } else {
     severity = 'Severe Depression';
     interpretation = 'Severe depressive symptoms';
-    recommendation = '⚠️ URGENT - Immediate psychiatric referral, consider hospitalization if severe functional impairment or suicide risk';
+    recommendation =
+      '⚠️ URGENT - Immediate psychiatric referral, consider hospitalization if severe functional impairment or suicide risk';
   }
 
   return {
@@ -88,7 +95,7 @@ function calculatePHQ9(data) {
     functionalImpairment,
     scale: 'PHQ-9 (0-27)',
     followUp: 'Repeat PHQ-9 at each visit to monitor treatment response',
-    treatmentGoal: 'Target PHQ-9 score <5 for remission'
+    treatmentGoal: 'Target PHQ-9 score <5 for remission',
   };
 }
 
@@ -105,18 +112,23 @@ function calculatePHQ9(data) {
  */
 function calculateGAD7(data) {
   const {
-    feelingNervous,           // 0-3
-    cantStopWorrying,         // 0-3
-    worryingTooMuch,          // 0-3
-    troubleRelaxing,          // 0-3
-    restless,                 // 0-3
-    easilyAnnoyed,            // 0-3
-    feelingAfraid             // 0-3
+    feelingNervous, // 0-3
+    cantStopWorrying, // 0-3
+    worryingTooMuch, // 0-3
+    troubleRelaxing, // 0-3
+    restless, // 0-3
+    easilyAnnoyed, // 0-3
+    feelingAfraid, // 0-3
   } = data;
 
   const totalScore =
-    feelingNervous + cantStopWorrying + worryingTooMuch + troubleRelaxing +
-    restless + easilyAnnoyed + feelingAfraid;
+    feelingNervous +
+    cantStopWorrying +
+    worryingTooMuch +
+    troubleRelaxing +
+    restless +
+    easilyAnnoyed +
+    feelingAfraid;
 
   let severity, interpretation, recommendation;
 
@@ -144,10 +156,11 @@ function calculateGAD7(data) {
     interpretation,
     recommendation,
     scale: 'GAD-7 (0-21)',
-    specificDisorders: totalScore >= 10
-      ? 'Further assess for: Generalized Anxiety Disorder, Panic Disorder, Social Anxiety, PTSD'
-      : 'Continue monitoring',
-    treatmentGoal: 'Target GAD-7 score <5 for remission'
+    specificDisorders:
+      totalScore >= 10
+        ? 'Further assess for: Generalized Anxiety Disorder, Panic Disorder, Social Anxiety, PTSD'
+        : 'Continue monitoring',
+    treatmentGoal: 'Target GAD-7 score <5 for remission',
   };
 }
 
@@ -164,12 +177,12 @@ function calculateGAD7(data) {
  */
 function calculateMMSE(data) {
   const {
-    orientation,        // 0-10 (time 5, place 5)
-    registration,       // 0-3 (repeat 3 words)
-    attention,          // 0-5 (serial 7s or spell WORLD backwards)
-    recall,            // 0-3 (recall 3 words)
-    language,          // 0-8 (naming, repetition, comprehension, reading, writing)
-    construction       // 0-1 (copy pentagons)
+    orientation, // 0-10 (time 5, place 5)
+    registration, // 0-3 (repeat 3 words)
+    attention, // 0-5 (serial 7s or spell WORLD backwards)
+    recall, // 0-3 (recall 3 words)
+    language, // 0-8 (naming, repetition, comprehension, reading, writing)
+    construction, // 0-1 (copy pentagons)
   } = data;
 
   const totalScore = orientation + registration + attention + recall + language + construction;
@@ -183,15 +196,18 @@ function calculateMMSE(data) {
   } else if (totalScore >= 18) {
     interpretation = 'Mild Cognitive Impairment';
     cognitiveStatus = 'Mild dementia or delirium';
-    recommendation = 'Further cognitive testing (MoCA, neuropsych testing), brain imaging, labs (B12, TSH, RPR)';
+    recommendation =
+      'Further cognitive testing (MoCA, neuropsych testing), brain imaging, labs (B12, TSH, RPR)';
   } else if (totalScore >= 10) {
     interpretation = 'Moderate Cognitive Impairment';
     cognitiveStatus = 'Moderate dementia';
-    recommendation = 'Dementia workup, consider acetylcholinesterase inhibitors, assess safety and caregiver support';
+    recommendation =
+      'Dementia workup, consider acetylcholinesterase inhibitors, assess safety and caregiver support';
   } else {
     interpretation = 'Severe Cognitive Impairment';
     cognitiveStatus = 'Severe dementia';
-    recommendation = '⚠️ Advanced dementia care, assess for delirium, palliative care consultation, safety assessment';
+    recommendation =
+      '⚠️ Advanced dementia care, assess for delirium, palliative care consultation, safety assessment';
   }
 
   return {
@@ -202,14 +218,15 @@ function calculateMMSE(data) {
       attention,
       recall,
       language,
-      construction
+      construction,
     },
     interpretation,
     cognitiveStatus,
     recommendation,
     scale: 'MMSE (0-30, higher is better)',
     note: 'MMSE score can be affected by education level and age; use age/education-adjusted norms',
-    differentials: 'Alzheimer disease, vascular dementia, Lewy body dementia, frontotemporal dementia, delirium'
+    differentials:
+      'Alzheimer disease, vascular dementia, Lewy body dementia, frontotemporal dementia, delirium',
   };
 }
 
@@ -226,29 +243,43 @@ function calculateMMSE(data) {
  */
 function calculateHamiltonDepression(data) {
   const {
-    depressedMood,              // 0-4
-    guilt,                      // 0-4
-    suicide,                    // 0-4
-    insomniaEarly,              // 0-2
-    insomniaMiddle,             // 0-2
-    insomniaLate,               // 0-2
-    work,                       // 0-4
-    retardation,                // 0-4
-    agitation,                  // 0-4
-    anxietyPsychic,             // 0-4
-    anxietySomatic,             // 0-4
-    somaticGI,                  // 0-2
-    somaticGeneral,             // 0-2
-    genital,                    // 0-2
-    hypochondriasis,            // 0-4
-    lossOfWeight,               // 0-2
-    insight                     // 0-2
+    depressedMood, // 0-4
+    guilt, // 0-4
+    suicide, // 0-4
+    insomniaEarly, // 0-2
+    insomniaMiddle, // 0-2
+    insomniaLate, // 0-2
+    work, // 0-4
+    retardation, // 0-4
+    agitation, // 0-4
+    anxietyPsychic, // 0-4
+    anxietySomatic, // 0-4
+    somaticGI, // 0-2
+    somaticGeneral, // 0-2
+    genital, // 0-2
+    hypochondriasis, // 0-4
+    lossOfWeight, // 0-2
+    insight, // 0-2
   } = data;
 
   const totalScore =
-    depressedMood + guilt + suicide + insomniaEarly + insomniaMiddle + insomniaLate +
-    work + retardation + agitation + anxietyPsychic + anxietySomatic +
-    somaticGI + somaticGeneral + genital + hypochondriasis + lossOfWeight + insight;
+    depressedMood +
+    guilt +
+    suicide +
+    insomniaEarly +
+    insomniaMiddle +
+    insomniaLate +
+    work +
+    retardation +
+    agitation +
+    anxietyPsychic +
+    anxietySomatic +
+    somaticGI +
+    somaticGeneral +
+    genital +
+    hypochondriasis +
+    lossOfWeight +
+    insight;
 
   let severity, interpretation, recommendation, suicideRisk;
 
@@ -274,7 +305,8 @@ function calculateHamiltonDepression(data) {
   } else {
     severity = 'Severe Depression';
     interpretation = 'Severe depressive symptoms';
-    recommendation = '⚠️ URGENT - Aggressive treatment, consider hospitalization, ECT if treatment-resistant';
+    recommendation =
+      '⚠️ URGENT - Aggressive treatment, consider hospitalization, ECT if treatment-resistant';
   }
 
   return {
@@ -285,7 +317,7 @@ function calculateHamiltonDepression(data) {
     suicideRisk,
     scale: 'HAM-D-17 (0-52)',
     treatmentResponse: 'HAM-D reduction ≥50% indicates response; score ≤7 indicates remission',
-    note: 'Clinician-administered scale; more detailed than PHQ-9'
+    note: 'Clinician-administered scale; more detailed than PHQ-9',
   };
 }
 
@@ -301,9 +333,9 @@ function calculateHamiltonDepression(data) {
  */
 function calculatePANSS(data) {
   const {
-    positiveScale,    // 7-49 (delusions, hallucinations, disorganization)
-    negativeScale,    // 7-49 (blunted affect, social withdrawal, lack of motivation)
-    generalScale      // 16-112 (general psychopathology)
+    positiveScale, // 7-49 (delusions, hallucinations, disorganization)
+    negativeScale, // 7-49 (blunted affect, social withdrawal, lack of motivation)
+    generalScale, // 16-112 (general psychopathology)
   } = data;
 
   const totalScore = positiveScale + negativeScale + generalScale;
@@ -313,23 +345,28 @@ function calculatePANSS(data) {
   if (totalScore <= 58) {
     severity = 'Mildly Ill';
     interpretation = 'Mild psychotic symptoms';
-    recommendation = 'Continue antipsychotic medication, monitor closely, psychosocial rehabilitation';
+    recommendation =
+      'Continue antipsychotic medication, monitor closely, psychosocial rehabilitation';
   } else if (totalScore <= 75) {
     severity = 'Moderately Ill';
     interpretation = 'Moderate psychotic symptoms';
-    recommendation = 'Optimize antipsychotic dose, consider adjunctive medications, intensive case management';
+    recommendation =
+      'Optimize antipsychotic dose, consider adjunctive medications, intensive case management';
   } else if (totalScore <= 95) {
     severity = 'Markedly Ill';
     interpretation = 'Marked psychotic symptoms';
-    recommendation = 'Consider antipsychotic switch or augmentation, partial hospitalization program';
+    recommendation =
+      'Consider antipsychotic switch or augmentation, partial hospitalization program';
   } else if (totalScore <= 116) {
     severity = 'Severely Ill';
     interpretation = 'Severe psychotic symptoms';
-    recommendation = '⚠️ Consider hospitalization, clozapine for treatment-resistant cases, safety assessment';
+    recommendation =
+      '⚠️ Consider hospitalization, clozapine for treatment-resistant cases, safety assessment';
   } else {
     severity = 'Extremely Ill';
     interpretation = 'Extreme psychotic symptoms';
-    recommendation = '⚠️ URGENT - Immediate hospitalization likely needed, consider ECT, ensure patient safety';
+    recommendation =
+      '⚠️ URGENT - Immediate hospitalization likely needed, consider ECT, ensure patient safety';
   }
 
   // Determine predominant symptom type
@@ -337,7 +374,8 @@ function calculatePANSS(data) {
   if (positiveScale > negativeScale + 5) {
     predominantSymptoms = 'Predominantly Positive Symptoms (hallucinations, delusions)';
   } else if (negativeScale > positiveScale + 5) {
-    predominantSymptoms = 'Predominantly Negative Symptoms (blunted affect, withdrawal, amotivation)';
+    predominantSymptoms =
+      'Predominantly Negative Symptoms (blunted affect, withdrawal, amotivation)';
   } else {
     predominantSymptoms = 'Mixed Positive and Negative Symptoms';
   }
@@ -347,7 +385,7 @@ function calculatePANSS(data) {
     breakdown: {
       positive: positiveScale,
       negative: negativeScale,
-      general: generalScale
+      general: generalScale,
     },
     severity,
     interpretation,
@@ -355,7 +393,7 @@ function calculatePANSS(data) {
     recommendation,
     scale: 'PANSS (30-210)',
     treatmentResponse: 'PANSS reduction ≥20% indicates clinical response',
-    note: 'Used primarily for schizophrenia and schizoaffective disorder'
+    note: 'Used primarily for schizophrenia and schizoaffective disorder',
   };
 }
 
@@ -371,22 +409,29 @@ function calculatePANSS(data) {
  */
 function calculateAUDIT(data) {
   const {
-    frequency,              // 0-4 (how often drink)
-    typicalAmount,          // 0-4 (how many drinks)
-    bingeDrinking,          // 0-4 (6+ drinks on one occasion)
-    unableToStop,           // 0-4
-    failedExpectations,     // 0-4
-    morningDrinking,        // 0-4
-    guilt,                  // 0-4
-    blackouts,              // 0-4
-    injuries,               // 0-4
-    concernFromOthers       // 0-4
+    frequency, // 0-4 (how often drink)
+    typicalAmount, // 0-4 (how many drinks)
+    bingeDrinking, // 0-4 (6+ drinks on one occasion)
+    unableToStop, // 0-4
+    failedExpectations, // 0-4
+    morningDrinking, // 0-4
+    guilt, // 0-4
+    blackouts, // 0-4
+    injuries, // 0-4
+    concernFromOthers, // 0-4
   } = data;
 
   const totalScore =
-    frequency + typicalAmount + bingeDrinking + unableToStop +
-    failedExpectations + morningDrinking + guilt + blackouts +
-    injuries + concernFromOthers;
+    frequency +
+    typicalAmount +
+    bingeDrinking +
+    unableToStop +
+    failedExpectations +
+    morningDrinking +
+    guilt +
+    blackouts +
+    injuries +
+    concernFromOthers;
 
   let riskLevel, interpretation, recommendation;
 
@@ -405,7 +450,8 @@ function calculateAUDIT(data) {
   } else {
     riskLevel = 'Possible Dependence';
     interpretation = 'High likelihood of alcohol dependence';
-    recommendation = '⚠️ URGENT - Specialist referral mandatory, consider inpatient detox, naltrexone/acamprosate, AA/SMART Recovery';
+    recommendation =
+      '⚠️ URGENT - Specialist referral mandatory, consider inpatient detox, naltrexone/acamprosate, AA/SMART Recovery';
   }
 
   return {
@@ -414,8 +460,11 @@ function calculateAUDIT(data) {
     interpretation,
     recommendation,
     scale: 'AUDIT (0-40)',
-    withdrawalWarning: totalScore >= 16 ? '⚠️ Assess for withdrawal risk - may require medically supervised detox' : 'Low withdrawal risk',
-    resources: 'SAMHSA National Helpline: 1-800-662-4357, AA meetings, SMART Recovery'
+    withdrawalWarning:
+      totalScore >= 16
+        ? '⚠️ Assess for withdrawal risk - may require medically supervised detox'
+        : 'Low withdrawal risk',
+    resources: 'SAMHSA National Helpline: 1-800-662-4357, AA meetings, SMART Recovery',
   };
 }
 
@@ -431,13 +480,13 @@ function calculateAUDIT(data) {
  */
 function assessColumbiaSuicide(data) {
   const {
-    wishToBeDead,           // yes/no
-    suicidalThoughts,       // yes/no
-    thoughtsWithMethod,     // yes/no
-    suicidalIntent,         // yes/no
-    suicidalPlan,           // yes/no
-    suicidalBehavior,       // yes/no (past 3 months)
-    preparatoryActs         // yes/no
+    wishToBeDead, // yes/no
+    suicidalThoughts, // yes/no
+    thoughtsWithMethod, // yes/no
+    suicidalIntent, // yes/no
+    suicidalPlan, // yes/no
+    suicidalBehavior, // yes/no (past 3 months)
+    preparatoryActs, // yes/no
   } = data;
 
   let riskLevel, immediateAction, recommendation;
@@ -445,20 +494,26 @@ function assessColumbiaSuicide(data) {
   // Determine highest risk level present
   if (suicidalBehavior || preparatoryActs) {
     riskLevel = 'HIGH RISK - Imminent Danger';
-    immediateAction = '🚨 IMMEDIATE INTERVENTION REQUIRED - Do not leave patient alone, remove means, emergency psychiatric evaluation';
-    recommendation = 'Emergency department or psychiatric hospitalization, 24/7 supervision, crisis hotline: 988';
+    immediateAction =
+      '🚨 IMMEDIATE INTERVENTION REQUIRED - Do not leave patient alone, remove means, emergency psychiatric evaluation';
+    recommendation =
+      'Emergency department or psychiatric hospitalization, 24/7 supervision, crisis hotline: 988';
   } else if (suicidalIntent || suicidalPlan) {
     riskLevel = 'HIGH RISK - Active Suicidal Ideation';
-    immediateAction = '⚠️ URGENT - Immediate safety assessment, consider emergency psychiatric evaluation';
-    recommendation = 'Same-day psychiatric evaluation, safety plan, remove access to lethal means, consider hospitalization';
+    immediateAction =
+      '⚠️ URGENT - Immediate safety assessment, consider emergency psychiatric evaluation';
+    recommendation =
+      'Same-day psychiatric evaluation, safety plan, remove access to lethal means, consider hospitalization';
   } else if (thoughtsWithMethod) {
     riskLevel = 'MODERATE RISK - Ideation with Method';
     immediateAction = 'Urgent mental health referral required';
-    recommendation = 'Psychiatric evaluation within 24-48 hours, safety plan, increase support, daily check-ins';
+    recommendation =
+      'Psychiatric evaluation within 24-48 hours, safety plan, increase support, daily check-ins';
   } else if (suicidalThoughts) {
     riskLevel = 'MODERATE RISK - Passive Ideation';
     immediateAction = 'Mental health referral needed';
-    recommendation = 'Outpatient psychiatric evaluation within 1 week, safety plan, crisis resources, supportive counseling';
+    recommendation =
+      'Outpatient psychiatric evaluation within 1 week, safety plan, crisis resources, supportive counseling';
   } else if (wishToBeDead) {
     riskLevel = 'LOW TO MODERATE RISK';
     immediateAction = 'Monitor closely, provide resources';
@@ -478,18 +533,19 @@ function assessColumbiaSuicide(data) {
       suicidalThoughts,
       thoughtsWithMethod,
       suicidalIntent,
-      suicidalPlan
+      suicidalPlan,
     },
     suicidalBehavior: {
       suicidalBehavior,
-      preparatoryActs
+      preparatoryActs,
     },
     crisisResources: {
       nationalSuicidePreventionLifeline: '988',
       crisisTextLine: 'Text HOME to 741741',
-      emergencyServices: '911'
+      emergencyServices: '911',
     },
-    safetyPlanning: 'Create written safety plan: warning signs, coping strategies, social contacts, professional contacts, making environment safe'
+    safetyPlanning:
+      'Create written safety plan: warning signs, coping strategies, social contacts, professional contacts, making environment safe',
   };
 }
 
@@ -513,7 +569,7 @@ async function handlePHQ9(req, res) {
       user_id: data.user_id,
       patient_id: data.patient_id,
       action: 'PHQ9_SCREENING',
-      details: { score: result.totalScore, severity: result.severity }
+      details: { score: result.totalScore, severity: result.severity },
     });
 
     res.json({
@@ -521,16 +577,15 @@ async function handlePHQ9(req, res) {
       result,
       metadata: {
         calculator: 'PHQ-9 Depression Screening',
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ PHQ-9 Error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to calculate PHQ-9',
-      message: error.message
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
     });
   }
 }
@@ -549,7 +604,7 @@ async function handleGAD7(req, res) {
       user_id: data.user_id,
       patient_id: data.patient_id,
       action: 'GAD7_SCREENING',
-      details: { score: result.totalScore, severity: result.severity }
+      details: { score: result.totalScore, severity: result.severity },
     });
 
     res.json({
@@ -557,16 +612,15 @@ async function handleGAD7(req, res) {
       result,
       metadata: {
         calculator: 'GAD-7 Anxiety Screening',
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ GAD-7 Error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to calculate GAD-7',
-      message: error.message
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
     });
   }
 }
@@ -585,7 +639,7 @@ async function handleMMSE(req, res) {
       user_id: data.user_id,
       patient_id: data.patient_id,
       action: 'MMSE_ASSESSMENT',
-      details: { score: result.totalScore, cognitiveStatus: result.cognitiveStatus }
+      details: { score: result.totalScore, cognitiveStatus: result.cognitiveStatus },
     });
 
     res.json({
@@ -593,16 +647,15 @@ async function handleMMSE(req, res) {
       result,
       metadata: {
         calculator: 'Mini-Mental State Examination',
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ MMSE Error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to calculate MMSE',
-      message: error.message
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
     });
   }
 }
@@ -621,7 +674,7 @@ async function handleHamiltonDepression(req, res) {
       user_id: data.user_id,
       patient_id: data.patient_id,
       action: 'HAMILTON_DEPRESSION_ASSESSMENT',
-      details: { score: result.totalScore, severity: result.severity }
+      details: { score: result.totalScore, severity: result.severity },
     });
 
     res.json({
@@ -629,16 +682,15 @@ async function handleHamiltonDepression(req, res) {
       result,
       metadata: {
         calculator: 'Hamilton Depression Rating Scale',
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ Hamilton Depression Error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to calculate Hamilton Depression scale',
-      message: error.message
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
     });
   }
 }
@@ -657,7 +709,7 @@ async function handlePANSS(req, res) {
       user_id: data.user_id,
       patient_id: data.patient_id,
       action: 'PANSS_ASSESSMENT',
-      details: { score: result.totalScore, severity: result.severity }
+      details: { score: result.totalScore, severity: result.severity },
     });
 
     res.json({
@@ -665,16 +717,15 @@ async function handlePANSS(req, res) {
       result,
       metadata: {
         calculator: 'PANSS Scale',
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ PANSS Error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to calculate PANSS',
-      message: error.message
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
     });
   }
 }
@@ -693,7 +744,7 @@ async function handleAUDIT(req, res) {
       user_id: data.user_id,
       patient_id: data.patient_id,
       action: 'AUDIT_SCREENING',
-      details: { score: result.totalScore, riskLevel: result.riskLevel }
+      details: { score: result.totalScore, riskLevel: result.riskLevel },
     });
 
     res.json({
@@ -701,16 +752,15 @@ async function handleAUDIT(req, res) {
       result,
       metadata: {
         calculator: 'AUDIT Alcohol Screening',
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ AUDIT Error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to calculate AUDIT',
-      message: error.message
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
     });
   }
 }
@@ -729,7 +779,7 @@ async function handleColumbiaSuicide(req, res) {
       user_id: data.user_id,
       patient_id: data.patient_id,
       action: 'COLUMBIA_SUICIDE_ASSESSMENT',
-      details: { riskLevel: result.riskLevel }
+      details: { riskLevel: result.riskLevel },
     });
 
     res.json({
@@ -737,16 +787,15 @@ async function handleColumbiaSuicide(req, res) {
       result,
       metadata: {
         calculator: 'Columbia Suicide Severity Rating Scale',
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ Columbia Suicide Assessment Error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to assess suicide risk',
-      message: error.message
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
     });
   }
 }
@@ -765,5 +814,5 @@ module.exports = {
   calculateHamiltonDepression,
   calculatePANSS,
   calculateAUDIT,
-  assessColumbiaSuicide
+  assessColumbiaSuicide,
 };

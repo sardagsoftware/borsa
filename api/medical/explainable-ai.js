@@ -30,49 +30,62 @@ const XAI_CONFIG = {
     'sepsis-prediction': {
       name: 'Sepsis Early Warning',
       type: 'classification',
-      features: ['heart_rate', 'temperature', 'wbc_count', 'lactate', 'respiratory_rate', 'blood_pressure'],
+      features: [
+        'heart_rate',
+        'temperature',
+        'wbc_count',
+        'lactate',
+        'respiratory_rate',
+        'blood_pressure',
+      ],
       importance_threshold: 0.15,
-      confidence_min: 0.70
+      confidence_min: 0.7,
     },
     'emergency-triage': {
       name: 'Emergency Triage',
       type: 'classification',
       features: ['pain_level', 'vitals_score', 'arrival_mode', 'age', 'chief_complaint'],
       importance_threshold: 0.12,
-      confidence_min: 0.75
+      confidence_min: 0.75,
     },
     'mental-health': {
       name: 'Mental Health Triage',
       type: 'risk_assessment',
       features: ['phq9_score', 'gad7_score', 'suicidality_risk', 'social_support', 'history'],
-      importance_threshold: 0.10,
-      confidence_min: 0.65
+      importance_threshold: 0.1,
+      confidence_min: 0.65,
     },
     'rare-disease': {
       name: 'Rare Disease Diagnosis',
       type: 'multi_class',
       features: ['symptoms', 'genetic_markers', 'age_onset', 'family_history', 'biomarkers'],
-      importance_threshold: 0.20,
-      confidence_min: 0.60
+      importance_threshold: 0.2,
+      confidence_min: 0.6,
     },
     'maternal-fetal': {
       name: 'Maternal-Fetal Risk',
       type: 'risk_assessment',
-      features: ['gestational_age', 'fhr_variability', 'maternal_bp', 'proteinuria', 'fetal_movement'],
+      features: [
+        'gestational_age',
+        'fhr_variability',
+        'maternal_bp',
+        'proteinuria',
+        'fetal_movement',
+      ],
       importance_threshold: 0.15,
-      confidence_min: 0.70
+      confidence_min: 0.7,
     },
     'multimodal-fusion': {
       name: 'Multimodal Data Fusion',
       type: 'ensemble',
       features: ['imaging_findings', 'genomic_variants', 'ehr_data', 'lab_results'],
       importance_threshold: 0.18,
-      confidence_min: 0.65
-    }
+      confidence_min: 0.65,
+    },
   },
   bias_metrics: ['demographic_parity', 'equal_opportunity', 'calibration', 'predictive_parity'],
   explanation_depth: 'detailed', // 'simple' | 'detailed' | 'clinical'
-  regulatory_standards: ['FDA_510k', 'EMA_MDR', 'HIPAA_164.312b', 'GDPR_Article22']
+  regulatory_standards: ['FDA_510k', 'EMA_MDR', 'HIPAA_164.312b', 'GDPR_Article22'],
 };
 
 // ============================================================================
@@ -112,7 +125,7 @@ function calculateSHAPValues(modelId, input, prediction) {
     let contribution = 0;
     if (typeof value === 'number') {
       // Normalize contribution
-      contribution = (value - 50) / 100 * Math.random() * 0.3;
+      contribution = ((value - 50) / 100) * Math.random() * 0.3;
     } else if (value === 'high' || value === 'severe') {
       contribution = 0.2 + Math.random() * 0.1;
     } else if (value === 'moderate') {
@@ -124,13 +137,14 @@ function calculateSHAPValues(modelId, input, prediction) {
     shapValues[feature] = {
       value: value,
       contribution: contribution,
-      percentageOfPrediction: (Math.abs(contribution) / Math.abs(prediction - baseValue)) * 100
+      percentageOfPrediction: (Math.abs(contribution) / Math.abs(prediction - baseValue)) * 100,
     };
   });
 
   // Sort by absolute contribution
-  const sortedFeatures = Object.entries(shapValues)
-    .sort((a, b) => Math.abs(b[1].contribution) - Math.abs(a[1].contribution));
+  const sortedFeatures = Object.entries(shapValues).sort(
+    (a, b) => Math.abs(b[1].contribution) - Math.abs(a[1].contribution)
+  );
 
   return {
     baseValue,
@@ -141,8 +155,8 @@ function calculateSHAPValues(modelId, input, prediction) {
       value: data.value,
       impact: data.contribution > 0 ? 'increases' : 'decreases',
       magnitude: Math.abs(data.contribution),
-      percentage: data.percentageOfPrediction.toFixed(1)
-    }))
+      percentage: data.percentageOfPrediction.toFixed(1),
+    })),
   };
 }
 
@@ -171,20 +185,21 @@ function generateLIMEExplanation(modelId, input, prediction) {
     localWeights[feature] = {
       weight,
       direction: weight > 0 ? 'positive' : 'negative',
-      strength: Math.abs(weight)
+      strength: Math.abs(weight),
     };
   });
 
   return {
-    interpretation: `Local linear approximation around current prediction`,
+    interpretation: 'Local linear approximation around current prediction',
     weights: localWeights,
-    fidelity: 0.85 + Math.random() * 0.10, // How well LIME model approximates black box
-    explanation: `The top factors influencing this ${prediction > 0.5 ? 'high-risk' : 'low-risk'} prediction are: ` +
+    fidelity: 0.85 + Math.random() * 0.1, // How well LIME model approximates black box
+    explanation:
+      `The top factors influencing this ${prediction > 0.5 ? 'high-risk' : 'low-risk'} prediction are: ` +
       Object.entries(localWeights)
         .sort((a, b) => Math.abs(b[1].weight) - Math.abs(a[1].weight))
         .slice(0, 3)
         .map(([f, w]) => `${f} (${w.direction})`)
-        .join(', ')
+        .join(', '),
   };
 }
 
@@ -211,28 +226,28 @@ function generateCounterfactuals(modelId, input, prediction) {
       modified: { ...input, heart_rate: 75 },
       newPrediction: Math.max(0.1, prediction - 0.25),
       feasibility: 'high',
-      intervention: 'Beta-blockers or fluid resuscitation'
+      intervention: 'Beta-blockers or fluid resuscitation',
     },
     {
       change: 'What if lactate level was <2 mmol/L?',
       modified: { ...input, lactate: 1.5 },
       newPrediction: Math.max(0.05, prediction - 0.35),
       feasibility: 'medium',
-      intervention: 'Early goal-directed therapy, source control'
+      intervention: 'Early goal-directed therapy, source control',
     },
     {
       change: 'What if WBC count was normal (4-11 K/µL)?',
       modified: { ...input, wbc_count: 8 },
       newPrediction: Math.max(0.1, prediction - 0.15),
       feasibility: 'low',
-      intervention: 'Antibiotics, immune support (not directly modifiable)'
-    }
+      intervention: 'Antibiotics, immune support (not directly modifiable)',
+    },
   ];
 
   return scenarios.map(s => ({
     ...s,
-    riskReduction: ((prediction - s.newPrediction) / prediction * 100).toFixed(1) + '%',
-    clinicalRelevance: s.newPrediction < 0.3 ? 'high' : 'moderate'
+    riskReduction: (((prediction - s.newPrediction) / prediction) * 100).toFixed(1) + '%',
+    clinicalRelevance: s.newPrediction < 0.3 ? 'high' : 'moderate',
   }));
 }
 
@@ -254,45 +269,47 @@ function detectBias(modelId, demographics) {
   const biasMetrics = {
     demographic_parity: {
       value: 0.92, // Closer to 1.0 = more fair
-      threshold: 0.80,
+      threshold: 0.8,
       status: 'PASS',
-      description: 'Prediction rates similar across gender/race'
+      description: 'Prediction rates similar across gender/race',
     },
     equal_opportunity: {
       value: 0.88,
-      threshold: 0.80,
+      threshold: 0.8,
       status: 'PASS',
-      description: 'True positive rates similar across groups'
+      description: 'True positive rates similar across groups',
     },
     calibration: {
       value: 0.94,
       threshold: 0.85,
       status: 'PASS',
-      description: 'Predictions well-calibrated across demographics'
+      description: 'Predictions well-calibrated across demographics',
     },
     predictive_parity: {
       value: 0.86,
-      threshold: 0.80,
+      threshold: 0.8,
       status: 'PASS',
-      description: 'Positive predictive value similar across groups'
-    }
+      description: 'Positive predictive value similar across groups',
+    },
   };
 
-  const overallFairness = Object.values(biasMetrics)
-    .every(m => m.status === 'PASS') ? 'FAIR' : 'BIASED';
+  const overallFairness = Object.values(biasMetrics).every(m => m.status === 'PASS')
+    ? 'FAIR'
+    : 'BIASED';
 
   return {
     overallFairness,
     metrics: biasMetrics,
     protectedAttributes: ['age', 'gender', 'race', 'ethnicity'],
     complianceStatus: {
-      'FDA_Guidance_AI_ML': overallFairness === 'FAIR',
-      'EU_AI_Act_Article_10': overallFairness === 'FAIR',
-      'NIH_Inclusion_Policy': true
+      FDA_Guidance_AI_ML: overallFairness === 'FAIR',
+      EU_AI_Act_Article_10: overallFairness === 'FAIR',
+      NIH_Inclusion_Policy: true,
     },
-    recommendations: overallFairness === 'BIASED'
-      ? ['Rebalance training data', 'Apply fairness constraints', 'Stratified validation']
-      : ['Continue monitoring', 'Regular bias audits']
+    recommendations:
+      overallFairness === 'BIASED'
+        ? ['Rebalance training data', 'Apply fairness constraints', 'Stratified validation']
+        : ['Continue monitoring', 'Regular bias audits'],
   };
 }
 
@@ -315,29 +332,29 @@ function generateReasoningTrace(modelId, input, prediction) {
       reasoning: 'Initial Assessment',
       features: ['chief_complaint', 'vital_signs'],
       conclusion: 'Patient presents with concerning symptoms',
-      confidence: 0.95
+      confidence: 0.95,
     },
     {
       step: 2,
       reasoning: 'Risk Stratification',
       features: ['age', 'comorbidities', 'lab_results'],
       conclusion: prediction > 0.7 ? 'High-risk profile identified' : 'Moderate risk profile',
-      confidence: 0.88
+      confidence: 0.88,
     },
     {
       step: 3,
       reasoning: 'Differential Diagnosis',
       features: ['symptom_pattern', 'biomarkers'],
       conclusion: 'Top differential diagnoses generated',
-      confidence: 0.82
+      confidence: 0.82,
     },
     {
       step: 4,
       reasoning: 'Evidence Integration',
       features: ['imaging', 'labs', 'history'],
       conclusion: `Final risk score: ${(prediction * 100).toFixed(1)}%`,
-      confidence: 0.90
-    }
+      confidence: 0.9,
+    },
   ];
 
   return {
@@ -346,9 +363,9 @@ function generateReasoningTrace(modelId, input, prediction) {
     clinicalGuidelines: [
       'AHA/ACC Guidelines for Cardiovascular Disease',
       'Surviving Sepsis Campaign Guidelines',
-      'NICE Clinical Guidelines'
+      'NICE Clinical Guidelines',
     ],
-    evidenceLevel: 'Level A (High-quality RCT evidence)'
+    evidenceLevel: 'Level A (High-quality RCT evidence)',
   };
 }
 
@@ -367,21 +384,21 @@ router.post('/', async (req, res) => {
       input,
       prediction,
       demographics = {},
-      explainationType = 'comprehensive' // 'shap' | 'lime' | 'counterfactual' | 'comprehensive'
+      explainationType = 'comprehensive', // 'shap' | 'lime' | 'counterfactual' | 'comprehensive'
     } = req.body;
 
     // Validation
     if (!modelId || !input || prediction === undefined) {
       return res.status(400).json({
         success: false,
-        error: 'Missing required fields: modelId, input, prediction'
+        error: 'Missing required fields: modelId, input, prediction',
       });
     }
 
     if (!XAI_CONFIG.models[modelId]) {
       return res.status(404).json({
         success: false,
-        error: `Unknown model: ${modelId}`
+        error: `Unknown model: ${modelId}`,
       });
     }
 
@@ -392,14 +409,14 @@ router.post('/', async (req, res) => {
         name: XAI_CONFIG.models[modelId].name,
         type: XAI_CONFIG.models[modelId].type,
         version: '2.0.0',
-        lastTrained: '2025-10-01'
+        lastTrained: '2025-10-01',
       },
       prediction: {
         value: prediction,
-        confidence: 0.85 + Math.random() * 0.10,
-        riskLevel: prediction > 0.7 ? 'HIGH' : prediction > 0.4 ? 'MODERATE' : 'LOW'
+        confidence: 0.85 + Math.random() * 0.1,
+        riskLevel: prediction > 0.7 ? 'HIGH' : prediction > 0.4 ? 'MODERATE' : 'LOW',
       },
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
 
     // SHAP values
@@ -433,7 +450,7 @@ router.post('/', async (req, res) => {
       gdpr_article_22: true,
       fda_21_cfr_11: true,
       audit_trail_id: `XAI-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-      explanation_generated_at: new Date().toISOString()
+      explanation_generated_at: new Date().toISOString(),
     };
 
     res.json({
@@ -442,16 +459,15 @@ router.post('/', async (req, res) => {
       metadata: {
         explanation_type: explainationType,
         regulatory_standards: XAI_CONFIG.regulatory_standards,
-        model_interpretability_score: 0.92
-      }
+        model_interpretability_score: 0.92,
+      },
     });
-
   } catch (error) {
     console.error('❌ Explainable AI error:', error);
     res.status(500).json({
       success: false,
-      error: error.message,
-      timestamp: new Date().toISOString()
+      error: 'Aciklanabilir AI islemi basarisiz.',
+      timestamp: new Date().toISOString(),
     });
   }
 });
@@ -470,14 +486,14 @@ router.get('/models', (req, res) => {
       shap: true,
       lime: true,
       counterfactual: true,
-      bias_detection: true
-    }
+      bias_detection: true,
+    },
   }));
 
   res.json({
     success: true,
     models,
-    totalModels: models.length
+    totalModels: models.length,
   });
 });
 
@@ -492,7 +508,7 @@ router.post('/compare', async (req, res) => {
     if (!modelIds || !Array.isArray(modelIds) || modelIds.length < 2) {
       return res.status(400).json({
         success: false,
-        error: 'Provide at least 2 model IDs to compare'
+        error: 'Provide at least 2 model IDs to compare',
       });
     }
 
@@ -502,7 +518,7 @@ router.post('/compare', async (req, res) => {
         modelId,
         prediction,
         shap: calculateSHAPValues(modelId, input, prediction),
-        confidence: 0.80 + Math.random() * 0.15
+        confidence: 0.8 + Math.random() * 0.15,
       };
     });
 
@@ -511,16 +527,16 @@ router.post('/compare', async (req, res) => {
       comparisons,
       consensus: {
         agreement: comparisons.every(c => Math.abs(c.prediction - comparisons[0].prediction) < 0.2),
-        averagePrediction: comparisons.reduce((sum, c) => sum + c.prediction, 0) / comparisons.length,
-        recommendation: 'Use ensemble voting for final decision'
-      }
+        averagePrediction:
+          comparisons.reduce((sum, c) => sum + c.prediction, 0) / comparisons.length,
+        recommendation: 'Use ensemble voting for final decision',
+      },
     });
-
   } catch (error) {
     console.error('❌ Model comparison error:', error);
     res.status(500).json({
       success: false,
-      error: error.message
+      error: 'Aciklanabilir AI islemi basarisiz.',
     });
   }
 });

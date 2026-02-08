@@ -15,11 +15,11 @@ const AZURE_SPEECH = {
   // Turkish Neural Voices (High Quality)
   voices: {
     female: 'tr-TR-EmelNeural', // Natural Turkish female voice
-    male: 'tr-TR-AhmetNeural',   // Natural Turkish male voice
-    default: 'tr-TR-EmelNeural'
+    male: 'tr-TR-AhmetNeural', // Natural Turkish male voice
+    default: 'tr-TR-EmelNeural',
   },
   // Voice styles
-  styles: ['cheerful', 'sad', 'angry', 'fearful', 'friendly', 'newscast', 'customerservice']
+  styles: ['cheerful', 'sad', 'angry', 'fearful', 'friendly', 'newscast', 'customerservice'],
 };
 
 // ==========================================
@@ -34,8 +34,8 @@ const ELEVENLABS = {
     stability: 0.5,
     similarity_boost: 0.75,
     style: 0.5,
-    use_speaker_boost: true
-  }
+    use_speaker_boost: true,
+  },
 };
 
 // ==========================================
@@ -46,20 +46,18 @@ async function generateWithAzureSpeech(text, options = {}) {
     voice = AZURE_SPEECH.voices.default,
     style = 'friendly',
     rate = '0%', // -50% to +50%
-    pitch = '0%' // -50% to +50%
+    pitch = '0%', // -50% to +50%
   } = options;
 
   console.log('🗣️ Azure Speech Request:', { text: text.substring(0, 50), voice, style });
 
   return new Promise((resolve, reject) => {
     try {
-      const speechConfig = sdk.SpeechConfig.fromSubscription(
-        AZURE_SPEECH.key,
-        AZURE_SPEECH.region
-      );
+      const speechConfig = sdk.SpeechConfig.fromSubscription(AZURE_SPEECH.key, AZURE_SPEECH.region);
 
       speechConfig.speechSynthesisVoiceName = voice;
-      speechConfig.speechSynthesisOutputFormat = sdk.SpeechSynthesisOutputFormat.Audio24Khz48KBitRateMonoMp3;
+      speechConfig.speechSynthesisOutputFormat =
+        sdk.SpeechSynthesisOutputFormat.Audio24Khz48KBitRateMonoMp3;
 
       const synthesizer = new sdk.SpeechSynthesizer(speechConfig, null);
 
@@ -79,7 +77,7 @@ async function generateWithAzureSpeech(text, options = {}) {
 
       synthesizer.speakSsmlAsync(
         ssml,
-        (result) => {
+        result => {
           if (result.reason === sdk.ResultReason.SynthesizingAudioCompleted) {
             console.log('✅ Azure Speech Generation Complete');
             synthesizer.close();
@@ -89,7 +87,7 @@ async function generateWithAzureSpeech(text, options = {}) {
               audioData: Buffer.from(result.audioData),
               format: 'audio/mpeg',
               sampleRate: 24000,
-              bitRate: 48
+              bitRate: 48,
             });
           } else {
             const error = `Azure Speech Error: ${result.errorDetails}`;
@@ -98,7 +96,7 @@ async function generateWithAzureSpeech(text, options = {}) {
             reject(new Error(error));
           }
         },
-        (error) => {
+        error => {
           console.error('❌ Azure Speech Error:', error);
           synthesizer.close();
           reject(error);
@@ -117,22 +115,19 @@ async function generateWithAzureSpeech(text, options = {}) {
 async function generateWithElevenLabs(text, options = {}) {
   console.log('🗣️ ElevenLabs Request:', { text: text.substring(0, 50) });
 
-  const response = await fetch(
-    `${ELEVENLABS.endpoint}/${ELEVENLABS.voiceId}`,
-    {
-      method: 'POST',
-      headers: {
-        'Accept': 'audio/mpeg',
-        'Content-Type': 'application/json',
-        'xi-api-key': ELEVENLABS.apiKey
-      },
-      body: JSON.stringify({
-        text: text,
-        model_id: 'eleven_multilingual_v2',
-        voice_settings: ELEVENLABS.voiceSettings
-      })
-    }
-  );
+  const response = await fetch(`${ELEVENLABS.endpoint}/${ELEVENLABS.voiceId}`, {
+    method: 'POST',
+    headers: {
+      Accept: 'audio/mpeg',
+      'Content-Type': 'application/json',
+      'xi-api-key': ELEVENLABS.apiKey,
+    },
+    body: JSON.stringify({
+      text: text,
+      model_id: 'eleven_multilingual_v2',
+      voice_settings: ELEVENLABS.voiceSettings,
+    }),
+  });
 
   if (!response.ok) {
     const errorText = await response.text();
@@ -146,7 +141,7 @@ async function generateWithElevenLabs(text, options = {}) {
   return {
     provider: 'ElevenLabs',
     audioData: audioBuffer,
-    format: 'audio/mpeg'
+    format: 'audio/mpeg',
   };
 }
 
@@ -160,7 +155,7 @@ async function generateVoice(text, options = {}) {
   if (AZURE_SPEECH.enabled()) {
     providers.push({
       name: 'Azure Speech Services',
-      generate: () => generateWithAzureSpeech(text, options)
+      generate: () => generateWithAzureSpeech(text, options),
     });
   }
 
@@ -168,7 +163,7 @@ async function generateVoice(text, options = {}) {
   if (ELEVENLABS.enabled()) {
     providers.push({
       name: 'ElevenLabs',
-      generate: () => generateWithElevenLabs(text, options)
+      generate: () => generateWithElevenLabs(text, options),
     });
   }
 
@@ -187,7 +182,7 @@ async function generateVoice(text, options = {}) {
       if (provider === providers[providers.length - 1]) {
         throw error; // Last provider failed
       }
-      console.log(`⚡ Falling back to next provider...`);
+      console.log('⚡ Falling back to next provider...');
     }
   }
 }
@@ -207,18 +202,12 @@ module.exports = async (req, res) => {
   const startTime = Date.now();
 
   try {
-    const {
-      text,
-      voice = 'default',
-      style = 'friendly',
-      rate = '0%',
-      pitch = '0%'
-    } = req.body;
+    const { text, voice = 'default', style = 'friendly', rate = '0%', pitch = '0%' } = req.body;
 
     if (!text) {
       return res.status(400).json({
         success: false,
-        error: 'Metin gerekli'
+        error: 'Metin gerekli',
       });
     }
 
@@ -227,7 +216,7 @@ module.exports = async (req, res) => {
       voice,
       style,
       rate,
-      pitch
+      pitch,
     });
 
     const responseTime = Date.now() - startTime;
@@ -238,14 +227,13 @@ module.exports = async (req, res) => {
     res.setHeader('X-Actual-Provider', result.provider); // For logging
     res.setHeader('X-Response-Time', `${responseTime}ms`);
     res.status(200).send(result.audioData);
-
   } catch (error) {
     console.error('❌ Voice Generation Error:', error);
     res.status(500).json({
       success: false,
       error: 'Ses oluşturma başarısız oldu',
       message: 'Lütfen tekrar deneyin',
-      details: process.env.NODE_ENV === 'development' ? error.message : undefined
+      details: undefined,
     });
   }
 };

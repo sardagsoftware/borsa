@@ -1,11 +1,13 @@
 # LyDian Documentation IA - Quick Reference Card
 
 ## Location
+
 ```
-/Users/sardag/Desktop/ailydian-ultra-pro/docs/
+
 ```
 
 ## Statistics at a Glance
+
 - **204** directories created
 - **32** files created
 - **10** languages supported
@@ -16,6 +18,7 @@
 ## Directory Structure Quick Guide
 
 ### Language Paths
+
 ```bash
 docs/{lang}/                    # Language root (tr, en, de, fr, es, ar, ru, it, ja, zh-CN)
 docs/{lang}/getting-started/    # Quick start guides
@@ -26,18 +29,21 @@ docs/{lang}/reference/{module}/ # Module-specific API docs
 ```
 
 ### API Specifications
+
 ```bash
 docs/openapi/{module}.v1.yml           # REST API specs
 docs/asyncapi/events.{module}.yml      # Event API specs
 ```
 
 ### SDK Paths
+
 ```bash
 docs/sdks/{language}/           # SDK documentation
 docs/examples/sdk-{lang}/       # SDK examples
 ```
 
 ### Operations
+
 ```bash
 docs/ops/ci/                    # CI/CD configs
 docs/ops/search-index/          # Search indexing
@@ -48,34 +54,37 @@ docs/ops/brief/                 # Documentation briefs
 ## Three Product Modules
 
 ### 1. Smart Cities
+
 - Urban intelligence and IoT management
 - API: `openapi/smart-cities.v1.yml`
 - Events: `asyncapi/events.smart-cities.yml`
 
 ### 2. İnsan IQ
+
 - Human intelligence and behavioral analytics
 - API: `openapi/insan-iq.v1.yml`
 - Events: `asyncapi/events.insan-iq.yml`
 
 ### 3. LyDian IQ
+
 - AI-powered decision intelligence
 - API: `openapi/lydian-iq.v1.yml`
 - Events: `asyncapi/events.lydian-iq.yml`
 
 ## 10 Languages Supported
 
-| Code | Language | Flag |
-|------|----------|------|
-| tr | Turkish | 🇹🇷 |
-| en | English | 🇬🇧 |
-| de | German | 🇩🇪 |
-| fr | French | 🇫🇷 |
-| es | Spanish | 🇪🇸 |
-| ar | Arabic | 🇸🇦 |
-| ru | Russian | 🇷🇺 |
-| it | Italian | 🇮🇹 |
-| ja | Japanese | 🇯🇵 |
-| zh-CN | Chinese | 🇨🇳 |
+| Code  | Language | Flag |
+| ----- | -------- | ---- |
+| tr    | Turkish  | 🇹🇷   |
+| en    | English  | 🇬🇧   |
+| de    | German   | 🇩🇪   |
+| fr    | French   | 🇫🇷   |
+| es    | Spanish  | 🇪🇸   |
+| ar    | Arabic   | 🇸🇦   |
+| ru    | Russian  | 🇷🇺   |
+| it    | Italian  | 🇮🇹   |
+| ja    | Japanese | 🇯🇵   |
+| zh-CN | Chinese  | 🇨🇳   |
 
 ## 14 Documentation Sections (per language)
 
@@ -104,44 +113,50 @@ docs/ops/brief/                 # Documentation briefs
 
 ## Key Files
 
-| File | Purpose |
-|------|---------|
-| README.md | Main documentation overview |
-| nav.yml | Navigation structure |
-| STRUCTURE.txt | Visual directory tree |
-| STATS.md | Statistics and metrics |
-| MANIFEST.json | Platform manifest |
-| IA-CREATION-REPORT.md | Creation report |
-| QUICK-REFERENCE.md | This file |
+| File                  | Purpose                     |
+| --------------------- | --------------------------- |
+| README.md             | Main documentation overview |
+| nav.yml               | Navigation structure        |
+| STRUCTURE.txt         | Visual directory tree       |
+| STATS.md              | Statistics and metrics      |
+| MANIFEST.json         | Platform manifest           |
+| IA-CREATION-REPORT.md | Creation report             |
+| QUICK-REFERENCE.md    | This file                   |
 
 ## Common Commands
 
 ### Navigate to docs
+
 ```bash
-cd /Users/sardag/Desktop/ailydian-ultra-pro/docs/
+cd
 ```
 
 ### Count directories
+
 ```bash
 find . -type d | wc -l
 ```
 
 ### List all languages
+
 ```bash
 ls -d */ | grep -E '^(tr|en|de|fr|es|ar|ru|it|ja|zh-CN)/$'
 ```
 
 ### View structure
+
 ```bash
 cat STRUCTURE.txt
 ```
 
 ### Check navigation
+
 ```bash
 cat nav.yml
 ```
 
 ### View manifest
+
 ```bash
 cat MANIFEST.json
 ```
@@ -160,9 +175,11 @@ cat MANIFEST.json
 - [ ] Deploy documentation site
 
 ## Status
+
 **IA COMPLETE - Ready for Content Population**
 
 ---
+
 **Version:** 1.0.0  
 **Created:** 2025-10-06  
-**Location:** `/Users/sardag/Desktop/ailydian-ultra-pro/docs/`
+**Location:** ``

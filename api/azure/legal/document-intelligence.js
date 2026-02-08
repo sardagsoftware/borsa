@@ -5,6 +5,7 @@
  */
 
 const multiparty = require('multiparty');
+const { handleCORS } = require('../../_lib/cors-simple');
 
 module.exports = async (req, res) => {
   // Enable CORS
@@ -14,7 +15,7 @@ module.exports = async (req, res) => {
   if (req.method !== 'POST') {
     return res.status(405).json({
       success: false,
-      error: 'Method not allowed'
+      error: 'Method not allowed',
     });
   }
 
@@ -22,19 +23,20 @@ module.exports = async (req, res) => {
     // Parse multipart form data
     const form = new multiparty.Form();
 
-    const parseForm = () => new Promise((resolve, reject) => {
-      form.parse(req, (err, fields, files) => {
-        if (err) reject(err);
-        else resolve({ fields, files });
+    const parseForm = () =>
+      new Promise((resolve, reject) => {
+        form.parse(req, (err, fields, files) => {
+          if (err) reject(err);
+          else resolve({ fields, files });
+        });
       });
-    });
 
     const { fields, files } = await parseForm();
 
     if (!files.file || !files.file[0]) {
       return res.status(400).json({
         success: false,
-        error: 'No file provided'
+        error: 'No file provided',
       });
     }
 
@@ -43,7 +45,7 @@ module.exports = async (req, res) => {
 
     // TODO: When Azure Document Intelligence is configured, use real service
     // const azureDocService = require('../../../services/azure-document-intelligence-service');
-const { handleCORS } = require('../../../middleware/cors-handler');
+    const { handleCORS } = require('../../../middleware/cors-handler');
     // const result = await azureDocService.analyzeDocument(documentFile.path, documentType);
 
     // For now, return mock response
@@ -75,9 +77,9 @@ Tarih: 15.10.2024
         keyValuePairs: [
           { key: 'Sözleşme Türü', value: 'Hizmet Alımı', confidence: 0.92 },
           { key: 'Tarih', value: '15.10.2024', confidence: 0.95 },
-          { key: 'Süre', value: '12 ay', confidence: 0.90 },
+          { key: 'Süre', value: '12 ay', confidence: 0.9 },
           { key: 'Taraf 1', value: 'XYZ Şirketi', confidence: 0.88 },
-          { key: 'Taraf 2', value: 'ABC Limited', confidence: 0.89 }
+          { key: 'Taraf 2', value: 'ABC Limited', confidence: 0.89 },
         ],
         tables: [
           {
@@ -86,35 +88,34 @@ Tarih: 15.10.2024
             cells: [
               ['Madde No', 'İçerik'],
               ['1', 'Taraflar'],
-              ['2', 'Sözleşme Konusu']
-            ]
-          }
+              ['2', 'Sözleşme Konusu'],
+            ],
+          },
         ],
         signatures: [
           {
             type: 'handwritten',
             location: 'bottom-right',
-            confidence: 0.85
-          }
+            confidence: 0.85,
+          },
         ],
         stamps: [
           {
             type: 'company-stamp',
             location: 'bottom-left',
-            confidence: 0.80
-          }
-        ]
+            confidence: 0.8,
+          },
+        ],
       },
       mockMode: true,
       note: 'Using mock data. Azure Document Intelligence integration pending.',
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
-
   } catch (error) {
     console.error('❌ Azure Document Intelligence API error:', error);
     return res.status(500).json({
       success: false,
-      error: error.message || 'Internal server error'
+      error: 'Belge işleme hatası',
     });
   }
 };

@@ -27,43 +27,33 @@ module.exports = async (req, res) => {
     const { message } = req.body;
 
     if (!message || typeof message !== 'string') {
-      throw new MedicalError(
-        'DATA_003',
-        'Invalid request: message is required',
-        'medium',
-        { requestId }
-      );
+      throw new MedicalError('DATA_003', 'Invalid request: message is required', 'medium', {
+        requestId,
+      });
     }
 
     if (message.length > 2000) {
-      throw new MedicalError(
-        'DATA_003',
-        'Message too long (max 2000 characters)',
-        'medium',
-        { requestId, length: message.length }
-      );
+      throw new MedicalError('DATA_003', 'Message too long (max 2000 characters)', 'medium', {
+        requestId,
+        length: message.length,
+      });
     }
 
     // ==================== LAYER 2: Consent Validation (GDPR) ====================
     const consentRecord = req.body.consent || {
       dataProcessing: false,
       aiAssistance: false,
-      consentedAt: null
+      consentedAt: null,
     };
 
     const consentValidation = complianceService.validateConsent(consentRecord);
 
     if (!consentValidation.valid) {
-      throw new MedicalError(
-        'COMPLIANCE_002',
-        'Patient consent required',
-        'medium',
-        {
-          requestId,
-          missing: consentValidation.missing,
-          requiresRenewal: consentValidation.requiresRenewal
-        }
-      );
+      throw new MedicalError('COMPLIANCE_002', 'Patient consent required', 'medium', {
+        requestId,
+        missing: consentValidation.missing,
+        requiresRenewal: consentValidation.requiresRenewal,
+      });
     }
 
     // ==================== LAYER 3: HIPAA Compliance Check ====================
@@ -72,7 +62,7 @@ module.exports = async (req, res) => {
       auditLogged: true, // We'll log this request
       authorized: true, // User is accessing their own data
       consentValidated: consentValidation.valid,
-      dataMinimized: true // We only collect necessary data
+      dataMinimized: true, // We only collect necessary data
     });
 
     if (!complianceCheck.compliant) {
@@ -82,7 +72,7 @@ module.exports = async (req, res) => {
         'critical',
         {
           requestId,
-          issues: complianceCheck.issues
+          issues: complianceCheck.issues,
         }
       );
     }
@@ -95,7 +85,7 @@ module.exports = async (req, res) => {
       message: encryptedMessage.encrypted,
       metadata: encryptedMessage.metadata,
       requestId,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
 
     // ==================== LAYER 5: Audit Logging (Pre-Request) ====================
@@ -109,14 +99,14 @@ module.exports = async (req, res) => {
         consentValidated: true,
         hipaaCompliant: true,
         ipAddress: req.ip,
-        userAgent: req.get('user-agent')
+        userAgent: req.get('user-agent'),
       },
       {
         userId: req.user?.id || 'anonymous',
         sessionId: req.session?.id || null,
         ipAddress: req.ip,
         userAgent: req.get('user-agent'),
-        requestId
+        requestId,
       }
     );
 
@@ -125,7 +115,7 @@ module.exports = async (req, res) => {
     const originalJson = res.json.bind(res);
     let aiResponse = null;
 
-    res.json = function(data) {
+    res.json = function (data) {
       aiResponse = data;
       // Don't send yet - we need to validate first
     };
@@ -135,28 +125,20 @@ module.exports = async (req, res) => {
 
     // ==================== LAYER 7: AI Response Validation ====================
     if (aiResponse && aiResponse.success) {
-      const validationResult = await medicalValidation.validateResponse(
-        aiResponse,
-        {
-          patientContext: req.body.patientContext,
-          specialty: req.body.specialty || 'general-medicine',
-          conversationHistory: req.body.conversationHistory || []
-        }
-      );
+      const validationResult = await medicalValidation.validateResponse(aiResponse, {
+        patientContext: req.body.patientContext,
+        specialty: req.body.specialty || 'general-medicine',
+        conversationHistory: req.body.conversationHistory || [],
+      });
 
       // Check validation status
       if (validationResult.status === 'rejected') {
         // AI response failed validation - reject it
-        throw new MedicalError(
-          'MEDICAL_003',
-          'AI response failed validation checks',
-          'high',
-          {
-            requestId,
-            validationScore: validationResult.score,
-            issues: validationResult.issues.map(i => i.message)
-          }
-        );
+        throw new MedicalError('MEDICAL_003', 'AI response failed validation checks', 'high', {
+          requestId,
+          validationScore: validationResult.score,
+          issues: validationResult.issues.map(i => i.message),
+        });
       }
 
       if (validationResult.emergencyDetected) {
@@ -168,14 +150,14 @@ module.exports = async (req, res) => {
             requestId,
             emergencyKeywords: validationResult.checks.emergency.keywords,
             severity: validationResult.checks.emergency.severity,
-            recommendedAction: validationResult.checks.emergency.recommendedAction
+            recommendedAction: validationResult.checks.emergency.recommendedAction,
           },
           {
             userId: req.user?.id || 'anonymous',
             sessionId: req.session?.id || null,
             ipAddress: req.ip,
             userAgent: req.get('user-agent'),
-            requestId
+            requestId,
           }
         );
 
@@ -190,12 +172,13 @@ module.exports = async (req, res) => {
         score: validationResult.score,
         requiresClinicalReview: validationResult.requiresClinicalReview,
         warningsCount: validationResult.warnings.length,
-        validatedAt: new Date().toISOString()
+        validatedAt: new Date().toISOString(),
       };
 
       // If requires clinical review, add notice
       if (validationResult.requiresClinicalReview) {
-        aiResponse.response += '\n\n📋 **Note**: This response has been flagged for clinical review to ensure accuracy.';
+        aiResponse.response +=
+          '\n\n📋 **Note**: This response has been flagged for clinical review to ensure accuracy.';
       }
     }
 
@@ -224,34 +207,27 @@ module.exports = async (req, res) => {
         responseTime,
         validationScore: aiResponse?.validation?.score,
         emergencyDetected: aiResponse?.emergencyDetected || false,
-        encrypted: aiResponse?.encrypted || false
+        encrypted: aiResponse?.encrypted || false,
       },
       {
         userId: req.user?.id || 'anonymous',
         sessionId: req.session?.id || null,
         ipAddress: req.ip,
         userAgent: req.get('user-agent'),
-        requestId
+        requestId,
       }
     );
 
     // ==================== LAYER 10: Data Retention Policy ====================
     // Check if data should be archived or deleted
-    const retentionStatus = complianceService.checkRetentionPolicy(
-      'chat-logs',
-      new Date()
-    );
+    const retentionStatus = complianceService.checkRetentionPolicy('chat-logs', new Date());
 
     if (retentionStatus.shouldArchive) {
-      await auditLogger.log(
-        'data-archival-required',
-        'compliance',
-        {
-          requestId,
-          category: 'chat-logs',
-          daysRemaining: retentionStatus.daysRemaining
-        }
-      );
+      await auditLogger.log('data-archival-required', 'compliance', {
+        requestId,
+        category: 'chat-logs',
+        daysRemaining: retentionStatus.daysRemaining,
+      });
     }
 
     // ==================== LAYER 11: Send Response ====================
@@ -264,13 +240,12 @@ module.exports = async (req, res) => {
       'Strict-Transport-Security': 'max-age=31536000; includeSubDomains',
       'Content-Security-Policy': "default-src 'self'",
       'X-HIPAA-Compliant': 'true',
-      'X-GDPR-Compliant': 'true'
+      'X-GDPR-Compliant': 'true',
     });
 
     // Restore original res.json and send response
     res.json = originalJson;
     return res.json(aiResponse);
-
   } catch (error) {
     // ==================== ERROR HANDLING ====================
     const responseTime = Date.now() - startTime;
@@ -285,34 +260,38 @@ module.exports = async (req, res) => {
         errorCode: error.code || 'UNKNOWN',
         errorSeverity: error.severity || 'high',
         responseTime,
-        success: false
+        success: false,
       },
       {
         userId: req.user?.id || 'anonymous',
         sessionId: req.session?.id || null,
         ipAddress: req.ip,
         userAgent: req.get('user-agent'),
-        requestId
+        requestId,
       }
     );
 
     // If this is a MedicalError, use its information
     if (error.name === 'MedicalError') {
-      const statusCode = error.code.startsWith('COMPLIANCE_') ? 403 :
-                        error.code.startsWith('DATA_') ? 400 :
-                        error.severity === 'critical' ? 500 : 400;
+      const statusCode = error.code.startsWith('COMPLIANCE_')
+        ? 403
+        : error.code.startsWith('DATA_')
+          ? 400
+          : error.severity === 'critical'
+            ? 500
+            : 400;
 
       return res.status(statusCode).json({
         success: false,
         error: {
           code: error.code,
-          message: error.message,
+          message: 'Bir hata olustu. Lutfen tekrar deneyin.',
           severity: error.severity,
           recoverable: error.recoverable,
           timestamp: error.timestamp,
-          requestId
+          requestId,
         },
-        supportContact: 'support@ailydian.com'
+        supportContact: 'support@ailydian.com',
       });
     }
 
@@ -323,9 +302,9 @@ module.exports = async (req, res) => {
         code: 'INTERNAL_ERROR',
         message: 'An unexpected error occurred. Please try again later.',
         severity: 'high',
-        requestId
+        requestId,
       },
-      supportContact: 'support@ailydian.com'
+      supportContact: 'support@ailydian.com',
     });
   }
 };

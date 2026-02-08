@@ -16,7 +16,7 @@ module.exports = async (req, res) => {
   if (req.method !== 'POST') {
     return res.status(405).json({
       success: false,
-      error: 'Method not allowed'
+      error: 'Method not allowed',
     });
   }
 
@@ -26,15 +26,16 @@ module.exports = async (req, res) => {
     if (!userId) {
       return res.status(400).json({
         success: false,
-        error: 'userId is required'
+        error: 'userId is required',
       });
     }
 
     // Get client information
-    const ipAddress = req.headers['x-forwarded-for']?.split(',')[0]?.trim() ||
-                      req.headers['x-real-ip'] ||
-                      req.socket.remoteAddress ||
-                      'unknown';
+    const ipAddress =
+      req.headers['x-forwarded-for']?.split(',')[0]?.trim() ||
+      req.headers['x-real-ip'] ||
+      req.socket.remoteAddress ||
+      'unknown';
 
     const userAgent = req.headers['user-agent'] || 'unknown';
 
@@ -49,7 +50,7 @@ module.exports = async (req, res) => {
       userId: parseInt(userId),
       ipAddress: ipAddress,
       userAgent: userAgent,
-      timestamp: new Date()
+      timestamp: new Date(),
     });
 
     // Log if suspicious
@@ -67,16 +68,15 @@ module.exports = async (req, res) => {
         riskScore: assessment.riskScore,
         recommendation: assessment.recommendation,
         risks: assessment.risks,
-        timestamp: assessment.timestamp
-      }
+        timestamp: assessment.timestamp,
+      },
     });
-
   } catch (error) {
     console.error('Activity analysis error:', error);
     return res.status(500).json({
       success: false,
       error: 'Internal server error',
-      message: error.message
+      message: 'Güvenlik analizi hatası',
     });
   }
 };

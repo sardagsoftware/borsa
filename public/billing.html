@@ -28,7 +28,8 @@
       }
     </style>
     <link
-      rel="preload" as="style"
+      rel="preload"
+      as="style"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Righteous&amp;display=swap"
       crossorigin="anonymous"
     />
@@ -73,7 +74,8 @@
           -apple-system,
           BlinkMacSystemFont,
           sans-serif;
-        background: radial-gradient(1400px 900px at 70% 15%, rgba(184, 107, 255, 0.1), transparent 60%),
+        background:
+          radial-gradient(1400px 900px at 70% 15%, rgba(184, 107, 255, 0.1), transparent 60%),
           radial-gradient(1200px 700px at 20% 80%, rgba(110, 132, 255, 0.1), transparent 65%),
           #0a0b0d;
         color: var(--gray-900);
@@ -980,15 +982,22 @@
       /* ========== RESPONSIVE ========== */
 
       /* Touch targets & font safety - Global responsive base */
-      button, a, input, select, textarea {
+      button,
+      a,
+      input,
+      select,
+      textarea {
         min-height: 44px;
       }
 
-      input, select, textarea {
+      input,
+      select,
+      textarea {
         font-size: max(16px, 1rem);
       }
 
-      html, body {
+      html,
+      body {
         overflow-x: hidden;
       }
 
@@ -1176,6 +1185,163 @@
       .fade-in.visible {
         opacity: 1;
         transform: translateY(0);
+      }
+
+      /* ========== ENHANCED RESPONSIVE DESIGN ========== */
+
+      /* Fluid Typography with clamp() */
+      .page-title {
+        font-size: clamp(1.5rem, 4vw + 1rem, 3rem);
+      }
+
+      .page-description {
+        font-size: clamp(0.95rem, 2vw + 0.5rem, 1.25rem);
+      }
+
+      .section-title {
+        font-size: clamp(1.25rem, 3vw + 0.75rem, 2rem);
+      }
+
+      /* Large Desktop - 1440px+ optimization */
+      @media (min-width: 1441px) {
+        .pricing-grid {
+          grid-template-columns: repeat(3, minmax(380px, 420px));
+          justify-content: center;
+        }
+      }
+
+      /* Enhanced 1024px breakpoint */
+      @media (max-width: 1024px) {
+        .pricing-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 1.5rem;
+        }
+
+        .payment-grid {
+          grid-template-columns: 1fr;
+          max-width: 600px;
+          margin: 0 auto;
+        }
+
+        .invoice-table th,
+        .invoice-table td {
+          padding: 1rem;
+          font-size: 0.875rem;
+        }
+      }
+
+      /* Enhanced 768px - Tablet Portrait */
+      @media (max-width: 768px) {
+        .pricing-grid {
+          grid-template-columns: 1fr;
+          max-width: 500px;
+          margin: 0 auto;
+        }
+
+        .pricing-card,
+        .payment-card {
+          padding: 2rem;
+        }
+
+        /* Stack form rows */
+        .form-row {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+
+        /* Improve table readability */
+        .invoice-table th:not(:first-child),
+        .invoice-table td:not(:first-child) {
+          display: none;
+        }
+
+        .invoice-table th:first-child,
+        .invoice-table td:first-child {
+          text-align: left;
+        }
+      }
+
+      /* Enhanced 480px - Mobile */
+      @media (max-width: 480px) {
+        .nav-container {
+          padding: 0 1rem;
+        }
+
+        .logo {
+          font-size: 1.5rem;
+        }
+
+        .page-badge {
+          font-size: 0.75rem;
+          padding: 0.375rem 0.75rem;
+        }
+
+        .pricing-card,
+        .payment-card {
+          padding: 1.5rem;
+        }
+
+        .pricing-currency,
+        .pricing-value {
+          font-size: 2rem;
+        }
+
+        .pricing-features li {
+          font-size: 0.875rem;
+          padding: 0.5rem 0;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+          padding: 0.75rem;
+        }
+
+        .payment-icon {
+          width: 44px;
+          height: 44px;
+        }
+
+        .payment-title {
+          font-size: 1.125rem;
+        }
+
+        .qr-code {
+          width: 160px;
+          height: 160px;
+        }
+
+        .pricing-btn,
+        .submit-btn {
+          padding: 0.875rem 1.5rem;
+        }
+      }
+
+      /* Extra small devices - 320px minimum support */
+      @media (max-width: 360px) {
+        .page-title {
+          font-size: 1.25rem;
+        }
+
+        .pricing-card,
+        .payment-card {
+          padding: 1rem;
+        }
+
+        .pricing-plan-name {
+          font-size: 1rem;
+        }
+
+        .pricing-currency,
+        .pricing-value {
+          font-size: 1.75rem;
+        }
+
+        .btn,
+        .pricing-btn,
+        .submit-btn {
+          font-size: 0.875rem;
+        }
       }
     </style>
     <link rel="stylesheet" href="/css/global-lydian-branding.css" />
@@ -1423,7 +1589,7 @@
     />
 
     <!-- /Premium SEO -->
-<!-- PWA Manifest -->
+    <!-- PWA Manifest -->
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#C4A962" />
     <!-- iOS Safari -->
@@ -1478,7 +1644,8 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon-48.png" />
     <link rel="icon" type="image/x-icon" href="/icons/favicon.ico" />
-    <link rel="shortcut icon" href="/icons/favicon.ico" /></head>
+    <link rel="shortcut icon" href="/icons/favicon.ico" />
+  </head>
   <body>
     <!-- Navigation -->
     <nav class="navbar">

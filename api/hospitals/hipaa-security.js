@@ -34,7 +34,7 @@ class HIPAAEncryptionEngine {
     // AES-256-GCM for PHI encryption (NIST approved, FIPS 140-2 compliant)
     this.algorithm = 'aes-256-gcm';
     this.keyLength = 32; // 256 bits
-    this.ivLength = 16;  // 128 bits
+    this.ivLength = 16; // 128 bits
     this.tagLength = 16; // 128 bits
 
     // Production: Load from secure key management system (AWS KMS, Azure Key Vault, etc.)
@@ -60,8 +60,8 @@ class HIPAAEncryptionEngine {
         metadata: {
           ...metadata,
           encrypted: new Date().toISOString(),
-          keyVersion: this.keyVersion
-        }
+          keyVersion: this.keyVersion,
+        },
       });
 
       let encrypted = cipher.update(dataString, 'utf8', 'hex');
@@ -73,7 +73,7 @@ class HIPAAEncryptionEngine {
         iv: iv.toString('hex'),
         authTag: authTag.toString('hex'),
         keyVersion: this.keyVersion,
-        algorithm: this.algorithm
+        algorithm: this.algorithm,
       };
     } catch (error) {
       throw new Error(`Encryption failed: ${error.message}`);
@@ -145,7 +145,7 @@ class HIPAAuditLogger {
       // Data events
       DATA_TRANSMISSION: 'DATA_TRANSMISSION',
       DATA_BACKUP: 'DATA_BACKUP',
-      DATA_RESTORE: 'DATA_RESTORE'
+      DATA_RESTORE: 'DATA_RESTORE',
     };
   }
 
@@ -184,7 +184,7 @@ class HIPAAuditLogger {
       metadata: event.metadata || {},
 
       // Audit ID
-      auditId: crypto.randomBytes(16).toString('hex')
+      auditId: crypto.randomBytes(16).toString('hex'),
     };
 
     // Production: Store in tamper-proof audit database
@@ -206,9 +206,10 @@ class HIPAAuditLogger {
     // Example: Multiple failed login attempts
     if (auditEntry.eventType === this.eventTypes.LOGIN_FAILURE) {
       const recentFailures = this.auditLog.filter(
-        log => log.userId === auditEntry.userId &&
-               log.eventType === this.eventTypes.LOGIN_FAILURE &&
-               new Date(log.timestamp) > new Date(Date.now() - 15 * 60 * 1000)
+        log =>
+          log.userId === auditEntry.userId &&
+          log.eventType === this.eventTypes.LOGIN_FAILURE &&
+          new Date(log.timestamp) > new Date(Date.now() - 15 * 60 * 1000)
       );
 
       if (recentFailures.length >= 5) {
@@ -217,7 +218,7 @@ class HIPAAuditLogger {
           userId: auditEntry.userId,
           action: 'MULTIPLE_FAILED_LOGINS',
           success: true,
-          metadata: { failureCount: recentFailures.length }
+          metadata: { failureCount: recentFailures.length },
         });
       }
     }
@@ -225,9 +226,10 @@ class HIPAAuditLogger {
     // Example: Unusual PHI access volume
     if (auditEntry.phiAccessed) {
       const recentAccess = this.auditLog.filter(
-        log => log.userId === auditEntry.userId &&
-               log.phiAccessed &&
-               new Date(log.timestamp) > new Date(Date.now() - 60 * 60 * 1000)
+        log =>
+          log.userId === auditEntry.userId &&
+          log.phiAccessed &&
+          new Date(log.timestamp) > new Date(Date.now() - 60 * 60 * 1000)
       );
 
       if (recentAccess.length >= 100) {
@@ -236,7 +238,7 @@ class HIPAAuditLogger {
           userId: auditEntry.userId,
           action: 'EXCESSIVE_PHI_ACCESS',
           success: true,
-          metadata: { accessCount: recentAccess.length }
+          metadata: { accessCount: recentAccess.length },
         });
       }
     }
@@ -248,8 +250,9 @@ class HIPAAuditLogger {
   getUserAuditLog(userId, startDate, endDate) {
     return this.auditLog.filter(log => {
       const matchUser = log.userId === userId;
-      const matchDate = (!startDate || new Date(log.timestamp) >= new Date(startDate)) &&
-                       (!endDate || new Date(log.timestamp) <= new Date(endDate));
+      const matchDate =
+        (!startDate || new Date(log.timestamp) >= new Date(startDate)) &&
+        (!endDate || new Date(log.timestamp) <= new Date(endDate));
       return matchUser && matchDate;
     });
   }
@@ -261,8 +264,9 @@ class HIPAAuditLogger {
     return this.auditLog.filter(log => {
       const matchResource = log.resourceId === resourceId;
       const matchPHI = log.phiAccessed === true;
-      const matchDate = (!startDate || new Date(log.timestamp) >= new Date(startDate)) &&
-                       (!endDate || new Date(log.timestamp) <= new Date(endDate));
+      const matchDate =
+        (!startDate || new Date(log.timestamp) >= new Date(startDate)) &&
+        (!endDate || new Date(log.timestamp) <= new Date(endDate));
       return matchResource && matchPHI && matchDate;
     });
   }
@@ -274,28 +278,28 @@ class HIPAAAccessControl {
     this.roles = {
       PHYSICIAN: {
         name: 'Physician',
-        permissions: ['READ_PHI', 'WRITE_PHI', 'PRESCRIBE', 'DIAGNOSE', 'ACCESS_ALL_RECORDS']
+        permissions: ['READ_PHI', 'WRITE_PHI', 'PRESCRIBE', 'DIAGNOSE', 'ACCESS_ALL_RECORDS'],
       },
       NURSE: {
         name: 'Nurse',
-        permissions: ['READ_PHI', 'WRITE_PHI', 'VITALS', 'MEDICATIONS']
+        permissions: ['READ_PHI', 'WRITE_PHI', 'VITALS', 'MEDICATIONS'],
       },
       ADMIN_STAFF: {
         name: 'Administrative Staff',
-        permissions: ['READ_DEMOGRAPHICS', 'SCHEDULE', 'BILLING']
+        permissions: ['READ_DEMOGRAPHICS', 'SCHEDULE', 'BILLING'],
       },
       RESEARCHER: {
         name: 'Researcher',
-        permissions: ['READ_DEIDENTIFIED']
+        permissions: ['READ_DEIDENTIFIED'],
       },
       IT_ADMIN: {
         name: 'IT Administrator',
-        permissions: ['SYSTEM_CONFIG', 'USER_MANAGEMENT', 'AUDIT_VIEW']
+        permissions: ['SYSTEM_CONFIG', 'USER_MANAGEMENT', 'AUDIT_VIEW'],
       },
       PHARMACIST: {
         name: 'Pharmacist',
-        permissions: ['READ_PHI', 'MEDICATION_REVIEW', 'DISPENSE']
-      }
+        permissions: ['READ_PHI', 'MEDICATION_REVIEW', 'DISPENSE'],
+      },
     };
 
     this.activeSessions = new Map();
@@ -316,7 +320,7 @@ class HIPAAAccessControl {
       permissions: this.roles[user.role]?.permissions || [],
       createdAt: new Date().toISOString(),
       expiresAt: expiresAt.toISOString(),
-      lastActivity: new Date().toISOString()
+      lastActivity: new Date().toISOString(),
     };
 
     this.activeSessions.set(sessionId, session);
@@ -370,10 +374,24 @@ class HIPAADeidentification {
   constructor() {
     // 18 HIPAA identifiers that must be removed
     this.phi_identifiers = [
-      'NAME', 'GEOGRAPHIC_SUBDIVISION', 'DATES', 'PHONE', 'FAX',
-      'EMAIL', 'SSN', 'MEDICAL_RECORD', 'HEALTH_PLAN', 'ACCOUNT',
-      'CERTIFICATE', 'VEHICLE', 'DEVICE', 'URL', 'IP_ADDRESS',
-      'BIOMETRIC', 'PHOTO', 'OTHER_UNIQUE_ID'
+      'NAME',
+      'GEOGRAPHIC_SUBDIVISION',
+      'DATES',
+      'PHONE',
+      'FAX',
+      'EMAIL',
+      'SSN',
+      'MEDICAL_RECORD',
+      'HEALTH_PLAN',
+      'ACCOUNT',
+      'CERTIFICATE',
+      'VEHICLE',
+      'DEVICE',
+      'URL',
+      'IP_ADDRESS',
+      'BIOMETRIC',
+      'PHOTO',
+      'OTHER_UNIQUE_ID',
     ];
   }
 
@@ -430,7 +448,7 @@ class HIPAADeidentification {
 
     return {
       isDeidentified: issues.length === 0,
-      issues
+      issues,
     };
   }
 }
@@ -443,7 +461,7 @@ class HIPAABreachDetection {
       FAILED_LOGINS: 5,
       PHI_ACCESS_PER_HOUR: 100,
       UNAUTHORIZED_ACCESS_ATTEMPTS: 3,
-      DATA_EXPORT_VOLUME_MB: 100
+      DATA_EXPORT_VOLUME_MB: 100,
     };
     this.detectedBreaches = [];
   }
@@ -460,7 +478,7 @@ class HIPAABreachDetection {
       affectedUsers: event.affectedUsers || [],
       affectedRecords: event.affectedRecords || 0,
       description: event.description,
-      status: 'DETECTED'
+      status: 'DETECTED',
     };
 
     this.detectedBreaches.push(breach);
@@ -471,7 +489,7 @@ class HIPAABreachDetection {
       userId: 'SYSTEM',
       action: 'BREACH_DETECTED',
       success: true,
-      metadata: breach
+      metadata: breach,
     });
 
     // Check if breach notification required (>500 individuals)
@@ -499,7 +517,7 @@ class HIPAABreachDetection {
       breachId: breach.breachId,
       affectedRecords: breach.affectedRecords,
       severity: breach.severity,
-      action: 'Notify HHS, affected individuals, and media if >500 records'
+      action: 'Notify HHS, affected individuals, and media if >500 records',
     });
 
     // Production: Send notifications
@@ -518,7 +536,10 @@ class HIPAATransmissionSecurity {
     const issues = [];
 
     // Check HTTPS
-    if (!req.headers['x-forwarded-proto']?.includes('https') && process.env.NODE_ENV === 'production') {
+    if (
+      !req.headers['x-forwarded-proto']?.includes('https') &&
+      process.env.NODE_ENV === 'production'
+    ) {
       issues.push('Non-HTTPS transmission');
     }
 
@@ -530,7 +551,7 @@ class HIPAATransmissionSecurity {
 
     return {
       secure: issues.length === 0,
-      issues
+      issues,
     };
   }
 }
@@ -552,7 +573,7 @@ class HIPAABAATracker {
       baaSignedDate: ba.baaSignedDate,
       baaExpiresDate: ba.baaExpiresDate,
       allowedPHI: ba.allowedPHI || [],
-      status: 'ACTIVE'
+      status: 'ACTIVE',
     };
 
     this.businessAssociates.set(ba.id, baRecord);
@@ -605,13 +626,13 @@ class HIPAASecurityManager {
       encryption: {
         algorithm: this.encryption.algorithm,
         keyVersion: this.encryption.keyVersion,
-        lastRotation: this.encryption.keyRotationDate
+        lastRotation: this.encryption.keyRotationDate,
       },
       activeSessions: this.accessControl.activeSessions.size,
       auditLogSize: this.auditLogger.auditLog.length,
       detectedBreaches: this.breachDetection.detectedBreaches.length,
       businessAssociates: this.baaTracker.businessAssociates.size,
-      compliance: 'HIPAA §164.306-318'
+      compliance: 'HIPAA §164.306-318',
     };
   }
 }
@@ -636,24 +657,28 @@ export default async function handler(req, res) {
       case 'GET_SECURITY_STATUS':
         return res.json({
           success: true,
-          status: hipaaManager.getSecurityStatus()
+          status: hipaaManager.getSecurityStatus(),
         });
 
-      case 'ENCRYPT_PHI':
+      case 'ENCRYPT_PHI': {
         const encrypted = hipaaManager.encryption.encryptPHI(data.phi, data.metadata);
         return res.json({ success: true, encrypted });
+      }
 
-      case 'DECRYPT_PHI':
+      case 'DECRYPT_PHI': {
         const decrypted = hipaaManager.encryption.decryptPHI(data.encryptedData);
         return res.json({ success: true, decrypted });
+      }
 
-      case 'DEIDENTIFY':
+      case 'DEIDENTIFY': {
         const deidentified = hipaaManager.deidentification.deidentify(data.patientData);
         return res.json({ success: true, deidentified });
+      }
 
-      case 'LOG_AUDIT':
+      case 'LOG_AUDIT': {
         const auditEntry = hipaaManager.auditLogger.logEvent(data.event);
         return res.json({ success: true, auditEntry });
+      }
 
       default:
         return res.json({
@@ -666,16 +691,16 @@ export default async function handler(req, res) {
             'Automatic de-identification',
             'Breach detection',
             'BAA tracking',
-            'Transmission security'
+            'Transmission security',
           ],
-          compliance: 'HIPAA Security Rule §164.306-318'
+          compliance: 'HIPAA Security Rule §164.306-318',
         });
     }
   } catch (error) {
     console.error('HIPAA Security Error:', error);
     return res.status(500).json({
       success: false,
-      error: error.message
+      error: 'Güvenlik işlem hatası',
     });
   }
 }

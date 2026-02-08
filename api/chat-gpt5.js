@@ -4,6 +4,7 @@
 require('dotenv').config();
 const axios = require('axios');
 const { getCorsOrigin } = require('./_middleware/cors');
+const { applySanitization } = require('./_middleware/sanitize');
 
 // Azure AI Foundry Configuration
 const AZURE_AI_FOUNDRY_ENDPOINT = process.env.AZURE_AI_FOUNDRY_ENDPOINT;
@@ -57,6 +58,7 @@ function checkRateLimit(userId = 'anonymous') {
 
 // Main request handler
 async function handleRequest(req, res) {
+  applySanitization(req, res);
   // CORS headers
   res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');

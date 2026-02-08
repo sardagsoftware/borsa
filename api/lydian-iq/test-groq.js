@@ -1,3 +1,4 @@
+/* global fetch */
 // Direct Groq API test - bypass all middlewares
 const { getCorsOrigin } = require('../_middleware/cors');
 module.exports = async (req, res) => {
@@ -20,8 +21,8 @@ module.exports = async (req, res) => {
       groq: {
         apiKey: process.env.GROQ_API_KEY || '',
         endpoint: 'https://api.groq.com/openai/v1/chat/completions',
-        model: 'GX8E2D9A' // ✅ UPDATED: Active model
-      }
+        model: 'GX8E2D9A', // ✅ UPDATED: Active model
+      },
     };
   }
 
@@ -32,7 +33,9 @@ module.exports = async (req, res) => {
   console.log(`[TEST-GROQ] GROQ_API_KEY length: ${(process.env.GROQ_API_KEY || '').length}`);
   console.log(`[TEST-GROQ] CONFIG.groq.apiKey exists: ${!!CONFIG.groq.apiKey}`);
   console.log(`[TEST-GROQ] CONFIG.groq.apiKey length: ${CONFIG.groq.apiKey.length}`);
-  console.log(`[TEST-GROQ] Validation passes: ${CONFIG.groq.apiKey && CONFIG.groq.apiKey.length > 20 && !CONFIG.groq.apiKey.includes('YOUR_')}`);
+  console.log(
+    `[TEST-GROQ] Validation passes: ${CONFIG.groq.apiKey && CONFIG.groq.apiKey.length > 20 && !CONFIG.groq.apiKey.includes('YOUR_')}`
+  );
 
   if (!CONFIG.groq.apiKey || CONFIG.groq.apiKey.length < 20) {
     return res.status(200).json({
@@ -42,8 +45,8 @@ module.exports = async (req, res) => {
         hasEnvVar: !!process.env.GROQ_API_KEY,
         envVarLength: (process.env.GROQ_API_KEY || '').length,
         configHasKey: !!CONFIG.groq.apiKey,
-        configKeyLength: CONFIG.groq.apiKey.length
-      }
+        configKeyLength: CONFIG.groq.apiKey.length,
+      },
     });
   }
 
@@ -54,23 +57,23 @@ module.exports = async (req, res) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${CONFIG.groq.apiKey}`
+        Authorization: `Bearer ${CONFIG.groq.apiKey}`,
       },
       body: JSON.stringify({
         model: CONFIG.groq.model,
         messages: [
           {
             role: 'system',
-            content: 'You are a helpful assistant. Respond in Turkish.'
+            content: 'You are a helpful assistant. Respond in Turkish.',
           },
           {
             role: 'user',
-            content: '2+2 kaç eder? Kısa yanıt ver.'
-          }
+            content: '2+2 kaç eder? Kısa yanıt ver.',
+          },
         ],
         max_tokens: 100,
-        temperature: 0.3
-      })
+        temperature: 0.3,
+      }),
     });
 
     console.log(`[TEST-GROQ] Response status: ${response.status}`);
@@ -82,7 +85,7 @@ module.exports = async (req, res) => {
         success: false,
         error: 'Groq API error',
         statusCode: response.status,
-        details: errorText.substring(0, 500)
+        details: errorText.substring(0, 500),
       });
     }
 
@@ -94,14 +97,13 @@ module.exports = async (req, res) => {
       message: 'Groq API test successful!',
       response: data.choices[0]?.message?.content || 'No content',
       model: data.model,
-      usage: data.usage
+      usage: data.usage,
     });
-
   } catch (error) {
     console.error('[TEST-GROQ] ❌ Exception:', error);
     return res.status(500).json({
       success: false,
-      error: error.message
+      error: 'Islem basarisiz. Lutfen tekrar deneyin.',
     });
   }
 };

@@ -20,7 +20,7 @@ module.exports = async (req, res) => {
   if (req.method !== 'POST') {
     return res.status(405).json({
       success: false,
-      error: 'Method not allowed'
+      error: 'Method not allowed',
     });
   }
 
@@ -31,26 +31,27 @@ module.exports = async (req, res) => {
         success: false,
         error: 'Azure Speech Services not configured',
         message: 'AZURE_SPEECH_KEY environment variable not set',
-        fallback: 'Please use text input instead'
+        fallback: 'Please use text input instead',
       });
     }
 
     // Parse multipart form data
     const form = new multiparty.Form();
 
-    const parseForm = () => new Promise((resolve, reject) => {
-      form.parse(req, (err, fields, files) => {
-        if (err) reject(err);
-        else resolve({ fields, files });
+    const parseForm = () =>
+      new Promise((resolve, reject) => {
+        form.parse(req, (err, fields, files) => {
+          if (err) reject(err);
+          else resolve({ fields, files });
+        });
       });
-    });
 
     const { fields, files } = await parseForm();
 
     if (!files.audio || !files.audio[0]) {
       return res.status(400).json({
         success: false,
-        error: 'No audio file provided'
+        error: 'No audio file provided',
       });
     }
 
@@ -59,16 +60,16 @@ module.exports = async (req, res) => {
 
     // Supported legal languages
     const languageMap = {
-      'tr': 'tr-TR',      // Turkish (Primary)
+      tr: 'tr-TR', // Turkish (Primary)
       'tr-TR': 'tr-TR',
-      'en': 'en-US',      // English
+      en: 'en-US', // English
       'en-US': 'en-US',
-      'de': 'de-DE',      // German
+      de: 'de-DE', // German
       'de-DE': 'de-DE',
-      'fr': 'fr-FR',      // French
+      fr: 'fr-FR', // French
       'fr-FR': 'fr-FR',
-      'ar': 'ar-SA',      // Arabic
-      'ar-SA': 'ar-SA'
+      ar: 'ar-SA', // Arabic
+      'ar-SA': 'ar-SA',
     };
 
     const speechLanguage = languageMap[language] || 'tr-TR';
@@ -122,7 +123,7 @@ module.exports = async (req, res) => {
         () => {
           console.log('🎤 Speech recognition started');
         },
-        (err) => {
+        err => {
           recognizer.stopContinuousRecognitionAsync();
           reject(new Error(`Recognition start failed: ${err}`));
         }
@@ -151,18 +152,16 @@ module.exports = async (req, res) => {
       originalTranscription: transcription,
       language: speechLanguage,
       legalEntities: legalEntities,
-      confidence: 0.90, // Azure Speech has high accuracy
+      confidence: 0.9, // Azure Speech has high accuracy
       duration: Math.round(audioFile.size / 16000), // Approximate duration in seconds
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
-
   } catch (error) {
     console.error('❌ Legal speech transcription error:', error);
     res.status(500).json({
       success: false,
       error: 'Speech transcription failed',
-      message: error.message,
-      stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
     });
   }
 };
@@ -175,66 +174,245 @@ function addLegalPhrases(phraseList, language) {
   const legalPhrases = {
     'tr-TR': [
       // Türk Hukuk Terimleri
-      'dava', 'davacı', 'davalı', 'savcı', 'savunma', 'iddia', 'tanık',
-      'mahkeme', 'hakim', 'karar', 'hüküm', 'itiraz', 'temyiz', 'istinaf',
-      'sözleşme', 'mukavele', 'akdi', 'borçlar hukuku', 'ticaret hukuku',
-      'ceza hukuku', 'idare hukuku', 'medeni hukuk', 'anayasa hukuku',
-      'yargıtay', 'danıştay', 'anayasa mahkemesi', 'bölge adliye mahkemesi',
-      'sulh hukuk mahkemesi', 'asliye hukuk mahkemesi', 'asliye ceza mahkemesi',
-      'tazminat', 'manevi tazminat', 'maddi tazminat', 'icra', 'iflas',
-      'konkordato', 'haciz', 'ipotek', 'rehin', 'kefalet', 'teminat',
-      'vekalet', 'vekil', 'avukat', 'baro', 'noter', 'kesin hüküm',
-      'hukuka aykırılık', 'haksız fiil', 'sebepsiz zenginleşme', 'vekalete',
-      'kusur', 'ihmal', 'taksir', 'kast', 'manevi zarar', 'maddi zarar',
-      'zamanaşımı', 'müruru zaman', 'hak düşürücü süre', 'ön ödeme',
-      'icra takibi', 'ödeme emri', 'itirazın iptali', 'menfi tespit',
-      'istihkak davası', 'tapu iptali', 'tescil', 'şerh', 'beyan',
-      'delil', 'ispat', 'karine', 'yemin', 'bilirkişi', 'keşif',
-      'nafaka', 'velayet', 'vesayet', 'kayyım', 'miras', 'tereke',
-      'mal rejimi', 'mal ayrılığı', 'edinilmiş mallara katılma',
-      'boşanma', 'nafaka', 'tazminat', 'maddi manevi tazminat',
-      'ceza davası', 'hukuk davası', 'idari dava', 'vergi davası',
-      'fikri haklar', 'patent', 'marka', 'telif hakkı', 'know-how',
-      'şirketler hukuku', 'limited şirket', 'anonim şirket', 'komandit',
-      'ticari işletme', 'ticari defter', 'ticaret sicili', 'tescil',
-      'konkordato', 'iflas', 'konkordato', 'erteleme', 'yeniden yapılandırma',
-      'iş hukuku', 'iş sözleşmesi', 'kıdem tazminatı', 'ihbar tazminatı',
-      'işe iade', 'fesih', 'haklı fesih', 'haksız fesih', 'geçersiz fesih'
+      'dava',
+      'davacı',
+      'davalı',
+      'savcı',
+      'savunma',
+      'iddia',
+      'tanık',
+      'mahkeme',
+      'hakim',
+      'karar',
+      'hüküm',
+      'itiraz',
+      'temyiz',
+      'istinaf',
+      'sözleşme',
+      'mukavele',
+      'akdi',
+      'borçlar hukuku',
+      'ticaret hukuku',
+      'ceza hukuku',
+      'idare hukuku',
+      'medeni hukuk',
+      'anayasa hukuku',
+      'yargıtay',
+      'danıştay',
+      'anayasa mahkemesi',
+      'bölge adliye mahkemesi',
+      'sulh hukuk mahkemesi',
+      'asliye hukuk mahkemesi',
+      'asliye ceza mahkemesi',
+      'tazminat',
+      'manevi tazminat',
+      'maddi tazminat',
+      'icra',
+      'iflas',
+      'konkordato',
+      'haciz',
+      'ipotek',
+      'rehin',
+      'kefalet',
+      'teminat',
+      'vekalet',
+      'vekil',
+      'avukat',
+      'baro',
+      'noter',
+      'kesin hüküm',
+      'hukuka aykırılık',
+      'haksız fiil',
+      'sebepsiz zenginleşme',
+      'vekalete',
+      'kusur',
+      'ihmal',
+      'taksir',
+      'kast',
+      'manevi zarar',
+      'maddi zarar',
+      'zamanaşımı',
+      'müruru zaman',
+      'hak düşürücü süre',
+      'ön ödeme',
+      'icra takibi',
+      'ödeme emri',
+      'itirazın iptali',
+      'menfi tespit',
+      'istihkak davası',
+      'tapu iptali',
+      'tescil',
+      'şerh',
+      'beyan',
+      'delil',
+      'ispat',
+      'karine',
+      'yemin',
+      'bilirkişi',
+      'keşif',
+      'nafaka',
+      'velayet',
+      'vesayet',
+      'kayyım',
+      'miras',
+      'tereke',
+      'mal rejimi',
+      'mal ayrılığı',
+      'edinilmiş mallara katılma',
+      'boşanma',
+      'nafaka',
+      'tazminat',
+      'maddi manevi tazminat',
+      'ceza davası',
+      'hukuk davası',
+      'idari dava',
+      'vergi davası',
+      'fikri haklar',
+      'patent',
+      'marka',
+      'telif hakkı',
+      'know-how',
+      'şirketler hukuku',
+      'limited şirket',
+      'anonim şirket',
+      'komandit',
+      'ticari işletme',
+      'ticari defter',
+      'ticaret sicili',
+      'tescil',
+      'konkordato',
+      'iflas',
+      'konkordato',
+      'erteleme',
+      'yeniden yapılandırma',
+      'iş hukuku',
+      'iş sözleşmesi',
+      'kıdem tazminatı',
+      'ihbar tazminatı',
+      'işe iade',
+      'fesih',
+      'haklı fesih',
+      'haksız fesih',
+      'geçersiz fesih',
     ],
     'en-US': [
       // English Legal Terms
-      'plaintiff', 'defendant', 'attorney', 'counsel', 'witness', 'testimony',
-      'verdict', 'judgment', 'appeal', 'motion', 'hearing', 'trial',
-      'contract', 'agreement', 'tort', 'negligence', 'liability', 'damages',
-      'injunction', 'subpoena', 'deposition', 'discovery', 'evidence',
-      'statute', 'regulation', 'ordinance', 'jurisdiction', 'venue',
-      'arbitration', 'mediation', 'settlement', 'litigation', 'prosecution',
-      'defense', 'cross-examination', 'direct examination', 'hearsay',
-      'precedent', 'stare decisis', 'common law', 'civil law', 'criminal law',
-      'constitutional law', 'administrative law', 'corporate law', 'tax law',
-      'intellectual property', 'patent', 'trademark', 'copyright', 'trade secret'
+      'plaintiff',
+      'defendant',
+      'attorney',
+      'counsel',
+      'witness',
+      'testimony',
+      'verdict',
+      'judgment',
+      'appeal',
+      'motion',
+      'hearing',
+      'trial',
+      'contract',
+      'agreement',
+      'tort',
+      'negligence',
+      'liability',
+      'damages',
+      'injunction',
+      'subpoena',
+      'deposition',
+      'discovery',
+      'evidence',
+      'statute',
+      'regulation',
+      'ordinance',
+      'jurisdiction',
+      'venue',
+      'arbitration',
+      'mediation',
+      'settlement',
+      'litigation',
+      'prosecution',
+      'defense',
+      'cross-examination',
+      'direct examination',
+      'hearsay',
+      'precedent',
+      'stare decisis',
+      'common law',
+      'civil law',
+      'criminal law',
+      'constitutional law',
+      'administrative law',
+      'corporate law',
+      'tax law',
+      'intellectual property',
+      'patent',
+      'trademark',
+      'copyright',
+      'trade secret',
     ],
     'de-DE': [
       // German Legal Terms
-      'Klage', 'Kläger', 'Beklagter', 'Rechtsanwalt', 'Verteidigung',
-      'Gericht', 'Richter', 'Urteil', 'Revision', 'Berufung', 'Einspruch',
-      'Vertrag', 'Zivilrecht', 'Strafrecht', 'Verwaltungsrecht',
-      'Bundesgerichtshof', 'Landgericht', 'Amtsgericht',
-      'Schadensersatz', 'Vollstreckung', 'Insolvenz', 'Pfändung'
+      'Klage',
+      'Kläger',
+      'Beklagter',
+      'Rechtsanwalt',
+      'Verteidigung',
+      'Gericht',
+      'Richter',
+      'Urteil',
+      'Revision',
+      'Berufung',
+      'Einspruch',
+      'Vertrag',
+      'Zivilrecht',
+      'Strafrecht',
+      'Verwaltungsrecht',
+      'Bundesgerichtshof',
+      'Landgericht',
+      'Amtsgericht',
+      'Schadensersatz',
+      'Vollstreckung',
+      'Insolvenz',
+      'Pfändung',
     ],
     'fr-FR': [
       // French Legal Terms
-      'plaignant', 'défendeur', 'avocat', 'témoin', 'jugement',
-      'tribunal', 'cour', 'appel', 'cassation', 'verdict',
-      'contrat', 'droit civil', 'droit pénal', 'droit administratif',
-      'dommages et intérêts', 'saisie', 'faillite', 'créancier'
+      'plaignant',
+      'défendeur',
+      'avocat',
+      'témoin',
+      'jugement',
+      'tribunal',
+      'cour',
+      'appel',
+      'cassation',
+      'verdict',
+      'contrat',
+      'droit civil',
+      'droit pénal',
+      'droit administratif',
+      'dommages et intérêts',
+      'saisie',
+      'faillite',
+      'créancier',
     ],
     'ar-SA': [
       // Arabic Legal Terms
-      'محكمة', 'قاضي', 'محامي', 'دعوى', 'حكم', 'استئناف',
-      'عقد', 'اتفاقية', 'قانون مدني', 'قانون جنائي',
-      'تعويض', 'ضرر', 'شاهد', 'دليل', 'إثبات'
-    ]
+      'محكمة',
+      'قاضي',
+      'محامي',
+      'دعوى',
+      'حكم',
+      'استئناف',
+      'عقد',
+      'اتفاقية',
+      'قانون مدني',
+      'قانون جنائي',
+      'تعويض',
+      'ضرر',
+      'شاهد',
+      'دليل',
+      'إثبات',
+    ],
   };
 
   const phrases = legalPhrases[language] || legalPhrases['tr-TR'];
@@ -256,7 +434,7 @@ function extractLegalEntities(text, language) {
     caseTypes: [],
     courts: [],
     parties: [],
-    procedures: []
+    procedures: [],
   };
 
   const lowerText = text.toLowerCase();
@@ -264,24 +442,56 @@ function extractLegalEntities(text, language) {
   if (language === 'tr-TR') {
     // Turkish Legal Terms Detection
     const legalTerms = [
-      'dava', 'tazminat', 'sözleşme', 'hüküm', 'karar', 'itiraz',
-      'temyiz', 'istinaf', 'icra', 'nafaka', 'velayet', 'miras'
+      'dava',
+      'tazminat',
+      'sözleşme',
+      'hüküm',
+      'karar',
+      'itiraz',
+      'temyiz',
+      'istinaf',
+      'icra',
+      'nafaka',
+      'velayet',
+      'miras',
     ];
 
     const caseTypes = [
-      'boşanma davası', 'alacak davası', 'tazminat davası', 'tapu davası',
-      'işe iade davası', 'icra takibi', 'iflas davası', 'itirazın iptali'
+      'boşanma davası',
+      'alacak davası',
+      'tazminat davası',
+      'tapu davası',
+      'işe iade davası',
+      'icra takibi',
+      'iflas davası',
+      'itirazın iptali',
     ];
 
     const courts = [
-      'yargıtay', 'danıştay', 'anayasa mahkemesi', 'bölge adliye mahkemesi',
-      'sulh hukuk mahkemesi', 'asliye hukuk mahkemesi', 'asliye ceza mahkemesi',
-      'ağır ceza mahkemesi', 'idare mahkemesi', 'vergi mahkemesi'
+      'yargıtay',
+      'danıştay',
+      'anayasa mahkemesi',
+      'bölge adliye mahkemesi',
+      'sulh hukuk mahkemesi',
+      'asliye hukuk mahkemesi',
+      'asliye ceza mahkemesi',
+      'ağır ceza mahkemesi',
+      'idare mahkemesi',
+      'vergi mahkemesi',
     ];
 
     const procedures = [
-      'duruşma', 'tahkikat', 'karar', 'hüküm', 'infaz', 'temyiz', 'istinaf',
-      'keşif', 'bilirkişi incelemesi', 'tanık dinleme', 'yemin'
+      'duruşma',
+      'tahkikat',
+      'karar',
+      'hüküm',
+      'infaz',
+      'temyiz',
+      'istinaf',
+      'keşif',
+      'bilirkişi incelemesi',
+      'tanık dinleme',
+      'yemin',
     ];
 
     legalTerms.forEach(term => {
@@ -313,32 +523,32 @@ function applyLegalTerminology(text, language) {
 
   // Turkish legal term corrections
   const corrections = {
-    'daha': 'dava',
-    'davaya': 'davaya',
-    'tanıt': 'tanık',
-    'mahkama': 'mahkeme',
-    'hâkim': 'hakim',
-    'kara': 'karar',
-    'hukum': 'hüküm',
-    'itiraz': 'itiraz',
-    'temiz': 'temyiz',
-    'istinaf': 'istinaf',
-    'sözleşme': 'sözleşme',
-    'mukavele': 'mukavele',
-    'tazminat': 'tazminat',
+    daha: 'dava',
+    davaya: 'davaya',
+    tanıt: 'tanık',
+    mahkama: 'mahkeme',
+    hâkim: 'hakim',
+    kara: 'karar',
+    hukum: 'hüküm',
+    itiraz: 'itiraz',
+    temiz: 'temyiz',
+    istinaf: 'istinaf',
+    sözleşme: 'sözleşme',
+    mukavele: 'mukavele',
+    tazminat: 'tazminat',
     'manevi tazminat': 'manevi tazminat',
     'maddi tazminat': 'maddi tazminat',
-    'icra': 'icra',
-    'iflas': 'iflas',
-    'haciz': 'haciz',
-    'ipotek': 'ipotek',
-    'vekalet': 'vekalet',
-    'avukat': 'avukat',
-    'noter': 'noter',
-    'nafaka': 'nafaka',
-    'velayet': 'velayet',
-    'miras': 'miras',
-    'boşanma': 'boşanma'
+    icra: 'icra',
+    iflas: 'iflas',
+    haciz: 'haciz',
+    ipotek: 'ipotek',
+    vekalet: 'vekalet',
+    avukat: 'avukat',
+    noter: 'noter',
+    nafaka: 'nafaka',
+    velayet: 'velayet',
+    miras: 'miras',
+    boşanma: 'boşanma',
   };
 
   let correctedText = text;

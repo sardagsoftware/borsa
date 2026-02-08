@@ -12,6 +12,8 @@
  * @version 1.0.0
  */
 
+const { handleCORS } = require('../_lib/cors-simple');
+
 module.exports = async (req, res) => {
   // Apply secure CORS
   if (handleCORS(req, res)) return;
@@ -29,19 +31,23 @@ module.exports = async (req, res) => {
       const accountId = query.account || 'admin';
 
       // Send initial connection message
-      res.write(`data: ${JSON.stringify({
-        type: 'connected',
-        account: accountId,
-        timestamp: new Date().toISOString(),
-        message: 'Real-time notifications active'
-      })}\n\n`);
+      res.write(
+        `data: ${JSON.stringify({
+          type: 'connected',
+          account: accountId,
+          timestamp: new Date().toISOString(),
+          message: 'Real-time notifications active',
+        })}\n\n`
+      );
 
       // Heartbeat to keep connection alive
       const heartbeatInterval = setInterval(() => {
-        res.write(`data: ${JSON.stringify({
-          type: 'heartbeat',
-          timestamp: new Date().toISOString()
-        })}\n\n`);
+        res.write(
+          `data: ${JSON.stringify({
+            type: 'heartbeat',
+            timestamp: new Date().toISOString(),
+          })}\n\n`
+        );
       }, 30000); // Every 30 seconds
 
       // Simulate new email notifications (for demo)
@@ -62,18 +68,12 @@ module.exports = async (req, res) => {
 
     // POST: Send push notification
     if (method === 'POST') {
-      const {
-        account,
-        title,
-        body,
-        icon,
-        priority = 'normal'
-      } = body || {};
+      const { account, title, body, icon, priority = 'normal' } = body || {};
 
       if (!account || !title || !body) {
         return res.status(400).json({
           success: false,
-          error: 'Missing required fields: account, title, body'
+          error: 'Missing required fields: account, title, body',
         });
       }
 
@@ -89,8 +89,8 @@ module.exports = async (req, res) => {
         read: false,
         actions: [
           { action: 'open', title: 'Aç' },
-          { action: 'dismiss', title: 'Kapat' }
-        ]
+          { action: 'dismiss', title: 'Kapat' },
+        ],
       };
 
       // In production, this would:
@@ -102,7 +102,7 @@ module.exports = async (req, res) => {
       res.status(200).json({
         success: true,
         notification,
-        message: 'Notification sent successfully'
+        message: 'Notification sent successfully',
       });
 
       return;
@@ -115,7 +115,7 @@ module.exports = async (req, res) => {
       if (!notificationId) {
         return res.status(400).json({
           success: false,
-          error: 'notificationId is required'
+          error: 'notificationId is required',
         });
       }
 
@@ -124,7 +124,7 @@ module.exports = async (req, res) => {
         success: true,
         notificationId,
         read: true,
-        message: 'Notification marked as read'
+        message: 'Notification marked as read',
       });
 
       return;
@@ -137,7 +137,7 @@ module.exports = async (req, res) => {
       if (!account) {
         return res.status(400).json({
           success: false,
-          error: 'account is required'
+          error: 'account is required',
         });
       }
 
@@ -146,7 +146,7 @@ module.exports = async (req, res) => {
         success: true,
         account,
         cleared: true,
-        message: 'All notifications cleared'
+        message: 'All notifications cleared',
       });
 
       return;
@@ -154,15 +154,14 @@ module.exports = async (req, res) => {
 
     res.status(405).json({
       success: false,
-      error: 'Method not allowed'
+      error: 'Method not allowed',
     });
-
   } catch (error) {
     console.error('Email Notifications API Error:', error);
     res.status(500).json({
       success: false,
       error: 'Internal server error',
-      message: error.message
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
     });
   }
 };
@@ -177,7 +176,7 @@ function generateMockNotification(accountId) {
     { name: 'John Doe', email: 'john@example.com' },
     { name: 'Jane Smith', email: 'jane@company.com' },
     { name: 'Bob Johnson', email: 'bob@startup.io' },
-    { name: 'Alice Williams', email: 'alice@tech.com' }
+    { name: 'Alice Williams', email: 'alice@tech.com' },
   ];
 
   const subjects = [
@@ -188,7 +187,7 @@ function generateMockNotification(accountId) {
     'Invoice #INV-2025-001',
     'Welcome to LyDian',
     'Your Feedback Matters',
-    'Security Alert'
+    'Security Alert',
   ];
 
   const sender = senders[Math.floor(Math.random() * senders.length)];
@@ -203,6 +202,6 @@ function generateMockNotification(accountId) {
     preview: `${subject.substring(0, 50)}...`,
     timestamp: new Date().toISOString(),
     unread: true,
-    priority: Math.random() > 0.8 ? 'high' : 'normal'
+    priority: Math.random() > 0.8 ? 'high' : 'normal',
   };
 }

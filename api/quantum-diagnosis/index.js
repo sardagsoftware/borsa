@@ -25,27 +25,21 @@ module.exports = async (req, res) => {
   try {
     // POST /api/quantum-diagnosis/analyze - Perform quantum diagnosis
     if (req.method === 'POST') {
-      const {
-        specialty,
-        patientData,
-        symptoms,
-        medicalHistory,
-        clinicalFindings,
-        quantumDevice
-      } = req.body;
+      const { specialty, patientData, symptoms, medicalHistory, clinicalFindings, quantumDevice } =
+        req.body;
 
       // Validate required fields
       if (!specialty || !patientData || !symptoms) {
         return res.status(400).json({
           success: false,
-          error: 'Missing required fields: specialty, patientData, symptoms'
+          error: 'Missing required fields: specialty, patientData, symptoms',
         });
       }
 
       if (!patientData.age || !patientData.gender) {
         return res.status(400).json({
           success: false,
-          error: 'Patient data must include age and gender'
+          error: 'Patient data must include age and gender',
         });
       }
 
@@ -55,7 +49,7 @@ module.exports = async (req, res) => {
       if (!specialtyInfo) {
         return res.status(404).json({
           success: false,
-          error: `Specialty not found: ${specialty}`
+          error: `Specialty not found: ${specialty}`,
         });
       }
 
@@ -69,7 +63,7 @@ module.exports = async (req, res) => {
         {
           symptoms,
           medicalHistory: medicalHistory || '',
-          clinicalFindings: clinicalFindings || ''
+          clinicalFindings: clinicalFindings || '',
         },
         specialty,
         quantumDevice || 'ibm_heron'
@@ -82,10 +76,10 @@ module.exports = async (req, res) => {
         specialty: {
           id: specialtyInfo.id,
           name: specialtyInfo.name,
-          criticalityLevel: specialtyInfo.criticalityLevel
+          criticalityLevel: specialtyInfo.criticalityLevel,
         },
         diagnosis,
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
       });
     }
 
@@ -100,7 +94,7 @@ module.exports = async (req, res) => {
             qubits: 10,
             cost: 0,
             speed: 'Fast',
-            accuracy: 'Good'
+            accuracy: 'Good',
           },
           {
             id: 'gpu',
@@ -108,51 +102,49 @@ module.exports = async (req, res) => {
             qubits: 20,
             cost: 0.05,
             speed: 'Very Fast',
-            accuracy: 'Very Good'
+            accuracy: 'Very Good',
           },
           {
             id: 'mps_gpu',
             name: 'MPS GPU',
             qubits: 30,
-            cost: 0.10,
+            cost: 0.1,
             speed: 'Ultra Fast',
-            accuracy: 'Excellent'
+            accuracy: 'Excellent',
           },
           {
             id: 'ibm_heron',
             name: 'IBM Heron',
             qubits: 50,
-            cost: 5.00,
+            cost: 5.0,
             speed: 'Fast',
             accuracy: 'Outstanding',
-            recommended: true
+            recommended: true,
           },
           {
             id: 'quantinuum_h2',
             name: 'Quantinuum H2',
             qubits: 100,
-            cost: 25.00,
+            cost: 25.0,
             speed: 'Medium',
-            accuracy: 'Perfect'
-          }
+            accuracy: 'Perfect',
+          },
         ],
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
       });
     }
 
     return res.status(405).json({
       success: false,
-      error: 'Method not allowed'
+      error: 'Method not allowed',
     });
-
   } catch (error) {
     console.error('❌ Quantum Diagnosis API Error:', error);
 
     return res.status(500).json({
       success: false,
-      error: error.message || 'Internal server error',
-      details: process.env.NODE_ENV === 'development' ? error.stack : undefined,
-      timestamp: new Date().toISOString()
+      error: 'Saglik servisi hatasi. Lutfen tekrar deneyin.',
+      timestamp: new Date().toISOString(),
     });
   }
 };

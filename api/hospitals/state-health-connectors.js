@@ -18,7 +18,7 @@
 // State Health Information Exchange (HIE) Network Database
 const { getCorsOrigin } = require('../_middleware/cors');
 const STATE_HIE_NETWORKS = {
-  'AL': {
+  AL: {
     name: 'Alabama',
     hie: 'Alabama Health Information Exchange (ONE Health Record)',
     website: 'https://www.onehealthrecord.org',
@@ -31,10 +31,10 @@ const STATE_HIE_NETWORKS = {
     integration: {
       apiEndpoint: 'https://hie.alabama.gov/fhir',
       authType: 'OAuth2',
-      realtime: true
-    }
+      realtime: true,
+    },
   },
-  'AK': {
+  AK: {
     name: 'Alaska',
     hie: 'Alaska eHealth Network',
     website: 'https://www.ak-ehealth.org',
@@ -47,10 +47,10 @@ const STATE_HIE_NETWORKS = {
     integration: {
       apiEndpoint: 'https://hie.alaska.gov/fhir',
       authType: 'OAuth2',
-      realtime: true
-    }
+      realtime: true,
+    },
   },
-  'AZ': {
+  AZ: {
     name: 'Arizona',
     hie: 'Arizona Health-e Connection (AzHeC)',
     website: 'https://www.azhec.org',
@@ -63,10 +63,10 @@ const STATE_HIE_NETWORKS = {
     integration: {
       apiEndpoint: 'https://hie.azhec.org/fhir',
       authType: 'OAuth2',
-      realtime: true
-    }
+      realtime: true,
+    },
   },
-  'AR': {
+  AR: {
     name: 'Arkansas',
     hie: 'Arkansas Health Information Exchange (ARShare)',
     website: 'https://www.arshare.com',
@@ -75,14 +75,14 @@ const STATE_HIE_NETWORKS = {
     standards: ['FHIR R4', 'HL7 v2.7'],
     publicHealth: 'Arkansas Department of Health',
     medicaidSystem: 'Arkansas Medicaid',
-    majorHospitals: ['UAMS Medical Center', 'Arkansas Children\'s Hospital'],
+    majorHospitals: ['UAMS Medical Center', "Arkansas Children's Hospital"],
     integration: {
       apiEndpoint: 'https://hie.arshare.com/fhir',
       authType: 'OAuth2',
-      realtime: true
-    }
+      realtime: true,
+    },
   },
-  'CA': {
+  CA: {
     name: 'California',
     hie: 'California Integrated Data Exchange (Cal INDEX)',
     website: 'https://www.calindex.org',
@@ -91,15 +91,20 @@ const STATE_HIE_NETWORKS = {
     standards: ['FHIR R4', 'HL7 v2.8', 'CDA', 'USCDI v3'],
     publicHealth: 'California Department of Public Health',
     medicaidSystem: 'Medi-Cal',
-    majorHospitals: ['UCSF Medical Center', 'Stanford Health Care', 'Cedars-Sinai', 'UCLA Medical Center'],
+    majorHospitals: [
+      'UCSF Medical Center',
+      'Stanford Health Care',
+      'Cedars-Sinai',
+      'UCLA Medical Center',
+    ],
     integration: {
       apiEndpoint: 'https://hie.calindex.org/fhir',
       authType: 'OAuth2 + SMART on FHIR',
       realtime: true,
-      specialFeatures: ['Social determinants of health', 'Care coordination', 'Real-time ADT']
-    }
+      specialFeatures: ['Social determinants of health', 'Care coordination', 'Real-time ADT'],
+    },
   },
-  'CO': {
+  CO: {
     name: 'Colorado',
     hie: 'Colorado Regional Health Information Organization (CORHIO)',
     website: 'https://www.corhio.org',
@@ -108,14 +113,14 @@ const STATE_HIE_NETWORKS = {
     standards: ['FHIR R4', 'HL7 v2.7', 'CDA'],
     publicHealth: 'Colorado Department of Public Health',
     medicaidSystem: 'Health First Colorado',
-    majorHospitals: ['UCHealth', 'Denver Health', 'Children\'s Hospital Colorado'],
+    majorHospitals: ['UCHealth', 'Denver Health', "Children's Hospital Colorado"],
     integration: {
       apiEndpoint: 'https://hie.corhio.org/fhir',
       authType: 'OAuth2',
-      realtime: true
-    }
+      realtime: true,
+    },
   },
-  'CT': {
+  CT: {
     name: 'Connecticut',
     hie: 'Connecticut Health Information Network (CONNIE)',
     website: 'https://www.connie.org',
@@ -128,10 +133,10 @@ const STATE_HIE_NETWORKS = {
     integration: {
       apiEndpoint: 'https://hie.connie.org/fhir',
       authType: 'OAuth2',
-      realtime: true
-    }
+      realtime: true,
+    },
   },
-  'DE': {
+  DE: {
     name: 'Delaware',
     hie: 'Delaware Health Information Network (DHIN)',
     website: 'https://www.dhin.org',
@@ -144,10 +149,10 @@ const STATE_HIE_NETWORKS = {
     integration: {
       apiEndpoint: 'https://hie.dhin.org/fhir',
       authType: 'OAuth2',
-      realtime: true
-    }
+      realtime: true,
+    },
   },
-  'FL': {
+  FL: {
     name: 'Florida',
     hie: 'Florida Health Information Exchange (FL-HIE)',
     website: 'https://www.fl-hie.com',
@@ -156,14 +161,19 @@ const STATE_HIE_NETWORKS = {
     standards: ['FHIR R4', 'HL7 v2.8', 'CDA'],
     publicHealth: 'Florida Department of Health',
     medicaidSystem: 'Florida Medicaid',
-    majorHospitals: ['Mayo Clinic Jacksonville', 'Cleveland Clinic Florida', 'UF Health', 'Baptist Health'],
+    majorHospitals: [
+      'Mayo Clinic Jacksonville',
+      'Cleveland Clinic Florida',
+      'UF Health',
+      'Baptist Health',
+    ],
     integration: {
       apiEndpoint: 'https://hie.florida.gov/fhir',
       authType: 'OAuth2',
-      realtime: true
-    }
+      realtime: true,
+    },
   },
-  'GA': {
+  GA: {
     name: 'Georgia',
     hie: 'Georgia Health Information Network (GaHIN)',
     website: 'https://www.gahin.org',
@@ -172,14 +182,14 @@ const STATE_HIE_NETWORKS = {
     standards: ['FHIR R4', 'HL7 v2.7'],
     publicHealth: 'Georgia Department of Public Health',
     medicaidSystem: 'Georgia Medicaid',
-    majorHospitals: ['Emory Healthcare', 'Grady Health System', 'Children\'s Healthcare of Atlanta'],
+    majorHospitals: ['Emory Healthcare', 'Grady Health System', "Children's Healthcare of Atlanta"],
     integration: {
       apiEndpoint: 'https://hie.gahin.org/fhir',
       authType: 'OAuth2',
-      realtime: true
-    }
+      realtime: true,
+    },
   },
-  'HI': {
+  HI: {
     name: 'Hawaii',
     hie: 'Hawaii Health Information Exchange (HHIE)',
     website: 'https://www.hhie.org',
@@ -188,14 +198,14 @@ const STATE_HIE_NETWORKS = {
     standards: ['FHIR R4', 'HL7 v2.7'],
     publicHealth: 'Hawaii Department of Health',
     medicaidSystem: 'Hawaii Med-QUEST',
-    majorHospitals: ['Queen\'s Medical Center', 'Kaiser Permanente Hawaii'],
+    majorHospitals: ["Queen's Medical Center", 'Kaiser Permanente Hawaii'],
     integration: {
       apiEndpoint: 'https://hie.hawaii.gov/fhir',
       authType: 'OAuth2',
-      realtime: true
-    }
+      realtime: true,
+    },
   },
-  'ID': {
+  ID: {
     name: 'Idaho',
     hie: 'Idaho Health Data Exchange (IHDE)',
     website: 'https://www.ihde.org',
@@ -204,14 +214,14 @@ const STATE_HIE_NETWORKS = {
     standards: ['FHIR R4', 'HL7 v2.7'],
     publicHealth: 'Idaho Department of Health and Welfare',
     medicaidSystem: 'Idaho Medicaid',
-    majorHospitals: ['St. Luke\'s Health System', 'Saint Alphonsus'],
+    majorHospitals: ["St. Luke's Health System", 'Saint Alphonsus'],
     integration: {
       apiEndpoint: 'https://hie.idaho.gov/fhir',
       authType: 'OAuth2',
-      realtime: true
-    }
+      realtime: true,
+    },
   },
-  'IL': {
+  IL: {
     name: 'Illinois',
     hie: 'Illinois Health Information Exchange (ILHIE)',
     website: 'https://www.ilhie.org',
@@ -220,14 +230,18 @@ const STATE_HIE_NETWORKS = {
     standards: ['FHIR R4', 'HL7 v2.8', 'CDA'],
     publicHealth: 'Illinois Department of Public Health',
     medicaidSystem: 'Illinois Medicaid',
-    majorHospitals: ['Northwestern Medicine', 'Rush University Medical Center', 'University of Chicago Medicine'],
+    majorHospitals: [
+      'Northwestern Medicine',
+      'Rush University Medical Center',
+      'University of Chicago Medicine',
+    ],
     integration: {
       apiEndpoint: 'https://hie.illinois.gov/fhir',
       authType: 'OAuth2',
-      realtime: true
-    }
+      realtime: true,
+    },
   },
-  'IN': {
+  IN: {
     name: 'Indiana',
     hie: 'Indiana Health Information Exchange (IHIE)',
     website: 'https://www.ihie.org',
@@ -240,10 +254,10 @@ const STATE_HIE_NETWORKS = {
     integration: {
       apiEndpoint: 'https://hie.ihie.org/fhir',
       authType: 'OAuth2',
-      realtime: true
-    }
+      realtime: true,
+    },
   },
-  'IA': {
+  IA: {
     name: 'Iowa',
     hie: 'Iowa Health Information Network (IHIN)',
     website: 'https://www.ihin.org',
@@ -256,10 +270,10 @@ const STATE_HIE_NETWORKS = {
     integration: {
       apiEndpoint: 'https://hie.iowa.gov/fhir',
       authType: 'OAuth2',
-      realtime: true
-    }
+      realtime: true,
+    },
   },
-  'KS': {
+  KS: {
     name: 'Kansas',
     hie: 'Kansas Health Information Network (KHIN)',
     website: 'https://www.khin.net',
@@ -272,10 +286,10 @@ const STATE_HIE_NETWORKS = {
     integration: {
       apiEndpoint: 'https://hie.khin.net/fhir',
       authType: 'OAuth2',
-      realtime: true
-    }
+      realtime: true,
+    },
   },
-  'KY': {
+  KY: {
     name: 'Kentucky',
     hie: 'Kentucky Health Information Exchange (KHIE)',
     website: 'https://www.khie.org',
@@ -288,10 +302,10 @@ const STATE_HIE_NETWORKS = {
     integration: {
       apiEndpoint: 'https://hie.kentucky.gov/fhir',
       authType: 'OAuth2',
-      realtime: true
-    }
+      realtime: true,
+    },
   },
-  'LA': {
+  LA: {
     name: 'Louisiana',
     hie: 'Louisiana Health Information Exchange (LaHIE)',
     website: 'https://www.lahie.org',
@@ -304,10 +318,10 @@ const STATE_HIE_NETWORKS = {
     integration: {
       apiEndpoint: 'https://hie.louisiana.gov/fhir',
       authType: 'OAuth2',
-      realtime: true
-    }
+      realtime: true,
+    },
   },
-  'ME': {
+  ME: {
     name: 'Maine',
     hie: 'HealthInfoNet',
     website: 'https://www.hinfonet.org',
@@ -320,10 +334,10 @@ const STATE_HIE_NETWORKS = {
     integration: {
       apiEndpoint: 'https://hie.hinfonet.org/fhir',
       authType: 'OAuth2',
-      realtime: true
-    }
+      realtime: true,
+    },
   },
-  'MD': {
+  MD: {
     name: 'Maryland',
     hie: 'Chesapeake Regional Information System for our Patients (CRISP)',
     website: 'https://www.crisphealth.org',
@@ -336,10 +350,10 @@ const STATE_HIE_NETWORKS = {
     integration: {
       apiEndpoint: 'https://hie.crisphealth.org/fhir',
       authType: 'OAuth2 + SMART on FHIR',
-      realtime: true
-    }
+      realtime: true,
+    },
   },
-  'MA': {
+  MA: {
     name: 'Massachusetts',
     hie: 'Mass HIway',
     website: 'https://www.masshiway.net',
@@ -348,15 +362,19 @@ const STATE_HIE_NETWORKS = {
     standards: ['FHIR R4', 'HL7 v2.8', 'CDA', 'USCDI v3'],
     publicHealth: 'Massachusetts Department of Public Health',
     medicaidSystem: 'MassHealth',
-    majorHospitals: ['Massachusetts General Hospital', 'Brigham and Women\'s Hospital', 'Boston Children\'s Hospital'],
+    majorHospitals: [
+      'Massachusetts General Hospital',
+      "Brigham and Women's Hospital",
+      "Boston Children's Hospital",
+    ],
     integration: {
       apiEndpoint: 'https://hie.masshiway.net/fhir',
       authType: 'OAuth2 + SMART on FHIR',
       realtime: true,
-      specialFeatures: ['Prescription monitoring', 'ADT notifications', 'Care plans']
-    }
+      specialFeatures: ['Prescription monitoring', 'ADT notifications', 'Care plans'],
+    },
   },
-  'MI': {
+  MI: {
     name: 'Michigan',
     hie: 'Michigan Health Information Network (MiHIN)',
     website: 'https://www.mihin.org',
@@ -369,10 +387,10 @@ const STATE_HIE_NETWORKS = {
     integration: {
       apiEndpoint: 'https://hie.mihin.org/fhir',
       authType: 'OAuth2',
-      realtime: true
-    }
+      realtime: true,
+    },
   },
-  'MN': {
+  MN: {
     name: 'Minnesota',
     hie: 'Minnesota e-Health Initiative',
     website: 'https://www.health.state.mn.us',
@@ -381,14 +399,18 @@ const STATE_HIE_NETWORKS = {
     standards: ['FHIR R4', 'HL7 v2.8', 'CDA'],
     publicHealth: 'Minnesota Department of Health',
     medicaidSystem: 'Minnesota Medical Assistance',
-    majorHospitals: ['Mayo Clinic Rochester', 'University of Minnesota Medical Center', 'M Health Fairview'],
+    majorHospitals: [
+      'Mayo Clinic Rochester',
+      'University of Minnesota Medical Center',
+      'M Health Fairview',
+    ],
     integration: {
       apiEndpoint: 'https://hie.minnesota.gov/fhir',
       authType: 'OAuth2',
-      realtime: true
-    }
+      realtime: true,
+    },
   },
-  'MS': {
+  MS: {
     name: 'Mississippi',
     hie: 'Mississippi Health Information Network (MSHIN)',
     website: 'https://www.mshin.org',
@@ -401,10 +423,10 @@ const STATE_HIE_NETWORKS = {
     integration: {
       apiEndpoint: 'https://hie.mshin.org/fhir',
       authType: 'OAuth2',
-      realtime: true
-    }
+      realtime: true,
+    },
   },
-  'MO': {
+  MO: {
     name: 'Missouri',
     hie: 'Missouri Health Connection (MHC)',
     website: 'https://www.mohealthconnection.org',
@@ -413,14 +435,14 @@ const STATE_HIE_NETWORKS = {
     standards: ['FHIR R4', 'HL7 v2.7'],
     publicHealth: 'Missouri Department of Health',
     medicaidSystem: 'MO HealthNet',
-    majorHospitals: ['Barnes-Jewish Hospital', 'Saint Luke\'s Hospital'],
+    majorHospitals: ['Barnes-Jewish Hospital', "Saint Luke's Hospital"],
     integration: {
       apiEndpoint: 'https://hie.mohealthconnection.org/fhir',
       authType: 'OAuth2',
-      realtime: true
-    }
+      realtime: true,
+    },
   },
-  'MT': {
+  MT: {
     name: 'Montana',
     hie: 'Montana Health Information Network (MHIN)',
     website: 'https://www.mhin.org',
@@ -433,10 +455,10 @@ const STATE_HIE_NETWORKS = {
     integration: {
       apiEndpoint: 'https://hie.montana.gov/fhir',
       authType: 'OAuth2',
-      realtime: true
-    }
+      realtime: true,
+    },
   },
-  'NE': {
+  NE: {
     name: 'Nebraska',
     hie: 'Nebraska Health Information Initiative (NeHII)',
     website: 'https://www.nehii.org',
@@ -449,10 +471,10 @@ const STATE_HIE_NETWORKS = {
     integration: {
       apiEndpoint: 'https://hie.nehii.org/fhir',
       authType: 'OAuth2',
-      realtime: true
-    }
+      realtime: true,
+    },
   },
-  'NV': {
+  NV: {
     name: 'Nevada',
     hie: 'HealthInsight Nevada HIE',
     website: 'https://www.healthinsight.org',
@@ -465,10 +487,10 @@ const STATE_HIE_NETWORKS = {
     integration: {
       apiEndpoint: 'https://hie.nevada.gov/fhir',
       authType: 'OAuth2',
-      realtime: true
-    }
+      realtime: true,
+    },
   },
-  'NH': {
+  NH: {
     name: 'New Hampshire',
     hie: 'New Hampshire Health Information Organization (NH HIE)',
     website: 'https://www.nhhio.org',
@@ -481,10 +503,10 @@ const STATE_HIE_NETWORKS = {
     integration: {
       apiEndpoint: 'https://hie.nhhio.org/fhir',
       authType: 'OAuth2',
-      realtime: true
-    }
+      realtime: true,
+    },
   },
-  'NJ': {
+  NJ: {
     name: 'New Jersey',
     hie: 'New Jersey Health Information Network (NJHIN)',
     website: 'https://www.njhin.net',
@@ -497,10 +519,10 @@ const STATE_HIE_NETWORKS = {
     integration: {
       apiEndpoint: 'https://hie.njhin.net/fhir',
       authType: 'OAuth2',
-      realtime: true
-    }
+      realtime: true,
+    },
   },
-  'NM': {
+  NM: {
     name: 'New Mexico',
     hie: 'New Mexico Health Information Collaborative (NMHIC)',
     website: 'https://www.nmhic.org',
@@ -513,10 +535,10 @@ const STATE_HIE_NETWORKS = {
     integration: {
       apiEndpoint: 'https://hie.nmhic.org/fhir',
       authType: 'OAuth2',
-      realtime: true
-    }
+      realtime: true,
+    },
   },
-  'NY': {
+  NY: {
     name: 'New York',
     hie: 'SHIN-NY (Statewide Health Information Network of New York)',
     website: 'https://www.shin-ny.org',
@@ -525,15 +547,20 @@ const STATE_HIE_NETWORKS = {
     standards: ['FHIR R4', 'HL7 v2.8', 'CDA', 'USCDI v3'],
     publicHealth: 'New York State Department of Health',
     medicaidSystem: 'New York Medicaid',
-    majorHospitals: ['NYU Langone Health', 'Mount Sinai Health System', 'NewYork-Presbyterian', 'Columbia University Medical Center'],
+    majorHospitals: [
+      'NYU Langone Health',
+      'Mount Sinai Health System',
+      'NewYork-Presbyterian',
+      'Columbia University Medical Center',
+    ],
     integration: {
       apiEndpoint: 'https://hie.shin-ny.org/fhir',
       authType: 'OAuth2 + SMART on FHIR',
       realtime: true,
-      specialFeatures: ['Prescription monitoring', 'ADT alerts', 'Public health reporting']
-    }
+      specialFeatures: ['Prescription monitoring', 'ADT alerts', 'Public health reporting'],
+    },
   },
-  'NC': {
+  NC: {
     name: 'North Carolina',
     hie: 'North Carolina Health Information Exchange (NC HealthConnex)',
     website: 'https://www.nchealthconnex.org',
@@ -546,10 +573,10 @@ const STATE_HIE_NETWORKS = {
     integration: {
       apiEndpoint: 'https://hie.nchealthconnex.org/fhir',
       authType: 'OAuth2',
-      realtime: true
-    }
+      realtime: true,
+    },
   },
-  'ND': {
+  ND: {
     name: 'North Dakota',
     hie: 'North Dakota Health Information Network (NDHIN)',
     website: 'https://www.ndhin.org',
@@ -562,10 +589,10 @@ const STATE_HIE_NETWORKS = {
     integration: {
       apiEndpoint: 'https://hie.ndhin.org/fhir',
       authType: 'OAuth2',
-      realtime: true
-    }
+      realtime: true,
+    },
   },
-  'OH': {
+  OH: {
     name: 'Ohio',
     hie: 'Ohio Health Information Partnership (OHIP)',
     website: 'https://www.ohip.org',
@@ -574,14 +601,18 @@ const STATE_HIE_NETWORKS = {
     standards: ['FHIR R4', 'HL7 v2.8'],
     publicHealth: 'Ohio Department of Health',
     medicaidSystem: 'Ohio Medicaid',
-    majorHospitals: ['Cleveland Clinic', 'Ohio State University Medical Center', 'Cincinnati Children\'s'],
+    majorHospitals: [
+      'Cleveland Clinic',
+      'Ohio State University Medical Center',
+      "Cincinnati Children's",
+    ],
     integration: {
       apiEndpoint: 'https://hie.ohip.org/fhir',
       authType: 'OAuth2',
-      realtime: true
-    }
+      realtime: true,
+    },
   },
-  'OK': {
+  OK: {
     name: 'Oklahoma',
     hie: 'MyHealth Access Network',
     website: 'https://www.myhealthaccess.net',
@@ -594,10 +625,10 @@ const STATE_HIE_NETWORKS = {
     integration: {
       apiEndpoint: 'https://hie.oklahoma.gov/fhir',
       authType: 'OAuth2',
-      realtime: true
-    }
+      realtime: true,
+    },
   },
-  'OR': {
+  OR: {
     name: 'Oregon',
     hie: 'Oregon Health Authority HIE',
     website: 'https://www.oregon.gov/oha/hie',
@@ -610,10 +641,10 @@ const STATE_HIE_NETWORKS = {
     integration: {
       apiEndpoint: 'https://hie.oregon.gov/fhir',
       authType: 'OAuth2',
-      realtime: true
-    }
+      realtime: true,
+    },
   },
-  'PA': {
+  PA: {
     name: 'Pennsylvania',
     hie: 'Pennsylvania eHealth Initiative',
     website: 'https://www.paehealth.org',
@@ -626,10 +657,10 @@ const STATE_HIE_NETWORKS = {
     integration: {
       apiEndpoint: 'https://hie.pennsylvania.gov/fhir',
       authType: 'OAuth2',
-      realtime: true
-    }
+      realtime: true,
+    },
   },
-  'RI': {
+  RI: {
     name: 'Rhode Island',
     hie: 'CurrentCare',
     website: 'https://www.currentcare.org',
@@ -642,10 +673,10 @@ const STATE_HIE_NETWORKS = {
     integration: {
       apiEndpoint: 'https://hie.currentcare.org/fhir',
       authType: 'OAuth2',
-      realtime: true
-    }
+      realtime: true,
+    },
   },
-  'SC': {
+  SC: {
     name: 'South Carolina',
     hie: 'South Carolina Health Information Exchange (SCHIE)',
     website: 'https://www.schie.org',
@@ -658,10 +689,10 @@ const STATE_HIE_NETWORKS = {
     integration: {
       apiEndpoint: 'https://hie.schie.org/fhir',
       authType: 'OAuth2',
-      realtime: true
-    }
+      realtime: true,
+    },
   },
-  'SD': {
+  SD: {
     name: 'South Dakota',
     hie: 'South Dakota Health Link',
     website: 'https://www.sdhealthlink.com',
@@ -674,10 +705,10 @@ const STATE_HIE_NETWORKS = {
     integration: {
       apiEndpoint: 'https://hie.southdakota.gov/fhir',
       authType: 'OAuth2',
-      realtime: true
-    }
+      realtime: true,
+    },
   },
-  'TN': {
+  TN: {
     name: 'Tennessee',
     hie: 'Tennessee e-Health Initiative',
     website: 'https://www.tnehealth.org',
@@ -690,10 +721,10 @@ const STATE_HIE_NETWORKS = {
     integration: {
       apiEndpoint: 'https://hie.tennessee.gov/fhir',
       authType: 'OAuth2',
-      realtime: true
-    }
+      realtime: true,
+    },
   },
-  'TX': {
+  TX: {
     name: 'Texas',
     hie: 'Texas Health Services Authority (THSA)',
     website: 'https://www.txhsa.org',
@@ -702,14 +733,19 @@ const STATE_HIE_NETWORKS = {
     standards: ['FHIR R4', 'HL7 v2.8', 'CDA'],
     publicHealth: 'Texas Department of State Health Services',
     medicaidSystem: 'Texas Medicaid',
-    majorHospitals: ['Texas Medical Center', 'UT Southwestern', 'Baylor Scott & White', 'Houston Methodist'],
+    majorHospitals: [
+      'Texas Medical Center',
+      'UT Southwestern',
+      'Baylor Scott & White',
+      'Houston Methodist',
+    ],
     integration: {
       apiEndpoint: 'https://hie.txhsa.org/fhir',
       authType: 'OAuth2',
-      realtime: true
-    }
+      realtime: true,
+    },
   },
-  'UT': {
+  UT: {
     name: 'Utah',
     hie: 'Utah Health Information Network (UHIN)',
     website: 'https://www.uhin.org',
@@ -722,10 +758,10 @@ const STATE_HIE_NETWORKS = {
     integration: {
       apiEndpoint: 'https://hie.uhin.org/fhir',
       authType: 'OAuth2',
-      realtime: true
-    }
+      realtime: true,
+    },
   },
-  'VT': {
+  VT: {
     name: 'Vermont',
     hie: 'Vermont Information Technology Leaders (VITL)',
     website: 'https://www.vitl.net',
@@ -738,10 +774,10 @@ const STATE_HIE_NETWORKS = {
     integration: {
       apiEndpoint: 'https://hie.vitl.net/fhir',
       authType: 'OAuth2',
-      realtime: true
-    }
+      realtime: true,
+    },
   },
-  'VA': {
+  VA: {
     name: 'Virginia',
     hie: 'Virginia Health Information (VHI)',
     website: 'https://www.vhi.org',
@@ -754,10 +790,10 @@ const STATE_HIE_NETWORKS = {
     integration: {
       apiEndpoint: 'https://hie.vhi.org/fhir',
       authType: 'OAuth2',
-      realtime: true
-    }
+      realtime: true,
+    },
   },
-  'WA': {
+  WA: {
     name: 'Washington',
     hie: 'One Healthport',
     website: 'https://www.onehealthport.com',
@@ -770,10 +806,10 @@ const STATE_HIE_NETWORKS = {
     integration: {
       apiEndpoint: 'https://hie.onehealthport.com/fhir',
       authType: 'OAuth2',
-      realtime: true
-    }
+      realtime: true,
+    },
   },
-  'WV': {
+  WV: {
     name: 'West Virginia',
     hie: 'West Virginia Health Information Network (WVHIN)',
     website: 'https://www.wvhin.org',
@@ -786,10 +822,10 @@ const STATE_HIE_NETWORKS = {
     integration: {
       apiEndpoint: 'https://hie.wvhin.org/fhir',
       authType: 'OAuth2',
-      realtime: true
-    }
+      realtime: true,
+    },
   },
-  'WI': {
+  WI: {
     name: 'Wisconsin',
     hie: 'Wisconsin Statewide Health Information Network (WISHIN)',
     website: 'https://www.wishin.org',
@@ -802,10 +838,10 @@ const STATE_HIE_NETWORKS = {
     integration: {
       apiEndpoint: 'https://hie.wishin.org/fhir',
       authType: 'OAuth2',
-      realtime: true
-    }
+      realtime: true,
+    },
   },
-  'WY': {
+  WY: {
     name: 'Wyoming',
     hie: 'Wyoming Health Information Organization (WyHIO)',
     website: 'https://www.wyhio.org',
@@ -818,11 +854,11 @@ const STATE_HIE_NETWORKS = {
     integration: {
       apiEndpoint: 'https://hie.wyhio.org/fhir',
       authType: 'OAuth2',
-      realtime: true
-    }
+      realtime: true,
+    },
   },
   // Additional: DC, PR, VI, GU (US Territories)
-  'DC': {
+  DC: {
     name: 'District of Columbia',
     hie: 'DC Health Information Exchange (DC HIE)',
     website: 'https://www.dchie.org',
@@ -831,13 +867,13 @@ const STATE_HIE_NETWORKS = {
     standards: ['FHIR R4', 'HL7 v2.8'],
     publicHealth: 'DC Health',
     medicaidSystem: 'DC Medicaid',
-    majorHospitals: ['MedStar Washington Hospital Center', 'Children\'s National Hospital'],
+    majorHospitals: ['MedStar Washington Hospital Center', "Children's National Hospital"],
     integration: {
       apiEndpoint: 'https://hie.dc.gov/fhir',
       authType: 'OAuth2',
-      realtime: true
-    }
-  }
+      realtime: true,
+    },
+  },
 };
 
 // State Health Connector Engine
@@ -854,13 +890,13 @@ class StateHealthConnectorEngine {
     if (!state) {
       return {
         success: false,
-        error: `State ${stateCode} not found in network`
+        error: `State ${stateCode} not found in network`,
       };
     }
 
     return {
       success: true,
-      state: state
+      state: state,
     };
   }
 
@@ -885,9 +921,9 @@ class StateHealthConnectorEngine {
       coverage: stateInfo.state.coverage,
       endpoints: {
         fhir: stateInfo.state.integration.apiEndpoint,
-        authType: stateInfo.state.integration.authType
+        authType: stateInfo.state.integration.authType,
       },
-      message: `Successfully connected to ${stateInfo.state.hie}`
+      message: `Successfully connected to ${stateInfo.state.hie}`,
     };
   }
 
@@ -898,7 +934,7 @@ class StateHealthConnectorEngine {
     if (!this.connectedStates.has(stateCode)) {
       return {
         success: false,
-        error: `Not connected to ${stateCode} HIE. Please connect first.`
+        error: `Not connected to ${stateCode} HIE. Please connect first.`,
       };
     }
 
@@ -919,26 +955,31 @@ class StateHealthConnectorEngine {
             id: patientId,
             meta: {
               source: state.hie,
-              tag: [{ system: 'http://terminology.hl7.org/CodeSystem/v3-ObservationValue', code: 'HIE' }]
+              tag: [
+                {
+                  system: 'http://terminology.hl7.org/CodeSystem/v3-ObservationValue',
+                  code: 'HIE',
+                },
+              ],
             },
             identifier: [
-              { system: `${state.integration.apiEndpoint}/patient-id`, value: patientId }
+              { system: `${state.integration.apiEndpoint}/patient-id`, value: patientId },
             ],
             active: true,
             name: [{ family: '[ENCRYPTED]', given: ['[ENCRYPTED]'] }],
             telecom: [{ system: 'phone', value: '[ENCRYPTED]' }],
             gender: 'unknown',
             birthDate: '[ENCRYPTED]',
-            address: [{ state: stateCode, country: 'USA' }]
-          }
-        }
+            address: [{ state: stateCode, country: 'USA' }],
+          },
+        },
       ],
       hieMetadata: {
         stateName: state.name,
         hieName: state.hie,
         dataStandards: state.standards,
-        participants: state.participants
-      }
+        participants: state.participants,
+      },
     };
   }
 
@@ -958,7 +999,7 @@ class StateHealthConnectorEngine {
       state: state.name,
       timestamp: new Date().toISOString(),
       status: 'SUBMITTED',
-      message: `Public health report submitted to ${state.publicHealth}`
+      message: `Public health report submitted to ${state.publicHealth}`,
     };
   }
 
@@ -971,9 +1012,9 @@ class StateHealthConnectorEngine {
       connectedStates: Array.from(this.connectedStates).map(code => ({
         code,
         name: STATE_HIE_NETWORKS[code].name,
-        hie: STATE_HIE_NETWORKS[code].hie
+        hie: STATE_HIE_NETWORKS[code].hie,
       })),
-      totalConnected: this.connectedStates.size
+      totalConnected: this.connectedStates.size,
     };
   }
 
@@ -995,15 +1036,15 @@ class StateHealthConnectorEngine {
           name: state.hie,
           website: state.website,
           participants: state.participants,
-          coverage: state.coverage
+          coverage: state.coverage,
         },
         standards: state.standards,
         publicHealth: state.publicHealth,
         medicaid: state.medicaidSystem,
         majorHospitals: state.majorHospitals,
         integration: state.integration,
-        specialFeatures: state.integration.specialFeatures || []
-      }
+        specialFeatures: state.integration.specialFeatures || [],
+      },
     };
   }
 
@@ -1011,19 +1052,30 @@ class StateHealthConnectorEngine {
    * Get national HIE statistics
    */
   getNationalStatistics() {
-    const totalParticipants = Object.values(STATE_HIE_NETWORKS).reduce((sum, state) => sum + state.participants, 0);
-    const statesWithRealtimeSupport = Object.values(STATE_HIE_NETWORKS).filter(s => s.integration.realtime).length;
+    const totalParticipants = Object.values(STATE_HIE_NETWORKS).reduce(
+      (sum, state) => sum + state.participants,
+      0
+    );
+    const statesWithRealtimeSupport = Object.values(STATE_HIE_NETWORKS).filter(
+      s => s.integration.realtime
+    ).length;
 
     return {
       success: true,
       statistics: {
         totalStates: Object.keys(STATE_HIE_NETWORKS).length,
         totalParticipants,
-        averageParticipantsPerState: Math.round(totalParticipants / Object.keys(STATE_HIE_NETWORKS).length),
+        averageParticipantsPerState: Math.round(
+          totalParticipants / Object.keys(STATE_HIE_NETWORKS).length
+        ),
         statesWithRealtime: statesWithRealtimeSupport,
-        fhirR4Adoption: Object.values(STATE_HIE_NETWORKS).filter(s => s.standards.includes('FHIR R4')).length,
-        smartOnFhirSupport: Object.values(STATE_HIE_NETWORKS).filter(s => s.integration.authType?.includes('SMART')).length
-      }
+        fhirR4Adoption: Object.values(STATE_HIE_NETWORKS).filter(s =>
+          s.standards.includes('FHIR R4')
+        ).length,
+        smartOnFhirSupport: Object.values(STATE_HIE_NETWORKS).filter(s =>
+          s.integration.authType?.includes('SMART')
+        ).length,
+      },
     };
   }
 }
@@ -1043,43 +1095,47 @@ export default async function handler(req, res) {
   const connector = new StateHealthConnectorEngine();
 
   try {
-    const {
-      action,
-      stateCode,
-      credentials,
-      patientId,
-      queryParams,
-      report
-    } = req.body || {};
+    const { action, stateCode, credentials, patientId, queryParams, report } = req.body || {};
 
     switch (action) {
-      case 'GET_STATE_HIE':
+      case 'GET_STATE_HIE': {
         const hieInfo = connector.getStateHIE(stateCode);
         return res.json(hieInfo);
+      }
 
-      case 'CONNECT_STATE':
+      case 'CONNECT_STATE': {
         const connection = await connector.connectToStateHIE(stateCode, credentials);
         return res.json(connection);
+      }
 
-      case 'QUERY_PATIENT':
-        const patientData = await connector.queryStatePatientData(stateCode, patientId, queryParams);
+      case 'QUERY_PATIENT': {
+        const patientData = await connector.queryStatePatientData(
+          stateCode,
+          patientId,
+          queryParams
+        );
         return res.json(patientData);
+      }
 
-      case 'SUBMIT_PUBLIC_HEALTH':
+      case 'SUBMIT_PUBLIC_HEALTH': {
         const submission = await connector.submitPublicHealthReport(stateCode, report);
         return res.json(submission);
+      }
 
-      case 'GET_CONNECTED_STATES':
+      case 'GET_CONNECTED_STATES': {
         const connected = connector.getConnectedStates();
         return res.json(connected);
+      }
 
-      case 'GET_STATE_INFO':
+      case 'GET_STATE_INFO': {
         const stateInfo = connector.getStateHealthSystemInfo(stateCode);
         return res.json(stateInfo);
+      }
 
-      case 'GET_NATIONAL_STATS':
+      case 'GET_NATIONAL_STATS': {
         const stats = connector.getNationalStatistics();
         return res.json(stats);
+      }
 
       case 'LIST_ALL_STATES':
         return res.json({
@@ -1089,9 +1145,9 @@ export default async function handler(req, res) {
             name: state.name,
             hie: state.hie,
             participants: state.participants,
-            coverage: state.coverage
+            coverage: state.coverage,
           })),
-          total: Object.keys(STATE_HIE_NETWORKS).length
+          total: Object.keys(STATE_HIE_NETWORKS).length,
         });
 
       default:
@@ -1104,7 +1160,7 @@ export default async function handler(req, res) {
             'FHIR R4 patient data',
             'Public health reporting',
             'Medicaid coordination',
-            'Real-time data exchange'
+            'Real-time data exchange',
           ],
           availableActions: [
             'GET_STATE_HIE',
@@ -1114,15 +1170,15 @@ export default async function handler(req, res) {
             'GET_CONNECTED_STATES',
             'GET_STATE_INFO',
             'GET_NATIONAL_STATS',
-            'LIST_ALL_STATES'
-          ]
+            'LIST_ALL_STATES',
+          ],
         });
     }
   } catch (error) {
     console.error('State Health Connector Error:', error);
     return res.status(500).json({
       success: false,
-      error: error.message
+      error: 'Sağlık bağlantı hatası',
     });
   }
 }

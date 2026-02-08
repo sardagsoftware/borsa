@@ -23,10 +23,9 @@
   "description": "LyDian AI Ecosystem is a multilingual artificial intelligence platform providing advanced AI solutions including natural language processing, computer vision, speech recognition, and decision support systems. Built on Microsoft Azure with support for 20+ languages.",
   "foundingDate": "2024",
   "founder": {
-    "@type": "Person",
-    "name": "Emrah Şardağ",
-    "jobTitle": "Founder & CEO",
-    "email": "emrah@ailydian.com"
+    "@type": "Organization",
+    "name": "AILYDIAN Team",
+    "email": "info@ailydian.com"
   },
   "email": "info@ailydian.com",
   "address": {

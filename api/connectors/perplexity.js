@@ -136,7 +136,7 @@ module.exports = async (req, res) => {
     console.error('Perplexity search error:', error);
     res.status(500).json({
       success: false,
-      error: error.message || 'Web arama başarısız oldu',
+      error: 'İşlem başarısız. Lütfen tekrar deneyin.',
       timestamp: new Date().toISOString(),
     });
   }

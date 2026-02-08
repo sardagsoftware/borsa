@@ -42,7 +42,7 @@ module.exports = async (req, res) => {
       return res.status(401).json({
         success: false,
         error: 'Unauthorized access',
-        code: 'AUTH_REQUIRED'
+        code: 'AUTH_REQUIRED',
       });
     }
 
@@ -52,7 +52,7 @@ module.exports = async (req, res) => {
       userId: 'admin',
       dataType: 'SECURITY_DASHBOARD',
       ip: getClientIP(req),
-      purpose: 'SECURITY_MONITORING'
+      purpose: 'SECURITY_MONITORING',
     });
 
     // Handle different endpoints
@@ -61,45 +61,44 @@ module.exports = async (req, res) => {
     switch (action) {
       case 'overview':
         return getSecurityOverview(req, res);
-      
+
       case 'rate-limiter':
         return getRateLimiterStats(req, res);
-      
+
       case 'ip-whitelist':
         return getIPWhitelistStats(req, res);
-      
+
       case 'banned-ips':
         return getBannedIPs(req, res);
-      
+
       case 'audit-log':
         return getAuditLog(req, res);
-      
+
       case 'compliance-report':
         return getComplianceReport(req, res);
-      
+
       case 'unban-ip':
         return unbanIP(req, res);
-      
+
       default:
         return getSecurityOverview(req, res);
     }
-
   } catch (error) {
     console.error('Security Dashboard Error:', error);
-    
+
     soc2.logSecurityEvent({
       type: 'DASHBOARD_ERROR',
       severity: 'MEDIUM',
       details: {
-        error: error.message,
-        stack: error.stack
-      }
+        error: error.message || 'Unknown error',
+        stack: error.stack,
+      },
     });
 
     res.status(500).json({
       success: false,
-      error: 'Internal server error',
-      message: error.message
+      error: 'Güvenlik panosu hatası',
+      message: 'Güvenlik panosu hatası',
     });
   }
 };
@@ -115,7 +114,7 @@ async function getSecurityOverview(req, res) {
 
   const overview = {
     timestamp: new Date().toISOString(),
-    
+
     // Rate Limiter Stats
     rateLimiter: {
       totalRequests: rateLimiterAnalytics.totalRequests,
@@ -124,7 +123,7 @@ async function getSecurityOverview(req, res) {
       currentBans: rateLimiterAnalytics.currentBans,
       violations: rateLimiterAnalytics.violations,
       trackedIPs: rateLimiterAnalytics.trackedIPs,
-      trackedUsers: rateLimiterAnalytics.trackedUsers
+      trackedUsers: rateLimiterAnalytics.trackedUsers,
     },
 
     // IP Whitelist Stats
@@ -134,7 +133,7 @@ async function getSecurityOverview(req, res) {
       denied: ipWhitelistStats.denied,
       countries: ipWhitelistStats.countries,
       whitelistSize: ipWhitelistStats.whitelistSize,
-      blacklistSize: ipWhitelistStats.blacklistSize
+      blacklistSize: ipWhitelistStats.blacklistSize,
     },
 
     // SOC 2 Compliance Metrics
@@ -146,90 +145,90 @@ async function getSecurityOverview(req, res) {
       configChanges: soc2Metrics.configChanges,
       encryptionEvents: soc2Metrics.encryptionEvents,
       logFileSize: soc2Metrics.logFileSize,
-      lastEvent: soc2Metrics.lastEvent
+      lastEvent: soc2Metrics.lastEvent,
     },
 
     // Overall Security Status
     securityStatus: calculateSecurityStatus(rateLimiterAnalytics, ipWhitelistStats, soc2Metrics),
-    
+
     // Alerts
-    alerts: generateSecurityAlerts(rateLimiterAnalytics, ipWhitelistStats, soc2Metrics)
+    alerts: generateSecurityAlerts(rateLimiterAnalytics, ipWhitelistStats, soc2Metrics),
   };
 
   res.status(200).json({
     success: true,
-    data: overview
+    data: overview,
   });
 }
 
 async function getRateLimiterStats(req, res) {
   const analytics = rateLimiter.getAnalytics();
-  
+
   res.status(200).json({
     success: true,
-    data: analytics
+    data: analytics,
   });
 }
 
 async function getIPWhitelistStats(req, res) {
   const stats = ipWhitelist.getStats();
   const auditLog = ipWhitelist.getAuditLog(100);
-  
+
   res.status(200).json({
     success: true,
     data: {
       stats,
-      recentAccess: auditLog
-    }
+      recentAccess: auditLog,
+    },
   });
 }
 
 async function getBannedIPs(req, res) {
   const bannedIPs = rateLimiter.getBannedIPs();
-  
+
   res.status(200).json({
     success: true,
     data: {
       total: bannedIPs.length,
-      bannedIPs
-    }
+      bannedIPs,
+    },
   });
 }
 
 async function getAuditLog(req, res) {
   const { days = 7 } = req.query;
-  
+
   const endDate = new Date();
   const startDate = new Date();
   startDate.setDate(startDate.getDate() - parseInt(days));
-  
+
   const auditLog = soc2.queryAuditLog(startDate, endDate);
-  
+
   res.status(200).json({
     success: true,
     data: {
       period: {
         start: startDate.toISOString(),
-        end: endDate.toISOString()
+        end: endDate.toISOString(),
       },
       totalEvents: auditLog.length,
-      events: auditLog.slice(-1000) // Last 1000 events
-    }
+      events: auditLog.slice(-1000), // Last 1000 events
+    },
   });
 }
 
 async function getComplianceReport(req, res) {
   const { days = 30 } = req.query;
-  
+
   const endDate = new Date();
   const startDate = new Date();
   startDate.setDate(startDate.getDate() - parseInt(days));
-  
+
   const report = await soc2.generateComplianceReport(startDate, endDate);
-  
+
   res.status(200).json({
     success: true,
-    data: report
+    data: report,
   });
 }
 
@@ -237,21 +236,21 @@ async function unbanIP(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({
       success: false,
-      error: 'Method not allowed'
+      error: 'Method not allowed',
     });
   }
 
   const { ip } = req.body;
-  
+
   if (!ip) {
     return res.status(400).json({
       success: false,
-      error: 'IP address required'
+      error: 'IP address required',
     });
   }
 
   rateLimiter.unbanIP(ip);
-  
+
   // Log admin action
   soc2.logConfigChange({
     type: 'SECURITY_SETTING',
@@ -259,13 +258,13 @@ async function unbanIP(req, res) {
     oldValue: `IP ${ip} was banned`,
     newValue: `IP ${ip} unbanned`,
     changedBy: 'admin',
-    changeTicket: 'MANUAL_UNBAN'
+    changeTicket: 'MANUAL_UNBAN',
   });
 
   res.status(200).json({
     success: true,
     message: `IP ${ip} has been unbanned`,
-    ip
+    ip,
   });
 }
 
@@ -312,7 +311,7 @@ function calculateSecurityStatus(rateLimiter, ipWhitelist, soc2) {
   return {
     score,
     status,
-    issues
+    issues,
   };
 }
 
@@ -325,7 +324,7 @@ function generateSecurityAlerts(rateLimiter, ipWhitelist, soc2) {
       severity: 'HIGH',
       type: 'MULTIPLE_BANS',
       message: `${rateLimiter.currentBans} IPs are currently banned - possible attack in progress`,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
   }
 
@@ -334,7 +333,7 @@ function generateSecurityAlerts(rateLimiter, ipWhitelist, soc2) {
       severity: 'CRITICAL',
       type: 'HIGH_INCIDENT_COUNT',
       message: `${soc2.securityIncidents} security incidents detected`,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
   }
 
@@ -345,7 +344,7 @@ function generateSecurityAlerts(rateLimiter, ipWhitelist, soc2) {
       severity: 'MEDIUM',
       type: 'HIGH_BLOCK_RATE',
       message: `Rate limiter blocking ${rateLimiter.blockRate} of requests`,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
   }
 
@@ -354,7 +353,7 @@ function generateSecurityAlerts(rateLimiter, ipWhitelist, soc2) {
       severity: 'MEDIUM',
       type: 'HIGH_DENIAL_RATE',
       message: `${ipWhitelist.denied} access denials from IP whitelist`,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
   }
 
@@ -364,7 +363,7 @@ function generateSecurityAlerts(rateLimiter, ipWhitelist, soc2) {
       severity: 'INFO',
       type: 'ALL_CLEAR',
       message: 'All security systems operating normally',
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
   }
 

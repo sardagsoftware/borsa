@@ -20,7 +20,7 @@ router.post('/check-email', async (req, res) => {
     if (!email) {
       return res.status(400).json({
         success: false,
-        error: 'Email is required'
+        error: 'Email is required',
       });
     }
 
@@ -28,14 +28,13 @@ router.post('/check-email', async (req, res) => {
 
     res.json({
       success: true,
-      exists: !!user
+      exists: !!user,
     });
-
   } catch (error) {
     console.error('Email check error:', error);
     res.status(500).json({
       success: false,
-      error: 'Internal server error'
+      error: 'Internal server error',
     });
   }
 });
@@ -52,7 +51,7 @@ router.post('/register', async (req, res) => {
     if (!email || !password || !name) {
       return res.status(400).json({
         success: false,
-        error: 'Email, password, and name are required'
+        error: 'Email, password, and name are required',
       });
     }
 
@@ -60,7 +59,7 @@ router.post('/register', async (req, res) => {
     if (password !== confirmPassword) {
       return res.status(400).json({
         success: false,
-        error: 'Passwords do not match'
+        error: 'Passwords do not match',
       });
     }
 
@@ -69,21 +68,20 @@ router.post('/register', async (req, res) => {
       email: email.toLowerCase().trim(),
       password,
       name: name.trim(),
-      phone: phone ? phone.trim() : null
+      phone: phone ? phone.trim() : null,
     });
 
     res.status(201).json({
       success: true,
       message: 'User registered successfully',
-      user
+      user,
     });
-
   } catch (error) {
     console.error('Registration error:', error);
 
     res.status(400).json({
       success: false,
-      error: error.message || 'Registration failed'
+      error: 'Kayit basarisiz. Lutfen tekrar deneyin.',
     });
   }
 });
@@ -99,7 +97,7 @@ router.post('/login', async (req, res) => {
     if (!email || !password) {
       return res.status(400).json({
         success: false,
-        error: 'Email and password are required'
+        error: 'Email and password are required',
       });
     }
 
@@ -112,7 +110,7 @@ router.post('/login', async (req, res) => {
       email: email.toLowerCase().trim(),
       password,
       ipAddress,
-      userAgent
+      userAgent,
     });
 
     // If 2FA is required
@@ -121,7 +119,7 @@ router.post('/login', async (req, res) => {
         success: true,
         requiresTwoFactor: true,
         userId: result.userId,
-        message: 'Please enter your two-factor authentication code'
+        message: 'Please enter your two-factor authentication code',
       });
     }
 
@@ -129,7 +127,7 @@ router.post('/login', async (req, res) => {
     res.cookie('token', result.token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     });
 
     res.json({
@@ -137,15 +135,14 @@ router.post('/login', async (req, res) => {
       message: 'Login successful',
       token: result.token,
       refreshToken: result.refreshToken,
-      user: result.user
+      user: result.user,
     });
-
   } catch (error) {
     console.error('Login error:', error);
 
     res.status(401).json({
       success: false,
-      error: error.message || 'Login failed'
+      error: 'Giris basarisiz. Lutfen tekrar deneyin.',
     });
   }
 });
@@ -161,7 +158,7 @@ router.post('/verify-2fa', async (req, res) => {
     if (!userId || !code) {
       return res.status(400).json({
         success: false,
-        error: 'User ID and code are required'
+        error: 'User ID and code are required',
       });
     }
 
@@ -174,14 +171,14 @@ router.post('/verify-2fa', async (req, res) => {
       userId: parseInt(userId),
       code: code.trim(),
       ipAddress,
-      userAgent
+      userAgent,
     });
 
     // Set cookie
     res.cookie('token', result.token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      maxAge: 7 * 24 * 60 * 60 * 1000
+      maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
     res.json({
@@ -189,15 +186,14 @@ router.post('/verify-2fa', async (req, res) => {
       message: 'Two-factor verification successful',
       token: result.token,
       refreshToken: result.refreshToken,
-      user: result.user
+      user: result.user,
     });
-
   } catch (error) {
     console.error('2FA verification error:', error);
 
     res.status(401).json({
       success: false,
-      error: error.message || 'Verification failed'
+      error: 'Dogrulama hatasi. Lutfen tekrar deneyin.',
     });
   }
 });
@@ -214,15 +210,14 @@ router.post('/enable-2fa', authenticateToken, async (req, res) => {
       success: true,
       message: 'Two-factor authentication setup initiated',
       secret: result.secret,
-      qrCode: result.qrCode
+      qrCode: result.qrCode,
     });
-
   } catch (error) {
     console.error('2FA enable error:', error);
 
     res.status(500).json({
       success: false,
-      error: error.message || 'Failed to enable 2FA'
+      error: '2FA etkinlestirme hatasi. Lutfen tekrar deneyin.',
     });
   }
 });
@@ -238,7 +233,7 @@ router.post('/confirm-2fa', authenticateToken, async (req, res) => {
     if (!code) {
       return res.status(400).json({
         success: false,
-        error: 'Verification code is required'
+        error: 'Verification code is required',
       });
     }
 
@@ -246,15 +241,14 @@ router.post('/confirm-2fa', authenticateToken, async (req, res) => {
 
     res.json({
       success: true,
-      message: 'Two-factor authentication enabled successfully'
+      message: 'Two-factor authentication enabled successfully',
     });
-
   } catch (error) {
     console.error('2FA confirm error:', error);
 
     res.status(400).json({
       success: false,
-      error: error.message || 'Verification failed'
+      error: 'Dogrulama hatasi. Lutfen tekrar deneyin.',
     });
   }
 });
@@ -270,21 +264,20 @@ router.get('/me', authenticateToken, async (req, res) => {
     if (!userWithStats) {
       return res.status(404).json({
         success: false,
-        error: 'User not found'
+        error: 'User not found',
       });
     }
 
     res.json({
       success: true,
-      user: userWithStats
+      user: userWithStats,
     });
-
   } catch (error) {
     console.error('Get user error:', error);
 
     res.status(500).json({
       success: false,
-      error: 'Failed to get user data'
+      error: 'Failed to get user data',
     });
   }
 });
@@ -302,15 +295,14 @@ router.put('/profile', authenticateToken, async (req, res) => {
     res.json({
       success: true,
       message: 'Profile updated successfully',
-      user
+      user,
     });
-
   } catch (error) {
     console.error('Profile update error:', error);
 
     res.status(400).json({
       success: false,
-      error: error.message || 'Failed to update profile'
+      error: 'Profil guncelleme hatasi. Lutfen tekrar deneyin.',
     });
   }
 });
@@ -329,15 +321,14 @@ router.post('/logout', authenticateToken, async (req, res) => {
 
     res.json({
       success: true,
-      message: 'Logged out successfully'
+      message: 'Logged out successfully',
     });
-
   } catch (error) {
     console.error('Logout error:', error);
 
     res.status(500).json({
       success: false,
-      error: 'Logout failed'
+      error: 'Logout failed',
     });
   }
 });
@@ -353,7 +344,7 @@ router.post('/refresh', async (req, res) => {
     if (!refreshToken) {
       return res.status(400).json({
         success: false,
-        error: 'Refresh token is required'
+        error: 'Refresh token is required',
       });
     }
 
@@ -361,7 +352,7 @@ router.post('/refresh', async (req, res) => {
     if (!decoded || decoded.type !== 'refresh') {
       return res.status(401).json({
         success: false,
-        error: 'Invalid refresh token'
+        error: 'Invalid refresh token',
       });
     }
 
@@ -369,7 +360,7 @@ router.post('/refresh', async (req, res) => {
     if (!user) {
       return res.status(401).json({
         success: false,
-        error: 'User not found'
+        error: 'User not found',
       });
     }
 
@@ -380,15 +371,14 @@ router.post('/refresh', async (req, res) => {
     res.json({
       success: true,
       token,
-      refreshToken: newRefreshToken
+      refreshToken: newRefreshToken,
     });
-
   } catch (error) {
     console.error('Token refresh error:', error);
 
     res.status(401).json({
       success: false,
-      error: 'Token refresh failed'
+      error: 'Token refresh failed',
     });
   }
 });
@@ -405,27 +395,30 @@ router.get('/activity', authenticateToken, async (req, res) => {
     const limit = parseInt(req.query.limit) || 50;
     const offset = parseInt(req.query.offset) || 0;
 
-    const activities = db.prepare(`
+    const activities = db
+      .prepare(
+        `
       SELECT action, description, ipAddress, createdAt
       FROM activity_log
       WHERE userId = ?
       ORDER BY createdAt DESC
       LIMIT ? OFFSET ?
-    `).all(req.user.id, limit, offset);
+    `
+      )
+      .all(req.user.id, limit, offset);
 
     db.close();
 
     res.json({
       success: true,
-      activities
+      activities,
     });
-
   } catch (error) {
     console.error('Activity log error:', error);
 
     res.status(500).json({
       success: false,
-      error: 'Failed to get activity log'
+      error: 'Failed to get activity log',
     });
   }
 });

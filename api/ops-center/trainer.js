@@ -25,7 +25,7 @@ module.exports = async (req, res) => {
         success_rate: 94,
         avg_duration_hours: 4.2,
         next_run: calculateNextRun(),
-        last_run: '2025-10-16T03:00:00Z'
+        last_run: '2025-10-16T03:00:00Z',
       },
       training_runs: [
         {
@@ -41,8 +41,8 @@ module.exports = async (req, res) => {
             val_loss: 0.356,
             learning_rate: 0.00001,
             batch_size: 32,
-            epochs: 3
-          }
+            epochs: 3,
+          },
         },
         {
           id: 'TR-2025-41',
@@ -57,8 +57,8 @@ module.exports = async (req, res) => {
             val_loss: 0.312,
             learning_rate: 0.00001,
             batch_size: 32,
-            epochs: 3
-          }
+            epochs: 3,
+          },
         },
         {
           id: 'TR-2025-40',
@@ -73,8 +73,8 @@ module.exports = async (req, res) => {
             val_loss: 0.445,
             learning_rate: 0.00001,
             batch_size: 32,
-            epochs: 4
-          }
+            epochs: 4,
+          },
         },
         {
           id: 'TR-2025-39',
@@ -89,10 +89,10 @@ module.exports = async (req, res) => {
             val_loss: 0.587,
             learning_rate: 0.00001,
             batch_size: 32,
-            epochs: 3
+            epochs: 3,
           },
-          note: 'Performans düşük, dataset kalitesi gözden geçirilmeli'
-        }
+          note: 'Performans düşük, dataset kalitesi gözden geçirilmeli',
+        },
       ],
       configuration: {
         method: 'LoRA + Ray Tune',
@@ -100,23 +100,23 @@ module.exports = async (req, res) => {
         framework: 'PyTorch 2.1 + DeepSpeed',
         scheduler: 'Haftalık (Pazar 03:00 UTC)',
         auto_merge: true,
-        quality_checks: true
+        quality_checks: true,
       },
-      disclaimer: 'Eğitim verileri Azure AI Training logs\'undan alınmaktadır. Tüm eğitimler Azure Türkiye veri merkezinde yapılmaktadır.',
-      last_updated: new Date().toISOString()
+      disclaimer:
+        "Eğitim verileri Azure AI Training logs'undan alınmaktadır. Tüm eğitimler Azure Türkiye veri merkezinde yapılmaktadır.",
+      last_updated: new Date().toISOString(),
     };
 
     res.status(200).json({
       success: true,
-      data: trainerData
+      data: trainerData,
     });
-
   } catch (error) {
     console.error('Trainer API error:', error);
     res.status(500).json({
       success: false,
       error: 'Eğitim verileri alınamadı',
-      message: error.message
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
     });
   }
 };

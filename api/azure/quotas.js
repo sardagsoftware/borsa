@@ -11,24 +11,24 @@ const { handleCORS } = require('../../middleware/cors-handler');
 
 // Fallback quotas (used when Azure API unavailable or for demo)
 const KNOWN_QUOTAS = {
-  'OX7A3F8D': {
+  OX7A3F8D: {
     TPM: 150000,
     RPM: 900,
     concurrency: 50,
-    p95_ms: 850
+    p95_ms: 850,
   },
   'gpt-35-turbo': {
     TPM: 240000,
     RPM: 1440,
     concurrency: 100,
-    p95_ms: 320
+    p95_ms: 320,
   },
   'dall-e-3': {
     TPM: 20000,
     RPM: 10,
     concurrency: 5,
-    p95_ms: 1200
-  }
+    p95_ms: 1200,
+  },
 };
 
 async function azureQuotasHandler(req, res) {
@@ -44,14 +44,15 @@ async function azureQuotasHandler(req, res) {
 
     if (!deployment || typeof deployment !== 'string') {
       return res.status(400).json({
-        error: 'Missing deployment parameter'
+        error: 'Missing deployment parameter',
       });
     }
 
     // Check if Azure credentials available
-    const hasAzureCreds = process.env.AZURE_SUBSCRIPTION_ID &&
-                          process.env.AZURE_RESOURCE_GROUP &&
-                          process.env.AZURE_OPENAI_ACCOUNT_NAME;
+    const hasAzureCreds =
+      process.env.AZURE_SUBSCRIPTION_ID &&
+      process.env.AZURE_RESOURCE_GROUP &&
+      process.env.AZURE_OPENAI_ACCOUNT_NAME;
 
     if (!hasAzureCreds) {
       // Use fallback quotas
@@ -59,7 +60,7 @@ async function azureQuotasHandler(req, res) {
       if (!quotas) {
         return res.status(404).json({
           error: 'Deployment not found',
-          deployment
+          deployment,
         });
       }
 
@@ -67,7 +68,7 @@ async function azureQuotasHandler(req, res) {
         deployment,
         ...quotas,
         source: 'fallback',
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
       });
     }
 
@@ -77,7 +78,7 @@ async function azureQuotasHandler(req, res) {
       TPM: 100000,
       RPM: 600,
       concurrency: 50,
-      p95_ms: null
+      p95_ms: null,
     };
 
     return res.status(200).json({
@@ -85,13 +86,13 @@ async function azureQuotasHandler(req, res) {
       ...quotas,
       source: 'fallback', // In prod: 'azure-api'
       timestamp: new Date().toISOString(),
-      note: 'Configure AZURE_* env vars for live quotas'
+      note: 'Configure AZURE_* env vars for live quotas',
     });
   } catch (error) {
     console.error('Azure quotas API error:', error);
     return res.status(500).json({
       error: 'Internal server error',
-      message: error.message
+      message: 'Bir hata olustu. Lutfen tekrar deneyin.',
     });
   }
 }
@@ -100,5 +101,5 @@ async function azureQuotasHandler(req, res) {
 module.exports = withCache({
   ttl: 300,
   keyPrefix: 'azure-quotas',
-  debug: process.env.NODE_ENV !== 'production'
+  debug: process.env.NODE_ENV !== 'production',
 })(azureQuotasHandler);

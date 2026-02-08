@@ -20,7 +20,7 @@ module.exports = async (req, res) => {
     if (!message) {
       return res.status(400).json({
         success: false,
-        error: 'Message is required'
+        error: 'Message is required',
       });
     }
 
@@ -34,16 +34,15 @@ module.exports = async (req, res) => {
       env_check: {
         openai_configured: !!process.env.OPENAI_API_KEY,
         anthropic_configured: !!process.env.ANTHROPIC_API_KEY,
-        node_env: process.env.NODE_ENV
-      }
+        node_env: process.env.NODE_ENV,
+      },
     });
-
   } catch (error) {
     console.error('Test API Error:', error);
     res.status(500).json({
       success: false,
       error: 'Internal server error',
-      details: error.message
+      details: 'Test bağlantı hatası',
     });
   }
 };

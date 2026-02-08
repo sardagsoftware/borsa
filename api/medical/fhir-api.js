@@ -1,3 +1,4 @@
+/* global URLSearchParams */
 /**
  * 🏥 AZURE HEALTH DATA SERVICES - FHIR API
  * Production-ready FHIR R4 integration with Azure Health Data Services
@@ -47,23 +48,26 @@ async function getAccessToken() {
   const tokenUrl = `https://login.microsoftonline.com/${AZURE_TENANT_ID}/oauth2/v2.0/token`;
 
   try {
-    const response = await axios.post(tokenUrl, new URLSearchParams({
-      grant_type: 'client_credentials',
-      client_id: AZURE_CLIENT_ID,
-      client_secret: AZURE_CLIENT_SECRET,
-      scope: 'https://azurehealthcareapis.com/.default'
-    }), {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
+    const response = await axios.post(
+      tokenUrl,
+      new URLSearchParams({
+        grant_type: 'client_credentials',
+        client_id: AZURE_CLIENT_ID,
+        client_secret: AZURE_CLIENT_SECRET,
+        scope: 'https://azurehealthcareapis.com/.default',
+      }),
+      {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
       }
-    });
+    );
 
     accessToken = response.data.access_token;
-    tokenExpiry = Date.now() + (response.data.expires_in * 1000);
+    tokenExpiry = Date.now() + response.data.expires_in * 1000;
 
     console.log('✅ Azure Health Data Services access token obtained');
     return accessToken;
-
   } catch (error) {
     console.error('❌ Failed to get Azure AD token:', error.message);
     throw new Error('Authentication failed');
@@ -88,11 +92,11 @@ async function fhirRequest(method, resourceType, resourceId = null, data = null,
     method,
     url,
     headers: {
-      'Authorization': `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
       'Content-Type': 'application/fhir+json',
-      'Accept': 'application/fhir+json'
+      Accept: 'application/fhir+json',
     },
-    params
+    params,
   };
 
   if (data) {
@@ -103,7 +107,10 @@ async function fhirRequest(method, resourceType, resourceId = null, data = null,
     const response = await axios(config);
     return response.data;
   } catch (error) {
-    console.error(`FHIR API Error (${method} ${resourceType}):`, error.response?.data || error.message);
+    console.error(
+      `FHIR API Error (${method} ${resourceType}):`,
+      error.response?.data || error.message
+    );
     throw error;
   }
 }
@@ -128,7 +135,7 @@ async function createPatient(req, res) {
     if (!given || !family || !gender || !birthDate) {
       return res.status(400).json({
         success: false,
-        error: 'Missing required fields: given, family, gender, birthDate'
+        error: 'Missing required fields: given, family, gender, birthDate',
       });
     }
 
@@ -138,18 +145,18 @@ async function createPatient(req, res) {
       identifier: [
         {
           system: `https://hospital.ailydian.com/${hospital_id}/patient-id`,
-          value: `patient_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
-        }
+          value: `patient_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+        },
       ],
       name: [
         {
           use: 'official',
           family,
-          given: Array.isArray(given) ? given : [given]
-        }
+          given: Array.isArray(given) ? given : [given],
+        },
       ],
       gender: gender.toLowerCase(), // male | female | other | unknown
-      birthDate // YYYY-MM-DD format
+      birthDate, // YYYY-MM-DD format
     };
 
     console.log(`🏥 Creating FHIR Patient resource for hospital: ${hospital_id}`);
@@ -165,8 +172,8 @@ async function createPatient(req, res) {
       details: {
         patient_id: fhirResponse.id,
         resource_type: 'Patient',
-        identifier: patientResource.identifier[0].value
-      }
+        identifier: patientResource.identifier[0].value,
+      },
     });
 
     res.status(201).json({
@@ -176,26 +183,25 @@ async function createPatient(req, res) {
         fhir_version: 'R4',
         resource_type: 'Patient',
         patient_id: fhirResponse.id,
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ FHIR Patient Create Error:', error);
 
     logMedicalAudit({
       action: 'FHIR_PATIENT_CREATE_ERROR',
       details: {
-        error: error.message,
-        stack: error.stack
-      }
+        error: 'Tıbbi veri hatası. Lütfen tekrar deneyin.',
+        stack: error.stack,
+      },
     });
 
     res.status(500).json({
       success: false,
       error: 'Failed to create patient',
-      message: error.message,
-      response_time_ms: Date.now() - startTime
+      message: 'Tıbbi veri hatası. Lütfen tekrar deneyin.',
+      response_time_ms: Date.now() - startTime,
     });
   }
 }
@@ -222,8 +228,8 @@ async function getPatient(req, res) {
       action: 'FHIR_PATIENT_READ',
       details: {
         patient_id: id,
-        resource_type: 'Patient'
-      }
+        resource_type: 'Patient',
+      },
     });
 
     res.json({
@@ -233,18 +239,17 @@ async function getPatient(req, res) {
         fhir_version: 'R4',
         resource_type: 'Patient',
         patient_id: id,
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ FHIR Patient Read Error:', error);
 
     res.status(error.response?.status || 500).json({
       success: false,
       error: 'Failed to fetch patient',
-      message: error.message,
-      response_time_ms: Date.now() - startTime
+      message: 'Tıbbi veri hatası. Lütfen tekrar deneyin.',
+      response_time_ms: Date.now() - startTime,
     });
   }
 }
@@ -268,7 +273,7 @@ async function searchPatients(req, res) {
     if (gender) searchParams.gender = gender;
     if (identifier) searchParams.identifier = identifier;
 
-    console.log(`🏥 Searching FHIR Patients with params:`, searchParams);
+    console.log('🏥 Searching FHIR Patients with params:', searchParams);
 
     const fhirResponse = await fhirRequest('GET', 'Patient', null, null, searchParams);
 
@@ -279,8 +284,8 @@ async function searchPatients(req, res) {
       action: 'FHIR_PATIENT_SEARCH',
       details: {
         search_params: searchParams,
-        result_count: fhirResponse.total || fhirResponse.entry?.length || 0
-      }
+        result_count: fhirResponse.total || fhirResponse.entry?.length || 0,
+      },
     });
 
     res.json({
@@ -290,18 +295,17 @@ async function searchPatients(req, res) {
         fhir_version: 'R4',
         resource_type: 'Bundle',
         total: fhirResponse.total || fhirResponse.entry?.length || 0,
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ FHIR Patient Search Error:', error);
 
     res.status(500).json({
       success: false,
       error: 'Failed to search patients',
-      message: error.message,
-      response_time_ms: Date.now() - startTime
+      message: 'Tıbbi veri hatası. Lütfen tekrar deneyin.',
+      response_time_ms: Date.now() - startTime,
     });
   }
 }
@@ -329,14 +333,14 @@ async function createObservation(req, res) {
       status = 'final',
       category = 'laboratory',
       hospital_id,
-      user_id
+      user_id,
     } = req.body;
 
     // Validate required fields
     if (!patient_id || !code || !display || value === undefined) {
       return res.status(400).json({
         success: false,
-        error: 'Missing required fields: patient_id, code, display, value'
+        error: 'Missing required fields: patient_id, code, display, value',
       });
     }
 
@@ -350,30 +354,30 @@ async function createObservation(req, res) {
             {
               system: 'http://terminology.hl7.org/CodeSystem/observation-category',
               code: category, // laboratory | vital-signs | imaging | survey
-              display: category.charAt(0).toUpperCase() + category.slice(1)
-            }
-          ]
-        }
+              display: category.charAt(0).toUpperCase() + category.slice(1),
+            },
+          ],
+        },
       ],
       code: {
         coding: [
           {
             system: 'http://loinc.org',
             code,
-            display
-          }
-        ]
+            display,
+          },
+        ],
       },
       subject: {
-        reference: `Patient/${patient_id}`
+        reference: `Patient/${patient_id}`,
       },
       effectiveDateTime: new Date().toISOString(),
       valueQuantity: {
         value: parseFloat(value),
         unit,
         system: 'http://unitsofmeasure.org',
-        code: unit
-      }
+        code: unit,
+      },
     };
 
     console.log(`🏥 Creating FHIR Observation for patient: ${patient_id}`);
@@ -391,8 +395,8 @@ async function createObservation(req, res) {
         code,
         display,
         value,
-        unit
-      }
+        unit,
+      },
     });
 
     res.status(201).json({
@@ -402,26 +406,25 @@ async function createObservation(req, res) {
         fhir_version: 'R4',
         resource_type: 'Observation',
         observation_id: fhirResponse.id,
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ FHIR Observation Create Error:', error);
 
     logMedicalAudit({
       action: 'FHIR_OBSERVATION_CREATE_ERROR',
       details: {
-        error: error.message,
-        stack: error.stack
-      }
+        error: 'Tıbbi veri hatası. Lütfen tekrar deneyin.',
+        stack: error.stack,
+      },
     });
 
     res.status(500).json({
       success: false,
       error: 'Failed to create observation',
-      message: error.message,
-      response_time_ms: Date.now() - startTime
+      message: 'Tıbbi veri hatası. Lütfen tekrar deneyin.',
+      response_time_ms: Date.now() - startTime,
     });
   }
 }
@@ -443,7 +446,7 @@ async function searchObservations(req, res) {
     if (category) searchParams.category = category;
     if (date) searchParams.date = date;
 
-    console.log(`🏥 Searching FHIR Observations with params:`, searchParams);
+    console.log('🏥 Searching FHIR Observations with params:', searchParams);
 
     const fhirResponse = await fhirRequest('GET', 'Observation', null, null, searchParams);
 
@@ -454,8 +457,8 @@ async function searchObservations(req, res) {
       action: 'FHIR_OBSERVATION_SEARCH',
       details: {
         search_params: searchParams,
-        result_count: fhirResponse.total || fhirResponse.entry?.length || 0
-      }
+        result_count: fhirResponse.total || fhirResponse.entry?.length || 0,
+      },
     });
 
     res.json({
@@ -465,18 +468,17 @@ async function searchObservations(req, res) {
         fhir_version: 'R4',
         resource_type: 'Bundle',
         total: fhirResponse.total || fhirResponse.entry?.length || 0,
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ FHIR Observation Search Error:', error);
 
     res.status(500).json({
       success: false,
       error: 'Failed to search observations',
-      message: error.message,
-      response_time_ms: Date.now() - startTime
+      message: 'Tıbbi veri hatası. Lütfen tekrar deneyin.',
+      response_time_ms: Date.now() - startTime,
     });
   }
 }
@@ -502,14 +504,14 @@ async function createCondition(req, res) {
       clinical_status = 'active',
       verification_status = 'confirmed',
       hospital_id,
-      user_id
+      user_id,
     } = req.body;
 
     // Validate required fields
     if (!patient_id || !code || !display) {
       return res.status(400).json({
         success: false,
-        error: 'Missing required fields: patient_id, code, display'
+        error: 'Missing required fields: patient_id, code, display',
       });
     }
 
@@ -520,31 +522,31 @@ async function createCondition(req, res) {
         coding: [
           {
             system: 'http://terminology.hl7.org/CodeSystem/condition-clinical',
-            code: clinical_status // active | recurrence | relapse | inactive | remission | resolved
-          }
-        ]
+            code: clinical_status, // active | recurrence | relapse | inactive | remission | resolved
+          },
+        ],
       },
       verificationStatus: {
         coding: [
           {
             system: 'http://terminology.hl7.org/CodeSystem/condition-ver-status',
-            code: verification_status // unconfirmed | provisional | differential | confirmed | refuted | entered-in-error
-          }
-        ]
+            code: verification_status, // unconfirmed | provisional | differential | confirmed | refuted | entered-in-error
+          },
+        ],
       },
       code: {
         coding: [
           {
             system: 'http://snomed.info/sct',
             code,
-            display
-          }
-        ]
+            display,
+          },
+        ],
       },
       subject: {
-        reference: `Patient/${patient_id}`
+        reference: `Patient/${patient_id}`,
       },
-      recordedDate: new Date().toISOString()
+      recordedDate: new Date().toISOString(),
     };
 
     console.log(`🏥 Creating FHIR Condition for patient: ${patient_id}`);
@@ -562,8 +564,8 @@ async function createCondition(req, res) {
         code,
         display,
         clinical_status,
-        verification_status
-      }
+        verification_status,
+      },
     });
 
     res.status(201).json({
@@ -573,26 +575,25 @@ async function createCondition(req, res) {
         fhir_version: 'R4',
         resource_type: 'Condition',
         condition_id: fhirResponse.id,
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ FHIR Condition Create Error:', error);
 
     logMedicalAudit({
       action: 'FHIR_CONDITION_CREATE_ERROR',
       details: {
-        error: error.message,
-        stack: error.stack
-      }
+        error: 'Tıbbi veri hatası. Lütfen tekrar deneyin.',
+        stack: error.stack,
+      },
     });
 
     res.status(500).json({
       success: false,
       error: 'Failed to create condition',
-      message: error.message,
-      response_time_ms: Date.now() - startTime
+      message: 'Tıbbi veri hatası. Lütfen tekrar deneyin.',
+      response_time_ms: Date.now() - startTime,
     });
   }
 }
@@ -613,7 +614,7 @@ async function searchConditions(req, res) {
     if (code) searchParams.code = code;
     if (clinical_status) searchParams['clinical-status'] = clinical_status;
 
-    console.log(`🏥 Searching FHIR Conditions with params:`, searchParams);
+    console.log('🏥 Searching FHIR Conditions with params:', searchParams);
 
     const fhirResponse = await fhirRequest('GET', 'Condition', null, null, searchParams);
 
@@ -624,8 +625,8 @@ async function searchConditions(req, res) {
       action: 'FHIR_CONDITION_SEARCH',
       details: {
         search_params: searchParams,
-        result_count: fhirResponse.total || fhirResponse.entry?.length || 0
-      }
+        result_count: fhirResponse.total || fhirResponse.entry?.length || 0,
+      },
     });
 
     res.json({
@@ -635,18 +636,17 @@ async function searchConditions(req, res) {
         fhir_version: 'R4',
         resource_type: 'Bundle',
         total: fhirResponse.total || fhirResponse.entry?.length || 0,
-        response_time_ms: Date.now() - startTime
-      }
+        response_time_ms: Date.now() - startTime,
+      },
     });
-
   } catch (error) {
     console.error('❌ FHIR Condition Search Error:', error);
 
     res.status(500).json({
       success: false,
       error: 'Failed to search conditions',
-      message: error.message,
-      response_time_ms: Date.now() - startTime
+      message: 'Tıbbi veri hatası. Lütfen tekrar deneyin.',
+      response_time_ms: Date.now() - startTime,
     });
   }
 }
@@ -667,16 +667,15 @@ async function getMetadata(req, res) {
 
     res.json({
       success: true,
-      capability_statement: fhirResponse
+      capability_statement: fhirResponse,
     });
-
   } catch (error) {
     console.error('❌ FHIR Metadata Error:', error);
 
     res.status(500).json({
       success: false,
       error: 'Failed to fetch FHIR metadata',
-      message: error.message
+      message: 'Tıbbi veri hatası. Lütfen tekrar deneyin.',
     });
   }
 }
@@ -699,5 +698,5 @@ module.exports = {
   searchConditions,
 
   // Metadata
-  getMetadata
+  getMetadata,
 };
