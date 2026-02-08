@@ -1,7 +1,7 @@
 // Standalone Vercel Serverless: /api/menu
 // Serves localized menu data for mega dropdown navigation
 
-const { getCorsOrigin } = require('_middleware/cors');
+const { getCorsOrigin } = require('./_middleware/cors');
 const MENU_DATA = {
   tr: {
     products: {

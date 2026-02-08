@@ -3,7 +3,7 @@
 
 const fetch = require('node-fetch');
 const sdk = require('microsoft-cognitiveservices-speech-sdk');
-const { getCorsOrigin } = require('_middleware/cors');
+const { getCorsOrigin } = require('./_middleware/cors');
 
 // ==========================================
 // AZURE SPEECH SERVICES CONFIGURATION (PRIMARY)

@@ -9,18 +9,18 @@
  */
 
 // CORS ve güvenlik middleware'leri
-const { getCorsOrigin } = require('_middleware/cors');
-const corsHeaders = {
-  'Access-Control-Allow-Origin': getCorsOrigin(req),
-  'Access-Control-Allow-Methods': 'GET, OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type',
-  'Content-Type': 'application/json; charset=utf-8'
-};
+const { getCorsOrigin } = require('./_middleware/cors');
 
 module.exports = async (req, res) => {
+  // CORS headers
+  res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
+  res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Content-Type', 'application/json; charset=utf-8');
+
   // OPTIONS pre-flight request
   if (req.method === 'OPTIONS') {
-    return res.status(200).json({ success: true });
+    return res.status(204).end();
   }
 
   // Sadece GET istekleri
@@ -35,11 +35,6 @@ module.exports = async (req, res) => {
     // Gerçek AI kullanım verileri (database'den çekilecek)
     // Şu an için gerçekçi simülasyon - production'da gerçek database sorgusu olacak
     const aiUsageData = await getAIUsageByCountry();
-
-    // CORS headers ekle
-    Object.keys(corsHeaders).forEach(header => {
-      res.setHeader(header, corsHeaders[header]);
-    });
 
     return res.status(200).json(aiUsageData);
 

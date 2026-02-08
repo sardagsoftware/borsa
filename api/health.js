@@ -3,7 +3,7 @@
  * Minimal, fast health endpoint
  */
 
-const { getCorsOrigin } = require('_middleware/cors');
+const { getCorsOrigin } = require('./_middleware/cors');
 module.exports = async (req, res) => {
   // CORS headers
   res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));

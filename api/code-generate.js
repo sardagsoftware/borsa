@@ -8,7 +8,7 @@
  */
 
 const crypto = require('crypto');
-const { getCorsOrigin } = require('_middleware/cors');
+const { getCorsOrigin } = require('./_middleware/cors');
 
 // Rate limiting
 const rateLimitMap = new Map();
