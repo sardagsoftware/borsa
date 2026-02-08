@@ -42,22 +42,27 @@
         box-sizing: border-box;
       }
       :root {
-        --black: #000;
-        --white: #fff;
-        --gray-50: #f9fafb;
-        --gray-100: #f3f4f6;
-        --gray-200: #e5e7eb;
-        --gray-500: #6b7280;
-        --gray-600: #4b5563;
-        --gray-700: #374151;
-        --gray-800: #1f2937;
-        --gray-900: #111827;
-        --primary: #10a37f;
-        --accent: #ff6b4a;
+        --black: #0a0b0d;
+        --white: #ffffff;
+        --gray-50: #0f1012;
+        --gray-100: #1a1b1e;
+        --gray-200: #25262b;
+        --gray-300: #373a40;
+        --gray-400: #909296;
+        --gray-500: #c1c2c5;
+        --gray-600: #dee2e6;
+        --gray-700: #f1f3f5;
+        --gray-800: #f8f9fa;
+        --gray-900: #ffffff;
+        --primary: #00e0ae;
+        --primary-hover: #00ffc6;
+        --accent: #6e84ff;
       }
       body {
         font-family: 'Inter', sans-serif;
-        background: var(--white);
+        background: radial-gradient(1400px 900px at 70% 15%, rgba(184, 107, 255, 0.1), transparent 60%),
+          radial-gradient(1200px 700px at 20% 80%, rgba(110, 132, 255, 0.1), transparent 65%),
+          #0a0b0d;
         color: var(--gray-900);
         line-height: 1.6;
       }
@@ -67,9 +72,9 @@
         left: 0;
         right: 0;
         z-index: 1000;
-        background: rgba(255, 255, 255, 0.8);
+        background: rgba(0, 0, 0, 0.6);
         backdrop-filter: blur(20px);
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       }
       .nav-container {
         max-width: 1400px;
@@ -84,7 +89,7 @@
         font-family: 'Inter', sans-serif !important;
         font-size: 2.25rem;
         font-weight: 900 !important;
-        color: #000;
+        color: #ffffff;
         text-decoration: none;
       }
       .nav-links {
@@ -93,10 +98,14 @@
         list-style: none;
       }
       .nav-links a {
-        color: var(--gray-700);
+        color: rgba(255, 255, 255, 0.8);
         text-decoration: none;
         font-size: 0.95rem;
         font-weight: 500;
+        transition: color 0.2s;
+      }
+      .nav-links a:hover {
+        color: #ffffff;
       }
       .btn {
         padding: 0.75rem 1.5rem;
@@ -105,14 +114,18 @@
         text-decoration: none;
       }
       .btn-primary {
-        background: var(--black);
-        color: var(--white);
+        background: var(--primary);
+        color: #0a0b0d;
+        transition: background 0.2s;
+      }
+      .btn-primary:hover {
+        background: var(--primary-hover);
       }
       .hero {
         min-height: 80vh;
         display: flex;
         align-items: center;
-        background: linear-gradient(135deg, var(--primary) 0%, #0d8f6e 100%);
+        background: linear-gradient(135deg, rgba(0, 224, 174, 0.15) 0%, rgba(110, 132, 255, 0.15) 100%);
         padding-top: 72px;
       }
       .hero-content {
@@ -126,19 +139,27 @@
         font-size: 4.5rem;
         font-weight: 800;
         margin-bottom: 1.5rem;
+        color: #ffffff;
       }
       .hero-description {
         font-size: 1.5rem;
         max-width: 800px;
         margin: 0 auto 3rem;
+        color: rgba(255, 255, 255, 0.8);
       }
       .btn-white {
-        background: white;
-        color: black;
+        background: var(--primary);
+        color: #0a0b0d;
         padding: 1rem 2rem;
         font-size: 1.1rem;
         border-radius: 12px;
         display: inline-block;
+        text-decoration: none;
+        font-weight: 600;
+        transition: background 0.2s;
+      }
+      .btn-white:hover {
+        background: var(--primary-hover);
       }
       .features {
         padding: 8rem 2rem;
@@ -152,6 +173,10 @@
         font-weight: 800;
         text-align: center;
         margin-bottom: 5rem;
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
       }
       .features-grid {
         display: grid;
@@ -160,9 +185,14 @@
       }
       .feature-card {
         padding: 2.5rem;
-        background: white;
-        border: 1px solid var(--gray-200);
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 16px;
+        backdrop-filter: blur(10px);
+        transition: border-color 0.3s;
+      }
+      .feature-card:hover {
+        border-color: rgba(0, 224, 174, 0.3);
       }
       .feature-icon {
         width: 56px;
@@ -178,13 +208,14 @@
         font-size: 1.5rem;
         font-weight: 700;
         margin-bottom: 1rem;
+        color: #ffffff;
       }
       .feature-description {
-        color: var(--gray-600);
+        color: rgba(255, 255, 255, 0.7);
       }
       .pricing {
         padding: 8rem 2rem;
-        background: var(--gray-50);
+        background: transparent;
       }
       .pricing-container {
         max-width: 1400px;
@@ -198,18 +229,23 @@
       }
       .pricing-card {
         padding: 3rem;
-        background: white;
-        border: 2px solid var(--gray-200);
+        background: rgba(255, 255, 255, 0.05);
+        border: 2px solid rgba(255, 255, 255, 0.1);
         border-radius: 20px;
         text-align: center;
+        backdrop-filter: blur(10px);
+        transition: border-color 0.3s;
+      }
+      .pricing-card:hover {
+        border-color: rgba(0, 224, 174, 0.3);
       }
       .pricing-card.featured {
         border-color: var(--primary);
-        box-shadow: 0 20px 60px rgba(16, 163, 127, 0.2);
+        box-shadow: 0 20px 60px rgba(0, 224, 174, 0.2);
       }
       .pricing-badge {
         background: var(--primary);
-        color: white;
+        color: #0a0b0d;
         padding: 0.5rem 1rem;
         border-radius: 50px;
         font-size: 0.875rem;
@@ -221,14 +257,16 @@
         font-size: 1.5rem;
         font-weight: 700;
         margin-bottom: 1rem;
+        color: #ffffff;
       }
       .pricing-price {
         font-size: 3rem;
         font-weight: 800;
         margin-bottom: 0.5rem;
+        color: #ffffff;
       }
       .pricing-period {
-        color: var(--gray-500);
+        color: rgba(255, 255, 255, 0.5);
         margin-bottom: 2rem;
       }
       .pricing-features {
@@ -238,12 +276,14 @@
       }
       .pricing-features li {
         padding: 0.75rem 0;
-        border-bottom: 1px solid var(--gray-100);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.8);
       }
       .footer {
         padding: 4rem 2rem 2rem;
-        background: var(--gray-900);
-        color: var(--gray-500);
+        background: #050506;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.5);
       }
       .footer-container {
         max-width: 1400px;
@@ -258,11 +298,11 @@
       .footer-logo {
         font-family: 'Inter', sans-serif !important;
         font-size: 2rem;
-        color: white;
+        color: #ffffff;
         margin-bottom: 1rem;
       }
       .footer-column h3 {
-        color: white;
+        color: #ffffff;
         font-size: 0.875rem;
         text-transform: uppercase;
         margin-bottom: 1.5rem;
@@ -274,22 +314,115 @@
         margin-bottom: 1rem;
       }
       .footer-links a {
-        color: var(--gray-500);
+        color: rgba(255, 255, 255, 0.6);
         text-decoration: none;
+        transition: color 0.2s;
+      }
+      .footer-links a:hover {
+        color: #ffffff;
       }
       .footer-bottom {
         padding-top: 2rem;
-        border-top: 1px solid var(--gray-800);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
         display: flex;
         justify-content: space-between;
+        color: rgba(255, 255, 255, 0.5);
       }
       .footer-legal {
         display: flex;
         gap: 2rem;
       }
       .footer-legal a {
-        color: var(--gray-500);
+        color: rgba(255, 255, 255, 0.5);
         text-decoration: none;
+        transition: color 0.2s;
+      }
+      .footer-legal a:hover {
+        color: #ffffff;
+      }
+
+      /* ========== RESPONSIVE ========== */
+
+      /* Touch targets & font safety */
+      button, a, input, select, textarea { min-height: 44px; }
+      input, select, textarea { font-size: max(16px, 1rem); }
+      html, body { overflow-x: hidden; }
+
+      @media (max-width: 1024px) {
+        .features-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .pricing-grid {
+          grid-template-columns: 1fr;
+          max-width: 500px;
+          margin: 0 auto;
+        }
+        .footer-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .hero-section, .section {
+          padding: 3rem 1.5rem;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav-links,
+        .nav-cta {
+          display: none;
+        }
+        .mobile-menu-btn {
+          display: block;
+        }
+        .hero-title, .section-title {
+          font-size: 2rem;
+        }
+        .hero-description {
+          font-size: 1rem;
+        }
+        .features-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero-buttons {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .hero-buttons .btn {
+          width: 100%;
+          text-align: center;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero-section, .section {
+          padding: 2rem 1rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero-title {
+          font-size: 1.5rem;
+        }
+        .section-title {
+          font-size: 1.25rem;
+        }
+        .pricing-card {
+          padding: 1.5rem;
+        }
+        .pricing-price {
+          font-size: 2rem;
+        }
+        .section {
+          padding: 1.5rem 0.75rem;
+        }
+        .footer-bottom {
+          flex-direction: column;
+          gap: 1rem;
+          text-align: center;
+        }
+        .footer-legal {
+          flex-wrap: wrap;
+          justify-content: center;
+        }
       }
     </style>
 

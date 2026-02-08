@@ -39,22 +39,22 @@
         box-sizing: border-box;
       }
       :root {
-        --primary: #10a37f;
-        --accent: #ff6b4a;
-        --bg-primary: #ffffff;
-        --bg-secondary: #fafafa;
-        --bg-card: #ffffff;
-        --bg-hover: #f9fafb;
-        --text-primary: #000000;
-        --text-secondary: #4b5563;
-        --text-tertiary: #6b7280;
-        --border: rgba(0, 0, 0, 0.08);
-        --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-        --shadow-hover: 0 8px 30px rgba(16, 163, 127, 0.15);
+        --primary: #00e0ae;
+        --accent: #6e84ff;
+        --bg-primary: #0a0b0d;
+        --bg-secondary: #0f1012;
+        --bg-card: rgba(255, 255, 255, 0.05);
+        --bg-hover: rgba(255, 255, 255, 0.08);
+        --text-primary: #ffffff;
+        --text-secondary: rgba(255, 255, 255, 0.7);
+        --text-tertiary: rgba(255, 255, 255, 0.5);
+        --border: rgba(255, 255, 255, 0.1);
+        --shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        --shadow-hover: 0 8px 30px rgba(0, 224, 174, 0.15);
       }
       body {
         font-family: 'Inter', sans-serif;
-        background: var(--bg-primary);
+        background: #0a0b0d;
         color: var(--text-primary);
         min-height: 100vh;
       }
@@ -84,7 +84,7 @@
         margin-bottom: 2rem;
       }
       .nav-title {
-        color: var(--text-tertiary);
+        color: rgba(255, 255, 255, 0.5);
         font-size: 0.75rem;
         font-weight: 600;
         text-transform: lowercase;
@@ -93,7 +93,7 @@
       }
       .nav-link {
         display: block;
-        color: var(--text-secondary);
+        color: rgba(255, 255, 255, 0.7);
         text-decoration: none;
         padding: 0.75rem 1rem;
         border-radius: 8px;
@@ -103,7 +103,7 @@
       }
       .nav-link:hover,
       .nav-link.active {
-        background: var(--bg-hover);
+        background: rgba(255, 255, 255, 0.08);
         color: var(--primary);
         border-left: 2px solid var(--primary);
         padding-left: 1.5rem;
@@ -112,6 +112,7 @@
         margin-left: 280px;
         flex: 1;
         padding: 3rem 4rem;
+        background: transparent;
       }
       .page-title {
         font-size: 2.5rem;
@@ -125,23 +126,23 @@
         text-transform: lowercase;
       }
       .page-subtitle {
-        color: var(--text-secondary);
+        color: rgba(255, 255, 255, 0.7);
         font-size: 1.1rem;
         margin-bottom: 3rem;
         line-height: 1.6;
       }
       .endpoint-card {
-        background: var(--bg-card);
-        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 16px;
         padding: 2rem;
         margin-bottom: 2rem;
         transition: all 0.3s;
-        box-shadow: var(--shadow);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
       }
       .endpoint-card:hover {
-        border-color: var(--primary);
-        box-shadow: var(--shadow-hover);
+        border-color: rgba(0, 224, 174, 0.3);
+        box-shadow: 0 8px 30px rgba(0, 224, 174, 0.15);
       }
       .endpoint-header {
         display: flex;
@@ -157,7 +158,7 @@
         text-transform: uppercase;
       }
       .method.get {
-        background: var(--primary);
+        background: #00e0ae;
         color: white;
       }
       .method.post {
@@ -165,7 +166,7 @@
         color: white;
       }
       .method.put {
-        background: var(--accent);
+        background: #6e84ff;
         color: white;
       }
       .method.delete {
@@ -174,12 +175,12 @@
       }
       .endpoint-path {
         font-family: 'JetBrains Mono', monospace;
-        color: var(--text-primary);
+        color: #ffffff;
         font-size: 1.1rem;
         font-weight: 600;
       }
       .endpoint-desc {
-        color: var(--text-secondary);
+        color: rgba(255, 255, 255, 0.8);
         margin-bottom: 1.5rem;
         line-height: 1.6;
       }
@@ -197,19 +198,19 @@
         margin: 1rem 0;
       }
       .param-table th {
-        background: var(--bg-secondary);
+        background: rgba(255, 255, 255, 0.05);
         padding: 0.75rem;
         text-align: left;
         color: var(--primary);
         font-size: 0.85rem;
         font-weight: 600;
         text-transform: lowercase;
-        border-bottom: 2px solid var(--border);
+        border-bottom: 2px solid rgba(255, 255, 255, 0.1);
       }
       .param-table td {
         padding: 0.75rem;
-        border-bottom: 1px solid var(--border);
-        color: var(--text-secondary);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.8);
         font-size: 0.9rem;
       }
       .param-name {
@@ -219,12 +220,12 @@
       }
       .param-type {
         font-family: 'JetBrains Mono', monospace;
-        color: var(--text-tertiary);
+        color: rgba(255, 255, 255, 0.5);
         font-size: 0.85rem;
       }
       .code-block {
-        background: #f9fafb;
-        border: 1px solid var(--border);
+        background: #0f1012;
+        border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 12px;
         padding: 1.5rem;
         margin: 1rem 0;
@@ -234,15 +235,15 @@
         position: relative;
       }
       .code-block pre {
-        color: var(--text-primary);
+        color: #e0e0e0;
       }
       .copy-btn-top {
         position: absolute;
         top: 1rem;
         right: 1rem;
-        background: var(--bg-card);
-        border: 1px solid var(--border);
-        color: var(--text-tertiary);
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.5);
         padding: 0.4rem 0.8rem;
         border-radius: 6px;
         cursor: pointer;
@@ -252,11 +253,11 @@
       .copy-btn-top:hover {
         color: var(--primary);
         border-color: var(--primary);
-        box-shadow: 0 4px 12px rgba(16, 163, 127, 0.2);
+        box-shadow: 0 4px 12px rgba(0, 224, 174, 0.2);
       }
       .info-banner {
-        background: linear-gradient(135deg, rgba(16, 163, 127, 0.1), rgba(255, 107, 74, 0.1));
-        border: 1px solid var(--border);
+        background: linear-gradient(135deg, rgba(0, 224, 174, 0.1), rgba(110, 132, 255, 0.1));
+        border: 1px solid rgba(255, 255, 255, 0.1);
         border-left: 3px solid var(--primary);
         border-radius: 12px;
         padding: 1.5rem;
@@ -269,21 +270,85 @@
         text-transform: lowercase;
       }
       .info-banner-text {
-        color: var(--text-secondary);
+        color: rgba(255, 255, 255, 0.8);
         line-height: 1.6;
         font-size: 0.9rem;
       }
-      @media (max-width: 968px) {
-        .sidebar {
-          width: 100%;
-          height: auto;
-          position: relative;
-        }
-        .main {
-          margin-left: 0;
-          padding: 2rem 1.5rem;
-        }
-      }
+      /* ========== RESPONSIVE ========== */
+
+/* Touch targets & font safety */
+button, a, input, select, textarea { min-height: 44px; }
+input, select, textarea { font-size: max(16px, 1rem); }
+html, body { overflow-x: hidden; }
+
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 220px;
+  }
+  .main {
+    margin-left: 220px;
+  }
+}
+
+@media (max-width: 968px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .main {
+    margin-left: 0;
+    padding: 2rem 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .main {
+    padding: 1.5rem 1rem;
+  }
+  .endpoint-card {
+    padding: 1.5rem;
+  }
+  .endpoint-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .param-table {
+    display: block;
+    overflow-x: auto;
+  }
+  pre, code {
+    font-size: 0.8rem;
+  }
+  h1 {
+    font-size: 1.75rem;
+  }
+  h2 {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .main {
+    padding: 1rem 0.75rem;
+  }
+  .endpoint-card {
+    padding: 1rem;
+  }
+  h1 {
+    font-size: 1.5rem;
+  }
+  .sidebar {
+    padding: 1rem;
+  }
+  .sidebar nav a {
+    padding: 0.5rem;
+    font-size: 0.85rem;
+  }
+}
     </style>
 
     <!-- 🤖 Ailydian AI Client - LyDian Acceleration-first Fallback Strategy -->

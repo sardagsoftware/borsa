@@ -3,7 +3,7 @@
 
 require('dotenv').config();
 const axios = require('axios');
-const { getCorsOrigin } = require('_middleware/cors');
+const { getCorsOrigin } = require('./_middleware/cors');
 
 // Azure AI Foundry Configuration
 const AZURE_AI_FOUNDRY_ENDPOINT = process.env.AZURE_AI_FOUNDRY_ENDPOINT;
@@ -247,15 +247,15 @@ async function handleRequest(req, res) {
         return res.status(400).json({
           success: false,
           error: 'Invalid request',
-          message: errorData?.error?.message || 'Bad request to Azure AI'
+          message: 'Gecersiz istek. Lutfen tekrar deneyin.'
         });
       }
     }
 
+    console.error('❌ AI request error:', error.message);
     res.status(500).json({
       success: false,
-      error: 'GPT-5 request failed',
-      message: error.message,
+      error: 'Islem basarisiz oldu. Lutfen tekrar deneyin.',
       timestamp: new Date().toISOString()
     });
   }

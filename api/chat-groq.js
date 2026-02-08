@@ -154,11 +154,10 @@ async function handleRequest(req, res) {
       });
     }
   } catch (error) {
-    console.error('❌ LyDian Velocity Error:', error);
+    console.error('❌ LyDian Velocity Error:', error.message);
     res.status(500).json({
       success: false,
-      error: 'Request failed',
-      message: error.message
+      error: 'Islem basarisiz oldu. Lutfen tekrar deneyin.'
     });
   }
 }

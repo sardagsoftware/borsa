@@ -2,7 +2,7 @@
 // Hidden AI - Maximum Capabilities
 
 const { GoogleAuth } = require('google-auth-library');
-const { getCorsOrigin } = require('_middleware/cors');
+const { getCorsOrigin } = require('./_middleware/cors');
 
 // Vertex AI Configuration (Hidden from user)
 const VERTEX_CONFIG = {

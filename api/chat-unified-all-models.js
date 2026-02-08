@@ -8,7 +8,7 @@ const { Anthropic } = require('@anthropic-ai/sdk');
 const axios = require('axios');
 const { getModelConfig, getActiveModels } = require('./models-config');
 const { obfuscation } = require('../services/localrecall');
-const { getCorsOrigin } = require('_middleware/cors');
+const { getCorsOrigin } = require('./_middleware/cors');
 
 // Rate limiting
 const requestLog = new Map();

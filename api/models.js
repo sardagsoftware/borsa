@@ -3,7 +3,7 @@
  * Returns available AI models
  */
 
-const { getCorsOrigin } = require('_middleware/cors');
+const { getCorsOrigin } = require('./_middleware/cors');
 module.exports = async (req, res) => {
   // CORS headers
   res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
@@ -65,8 +65,9 @@ module.exports = async (req, res) => {
       timestamp: new Date().toISOString()
     });
   } catch (error) {
+    console.error('[MODELS] Error:', error.message);
     res.status(500).json({
-      error: error.message
+      error: 'Model listesi alinamadi'
     });
   }
 };

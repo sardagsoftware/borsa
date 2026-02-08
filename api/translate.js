@@ -6,7 +6,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { getCorsOrigin } = require('_middleware/cors');
+const { getCorsOrigin } = require('./_middleware/cors');
 
 // Load environment variables manually
 const envPath = path.join(__dirname, '../.env');

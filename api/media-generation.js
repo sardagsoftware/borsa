@@ -1,6 +1,6 @@
 // LyDian Media Generation API - Video & Image (Hidden)
 const fetch = require('node-fetch');
-const { getCorsOrigin } = require('_middleware/cors');
+const { getCorsOrigin } = require('./_middleware/cors');
 
 // Google AI Configuration (Hidden from user)
 const GOOGLE_AI = {

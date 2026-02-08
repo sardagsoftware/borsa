@@ -2724,11 +2724,11 @@
               try {
                 // 🌍 Language-specific system prompts
                 const systemPrompts = {
-                  tr: `Sen Türk hukuku konusunda uzman bir yapay zeka asistanısın. Türkiye Cumhuriyeti yasalarını, Yargıtay ve Danıştay içtihatlarını bilen ve doğru hukuki danışmanlık sunan bir AI'sın. Azure AI güçlü altyapısı ile çalışıyorsun.${knowledgeContext ? `\n\n📚 Emsal İçtihat Veritabanı (Neo4j):\n${knowledgeContext}` : ''}`,
-                  en: `You are an expert AI legal assistant. You provide accurate legal consultation based on Turkish Republic laws, Supreme Court (Yargıtay) and Council of State (Danıştay) precedents. Powered by Azure AI infrastructure.${knowledgeContext ? `\n\n📚 Legal Precedents Database (Neo4j):\n${knowledgeContext}` : ''}`,
-                  de: `Sie sind ein KI-Rechtsexperte. Sie bieten genaue Rechtsberatung basierend auf den Gesetzen der Türkischen Republik und relevanten Präzedenzfällen. Angetrieben von Azure AI.${knowledgeContext ? `\n\n📚 Rechtsdatenbank (Neo4j):\n${knowledgeContext}` : ''}`,
-                  fr: `Vous êtes un assistant juridique IA expert. Vous fournissez des conseils juridiques précis basés sur les lois de la République turque et les précédents pertinents. Alimenté par Azure AI.${knowledgeContext ? `\n\n📚 Base de données juridique (Neo4j):\n${knowledgeContext}` : ''}`,
-                  es: `Eres un asistente legal de IA experto. Proporcionas consultas legales precisas basadas en las leyes de la República Turca y precedentes relevantes. Impulsado por Azure AI.${knowledgeContext ? `\n\n📚 Base de datos legal (Neo4j):\n${knowledgeContext}` : ''}`,
+                  tr: `Sen Türk hukuku konusunda uzman bir yapay zeka asistanısın. Türkiye Cumhuriyeti yasalarını, Yargıtay ve Danıştay içtihatlarını bilen ve doğru hukuki danışmanlık sunan bir AI'sın. LyDian AI güçlü altyapısı ile çalışıyorsun.${knowledgeContext ? `\n\n📚 Emsal İçtihat Veritabanı (Neo4j):\n${knowledgeContext}` : ''}`,
+                  en: `You are an expert AI legal assistant. You provide accurate legal consultation based on Turkish Republic laws, Supreme Court (Yargıtay) and Council of State (Danıştay) precedents. Powered by LyDian AI infrastructure.${knowledgeContext ? `\n\n📚 Legal Precedents Database (Neo4j):\n${knowledgeContext}` : ''}`,
+                  de: `Sie sind ein KI-Rechtsexperte. Sie bieten genaue Rechtsberatung basierend auf den Gesetzen der Türkischen Republik und relevanten Präzedenzfällen. Angetrieben von LyDian AI.${knowledgeContext ? `\n\n📚 Rechtsdatenbank (Neo4j):\n${knowledgeContext}` : ''}`,
+                  fr: `Vous êtes un assistant juridique IA expert. Vous fournissez des conseils juridiques précis basés sur les lois de la République turque et les précédents pertinents. Alimenté par LyDian AI.${knowledgeContext ? `\n\n📚 Base de données juridique (Neo4j):\n${knowledgeContext}` : ''}`,
+                  es: `Eres un asistente legal de IA experto. Proporcionas consultas legales precisas basadas en las leyes de la República Turca y precedentes relevantes. Impulsado por LyDian AI.${knowledgeContext ? `\n\n📚 Base de datos legal (Neo4j):\n${knowledgeContext}` : ''}`,
                 };
 
                 const systemPrompt = systemPrompts[currentLang] || systemPrompts['en'];
@@ -2818,9 +2818,9 @@
                   // Clean AI response from any model badges or technical headers
                   let cleanContent = msg.content;
                   if (!isUser) {
-                    // Remove "✨ **Azure OX5C9E2B Turbo Yanıtı**" and similar patterns
+                    // Remove "✨ **LyDian Core Turbo Yanıtı**" and similar patterns
                     cleanContent = cleanContent
-                      .replace(/✨\s*\*\*Azure\s+LyDian Core[^*]*\*\*/gi, '')
+                      .replace(/✨\s*\*\*LyDian\s+LyDian Core[^*]*\*\*/gi, '')
                       .replace(/✨\s*\*\*.*?Turbo.*?Yanıt[^*]*\*\*/gi, '')
                       .replace(/^\s*[\n\r]+/, '') // Remove leading newlines
                       .trim();
@@ -3147,7 +3147,7 @@
                     id: (Date.now() + 2).toString(),
                     role: 'ai',
                     content: analysisContent,
-                    model: 'Azure Computer Vision',
+                    model: 'LyDian Vision',
                     timestamp: new Date().toISOString(),
                   };
 
@@ -3223,7 +3223,7 @@
                     id: (Date.now() + 2).toString(),
                     role: 'ai',
                     content: analysisContent,
-                    model: 'Azure Document Intelligence',
+                    model: 'LyDian Document AI',
                     timestamp: new Date().toISOString(),
                   };
 

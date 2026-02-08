@@ -3,7 +3,7 @@
  * Testing to identify the crash cause
  */
 
-const { getCorsOrigin } = require('_middleware/cors');
+const { getCorsOrigin } = require('./_middleware/cors');
 module.exports = async (req, res) => {
   // Set CORS headers
   res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));

@@ -6,7 +6,7 @@
 const OpenAI = require('lydian-labs');
 const { getDatabase } = require('../database/init-db');
 const User = require('../backend/models/User');
-const { getCorsOrigin } = require('_middleware/cors');
+const { getCorsOrigin } = require('./_middleware/cors');
 
 // Image generation costs 10 credits
 const IMAGE_GENERATION_COST = 10;

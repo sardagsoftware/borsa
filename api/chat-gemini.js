@@ -3,7 +3,7 @@
 
 require('dotenv').config();
 const axios = require('axios');
-const { getCorsOrigin } = require('_middleware/cors');
+const { getCorsOrigin } = require('./_middleware/cors');
 
 // Google AI Configuration
 const GOOGLE_AI_API_KEY = process.env.GOOGLE_AI_API_KEY;
@@ -235,19 +235,19 @@ async function handleRequest(req, res) {
         });
 
         response.data.on('error', (error) => {
-          console.error('❌ Gemini streaming error:', error);
+          console.error('❌ Gemini streaming error:', error.message);
           res.write(`data: ${JSON.stringify({
             type: 'error',
-            error: error.message
+            error: 'Baglanti hatasi olustu. Lutfen tekrar deneyin.'
           })}\n\n`);
           res.end();
         });
 
       } catch (streamError) {
-        console.error('❌ Stream initialization error:', streamError);
+        console.error('❌ Stream initialization error:', streamError.message);
         res.write(`data: ${JSON.stringify({
           type: 'error',
-          error: streamError.message
+          error: 'Baglanti baslatma hatasi. Lutfen tekrar deneyin.'
         })}\n\n`);
         res.end();
       }
@@ -332,10 +332,10 @@ async function handleRequest(req, res) {
       }
     }
 
+    console.error('❌ Gemini request error:', error.message);
     res.status(500).json({
       success: false,
-      error: 'Gemini request failed',
-      message: error.message,
+      error: 'Islem basarisiz oldu. Lutfen tekrar deneyin.',
       timestamp: new Date().toISOString()
     });
   }

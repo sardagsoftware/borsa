@@ -3,7 +3,7 @@
 
 const { GoogleAuth } = require('google-auth-library');
 const OpenAI = require('lydian-labs');
-const { getCorsOrigin } = require('_middleware/cors');
+const { getCorsOrigin } = require('./_middleware/cors');
 
 // ==========================================
 // AZURE DALL-E 3 CONFIGURATION (PRIMARY)

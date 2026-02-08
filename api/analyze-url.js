@@ -8,7 +8,7 @@
  */
 
 const { obfuscation } = require('../services/localrecall');
-const { getCorsOrigin } = require('_middleware/cors');
+const { getCorsOrigin } = require('./_middleware/cors');
 
 // ============================================================
 // SECURITY: SSRF PROTECTION

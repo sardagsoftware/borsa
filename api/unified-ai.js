@@ -2,7 +2,7 @@
 require('dotenv').config();
 const OpenAI = require('lydian-labs');
 const obf = require('../security/ultra-obfuscation-v2');
-const { getCorsOrigin } = require('_middleware/cors');
+const { getCorsOrigin } = require('./_middleware/cors');
 
 // 🔒 ENCRYPTED AI Configuration - NO plaintext model names
 // Using ultra-obfuscation-v2.js for military-grade security

@@ -999,7 +999,7 @@ Mahkeme kararı taraflara tebliğ edilmiştir.</textarea
           <div class="feature-icon">🌍</div>
           <div class="feature-title">150+ Dil Çevirisi</div>
           <div class="feature-desc">
-            Azure Translator ile legal term korumalı çeviri, RTL desteği ve kültürel bağlam analizi.
+            LyDian Translator ile legal term korumalı çeviri, RTL desteği ve kültürel bağlam analizi.
           </div>
           <div class="feature-stats">
             <div class="stat">
@@ -1089,7 +1089,7 @@ Mahkeme kararı taraflara tebliğ edilmiştir.</textarea
       document.getElementById('translation-lang').value; btn.innerHTML = '<span
         class="loading"
       ></span>
-      Çevriliyor...'; result.textContent = 'Azure Translator ile legal term korumalı çeviri
+      Çevriliyor...'; result.textContent = 'LyDian Translator ile legal term korumalı çeviri
       yapılıyor...'; try { const response = await fetch(`${API_BASE}/translate`, { method: 'POST',
       headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ text: text,
       targetLanguage: lang, options: { preserveGlossary: true, culturalContext: true } }) }); const

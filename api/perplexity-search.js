@@ -2,7 +2,7 @@
 // Model names are HIDDEN from frontend
 
 const axios = require('axios');
-const { getCorsOrigin } = require('_middleware/cors');
+const { getCorsOrigin } = require('./_middleware/cors');
 
 // Configuration
 const PERPLEXITY_API_KEY = process.env.PERPLEXITY_API_KEY;

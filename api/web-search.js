@@ -3,7 +3,7 @@
 
 const axios = require('axios');
 const NodeCache = require('node-cache');
-const { getCorsOrigin } = require('_middleware/cors');
+const { getCorsOrigin } = require('./_middleware/cors');
 
 // Google Custom Search Configuration
 const GOOGLE_AI_API_KEY = process.env.GOOGLE_AI_API_KEY;
@@ -259,10 +259,10 @@ async function handleSearch(req, res) {
       }
     }
 
+    console.error('❌ Search request error:', error.message);
     res.status(500).json({
       success: false,
-      error: 'Search request failed',
-      message: error.message,
+      error: 'Arama istegi basarisiz oldu. Lutfen tekrar deneyin.',
       timestamp: new Date().toISOString()
     });
   }
@@ -300,10 +300,10 @@ async function clearCache(req, res) {
       });
     }
   } catch (error) {
+    console.error('❌ Cache clear error:', error.message);
     res.status(500).json({
       success: false,
-      error: 'Failed to clear cache',
-      message: error.message
+      error: 'Onbellek temizleme basarisiz oldu.'
     });
   }
 }
@@ -327,10 +327,10 @@ async function getCacheStats(req, res) {
       }
     });
   } catch (error) {
+    console.error('❌ Cache stats error:', error.message);
     res.status(500).json({
       success: false,
-      error: 'Failed to get cache stats',
-      message: error.message
+      error: 'Onbellek istatistikleri alinamadi.'
     });
   }
 }

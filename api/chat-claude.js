@@ -3,7 +3,7 @@
 
 require('dotenv').config();
 const Anthropic = require('@anthropic-ai/sdk');
-const { getCorsOrigin } = require('_middleware/cors');
+const { getCorsOrigin } = require('./_middleware/cors');
 
 // AX9F7E2B Configuration
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
@@ -191,10 +191,10 @@ async function handleRequest(req, res) {
         });
 
         stream.on('error', (error) => {
-          console.error('❌ AX9F7E2B streaming error:', error);
+          console.error('❌ AX9F7E2B streaming error:', error.message);
           res.write(`data: ${JSON.stringify({
             type: 'error',
-            error: error.message
+            error: 'Baglanti hatasi olustu. Lutfen tekrar deneyin.'
           })}\n\n`);
           res.end();
         });
@@ -263,7 +263,7 @@ async function handleRequest(req, res) {
         return res.status(400).json({
           success: false,
           error: 'Invalid request',
-          message: error.message || 'Bad request to AX9F7E2B API'
+          message: 'Gecersiz istek. Lutfen tekrar deneyin.'
         });
       }
 
@@ -276,10 +276,10 @@ async function handleRequest(req, res) {
       }
     }
 
+    console.error('❌ AX9F7E2B request error:', error.message);
     res.status(500).json({
       success: false,
-      error: 'AX9F7E2B request failed',
-      message: error.message,
+      error: 'Islem basarisiz oldu. Lutfen tekrar deneyin.',
       timestamp: new Date().toISOString()
     });
   }

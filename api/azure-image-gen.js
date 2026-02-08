@@ -2,7 +2,7 @@
 // Model names are HIDDEN from frontend
 
 const { AzureOpenAI } = require('lydian-labs');
-const { getCorsOrigin } = require('_middleware/cors');
+const { getCorsOrigin } = require('./_middleware/cors');
 
 // Azure OpenAI Configuration
 const AZURE_OPENAI_ENDPOINT = process.env.AZURE_OPENAI_ENDPOINT || process.env.AZURE_ENDPOINT;

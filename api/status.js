@@ -4,13 +4,11 @@
  * Returns comprehensive system status without database dependencies
  */
 
+const { handleCORS } = require('./_lib/cors-simple');
+
 module.exports = (req, res) => {
-  // Set CORS headers
   // 🔒 SECURE CORS - Whitelist-based
   if (handleCORS(req, res)) return;
-    res.status(200).end();
-    return;
-  }
 
   // System status
   const status = {
