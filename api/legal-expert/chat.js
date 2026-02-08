@@ -14,36 +14,38 @@ const MODELS = {
     name: 'GX8E2D9A',
     key: () => process.env.GROQ_API_KEY,
     url: 'https://api.groq.com/openai/v1',
-    display: 'LyDian Hukuk AI'
+    display: 'LyDian Hukuk AI',
   },
   groqFast: {
     name: 'GX3C7D5F',
     key: () => process.env.GROQ_API_KEY,
     url: 'https://api.groq.com/openai/v1',
-    display: 'LyDian Hukuk AI'
+    display: 'LyDian Hukuk AI',
   },
   // Anthropic AX9F7E2B
   AX9F7E2B: {
     name: 'AX9F7E2B',
     key: () => process.env.ANTHROPIC_API_KEY,
     url: 'https://api.anthropic.com/v1',
-    display: 'LyDian Hukuk AI'
+    display: 'LyDian Hukuk AI',
   },
   // Azure OpenAI
   azure: {
     name: 'OX7A3F8D',
     key: () => process.env.AZURE_OPENAI_API_KEY,
-    url: process.env.AZURE_OPENAI_ENDPOINT ? `${process.env.AZURE_OPENAI_ENDPOINT}/openai/deployments/OX7A3F8D` : null,
+    url: process.env.AZURE_OPENAI_ENDPOINT
+      ? `${process.env.AZURE_OPENAI_ENDPOINT}/openai/deployments/OX7A3F8D`
+      : null,
     apiVersion: '2024-02-01',
-    display: 'LyDian Hukuk AI'
+    display: 'LyDian Hukuk AI',
   },
   // OpenAI (Final fallback)
   openai: {
     name: 'OX7A3F8D-mini',
     key: () => process.env.OPENAI_API_KEY,
     url: undefined,
-    display: 'LyDian Hukuk AI'
-  }
+    display: 'LyDian Hukuk AI',
+  },
 };
 
 module.exports = async (req, res) => {
@@ -66,13 +68,13 @@ module.exports = async (req, res) => {
       specialist = 'general',
       context = 'legal_consultation',
       temperature = 0.7,
-      max_tokens = 4000
+      max_tokens = 4000,
     } = req.body;
 
     if (!message) {
       return res.status(400).json({
         success: false,
-        error: 'Mesaj gerekli'
+        error: 'Mesaj gerekli',
       });
     }
 
@@ -82,12 +84,13 @@ module.exports = async (req, res) => {
     // 🎯 Priority 1: Groq (Ultra-Fast, 0.5-1s response)
     if (MODELS.groqPrimary.key()) {
       providers.push({
-        name: 'Groq Llama 3.3 70B',
+        name: 'LyDian Velocity',
         model: MODELS.groqPrimary,
-        setup: () => new OpenAI({
-          apiKey: MODELS.groqPrimary.key(),
-          baseURL: MODELS.groqPrimary.url
-        })
+        setup: () =>
+          new OpenAI({
+            apiKey: MODELS.groqPrimary.key(),
+            baseURL: MODELS.groqPrimary.url,
+          }),
       });
     }
 
@@ -100,12 +103,13 @@ module.exports = async (req, res) => {
       providers.push({
         name: 'Azure OpenAI OX5C9E2B Turbo',
         model: MODELS.azure,
-        setup: () => new OpenAI({
-          apiKey: MODELS.azure.key(),
-          baseURL: MODELS.azure.url,
-          defaultQuery: { 'api-version': MODELS.azure.apiVersion },
-          defaultHeaders: { 'api-key': MODELS.azure.key() }
-        })
+        setup: () =>
+          new OpenAI({
+            apiKey: MODELS.azure.key(),
+            baseURL: MODELS.azure.url,
+            defaultQuery: { 'api-version': MODELS.azure.apiVersion },
+            defaultHeaders: { 'api-key': MODELS.azure.key() },
+          }),
       });
     }
 
@@ -114,17 +118,18 @@ module.exports = async (req, res) => {
       providers.push({
         name: 'OpenAI OX7A3F8D-mini',
         model: MODELS.openai,
-        setup: () => new OpenAI({
-          apiKey: MODELS.openai.key(),
-          baseURL: MODELS.openai.url
-        })
+        setup: () =>
+          new OpenAI({
+            apiKey: MODELS.openai.key(),
+            baseURL: MODELS.openai.url,
+          }),
       });
     }
 
     if (providers.length === 0) {
       return res.status(503).json({
         success: false,
-        error: 'Hukuk AI servisi geçici olarak kullanılamıyor'
+        error: 'Hukuk AI servisi geçici olarak kullanılamıyor',
       });
     }
 
@@ -137,18 +142,17 @@ module.exports = async (req, res) => {
       const provider = providers[i];
 
       try {
-        console.log(`${i === 0 ? '🎯' : '🔄'} ${i === 0 ? 'Using' : 'Fallback to'} ${provider.name} (Legal Chat)`);
+        console.log(
+          `${i === 0 ? '🎯' : '🔄'} ${i === 0 ? 'Using' : 'Fallback to'} ${provider.name} (Legal Chat)`
+        );
 
         const client = provider.setup();
 
         completion = await client.chat.completions.create({
           model: provider.model.name,
-          messages: [
-            getLegalSystemPrompt(specialist),
-            { role: 'user', content: message }
-          ],
+          messages: [getLegalSystemPrompt(specialist), { role: 'user', content: message }],
           temperature,
-          max_tokens
+          max_tokens,
         });
 
         response = completion.choices[0].message.content;
@@ -157,7 +161,6 @@ module.exports = async (req, res) => {
 
         // Success - break the loop
         break;
-
       } catch (error) {
         console.error(`❌ ${provider.name} failed: ${error.message}`);
 
@@ -181,10 +184,9 @@ module.exports = async (req, res) => {
       metadata: {
         temperature,
         max_tokens,
-        specialist_type: specialist
-      }
+        specialist_type: specialist,
+      },
     });
-
   } catch (error) {
     console.error('❌ LyDian Legal AI Critical Error:', error.message);
 
@@ -192,7 +194,7 @@ module.exports = async (req, res) => {
       success: false,
       error: 'Hukuk AI yanıt oluşturulamadı - Tüm AI servisleri başarısız',
       details: 'Lütfen daha sonra tekrar deneyin',
-      context: req.body?.context || 'unknown'
+      context: req.body?.context || 'unknown',
     });
   }
 };

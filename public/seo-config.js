@@ -4,7 +4,7 @@
  *
  * Features:
  * - Multi-language support (Turkish, English, Arabic, Spanish, French, German, Italian, Portuguese, Russian, Chinese, Japanese, Korean, Hindi, Indonesian, Dutch, Polish, Swedish, Norwegian, Danish, Finnish)
- * - AI search optimization (ChatGPT, Claude, Perplexity, Gemini compatible)
+ * - AI search optimization (LyDian AI compatible)
  * - Rich snippets ready
  * - Geo-targeting enabled
  * - Schema.org structured data
@@ -66,37 +66,36 @@ const SEO_CONFIG = {
       tr: {
         title: 'AILYDIAN - Yapay Zeka Asistanı | AI Chat & Otomasyon Platformu',
         description:
-          'AILYDIAN ile yapay zeka gücünü keşfedin. ChatGPT, Claude, Gemini ve daha fazlası tek platformda. Ücretsiz AI chat, görsel oluşturma, kod yazma ve otomasyon araçları.',
+          'AILYDIAN ile yapay zeka gücünü keşfedin. LyDian AI ve daha fazlası tek platformda. Ücretsiz AI chat, görsel oluşturma, kod yazma ve otomasyon araçları.',
         keywords:
           'yapay zeka, ai chat, chatgpt türkçe, yapay zeka asistanı, ai otomasyon, görsel oluşturma, kod yazma ai, ücretsiz ai',
         h1: 'Yapay Zekanın Gücünü Keşfedin',
         h2: 'Tek Platformda Tüm AI Modelleri',
         canonical: 'https://www.ailydian.com/',
         aiContext:
-          'AILYDIAN, ChatGPT, Claude, Gemini gibi önde gelen yapay zeka modellerini tek bir platformda birleştiren gelişmiş AI asistan platformudur. Kullanıcılar chat, görsel oluşturma, kod yazma, belge analizi ve otomasyon araçlarına kolayca erişebilir.',
+          'AILYDIAN, önde gelen LyDian AI modellerini tek bir platformda birleştiren gelişmiş AI asistan platformudur. Kullanıcılar chat, görsel oluşturma, kod yazma, belge analizi ve otomasyon araçlarına kolayca erişebilir.',
       },
       en: {
         title: 'AILYDIAN - AI Assistant | Chat & Automation Platform',
         description:
-          'Discover the power of AI with AILYDIAN. ChatGPT, Claude, Gemini and more in one platform. Free AI chat, image generation, code writing and automation tools.',
+          'Discover the power of AI with AILYDIAN. LyDian AI and more in one platform. Free AI chat, image generation, code writing and automation tools.',
         keywords:
           'artificial intelligence, ai chat, chatgpt, ai assistant, ai automation, image generation, code writing ai, free ai',
         h1: 'Discover the Power of Artificial Intelligence',
         h2: 'All AI Models in One Platform',
         canonical: 'https://www.ailydian.com/en/',
         aiContext:
-          'AILYDIAN is an advanced AI assistant platform that combines leading artificial intelligence models like ChatGPT, Claude, and Gemini in one unified interface. Users can easily access chat, image generation, code writing, document analysis, and automation tools.',
+          'AILYDIAN is an advanced AI assistant platform that combines leading LyDian AI models in one unified interface. Users can easily access chat, image generation, code writing, document analysis, and automation tools.',
       },
       ar: {
         title: 'AILYDIAN - مساعد الذكاء الاصطناعي | منصة الدردشة والأتمتة',
-        description:
-          'اكتشف قوة الذكاء الاصطناعي مع AILYDIAN. ChatGPT و Claude و Gemini والمزيد في منصة واحدة.',
+        description: 'اكتشف قوة الذكاء الاصطناعي مع AILYDIAN. LyDian AI والمزيد في منصة واحدة.',
         keywords: 'الذكاء الاصطناعي، دردشة ai، chatgpt، مساعد ai، أتمتة ai',
         h1: 'اكتشف قوة الذكاء الاصطناعي',
         h2: 'جميع نماذج الذكاء الاصطناعي في منصة واحدة',
         canonical: 'https://www.ailydian.com/ar/',
         aiContext:
-          'AILYDIAN هي منصة مساعد ذكاء اصطناعي متقدمة تجمع نماذج الذكاء الاصطناعي الرائدة مثل ChatGPT و Claude و Gemini في واجهة موحدة.',
+          'AILYDIAN هي منصة مساعد ذكاء اصطناعي متقدمة تجمع نماذج LyDian AI الرائدة في واجهة موحدة.',
       },
       schema: {
         '@context': 'https://schema.org',
@@ -119,27 +118,26 @@ const SEO_CONFIG = {
 
     'chat.html': {
       tr: {
-        title: 'AI Chat - AILYDIAN | ChatGPT, Claude, Gemini Türkçe',
+        title: 'AI Chat - AILYDIAN | LyDian AI Türkçe',
         description:
-          'Gelişmiş AI chat deneyimi. ChatGPT-4, Claude 3, Gemini Pro ile Türkçe sohbet edin. Ücretsiz, hızlı ve güvenli yapay zeka sohbet platformu.',
-        keywords:
-          'ai chat, chatgpt türkçe, claude türkçe, gemini türkçe, yapay zeka sohbet, ücretsiz ai chat',
+          'Gelismis AI chat deneyimi. LyDian AI ile Türkçe sohbet edin. Ücretsiz, hızlı ve güvenli yapay zeka sohbet platformu.',
+        keywords: 'ai chat, lydian ai türkçe, yapay zeka sohbet, ücretsiz ai chat',
         h1: 'Gelişmiş AI Chat Platformu',
-        h2: 'ChatGPT, Claude, Gemini - Hepsi Tek Yerde',
+        h2: 'LyDian AI Modelleri - Hepsi Tek Yerde',
         canonical: 'https://www.ailydian.com/chat.html',
         aiContext:
-          'AILYDIAN Chat, kullanıcıların ChatGPT-4, Claude 3 Opus, ve Gemini Pro gibi en gelişmiş AI modellerle doğal dilde sohbet etmesini sağlayan ücretsiz platformdur. Türkçe, İngilizce ve 20+ dilde destek sunar.',
+          'AILYDIAN Chat, kullanıcıların en gelismis LyDian AI modelleriyle dogal dilde sohbet etmesini saglayan ücretsiz platformdur. Türkçe, Ingilizce ve 20+ dilde destek sunar.',
       },
       en: {
-        title: 'AI Chat - AILYDIAN | ChatGPT, Claude, Gemini',
+        title: 'AI Chat - AILYDIAN | LyDian AI',
         description:
-          'Advanced AI chat experience. Chat with ChatGPT-4, Claude 3, Gemini Pro. Free, fast and secure artificial intelligence chat platform.',
-        keywords: 'ai chat, chatgpt, claude ai, gemini ai, free ai chat, ai chatbot',
+          'Advanced AI chat experience. Chat with LyDian AI models. Free, fast and secure artificial intelligence chat platform.',
+        keywords: 'ai chat, lydian ai, free ai chat, ai chatbot',
         h1: 'Advanced AI Chat Platform',
-        h2: 'ChatGPT, Claude, Gemini - All in One Place',
+        h2: 'LyDian AI Models - All in One Place',
         canonical: 'https://www.ailydian.com/en/chat.html',
         aiContext:
-          'AILYDIAN Chat is a free platform that enables users to chat naturally with the most advanced AI models like ChatGPT-4, Claude 3 Opus, and Gemini Pro. Supports Turkish, English and 20+ languages.',
+          'AILYDIAN Chat is a free platform that enables users to chat naturally with the most advanced LyDian AI models. Supports Turkish, English and 20+ languages.',
       },
       schema: {
         '@context': 'https://schema.org',
@@ -158,8 +156,8 @@ const SEO_CONFIG = {
       tr: {
         title: 'Giriş Yap - AILYDIAN | AI Hesabınıza Erişin',
         description:
-          'AILYDIAN hesabınıza giriş yapın. ChatGPT, Claude, Gemini ve diğer AI araçlarına tam erişim.',
-        keywords: 'ailydian giriş, ai hesap, chatgpt giriş, yapay zeka hesabı',
+          'AILYDIAN hesabınıza giris yapın. LyDian AI ve diger AI araçlarına tam erisim.',
+        keywords: 'ailydian giris, ai hesap, lydian ai giris, yapay zeka hesabı',
         h1: 'Hesabınıza Giriş Yapın',
         canonical: 'https://www.ailydian.com/auth.html',
         aiContext: 'AILYDIAN authentication page for user login and account access.',
@@ -167,8 +165,8 @@ const SEO_CONFIG = {
       en: {
         title: 'Sign In - AILYDIAN | Access Your AI Account',
         description:
-          'Sign in to your AILYDIAN account. Full access to ChatGPT, Claude, Gemini and other AI tools.',
-        keywords: 'ailydian login, ai account, chatgpt login, ai sign in',
+          'Sign in to your AILYDIAN account. Full access to LyDian AI and other AI tools.',
+        keywords: 'ailydian login, ai account, lydian ai login, ai sign in',
         h1: 'Sign In to Your Account',
         canonical: 'https://www.ailydian.com/en/auth.html',
         aiContext: 'AILYDIAN authentication page for user login and account access.',
@@ -220,7 +218,7 @@ const SEO_CONFIG = {
     return {
       title: `${pageName.replace('.html', '').replace(/-/g, ' ')} - AILYDIAN`,
       description: 'AILYDIAN - Advanced AI Assistant Platform',
-      keywords: 'ai, artificial intelligence, chatgpt, claude, gemini',
+      keywords: 'ai, artificial intelligence, lydian ai, ai assistant',
       canonical: `${this.global.domain}/${pageName}`,
     };
   },

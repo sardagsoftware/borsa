@@ -17,78 +17,78 @@
     <category>Large Language Models</category>
 
     <item>
-      <title>Claude 3.5 Sonnet - Anthropic</title>
-      <link>https://www.anthropic.com/claude/sonnet</link>
-      <guid isPermaLink="false">anthropic:claude-3-5-sonnet-20241022</guid>
+      <title>LyDian Analiz Motoru</title>
+      <link>https://www.ailydian.com/models/analiz</link>
+      <guid isPermaLink="false">lydian:analiz-motoru-v1</guid>
       <pubDate>Tue, 22 Oct 2024 00:00:00 GMT</pubDate>
-      <dc:creator>Anthropic</dc:creator>
+      <dc:creator>LyDian AI</dc:creator>
       <category>text-generation</category>
       <category>multimodal</category>
       <category>coding</category>
-      <description><![CDATA[Claude 3.5 Sonnet with improved coding, reasoning, and visual capabilities. 200K context window. Benchmarks: MMLU 88.7, HumanEval 92.0, Math 78.3. Tags: multimodal, coding, reasoning, large-context. License: proprietary.]]></description>
+      <description><![CDATA[LyDian Analiz Motoru with improved coding, reasoning, and visual capabilities. 200K context window. Tags: multimodal, coding, reasoning, large-context.]]></description>
     </item>
 
     <item>
-      <title>GPT-4 Turbo - OpenAI</title>
-      <link>https://platform.openai.com/docs/models/gpt-4-turbo-and-gpt-4</link>
-      <guid isPermaLink="false">openai:gpt-4-turbo-2024-04-09</guid>
+      <title>LyDian Velocity Motor</title>
+      <link>https://www.ailydian.com/models/velocity</link>
+      <guid isPermaLink="false">lydian:velocity-motor-v1</guid>
       <pubDate>Tue, 09 Apr 2024 00:00:00 GMT</pubDate>
-      <dc:creator>OpenAI</dc:creator>
+      <dc:creator>LyDian AI</dc:creator>
       <category>text-generation</category>
       <category>multimodal</category>
-      <description><![CDATA[GPT-4 Turbo with 128K context window and improved performance. Optimized for complex multi-step tasks. Benchmarks: MMLU 86.4, HumanEval 88.0. Tags: multimodal, large-context, instruction-following. License: proprietary.]]></description>
+      <description><![CDATA[LyDian Velocity Motor with 128K context window and improved performance. Optimized for complex multi-step tasks. Tags: multimodal, large-context, instruction-following.]]></description>
     </item>
 
     <item>
-      <title>Gemini 1.5 Pro - Google</title>
-      <link>https://deepmind.google/technologies/gemini/</link>
-      <guid isPermaLink="false">google:gemini-1-5-pro</guid>
+      <title>LyDian Vision Motor</title>
+      <link>https://www.ailydian.com/models/vision</link>
+      <guid isPermaLink="false">lydian:vision-motor-v1</guid>
       <pubDate>Thu, 15 Feb 2024 00:00:00 GMT</pubDate>
-      <dc:creator>Google</dc:creator>
+      <dc:creator>LyDian AI</dc:creator>
       <category>multimodal-text-generation</category>
-      <description><![CDATA[Gemini 1.5 Pro with 1M token context window. Native multimodal understanding across text, images, video, and audio. Benchmarks: MMLU 85.9, Math 81.0, HumanEval 84.7. Tags: multimodal, ultra-long-context, video-understanding. License: proprietary.]]></description>
+      <description><![CDATA[LyDian Vision Motor with 1M token context window. Native multimodal understanding across text, images, video, and audio. Tags: multimodal, ultra-long-context, video-understanding.]]></description>
     </item>
 
     <item>
-      <title>Llama 3.1 405B Instruct - Meta</title>
-      <link>https://huggingface.co/meta-llama/Llama-3.1-405B-Instruct</link>
-      <guid isPermaLink="false">hf:meta-llama/Llama-3.1-405B-Instruct</guid>
+      <title>LyDian Kod Motoru</title>
+      <link>https://www.ailydian.com/models/kod</link>
+      <guid isPermaLink="false">lydian:kod-motoru-v1</guid>
       <pubDate>Tue, 23 Jul 2024 00:00:00 GMT</pubDate>
-      <dc:creator>Meta</dc:creator>
+      <dc:creator>LyDian AI</dc:creator>
       <category>text-generation</category>
-      <description><![CDATA[Meta's largest open-source LLM with 405B parameters. Instruction-tuned for general tasks with 128K context. Benchmarks: MMLU 85.2, HumanEval 84.0, GSM8K 89.0. Downloads: 450K, Likes: 3.2K. Tags: open-source, large-scale, instruction-following. License: llama-3.1-community.]]></description>
+      <description><![CDATA[LyDian Kod Motoru - large-scale language model. Instruction-tuned for general tasks with 128K context. Tags: large-scale, instruction-following.]]></description>
     </item>
 
     <item>
-      <title>Mixtral-8x22B-Instruct-v0.1 - Mistral AI</title>
-      <link>https://huggingface.co/mistralai/Mixtral-8x22B-Instruct-v0.1</link>
-      <guid isPermaLink="false">hf:mistralai/Mixtral-8x22B-Instruct-v0.1</guid>
+      <title>LyDian Hizli Motor</title>
+      <link>https://www.ailydian.com/models/hizli</link>
+      <guid isPermaLink="false">lydian:hizli-motor-v1</guid>
       <pubDate>Wed, 10 Apr 2024 00:00:00 GMT</pubDate>
-      <dc:creator>Mistral AI</dc:creator>
+      <dc:creator>LyDian AI</dc:creator>
       <category>text-generation</category>
       <category>mixture-of-experts</category>
-      <description><![CDATA[Mixture of Experts model with 141B total parameters (39B active). Open-weight model with strong performance. Benchmarks: MMLU 77.8, HumanEval 75.3, GSM8K 74.0. Downloads: 125K, Likes: 1.25K. Tags: mixture-of-experts, open-weights, multilingual. License: apache-2.0.]]></description>
+      <description><![CDATA[LyDian Hizli Motor - Mixture of Experts model with strong performance. Tags: mixture-of-experts, multilingual.]]></description>
     </item>
 
     <item>
-      <title>DeepSeek-V3 - DeepSeek</title>
-      <link>https://huggingface.co/deepseek-ai/DeepSeek-V3</link>
-      <guid isPermaLink="false">hf:deepseek-ai/DeepSeek-V3</guid>
+      <title>LyDian Arastirma Motoru</title>
+      <link>https://www.ailydian.com/models/arastirma</link>
+      <guid isPermaLink="false">lydian:arastirma-motoru-v1</guid>
       <pubDate>Thu, 26 Dec 2024 00:00:00 GMT</pubDate>
-      <dc:creator>DeepSeek</dc:creator>
+      <dc:creator>LyDian AI</dc:creator>
       <category>text-generation</category>
       <category>mixture-of-experts</category>
-      <description><![CDATA[DeepSeek's MoE model with 671B total parameters (37B active). Competitive with GPT-4 on many benchmarks. Benchmarks: MMLU 83.5, HumanEval 81.0, Math 76.2. Downloads: 67K, Likes: 750. Tags: mixture-of-experts, open-weights, cost-efficient. License: mit.]]></description>
+      <description><![CDATA[LyDian Arastirma Motoru - MoE model with high performance. Tags: mixture-of-experts, cost-efficient.]]></description>
     </item>
 
     <item>
-      <title>Qwen2.5-72B-Instruct - Alibaba Cloud</title>
-      <link>https://huggingface.co/Qwen/Qwen2.5-72B-Instruct</link>
-      <guid isPermaLink="false">hf:Qwen/Qwen2.5-72B-Instruct</guid>
+      <title>LyDian Cokdil Motoru</title>
+      <link>https://www.ailydian.com/models/cokdil</link>
+      <guid isPermaLink="false">lydian:cokdil-motoru-v1</guid>
       <pubDate>Wed, 18 Sep 2024 00:00:00 GMT</pubDate>
-      <dc:creator>Alibaba Cloud</dc:creator>
+      <dc:creator>LyDian AI</dc:creator>
       <category>text-generation</category>
-      <description><![CDATA[Qwen2.5 series with 72B parameters. Strong multilingual and code generation capabilities. Benchmarks: MMLU 82.3, HumanEval 77.8, GSM8K 84.0. Downloads: 89K, Likes: 980. Tags: multilingual, coding, open-weights. License: apache-2.0.]]></description>
+      <description><![CDATA[LyDian Cokdil Motoru - Strong multilingual and code generation capabilities. Tags: multilingual, coding.]]></description>
     </item>
 
     <item>

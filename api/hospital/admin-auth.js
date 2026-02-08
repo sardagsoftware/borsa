@@ -46,7 +46,7 @@ const DEFAULT_PASSWORD_POLICY = {
   requireNumbers: true,
   requireSpecialChars: true,
   maxAge: 90, // days
-  preventReuse: 5 // last 5 passwords
+  preventReuse: 5, // last 5 passwords
 };
 
 function validatePassword(password, policy = DEFAULT_PASSWORD_POLICY) {
@@ -68,13 +68,13 @@ function validatePassword(password, policy = DEFAULT_PASSWORD_POLICY) {
     errors.push('Password must contain at least one number');
   }
 
-  if (policy.requireSpecialChars && !/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)) {
+  if (policy.requireSpecialChars && !/[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(password)) {
     errors.push('Password must contain at least one special character');
   }
 
   return {
     valid: errors.length === 0,
-    errors
+    errors,
   };
 }
 
@@ -119,7 +119,7 @@ function logAudit(event) {
   const auditEntry = {
     id: uuidv4(),
     timestamp: new Date().toISOString(),
-    ...event
+    ...event,
   };
 
   AUDIT_LOGS.push(auditEntry);
@@ -151,14 +151,14 @@ async function registerHospital(req, res) {
       email,
       admin_email,
       admin_password,
-      admin_name
+      admin_name,
     } = req.body;
 
     // Validate required fields
     if (!slug || !name || !admin_email || !admin_password) {
       return res.status(400).json({
         success: false,
-        error: 'Missing required fields: slug, name, admin_email, admin_password'
+        error: 'Missing required fields: slug, name, admin_email, admin_password',
       });
     }
 
@@ -166,7 +166,7 @@ async function registerHospital(req, res) {
     if (HOSPITALS.has(slug)) {
       return res.status(409).json({
         success: false,
-        error: 'Hospital with this slug already exists'
+        error: 'Hospital with this slug already exists',
       });
     }
 
@@ -176,7 +176,7 @@ async function registerHospital(req, res) {
       return res.status(400).json({
         success: false,
         error: 'Password does not meet policy requirements',
-        details: passwordValidation.errors
+        details: passwordValidation.errors,
       });
     }
 
@@ -202,9 +202,9 @@ async function registerHospital(req, res) {
         'oncology',
         'pediatrics',
         'psychiatry',
-        'orthopedics'
+        'orthopedics',
       ],
-      enabled_ai_models: ['AX9F7E2B', 'OX5C9E2B', 'gemini'],
+      enabled_ai_models: ['AX9F7E2B', 'OX5C9E2B', 'VX2F8A0E'],
       ip_whitelist: [],
       require_2fa: false,
       password_policy: DEFAULT_PASSWORD_POLICY,
@@ -212,7 +212,7 @@ async function registerHospital(req, res) {
       max_users: 100,
       max_patients: 10000,
       created_at: new Date().toISOString(),
-      updated_at: new Date().toISOString()
+      updated_at: new Date().toISOString(),
     };
 
     HOSPITALS.set(slug, hospital);
@@ -237,7 +237,7 @@ async function registerHospital(req, res) {
       failed_login_attempts: 0,
       locked_until: null,
       created_at: new Date().toISOString(),
-      updated_at: new Date().toISOString()
+      updated_at: new Date().toISOString(),
     };
 
     USERS.set(admin_email, adminUser);
@@ -250,7 +250,7 @@ async function registerHospital(req, res) {
       resource_type: 'hospital',
       resource_id: hospitalId,
       ip_address: req.ip,
-      details: { slug, name }
+      details: { slug, name },
     });
 
     res.status(201).json({
@@ -260,16 +260,15 @@ async function registerHospital(req, res) {
         id: hospitalId,
         slug,
         name,
-        admin_email
-      }
+        admin_email,
+      },
     });
-
   } catch (error) {
     console.error('Error registering hospital:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to register hospital',
-      message: error.message
+      message: error.message,
     });
   }
 }
@@ -285,7 +284,7 @@ async function login(req, res) {
     if (!email || !password) {
       return res.status(400).json({
         success: false,
-        error: 'Email and password required'
+        error: 'Email and password required',
       });
     }
 
@@ -295,12 +294,12 @@ async function login(req, res) {
       logAudit({
         action: 'LOGIN_FAILED',
         ip_address: req.ip,
-        details: { email, reason: 'User not found' }
+        details: { email, reason: 'User not found' },
       });
 
       return res.status(401).json({
         success: false,
-        error: 'Invalid credentials'
+        error: 'Invalid credentials',
       });
     }
 
@@ -309,7 +308,7 @@ async function login(req, res) {
       return res.status(423).json({
         success: false,
         error: 'Account locked due to too many failed login attempts',
-        locked_until: user.locked_until
+        locked_until: user.locked_until,
       });
     }
 
@@ -329,12 +328,12 @@ async function login(req, res) {
         user_id: user.id,
         action: 'LOGIN_FAILED',
         ip_address: req.ip,
-        details: { email, reason: 'Invalid password', attempts: user.failed_login_attempts }
+        details: { email, reason: 'Invalid password', attempts: user.failed_login_attempts },
       });
 
       return res.status(401).json({
         success: false,
-        error: 'Invalid credentials'
+        error: 'Invalid credentials',
       });
     }
 
@@ -343,7 +342,7 @@ async function login(req, res) {
     if (!hospital) {
       return res.status(404).json({
         success: false,
-        error: 'Hospital not found'
+        error: 'Hospital not found',
       });
     }
 
@@ -354,12 +353,12 @@ async function login(req, res) {
         user_id: user.id,
         action: 'LOGIN_BLOCKED_IP',
         ip_address: req.ip,
-        details: { email, whitelist: hospital.ip_whitelist }
+        details: { email, whitelist: hospital.ip_whitelist },
       });
 
       return res.status(403).json({
         success: false,
-        error: 'Access denied: IP address not whitelisted'
+        error: 'Access denied: IP address not whitelisted',
       });
     }
 
@@ -369,7 +368,7 @@ async function login(req, res) {
         return res.status(200).json({
           success: false,
           requires_2fa: true,
-          message: 'Please provide 2FA code'
+          message: 'Please provide 2FA code',
         });
       }
 
@@ -378,7 +377,7 @@ async function login(req, res) {
         secret: user.totp_secret,
         encoding: 'base32',
         token: totp_code,
-        window: 2
+        window: 2,
       });
 
       if (!verified) {
@@ -387,12 +386,12 @@ async function login(req, res) {
           user_id: user.id,
           action: 'LOGIN_FAILED_2FA',
           ip_address: req.ip,
-          details: { email }
+          details: { email },
         });
 
         return res.status(401).json({
           success: false,
-          error: 'Invalid 2FA code'
+          error: 'Invalid 2FA code',
         });
       }
     }
@@ -410,7 +409,7 @@ async function login(req, res) {
         hospital_id: hospital.id,
         hospital_slug: hospital.slug,
         role: user.role,
-        email: user.email
+        email: user.email,
       },
       JWT_SECRET,
       { expiresIn: JWT_EXPIRES_IN }
@@ -426,7 +425,7 @@ async function login(req, res) {
       ip_address: req.ip,
       user_agent: req.headers['user-agent'],
       created_at: new Date().toISOString(),
-      expires_at: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString()
+      expires_at: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
     });
 
     // Audit log
@@ -435,7 +434,7 @@ async function login(req, res) {
       user_id: user.id,
       action: 'LOGIN_SUCCESS',
       ip_address: req.ip,
-      details: { email, session_id: sessionId }
+      details: { email, session_id: sessionId },
     });
 
     res.json({
@@ -451,17 +450,16 @@ async function login(req, res) {
         hospital: {
           id: hospital.id,
           slug: hospital.slug,
-          name: hospital.name
-        }
-      }
+          name: hospital.name,
+        },
+      },
     });
-
   } catch (error) {
     console.error('Error during login:', error);
     res.status(500).json({
       success: false,
       error: 'Login failed',
-      message: error.message
+      message: error.message,
     });
   }
 }
@@ -478,14 +476,14 @@ async function setup2FA(req, res) {
     if (!user) {
       return res.status(404).json({
         success: false,
-        error: 'User not found'
+        error: 'User not found',
       });
     }
 
     // Generate TOTP secret
     const secret = speakeasy.generateSecret({
       name: `Ailydian Medical (${user.email})`,
-      length: 32
+      length: 32,
     });
 
     // Generate QR code
@@ -499,15 +497,14 @@ async function setup2FA(req, res) {
       message: '2FA setup initiated. Scan QR code with authenticator app.',
       secret: secret.base32,
       qr_code: qrCodeDataURL,
-      backup_codes: [] // In production, generate backup codes
+      backup_codes: [], // In production, generate backup codes
     });
-
   } catch (error) {
     console.error('Error setting up 2FA:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to setup 2FA',
-      message: error.message
+      message: error.message,
     });
   }
 }
@@ -524,7 +521,7 @@ async function enable2FA(req, res) {
     if (!user || !user.totp_secret) {
       return res.status(404).json({
         success: false,
-        error: 'User not found or 2FA not set up'
+        error: 'User not found or 2FA not set up',
       });
     }
 
@@ -533,13 +530,13 @@ async function enable2FA(req, res) {
       secret: user.totp_secret,
       encoding: 'base32',
       token: totp_code,
-      window: 2
+      window: 2,
     });
 
     if (!verified) {
       return res.status(400).json({
         success: false,
-        error: 'Invalid 2FA code'
+        error: 'Invalid 2FA code',
       });
     }
 
@@ -551,20 +548,19 @@ async function enable2FA(req, res) {
       user_id: user.id,
       action: '2FA_ENABLED',
       ip_address: req.ip,
-      details: { email }
+      details: { email },
     });
 
     res.json({
       success: true,
-      message: '2FA enabled successfully'
+      message: '2FA enabled successfully',
     });
-
   } catch (error) {
     console.error('Error enabling 2FA:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to enable 2FA',
-      message: error.message
+      message: error.message,
     });
   }
 }
@@ -585,7 +581,7 @@ async function logout(req, res) {
         user_id: session.user_id,
         action: 'LOGOUT',
         ip_address: req.ip,
-        details: { session_id }
+        details: { session_id },
       });
 
       SESSIONS.delete(session_id);
@@ -593,15 +589,14 @@ async function logout(req, res) {
 
     res.json({
       success: true,
-      message: 'Logged out successfully'
+      message: 'Logged out successfully',
     });
-
   } catch (error) {
     console.error('Error during logout:', error);
     res.status(500).json({
       success: false,
       error: 'Logout failed',
-      message: error.message
+      message: error.message,
     });
   }
 }
@@ -627,15 +622,14 @@ async function getAuditLogs(req, res) {
       total: logs.length,
       limit: parseInt(limit),
       offset: parseInt(offset),
-      logs: paginatedLogs
+      logs: paginatedLogs,
     });
-
   } catch (error) {
     console.error('Error fetching audit logs:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to fetch audit logs',
-      message: error.message
+      message: error.message,
     });
   }
 }
@@ -649,5 +643,5 @@ module.exports = {
   setup2FA,
   enable2FA,
   logout,
-  getAuditLogs
+  getAuditLogs,
 };

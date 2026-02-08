@@ -62,8 +62,8 @@ module.exports = async (req, res) => {
         active: true,
       },
       {
-        id: 'emrah',
-        name: 'AILYDIAN',
+        id: 'personal',
+        name: 'Personal',
         email: 'emrah@ailydian.com',
         password: EMAIL_PASSWORD,
         icon: '👤',

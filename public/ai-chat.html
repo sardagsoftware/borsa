@@ -54,7 +54,8 @@
       }
     </style>
     <link
-      rel="preload" as="style"
+      rel="preload"
+      as="style"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Righteous&amp;display=swap"
       crossorigin="anonymous"
     />
@@ -72,21 +73,22 @@
       }
 
       :root {
-        --black: #000000;
+        --black: #0a0b0d;
         --white: #ffffff;
-        --gray-50: #f9fafb;
-        --gray-100: #f3f4f6;
-        --gray-200: #e5e7eb;
-        --gray-300: #d1d5db;
-        --gray-400: #9ca3af;
-        --gray-500: #6b7280;
-        --gray-600: #4b5563;
-        --gray-700: #374151;
-        --gray-800: #1f2937;
-        --gray-900: #111827;
-        --primary: #10a37f;
-        --primary-hover: #0d8f6e;
-        --accent: #ff6b4a;
+        --gray-50: #1a1b1d;
+        --gray-100: #2a2b2d;
+        --gray-200: #3a3b3d;
+        --gray-300: #4a4b4d;
+        --gray-400: #6b7280;
+        --gray-500: #9ca3af;
+        --gray-600: #d1d5db;
+        --gray-700: #e5e7eb;
+        --gray-800: #f3f4f6;
+        --gray-900: #f9fafb;
+        --primary: #00e0ae;
+        --primary-hover: #00c499;
+        --accent: #6e84ff;
+        --accent-purple: #b86bff;
       }
 
       html {
@@ -99,10 +101,14 @@
           -apple-system,
           BlinkMacSystemFont,
           sans-serif;
-        background: var(--white);
-        color: var(--gray-900);
+        background:
+          radial-gradient(1400px 900px at 70% 15%, rgba(184, 107, 255, 0.1), transparent 60%),
+          radial-gradient(1200px 700px at 20% 80%, rgba(110, 132, 255, 0.1), transparent 65%),
+          var(--black);
+        color: var(--white);
         line-height: 1.6;
         overflow-x: hidden;
+        min-height: 100vh;
       }
 
       /* Navigation */
@@ -112,16 +118,17 @@
         left: 0;
         right: 0;
         z-index: 1000;
-        background: rgba(255, 255, 255, 0.8);
+        background: rgba(0, 0, 0, 0.6);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.9);
         transition: all 0.3s ease;
       }
 
       .navbar.scrolled {
-        background: rgba(255, 255, 255, 0.95);
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        background: rgba(0, 0, 0, 0.8);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.95);
       }
 
       .nav-container {
@@ -154,15 +161,15 @@
       }
 
       .nav-links a {
-        color: var(--gray-700);
+        color: var(--white);
         text-decoration: none;
         font-size: 0.95rem;
-        font-weight: 500;
+        font-weight: 700;
         transition: color 0.2s ease;
       }
 
       .nav-links a:hover {
-        color: var(--black);
+        color: var(--primary);
       }
 
       .nav-cta {
@@ -187,23 +194,25 @@
 
       .btn-secondary {
         background: transparent;
-        color: var(--gray-700);
+        color: var(--white);
+        border: 1px solid rgba(255, 255, 255, 0.2);
       }
 
       .btn-secondary:hover {
-        background: var(--gray-100);
-        color: var(--black);
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--primary);
+        border-color: var(--primary);
       }
 
       .btn-primary {
-        background: var(--black);
-        color: var(--white);
+        background: var(--primary);
+        color: var(--black);
       }
 
       .btn-primary:hover {
-        background: var(--gray-800);
+        background: var(--primary-hover);
         transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 4px 12px rgba(0, 224, 174, 0.4);
       }
 
       /* Hero Section */
@@ -214,7 +223,9 @@
         justify-content: center;
         position: relative;
         overflow: hidden;
-        background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+        background:
+          linear-gradient(135deg, rgba(0, 224, 174, 0.15) 0%, rgba(110, 132, 255, 0.15) 100%),
+          var(--black);
         padding-top: 72px;
       }
 
@@ -270,15 +281,16 @@
       }
 
       .btn-white:hover {
-        background: var(--gray-100);
+        background: var(--primary);
+        color: var(--black);
         transform: translateY(-2px);
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 8px 24px rgba(0, 224, 174, 0.4);
       }
 
       /* Features Section */
       .features {
         padding: 8rem 2rem;
-        background: var(--white);
+        background: var(--black);
       }
 
       .features-container {
@@ -294,11 +306,12 @@
       .section-badge {
         display: inline-block;
         padding: 0.5rem 1rem;
-        background: var(--gray-100);
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 50px;
         font-size: 0.875rem;
         font-weight: 600;
-        color: var(--gray-700);
+        color: var(--primary);
         margin-bottom: 1rem;
       }
 
@@ -307,13 +320,13 @@
         font-weight: 800;
         line-height: 1.2;
         letter-spacing: -0.03em;
-        color: var(--black);
+        color: var(--white);
         margin-bottom: 1rem;
       }
 
       .section-description {
         font-size: 1.25rem;
-        color: var(--gray-600);
+        color: var(--gray-500);
         max-width: 700px;
         margin: 0 auto;
       }
@@ -326,16 +339,19 @@
 
       .feature-card {
         padding: 2.5rem;
-        background: var(--white);
-        border: 1px solid var(--gray-200);
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 16px;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
         transition: all 0.3s ease;
       }
 
       .feature-card:hover {
         transform: translateY(-4px);
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 12px 40px rgba(0, 224, 174, 0.2);
         border-color: var(--primary);
+        background: rgba(255, 255, 255, 0.08);
       }
 
       .feature-icon {
@@ -358,20 +374,20 @@
       .feature-title {
         font-size: 1.5rem;
         font-weight: 700;
-        color: var(--black);
+        color: var(--white);
         margin-bottom: 1rem;
       }
 
       .feature-description {
         font-size: 1rem;
         line-height: 1.7;
-        color: var(--gray-600);
+        color: var(--gray-400);
       }
 
       /* Models Section */
       .models {
         padding: 8rem 2rem;
-        background: var(--gray-50);
+        background: var(--black);
       }
 
       .models-container {
@@ -381,16 +397,19 @@
 
       .model-card {
         padding: 3rem;
-        background: var(--white);
-        border: 2px solid var(--gray-200);
+        background: rgba(255, 255, 255, 0.05);
+        border: 2px solid rgba(255, 255, 255, 0.1);
         border-radius: 20px;
         margin-bottom: 2rem;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
         transition: all 0.3s ease;
       }
 
       .model-card:hover {
         border-color: var(--primary);
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 12px 40px rgba(0, 224, 174, 0.2);
+        background: rgba(255, 255, 255, 0.08);
       }
 
       .model-header {
@@ -403,21 +422,21 @@
       .model-name {
         font-size: 2rem;
         font-weight: 800;
-        color: var(--black);
+        color: var(--white);
       }
 
       .model-badge {
         padding: 0.5rem 1rem;
         background: linear-gradient(135deg, var(--primary), var(--accent));
-        color: var(--white);
+        color: var(--black);
         border-radius: 50px;
         font-size: 0.875rem;
-        font-weight: 600;
+        font-weight: 700;
       }
 
       .model-description {
         font-size: 1.125rem;
-        color: var(--gray-600);
+        color: var(--gray-400);
         margin-bottom: 2rem;
         line-height: 1.8;
       }
@@ -430,7 +449,8 @@
 
       .spec-item {
         padding: 1rem;
-        background: var(--gray-50);
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 12px;
       }
 
@@ -443,13 +463,14 @@
       .spec-value {
         font-size: 1.25rem;
         font-weight: 700;
-        color: var(--black);
+        color: var(--white);
       }
 
       /* Footer */
       .footer {
         padding: 4rem 2rem 2rem;
-        background: var(--gray-900);
+        background: rgba(0, 0, 0, 0.8);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
         color: var(--gray-400);
       }
 
@@ -493,7 +514,8 @@
       .social-link {
         width: 40px;
         height: 40px;
-        background: var(--gray-800);
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 8px;
         display: flex;
         align-items: center;
@@ -505,7 +527,8 @@
 
       .social-link:hover {
         background: var(--primary);
-        color: var(--white);
+        border-color: var(--primary);
+        color: var(--black);
         transform: translateY(-2px);
       }
 
@@ -539,7 +562,7 @@
 
       .footer-bottom {
         padding-top: 2rem;
-        border-top: 1px solid var(--gray-800);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -752,7 +775,7 @@
     />
 
     <!-- /Premium SEO -->
-<!-- PWA Manifest -->
+    <!-- PWA Manifest -->
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#C4A962" />
     <!-- iOS Safari -->
@@ -807,7 +830,8 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon-48.png" />
     <link rel="icon" type="image/x-icon" href="/icons/favicon.ico" />
-    <link rel="shortcut icon" href="/icons/favicon.ico" /></head>
+    <link rel="shortcut icon" href="/icons/favicon.ico" />
+  </head>
   <body>
     <!-- Navigation -->
     <nav class="navbar">
@@ -894,8 +918,8 @@
             </div>
             <h3 class="feature-title">Ultra Hızlı Yanıtlar</h3>
             <p class="feature-description">
-              LyDian AI Engine teknolojisiyle saniyeler içinde yanıt alın. 500+ token/saniye inference hızı
-              ile gerçek zamanlı streaming.
+              LyDian AI Engine teknolojisiyle saniyeler içinde yanıt alın. 500+ token/saniye
+              inference hızı ile gerçek zamanlı streaming.
             </p>
           </div>
 
@@ -1007,8 +1031,8 @@
             <span class="model-badge">En Hızlı</span>
           </div>
           <p class="model-description">
-            LyDian AI Engine ile çalışan ultra-hızlı model. Gerçek zamanlı sohbetler ve hızlı yanıtlar için
-            optimize edilmiş. Günlük kullanım için idealdir.
+            LyDian AI Engine ile çalışan ultra-hızlı model. Gerçek zamanlı sohbetler ve hızlı
+            yanıtlar için optimize edilmiş. Günlük kullanım için idealdir.
           </p>
           <div class="model-specs">
             <div class="spec-item">

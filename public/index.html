@@ -1044,133 +1044,142 @@
 
     <!-- Schema.org: Organization + WebSite + SoftwareApplication + FAQ -->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "Organization",
-          "@id": "https://www.ailydian.com/#organization",
-          "name": "Ailydian",
-          "alternateName": "LyDian AI",
-          "url": "https://www.ailydian.com",
-          "logo": {
-            "@type": "ImageObject",
-            "url": "https://www.ailydian.com/icons/pwa-icon-512.png",
-            "width": 512,
-            "height": 512
-          },
-          "description": "Enterprise AI Platform - Multi-Model AI Integration, RAG, Voice, Video & Advanced Analytics",
-          "foundingDate": "2024",
-          "sameAs": [
-            "https://x.com/ailydian",
-            "https://www.linkedin.com/company/ailydian",
-            "https://github.com/ailydian"
-          ],
-          "contactPoint": {
-            "@type": "ContactPoint",
-            "contactType": "customer service",
-            "email": "support@ailydian.com",
-            "areaServed": "Worldwide",
-            "availableLanguage": ["Turkish", "English", "German", "French", "Spanish", "Arabic", "Russian", "Chinese"]
-          },
-          "address": {
-            "@type": "PostalAddress",
-            "addressCountry": "TR",
-            "addressRegion": "Istanbul",
-            "addressLocality": "Istanbul"
-          }
-        },
-        {
-          "@type": "WebSite",
-          "@id": "https://www.ailydian.com/#website",
-          "name": "LyDian AI Platform",
-          "url": "https://www.ailydian.com",
-          "description": "Kurumsal Yapay Zeka Platformu - Cok Modelli AI, RAG, Ses, Video ve Gelismis Analitik",
-          "inLanguage": ["tr-TR", "en-US", "de-DE", "fr-FR", "es-ES", "ar", "ru", "zh"],
-          "publisher": {"@id": "https://www.ailydian.com/#organization"},
-          "potentialAction": {
-            "@type": "SearchAction",
-            "target": {
-              "@type": "EntryPoint",
-              "urlTemplate": "https://www.ailydian.com/search?q={query}"
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://www.ailydian.com/#organization",
+            "name": "Ailydian",
+            "alternateName": "LyDian AI",
+            "url": "https://www.ailydian.com",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://www.ailydian.com/icons/pwa-icon-512.png",
+              "width": 512,
+              "height": 512
             },
-            "query-input": "required name=query"
-          }
-        },
-        {
-          "@type": "SoftwareApplication",
-          "name": "LyDian AI Hub",
-          "applicationCategory": "BusinessApplication",
-          "applicationSubCategory": "Artificial Intelligence Platform",
-          "operatingSystem": "Web",
-          "description": "Enterprise AI Platform with multi-model support, RAG, voice, video and advanced analytics",
-          "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD",
-            "availability": "https://schema.org/InStock"
-          },
-          "featureList": [
-            "Multi-Model AI Integration",
-            "RAG (Retrieval-Augmented Generation)",
-            "Voice AI (Speech-to-Text, Text-to-Speech)",
-            "Video AI Analysis",
-            "Web Search Integration",
-            "Code Generation",
-            "Medical AI Assistant",
-            "Legal AI Assistant",
-            "Multi-Language Support (32+ locales)",
-            "Real-time Analytics"
-          ],
-          "author": {"@id": "https://www.ailydian.com/#organization"}
-        },
-        {
-          "@type": "FAQPage",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "Ailydian nedir?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Ailydian, en gelismis yapay zeka motorlarini tek bir platformda birlestiren kurumsal yapay zeka cozumudur. RAG, ses, video ve kod uretimi gibi gelismis ozellikler sunar."
-              }
+            "description": "Enterprise AI Platform - Multi-Model AI Integration, RAG, Voice, Video & Advanced Analytics",
+            "foundingDate": "2024",
+            "sameAs": [
+              "https://x.com/ailydian",
+              "https://www.linkedin.com/company/ailydian",
+              "https://github.com/ailydian"
+            ],
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "contactType": "customer service",
+              "email": "support@ailydian.com",
+              "areaServed": "Worldwide",
+              "availableLanguage": [
+                "Turkish",
+                "English",
+                "German",
+                "French",
+                "Spanish",
+                "Arabic",
+                "Russian",
+                "Chinese"
+              ]
             },
-            {
-              "@type": "Question",
-              "name": "Hangi ozellikler sunuluyor?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "LyDian AI Free, Basic, Pro, Enterprise, Research ve Velocity motorlari dahil 15+ farkli AI motoru, tibbi AI, hukuki AI, IQ testi, goruntu olusturma, video analizi ve daha fazlasi desteklenmektedir."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "RAG (Retrieval-Augmented Generation) nedir?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "RAG, kendi belgelerinizi yukleyerek AI modellerinin daha dogru ve ozellesmis yanitlar vermesini saglayan gelismis bir teknolojidir. Belge analizi, semantik arama ve baglam tabanli yanitlar sunar."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Kac dil destekleniyor?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Ailydian platformu 32 farkli dili desteklemektedir: Turkce, Ingilizce, Almanca, Fransizca, Ispanyolca, Portekizce, Italyanca, Rusca, Arapca, Cince, Japonca ve daha fazlasi."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "API erisimi var mi?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Evet, RESTful API ve WebSocket destegi ile tam entegrasyon saglanir. Detayli API dokumantasyonu ve kod ornekleri mevcuttur."
-              }
+            "address": {
+              "@type": "PostalAddress",
+              "addressCountry": "TR",
+              "addressRegion": "Istanbul",
+              "addressLocality": "Istanbul"
             }
-          ]
-        }
-      ]
-    }
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://www.ailydian.com/#website",
+            "name": "LyDian AI Platform",
+            "url": "https://www.ailydian.com",
+            "description": "Kurumsal Yapay Zeka Platformu - Cok Modelli AI, RAG, Ses, Video ve Gelismis Analitik",
+            "inLanguage": ["tr-TR", "en-US", "de-DE", "fr-FR", "es-ES", "ar", "ru", "zh"],
+            "publisher": { "@id": "https://www.ailydian.com/#organization" },
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://www.ailydian.com/search?q={query}"
+              },
+              "query-input": "required name=query"
+            }
+          },
+          {
+            "@type": "SoftwareApplication",
+            "name": "LyDian AI Hub",
+            "applicationCategory": "BusinessApplication",
+            "applicationSubCategory": "Artificial Intelligence Platform",
+            "operatingSystem": "Web",
+            "description": "Enterprise AI Platform with multi-model support, RAG, voice, video and advanced analytics",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD",
+              "availability": "https://schema.org/InStock"
+            },
+            "featureList": [
+              "Multi-Model AI Integration",
+              "RAG (Retrieval-Augmented Generation)",
+              "Voice AI (Speech-to-Text, Text-to-Speech)",
+              "Video AI Analysis",
+              "Web Search Integration",
+              "Code Generation",
+              "Medical AI Assistant",
+              "Legal AI Assistant",
+              "Multi-Language Support (32+ locales)",
+              "Real-time Analytics"
+            ],
+            "author": { "@id": "https://www.ailydian.com/#organization" }
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Ailydian nedir?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Ailydian, en gelismis yapay zeka motorlarini tek bir platformda birlestiren kurumsal yapay zeka cozumudur. RAG, ses, video ve kod uretimi gibi gelismis ozellikler sunar."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Hangi ozellikler sunuluyor?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "LyDian AI Free, Basic, Pro, Enterprise, Research ve Velocity motorlari dahil 15+ farkli AI motoru, tibbi AI, hukuki AI, IQ testi, goruntu olusturma, video analizi ve daha fazlasi desteklenmektedir."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "RAG (Retrieval-Augmented Generation) nedir?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "RAG, kendi belgelerinizi yukleyerek AI modellerinin daha dogru ve ozellesmis yanitlar vermesini saglayan gelismis bir teknolojidir. Belge analizi, semantik arama ve baglam tabanli yanitlar sunar."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Kac dil destekleniyor?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Ailydian platformu 32 farkli dili desteklemektedir: Turkce, Ingilizce, Almanca, Fransizca, Ispanyolca, Portekizce, Italyanca, Rusca, Arapca, Cince, Japonca ve daha fazlasi."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "API erisimi var mi?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Evet, RESTful API ve WebSocket destegi ile tam entegrasyon saglanir. Detayli API dokumantasyonu ve kod ornekleri mevcuttur."
+                }
+              }
+            ]
+          }
+        ]
+      }
     </script>
 
     <meta property="og:image" content="https://www.ailydian.com/og-images/index.png" />
@@ -1329,7 +1338,7 @@
     <meta name="twitter:image:alt" content="LyDian AI — Kurumsal Yapay Zeka Platformu" />
 
     <!-- /Premium SEO -->
-<!-- PWA Manifest -->
+    <!-- PWA Manifest -->
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#C4A962" />
     <!-- iOS Safari -->
@@ -1408,7 +1417,8 @@
     <meta property="og:image:height" content="512" />
     <meta property="og:image:alt" content="aiLyDian - Grape Logo" />
     <meta name="msapplication-TileImage" content="/icons/pwa-icon-512.png" />
-    <meta name="msapplication-TileColor" content="#000000" /></head>
+    <meta name="msapplication-TileColor" content="#000000" />
+  </head>
   <body>
     <!-- ============================================================ -->
     <!-- 🎨 ORBITAL BACKGROUND CANVAS                                -->
@@ -1497,7 +1507,7 @@
           "
         >
           <span style="color: #ff006e">AI</span>
-          <span id="stat-gpt" style="color: #fff; font-weight: 700">41053</span>
+          <span id="stat-ai" style="color: #fff; font-weight: 700">41053</span>
         </div>
         <div
           style="
@@ -1643,7 +1653,7 @@
         <div style="font-size: 11px; color: #ff006e; font-weight: 700; letter-spacing: 0.5px">
           AI
         </div>
-        <div id="total-gpt" style="font-size: 16px; color: #fff; font-weight: 900; margin-top: 4px">
+        <div id="total-ai" style="font-size: 16px; color: #fff; font-weight: 900; margin-top: 4px">
           5259933
         </div>
       </div>
@@ -4144,7 +4154,7 @@
       // Base values for realistic growth simulation
       const baseStats = {
         llm: 58326,
-        gpt: 41053,
+        ai: 41053,
         cnn: 31847,
         rnn: 56971,
         gan: 9285,
@@ -4156,7 +4166,7 @@
 
       const baseTotals = {
         llm: 5053215,
-        gpt: 5259933,
+        ai: 5259933,
         cnn: 3421820,
         rnn: 1341588,
         gan: 128869,

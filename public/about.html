@@ -28,7 +28,8 @@
       }
     </style>
     <link
-      rel="preload" as="style"
+      rel="preload"
+      as="style"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Righteous&amp;display=swap"
       crossorigin="anonymous"
     />
@@ -73,8 +74,14 @@
           -apple-system,
           BlinkMacSystemFont,
           sans-serif;
-        background: var(--black);
-        color: var(--gray-900);
+        background: #0a0b0d;
+        background-image:
+          radial-gradient(at 27% 37%, rgba(0, 224, 174, 0.08) 0px, transparent 50%),
+          radial-gradient(at 97% 21%, rgba(110, 132, 255, 0.08) 0px, transparent 50%),
+          radial-gradient(at 52% 99%, rgba(184, 107, 255, 0.08) 0px, transparent 50%),
+          radial-gradient(at 10% 29%, rgba(0, 224, 174, 0.05) 0px, transparent 50%),
+          radial-gradient(at 97% 96%, rgba(110, 132, 255, 0.05) 0px, transparent 50%);
+        color: #ffffff;
         line-height: 1.6;
         overflow-x: hidden;
       }
@@ -87,16 +94,16 @@
         left: 0;
         right: 0;
         z-index: 1000;
-        background: rgba(255, 255, 255, 0.8);
+        background: rgba(0, 0, 0, 0.6);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         transition: all 0.3s ease;
       }
 
       .navbar.scrolled {
-        background: rgba(255, 255, 255, 0.95);
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        background: rgba(0, 0, 0, 0.8);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
       }
 
       .nav-container {
@@ -113,7 +120,7 @@
         font-family: 'Inter', sans-serif !important;
         font-size: 2.25rem;
         font-weight: 900 !important;
-        color: #000000;
+        color: #ffffff;
         text-decoration: none;
         letter-spacing: 0.08em !important;
         display: flex;
@@ -128,7 +135,7 @@
       }
 
       .nav-links a {
-        color: var(--gray-700);
+        color: rgba(255, 255, 255, 0.7);
         text-decoration: none;
         font-size: 0.95rem;
         font-weight: 500;
@@ -136,7 +143,7 @@
       }
 
       .nav-links a:hover {
-        color: var(--black);
+        color: #ffffff;
       }
 
       .nav-cta {
@@ -161,23 +168,23 @@
 
       .btn-secondary {
         background: transparent;
-        color: var(--gray-700);
+        color: rgba(255, 255, 255, 0.7);
       }
 
       .btn-secondary:hover {
-        background: var(--gray-100);
-        color: var(--black);
+        background: rgba(255, 255, 255, 0.1);
+        color: #ffffff;
       }
 
       .btn-primary {
-        background: var(--black);
-        color: var(--white);
+        background: var(--primary);
+        color: #000000;
       }
 
       .btn-primary:hover {
-        background: var(--gray-800);
+        background: var(--primary-hover);
         transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 4px 12px rgba(0, 224, 174, 0.4);
       }
 
       .mobile-menu-btn {
@@ -191,13 +198,14 @@
       .mobile-menu-btn svg {
         width: 24px;
         height: 24px;
+        color: #ffffff;
       }
 
       /* ========== HERO SECTION ========== */
 
       .hero {
         padding: 12rem 2rem 6rem;
-        background: linear-gradient(180deg, var(--white) 0%, var(--gray-50) 100%);
+        background: transparent;
         text-align: center;
         position: relative;
         overflow: hidden;
@@ -207,7 +215,7 @@
         position: absolute;
         width: 800px;
         height: 800px;
-        background: radial-gradient(circle, rgba(16, 163, 127, 0.1) 0%, transparent 70%);
+        background: radial-gradient(circle, rgba(0, 224, 174, 0.15) 0%, transparent 70%);
         border-radius: 50%;
         top: -400px;
         left: 50%;
@@ -239,14 +247,14 @@
         font-weight: 800;
         line-height: 1.1;
         letter-spacing: -0.03em;
-        color: var(--black);
+        color: #ffffff;
         margin-bottom: 1.5rem;
       }
 
       .hero-description {
         font-size: 1.5rem;
         line-height: 1.6;
-        color: var(--gray-600);
+        color: rgba(255, 255, 255, 0.7);
         max-width: 700px;
         margin: 0 auto;
       }
@@ -270,11 +278,11 @@
       .section-badge {
         display: inline-block;
         padding: 0.5rem 1rem;
-        background: var(--gray-100);
+        background: rgba(0, 224, 174, 0.1);
         border-radius: 50px;
         font-size: 0.875rem;
         font-weight: 600;
-        color: var(--gray-700);
+        color: var(--primary);
         margin-bottom: 1rem;
       }
 
@@ -283,19 +291,19 @@
         font-weight: 800;
         line-height: 1.2;
         letter-spacing: -0.03em;
-        color: var(--black);
+        color: #ffffff;
         margin-bottom: 1rem;
       }
 
       .section-description {
         font-size: 1.25rem;
-        color: var(--gray-600);
+        color: rgba(255, 255, 255, 0.7);
         max-width: 700px;
         margin: 0 auto;
       }
 
       .story-section {
-        background: var(--white);
+        background: transparent;
       }
 
       .story-content {
@@ -303,7 +311,7 @@
         margin: 0 auto;
         font-size: 1.125rem;
         line-height: 1.8;
-        color: var(--gray-600);
+        color: rgba(255, 255, 255, 0.8);
       }
 
       .story-content p {
@@ -313,7 +321,7 @@
       /* ========== VALUES SECTION ========== */
 
       .values-section {
-        background: var(--gray-50);
+        background: transparent;
       }
 
       .values-grid {
@@ -333,7 +341,7 @@
 
       .value-card:hover {
         transform: translateY(-4px);
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 12px 40px rgba(0, 224, 174, 0.2);
         border-color: var(--primary);
       }
 
@@ -357,20 +365,20 @@
       .value-title {
         font-size: 1.5rem;
         font-weight: 700;
-        color: var(--black);
+        color: #ffffff;
         margin-bottom: 1rem;
       }
 
       .value-description {
         font-size: 1rem;
         line-height: 1.7;
-        color: var(--gray-600);
+        color: rgba(255, 255, 255, 0.7);
       }
 
       /* ========== TEAM SECTION ========== */
 
       .team-section {
-        background: var(--white);
+        background: transparent;
       }
 
       .team-grid {
@@ -381,8 +389,8 @@
 
       .team-card {
         padding: 2rem;
-        background: var(--white);
-        border: 1px solid var(--gray-200);
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 16px;
         text-align: center;
         transition: all 0.3s ease;
@@ -390,7 +398,8 @@
 
       .team-card:hover {
         transform: translateY(-4px);
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 12px 40px rgba(0, 224, 174, 0.2);
+        border-color: var(--primary);
       }
 
       .team-avatar {
@@ -413,7 +422,7 @@
       .team-name {
         font-size: 1.25rem;
         font-weight: 700;
-        color: var(--black);
+        color: #ffffff;
         margin-bottom: 0.5rem;
       }
 
@@ -426,7 +435,7 @@
       /* ========== TIMELINE SECTION ========== */
 
       .timeline-section {
-        background: var(--gray-50);
+        background: transparent;
       }
 
       .timeline {
@@ -442,7 +451,7 @@
         transform: translateX(-50%);
         width: 2px;
         height: 100%;
-        background: var(--gray-200);
+        background: rgba(255, 255, 255, 0.1);
       }
 
       .timeline-item {
@@ -459,9 +468,9 @@
       .timeline-content {
         flex: 1;
         padding: 2rem;
-        background: var(--white);
+        background: rgba(255, 255, 255, 0.05);
         border-radius: 12px;
-        border: 1px solid var(--gray-200);
+        border: 1px solid rgba(255, 255, 255, 0.1);
       }
 
       .timeline-dot {
@@ -472,8 +481,8 @@
         height: 16px;
         background: var(--primary);
         border-radius: 50%;
-        border: 4px solid var(--white);
-        box-shadow: 0 0 0 4px var(--gray-200);
+        border: 4px solid #0a0b0d;
+        box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1);
       }
 
       .timeline-date {
@@ -486,13 +495,13 @@
       .timeline-title {
         font-size: 1.25rem;
         font-weight: 700;
-        color: var(--black);
+        color: #ffffff;
         margin-bottom: 0.5rem;
       }
 
       .timeline-description {
         font-size: 1rem;
-        color: var(--gray-600);
+        color: rgba(255, 255, 255, 0.7);
       }
 
       /* ========== CTA SECTION ========== */
@@ -525,14 +534,14 @@
       }
 
       .btn-white {
-        background: var(--white);
-        color: var(--black);
+        background: #ffffff;
+        color: #000000;
       }
 
       .btn-white:hover {
-        background: var(--gray-100);
+        background: rgba(255, 255, 255, 0.9);
         transform: translateY(-2px);
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2);
       }
 
       .btn-large {
@@ -545,8 +554,8 @@
 
       .footer {
         padding: 4rem 2rem 2rem;
-        background: var(--gray-900);
-        color: var(--gray-400);
+        background: rgba(0, 0, 0, 0.4);
+        color: rgba(255, 255, 255, 0.6);
       }
 
       .footer-container {
@@ -577,7 +586,7 @@
       .footer-description {
         font-size: 0.95rem;
         line-height: 1.7;
-        color: var(--gray-500);
+        color: rgba(255, 255, 255, 0.6);
         margin-bottom: 2rem;
       }
 
@@ -589,26 +598,26 @@
       .social-link {
         width: 40px;
         height: 40px;
-        background: var(--gray-800);
+        background: rgba(255, 255, 255, 0.05);
         border-radius: 8px;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: var(--gray-400);
+        color: rgba(255, 255, 255, 0.6);
         text-decoration: none;
         transition: all 0.2s ease;
       }
 
       .social-link:hover {
         background: var(--primary);
-        color: var(--white);
+        color: #000000;
         transform: translateY(-2px);
       }
 
       .footer-column h3 {
         font-size: 0.875rem;
         font-weight: 700;
-        color: var(--white);
+        color: #ffffff;
         text-transform: uppercase;
         letter-spacing: 0.05em;
         margin-bottom: 1.5rem;
@@ -623,19 +632,19 @@
       }
 
       .footer-links a {
-        color: var(--gray-500);
+        color: rgba(255, 255, 255, 0.6);
         text-decoration: none;
         font-size: 0.95rem;
         transition: color 0.2s ease;
       }
 
       .footer-links a:hover {
-        color: var(--white);
+        color: #ffffff;
       }
 
       .footer-bottom {
         padding-top: 2rem;
-        border-top: 1px solid var(--gray-800);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -645,7 +654,7 @@
 
       .footer-copyright {
         font-size: 0.875rem;
-        color: var(--gray-500);
+        color: rgba(255, 255, 255, 0.5);
       }
 
       .footer-legal {
@@ -654,14 +663,14 @@
       }
 
       .footer-legal a {
-        color: var(--gray-500);
+        color: rgba(255, 255, 255, 0.5);
         text-decoration: none;
         font-size: 0.875rem;
         transition: color 0.2s ease;
       }
 
       .footer-legal a:hover {
-        color: var(--white);
+        color: #ffffff;
       }
 
       /* ========== RESPONSIVE ========== */
@@ -952,7 +961,7 @@
     />
 
     <!-- /Premium SEO -->
-<!-- PWA Manifest -->
+    <!-- PWA Manifest -->
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#C4A962" />
     <!-- iOS Safari -->
@@ -1010,26 +1019,36 @@
     <link rel="shortcut icon" href="/icons/favicon.ico" />
     <!-- Schema.org: AboutPage + BreadcrumbList -->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "AboutPage",
-          "name": "Hakkımızda — LyDian AI Ekosistemi",
-          "url": "https://www.ailydian.com/about",
-          "description": "LyDian AI ekosistemi hakkında bilgi edinin. Kurumsal yapay zeka çözümleri, çok modelli AI entegrasyonu ve yenilikçi teknoloji vizyonumuz.",
-          "publisher": {"@id": "https://www.ailydian.com/#organization"},
-          "isPartOf": {"@id": "https://www.ailydian.com/#website"}
-        },
-        {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            {"@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://www.ailydian.com/"},
-            {"@type": "ListItem", "position": 2, "name": "Hakkımızda", "item": "https://www.ailydian.com/about"}
-          ]
-        }
-      ]
-    }
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "AboutPage",
+            "name": "Hakkımızda — LyDian AI Ekosistemi",
+            "url": "https://www.ailydian.com/about",
+            "description": "LyDian AI ekosistemi hakkında bilgi edinin. Kurumsal yapay zeka çözümleri, çok modelli AI entegrasyonu ve yenilikçi teknoloji vizyonumuz.",
+            "publisher": { "@id": "https://www.ailydian.com/#organization" },
+            "isPartOf": { "@id": "https://www.ailydian.com/#website" }
+          },
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Ana Sayfa",
+                "item": "https://www.ailydian.com/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Hakkımızda",
+                "item": "https://www.ailydian.com/about"
+              }
+            ]
+          }
+        ]
+      }
     </script>
   </head>
   <body>
