@@ -9,6 +9,7 @@ const Anthropic = require('@anthropic-ai/sdk');
 // Google Gemini support removed to avoid dependency issues
 // const { GoogleGenerativeAI } = require('@google/generative-ai');
 const axios = require('axios');
+const { getCorsOrigin } = require('../_middleware/cors');
 
 // Azure OpenAI
 const AZURE_OPENAI_KEY = process.env.AZURE_OPENAI_KEY;
@@ -26,7 +27,7 @@ const GROQ_API_KEY = process.env.GROQ_API_KEY;
 
 module.exports = async (req, res) => {
   // CORS headers
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 

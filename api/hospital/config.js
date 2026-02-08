@@ -18,7 +18,10 @@ const { v4: uuidv4 } = require('uuid');
 const jwt = require('jsonwebtoken');
 
 // JWT Configuration
-const JWT_SECRET = process.env.JWT_SECRET || 'ailydian-medical-jwt-secret-2025';
+const JWT_SECRET = process.env.JWT_SECRET;
+if (!JWT_SECRET) {
+  console.error('CRITICAL: JWT_SECRET environment variable is not set');
+}
 
 // In-memory stores (will be replaced with PostgreSQL)
 const HOSPITALS = new Map();
@@ -285,11 +288,11 @@ async function updateModules(req, res) {
 
     // Available AI models
     const AVAILABLE_AI_MODELS = [
-      'AX9F7E2B',
-      'OX5C9E2B',
-      'gemini',
+      'lydian-research',
+      'lydian-labs',
+      'lydian-vision',
       'lydian-velocity',
-      'azure-openai'
+      'lydian-cloud'
     ];
 
     // Validate specializations

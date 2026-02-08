@@ -1,6 +1,7 @@
 // Standalone Vercel Serverless: /api/menu
 // Serves localized menu data for mega dropdown navigation
 
+const { getCorsOrigin } = require('_middleware/cors');
 const MENU_DATA = {
   tr: {
     products: {
@@ -261,7 +262,7 @@ const MENU_DATA = {
 };
 
 module.exports = (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Cache-Control', 'public, max-age=3600');
 
   if (req.method === 'OPTIONS') {

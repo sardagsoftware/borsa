@@ -4,6 +4,7 @@
  * Version: 1.0.0 - Sardag Edition
  */
 
+const { getCorsOrigin } = require('../_middleware/cors');
 const PERPLEXITY_CONFIG = {
     apiKey: process.env.PERPLEXITY_API_KEY || '',
     endpoint: 'https://api.perplexity.ai/chat/completions',
@@ -97,7 +98,7 @@ async function searchWeb(query, options = {}) {
  */
 module.exports = async (req, res) => {
     // CORS headers
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
     res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 

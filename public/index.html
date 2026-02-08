@@ -1043,7 +1043,136 @@
     <meta name="author" content="LyDian AI Ecosystem" />
     <meta name="language" content="TR" />
 
-    <!-- Schema.org: Organization -->
+    <!-- Schema.org: Organization + WebSite + SoftwareApplication + FAQ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://www.ailydian.com/#organization",
+          "name": "Ailydian",
+          "alternateName": "LyDian AI",
+          "url": "https://www.ailydian.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.ailydian.com/icons/pwa-icon-512.png",
+            "width": 512,
+            "height": 512
+          },
+          "description": "Enterprise AI Platform - Multi-Model AI Integration, RAG, Voice, Video & Advanced Analytics",
+          "foundingDate": "2024",
+          "sameAs": [
+            "https://x.com/ailydian",
+            "https://www.linkedin.com/company/ailydian",
+            "https://github.com/ailydian"
+          ],
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "customer service",
+            "email": "support@ailydian.com",
+            "areaServed": "Worldwide",
+            "availableLanguage": ["Turkish", "English", "German", "French", "Spanish", "Arabic", "Russian", "Chinese"]
+          },
+          "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "TR",
+            "addressRegion": "Istanbul",
+            "addressLocality": "Istanbul"
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.ailydian.com/#website",
+          "name": "LyDian AI Platform",
+          "url": "https://www.ailydian.com",
+          "description": "Kurumsal Yapay Zeka Platformu - Cok Modelli AI, RAG, Ses, Video ve Gelismis Analitik",
+          "inLanguage": ["tr-TR", "en-US", "de-DE", "fr-FR", "es-ES", "ar", "ru", "zh"],
+          "publisher": {"@id": "https://www.ailydian.com/#organization"},
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://www.ailydian.com/search?q={query}"
+            },
+            "query-input": "required name=query"
+          }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "LyDian AI Hub",
+          "applicationCategory": "BusinessApplication",
+          "applicationSubCategory": "Artificial Intelligence Platform",
+          "operatingSystem": "Web",
+          "description": "Enterprise AI Platform with multi-model support, RAG, voice, video and advanced analytics",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock"
+          },
+          "featureList": [
+            "Multi-Model AI Integration",
+            "RAG (Retrieval-Augmented Generation)",
+            "Voice AI (Speech-to-Text, Text-to-Speech)",
+            "Video AI Analysis",
+            "Web Search Integration",
+            "Code Generation",
+            "Medical AI Assistant",
+            "Legal AI Assistant",
+            "Multi-Language Support (32+ locales)",
+            "Real-time Analytics"
+          ],
+          "author": {"@id": "https://www.ailydian.com/#organization"}
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Ailydian nedir?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Ailydian, en gelismis yapay zeka motorlarini tek bir platformda birlestiren kurumsal yapay zeka cozumudur. RAG, ses, video ve kod uretimi gibi gelismis ozellikler sunar."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Hangi ozellikler sunuluyor?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "LyDian AI Free, Basic, Pro, Enterprise, Research ve Velocity motorlari dahil 15+ farkli AI motoru, tibbi AI, hukuki AI, IQ testi, goruntu olusturma, video analizi ve daha fazlasi desteklenmektedir."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "RAG (Retrieval-Augmented Generation) nedir?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "RAG, kendi belgelerinizi yukleyerek AI modellerinin daha dogru ve ozellesmis yanitlar vermesini saglayan gelismis bir teknolojidir. Belge analizi, semantik arama ve baglam tabanli yanitlar sunar."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Kac dil destekleniyor?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Ailydian platformu 32 farkli dili desteklemektedir: Turkce, Ingilizce, Almanca, Fransizca, Ispanyolca, Portekizce, Italyanca, Rusca, Arapca, Cince, Japonca ve daha fazlasi."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "API erisimi var mi?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Evet, RESTful API ve WebSocket destegi ile tam entegrasyon saglanir. Detayli API dokumantasyonu ve kod ornekleri mevcuttur."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
 
     <meta property="og:image" content="https://www.ailydian.com/og-images/index.png" />
     <meta property="og:image:secure_url" content="https://www.ailydian.com/og-images/index.png" />
@@ -1281,161 +1410,7 @@
     <meta property="og:image:height" content="512" />
     <meta property="og:image:alt" content="aiLyDian - Grape Logo" />
     <meta name="msapplication-TileImage" content="/icons/pwa-icon-512.png" />
-    <meta name="msapplication-TileColor" content="#000000" />
-
-    <!-- ================================ -->
-    <!-- AILYDIAN SEO META TAGS (TR) -->
-    <!-- Auto-generated for multi-language SEO -->
-    <!-- ================================ -->
-
-    <!-- Primary Meta Tags -->
-    <title>AILYDIAN - Yapay Zeka Asistanı | AI Chat & Otomasyon Platformu</title>
-    <meta name="title" content="AILYDIAN - Yapay Zeka Asistanı | AI Chat & Otomasyon Platformu" />
-    <meta
-      name="description"
-      content="AILYDIAN - Kurumsal yapay zeka platformu. Gelişmiş dil modelleri, görsel oluşturma, kod asistanı ve otomasyon araçları. Güvenli, hızlı ve kolay entegrasyon."
-    />
-    <meta
-      name="keywords"
-      content="yapay zeka platformu, ai chat türkçe, kurumsal yapay zeka, ai otomasyon, görsel oluşturma ai, kod yazma asistanı, ai api, dil modeli"
-    />
-    <meta name="author" content="AILYDIAN" />
-    <meta
-      name="robots"
-      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
-    />
-    <meta name="language" content="tr" />
-    <link rel="canonical" href="https://www.ailydian.com/" />
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.ailydian.com/" />
-    <meta
-      property="og:title"
-      content="AILYDIAN - Yapay Zeka Asistanı | AI Chat & Otomasyon Platformu"
-    />
-    <meta
-      property="og:description"
-      content="AILYDIAN - Kurumsal yapay zeka platformu. Gelişmiş dil modelleri, görsel oluşturma, kod asistanı ve otomasyon araçları. Güvenli, hızlı ve kolay entegrasyon."
-    />
-    <meta property="og:image" content="https://www.ailydian.com/images/logo.png" />
-    <meta property="og:site_name" content="AILYDIAN" />
-    <meta property="og:locale" content="tr_TR" />
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://www.ailydian.com/" />
-    <meta
-      name="twitter:title"
-      content="AILYDIAN - Yapay Zeka Asistanı | AI Chat & Otomasyon Platformu"
-    />
-    <meta
-      name="twitter:description"
-      content="AILYDIAN ile yapay zeka gücünü keşfedin. gelişmiş yapay zeka modelleri tek bir platformda. Ücretsiz AI chat, görsel oluşturma, kod yazma ve otomasyon araçları."
-    />
-    <meta name="twitter:image" content="https://www.ailydian.com/images/logo.png" />
-    <meta name="twitter:site" content="@ailydian" />
-    <meta name="twitter:creator" content="@ailydian" />
-
-    <!-- AI Search Optimization -->
-    <meta
-      name="ai:context"
-      content="AILYDIAN, gelişmiş kurumsal AI modellerini tek bir platformda birleştiren gelişmiş AI asistan platformudur. Kullanıcılar chat, görsel oluşturma, kod yazma, belge analizi ve otomasyon araçlarına kolayca erişebilir."
-    />
-    <meta
-      name="ai:keywords"
-      content="yapay zeka, ai chat, gelişmiş ai türkçe, yapay zeka asistanı, ai otomasyon, görsel oluşturma, kod yazma ai, ücretsiz ai"
-    />
-    <meta name="ai:language" content="tr" />
-
-    <!-- Premium AI Platform Optimization -->
-    <meta
-      name="description:ai"
-      content="AILYDIAN, gelişmiş kurumsal AI modellerini tek bir platformda birleştiren gelişmiş AI asistan platformudur. Kullanıcılar chat, görsel oluşturma, kod yazma, belge analizi ve otomasyon araçlarına kolayca erişebilir."
-    />
-    <meta
-      name="summary"
-      content="AILYDIAN ile yapay zeka gücünü keşfedin. gelişmiş yapay zeka modelleri tek bir platformda. Ücretsiz AI chat, görsel oluşturma, kod yazma ve otomasyon araçları."
-    />
-
-    <!-- Geo Targeting -->
-    <meta name="geo.region" content="TR" />
-    <meta name="geo.placename" content="Istanbul" />
-
-    <!-- Mobile Optimization -->
-    <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="AILYDIAN" />
-
-    <!-- Hreflang Tags for International SEO -->
-    <link rel="alternate" hreflang="tr" href="https://www.ailydian.com/index.html" />
-    <link rel="alternate" hreflang="en" href="https://www.ailydian.com/en/index.html" />
-    <link rel="alternate" hreflang="ar" href="https://www.ailydian.com/ar/index.html" />
-    <link rel="alternate" hreflang="es" href="https://www.ailydian.com/es/index.html" />
-    <link rel="alternate" hreflang="fr" href="https://www.ailydian.com/fr/index.html" />
-    <link rel="alternate" hreflang="de" href="https://www.ailydian.com/de/index.html" />
-    <link rel="alternate" hreflang="it" href="https://www.ailydian.com/it/index.html" />
-    <link rel="alternate" hreflang="pt" href="https://www.ailydian.com/pt/index.html" />
-    <link rel="alternate" hreflang="ru" href="https://www.ailydian.com/ru/index.html" />
-    <link rel="alternate" hreflang="zh" href="https://www.ailydian.com/zh/index.html" />
-    <link rel="alternate" hreflang="ja" href="https://www.ailydian.com/ja/index.html" />
-    <link rel="alternate" hreflang="ko" href="https://www.ailydian.com/ko/index.html" />
-    <link rel="alternate" hreflang="hi" href="https://www.ailydian.com/hi/index.html" />
-    <link rel="alternate" hreflang="id" href="https://www.ailydian.com/id/index.html" />
-    <link rel="alternate" hreflang="nl" href="https://www.ailydian.com/nl/index.html" />
-    <link rel="alternate" hreflang="pl" href="https://www.ailydian.com/pl/index.html" />
-    <link rel="alternate" hreflang="sv" href="https://www.ailydian.com/sv/index.html" />
-    <link rel="alternate" hreflang="no" href="https://www.ailydian.com/no/index.html" />
-    <link rel="alternate" hreflang="da" href="https://www.ailydian.com/da/index.html" />
-    <link rel="alternate" hreflang="fi" href="https://www.ailydian.com/fi/index.html" />
-    <link rel="alternate" hreflang="x-default" href="https://www.ailydian.com/index.html" />
-
-    <!-- Schema.org Structured Data -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "AILYDIAN",
-        "applicationCategory": "BusinessApplication",
-        "operatingSystem": "Web",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "USD"
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.9",
-          "ratingCount": "12847"
-        }
-      }
-    </script>
-
-    <!-- Organization Schema -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "TechnologyCompany",
-        "name": "AILYDIAN",
-        "url": "https://www.ailydian.com",
-        "logo": "https://www.ailydian.com/images/logo.png",
-        "sameAs": [
-          "https://twitter.com/ailydian",
-          "https://linkedin.com/company/ailydian",
-          "https://github.com/ailydian"
-        ],
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "email": "info@ailydian.com",
-          "contactType": "customer service"
-        }
-      }
-    </script>
-
-    <!-- ================================ -->
-    <!-- END AILYDIAN SEO META TAGS -->
-    <!-- ================================ -->
-  </head>
+    <meta name="msapplication-TileColor" content="#000000" /></head>
   <body>
     <!-- ============================================================ -->
     <!-- 🎨 ORBITAL BACKGROUND CANVAS                                -->

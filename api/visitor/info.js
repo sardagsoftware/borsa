@@ -9,6 +9,7 @@
 
 const geoip = require('geoip-lite');
 const crypto = require('crypto');
+const { getCorsOrigin } = require('../_middleware/cors');
 
 // ============================================================
 // 🛡️ SECURITY: Rate Limiting (in-memory for serverless)
@@ -410,7 +411,7 @@ function logVisitor(ip, geo, userAgent, referer, isVPN, page, device, security) 
 
 module.exports = async function handler(req, res) {
   // 🛡️ Security Headers
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   res.setHeader('Cache-Control', 'no-store, max-age=0');

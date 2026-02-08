@@ -5,6 +5,7 @@
 const { Client } = require('pg');
 const { authenticate } = require('./jwt-middleware');
 const { clearAuthTokens, getRefreshToken } = require('../_lib/cookie-utils');
+const { getCorsOrigin } = require('../_middleware/cors');
 
 let dbClient = null;
 
@@ -40,7 +41,7 @@ async function logoutUser(userId, revokeAll = false, refreshToken = null) {
 }
 
 export default async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 

@@ -129,7 +129,7 @@ Allow: /assets/
 # SITEMAPS
 # ============================================
 
-Sitemap: https://www.ailydian.com/sitemap.xml
+Sitemap: https://www.ailydian.com/sitemap-index.xml
 
 # ============================================
 # ADDITIONAL INFORMATION

@@ -3,6 +3,7 @@
 // Azure SDK Integration: Full Capacity
 // FHIR Version: R4 (Latest Standard)
 
+const { getCorsOrigin } = require('../_middleware/cors');
 import fetch from 'node-fetch';
 import { DefaultAzureCredential } from '@azure/identity';
 import { SecretClient } from '@azure/keyvault-secrets';
@@ -406,7 +407,7 @@ const epicFHIRService = new EpicFHIRService();
 // Express.js API endpoint
 export default async function handler(req, res) {
     // CORS
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 

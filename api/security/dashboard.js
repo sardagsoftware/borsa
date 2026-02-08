@@ -19,19 +19,24 @@ require('dotenv').config();
 const soc2 = require('../../security/soc2-compliance');
 const rateLimiter = require('../../security/rate-limiter');
 const ipWhitelist = require('../../security/ip-whitelist');
+const { getCorsOrigin } = require('../_middleware/cors');
 
 module.exports = async (req, res) => {
   // CORS
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
   if (req.method === 'OPTIONS') return res.status(200).end();
 
   try {
-    // Admin authentication check (basic example - enhance for production)
+    // Admin authentication check
     const authHeader = req.headers.authorization;
-    const adminToken = process.env.ADMIN_TOKEN || 'lydian-security-2024';
+    const adminToken = process.env.ADMIN_TOKEN;
+    if (!adminToken) {
+      console.error('CRITICAL: ADMIN_TOKEN environment variable is not set');
+      return res.status(500).json({ success: false, error: 'Server configuration error' });
+    }
 
     if (!authHeader || authHeader !== `Bearer ${adminToken}`) {
       return res.status(401).json({

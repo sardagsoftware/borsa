@@ -6,12 +6,13 @@
  */
 
 const { SpecialtyCareEngine } = require('../../services/specialty-care-modules');
+const { getCorsOrigin } = require('../_middleware/cors');
 
 const specialtyCareEngine = new SpecialtyCareEngine();
 
 module.exports = async (req, res) => {
   // Set CORS headers
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 

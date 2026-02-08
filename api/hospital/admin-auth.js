@@ -21,7 +21,10 @@ const QRCode = require('qrcode');
 const { v4: uuidv4 } = require('uuid');
 
 // JWT Configuration
-const JWT_SECRET = process.env.JWT_SECRET || 'ailydian-medical-jwt-secret-2025';
+const JWT_SECRET = process.env.JWT_SECRET;
+if (!JWT_SECRET) {
+  console.error('CRITICAL: JWT_SECRET environment variable is not set');
+}
 const JWT_EXPIRES_IN = '24h';
 
 // In-memory stores (will be replaced with PostgreSQL)

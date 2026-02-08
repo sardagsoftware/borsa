@@ -9,6 +9,7 @@ const WikipediaProvider = require('./providers/wikipedia');
 const PubMedProvider = require('./providers/pubmed');
 const NASAProvider = require('./providers/nasa');
 const AzureCognitiveSearchProvider = require('./providers/azure-cognitive');
+const { getCorsOrigin } = require('../_middleware/cors');
 
 // Ultimate Knowledge Base with Real API Integration
 class UltimateKnowledgeBase {
@@ -271,7 +272,7 @@ class UltimateKnowledgeBase {
 // ========== API Handler ==========
 module.exports = async (req, res) => {
     // CORS Headers
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 

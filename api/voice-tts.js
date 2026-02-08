@@ -3,6 +3,7 @@
 
 const fetch = require('node-fetch');
 const sdk = require('microsoft-cognitiveservices-speech-sdk');
+const { getCorsOrigin } = require('_middleware/cors');
 
 // ==========================================
 // AZURE SPEECH SERVICES CONFIGURATION (PRIMARY)
@@ -196,7 +197,7 @@ async function generateVoice(text, options = {}) {
 // ==========================================
 module.exports = async (req, res) => {
   // CORS
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 

@@ -8,10 +8,11 @@ const { chatConversations, chatMessages } = require('./_lib/db');
 const { extractToken, verifyAccessToken } = require('./_lib/jwt');
 const { parseCookies } = require('./_lib/cookies');
 const { parseBody } = require('./_lib/body-parser');
+const { getCorsOrigin } = require('../_middleware/cors');
 
 module.exports = async function handler(req, res) {
   // CORS headers
-  res.setHeader('Access-Control-Allow-Origin', req.headers.origin || '*');
+  res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   res.setHeader('Access-Control-Allow-Credentials', 'true');

@@ -1,6 +1,7 @@
 // Standalone Vercel Serverless: /api/healthmap
 // Checks 16 backend-connected pages and returns status
 
+const { getCorsOrigin } = require('_middleware/cors');
 const TARGETS = [
   { name: 'Auth', url: '/auth.html' },
   { name: 'Chat', url: '/chat.html' },
@@ -50,7 +51,7 @@ async function probe(url) {
 }
 
 module.exports = async (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Cache-Control', 'public, max-age=60');
 
   if (req.method === 'OPTIONS') {

@@ -3,6 +3,7 @@
  * Evidence-based 10-year risk prediction for Alzheimer's, Stroke, Parkinson's
  */
 
+const { getCorsOrigin } = require('../_middleware/cors');
 const {
     createSecureError,
     deIdentifyPatientData,
@@ -166,7 +167,7 @@ const EVIDENCE_REFERENCES = [
 
 module.exports = async (req, res) => {
     // CORS
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
     res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 

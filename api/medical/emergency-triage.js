@@ -9,6 +9,7 @@
 const { createSecureError } = require('../neuro/_azure-config');
 const { SSEStreamer } = require('../../lib/io/streaming');
 const { executeWithSentinel } = require('../../lib/middleware/tokenGovernorMiddleware');
+const { getCorsOrigin } = require('../_middleware/cors');
 
 // Emergency Severity Index (ESI) - 5-level triage system used globally
 const ESI_LEVELS = {
@@ -220,7 +221,7 @@ function generateCareRecommendations(esiLevel, vitalAlerts, chiefComplaint) {
 
 module.exports = async (req, res) => {
     // CORS
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
     res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 

@@ -17,6 +17,7 @@
 
 const { getQuantumGateway } = require('../../services/quantum-gateway');
 const axios = require('axios');
+const { getCorsOrigin } = require('../_middleware/cors');
 
 // Groq for fast AI analysis
 const GROQ_API_KEY = process.env.GROQ_API_KEY;
@@ -127,7 +128,7 @@ async function analyzeWithAX9F7E2B(prompt) {
 module.exports = async (req, res) => {
     // CORS headers
     res.setHeader('Access-Control-Allow-Credentials', 'true');
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
     res.setHeader('Access-Control-Allow-Methods', 'POST,OPTIONS');
     res.setHeader(
         'Access-Control-Allow-Headers',

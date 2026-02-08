@@ -4,6 +4,7 @@
  */
 
 const { Client } = require('pg');
+const { getCorsOrigin } = require('../_middleware/cors');
 const {
   generateAccessToken,
   verifyRefreshToken,
@@ -79,7 +80,7 @@ async function refreshAccessToken(refreshToken) {
 }
 
 export default async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 

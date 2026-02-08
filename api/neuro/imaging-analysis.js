@@ -5,6 +5,7 @@
 
 const formidable = require('formidable');
 const fs = require('fs').promises;
+const { getCorsOrigin } = require('../_middleware/cors');
 const {
     AZURE_OPENAI_CONFIG,
     AZURE_HEALTH_CONFIG,
@@ -84,7 +85,7 @@ const MEDICAL_CITATIONS = [
 
 module.exports = async (req, res) => {
     // CORS Headers
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
     res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 

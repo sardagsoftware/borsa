@@ -10,6 +10,7 @@
  * @license Mayo Clinic Platform Partnership
  */
 
+const { getCorsOrigin } = require('../_middleware/cors');
 import Anthropic from '@anthropic-ai/sdk';
 import { Configuration, OpenAIApi } from 'lydian-labs';
 
@@ -482,7 +483,7 @@ Provide:
 // API Handler
 export default async function handler(req, res) {
     // CORS Headers
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-API-Key');
 

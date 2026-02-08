@@ -5,6 +5,7 @@
  */
 
 const { chatUsers, chatSessions } = require('./_lib/db');
+const { getCorsOrigin } = require('../_middleware/cors');
 const {
   generateAccessToken,
   extractRefreshToken,
@@ -14,7 +15,7 @@ const { updateAccessCookie, parseCookies } = require('./_lib/cookies');
 
 module.exports = async function handler(req, res) {
   // CORS headers
-  res.setHeader('Access-Control-Allow-Origin', req.headers.origin || '*');
+  res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   res.setHeader('Access-Control-Allow-Credentials', 'true');

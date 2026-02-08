@@ -1,6 +1,7 @@
 const formidable = require('formidable');
 const Anthropic = require('@anthropic-ai/sdk');
 const fs = require('fs');
+const { getCorsOrigin } = require('../_middleware/cors');
 
 // Anthropic AX9F7E2B Client (Vision capable)
 const anthropic = new Anthropic({
@@ -9,7 +10,7 @@ const anthropic = new Anthropic({
 
 module.exports = async (req, res) => {
   // CORS
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 

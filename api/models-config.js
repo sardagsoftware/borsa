@@ -274,22 +274,22 @@ const ALL_AI_MODELS = {
   }
 };
 
-// Legacy key mapping for backward compatibility
+// Legacy key mapping for backward compatibility (obfuscated)
 const LEGACY_KEY_MAP = {
-  'o1-preview': 'OX1E9R4P',
-  'o1-mini': 'OX1M7N2K',
-  'gemini-2-0-flash': 'VX2F8A0E',
-  'gemini-1-5-pro': 'VX1P5R0A',
-  'gemini-1-5-flash': 'VX1F5L0B',
-  'azure-OX5C9E2B': 'CX5E9B2A',
-  'azure-gpt-35-turbo': 'CX3T5R1B',
-  'mistral-medium': 'MX3M5D7E',
-  'deepseek-chat': 'QX7D4S2K',
-  'yi-large': 'YX8L4A2G',
-  'glm-4': 'ZX4G8N1L',
-  'glm-4-6': 'ZX4C6E9A',
-  'glm-4-5v': 'ZX4V5E9B',
-  'asi-one': 'FX1A3S7I',
+  'lx-preview': 'OX1E9R4P',
+  'lx-mini': 'OX1M7N2K',
+  'lx-velocity-flash': 'VX2F8A0E',
+  'lx-velocity-pro': 'VX1P5R0A',
+  'lx-velocity-lite': 'VX1F5L0B',
+  'lx-cloud-pro': 'CX5E9B2A',
+  'lx-cloud-lite': 'CX3T5R1B',
+  'lx-edge-medium': 'MX3M5D7E',
+  'lx-quantum': 'QX7D4S2K',
+  'lx-horizon': 'YX8L4A2G',
+  'lx-code': 'ZX4G8N1L',
+  'lx-code-expert': 'ZX4C6E9A',
+  'lx-code-vision': 'ZX4V5E9B',
+  'lx-frontier': 'FX1A3S7I',
 };
 
 // Get all active models

@@ -61,9 +61,9 @@ function checkRateLimit(userId = 'anonymous') {
 }
 
 async function handleRequest(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  // Apply centralized sanitization + secure CORS
+  const { applySanitization } = require('./_middleware/sanitize');
+  applySanitization(req, res);
 
   if (req.method === 'OPTIONS') {
     return res.status(200).end();

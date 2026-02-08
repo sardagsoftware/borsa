@@ -10,6 +10,7 @@ const { Client } = require('pg');
 const { generateAccessToken, generateRefreshToken } = require('./jwt-middleware');
 const { requireRecaptcha } = require('../_lib/recaptcha-verify');
 const { setAuthTokens } = require('../_lib/cookie-utils');
+const { getCorsOrigin } = require('../_middleware/cors');
 
 /**
  * Database client singleton
@@ -95,7 +96,7 @@ async function loginUser(email, password) {
  */
 export default async function handler(req, res) {
   // CORS
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 

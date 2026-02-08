@@ -2,6 +2,7 @@
 // Model names are HIDDEN from frontend
 
 const axios = require('axios');
+const { getCorsOrigin } = require('_middleware/cors');
 
 // Configuration
 const PERPLEXITY_API_KEY = process.env.PERPLEXITY_API_KEY;
@@ -28,7 +29,7 @@ function checkRateLimit(userId = 'anonymous') {
 
 module.exports = async (req, res) => {
   // CORS headers
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 

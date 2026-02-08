@@ -3,6 +3,7 @@
 
 const { GoogleAuth } = require('google-auth-library');
 const OpenAI = require('lydian-labs');
+const { getCorsOrigin } = require('_middleware/cors');
 
 // ==========================================
 // AZURE DALL-E 3 CONFIGURATION (PRIMARY)
@@ -233,7 +234,7 @@ async function generateImage(prompt, options = {}) {
 // ==========================================
 module.exports = async (req, res) => {
   // CORS
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 

@@ -1,8 +1,9 @@
 // Simple test endpoint - no dependencies
+const { getCorsOrigin } = require('_middleware/cors');
 module.exports = async (req, res) => {
   console.log('✅ Simple test endpoint called');
 
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Content-Type', 'application/json');
 
   if (req.method === 'OPTIONS') {

@@ -1,5 +1,6 @@
 // LyDian Media Generation API - Video & Image (Hidden)
 const fetch = require('node-fetch');
+const { getCorsOrigin } = require('_middleware/cors');
 
 // Google AI Configuration (Hidden from user)
 const GOOGLE_AI = {
@@ -17,7 +18,7 @@ const GOOGLE_AI = {
 
 module.exports = async (req, res) => {
   // CORS
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 

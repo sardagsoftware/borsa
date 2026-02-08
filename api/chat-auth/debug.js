@@ -4,8 +4,9 @@
  * Health check endpoint
  */
 
+const { getCorsOrigin } = require('../_middleware/cors');
 module.exports = function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Content-Type', 'application/json');
 
   return res.status(200).json({

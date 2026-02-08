@@ -6,6 +6,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { getCorsOrigin } = require('_middleware/cors');
 
 // Load environment variables manually
 const envPath = path.join(__dirname, '../.env');
@@ -67,7 +68,7 @@ const RATE_LIMIT_MAX_REQUESTS = 60;
 async function handleTranslate(req, res) {
     try {
         // CORS headers for browser requests - MUST BE FIRST
-        res.setHeader('Access-Control-Allow-Origin', '*');
+        res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
         res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
         res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
         res.setHeader('Access-Control-Max-Age', '86400');
@@ -289,7 +290,7 @@ function isRateLimited(clientIP) {
  * Health check endpoint
  */
 async function handleHealth(req, res) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
     res.setHeader('Content-Type', 'application/json');
 
     res.statusCode = 200;

@@ -10,6 +10,7 @@ const formidable = require('formidable');
 const fs = require('fs');
 const path = require('path');
 const axios = require('axios');
+const { getCorsOrigin } = require('../_middleware/cors');
 
 // Fireworks AI Configuration
 const FIREWORKS_API_KEY = process.env.FIREWORKS_API_KEY;
@@ -642,7 +643,7 @@ async function analyzeMedicalRecords(filePath, fileInfo) {
  */
 module.exports = async (req, res) => {
   // CORS headers
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS, GET');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 

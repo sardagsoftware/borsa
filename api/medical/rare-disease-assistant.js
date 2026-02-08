@@ -12,6 +12,7 @@ const { executeWithSentinel, getSentinel } = require('../../lib/middleware/token
 
 // 🧬 ORPHANET API INTEGRATION - 7,000+ Rare Diseases
 const { orphaNetService } = require('../../lib/medical/orphanet-api-service');
+const { getCorsOrigin } = require('../_middleware/cors');
 
 // Initialize Azure OpenAI (optional - fallback to demo if not configured)
 let azureOpenAI = null;
@@ -303,7 +304,7 @@ function generateClinicalReasoning(patientData, matches) {
 
 module.exports = async (req, res) => {
     // CORS
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
     res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 

@@ -19,6 +19,7 @@ const fs = require('fs').promises;
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
 const { fileManager } = require('./file-manager');
+const { getCorsOrigin } = require('../_middleware/cors');
 
 // File type detection
 function detectFileType(filename, mimetype) {
@@ -67,7 +68,7 @@ function getUserIdFromToken(authHeader) {
 
 export default async function handler(req, res) {
     // CORS
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
     res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 

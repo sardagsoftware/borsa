@@ -16,6 +16,7 @@
  * ============================================================================
  */
 
+const { getCorsOrigin } = require('../_middleware/cors');
 import Anthropic from '@anthropic-ai/sdk';
 import crypto from 'crypto';
 
@@ -428,7 +429,7 @@ Provide evidence-based clinical decision support including:
 export default async function handler(req, res) {
   // CORS
   res.setHeader('Access-Control-Allow-Credentials', 'true');
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 

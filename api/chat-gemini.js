@@ -3,6 +3,7 @@
 
 require('dotenv').config();
 const axios = require('axios');
+const { getCorsOrigin } = require('_middleware/cors');
 
 // Google AI Configuration
 const GOOGLE_AI_API_KEY = process.env.GOOGLE_AI_API_KEY;
@@ -88,10 +89,9 @@ function convertToGeminiFormat(messages, systemPrompt = null) {
 
 // Main request handler
 async function handleRequest(req, res) {
-  // CORS headers
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  // Apply centralized sanitization + secure CORS
+  const { applySanitization } = require('./_middleware/sanitize');
+  applySanitization(req, res);
 
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
@@ -106,11 +106,10 @@ async function handleRequest(req, res) {
 
   // Validate API key
   if (!GOOGLE_AI_API_KEY) {
-    console.error('❌ Google AI API key not configured');
+    console.error('AI engine key not configured');
     return res.status(500).json({
       success: false,
-      error: 'Gemini API not configured',
-      message: 'Please set GOOGLE_AI_API_KEY environment variable'
+      error: 'AI engine not configured'
     });
   }
 
@@ -158,7 +157,7 @@ async function handleRequest(req, res) {
     const { contents, systemInstruction } = convertToGeminiFormat(messageArray, systemPrompt);
 
     // Log request
-    console.log(`🤖 Gemini Request - Model: ${model}, Tokens: ${max_tokens}, Stream: ${stream}`);
+    console.log(`Request - Model: ${model}, Tokens: ${max_tokens}, Stream: ${stream}`);
 
     // Build API URL
     const modelName = GEMINI_MODELS[model].name;
@@ -279,13 +278,13 @@ async function handleRequest(req, res) {
         totalTokens: data.usageMetadata?.totalTokenCount || 0
       };
 
-      console.log(`✅ Gemini Response received - ${responseText.length} characters`);
+      console.log(`Response received - ${responseText.length} characters`);
 
       res.status(200).json({
         success: true,
         response: responseText,
         model: model,
-        provider: 'Google AI',
+        provider: 'LyDian AI',
         usage: usage,
         finishReason: data.candidates[0]?.finishReason,
         timestamp: new Date().toISOString()
@@ -344,7 +343,7 @@ async function handleRequest(req, res) {
 
 // Get available models
 function getModels(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.status(200).json({
     success: true,
     models: Object.keys(GEMINI_MODELS).map(key => ({

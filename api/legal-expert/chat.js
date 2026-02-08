@@ -5,6 +5,7 @@
  */
 const OpenAI = require('lydian-labs');
 const { getLegalSystemPrompt } = require('../../lib/prompts/lydian');
+const { getCorsOrigin } = require('../_middleware/cors');
 
 // AI Model Configuration (Hidden from users)
 const MODELS = {
@@ -47,7 +48,7 @@ const MODELS = {
 
 module.exports = async (req, res) => {
   // CORS headers
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 

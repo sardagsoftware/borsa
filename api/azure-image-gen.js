@@ -2,6 +2,7 @@
 // Model names are HIDDEN from frontend
 
 const { AzureOpenAI } = require('lydian-labs');
+const { getCorsOrigin } = require('_middleware/cors');
 
 // Azure OpenAI Configuration
 const AZURE_OPENAI_ENDPOINT = process.env.AZURE_OPENAI_ENDPOINT || process.env.AZURE_ENDPOINT;
@@ -91,7 +92,7 @@ async function generateWithOpenAI(prompt, size = '1024x1024', quality = 'standar
 
 module.exports = async (req, res) => {
   // CORS headers
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 

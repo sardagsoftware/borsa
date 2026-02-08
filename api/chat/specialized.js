@@ -1,6 +1,7 @@
 // LyDian Universal AI - All Models Hidden & Turkish Forced
 // Note: Vercel automatically loads environment variables, no dotenv needed
 const OpenAI = require('lydian-labs');
+const { getCorsOrigin } = require('../_middleware/cors');
 
 // LyDian AI Engine Registry
 const _EP = {
@@ -106,7 +107,7 @@ SEN / أنت / YOU ARE: LyDian AI - Universal Multilingual Assistant (Developed 
 };
 
 module.exports = async (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 

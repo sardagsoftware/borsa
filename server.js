@@ -359,6 +359,31 @@ app.use(getTracingHandler());
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 
+// 🔐 RESPONSE SANITIZATION - Strip all AI model names from responses
+const { deepSanitize, sanitizeSSEChunk } = require('./api/_middleware/sanitize');
+app.use((req, res, next) => {
+  const originalJson = res.json.bind(res);
+  res.json = function(data) {
+    return originalJson(deepSanitize(data));
+  };
+  const originalSend = res.send.bind(res);
+  res.send = function(data) {
+    if (typeof data === 'string') {
+      const { sanitizeModelNames } = require('./services/localrecall/obfuscation');
+      return originalSend(sanitizeModelNames(data));
+    }
+    if (data && typeof data === 'object') {
+      return originalSend(deepSanitize(data));
+    }
+    return originalSend(data);
+  };
+  const originalWrite = res.write.bind(res);
+  res.write = function(chunk, encoding, callback) {
+    return originalWrite(sanitizeSSEChunk(chunk), encoding, callback);
+  };
+  next();
+});
+
 // 4.5 Request Logging (Production-grade Winston logger)
 const { requestLogger, errorLogger } = require('./lib/middleware/request-logger');
 app.use(requestLogger);
@@ -5233,12 +5258,12 @@ app.post('/api/gemini', async (req, res) => {
     const enterpriseResponse = {
       success: true,
       model: model,
-      provider: 'Google AI',
+      provider: 'LyDian AI',
       result: modelResponse,
       metadata: {
-        provider: 'Google AI Platform',
+        provider: 'LyDian AI Platform',
         version: '2024-12-15',
-        endpoint: `https://${region}-aiplatform.googleapis.com`,
+        endpoint: `https://api.ailydian.com/v1`,
         sla: '99.95%',
         latency: Math.random() * 80 + 30 + 'ms',
         timestamp: new Date().toISOString(),
@@ -5324,9 +5349,9 @@ app.post('/api/openai', async (req, res) => {
       provider: 'lydian-labs',
       result: modelResponse,
       metadata: {
-        provider: 'OpenAI Platform',
+        provider: 'LyDian AI Engine',
         version: '2024-11-20',
-        endpoint: `https://api.openai.com/v1`,
+        endpoint: `https://api.ailydian.com/v1`,
         sla: '99.9%',
         latency: Math.random() * 60 + 40 + 'ms',
         timestamp: new Date().toISOString(),
@@ -5429,9 +5454,9 @@ app.post('/api/AX9F7E2B', async (req, res) => {
       provider: 'lydian-research',
       result: modelResponse,
       metadata: {
-        provider: 'Anthropic AI',
+        provider: 'LyDian Research',
         version: '2024-12-10',
-        endpoint: `https://api.anthropic.com/v1`,
+        endpoint: `https://api.ailydian.com/v1`,
         sla: '99.9%',
         latency: Math.random() * 70 + 30 + 'ms',
         timestamp: new Date().toISOString(),
@@ -5890,11 +5915,12 @@ app.post('/api/stream/chat', async (req, res) => {
     }
 
     // Set SSE headers
+    const sseOrigin = req.headers.origin && ['https://ailydian.com', 'https://www.ailydian.com', 'https://ailydian-ultra-pro.vercel.app'].includes(req.headers.origin) ? req.headers.origin : 'https://www.ailydian.com';
     res.writeHead(200, {
       'Content-Type': 'text/event-stream',
       'Cache-Control': 'no-cache',
       'Connection': 'keep-alive',
-      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Origin': sseOrigin,
       'Access-Control-Allow-Headers': 'Cache-Control'
     });
 
@@ -7674,7 +7700,7 @@ app.post('/api/translate', async (req, res) => {
         },
         confidence: 0.95 + Math.random() * 0.05,
         service: service,
-        provider: 'Azure Translator',
+        provider: 'LyDian Translator',
         alternatives: [
           translatedText,
           `Alternative translation: ${translatedText}`,
@@ -8014,7 +8040,7 @@ app.get('/api/translate/ui/:langCode', (req, res) => {
     language: langCode,
     translations: translation,
     availableLanguages: Object.keys(uiTranslations),
-    provider: 'Z.AI Enterprise Translation Pack',
+    provider: 'LyDian Enterprise Translation Pack',
     timestamp: new Date().toISOString()
   });
 });
@@ -9577,7 +9603,7 @@ const apolloServer = new ApolloServer({
 
 // Express middleware setup
 app.use(cors({
-  origin: true,
+  origin: ['https://ailydian.com', 'https://www.ailydian.com', 'https://ailydian-ultra-pro.vercel.app'],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-API-Key', 'X-Requested-With']

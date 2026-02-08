@@ -6,6 +6,7 @@
  */
 
 // Mock brand database (in production, use real database)
+const { getCorsOrigin } = require('../../_middleware/cors');
 const BRANDS = [
     { id: 'brand-001', name: 'Turkcell', status: 'ACTIVE', sector: 'Telekomünikasyon', logo: '/brands/turkcell.png' },
     { id: 'brand-002', name: 'Vodafone', status: 'ACTIVE', sector: 'Telekomünikasyon', logo: '/brands/vodafone.png' },
@@ -71,7 +72,7 @@ const BRANDS = [
 
 // CORS headers
 const CORS_HEADERS = {
-    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Origin': getCorsOrigin(req),
     'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type, Authorization',
     'Access-Control-Max-Age': '86400',

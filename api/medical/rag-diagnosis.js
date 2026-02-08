@@ -6,6 +6,7 @@
 
 const { OpenAIClient, AzureKeyCredential } = require('@azure/openai');
 const axios = require('axios');
+const { getCorsOrigin } = require('../_middleware/cors');
 
 // Azure OpenAI credentials
 const AZURE_OPENAI_KEY = process.env.AZURE_OPENAI_KEY;
@@ -19,7 +20,7 @@ const ICD_API = process.env.ICD_API_ENDPOINT;
 
 module.exports = async (req, res) => {
   // CORS headers
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 

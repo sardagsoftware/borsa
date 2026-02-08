@@ -20,6 +20,7 @@ const fs = require('fs').promises;
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
 const { optionalAuthenticate } = require('../auth/jwt-middleware');
+const { getCorsOrigin } = require('../_middleware/cors');
 
 class MedicalFileManager {
     constructor() {
@@ -561,7 +562,7 @@ const fileManager = new MedicalFileManager();
 // Export handler
 module.exports = async function handler(req, res) {
     // CORS
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, DELETE, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 

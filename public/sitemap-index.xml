@@ -2,6 +2,38 @@
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
     <loc>https://www.ailydian.com/sitemap-core.xml</loc>
-    <lastmod>2025-10-03</lastmod>
+    <lastmod>2026-02-08</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://www.ailydian.com/sitemap-products.xml</loc>
+    <lastmod>2026-02-08</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://www.ailydian.com/sitemap-medical.xml</loc>
+    <lastmod>2026-02-08</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://www.ailydian.com/sitemap-legal.xml</loc>
+    <lastmod>2026-02-08</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://www.ailydian.com/sitemap-civic.xml</loc>
+    <lastmod>2026-02-08</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://www.ailydian.com/sitemap-governance.xml</loc>
+    <lastmod>2026-02-08</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://www.ailydian.com/sitemap-developer.xml</loc>
+    <lastmod>2026-02-08</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://www.ailydian.com/sitemap-company.xml</loc>
+    <lastmod>2026-02-08</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://www.ailydian.com/sitemap-images.xml</loc>
+    <lastmod>2026-02-08</lastmod>
   </sitemap>
 </sitemapindex>

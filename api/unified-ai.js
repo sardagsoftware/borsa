@@ -2,6 +2,7 @@
 require('dotenv').config();
 const OpenAI = require('lydian-labs');
 const obf = require('../security/ultra-obfuscation-v2');
+const { getCorsOrigin } = require('_middleware/cors');
 
 // 🔒 ENCRYPTED AI Configuration - NO plaintext model names
 // Using ultra-obfuscation-v2.js for military-grade security
@@ -83,7 +84,7 @@ const TURKISH_SYSTEM = {
 
 module.exports = async (req, res) => {
   // CORS
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 

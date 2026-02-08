@@ -3,6 +3,7 @@
  * LyDian AI Machine Learning Integration for Brain Aging Prediction
  */
 
+const { getCorsOrigin } = require('../_middleware/cors');
 const {
     AZURE_ML_CONFIG,
     createSecureError,
@@ -129,7 +130,7 @@ function generateInterventionOpportunities(brainAge, chronologicalAge, riskFacto
 
 module.exports = async (req, res) => {
     // CORS
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
     res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 

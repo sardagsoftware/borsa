@@ -8,6 +8,7 @@ const { ComputerVisionClient } = require('@azure/cognitiveservices-computervisio
 const { CognitiveServicesCredentials } = require('@azure/ms-rest-azure-js');
 const multiparty = require('multiparty');
 const dicomParser = require('dicom-parser');
+const { getCorsOrigin } = require('../_middleware/cors');
 
 // Azure credentials
 const AZURE_CV_KEY = process.env.AZURE_COMPUTER_VISION_KEY;
@@ -17,7 +18,7 @@ const AZURE_HEALTH_INSIGHTS_ENDPOINT = process.env.AZURE_HEALTH_INSIGHTS_ENDPOIN
 
 module.exports = async (req, res) => {
   // CORS headers
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 

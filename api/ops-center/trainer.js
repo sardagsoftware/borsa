@@ -1,9 +1,10 @@
 // AI Ops Center - Auto-Trainer API
 // Otomatik eğitim pipeline verileri
 
+const { getCorsOrigin } = require('../_middleware/cors');
 module.exports = async (req, res) => {
   // CORS başlıkları
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 

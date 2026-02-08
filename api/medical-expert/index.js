@@ -7,6 +7,7 @@
 const { readFileSync, writeFileSync, existsSync } = require('fs');
 const { join } = require('path');
 const OpenAI = require('lydian-labs'); // Supports both OpenAI and Azure OpenAI
+const { getCorsOrigin } = require('../_middleware/cors');
 
 // Rate limiting storage
 const requestLog = new Map();
@@ -275,7 +276,7 @@ function getFirstAidInfo(message) {
 // Main API handler
 module.exports = async (req, res) => {
   // CORS headers
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 

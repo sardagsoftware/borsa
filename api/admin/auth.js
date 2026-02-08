@@ -15,6 +15,7 @@
  * @version 2.0.0
  */
 
+const { getCorsOrigin } = require('../_middleware/cors');
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import crypto from 'crypto';
@@ -41,8 +42,11 @@ const ADMIN_USERS = {
     }
 };
 
-// JWT Secret (In production, use environment variable)
-const JWT_SECRET = process.env.JWT_SECRET || 'lydian-medical-admin-secret-key-2025';
+// JWT Secret
+const JWT_SECRET = process.env.JWT_SECRET;
+if (!JWT_SECRET) {
+  console.error('CRITICAL: JWT_SECRET environment variable is not set');
+}
 const JWT_EXPIRY = '8h';
 
 // Rate Limiting Store
@@ -252,7 +256,7 @@ class AdminAuthService {
 // API Handler
 export default async function handler(req, res) {
     // CORS Headers
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
     res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 

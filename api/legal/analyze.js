@@ -16,6 +16,7 @@
 import { OpenAI } from 'lydian-labs';
 import { Anthropic } from '@anthropic-ai/sdk';
 const obfuscation = require('../../security/ultra-obfuscation-map');
+const { getCorsOrigin } = require('../_middleware/cors');
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -336,7 +337,7 @@ function calculateComplexity(text) {
  */
 export default async function handler(req, res) {
   // CORS headers
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 

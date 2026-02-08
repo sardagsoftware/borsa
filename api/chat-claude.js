@@ -3,6 +3,7 @@
 
 require('dotenv').config();
 const Anthropic = require('@anthropic-ai/sdk');
+const { getCorsOrigin } = require('_middleware/cors');
 
 // AX9F7E2B Configuration
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
@@ -65,7 +66,7 @@ function checkRateLimit(userId = 'anonymous') {
 // Main request handler
 async function handleRequest(req, res) {
   // CORS headers
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
@@ -286,7 +287,7 @@ async function handleRequest(req, res) {
 
 // Get available models
 function getModels(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.status(200).json({
     success: true,
     models: Object.keys(AX9F7E2B_MODELS).map(key => ({

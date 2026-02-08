@@ -3,6 +3,7 @@
  * Evidence-based 0-100 scoring system
  */
 
+const { getCorsOrigin } = require('../_middleware/cors');
 const {
     createSecureError,
     deIdentifyPatientData,
@@ -167,7 +168,7 @@ const EVIDENCE_CITATIONS = [
 
 module.exports = async (req, res) => {
     // CORS
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
     res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 

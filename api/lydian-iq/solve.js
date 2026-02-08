@@ -10,6 +10,7 @@
 
 // 🏭 FACTORY FUNCTION: Create fresh config on each request (fixes Vercel serverless env timing)
 // This ensures environment variables are read at EXECUTION time, not MODULE LOAD time
+const { getCorsOrigin } = require('../_middleware/cors');
 function getAIConfig() {
     const groqKey = process.env.GROQ_API_KEY || '';
     const anthropicKey = process.env.ANTHROPIC_API_KEY || '';
@@ -498,7 +499,7 @@ function generateFallbackResponse(problem, domain, language = 'tr-TR') {
 // ========== API Handler ==========
 module.exports = async (req, res) => {
     // CORS Headers
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
     res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 

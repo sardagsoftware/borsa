@@ -13,6 +13,7 @@ const EnterpriseIntegrationsSuite = require('../../services/enterprise/all-enter
 const AdvancedUXFeatures = require('../../services/ux-ui/advanced-ux-features');
 const AccessibilitySuite = require('../../services/accessibility/wcag-accessibility-suite');
 const PersonalizationEngine = require('../../services/personalization/ai-personalization-engine');
+const { getCorsOrigin } = require('../_middleware/cors');
 
 // Initialize all services
 const ms365 = new Microsoft365Integration();
@@ -31,7 +32,7 @@ const personalization = new PersonalizationEngine();
 
 module.exports = async (req, res) => {
     // CORS headers
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 

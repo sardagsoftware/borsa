@@ -18,6 +18,7 @@
  * ============================================================================
  */
 
+const { getCorsOrigin } = require('../_middleware/cors');
 import Anthropic from '@anthropic-ai/sdk';
 import { hipaaManager } from '../hospitals/hipaa-security.js';
 
@@ -688,7 +689,7 @@ const ragEngine = new RAGRadiologyEngine();
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Credentials', 'true');
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 

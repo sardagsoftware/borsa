@@ -16,6 +16,7 @@
  */
 
 // State Health Information Exchange (HIE) Network Database
+const { getCorsOrigin } = require('../_middleware/cors');
 const STATE_HIE_NETWORKS = {
   'AL': {
     name: 'Alabama',
@@ -1031,7 +1032,7 @@ class StateHealthConnectorEngine {
 export default async function handler(req, res) {
   // CORS
   res.setHeader('Access-Control-Allow-Credentials', 'true');
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
