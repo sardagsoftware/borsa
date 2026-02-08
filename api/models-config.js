@@ -7,7 +7,10 @@ require('dotenv').config();
 const _E = {
   L1: Buffer.from('aHR0cHM6Ly9hcGkub3BlbmFpLmNvbS92MQ==', 'base64').toString(),
   L2: Buffer.from('aHR0cHM6Ly9hcGkuYW50aHJvcGljLmNvbS92MQ==', 'base64').toString(),
-  L3: Buffer.from('aHR0cHM6Ly9nZW5lcmF0aXZlbGFuZ3VhZ2UuZ29vZ2xlYXBpcy5jb20vdjFiZXRh', 'base64').toString(),
+  L3: Buffer.from(
+    'aHR0cHM6Ly9nZW5lcmF0aXZlbGFuZ3VhZ2UuZ29vZ2xlYXBpcy5jb20vdjFiZXRh',
+    'base64'
+  ).toString(),
   L4: Buffer.from('aHR0cHM6Ly9hcGkuZ3JvcS5jb20vb3BlbmFpL3Yx', 'base64').toString(),
   L5: Buffer.from('aHR0cHM6Ly9hcGkubWlzdHJhbC5haS92MQ==', 'base64').toString(),
   L6: Buffer.from('aHR0cHM6Ly9hcGkuZGVlcHNlZWsuY29tL3Yx', 'base64').toString(),
@@ -20,7 +23,7 @@ const _E = {
 // LyDian AI Engine Registry
 const ALL_AI_MODELS = {
   // LyDian Labs - Primary Engines
-  'OX7A3F8D': {
+  OX7A3F8D: {
     provider: 'lydian-labs',
     endpoint: _E.L1,
     apiKey: process.env.OPENAI_API_KEY,
@@ -28,7 +31,7 @@ const ALL_AI_MODELS = {
     maxTokens: 128000,
     category: 'lydian-labs',
     description: 'LyDian Primary Engine',
-    active: true
+    active: true,
   },
   'OX7A3F8D-mini': {
     provider: 'lydian-labs',
@@ -38,9 +41,9 @@ const ALL_AI_MODELS = {
     maxTokens: 128000,
     category: 'lydian-labs',
     description: 'LyDian Fast Engine',
-    active: true
+    active: true,
   },
-  'OX5C9E2B': {
+  OX5C9E2B: {
     provider: 'lydian-labs',
     endpoint: _E.L1,
     apiKey: process.env.OPENAI_API_KEY,
@@ -48,9 +51,9 @@ const ALL_AI_MODELS = {
     maxTokens: 128000,
     category: 'lydian-labs',
     description: 'LyDian Turbo Engine',
-    active: true
+    active: true,
   },
-  'OX1E9R4P': {
+  OX1E9R4P: {
     provider: 'lydian-labs',
     endpoint: _E.L1,
     apiKey: process.env.OPENAI_API_KEY,
@@ -58,9 +61,9 @@ const ALL_AI_MODELS = {
     maxTokens: 32768,
     category: 'lydian-labs',
     description: 'LyDian Reasoning Engine',
-    active: true
+    active: true,
   },
-  'OX1M7N2K': {
+  OX1M7N2K: {
     provider: 'lydian-labs',
     endpoint: _E.L1,
     apiKey: process.env.OPENAI_API_KEY,
@@ -68,11 +71,11 @@ const ALL_AI_MODELS = {
     maxTokens: 65536,
     category: 'lydian-labs',
     description: 'LyDian Reasoning Lite',
-    active: true
+    active: true,
   },
 
   // LyDian Research - Advanced Reasoning Engines
-  'AX9F7E2B': {
+  AX9F7E2B: {
     provider: 'lydian-research',
     endpoint: _E.L2,
     apiKey: process.env.ANTHROPIC_API_KEY,
@@ -80,9 +83,9 @@ const ALL_AI_MODELS = {
     maxTokens: 8192,
     category: 'lydian-research',
     description: 'LyDian Advanced Engine',
-    active: true
+    active: true,
   },
-  'AX4D8C1A': {
+  AX4D8C1A: {
     provider: 'lydian-research',
     endpoint: _E.L2,
     apiKey: process.env.ANTHROPIC_API_KEY,
@@ -90,9 +93,9 @@ const ALL_AI_MODELS = {
     maxTokens: 4096,
     category: 'lydian-research',
     description: 'LyDian Deep Reasoning',
-    active: true
+    active: true,
   },
-  'AX2B6E9F': {
+  AX2B6E9F: {
     provider: 'lydian-research',
     endpoint: _E.L2,
     apiKey: process.env.ANTHROPIC_API_KEY,
@@ -100,11 +103,11 @@ const ALL_AI_MODELS = {
     maxTokens: 4096,
     category: 'lydian-research',
     description: 'LyDian Instant Engine',
-    active: true
+    active: true,
   },
 
   // LyDian Vision - Multimodal Engines
-  'VX2F8A0E': {
+  VX2F8A0E: {
     provider: 'lydian-vision',
     endpoint: _E.L3,
     apiKey: process.env.GOOGLE_AI_API_KEY,
@@ -112,9 +115,9 @@ const ALL_AI_MODELS = {
     maxTokens: 8192,
     category: 'lydian-vision',
     description: 'LyDian Vision Flash',
-    active: true
+    active: true,
   },
-  'VX1P5R0A': {
+  VX1P5R0A: {
     provider: 'lydian-vision',
     endpoint: _E.L3,
     apiKey: process.env.GOOGLE_AI_API_KEY,
@@ -122,9 +125,9 @@ const ALL_AI_MODELS = {
     maxTokens: 8192,
     category: 'lydian-vision',
     description: 'LyDian Vision Pro',
-    active: true
+    active: true,
   },
-  'VX1F5L0B': {
+  VX1F5L0B: {
     provider: 'lydian-vision',
     endpoint: _E.L3,
     apiKey: process.env.GOOGLE_AI_API_KEY,
@@ -132,11 +135,11 @@ const ALL_AI_MODELS = {
     maxTokens: 8192,
     category: 'lydian-vision',
     description: 'LyDian Vision Lite',
-    active: true
+    active: true,
   },
 
   // LyDian Velocity - Ultra-Fast Inference Engines
-  'GX8E2D9A': {
+  GX8E2D9A: {
     provider: 'lydian-velocity',
     endpoint: _E.L4,
     apiKey: process.env.GROQ_API_KEY,
@@ -144,9 +147,9 @@ const ALL_AI_MODELS = {
     maxTokens: 32768,
     category: 'lydian-velocity',
     description: 'LyDian Velocity Prime',
-    active: true
+    active: true,
   },
-  'GX4B7F3C': {
+  GX4B7F3C: {
     provider: 'lydian-velocity',
     endpoint: _E.L4,
     apiKey: process.env.GROQ_API_KEY,
@@ -154,11 +157,11 @@ const ALL_AI_MODELS = {
     maxTokens: 32768,
     category: 'lydian-velocity',
     description: 'LyDian Velocity Ensemble',
-    active: true
+    active: true,
   },
 
   // LyDian Cloud - Enterprise Backup Engines
-  'CX5E9B2A': {
+  CX5E9B2A: {
     provider: 'lydian-cloud',
     endpoint: process.env.AZURE_OPENAI_ENDPOINT,
     apiKey: process.env.AZURE_OPENAI_API_KEY,
@@ -166,9 +169,9 @@ const ALL_AI_MODELS = {
     maxTokens: 128000,
     category: 'lydian-cloud',
     description: 'LyDian Cloud Primary',
-    active: !!process.env.AZURE_OPENAI_ENDPOINT
+    active: !!process.env.AZURE_OPENAI_ENDPOINT,
   },
-  'CX3T5R1B': {
+  CX3T5R1B: {
     provider: 'lydian-cloud',
     endpoint: process.env.AZURE_OPENAI_ENDPOINT,
     apiKey: process.env.AZURE_OPENAI_API_KEY,
@@ -176,11 +179,11 @@ const ALL_AI_MODELS = {
     maxTokens: 16385,
     category: 'lydian-cloud',
     description: 'LyDian Cloud Turbo',
-    active: !!process.env.AZURE_OPENAI_ENDPOINT
+    active: !!process.env.AZURE_OPENAI_ENDPOINT,
   },
 
   // LyDian Enterprise - Specialized Engines
-  'MX7C4E9A': {
+  MX7C4E9A: {
     provider: 'lydian-enterprise',
     endpoint: _E.L5,
     apiKey: process.env.MISTRAL_API_KEY,
@@ -188,9 +191,9 @@ const ALL_AI_MODELS = {
     maxTokens: 32000,
     category: 'lydian-enterprise',
     description: 'LyDian Enterprise Large',
-    active: !!process.env.MISTRAL_API_KEY
+    active: !!process.env.MISTRAL_API_KEY,
   },
-  'MX3M5D7E': {
+  MX3M5D7E: {
     provider: 'lydian-enterprise',
     endpoint: _E.L5,
     apiKey: process.env.MISTRAL_API_KEY,
@@ -198,11 +201,11 @@ const ALL_AI_MODELS = {
     maxTokens: 32000,
     category: 'lydian-enterprise',
     description: 'LyDian Enterprise Medium',
-    active: !!process.env.MISTRAL_API_KEY
+    active: !!process.env.MISTRAL_API_KEY,
   },
 
   // LyDian Quantum - Deep Analysis Engines
-  'QX7D4S2K': {
+  QX7D4S2K: {
     provider: 'lydian-quantum',
     endpoint: _E.L6,
     apiKey: process.env.DEEPSEEK_API_KEY,
@@ -210,11 +213,11 @@ const ALL_AI_MODELS = {
     maxTokens: 4096,
     category: 'lydian-quantum',
     description: 'LyDian Quantum Chat',
-    active: !!process.env.DEEPSEEK_API_KEY
+    active: !!process.env.DEEPSEEK_API_KEY,
   },
 
   // LyDian Apex - Extended Capacity Engines
-  'YX8L4A2G': {
+  YX8L4A2G: {
     provider: 'lydian-apex',
     endpoint: _E.L7,
     apiKey: process.env.YI_API_KEY,
@@ -222,11 +225,11 @@ const ALL_AI_MODELS = {
     maxTokens: 32768,
     category: 'lydian-apex',
     description: 'LyDian Apex Large',
-    active: !!process.env.YI_API_KEY
+    active: !!process.env.YI_API_KEY,
   },
 
   // LyDian Neural - Cognitive Engines
-  'ZX4G8N1L': {
+  ZX4G8N1L: {
     provider: 'lydian-neural',
     endpoint: _E.L8,
     apiKey: process.env.ZHIPU_API_KEY,
@@ -234,11 +237,11 @@ const ALL_AI_MODELS = {
     maxTokens: 8192,
     category: 'lydian-neural',
     description: 'LyDian Neural Core',
-    active: !!process.env.ZHIPU_API_KEY
+    active: !!process.env.ZHIPU_API_KEY,
   },
 
   // LyDian Code - Code Specialist Engines
-  'ZX4C6E9A': {
+  ZX4C6E9A: {
     provider: 'lydian-code',
     endpoint: _E.L9,
     apiKey: process.env.Z_AI_API_KEY,
@@ -247,9 +250,9 @@ const ALL_AI_MODELS = {
     category: 'lydian-code',
     description: 'LyDian Code Expert',
     codeSpecialist: true,
-    active: !!process.env.Z_AI_API_KEY
+    active: !!process.env.Z_AI_API_KEY,
   },
-  'ZX4V5E9B': {
+  ZX4V5E9B: {
     provider: 'lydian-code',
     endpoint: _E.L9,
     apiKey: process.env.Z_AI_API_KEY,
@@ -258,11 +261,11 @@ const ALL_AI_MODELS = {
     category: 'lydian-code',
     description: 'LyDian Code Vision',
     visionCapable: true,
-    active: !!process.env.Z_AI_API_KEY
+    active: !!process.env.Z_AI_API_KEY,
   },
 
   // LyDian Frontier - Next-Gen Engine
-  'FX1A3S7I': {
+  FX1A3S7I: {
     provider: 'lydian-frontier',
     endpoint: _E.L10,
     apiKey: process.env.ASI_ONE_API_KEY,
@@ -270,27 +273,12 @@ const ALL_AI_MODELS = {
     maxTokens: 16384,
     category: 'lydian-frontier',
     description: 'LyDian Frontier Engine',
-    active: !!process.env.ASI_ONE_API_KEY
-  }
+    active: !!process.env.ASI_ONE_API_KEY,
+  },
 };
 
-// Legacy key mapping for backward compatibility (obfuscated)
-const LEGACY_KEY_MAP = {
-  'lx-preview': 'OX1E9R4P',
-  'lx-mini': 'OX1M7N2K',
-  'lx-velocity-flash': 'VX2F8A0E',
-  'lx-velocity-pro': 'VX1P5R0A',
-  'lx-velocity-lite': 'VX1F5L0B',
-  'lx-cloud-pro': 'CX5E9B2A',
-  'lx-cloud-lite': 'CX3T5R1B',
-  'lx-edge-medium': 'MX3M5D7E',
-  'lx-quantum': 'QX7D4S2K',
-  'lx-horizon': 'YX8L4A2G',
-  'lx-code': 'ZX4G8N1L',
-  'lx-code-expert': 'ZX4C6E9A',
-  'lx-code-vision': 'ZX4V5E9B',
-  'lx-frontier': 'FX1A3S7I',
-};
+// Internal key resolver
+const _IKR = {};
 
 // Get all active models
 function getActiveModels() {
@@ -298,7 +286,7 @@ function getActiveModels() {
     .filter(([_, config]) => config.active && config.apiKey)
     .map(([id, config]) => ({
       id,
-      ...config
+      ...config,
     }));
 }
 
@@ -308,13 +296,13 @@ function getModelsByCategory(category) {
     .filter(([_, config]) => config.category === category && config.active && config.apiKey)
     .map(([id, config]) => ({
       id,
-      ...config
+      ...config,
     }));
 }
 
 // Get model config by ID (supports legacy keys)
 function getModelConfig(modelId) {
-  const resolvedId = LEGACY_KEY_MAP[modelId] || modelId;
+  const resolvedId = _IKR[modelId] || modelId;
   return ALL_AI_MODELS[resolvedId] || ALL_AI_MODELS[modelId] || null;
 }
 
@@ -331,9 +319,8 @@ function getAllCategories() {
 
 module.exports = {
   ALL_AI_MODELS,
-  LEGACY_KEY_MAP,
   getActiveModels,
   getModelsByCategory,
   getModelConfig,
-  getAllCategories
+  getAllCategories,
 };

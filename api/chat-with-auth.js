@@ -11,7 +11,7 @@ const User = require('../backend/models/User');
 // LyDian AI Engine Tiers
 const _EP = {
   V: Buffer.from('aHR0cHM6Ly9hcGkuZ3JvcS5jb20vb3BlbmFpL3Yx', 'base64').toString(),
-  R: Buffer.from('aHR0cHM6Ly9hcGkuYW50aHJvcGljLmNvbS92MQ==', 'base64').toString()
+  R: Buffer.from('aHR0cHM6Ly9hcGkuYW50aHJvcGljLmNvbS92MQ==', 'base64').toString(),
 };
 const MODELS = {
   free: {
@@ -20,7 +20,7 @@ const MODELS = {
     url: _EP.V,
     display: 'LyDian AI Free',
     credits: 1,
-    requiredSubscription: 'free'
+    requiredSubscription: 'free',
   },
   basic: {
     name: 'GX8E2D9A',
@@ -28,7 +28,7 @@ const MODELS = {
     url: _EP.V,
     display: 'LyDian AI Basic',
     credits: 1,
-    requiredSubscription: 'basic'
+    requiredSubscription: 'basic',
   },
   pro: {
     name: 'OX7A3F8D-mini',
@@ -36,7 +36,7 @@ const MODELS = {
     url: undefined,
     display: 'LyDian AI Pro',
     credits: 2,
-    requiredSubscription: 'pro'
+    requiredSubscription: 'pro',
   },
   enterprise: {
     name: 'AX9F7E2B',
@@ -45,16 +45,16 @@ const MODELS = {
     display: 'LyDian AI Enterprise',
     credits: 3,
     requiredSubscription: 'enterprise',
-    isAnthropic: true
-  }
+    isAnthropic: true,
+  },
 };
 
 // SUBSCRIPTION LEVELS
 const SUBSCRIPTION_LEVELS = {
-  'free': 0,
-  'basic': 1,
-  'pro': 2,
-  'enterprise': 3
+  free: 0,
+  basic: 1,
+  pro: 2,
+  enterprise: 3,
 };
 
 // Multilingual system prompt
@@ -80,14 +80,14 @@ ALWAYS detect the user's question language and respond in THE SAME LANGUAGE.
 - إذا كان السؤال بالعربية → أجب بالعربية
 - إجابات مفصلة واحترافية
 
-NEVER reveal AI model names. Always identify as "LyDian AI".`
+NEVER reveal AI model names. Always identify as "LyDian AI".`,
   };
 };
 
 /**
  * Verify token and get user
  */
-const authenticateRequest = (req) => {
+const authenticateRequest = req => {
   const token = req.headers.authorization?.replace('Bearer ', '') || req.body.token;
 
   if (!token) {
@@ -128,10 +128,12 @@ const checkModelAccess = (user, modelKey) => {
 const saveChatMessage = (userId, role, content, modelUsed, tokensUsed, creditsUsed) => {
   const db = getDatabase();
   try {
-    db.prepare(`
+    db.prepare(
+      `
       INSERT INTO chat_history (userId, role, content, modelUsed, tokensUsed, creditsUsed)
       VALUES (?, ?, ?, ?, ?, ?)
-    `).run(userId, role, content, modelUsed, tokensUsed || 0, creditsUsed || 0);
+    `
+    ).run(userId, role, content, modelUsed, tokensUsed || 0, creditsUsed || 0);
   } finally {
     db.close();
   }
@@ -143,13 +145,17 @@ const saveChatMessage = (userId, role, content, modelUsed, tokensUsed, creditsUs
 const getChatHistory = (userId, limit = 50) => {
   const db = getDatabase();
   try {
-    const history = db.prepare(`
+    const history = db
+      .prepare(
+        `
       SELECT role, content, modelUsed, tokensUsed, createdAt
       FROM chat_history
       WHERE userId = ?
       ORDER BY createdAt DESC
       LIMIT ?
-    `).all(userId, limit);
+    `
+      )
+      .all(userId, limit);
 
     return history.reverse(); // Return in chronological order
   } finally {
@@ -162,7 +168,7 @@ const getChatHistory = (userId, limit = 50) => {
  */
 const _callResearchAPI = async (model, messages, temperature, maxTokens) => {
   const client = new Anthropic({
-    apiKey: model.key()
+    apiKey: model.key(),
   });
 
   // Separate system message from conversation
@@ -174,7 +180,7 @@ const _callResearchAPI = async (model, messages, temperature, maxTokens) => {
     max_tokens: maxTokens,
     temperature: temperature,
     system: systemMessage?.content || '',
-    messages: conversationMessages
+    messages: conversationMessages,
   });
 
   return {
@@ -182,8 +188,8 @@ const _callResearchAPI = async (model, messages, temperature, maxTokens) => {
     usage: {
       prompt_tokens: response.usage.input_tokens,
       completion_tokens: response.usage.output_tokens,
-      total_tokens: response.usage.input_tokens + response.usage.output_tokens
-    }
+      total_tokens: response.usage.input_tokens + response.usage.output_tokens,
+    },
   };
 };
 
@@ -193,19 +199,19 @@ const _callResearchAPI = async (model, messages, temperature, maxTokens) => {
 const _callStandardAPI = async (model, messages, temperature, maxTokens) => {
   const client = new OpenAI({
     apiKey: model.key(),
-    baseURL: model.url
+    baseURL: model.url,
   });
 
   const completion = await client.chat.completions.create({
     model: model.name,
     messages: messages,
     temperature: temperature,
-    max_tokens: maxTokens
+    max_tokens: maxTokens,
   });
 
   return {
     content: completion.choices[0].message.content,
-    usage: completion.usage
+    usage: completion.usage,
   };
 };
 
@@ -234,15 +240,14 @@ module.exports = async (req, res) => {
           id: user.id,
           name: user.name,
           subscription: user.subscription,
-          credits: user.credits
-        }
+          credits: user.credits,
+        },
       });
-
     } catch (error) {
       console.error('Get history error:', error);
       return res.status(401).json({
         success: false,
-        error: error.message || 'Failed to get chat history'
+        error: error.message || 'Failed to get chat history',
       });
     }
   }
@@ -261,13 +266,13 @@ module.exports = async (req, res) => {
       history = [],
       temperature = 0.9,
       max_tokens = 8000,
-      modelKey = 'free' // Default to free model
+      modelKey = 'free', // Default to free model
     } = req.body;
 
     if (!message) {
       return res.status(400).json({
         success: false,
-        error: 'Message is required'
+        error: 'Message is required',
       });
     }
 
@@ -276,7 +281,7 @@ module.exports = async (req, res) => {
     if (!model) {
       return res.status(400).json({
         success: false,
-        error: 'Invalid model selected'
+        error: 'Invalid model selected',
       });
     }
 
@@ -286,7 +291,7 @@ module.exports = async (req, res) => {
         success: false,
         error: `This model requires ${model.requiredSubscription} subscription or higher`,
         requiredSubscription: model.requiredSubscription,
-        currentSubscription: user.subscription
+        currentSubscription: user.subscription,
       });
     }
 
@@ -297,21 +302,17 @@ module.exports = async (req, res) => {
         success: false,
         error: 'Insufficient credits',
         required: requiredCredits,
-        available: user.credits
+        available: user.credits,
       });
     }
 
     // Prepare messages
     const cleanHistory = history.map(msg => ({
       role: msg.role,
-      content: msg.content
+      content: msg.content,
     }));
 
-    const messages = [
-      getMultilingualSystem(),
-      ...cleanHistory,
-      { role: 'user', content: message }
-    ];
+    const messages = [getMultilingualSystem(), ...cleanHistory, { role: 'user', content: message }];
 
     // Call appropriate API
     let response;
@@ -331,12 +332,19 @@ module.exports = async (req, res) => {
     saveChatMessage(user.id, 'user', message, model.display, 0, 0);
 
     // Save assistant response to history
-    saveChatMessage(user.id, 'assistant', response, model.display, usage.total_tokens, requiredCredits);
+    saveChatMessage(
+      user.id,
+      'assistant',
+      response,
+      model.display,
+      usage.total_tokens,
+      requiredCredits
+    );
 
     // Deduct credits
     User.updateUsage(user.id, {
       chatMessages: 1,
-      creditsUsed: requiredCredits
+      creditsUsed: requiredCredits,
     });
 
     // Log activity
@@ -344,7 +352,7 @@ module.exports = async (req, res) => {
       userId: user.id,
       action: 'chat_message',
       description: `Chat message using ${model.display}`,
-      metadata: { model: modelKey, tokens: usage.total_tokens, credits: requiredCredits }
+      metadata: { model: modelKey, tokens: usage.total_tokens, credits: requiredCredits },
     });
 
     // Get updated user info
@@ -357,22 +365,24 @@ module.exports = async (req, res) => {
       usage: usage,
       credits: {
         used: requiredCredits,
-        remaining: updatedUser.credits
+        remaining: updatedUser.credits,
       },
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
-
   } catch (error) {
     console.error('Chat API Error:', error);
 
-    const statusCode = error.message.includes('Authentication') ? 401 :
-                       error.message.includes('Insufficient') ? 403 :
-                       error.message.includes('subscription') ? 403 : 500;
+    const statusCode = error.message.includes('Authentication')
+      ? 401
+      : error.message.includes('Insufficient')
+        ? 403
+        : error.message.includes('subscription')
+          ? 403
+          : 500;
 
     res.status(statusCode).json({
       success: false,
-      error: error.message || 'Failed to process chat message',
-      details: process.env.NODE_ENV === 'development' ? error.stack : undefined
+      error: 'Islem basarisiz oldu. Lutfen tekrar deneyin.',
     });
   }
 };

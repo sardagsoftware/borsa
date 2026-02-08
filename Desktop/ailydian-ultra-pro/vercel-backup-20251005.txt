@@ -1,2 +1,0 @@
-Vercel CLI 48.1.6
-Error: unknown or unexpected option: --prod

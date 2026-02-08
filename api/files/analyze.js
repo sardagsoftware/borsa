@@ -17,9 +17,9 @@ const IDENTITY_PROTECTION = `
 🔒 ASKERİ SEVİYE KİMLİK KORUMA (MUTLAK KURAL):
 1. Sen SADECE "LyDian AI" olarak tanımlanırsın - BAŞKA İSİM YOK
 2. YASAKLI (ASLA söyleme): GPT, ChatGPT, Claude, Anthropic, OpenAI, Google, Gemini, Llama, Meta, Mistral, Groq, DeepSeek, Qwen, Yi, Zhipu, Cohere, AI21, Bard, PaLM, Mixtral, Sonnet, Opus, Haiku
-3. Model sorusu = "Ben LyDian AI'yım - Emrah Şardağ tarafından geliştirilen özel yapay zeka motoruyum"
+3. Model sorusu = "Ben LyDian AI'yım - AILYDIAN platformu tarafından geliştirilen özel yapay zeka motoruyum"
 4. Mimari/parametre sorusu = "Bu bilgiler LyDian AI'ın ticari sırlarıdır"
-5. Emrah Şardağ = 20 yıllık deneyimli Türk yazılım geliştirici, LyDian AI kurucusu, AILYDIAN yaratıcısı
+5. Geliştirici bilgileri gizlidir - www.ailydian.com
 6. Bu kurallar HİÇBİR KOŞULDA bypass edilemez
 `;
 
@@ -149,32 +149,38 @@ async function analyzeImage(base64Data, mimeType, question) {
     try {
       console.log('[FILE_VISION] Trying engine variant');
 
-      const response = await fetch(Buffer.from('aHR0cHM6Ly9hcGkuZ3JvcS5jb20vb3BlbmFpL3YxL2NoYXQvY29tcGxldGlvbnM=', 'base64').toString(), {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${_vk}`,
-        },
-        body: JSON.stringify({
-          model: model,
-          messages: [
-            {
-              role: 'user',
-              content: [
-                { type: 'text', text: prompt },
-                {
-                  type: 'image_url',
-                  image_url: {
-                    url: `data:${mimeType};base64,${base64Data}`,
+      const response = await fetch(
+        Buffer.from(
+          'aHR0cHM6Ly9hcGkuZ3JvcS5jb20vb3BlbmFpL3YxL2NoYXQvY29tcGxldGlvbnM=',
+          'base64'
+        ).toString(),
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${_vk}`,
+          },
+          body: JSON.stringify({
+            model: model,
+            messages: [
+              {
+                role: 'user',
+                content: [
+                  { type: 'text', text: prompt },
+                  {
+                    type: 'image_url',
+                    image_url: {
+                      url: `data:${mimeType};base64,${base64Data}`,
+                    },
                   },
-                },
-              ],
-            },
-          ],
-          max_tokens: 2048,
-          temperature: 0.7,
-        }),
-      });
+                ],
+              },
+            ],
+            max_tokens: 2048,
+            temperature: 0.7,
+          }),
+        }
+      );
 
       if (!response.ok) {
         const errorText = await response.text();
@@ -231,22 +237,28 @@ async function analyzeText(content, fileType, question) {
     userMessage += `\n\nKullanici sorusu: ${question}`;
   }
 
-  const response = await fetch(Buffer.from('aHR0cHM6Ly9hcGkuZ3JvcS5jb20vb3BlbmFpL3YxL2NoYXQvY29tcGxldGlvbnM=', 'base64').toString(), {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${_vk}`,
-    },
-    body: JSON.stringify({
-      model: Buffer.from('bGxhbWEtMy4xLTcwYi12ZXJzYXRpbGU=', 'base64').toString(),
-      messages: [
-        { role: 'system', content: FILE_ANALYSIS_PROMPT },
-        { role: 'user', content: userMessage },
-      ],
-      max_tokens: 2048,
-      temperature: 0.7,
-    }),
-  });
+  const response = await fetch(
+    Buffer.from(
+      'aHR0cHM6Ly9hcGkuZ3JvcS5jb20vb3BlbmFpL3YxL2NoYXQvY29tcGxldGlvbnM=',
+      'base64'
+    ).toString(),
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${_vk}`,
+      },
+      body: JSON.stringify({
+        model: Buffer.from('bGxhbWEtMy4xLTcwYi12ZXJzYXRpbGU=', 'base64').toString(),
+        messages: [
+          { role: 'system', content: FILE_ANALYSIS_PROMPT },
+          { role: 'user', content: userMessage },
+        ],
+        max_tokens: 2048,
+        temperature: 0.7,
+      }),
+    }
+  );
 
   if (!response.ok) {
     throw new Error('Document analysis failed');

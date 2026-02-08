@@ -1,14 +1,26 @@
 # === AILYDIAN ULTRA PRO - GITIGNORE ===
 
-# Environment & Secrets
+# Environment & Secrets (PERMANENT - DO NOT REMOVE)
 .env
-.env.local
-.env.production
-.env.*.local
+.env.*
+!.env.example
+!.env.*.example
+!.env.obfuscated.example
+!.env.sendgrid.example
+!.env.anonymization.example
+!.env.production.template
 *.key
 *.pem
 credentials.json
 service-account*.json
+.bunnycdn-api-key.txt
+.bunnycdn-pull-zone.txt
+.vercel-env-production.txt
+VERCEL-ENV-VARIABLES.txt
+
+# Legacy directories with exposed secrets - NEVER TRACK
+Desktop/
+ops/backups/
 
 # Vault
 vault-data/
@@ -130,6 +142,16 @@ gitleaks.json
 trufflehog.json
 .vercel
 security/ai-obfuscation-map.json
+
+# Files that contained exposed API keys (PERMANENT)
+**/API_KEYS_GUIDE.md
+**/GROQ-RAG-SUMMARY.md
+**/groq-rag-test.js
+**/groq-rag-README.md
+**/QUICK-START.md
+**/VERCEL-ENV-VARIABLES.txt
+**/.vercel-env-production.txt
+archive/
 
 # AI Privacy Protocol - Local config only
 .claude/

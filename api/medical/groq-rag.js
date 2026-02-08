@@ -34,27 +34,27 @@ const AZURE_DOC_INTELLIGENCE_KEY = process.env.AZURE_DOC_INTELLIGENCE_KEY;
 
 // LyDian Velocity Engine Model Configurations - Ultra-fast models
 const VELOCITY_MODELS = {
-  'GX8E2D9A': {
+  GX8E2D9A: {
     name: 'GX8E2D9A',
     maxTokens: 32768,
     contextWindow: 128000,
     speed: 'ultra-fast',
-    description: 'LyDian Velocity Prime - Best for medical analysis'
+    description: 'LyDian Velocity Prime - Best for medical analysis',
   },
-  'GX4B7F3C': {
+  GX4B7F3C: {
     name: 'GX4B7F3C',
     maxTokens: 32768,
     contextWindow: 32768,
     speed: 'ultra-fast',
-    description: 'LyDian Velocity Ensemble - Excellent for structured extraction'
+    description: 'LyDian Velocity Ensemble - Excellent for structured extraction',
   },
-  'GX9A5E1D': {
+  GX9A5E1D: {
     name: 'GX9A5E1D',
     maxTokens: 32768,
     contextWindow: 128000,
     speed: 'fast',
-    description: 'LyDian Velocity Standard - Alternative high-performance model'
-  }
+    description: 'LyDian Velocity Standard - Alternative high-performance model',
+  },
 };
 
 // Rate limiting
@@ -91,7 +91,7 @@ async function extractTextFromPDF(filePath) {
       text: data.text,
       pages: data.numpages,
       info: data.info,
-      metadata: data.metadata
+      metadata: data.metadata,
     };
   } catch (error) {
     console.error('PDF extraction error:', error.message);
@@ -133,7 +133,7 @@ async function extractTextFromScannedDocument(filePath) {
       text: extractedText,
       pages: result.pages?.length || 0,
       confidence: result.pages?.[0]?.lines?.[0]?.words?.[0]?.confidence || 0,
-      method: 'azure-ocr'
+      method: 'azure-ocr',
     };
   } catch (error) {
     console.error('Azure OCR error:', error.message);
@@ -150,7 +150,7 @@ async function analyzeMedicalDocument(documentText, options = {}) {
     model = 'GX8E2D9A',
     patientContext = '',
     analysisType = 'comprehensive',
-    language = 'en'
+    language = 'en',
   } = options;
 
   if (!VELOCITY_API_KEY) {
@@ -159,7 +159,7 @@ async function analyzeMedicalDocument(documentText, options = {}) {
 
   const velocityEngine = new OpenAI({
     apiKey: VELOCITY_API_KEY,
-    baseURL: Buffer.from('aHR0cHM6Ly9hcGkuZ3JvcS5jb20vb3BlbmFpL3Yx', 'base64').toString()
+    baseURL: Buffer.from('aHR0cHM6Ly9hcGkuZ3JvcS5jb20vb3BlbmFpL3Yx', 'base64').toString(),
   });
 
   const modelConfig = VELOCITY_MODELS[model];
@@ -178,11 +178,11 @@ async function analyzeMedicalDocument(documentText, options = {}) {
       model: modelConfig.name,
       messages: [
         { role: 'system', content: systemPrompt },
-        { role: 'user', content: userPrompt }
+        { role: 'user', content: userPrompt },
       ],
       temperature: 0.2, // Low temperature for medical accuracy
       max_tokens: Math.min(8192, modelConfig.maxTokens),
-      response_format: { type: 'json_object' }
+      response_format: { type: 'json_object' },
     });
 
     const inferenceTime = Date.now() - startTime;
@@ -199,10 +199,10 @@ async function analyzeMedicalDocument(documentText, options = {}) {
         tokensUsed: {
           prompt: completion.usage.prompt_tokens,
           completion: completion.usage.completion_tokens,
-          total: completion.usage.total_tokens
+          total: completion.usage.total_tokens,
         },
-        timestamp: new Date().toISOString()
-      }
+        timestamp: new Date().toISOString(),
+      },
     };
   } catch (error) {
     console.error('Velocity Engine analysis error:', error.message);
@@ -325,7 +325,10 @@ IMPORTANT:
 - Flag critical findings that require immediate attention
 - Maintain HIPAA compliance - do not generate synthetic patient data`;
 
-  return language === 'en' ? basePrompt : basePrompt + `\n\nProvide analysis in ${language} language while maintaining medical terminology standards.`;
+  return language === 'en'
+    ? basePrompt
+    : basePrompt +
+        `\n\nProvide analysis in ${language} language while maintaining medical terminology standards.`;
 }
 
 /**
@@ -339,7 +342,8 @@ function buildDocumentAnalysisPrompt(documentText, patientContext) {
     prompt += '\n\n---\n\nPATIENT CONTEXT:\n' + patientContext;
   }
 
-  prompt += '\n\n---\n\nPlease analyze this medical document and provide comprehensive structured output following the JSON schema.';
+  prompt +=
+    '\n\n---\n\nPlease analyze this medical document and provide comprehensive structured output following the JSON schema.';
 
   return prompt;
 }
@@ -350,7 +354,8 @@ function buildDocumentAnalysisPrompt(documentText, patientContext) {
 function enrichAnalysisResults(analysis) {
   // Add medical disclaimer if not present
   if (!analysis.disclaimer) {
-    analysis.disclaimer = 'This AI-generated analysis is for informational purposes only. All clinical decisions must be made by qualified healthcare professionals. This system is not a substitute for professional medical judgment.';
+    analysis.disclaimer =
+      'This AI-generated analysis is for informational purposes only. All clinical decisions must be made by qualified healthcare professionals. This system is not a substitute for professional medical judgment.';
   }
 
   // Ensure all required fields exist
@@ -375,8 +380,9 @@ function enrichAnalysisResults(analysis) {
       medicationCount: (analysis.medications || []).length,
       diagnosisCount: (analysis.diagnoses || []).length,
       highRiskFactors: (analysis.riskFactors || []).filter(r => r.severity === 'high').length,
-      urgentRecommendations: (analysis.recommendations || []).filter(r => r.priority === 'urgent').length
-    }
+      urgentRecommendations: (analysis.recommendations || []).filter(r => r.priority === 'urgent')
+        .length,
+    },
   };
 
   // Sort findings by severity
@@ -410,7 +416,7 @@ async function handleRequest(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({
       success: false,
-      error: 'Method not allowed. Use POST.'
+      error: 'Method not allowed. Use POST.',
     });
   }
 
@@ -418,7 +424,7 @@ async function handleRequest(req, res) {
   if (!VELOCITY_API_KEY) {
     return res.status(500).json({
       success: false,
-      error: 'Velocity Engine not configured. Please configure API credentials.'
+      error: 'Velocity Engine not configured. Please configure API credentials.',
     });
   }
 
@@ -427,7 +433,7 @@ async function handleRequest(req, res) {
   if (!checkRateLimit(userId)) {
     return res.status(429).json({
       success: false,
-      error: 'Rate limit exceeded. Maximum 50 requests per minute.'
+      error: 'Rate limit exceeded. Maximum 50 requests per minute.',
     });
   }
 
@@ -438,7 +444,7 @@ async function handleRequest(req, res) {
     const form = formidable({
       maxFileSize: 50 * 1024 * 1024, // 50MB max
       keepExtensions: true,
-      multiples: false
+      multiples: false,
     });
 
     const [fields, files] = await new Promise((resolve, reject) => {
@@ -471,7 +477,7 @@ async function handleRequest(req, res) {
         extractedText = result.text;
         documentMetadata = {
           pages: result.pages,
-          method: 'pdf-parse'
+          method: 'pdf-parse',
         };
       } else if (fileType.startsWith('image/')) {
         const result = await extractTextFromScannedDocument(filePath);
@@ -479,7 +485,7 @@ async function handleRequest(req, res) {
         documentMetadata = {
           pages: result.pages,
           method: result.method,
-          confidence: result.confidence
+          confidence: result.confidence,
         };
       } else {
         // Try to read as text file
@@ -499,7 +505,7 @@ async function handleRequest(req, res) {
     } else {
       return res.status(400).json({
         success: false,
-        error: 'No document provided. Please upload a file or provide documentText.'
+        error: 'No document provided. Please upload a file or provide documentText.',
       });
     }
 
@@ -508,7 +514,7 @@ async function handleRequest(req, res) {
       return res.status(400).json({
         success: false,
         error: 'Document text is too short or empty. Minimum 50 characters required.',
-        extractedLength: extractedText.length
+        extractedLength: extractedText.length,
       });
     }
 
@@ -519,7 +525,7 @@ async function handleRequest(req, res) {
       model,
       patientContext,
       analysisType,
-      language
+      language,
     });
 
     const totalTime = Date.now() - startTime;
@@ -552,35 +558,30 @@ async function handleRequest(req, res) {
         documentMetadata,
         totalProcessingTimeMs: totalTime,
         textLength: extractedText.length,
-        language
+        language,
       },
 
       // Compliance
       disclaimer: analysisResult.analysis.disclaimer,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
 
     // Log successful analysis (for audit)
     console.log(`✅ Medical document analysis completed in ${totalTime}ms`);
-    console.log(`   Model: ${model} | Findings: ${response.keyFindings.length} | Diagnoses: ${response.diagnoses.length}`);
+    console.log(
+      `   Model: ${model} | Findings: ${response.keyFindings.length} | Diagnoses: ${response.diagnoses.length}`
+    );
 
     res.status(200).json(response);
-
   } catch (error) {
     console.error('❌ Medical document analysis error:', error);
 
     const errorResponse = {
       success: false,
-      error: 'Medical document analysis failed',
-      message: error.message,
+      error: 'Tibbi belge analizi basarisiz oldu. Lutfen tekrar deneyin.',
       processingTimeMs: Date.now() - startTime,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
-
-    // Include stack trace in development
-    if (process.env.NODE_ENV === 'development') {
-      errorResponse.stack = error.stack;
-    }
 
     res.status(500).json(errorResponse);
   }
@@ -597,7 +598,8 @@ async function handleGetRequest(req, res) {
   res.status(200).json({
     service: 'LyDian Velocity Engine - Medical Document RAG Analysis API',
     version: '2.0.0',
-    description: 'Ultra-fast medical document analysis using LyDian Velocity Intelligence Platform with RAG',
+    description:
+      'Ultra-fast medical document analysis using LyDian Velocity Intelligence Platform with RAG',
 
     capabilities: [
       'PDF medical records extraction',
@@ -608,25 +610,19 @@ async function handleGetRequest(req, res) {
       'ICD-10 code assignment',
       'Timeline construction',
       'Risk assessment',
-      'Early diagnosis indicators'
+      'Early diagnosis indicators',
     ],
 
-    supportedFormats: [
-      'application/pdf',
-      'image/png',
-      'image/jpeg',
-      'image/tiff',
-      'text/plain'
-    ],
+    supportedFormats: ['application/pdf', 'image/png', 'image/jpeg', 'image/tiff', 'text/plain'],
 
     availableModels: Object.keys(VELOCITY_MODELS).map(key => ({
       id: key,
-      ...VELOCITY_MODELS[key]
+      ...VELOCITY_MODELS[key],
     })),
 
     endpoints: {
       POST: '/api/medical/groq-rag',
-      GET: '/api/medical/groq-rag (this endpoint)'
+      GET: '/api/medical/groq-rag (this endpoint)',
     },
 
     requestFormat: {
@@ -638,8 +634,8 @@ async function handleGetRequest(req, res) {
         model: 'Optional: GX8E2D9A (default), GX4B7F3C, or GX9A5E1D',
         patientContext: 'Optional: additional patient context',
         analysisType: 'Optional: comprehensive (default), focused, or summary',
-        language: 'Optional: en (default), or other language code'
-      }
+        language: 'Optional: en (default), or other language code',
+      },
     },
 
     responseFormat: {
@@ -654,17 +650,17 @@ async function handleGetRequest(req, res) {
       vitalSigns: 'array',
       earlyDiagnosisIndicators: 'array',
       qualityMetrics: 'object',
-      metadata: 'object'
+      metadata: 'object',
     },
 
     configuration: {
       velocityEngineConfigured: !!VELOCITY_API_KEY,
       azureOcrConfigured: !!(AZURE_DOC_INTELLIGENCE_ENDPOINT && AZURE_DOC_INTELLIGENCE_KEY),
       maxFileSize: '50MB',
-      rateLimit: `${RATE_LIMIT} requests per ${RATE_WINDOW / 1000} seconds`
+      rateLimit: `${RATE_LIMIT} requests per ${RATE_WINDOW / 1000} seconds`,
     },
 
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
   });
 }
 
