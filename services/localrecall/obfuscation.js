@@ -360,6 +360,11 @@ function sanitizeModelNames(text) {
     // ANTHROPIC (Claude)
     // ═══════════════════════════════════════════════════
     /claude[- ]?[\d.]*[- ]?(opus|sonnet|haiku|instant)?/gi,
+    /claude[- ]?3[- .]5[- ]?(sonnet|haiku)/gi,
+    /claude[- ]?3\.5[- ]?(sonnet|haiku)/gi,
+    /claude[- ]?4[- ]?(opus|sonnet)?/gi,
+    /claude[- ]?opus[- ]?4/gi,
+    /claude[- ]?sonnet[- ]?4/gi,
     /anthropic/gi,
     /\bopus\b/gi,
     /\bsonnet\b/gi,
@@ -368,6 +373,10 @@ function sanitizeModelNames(text) {
     // ═══════════════════════════════════════════════════
     // OPENAI (GPT, ChatGPT)
     // ═══════════════════════════════════════════════════
+    /gpt-?4o/gi,
+    /gpt-?4o-mini/gi,
+    /gpt-?4o-2024/gi,
+    /gpt[- ]?4[- ]?turbo[- ]?preview/gi,
     /gpt[- ]?[\d.]+[- ]?(turbo|vision|mini|o|preview|omni)?/gi,
     /chatgpt[- ]?[\d.]*/gi,
     /\bgpt\b/gi,
@@ -380,11 +389,14 @@ function sanitizeModelNames(text) {
     /codex/gi,
     /sora/gi,
     /o1[- ]?(preview|mini)?/gi,
+    /o3[- ]?(mini|preview)?/gi,
 
     // ═══════════════════════════════════════════════════
     // GOOGLE (Gemini, Bard, PaLM)
     // ═══════════════════════════════════════════════════
-    /gemini[- ]?[\d.]*[- ]?(pro|ultra|nano|flash|advanced)?/gi,
+    /gemini[- ]?2\.0[- ]?(flash|flash[- ]?thinking)/gi,
+    /gemini[- ]?2\.5[- ]?\w*/gi,
+    /gemini[- ]?[\d.]*[- ]?(pro|ultra|nano|flash|advanced|thinking)?/gi,
     /google[- ]?ai/gi,
     /palm[- ]?[\d]*/gi,
     /\bbard\b/gi,
@@ -396,6 +408,8 @@ function sanitizeModelNames(text) {
     // ═══════════════════════════════════════════════════
     // META (Llama)
     // ═══════════════════════════════════════════════════
+    /llama[- ]?3\.[1-3][- ]?\w*/gi,
+    /llama[- ]?v3p\d/gi,
     /llama[- ]?[\d.-]*[- ]?\w*/gi,
     /meta[- ]?llama/gi,
     /meta[- ]?ai/gi,
@@ -404,7 +418,9 @@ function sanitizeModelNames(text) {
     // ═══════════════════════════════════════════════════
     // MISTRAL
     // ═══════════════════════════════════════════════════
+    /mistral[- ]?(large|medium|small|nemo|instruct)[- ]?[\d.]*/gi,
     /mistral[- ]?[\d.]*[- ]?(large|medium|small|nemo|instruct)?/gi,
+    /codestral[- ]?[\d.]*/gi,
     /mixtral[- ]?\d*/gi,
     /pixtral/gi,
     /\bmistral\b/gi,
@@ -416,9 +432,15 @@ function sanitizeModelNames(text) {
     /copilot/gi,
     /bing[- ]?ai/gi,
     /phi[- ]?\d*/gi,
+    /qwen[- ]?2\.5[- ]?\w*/gi,
+    /qwen2\.5[- ]?\w*/gi,
     /qwen[- ]?\d*/gi,
+    /deepseek[- ]?r1/gi,
+    /deepseek[- ]?v3/gi,
+    /deepseek[- ]?coder[- ]?[\d.]*/gi,
     /deepseek[- ]?\w*/gi,
     /cohere/gi,
+    /command[- ]?r[- ]?plus/gi,
     /command[- ]?r/gi,
     /stable[- ]?diffusion/gi,
     /midjourney/gi,
@@ -544,6 +566,8 @@ function sanitizeModelNames(text) {
     'ChatGPT',
     'GPT4',
     'GPT-4',
+    'GPT-4o',
+    'GPT-4o-mini',
     'GPT3',
     'GPT-3',
     'GPT',
@@ -561,6 +585,7 @@ function sanitizeModelNames(text) {
     'Meta AI',
     'Mistral',
     'Mixtral',
+    'Codestral',
     'Groq',
     'DeepSeek',
     'Qwen',
@@ -568,6 +593,8 @@ function sanitizeModelNames(text) {
     'OpenAI',
     'Perplexity',
     'Grok',
+    'Command-R',
+    'Command-R-Plus',
   ];
 
   bannedWords.forEach(word => {
@@ -593,7 +620,7 @@ function sanitizeModelNames(text) {
   // PHASE 4: FINAL VERIFICATION (Double-check)
   // ═══════════════════════════════════════════════════
   const finalCheck =
-    /gpt|claude|gemini|llama|mistral|anthropic|openai|deepseek|groq|qwen|cohere|perplexity|bard/gi;
+    /gpt|claude|gemini|llama|mistral|anthropic|openai|deepseek|groq|qwen|cohere|perplexity|bard|codestral|command-r/gi;
   if (finalCheck.test(sanitized)) {
     // If any slip through, do another pass
     sanitized = sanitized.replace(finalCheck, 'LyDian AI');

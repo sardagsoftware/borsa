@@ -5,7 +5,7 @@
 // Interactive UI & API Integration
 // ========================================
 
-class DeepSeekR1Frontend {
+class LyDianIQFrontend {
   constructor() {
     this.apiEndpoint = '/api/lydian-iq/solve';
     this.currentDomain = 'mathematics';
@@ -105,7 +105,7 @@ class DeepSeekR1Frontend {
     this.showLoading('Derin Düşünme Başladı...');
 
     try {
-      const response = await this.callDeepSeekAPI(problem, this.currentDomain);
+      const response = await this.callLyDianIQAPI(problem, this.currentDomain);
 
       if (response.success) {
         this.displayResults(response);
@@ -122,7 +122,7 @@ class DeepSeekR1Frontend {
     }
   }
 
-  async callDeepSeekAPI(problem, domain) {
+  async callLyDianIQAPI(problem, domain) {
     try {
       // Create abort controller for timeout
       const controller = new AbortController();
@@ -411,10 +411,10 @@ class DeepSeekR1Frontend {
 
     // Style based on type
     const colors = {
-      success: 'var(--deepseek-accent)',
-      warning: 'var(--deepseek-reasoning)',
-      error: 'var(--deepseek-warning)',
-      info: 'var(--deepseek-secondary)',
+      success: 'var(--lydianiq-accent)',
+      warning: 'var(--lydianiq-reasoning)',
+      error: 'var(--lydianiq-warning)',
+      info: 'var(--lydianiq-secondary)',
     };
 
     notification.style.cssText = `
@@ -590,7 +590,7 @@ class DeepSeekR1Frontend {
 
 // ========== Initialize on DOM Load ==========
 document.addEventListener('DOMContentLoaded', () => {
-  window.deepseekR1 = new DeepSeekR1Frontend();
+  window.lydianIQ = new LyDianIQFrontend();
   console.log('✅ LyDian IQ Frontend initialized');
 });
 

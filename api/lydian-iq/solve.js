@@ -1,4 +1,4 @@
-/* global fetch, AbortController */
+/* eslint no-redeclare: "off" -- Node 18 polyfills */
 // ========================================
 // LyDian IQ Reasoning Engine - API
 // Version: 2.0.1 - AILYDIAN Edition
@@ -12,6 +12,7 @@
 // 🏭 FACTORY FUNCTION: Create fresh config on each request (fixes Vercel serverless env timing)
 // This ensures environment variables are read at EXECUTION time, not MODULE LOAD time
 const { getCorsOrigin } = require('../_middleware/cors');
+const { applySanitization } = require('../_middleware/sanitize');
 function getAIConfig() {
   const groqKey = process.env.GROQ_API_KEY || '';
   const anthropicKey = process.env.ANTHROPIC_API_KEY || '';
@@ -521,6 +522,8 @@ function generateFallbackResponse(problem, domain, language = 'tr-TR') {
 
 // ========== API Handler ==========
 module.exports = async (req, res) => {
+  // Apply sanitization middleware (obfuscate AI model names in responses)
+  applySanitization(req, res);
   // CORS Headers
   res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');

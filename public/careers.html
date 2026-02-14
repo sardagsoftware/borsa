@@ -54,7 +54,8 @@
       }
     </style>
     <link
-      rel="preload" as="style"
+      rel="preload"
+      as="style"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Righteous&amp;display=swap"
       crossorigin="anonymous"
     />
@@ -70,24 +71,37 @@
         box-sizing: border-box;
       }
       :root {
-        --black: #000;
-        --white: #fff;
-        --gray-50: #f9fafb;
-        --gray-100: #f3f4f6;
-        --gray-200: #e5e7eb;
-        --gray-500: #6b7280;
-        --gray-600: #4b5563;
-        --gray-700: #374151;
-        --gray-800: #1f2937;
-        --gray-900: #111827;
-        --primary: #10a37f;
-        --accent: #ff6b4a;
+        --bg-dark: #0a0b0d;
+        --white: #ffffff;
+        --text-primary: #ffffff;
+        --text-secondary: rgba(255, 255, 255, 0.7);
+        --text-tertiary: rgba(255, 255, 255, 0.6);
+        --accent-green: #00e0ae;
+        --accent-blue: #6e84ff;
+        --accent-purple: #b86bff;
+        --border: rgba(255, 255, 255, 0.1);
+        --card-bg: rgba(255, 255, 255, 0.05);
+        --glass-bg: rgba(0, 0, 0, 0.6);
+      }
+      html {
+        color-scheme: dark;
       }
       body {
-        font-family: 'Inter', sans-serif;
-        background: var(--white);
-        color: var(--gray-900);
+        font-family:
+          'Inter',
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+        background: #0a0b0d;
+        background-image:
+          radial-gradient(at 27% 37%, rgba(0, 224, 174, 0.08) 0px, transparent 50%),
+          radial-gradient(at 97% 21%, rgba(110, 132, 255, 0.08) 0px, transparent 50%),
+          radial-gradient(at 52% 99%, rgba(184, 107, 255, 0.08) 0px, transparent 50%),
+          radial-gradient(at 10% 29%, rgba(0, 224, 174, 0.05) 0px, transparent 50%),
+          radial-gradient(at 97% 96%, rgba(110, 132, 255, 0.05) 0px, transparent 50%);
+        color: #ffffff;
         line-height: 1.6;
+        overflow-x: hidden;
       }
       .navbar {
         position: fixed;
@@ -95,9 +109,15 @@
         left: 0;
         right: 0;
         z-index: 1000;
-        background: rgba(255, 255, 255, 0.8);
+        background: rgba(0, 0, 0, 0.6);
         backdrop-filter: blur(20px);
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+      }
+      .navbar.scrolled {
+        background: rgba(0, 0, 0, 0.8);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
       }
       .nav-container {
         max-width: 1400px;
@@ -108,33 +128,78 @@
         justify-content: space-between;
         height: 72px;
       }
-      .logo {
-        font-family: 'Inter', sans-serif !important;
-        font-size: 2.25rem;
-        color: #000;
-        text-decoration: none;
-      }
       .nav-links {
         display: flex;
         gap: 2rem;
+        align-items: center;
         list-style: none;
       }
       .nav-links a {
-        color: var(--gray-700);
+        color: rgba(255, 255, 255, 0.7);
         text-decoration: none;
+        font-size: 0.95rem;
+        font-weight: 500;
+        transition: color 0.2s ease;
       }
-      .btn-primary {
-        background: var(--black);
-        color: var(--white);
+      .nav-links a:hover {
+        color: #ffffff;
+      }
+      .nav-cta {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+      }
+      .btn {
         padding: 0.75rem 1.5rem;
         border-radius: 8px;
+        font-size: 0.95rem;
+        font-weight: 600;
         text-decoration: none;
+        transition: all 0.2s ease;
+        cursor: pointer;
+        border: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .btn-secondary {
+        background: transparent;
+        color: rgba(255, 255, 255, 0.7);
+      }
+      .btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: #ffffff;
+      }
+      .btn-primary {
+        background: #00e0ae;
+        color: #000000;
+      }
+      .btn-primary:hover {
+        background: #00ffc6;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0, 224, 174, 0.4);
+      }
+      .mobile-menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0.5rem;
+      }
+      .mobile-menu-btn svg {
+        width: 24px;
+        height: 24px;
+        color: #ffffff;
       }
       .hero {
         min-height: 70vh;
         display: flex;
         align-items: center;
-        background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+        background: linear-gradient(
+          135deg,
+          rgba(0, 224, 174, 0.2) 0%,
+          rgba(110, 132, 255, 0.2) 100%
+        );
         padding-top: 72px;
       }
       .hero-content {
@@ -148,23 +213,32 @@
         font-size: 4.5rem;
         font-weight: 800;
         margin-bottom: 1.5rem;
+        color: var(--text-primary);
       }
       .hero-description {
         font-size: 1.5rem;
         max-width: 800px;
         margin: 0 auto 3rem;
+        color: var(--text-secondary);
       }
       .btn-white {
-        background: white;
-        color: black;
+        background: var(--accent-green);
+        color: #000000;
         padding: 1rem 2rem;
         font-size: 1.1rem;
         border-radius: 12px;
         display: inline-block;
+        font-weight: 600;
+        transition: all 0.2s ease;
+        text-decoration: none;
+      }
+      .btn-white:hover {
+        background: var(--accent-blue);
+        transform: translateY(-2px);
       }
       .values {
         padding: 8rem 2rem;
-        background: white;
+        background: transparent;
       }
       .values-container {
         max-width: 1400px;
@@ -175,6 +249,7 @@
         font-weight: 800;
         text-align: center;
         margin-bottom: 5rem;
+        color: var(--text-primary);
       }
       .values-grid {
         display: grid;
@@ -183,9 +258,16 @@
       }
       .value-card {
         padding: 2.5rem;
-        background: var(--gray-50);
+        background: var(--card-bg);
+        border: 1px solid var(--border);
         border-radius: 16px;
         text-align: center;
+        backdrop-filter: blur(20px);
+        transition: all 0.3s ease;
+      }
+      .value-card:hover {
+        background: rgba(255, 255, 255, 0.08);
+        transform: translateY(-4px);
       }
       .value-icon {
         font-size: 3rem;
@@ -195,13 +277,14 @@
         font-size: 1.5rem;
         font-weight: 700;
         margin-bottom: 1rem;
+        color: var(--text-primary);
       }
       .value-description {
-        color: var(--gray-600);
+        color: var(--text-secondary);
       }
       .jobs {
         padding: 8rem 2rem;
-        background: var(--gray-50);
+        background: transparent;
       }
       .jobs-container {
         max-width: 1400px;
@@ -209,13 +292,18 @@
       }
       .job-card {
         padding: 2.5rem;
-        background: white;
-        border: 1px solid var(--gray-200);
+        background: var(--card-bg);
+        border: 1px solid var(--border);
         border-radius: 16px;
         margin-bottom: 2rem;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        backdrop-filter: blur(20px);
+        transition: all 0.3s ease;
+      }
+      .job-card:hover {
+        background: rgba(255, 255, 255, 0.08);
       }
       .job-info {
         flex: 1;
@@ -224,26 +312,33 @@
         font-size: 1.5rem;
         font-weight: 700;
         margin-bottom: 0.5rem;
+        color: var(--text-primary);
       }
       .job-meta {
-        color: var(--gray-600);
+        color: var(--text-tertiary);
         margin-bottom: 1rem;
       }
       .job-description {
-        color: var(--gray-700);
+        color: var(--text-secondary);
       }
       .btn-apply {
-        background: var(--primary);
-        color: white;
+        background: var(--accent-green);
+        color: #000000;
         padding: 0.75rem 1.5rem;
         border-radius: 8px;
         text-decoration: none;
         font-weight: 600;
+        transition: all 0.2s ease;
+      }
+      .btn-apply:hover {
+        background: var(--accent-blue);
+        transform: translateY(-1px);
       }
       .footer {
         padding: 4rem 2rem 2rem;
-        background: var(--gray-900);
-        color: var(--gray-500);
+        background: rgba(0, 0, 0, 0.5);
+        color: var(--text-tertiary);
+        border-top: 1px solid var(--border);
       }
       .footer-container {
         max-width: 1400px;
@@ -259,12 +354,14 @@
         font-family: 'Inter', sans-serif !important;
         font-size: 2rem;
         color: white;
+        font-weight: 900;
       }
       .footer-column h3 {
-        color: white;
+        color: var(--text-primary);
         font-size: 0.875rem;
         text-transform: uppercase;
         margin-bottom: 1.5rem;
+        font-weight: 700;
       }
       .footer-links {
         list-style: none;
@@ -273,12 +370,16 @@
         margin-bottom: 1rem;
       }
       .footer-links a {
-        color: var(--gray-500);
+        color: var(--text-tertiary);
         text-decoration: none;
+        transition: color 0.2s ease;
+      }
+      .footer-links a:hover {
+        color: var(--accent-green);
       }
       .footer-bottom {
         padding-top: 2rem;
-        border-top: 1px solid var(--gray-800);
+        border-top: 1px solid var(--border);
         display: flex;
         justify-content: space-between;
       }
@@ -287,8 +388,71 @@
         gap: 2rem;
       }
       .footer-legal a {
-        color: var(--gray-500);
+        color: var(--text-tertiary);
         text-decoration: none;
+      }
+      .footer-legal a:hover {
+        color: var(--accent-green);
+      }
+      .footer-brand {
+        padding-right: 2rem;
+      }
+      .footer-description {
+        font-size: 0.95rem;
+        line-height: 1.7;
+        color: rgba(255, 255, 255, 0.6);
+        margin-bottom: 2rem;
+      }
+      .footer-social {
+        display: flex;
+        gap: 1rem;
+      }
+      .social-link {
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(255, 255, 255, 0.6);
+        text-decoration: none;
+        transition: all 0.2s ease;
+      }
+      .social-link:hover {
+        background: #00e0ae;
+        color: #000000;
+        transform: translateY(-2px);
+      }
+      .footer-copyright {
+        font-size: 0.875rem;
+        color: rgba(255, 255, 255, 0.5);
+      }
+      @media (max-width: 1024px) {
+        .footer-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 768px) {
+        .nav-links,
+        .nav-cta {
+          display: none;
+        }
+        .mobile-menu-btn {
+          display: block;
+        }
+        .hero-title {
+          font-size: 2rem;
+        }
+        .section-title {
+          font-size: 1.5rem;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr;
+        }
+        .values-grid {
+          grid-template-columns: 1fr;
+        }
       }
     </style>
     <link rel="stylesheet" href="/css/global-lydian-branding.css" />
@@ -451,7 +615,7 @@
     <meta name="twitter:image:alt" content="Careers - LyDian | Join Our AI Innovation Team" />
 
     <!-- /Premium SEO -->
-<!-- PWA Manifest -->
+    <!-- PWA Manifest -->
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#C4A962" />
     <!-- iOS Safari -->
@@ -506,7 +670,8 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon-48.png" />
     <link rel="icon" type="image/x-icon" href="/icons/favicon.ico" />
-    <link rel="shortcut icon" href="/icons/favicon.ico" /></head>
+    <link rel="shortcut icon" href="/icons/favicon.ico" />
+  </head>
   <body>
     <nav class="navbar">
       <div class="nav-container">
@@ -532,9 +697,25 @@
         >
         <ul class="nav-links">
           <li><a href="/chat.html">LyDian AI</a></li>
-          <li><a href="/about.html">Hakkımızda</a></li>
+          <li><a href="/docs.html">Dokümantasyon</a></li>
+          <li><a href="/api-reference.html">API</a></li>
+          <li><a href="/developers.html">Geliştiriciler</a></li>
+          <li><a href="/models.html">Modeller</a></li>
         </ul>
-        <div><a href="/contact.html" class="btn-primary">İletişim</a></div>
+        <div class="nav-cta">
+          <a href="/auth.html" class="btn btn-secondary">Giriş Yap</a>
+          <a href="/chat.html" class="btn btn-primary">Şimdi Dene</a>
+        </div>
+        <button class="mobile-menu-btn" aria-label="Menu">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            ></path>
+          </svg>
+        </button>
       </div>
     </nav>
 
@@ -657,7 +838,7 @@
     <footer class="footer">
       <div class="footer-container">
         <div class="footer-grid">
-          <div>
+          <div class="footer-brand">
             <div
               class="footer-logo"
               style="
@@ -668,13 +849,37 @@
             >
               LyDian
             </div>
+            <p class="footer-description">
+              Yapay zeka teknolojileriyle geleceği şekillendiren, yenilikçi çözümler sunan AI
+              platformu.
+            </p>
+            <div class="footer-social">
+              <a href="#" class="social-link" aria-label="Twitter"
+                ><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"
+                  ></path></svg
+              ></a>
+              <a href="#" class="social-link" aria-label="LinkedIn"
+                ><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"
+                  ></path>
+                  <circle cx="4" cy="4" r="2"></circle></svg
+              ></a>
+              <a href="#" class="social-link" aria-label="GitHub"
+                ><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+                  ></path></svg
+              ></a>
+            </div>
           </div>
           <div class="footer-column">
             <h3>Ürünler</h3>
             <ul class="footer-links">
-              <li><a href="/ai-chat.html">AI Sohbet</a></li>
-              <li><a href="/image-generation.html">Görsel Oluşturma</a></li>
-              <li><a href="/video-ai.html">Video AI</a></li>
+              <li><a href="/chat.html">AI Sohbet</a></li>
+              <li><a href="/models.html">Modeller</a></li>
               <li><a href="/api.html">API</a></li>
             </ul>
           </div>
@@ -704,10 +909,11 @@
           </div>
         </div>
         <div class="footer-bottom">
-          <div>© 2025 LyDian. Tüm hakları saklıdır.</div>
+          <div class="footer-copyright">© 2025 LyDian. Tüm hakları saklıdır.</div>
           <div class="footer-legal">
-            <a href="/privacy.html">Gizlilik</a><a href="/terms.html">Koşullar</a
-            ><a href="/cookies.html">Çerezler</a>
+            <a href="/privacy.html">Gizlilik Politikası</a>
+            <a href="/terms.html">Kullanım Koşulları</a>
+            <a href="/cookies.html">Çerezler</a>
           </div>
         </div>
       </div>

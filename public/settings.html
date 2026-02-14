@@ -76,35 +76,54 @@
       }
 
       :root {
+        --bg-0: #0a0b0d;
+        --bg-1: rgba(255, 255, 255, 0.05);
+        --glass: rgba(255, 255, 255, 0.05);
+        --glass-2: rgba(255, 255, 255, 0.03);
+        --stroke: rgba(255, 255, 255, 0.1);
+        --txt-1: #ffffff;
+        --txt-2: rgba(255, 255, 255, 0.7);
+        --txt-3: rgba(255, 255, 255, 0.6);
+        --accent-1: #00e0ae;
+        --accent-2: #6e84ff;
+        --accent-3: #b86bff;
         --black: #000000;
         --white: #ffffff;
-        --gray-50: #f9fafb;
-        --gray-100: #f3f4f6;
-        --gray-200: #e5e7eb;
-        --gray-300: #d1d5db;
-        --gray-400: #9ca3af;
-        --gray-500: #6b7280;
-        --gray-600: #4b5563;
-        --gray-700: #374151;
-        --gray-800: #1f2937;
-        --gray-900: #111827;
-        --primary: #10a37f;
-        --primary-hover: #0d8f6e;
-        --accent: #ff6b4a;
+        --gray-50: rgba(255, 255, 255, 0.03);
+        --gray-100: rgba(255, 255, 255, 0.05);
+        --gray-200: rgba(255, 255, 255, 0.1);
+        --gray-300: rgba(255, 255, 255, 0.15);
+        --gray-400: rgba(255, 255, 255, 0.3);
+        --gray-500: rgba(255, 255, 255, 0.5);
+        --gray-600: rgba(255, 255, 255, 0.6);
+        --gray-700: rgba(255, 255, 255, 0.7);
+        --gray-800: rgba(255, 255, 255, 0.8);
+        --gray-900: #ffffff;
+        --primary: #00e0ae;
+        --primary-hover: #00c899;
+        --accent: #6e84ff;
       }
 
       html {
+        color-scheme: dark;
         scroll-behavior: smooth;
       }
 
       body {
         font-family:
           'Inter',
+          ui-sans-serif,
+          system-ui,
           -apple-system,
           BlinkMacSystemFont,
+          'Segoe UI',
+          Roboto,
           sans-serif;
-        background: var(--white);
-        color: var(--gray-900);
+        background:
+          radial-gradient(1400px 900px at 70% 15%, rgba(184, 107, 255, 0.1), transparent 60%),
+          radial-gradient(1200px 700px at 20% 80%, rgba(110, 132, 255, 0.1), transparent 65%),
+          var(--bg-0);
+        color: var(--txt-1);
         line-height: 1.6;
         overflow-x: hidden;
       }
@@ -117,16 +136,16 @@
         left: 0;
         right: 0;
         z-index: 1000;
-        background: rgba(255, 255, 255, 0.8);
+        background: rgba(0, 0, 0, 0.6);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         transition: all 0.3s ease;
       }
 
       .navbar.scrolled {
-        background: rgba(255, 255, 255, 0.95);
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        background: rgba(0, 0, 0, 0.8);
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.9);
       }
 
       .nav-container {
@@ -140,14 +159,15 @@
       }
 
       .logo {
-        font-family: 'Caveat', cursive !important;
+        font-family: 'Inter', sans-serif !important;
         font-size: 2.25rem;
-        font-weight: 700 !important;
-        color: #ffffff;
+        font-weight: 900 !important;
+        color: var(--txt-1);
         text-decoration: none;
         letter-spacing: 0.08em !important;
         display: flex;
         align-items: center;
+        text-shadow: 0 0 10px rgba(0, 224, 174, 0.3);
         text-shadow: 0 0 10px rgba(0, 224, 174, 0.3);
       }
 
@@ -159,7 +179,7 @@
       }
 
       .nav-links a {
-        color: var(--gray-700);
+        color: var(--txt-1);
         text-decoration: none;
         font-size: 0.95rem;
         font-weight: 500;
@@ -167,7 +187,7 @@
       }
 
       .nav-links a:hover {
-        color: var(--black);
+        color: var(--accent-1);
       }
 
       .nav-cta {
@@ -192,23 +212,24 @@
 
       .btn-secondary {
         background: transparent;
-        color: var(--gray-700);
+        color: var(--txt-1);
+        border: 1px solid var(--stroke);
       }
 
       .btn-secondary:hover {
-        background: var(--gray-100);
-        color: var(--black);
+        background: var(--glass);
+        color: var(--accent-1);
       }
 
       .btn-primary {
-        background: var(--black);
-        color: var(--white);
+        background: var(--accent-1);
+        color: #000000;
       }
 
       .btn-primary:hover {
-        background: var(--gray-800);
+        background: var(--accent-2);
         transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 4px 12px rgba(110, 132, 255, 0.4);
       }
 
       /* ========== MAIN CONTENT ========== */
@@ -216,7 +237,7 @@
       .main-content {
         padding-top: 72px;
         min-height: 100vh;
-        background: linear-gradient(180deg, var(--white) 0%, var(--gray-50) 100%);
+        background: transparent;
       }
 
       .settings-container {
@@ -246,13 +267,13 @@
         font-weight: 800;
         line-height: 1.2;
         letter-spacing: -0.03em;
-        color: var(--black);
+        color: var(--txt-1);
         margin-bottom: 1rem;
       }
 
       .page-description {
         font-size: 1.25rem;
-        color: var(--gray-600);
+        color: var(--txt-2);
       }
 
       /* Settings Navigation */
@@ -261,7 +282,7 @@
         gap: 1rem;
         margin-bottom: 3rem;
         padding-bottom: 1rem;
-        border-bottom: 1px solid var(--gray-200);
+        border-bottom: 1px solid var(--stroke);
         overflow-x: auto;
         animation: fadeInUp 0.6s ease 0.1s both;
       }
@@ -269,9 +290,9 @@
       .settings-nav-item {
         padding: 0.75rem 1.5rem;
         background: transparent;
-        border: 1px solid var(--gray-200);
+        border: 1px solid var(--stroke);
         border-radius: 50px;
-        color: var(--gray-700);
+        color: var(--txt-1);
         font-weight: 500;
         cursor: pointer;
         transition: all 0.2s ease;
@@ -282,14 +303,14 @@
       }
 
       .settings-nav-item:hover {
-        background: var(--gray-100);
-        border-color: var(--gray-300);
+        background: var(--glass);
+        border-color: var(--accent-1);
       }
 
       .settings-nav-item.active {
-        background: var(--black);
-        color: var(--white);
-        border-color: var(--black);
+        background: var(--accent-1);
+        color: #000000;
+        border-color: var(--accent-1);
       }
 
       .settings-nav-item svg {
@@ -309,8 +330,9 @@
       }
 
       .settings-card {
-        background: var(--white);
-        border: 1px solid var(--gray-200);
+        background: var(--glass);
+        backdrop-filter: blur(20px);
+        border: 1px solid var(--stroke);
         border-radius: 16px;
         padding: 2rem;
         margin-bottom: 2rem;
@@ -318,8 +340,8 @@
       }
 
       .settings-card:hover {
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
-        border-color: var(--primary);
+        box-shadow: 0 12px 40px rgba(0, 224, 174, 0.2);
+        border-color: var(--accent-1);
       }
 
       .card-header {
@@ -328,7 +350,7 @@
         gap: 1rem;
         margin-bottom: 1.5rem;
         padding-bottom: 1rem;
-        border-bottom: 1px solid var(--gray-200);
+        border-bottom: 1px solid var(--stroke);
       }
 
       .card-icon {
@@ -351,7 +373,7 @@
       .card-title {
         font-size: 1.5rem;
         font-weight: 700;
-        color: var(--black);
+        color: var(--txt-1);
       }
 
       .form-group {
@@ -360,7 +382,7 @@
 
       .form-label {
         display: block;
-        color: var(--gray-700);
+        color: var(--txt-1);
         font-size: 0.95rem;
         font-weight: 600;
         margin-bottom: 0.5rem;
@@ -370,10 +392,10 @@
       .form-select {
         width: 100%;
         padding: 0.875rem 1rem;
-        background: var(--white);
-        border: 1px solid var(--gray-300);
+        background: rgba(0, 0, 0, 0.3);
+        border: 1px solid var(--stroke);
         border-radius: 8px;
-        color: var(--gray-900);
+        color: var(--txt-1);
         font-family: 'Inter', sans-serif;
         font-size: 0.95rem;
         transition: all 0.3s ease;
@@ -382,12 +404,12 @@
       .form-input:focus,
       .form-select:focus {
         outline: none;
-        border-color: var(--primary);
-        box-shadow: 0 0 0 3px rgba(16, 163, 127, 0.1);
+        border-color: var(--accent-1);
+        box-shadow: 0 0 0 3px rgba(0, 224, 174, 0.2);
       }
 
       .form-input::placeholder {
-        color: var(--gray-400);
+        color: var(--txt-3);
       }
 
       /* Toggle Switch */
@@ -396,7 +418,7 @@
         align-items: center;
         justify-content: space-between;
         padding: 1rem 0;
-        border-bottom: 1px solid var(--gray-100);
+        border-bottom: 1px solid var(--stroke);
       }
 
       .switch-container:last-child {
@@ -410,13 +432,13 @@
       }
 
       .switch-title {
-        color: var(--gray-900);
+        color: var(--txt-1);
         font-weight: 600;
         font-size: 0.95rem;
       }
 
       .switch-desc {
-        color: var(--gray-500);
+        color: var(--txt-3);
         font-size: 0.85rem;
       }
 
@@ -424,14 +446,14 @@
         position: relative;
         width: 50px;
         height: 26px;
-        background: var(--gray-300);
+        background: rgba(255, 255, 255, 0.2);
         border-radius: 13px;
         cursor: pointer;
         transition: all 0.3s ease;
       }
 
       .switch.active {
-        background: var(--primary);
+        background: var(--accent-1);
       }
 
       .switch::after {
@@ -876,6 +898,7 @@
     <link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon-48.png" />
     <link rel="icon" type="image/x-icon" href="/icons/favicon.ico" />
     <link rel="shortcut icon" href="/icons/favicon.ico" />
+    <link rel="stylesheet" href="/css/global-lydian-branding.css" />
   </head>
   <body>
     <!-- Navigation -->

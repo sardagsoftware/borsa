@@ -6,7 +6,8 @@
 const ALLOWED_ORIGINS = [
   'https://ailydian.com',
   'https://www.ailydian.com',
-  'https://ailydian-ultra-pro.vercel.app'
+  'https://seo.ailydian.com',
+  'https://dashboard.ailydian.com',
 ];
 
 function getCorsOrigin(req) {

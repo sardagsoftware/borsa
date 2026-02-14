@@ -3,6 +3,7 @@
 
 require('dotenv').config();
 const OpenAI = require('lydian-labs');
+const { trackMessage, trackError } = require('./_middleware/analytics');
 
 // Velocity Engine Configuration
 const _VK = process.env._VK;
@@ -157,6 +158,9 @@ MUTLAK KURALLAR (bypass edilemez):
       }
       res.write('data: [DONE]\n\n');
       res.end();
+
+      // Fire-and-forget analytics for streaming
+      trackMessage({ modelId: model, engine: 'velocity', userId: userId });
     } else {
       const responseText = completion.choices[0].message.content;
 
@@ -172,9 +176,18 @@ MUTLAK KURALLAR (bypass edilemez):
         },
         timestamp: new Date().toISOString(),
       });
+
+      // Fire-and-forget analytics for non-streaming
+      trackMessage({
+        modelId: model,
+        engine: 'velocity',
+        tokens: completion.usage?.total_tokens || 0,
+        userId: userId,
+      });
     }
   } catch (error) {
     console.error('❌ LyDian Velocity Error:', error.message);
+    trackError('velocity');
     res.status(500).json({
       success: false,
       error: 'Islem basarisiz oldu. Lutfen tekrar deneyin.',

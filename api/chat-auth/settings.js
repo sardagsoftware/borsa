@@ -36,7 +36,7 @@ module.exports = async function handler(req, res) {
   if (!token) {
     return res.status(401).json({
       success: false,
-      error: 'Giriş yapmanız gerekli'
+      error: 'Giriş yapmanız gerekli',
     });
   }
 
@@ -45,7 +45,7 @@ module.exports = async function handler(req, res) {
   if (!authResult.valid) {
     return res.status(401).json({
       success: false,
-      error: 'Oturum süresi dolmuş'
+      error: 'Oturum süresi dolmuş',
     });
   }
 
@@ -69,14 +69,17 @@ module.exports = async function handler(req, res) {
           language: settings.language,
           fontSize: settings.font_size,
           preferredModel: settings.preferred_model,
-          autoSaveHistory: settings.auto_save_history === true || settings.auto_save_history === 'true',
-          notificationsEnabled: settings.notifications_enabled === true || settings.notifications_enabled === 'true',
+          autoSaveHistory:
+            settings.auto_save_history === true || settings.auto_save_history === 'true',
+          notificationsEnabled:
+            settings.notifications_enabled === true || settings.notifications_enabled === 'true',
           soundEnabled: settings.sound_enabled === true || settings.sound_enabled === 'true',
-          emailNotifications: settings.email_notifications === true || settings.email_notifications === 'true',
+          emailNotifications:
+            settings.email_notifications === true || settings.email_notifications === 'true',
           useHistory: settings.use_history === true || settings.use_history === 'true',
           analytics: settings.analytics === true || settings.analytics === 'true',
-          customSettings: settings.custom_settings ? JSON.parse(settings.custom_settings) : null
-        }
+          customSettings: settings.custom_settings ? JSON.parse(settings.custom_settings) : null,
+        },
       });
     }
 
@@ -94,7 +97,7 @@ module.exports = async function handler(req, res) {
         emailNotifications,
         useHistory,
         analytics,
-        customSettings
+        customSettings,
       } = body;
 
       const updateData = {};
@@ -104,7 +107,7 @@ module.exports = async function handler(req, res) {
         if (!ALLOWED_THEMES.includes(theme)) {
           return res.status(400).json({
             success: false,
-            error: 'Geçersiz tema seçimi'
+            error: 'Geçersiz tema seçimi',
           });
         }
         updateData.theme = theme;
@@ -115,7 +118,7 @@ module.exports = async function handler(req, res) {
         if (!ALLOWED_LANGUAGES.includes(language)) {
           return res.status(400).json({
             success: false,
-            error: 'Geçersiz dil seçimi'
+            error: 'Geçersiz dil seçimi',
           });
         }
         updateData.language = language;
@@ -126,7 +129,7 @@ module.exports = async function handler(req, res) {
         if (!ALLOWED_FONT_SIZES.includes(fontSize)) {
           return res.status(400).json({
             success: false,
-            error: 'Geçersiz font boyutu'
+            error: 'Geçersiz font boyutu',
           });
         }
         updateData.font_size = fontSize;
@@ -137,7 +140,7 @@ module.exports = async function handler(req, res) {
         if (!ALLOWED_MODELS.includes(preferredModel)) {
           return res.status(400).json({
             success: false,
-            error: 'Geçersiz model seçimi'
+            error: 'Geçersiz model seçimi',
           });
         }
         updateData.preferred_model = preferredModel;
@@ -165,13 +168,14 @@ module.exports = async function handler(req, res) {
 
       // Custom settings (stored as JSON string in DB)
       if (customSettings !== undefined) {
-        updateData.custom_settings = typeof customSettings === 'string' ? customSettings : JSON.stringify(customSettings);
+        updateData.custom_settings =
+          typeof customSettings === 'string' ? customSettings : JSON.stringify(customSettings);
       }
 
       if (Object.keys(updateData).length === 0) {
         return res.status(400).json({
           success: false,
-          error: 'Güncellenecek bir ayar belirtilmedi'
+          error: 'Güncellenecek bir ayar belirtilmedi',
         });
       }
 
@@ -192,24 +196,30 @@ module.exports = async function handler(req, res) {
           language: settings.language,
           fontSize: settings.font_size,
           preferredModel: settings.preferred_model,
-          autoSaveHistory: settings.auto_save_history === true || settings.auto_save_history === 'true',
-          notificationsEnabled: settings.notifications_enabled === true || settings.notifications_enabled === 'true',
+          autoSaveHistory:
+            settings.auto_save_history === true || settings.auto_save_history === 'true',
+          notificationsEnabled:
+            settings.notifications_enabled === true || settings.notifications_enabled === 'true',
           soundEnabled: settings.sound_enabled === true || settings.sound_enabled === 'true',
-          emailNotifications: settings.email_notifications === true || settings.email_notifications === 'true',
+          emailNotifications:
+            settings.email_notifications === true || settings.email_notifications === 'true',
           useHistory: settings.use_history === true || settings.use_history === 'true',
           analytics: settings.analytics === true || settings.analytics === 'true',
-          customSettings: settings.custom_settings ? (typeof settings.custom_settings === 'string' ? JSON.parse(settings.custom_settings) : settings.custom_settings) : {}
-        }
+          customSettings: settings.custom_settings
+            ? typeof settings.custom_settings === 'string'
+              ? JSON.parse(settings.custom_settings)
+              : settings.custom_settings
+            : {},
+        },
       });
     }
 
-    return res.status(405).json({ success: false, error: 'Method not allowed' });
-
+    return res.status(405).json({ success: false, error: 'Bu istek yöntemi desteklenmiyor' });
   } catch (error) {
     console.error('[CHAT_AUTH_SETTINGS_ERROR]', error.message);
     return res.status(500).json({
       success: false,
-      error: 'İşlem başarısız'
+      error: 'İşlem başarısız',
     });
   }
 };

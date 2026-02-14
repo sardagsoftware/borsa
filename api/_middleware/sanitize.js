@@ -15,7 +15,8 @@ const { sanitizeModelNames } = require('../../services/localrecall/obfuscation')
 const ALLOWED_ORIGINS = [
   'https://ailydian.com',
   'https://www.ailydian.com',
-  'https://ailydian-ultra-pro.vercel.app'
+  'https://seo.ailydian.com',
+  'https://dashboard.ailydian.com',
 ];
 
 /**
@@ -91,14 +92,14 @@ function applySanitization(req, res) {
 
   // Wrap res.json
   const originalJson = res.json.bind(res);
-  res.json = function(data) {
+  res.json = function (data) {
     const sanitized = deepSanitize(data);
     return originalJson(sanitized);
   };
 
   // Wrap res.send for string responses
   const originalSend = res.send.bind(res);
-  res.send = function(data) {
+  res.send = function (data) {
     if (typeof data === 'string') {
       return originalSend(sanitizeModelNames(data));
     }
@@ -110,9 +111,23 @@ function applySanitization(req, res) {
 
   // Wrap res.write for SSE streaming
   const originalWrite = res.write.bind(res);
-  res.write = function(chunk, encoding, callback) {
+  res.write = function (chunk, encoding, callback) {
     const sanitized = sanitizeSSEChunk(chunk);
     return originalWrite(sanitized, encoding, callback);
+  };
+
+  // Wrap res.end for string data passed to end()
+  const originalEnd = res.end.bind(res);
+  res.end = function (data, encoding, callback) {
+    if (typeof data === 'string') {
+      return originalEnd(sanitizeModelNames(data), encoding, callback);
+    }
+    if (data && Buffer.isBuffer(data)) {
+      const str = data.toString('utf-8');
+      const sanitized = sanitizeModelNames(str);
+      return originalEnd(Buffer.from(sanitized, 'utf-8'), encoding, callback);
+    }
+    return originalEnd(data, encoding, callback);
   };
 }
 
@@ -121,5 +136,5 @@ module.exports = {
   deepSanitize,
   sanitizeSSEChunk,
   getAllowedOrigin,
-  ALLOWED_ORIGINS
+  ALLOWED_ORIGINS,
 };

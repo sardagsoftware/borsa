@@ -41,7 +41,7 @@ async function generateWithAzure(prompt, size = '1024x1024', quality = 'standard
   const client = new AzureOpenAI({
     apiKey: AZURE_OPENAI_KEY,
     endpoint: AZURE_OPENAI_ENDPOINT,
-    apiVersion: AZURE_API_VERSION
+    apiVersion: AZURE_API_VERSION,
   });
 
   console.log(`🎨 Azure DALL-E 3 Request - Size: ${size}, Quality: ${quality}`);
@@ -52,13 +52,13 @@ async function generateWithAzure(prompt, size = '1024x1024', quality = 'standard
     n: 1,
     size: size,
     quality: quality,
-    style: 'vivid' // or 'natural'
+    style: 'vivid', // or 'natural'
   });
 
   return {
-    provider: 'Azure OpenAI',
+    provider: 'LyDian AI',
     url: response.data[0].url,
-    revised_prompt: response.data[0].revised_prompt
+    revised_prompt: response.data[0].revised_prompt,
   };
 }
 
@@ -70,7 +70,7 @@ async function generateWithOpenAI(prompt, size = '1024x1024', quality = 'standar
 
   const OpenAI = require('lydian-labs');
   const client = new OpenAI({
-    apiKey: OPENAI_API_KEY
+    apiKey: OPENAI_API_KEY,
   });
 
   console.log(`🎨 OpenAI DALL-E 3 Request - Size: ${size}, Quality: ${quality}`);
@@ -80,13 +80,13 @@ async function generateWithOpenAI(prompt, size = '1024x1024', quality = 'standar
     prompt: prompt,
     n: 1,
     size: size,
-    quality: quality
+    quality: quality,
   });
 
   return {
     provider: 'lydian-labs',
     url: response.data[0].url,
-    revised_prompt: response.data[0].revised_prompt
+    revised_prompt: response.data[0].revised_prompt,
   };
 }
 
@@ -103,7 +103,7 @@ module.exports = async (req, res) => {
   if (req.method !== 'POST') {
     return res.status(405).json({
       success: false,
-      error: 'Method not allowed'
+      error: 'Method not allowed',
     });
   }
 
@@ -113,21 +113,17 @@ module.exports = async (req, res) => {
     return res.status(429).json({
       success: false,
       error: 'Çok fazla istek',
-      message: 'Saatte maksimum 50 görsel oluşturabilirsiniz'
+      message: 'Saatte maksimum 50 görsel oluşturabilirsiniz',
     });
   }
 
   try {
-    const {
-      prompt,
-      size = '1024x1024',
-      quality = 'standard'
-    } = req.body;
+    const { prompt, size = '1024x1024', quality = 'standard' } = req.body;
 
     if (!prompt) {
       return res.status(400).json({
         success: false,
-        error: 'Görsel açıklaması gerekli'
+        error: 'Görsel açıklaması gerekli',
       });
     }
 
@@ -143,7 +139,7 @@ module.exports = async (req, res) => {
       result = await generateWithOpenAI(prompt, size, quality);
     }
 
-    console.log(`✅ Image generated successfully`);
+    console.log('✅ Image generated successfully');
 
     // Return response WITHOUT revealing model name
     res.status(200).json({
@@ -153,9 +149,8 @@ module.exports = async (req, res) => {
       revisedPrompt: result.revised_prompt,
       size: size,
       quality: quality,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
-
   } catch (error) {
     console.error('❌ Image Generation Error:', error.message);
 
@@ -163,7 +158,7 @@ module.exports = async (req, res) => {
     res.status(500).json({
       success: false,
       error: 'Görsel oluşturma başarısız oldu',
-      message: 'Lütfen tekrar deneyin'
+      message: 'Lütfen tekrar deneyin',
     });
   }
 };

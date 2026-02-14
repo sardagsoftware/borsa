@@ -1,7 +1,7 @@
 /**
  * Video AI API
- * Video analysis, generation (Google Veo), and transcription
- * Production-ready implementation with Google AI
+ * Video analysis, generation, and transcription
+ * Production-ready LyDian Vision implementation
  */
 
 require('dotenv').config();

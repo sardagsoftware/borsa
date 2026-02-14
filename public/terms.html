@@ -57,7 +57,8 @@
       }
     </style>
     <link
-      rel="preload" as="style"
+      rel="preload"
+      as="style"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Righteous&amp;display=swap"
       crossorigin="anonymous"
     />
@@ -75,35 +76,40 @@
       }
 
       :root {
-        --black: #000000;
+        --bg-dark: #0a0b0d;
         --white: #ffffff;
-        --gray-50: #f9fafb;
-        --gray-100: #f3f4f6;
-        --gray-200: #e5e7eb;
-        --gray-300: #d1d5db;
-        --gray-400: #9ca3af;
-        --gray-500: #6b7280;
-        --gray-600: #4b5563;
-        --gray-700: #374151;
-        --gray-800: #1f2937;
-        --gray-900: #111827;
-        --primary: #10a37f;
-        --primary-hover: #0d8f6e;
-        --accent: #ff6b4a;
+        --text-primary: #ffffff;
+        --text-secondary: rgba(255, 255, 255, 0.7);
+        --text-tertiary: rgba(255, 255, 255, 0.6);
+        --accent-green: #00e0ae;
+        --accent-blue: #6e84ff;
+        --accent-purple: #b86bff;
+        --border: rgba(255, 255, 255, 0.1);
+        --card-bg: rgba(255, 255, 255, 0.05);
+        --card-bg-hover: rgba(255, 255, 255, 0.08);
+        --glass-bg: rgba(0, 0, 0, 0.6);
       }
 
       html {
+        color-scheme: dark;
         scroll-behavior: smooth;
       }
 
       body {
         font-family:
           'Inter',
+          ui-sans-serif,
+          system-ui,
           -apple-system,
           BlinkMacSystemFont,
+          'Segoe UI',
+          Roboto,
           sans-serif;
-        background: var(--white);
-        color: var(--gray-900);
+        background:
+          radial-gradient(1400px 900px at 70% 15%, rgba(184, 107, 255, 0.1), transparent 60%),
+          radial-gradient(1200px 700px at 20% 80%, rgba(110, 132, 255, 0.1), transparent 65%),
+          var(--bg-dark);
+        color: var(--text-primary);
         line-height: 1.6;
       }
 
@@ -114,9 +120,10 @@
         left: 0;
         right: 0;
         z-index: 1000;
-        background: rgba(255, 255, 255, 0.8);
+        background: var(--glass-bg);
         backdrop-filter: blur(20px);
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        border-bottom: 1px solid var(--border);
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.9);
       }
 
       .nav-container {
@@ -146,15 +153,18 @@
       }
 
       .nav-links a {
-        color: var(--gray-700);
+        color: var(--text-primary);
         text-decoration: none;
         font-size: 0.95rem;
-        font-weight: 500;
-        transition: color 0.2s ease;
+        font-weight: 700;
+        transition: all 0.2s ease;
+        padding: 0.6rem 0.75rem;
+        border-radius: 10px;
       }
 
       .nav-links a:hover {
-        color: var(--black);
+        color: var(--accent-green);
+        opacity: 0.8;
       }
 
       .btn {
@@ -163,14 +173,21 @@
         font-size: 0.95rem;
         font-weight: 600;
         text-decoration: none;
-        background: var(--black);
-        color: var(--white);
+        background: var(--accent-green);
+        color: #000000;
+        transition: all 0.2s ease;
+      }
+
+      .btn:hover {
+        background: var(--accent-blue);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 16px rgba(110, 132, 255, 0.3);
       }
 
       /* HERO */
       .hero {
         padding: 10rem 2rem 4rem;
-        background: linear-gradient(180deg, var(--gray-50) 0%, var(--white) 100%);
+        background: transparent;
         text-align: center;
       }
 
@@ -184,25 +201,26 @@
         font-weight: 800;
         line-height: 1.2;
         letter-spacing: -0.03em;
-        color: var(--black);
+        color: var(--text-primary);
         margin-bottom: 1rem;
       }
 
       .hero-description {
         font-size: 1.25rem;
-        color: var(--gray-600);
+        color: var(--text-secondary);
         margin-bottom: 2rem;
       }
 
       .hero-meta {
         display: inline-block;
         padding: 0.75rem 1.5rem;
-        background: var(--white);
-        border: 1px solid var(--gray-200);
+        background: var(--card-bg);
+        border: 1px solid var(--border);
         border-radius: 50px;
         font-size: 0.875rem;
         font-weight: 600;
-        color: var(--gray-700);
+        color: var(--text-secondary);
+        backdrop-filter: blur(20px);
       }
 
       /* CONTENT */
@@ -220,12 +238,17 @@
         position: sticky;
         top: 100px;
         height: fit-content;
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 1.5rem;
+        backdrop-filter: blur(20px);
       }
 
       .sidebar-title {
         font-size: 0.875rem;
         font-weight: 700;
-        color: var(--gray-900);
+        color: var(--text-primary);
         text-transform: uppercase;
         letter-spacing: 0.05em;
         margin-bottom: 1rem;
@@ -240,7 +263,7 @@
       }
 
       .toc a {
-        color: var(--gray-600);
+        color: var(--text-tertiary);
         text-decoration: none;
         font-size: 0.875rem;
         font-weight: 500;
@@ -251,7 +274,7 @@
 
       .toc a:hover,
       .toc a.active {
-        color: var(--primary);
+        color: var(--accent-green);
       }
 
       /* MAIN CONTENT */
@@ -268,8 +291,8 @@
         display: inline-block;
         width: 32px;
         height: 32px;
-        background: var(--primary);
-        color: var(--white);
+        background: var(--accent-green);
+        color: #000000;
         border-radius: 50%;
         text-align: center;
         line-height: 32px;
@@ -281,7 +304,7 @@
       .section-title {
         font-size: 2rem;
         font-weight: 800;
-        color: var(--black);
+        color: var(--text-primary);
         margin-bottom: 1.5rem;
         display: flex;
         align-items: center;
@@ -290,12 +313,12 @@
       .section-content h3 {
         font-size: 1.5rem;
         font-weight: 700;
-        color: var(--black);
+        color: var(--text-primary);
         margin: 2rem 0 1rem;
       }
 
       .section-content p {
-        color: var(--gray-600);
+        color: var(--text-secondary);
         line-height: 1.8;
         margin-bottom: 1.5rem;
       }
@@ -306,31 +329,41 @@
       }
 
       .section-content li {
-        color: var(--gray-600);
+        color: var(--text-secondary);
         line-height: 1.8;
         margin-bottom: 0.75rem;
       }
 
+      .section-content strong {
+        color: var(--text-primary);
+      }
+
       .highlight-box {
-        background: linear-gradient(135deg, rgba(16, 163, 127, 0.1), rgba(255, 107, 74, 0.1));
-        border-left: 4px solid var(--primary);
+        background: linear-gradient(135deg, rgba(0, 224, 174, 0.08), rgba(0, 224, 174, 0.12));
+        border-left: 4px solid var(--accent-green);
         padding: 1.5rem;
         border-radius: 12px;
         margin: 2rem 0;
+        backdrop-filter: blur(20px);
       }
 
       .highlight-box strong {
-        color: var(--primary);
+        color: var(--accent-green);
         display: block;
         margin-bottom: 0.5rem;
       }
 
+      .highlight-box p {
+        color: var(--text-secondary);
+      }
+
       .warning-box {
-        background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 38, 0.1));
+        background: linear-gradient(135deg, rgba(239, 68, 68, 0.08), rgba(239, 68, 68, 0.12));
         border-left: 4px solid #ef4444;
         padding: 1.5rem;
         border-radius: 12px;
         margin: 2rem 0;
+        backdrop-filter: blur(20px);
       }
 
       .warning-box strong {
@@ -339,11 +372,16 @@
         margin-bottom: 0.5rem;
       }
 
+      .warning-box p {
+        color: var(--text-secondary);
+      }
+
       /* FOOTER */
       .footer {
         padding: 4rem 2rem 2rem;
-        background: var(--gray-900);
-        color: var(--gray-400);
+        background: rgba(0, 0, 0, 0.5);
+        color: var(--text-tertiary);
+        border-top: 1px solid var(--border);
       }
 
       .footer-container {
@@ -359,20 +397,23 @@
       }
 
       .footer-logo {
-        font-family: 'Caveat', cursive !important;
+        font-family: 'Inter', sans-serif !important;
         font-size: 2rem;
-        font-weight: 700 !important;
+        font-weight: 900 !important;
         color: #ffffff;
         margin-bottom: 1rem;
         letter-spacing: 0.08em !important;
+      }
+
+      .footer-description {
         line-height: 1.7;
-        color: var(--gray-500);
+        color: var(--text-tertiary);
       }
 
       .footer-column h3 {
         font-size: 0.875rem;
         font-weight: 700;
-        color: var(--white);
+        color: var(--text-primary);
         text-transform: uppercase;
         letter-spacing: 0.05em;
         margin-bottom: 1.5rem;
@@ -387,19 +428,19 @@
       }
 
       .footer-links a {
-        color: var(--gray-500);
+        color: var(--text-tertiary);
         text-decoration: none;
         font-size: 0.95rem;
         transition: color 0.2s ease;
       }
 
       .footer-links a:hover {
-        color: var(--white);
+        color: var(--accent-green);
       }
 
       .footer-bottom {
         padding-top: 2rem;
-        border-top: 1px solid var(--gray-800);
+        border-top: 1px solid var(--border);
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -407,7 +448,7 @@
 
       .footer-copyright {
         font-size: 0.875rem;
-        color: var(--gray-500);
+        color: var(--text-tertiary);
       }
 
       .footer-legal {
@@ -416,13 +457,13 @@
       }
 
       .footer-legal a {
-        color: var(--gray-500);
+        color: var(--text-tertiary);
         text-decoration: none;
         font-size: 0.875rem;
       }
 
       .footer-legal a:hover {
-        color: var(--white);
+        color: var(--accent-green);
       }
 
       @media (max-width: 768px) {
@@ -624,7 +665,7 @@
     />
 
     <!-- /Premium SEO -->
-<!-- PWA Manifest -->
+    <!-- PWA Manifest -->
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#C4A962" />
     <!-- iOS Safari -->
@@ -679,7 +720,8 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon-48.png" />
     <link rel="icon" type="image/x-icon" href="/icons/favicon.ico" />
-    <link rel="shortcut icon" href="/icons/favicon.ico" /></head>
+    <link rel="shortcut icon" href="/icons/favicon.ico" />
+  </head>
   <body>
     <!-- Navigation -->
     <nav class="navbar">

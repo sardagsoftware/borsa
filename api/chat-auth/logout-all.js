@@ -20,7 +20,7 @@ module.exports = async function handler(req, res) {
   }
 
   if (req.method !== 'POST') {
-    return res.status(405).json({ success: false, error: 'Method not allowed' });
+    return res.status(405).json({ success: false, error: 'Bu istek yöntemi desteklenmiyor' });
   }
 
   try {
@@ -33,7 +33,7 @@ module.exports = async function handler(req, res) {
     if (!token) {
       return res.status(401).json({
         success: false,
-        error: 'Giriş yapmanız gerekli'
+        error: 'Giriş yapmanız gerekli',
       });
     }
 
@@ -42,7 +42,7 @@ module.exports = async function handler(req, res) {
     if (!authResult.valid) {
       return res.status(401).json({
         success: false,
-        error: 'Oturum süresi dolmuş'
+        error: 'Oturum süresi dolmuş',
       });
     }
 
@@ -56,9 +56,8 @@ module.exports = async function handler(req, res) {
 
     return res.status(200).json({
       success: true,
-      message: 'Tüm oturumlar kapatıldı'
+      message: 'Tüm oturumlar kapatıldı',
     });
-
   } catch (error) {
     console.error('[CHAT_AUTH_LOGOUT_ALL_ERROR]', error.message);
 
@@ -67,7 +66,7 @@ module.exports = async function handler(req, res) {
 
     return res.status(500).json({
       success: false,
-      error: 'Oturumlar kapatılırken hata oluştu'
+      error: 'Oturumlar kapatılırken hata oluştu',
     });
   }
 };

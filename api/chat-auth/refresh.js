@@ -6,11 +6,7 @@
 
 const { chatUsers, chatSessions } = require('./_lib/db');
 const { getCorsOrigin } = require('../_middleware/cors');
-const {
-  generateAccessToken,
-  extractRefreshToken,
-  verifyRefreshToken
-} = require('./_lib/jwt');
+const { generateAccessToken, extractRefreshToken, verifyRefreshToken } = require('./_lib/jwt');
 const { updateAccessCookie, parseCookies } = require('./_lib/cookies');
 
 module.exports = async function handler(req, res) {
@@ -25,7 +21,7 @@ module.exports = async function handler(req, res) {
   }
 
   if (req.method !== 'POST') {
-    return res.status(405).json({ success: false, error: 'Method not allowed' });
+    return res.status(405).json({ success: false, error: 'Bu istek yöntemi desteklenmiyor' });
   }
 
   try {
@@ -38,7 +34,7 @@ module.exports = async function handler(req, res) {
     if (!refreshToken) {
       return res.status(401).json({
         success: false,
-        error: 'Refresh token bulunamadı'
+        error: 'Refresh token bulunamadı',
       });
     }
 
@@ -48,7 +44,7 @@ module.exports = async function handler(req, res) {
     if (!result.valid) {
       return res.status(401).json({
         success: false,
-        error: 'Geçersiz veya süresi dolmuş refresh token'
+        error: 'Geçersiz veya süresi dolmuş refresh token',
       });
     }
 
@@ -58,7 +54,7 @@ module.exports = async function handler(req, res) {
     if (!session) {
       return res.status(401).json({
         success: false,
-        error: 'Oturum geçersiz'
+        error: 'Oturum geçersiz',
       });
     }
 
@@ -67,7 +63,7 @@ module.exports = async function handler(req, res) {
       await chatSessions.invalidate(refreshToken);
       return res.status(401).json({
         success: false,
-        error: 'Oturum süresi dolmuş'
+        error: 'Oturum süresi dolmuş',
       });
     }
 
@@ -78,7 +74,7 @@ module.exports = async function handler(req, res) {
       await chatSessions.invalidate(refreshToken);
       return res.status(401).json({
         success: false,
-        error: 'Kullanıcı bulunamadı'
+        error: 'Kullanıcı bulunamadı',
       });
     }
 
@@ -95,15 +91,14 @@ module.exports = async function handler(req, res) {
         id: user.id,
         email: user.email,
         displayName: user.display_name,
-        avatarUrl: user.avatar_url
-      }
+        avatarUrl: user.avatar_url,
+      },
     });
-
   } catch (error) {
     console.error('[CHAT_AUTH_REFRESH_ERROR]', error.message);
     return res.status(500).json({
       success: false,
-      error: 'Token yenileme başarısız'
+      error: 'Token yenileme başarısız',
     });
   }
 };

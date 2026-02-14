@@ -20,7 +20,7 @@ module.exports = async function handler(req, res) {
   }
 
   if (req.method !== 'DELETE') {
-    return res.status(405).json({ success: false, error: 'Method not allowed' });
+    return res.status(405).json({ success: false, error: 'Bu istek yöntemi desteklenmiyor' });
   }
 
   try {
@@ -33,7 +33,7 @@ module.exports = async function handler(req, res) {
     if (!token) {
       return res.status(401).json({
         success: false,
-        error: 'Giriş yapmanız gerekli'
+        error: 'Giriş yapmanız gerekli',
       });
     }
 
@@ -42,7 +42,7 @@ module.exports = async function handler(req, res) {
     if (!authResult.valid) {
       return res.status(401).json({
         success: false,
-        error: 'Oturum süresi dolmuş'
+        error: 'Oturum süresi dolmuş',
       });
     }
 
@@ -54,7 +54,7 @@ module.exports = async function handler(req, res) {
     if (!user) {
       return res.status(404).json({
         success: false,
-        error: 'Kullanıcı bulunamadı'
+        error: 'Kullanıcı bulunamadı',
       });
     }
 
@@ -75,9 +75,8 @@ module.exports = async function handler(req, res) {
 
     return res.status(200).json({
       success: true,
-      message: 'Hesabınız başarıyla silindi'
+      message: 'Hesabınız başarıyla silindi',
     });
-
   } catch (error) {
     console.error('[CHAT_AUTH_ACCOUNT_DELETE_ERROR]', error.message);
 
@@ -86,7 +85,7 @@ module.exports = async function handler(req, res) {
 
     return res.status(500).json({
       success: false,
-      error: 'Hesap silinirken bir hata oluştu'
+      error: 'Hesap silinirken bir hata oluştu',
     });
   }
 };

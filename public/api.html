@@ -11,12 +11,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link
-      rel="preload" as="style"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap"
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=Righteous&amp;display=swap"
       crossorigin="anonymous"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=Righteous&amp;display=swap"
       rel="stylesheet"
       crossorigin="anonymous"
     />
@@ -55,7 +56,14 @@
       body {
         font-family: 'Inter', sans-serif;
         background: #0a0b0d;
+        background-image:
+          radial-gradient(at 27% 37%, rgba(0, 224, 174, 0.08) 0px, transparent 50%),
+          radial-gradient(at 97% 21%, rgba(110, 132, 255, 0.08) 0px, transparent 50%),
+          radial-gradient(at 52% 99%, rgba(184, 107, 255, 0.08) 0px, transparent 50%),
+          radial-gradient(at 10% 29%, rgba(0, 224, 174, 0.05) 0px, transparent 50%),
+          radial-gradient(at 97% 96%, rgba(110, 132, 255, 0.05) 0px, transparent 50%);
         color: var(--text-primary);
+        line-height: 1.6;
         min-height: 100vh;
       }
       .container {
@@ -276,79 +284,93 @@
       }
       /* ========== RESPONSIVE ========== */
 
-/* Touch targets & font safety */
-button, a, input, select, textarea { min-height: 44px; }
-input, select, textarea { font-size: max(16px, 1rem); }
-html, body { overflow-x: hidden; }
+      /* Touch targets & font safety */
+      button,
+      a,
+      input,
+      select,
+      textarea {
+        min-height: 44px;
+      }
+      input,
+      select,
+      textarea {
+        font-size: max(16px, 1rem);
+      }
+      html,
+      body {
+        overflow-x: hidden;
+      }
 
-@media (max-width: 1024px) {
-  .sidebar {
-    width: 220px;
-  }
-  .main {
-    margin-left: 220px;
-  }
-}
+      @media (max-width: 1024px) {
+        .sidebar {
+          width: 220px;
+        }
+        .main {
+          margin-left: 220px;
+        }
+      }
 
-@media (max-width: 968px) {
-  .sidebar {
-    width: 100%;
-    height: auto;
-    position: relative;
-    border-right: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
-  .main {
-    margin-left: 0;
-    padding: 2rem 1.5rem;
-  }
-}
+      @media (max-width: 968px) {
+        .sidebar {
+          width: 100%;
+          height: auto;
+          position: relative;
+          border-right: none;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .main {
+          margin-left: 0;
+          padding: 2rem 1.5rem;
+        }
+      }
 
-@media (max-width: 768px) {
-  .main {
-    padding: 1.5rem 1rem;
-  }
-  .endpoint-card {
-    padding: 1.5rem;
-  }
-  .endpoint-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-  }
-  .param-table {
-    display: block;
-    overflow-x: auto;
-  }
-  pre, code {
-    font-size: 0.8rem;
-  }
-  h1 {
-    font-size: 1.75rem;
-  }
-  h2 {
-    font-size: 1.25rem;
-  }
-}
+      @media (max-width: 768px) {
+        .main {
+          padding: 1.5rem 1rem;
+        }
+        .endpoint-card {
+          padding: 1.5rem;
+        }
+        .endpoint-header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.5rem;
+        }
+        .param-table {
+          display: block;
+          overflow-x: auto;
+        }
+        pre,
+        code {
+          font-size: 0.8rem;
+        }
+        h1 {
+          font-size: 1.75rem;
+        }
+        h2 {
+          font-size: 1.25rem;
+        }
+      }
 
-@media (max-width: 480px) {
-  .main {
-    padding: 1rem 0.75rem;
-  }
-  .endpoint-card {
-    padding: 1rem;
-  }
-  h1 {
-    font-size: 1.5rem;
-  }
-  .sidebar {
-    padding: 1rem;
-  }
-  .sidebar nav a {
-    padding: 0.5rem;
-    font-size: 0.85rem;
-  }
-}
+      @media (max-width: 480px) {
+        .main {
+          padding: 1rem 0.75rem;
+        }
+        .endpoint-card {
+          padding: 1rem;
+        }
+        h1 {
+          font-size: 1.5rem;
+        }
+        .sidebar {
+          padding: 1rem;
+        }
+        .sidebar nav a {
+          padding: 0.5rem;
+          font-size: 0.85rem;
+        }
+      }
     </style>
 
     <!-- 🤖 Ailydian AI Client - LyDian Acceleration-first Fallback Strategy -->
@@ -597,7 +619,7 @@ html, body { overflow-x: hidden; }
     />
 
     <!-- /Premium SEO -->
-<!-- PWA Manifest -->
+    <!-- PWA Manifest -->
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#C4A962" />
     <!-- iOS Safari -->
@@ -652,8 +674,47 @@ html, body { overflow-x: hidden; }
     <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon-48.png" />
     <link rel="icon" type="image/x-icon" href="/icons/favicon.ico" />
-    <link rel="shortcut icon" href="/icons/favicon.ico" /></head>
+    <link rel="shortcut icon" href="/icons/favicon.ico" />
+
+    <!-- Global LyDian Branding -->
+    <link rel="stylesheet" href="/css/global-lydian-branding.css" />
+  </head>
   <body>
+    <!-- Standard LyDian Navbar -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="/" class="logo">
+          <span class="logo-text">LyDian</span>
+          <img src="/img/LyDian-logo.webp" alt="LyDian Logo" />
+        </a>
+        <ul class="nav-links">
+          <li><a href="/about.html">Hakkimizda</a></li>
+          <li><a href="/models.html">Modeller</a></li>
+          <li><a href="/developers.html">Gelistiriciler</a></li>
+          <li><a href="/research.html">Arastirma</a></li>
+          <li><a href="/blog.html">Blog</a></li>
+        </ul>
+        <div class="nav-cta">
+          <a href="/chat.html" class="btn btn-secondary">Giris Yap</a>
+          <a href="/chat.html" class="btn btn-primary">Simdi Dene</a>
+        </div>
+        <button class="mobile-menu-btn" aria-label="Menu">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </nav>
+
     <div class="container">
       <aside class="sidebar">
         <div
@@ -1232,6 +1293,217 @@ const response = await fetch('http://localhost:3100/api/translate', {
         });
       });
     </script>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div
+              class="footer-logo"
+              style="
+                font-family: 'Inter', sans-serif !important;
+                font-weight: 900 !important;
+                color: #ffffff;
+              "
+            >
+              LyDian
+            </div>
+            <p class="footer-description">
+              Yapay zeka teknolojileriyle geleceği şekillendiren, yenilikçi çözümler sunan AI
+              platformu.
+            </p>
+            <div class="footer-social">
+              <a href="#" class="social-link" aria-label="Twitter">
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"
+                  ></path>
+                </svg>
+              </a>
+              <a href="#" class="social-link" aria-label="LinkedIn">
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"
+                  ></path>
+                  <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+              </a>
+              <a href="#" class="social-link" aria-label="GitHub">
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+                  ></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="footer-column">
+            <h3>Ürünler</h3>
+            <ul class="footer-links">
+              <li><a href="/ai-chat.html">AI Sohbet</a></li>
+              <li><a href="/image-generation.html">Görsel Oluşturma</a></li>
+              <li><a href="/video-ai.html">Video AI</a></li>
+              <li><a href="/api.html">API</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h3>Çözümler</h3>
+            <ul class="footer-links">
+              <li><a href="/enterprise.html">Enterprise</a></li>
+              <li><a href="/education.html">Eğitim</a></li>
+              <li><a href="/research.html">Araştırma</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h3>Şirket</h3>
+            <ul class="footer-links">
+              <li><a href="/about.html">Hakkımızda</a></li>
+              <li><a href="/careers.html">Kariyer</a></li>
+              <li><a href="/blog.html">Blog</a></li>
+              <li><a href="/contact.html">İletişim</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h3>Destek</h3>
+            <ul class="footer-links">
+              <li><a href="/help.html">Yardım Merkezi</a></li>
+              <li><a href="/api-reference.html">API Referansı</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <div class="footer-copyright">© 2025 LyDian. Tüm hakları saklıdır.</div>
+          <div class="footer-legal">
+            <a href="/privacy.html">Gizlilik Politikası</a>
+            <a href="/terms.html">Kullanım Koşulları</a>
+            <a href="/cookies.html">Çerezler</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <style>
+      .footer {
+        padding: 4rem 2rem 2rem;
+        background: rgba(0, 0, 0, 0.4);
+        color: rgba(255, 255, 255, 0.6);
+      }
+      .footer-container {
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+        gap: 4rem;
+        margin-bottom: 4rem;
+      }
+      .footer-brand {
+        padding-right: 2rem;
+      }
+      .footer-logo {
+        font-family: 'Inter', sans-serif !important;
+        font-size: 2rem;
+        font-weight: 900 !important;
+        color: #ffffff;
+        margin-bottom: 1rem;
+        letter-spacing: 0.08em !important;
+      }
+      .footer-description {
+        font-size: 0.95rem;
+        line-height: 1.7;
+        color: rgba(255, 255, 255, 0.6);
+        margin-bottom: 2rem;
+      }
+      .footer-social {
+        display: flex;
+        gap: 1rem;
+      }
+      .social-link {
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(255, 255, 255, 0.6);
+        text-decoration: none;
+        transition: all 0.2s ease;
+      }
+      .social-link:hover {
+        background: var(--primary);
+        color: #000000;
+        transform: translateY(-2px);
+      }
+      .footer-column h3 {
+        font-size: 0.875rem;
+        font-weight: 700;
+        color: #ffffff;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 1.5rem;
+      }
+      .footer-links {
+        list-style: none;
+      }
+      .footer-links li {
+        margin-bottom: 1rem;
+      }
+      .footer-links a {
+        color: rgba(255, 255, 255, 0.6);
+        text-decoration: none;
+        font-size: 0.95rem;
+        transition: color 0.2s ease;
+      }
+      .footer-links a:hover {
+        color: #ffffff;
+      }
+      .footer-bottom {
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .footer-copyright {
+        font-size: 0.875rem;
+        color: rgba(255, 255, 255, 0.5);
+      }
+      .footer-legal {
+        display: flex;
+        gap: 2rem;
+      }
+      .footer-legal a {
+        color: rgba(255, 255, 255, 0.5);
+        text-decoration: none;
+        font-size: 0.875rem;
+        transition: color 0.2s ease;
+      }
+      .footer-legal a:hover {
+        color: #ffffff;
+      }
+
+      @media (max-width: 1024px) {
+        .footer-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 768px) {
+        .footer-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+
     <!-- Translation System -->
     <!-- <script src="/js/translation.js"></script> DISABLED -->
     <script src="/js/mobile-menu-handler.js"></script>

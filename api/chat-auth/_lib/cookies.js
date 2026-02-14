@@ -14,7 +14,8 @@ const BASE_COOKIE_OPTIONS = {
   httpOnly: true,
   secure: isProduction,
   sameSite: 'lax', // Changed from 'strict' to 'lax' for better session persistence
-  path: '/'
+  path: '/',
+  domain: isProduction ? '.ailydian.com' : undefined, // Cross-subdomain SSO
 };
 
 /**
@@ -24,13 +25,13 @@ function setAuthCookies(res, accessToken, refreshToken) {
   // Access token - 30 minutes
   const accessCookie = `${CHAT_ACCESS_COOKIE}=${accessToken}; ${formatOptions({
     ...BASE_COOKIE_OPTIONS,
-    maxAge: 30 * 60 // 30 minutes in seconds
+    maxAge: 30 * 60, // 30 minutes in seconds
   })}`;
 
   // Refresh token - 30 days
   const refreshCookie = `${CHAT_REFRESH_COOKIE}=${refreshToken}; ${formatOptions({
     ...BASE_COOKIE_OPTIONS,
-    maxAge: 30 * 24 * 60 * 60 // 30 days in seconds
+    maxAge: 30 * 24 * 60 * 60, // 30 days in seconds
   })}`;
 
   // Set both cookies
@@ -48,13 +49,13 @@ function clearAuthCookies(res) {
   const accessCookie = `${CHAT_ACCESS_COOKIE}=; ${formatOptions({
     ...BASE_COOKIE_OPTIONS,
     maxAge: 0,
-    expires: new Date(0).toUTCString()
+    expires: new Date(0).toUTCString(),
   })}`;
 
   const refreshCookie = `${CHAT_REFRESH_COOKIE}=; ${formatOptions({
     ...BASE_COOKIE_OPTIONS,
     maxAge: 0,
-    expires: new Date(0).toUTCString()
+    expires: new Date(0).toUTCString(),
   })}`;
 
   const existingCookies = res.getHeader('Set-Cookie') || [];
@@ -69,7 +70,7 @@ function clearAuthCookies(res) {
 function updateAccessCookie(res, accessToken) {
   const accessCookie = `${CHAT_ACCESS_COOKIE}=${accessToken}; ${formatOptions({
     ...BASE_COOKIE_OPTIONS,
-    maxAge: 30 * 60 // 30 minutes in seconds
+    maxAge: 30 * 60, // 30 minutes in seconds
   })}`;
 
   const existingCookies = res.getHeader('Set-Cookie') || [];
@@ -150,5 +151,5 @@ module.exports = {
   updateAccessCookie,
   parseCookies,
   getCookie,
-  cookieParser
+  cookieParser,
 };

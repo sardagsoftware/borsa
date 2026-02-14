@@ -47,7 +47,7 @@ module.exports = async function handler(req, res) {
   }
 
   if (req.method !== 'GET') {
-    return res.status(405).json({ success: false, error: 'Method not allowed' });
+    return res.status(405).json({ success: false, error: 'Bu istek yöntemi desteklenmiyor' });
   }
 
   try {
@@ -60,7 +60,7 @@ module.exports = async function handler(req, res) {
     if (!token) {
       return res.status(401).json({
         success: false,
-        error: 'Giriş yapmanız gerekli'
+        error: 'Giriş yapmanız gerekli',
       });
     }
 
@@ -69,7 +69,7 @@ module.exports = async function handler(req, res) {
     if (!authResult.valid) {
       return res.status(401).json({
         success: false,
-        error: 'Oturum süresi dolmuş'
+        error: 'Oturum süresi dolmuş',
       });
     }
 
@@ -87,20 +87,19 @@ module.exports = async function handler(req, res) {
         device,
         current: true,
         location: 'Türkiye',
-        lastActive: 'Şu an aktif'
-      }
+        lastActive: 'Şu an aktif',
+      },
     ];
 
     return res.status(200).json({
       success: true,
-      sessions
+      sessions,
     });
-
   } catch (error) {
     console.error('[CHAT_AUTH_SESSIONS_ERROR]', error.message);
     return res.status(500).json({
       success: false,
-      error: 'Oturum bilgileri alınamadı'
+      error: 'Oturum bilgileri alınamadı',
     });
   }
 };

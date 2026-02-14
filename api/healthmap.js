@@ -2,6 +2,7 @@
 // Checks 16 backend-connected pages and returns status
 
 const { getCorsOrigin } = require('./_middleware/cors');
+const { applySanitization } = require('./_middleware/sanitize');
 const TARGETS = [
   { name: 'Auth', url: '/auth.html' },
   { name: 'Chat', url: '/chat.html' },
@@ -18,18 +19,20 @@ const TARGETS = [
   { name: 'Contact', url: '/contact.html' },
   { name: 'Help', url: '/help.html' },
   { name: 'Dashboard', url: '/dashboard.html' },
-  { name: 'Models', url: '/models.html' }
+  { name: 'Models', url: '/models.html' },
 ];
 
 async function probe(url) {
   const t0 = Date.now();
-  let ok = false, code = 0, err = null;
+  let ok = false,
+    code = 0,
+    err = null;
 
   try {
     const res = await fetch(url, {
       method: 'HEAD',
       redirect: 'follow',
-      signal: AbortSignal.timeout(5000)
+      signal: AbortSignal.timeout(5000),
     });
     code = res.status;
     ok = res.ok;
@@ -38,7 +41,7 @@ async function probe(url) {
       const getRes = await fetch(url, {
         method: 'GET',
         redirect: 'follow',
-        signal: AbortSignal.timeout(5000)
+        signal: AbortSignal.timeout(5000),
       });
       code = getRes.status;
       ok = getRes.ok;
@@ -51,6 +54,7 @@ async function probe(url) {
 }
 
 module.exports = async (req, res) => {
+  applySanitization(req, res);
   res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Cache-Control', 'public, max-age=60');
 
@@ -65,7 +69,7 @@ module.exports = async (req, res) => {
   try {
     const baseUrl = req.query.base || `https://${req.headers.host}`;
 
-    const tasks = TARGETS.map(async (target) => {
+    const tasks = TARGETS.map(async target => {
       const fullUrl = new URL(target.url, baseUrl).toString();
       const result = await probe(fullUrl);
 
@@ -79,7 +83,7 @@ module.exports = async (req, res) => {
         code: result.code,
         ms: result.ms,
         status,
-        err: result.err
+        err: result.err,
       };
     });
 
@@ -93,21 +97,21 @@ module.exports = async (req, res) => {
           total: items.length,
           up: upCount,
           down: items.length - upCount,
-          uptimePercent: Math.round((upCount / items.length) * 1000) / 10
-        }
+          uptimePercent: Math.round((upCount / items.length) * 1000) / 10,
+        },
       });
     }
 
     return res.status(200).json({
       success: true,
       generatedAt: Date.now(),
-      items
+      items,
     });
   } catch (error) {
     console.error('HealthMap API Error:', error);
     return res.status(500).json({
       success: false,
-      error: 'Health check failed'
+      error: 'Health check failed',
     });
   }
 };

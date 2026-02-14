@@ -111,7 +111,7 @@ const generateWithDALLE = async (prompt, size = '1024x1024', quality = 'standard
   return {
     url: response.data[0].url,
     revisedPrompt: response.data[0].revised_prompt,
-    model: 'DALL-E 3',
+    model: 'lydian-creative',
   };
 };
 
@@ -233,7 +233,7 @@ module.exports = async (req, res) => {
     User.logActivity({
       userId: user.id,
       action: 'image_generated',
-      description: `Generated image using ${result.model}`,
+      description: 'Generated image using LyDian Creative',
       metadata: { prompt, size, quality, credits: IMAGE_GENERATION_COST },
     });
 

@@ -1,5 +1,5 @@
 /* ========================================
-   DeepSeek R1 Reasoning Engine - Styles
+   LyDian IQ Reasoning Engine - Styles
    Version: 1.0.0
    Design: Dark Futuristic with Neural Network Theme
    ======================================== */
@@ -7,11 +7,11 @@
 /* ========== Root Variables ========== */
 :root {
   /* Primary Colors - LyDian System Palette (Green & Orange) */
-  --deepseek-primary: #10a37f; /* Green - AI/Tech (Main System Color) */
-  --deepseek-secondary: #ff6b4a; /* Orange - Innovation (Accent Color) */
-  --deepseek-accent: #13c896; /* Bright Green - Success/Active */
-  --deepseek-reasoning: #ff8a6d; /* Bright Orange - Thought Process */
-  --deepseek-warning: #ef4444; /* Red - Validation Errors */
+  --lydianiq-primary: #10a37f; /* Green - AI/Tech (Main System Color) */
+  --lydianiq-secondary: #ff6b4a; /* Orange - Innovation (Accent Color) */
+  --lydianiq-accent: #13c896; /* Bright Green - Success/Active */
+  --lydianiq-reasoning: #ff8a6d; /* Bright Orange - Thought Process */
+  --lydianiq-warning: #ef4444; /* Red - Validation Errors */
 
   /* Clean White Theme Backgrounds */
   --bg-primary: #ffffff; /* Primary background */
@@ -199,12 +199,12 @@ body {
 }
 
 .nav-links a:hover {
-  color: var(--deepseek-primary);
+  color: var(--lydianiq-primary);
   background: rgba(16, 163, 127, 0.08);
 }
 
 .nav-links a.active {
-  color: var(--deepseek-primary);
+  color: var(--lydianiq-primary);
   background: rgba(16, 163, 127, 0.1);
   font-weight: 600;
 }
@@ -240,8 +240,8 @@ body {
 
 .nav-btn-secondary:hover {
   background: var(--bg-secondary);
-  border-color: var(--deepseek-primary);
-  color: var(--deepseek-primary);
+  border-color: var(--lydianiq-primary);
+  color: var(--lydianiq-primary);
 }
 
 .nav-btn-primary {
@@ -274,7 +274,7 @@ body {
 }
 
 /* ========== Hero Section ========== */
-.hero-deepseek {
+.hero-lydianiq {
   max-width: 1400px;
   margin: 0 auto;
   padding: 140px 2rem 80px;
@@ -296,14 +296,14 @@ body {
   border-radius: 50px;
   font-size: 0.85rem;
   font-weight: 600;
-  color: var(--deepseek-primary);
+  color: var(--lydianiq-primary);
   margin-bottom: 2rem;
 }
 
 .pulse-dot {
   width: 8px;
   height: 8px;
-  background: var(--deepseek-primary);
+  background: var(--lydianiq-primary);
   border-radius: 50%;
   animation: pulse 2s ease-in-out infinite;
 }
@@ -409,7 +409,7 @@ body {
 }
 
 .stat-card:hover {
-  border-color: var(--deepseek-primary);
+  border-color: var(--lydianiq-primary);
   box-shadow: var(--shadow-hover);
   transform: translateY(-5px);
 }
@@ -462,7 +462,7 @@ body {
 
 #quickProblem:focus {
   outline: none;
-  border-color: var(--deepseek-primary);
+  border-color: var(--lydianiq-primary);
   box-shadow: 0 0 0 3px rgba(16, 163, 127, 0.1);
   background: var(--bg-primary);
 }
@@ -484,7 +484,7 @@ body {
 
 #domainSelect:focus {
   outline: none;
-  border-color: var(--deepseek-primary);
+  border-color: var(--lydianiq-primary);
   box-shadow: 0 0 0 3px rgba(16, 163, 127, 0.1);
   background: var(--bg-primary);
 }
@@ -549,9 +549,9 @@ body {
 }
 
 .btn-secondary:hover {
-  border-color: var(--deepseek-primary);
+  border-color: var(--lydianiq-primary);
   background: rgba(16, 163, 127, 0.05);
-  color: var(--deepseek-primary);
+  color: var(--lydianiq-primary);
   transform: translateY(-2px);
 }
 
@@ -572,8 +572,8 @@ body {
 
 .btn-tertiary:hover {
   background: var(--bg-primary);
-  border-color: var(--deepseek-primary);
-  color: var(--deepseek-primary);
+  border-color: var(--lydianiq-primary);
+  color: var(--lydianiq-primary);
 }
 
 /* Example chips/tags */
@@ -594,7 +594,7 @@ body {
 
 .example-chip:hover {
   background: linear-gradient(135deg, rgba(16, 163, 127, 0.15), rgba(255, 107, 74, 0.15));
-  border-color: var(--deepseek-primary);
+  border-color: var(--lydianiq-primary);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(16, 163, 127, 0.15);
 }
@@ -721,7 +721,7 @@ body {
 
 .capability-card:hover {
   transform: translateY(-10px);
-  border-color: var(--deepseek-primary);
+  border-color: var(--lydianiq-primary);
   box-shadow: var(--shadow-hover);
 }
 
@@ -788,7 +788,7 @@ body {
 
 .card-features li::before {
   content: '✓';
-  color: var(--deepseek-accent);
+  color: var(--lydianiq-accent);
   font-weight: bold;
 }
 
@@ -797,14 +797,14 @@ body {
   padding: 1rem;
   background: rgba(0, 0, 0, 0.3);
   border-radius: 8px;
-  border-left: 3px solid var(--deepseek-accent);
+  border-left: 3px solid var(--lydianiq-accent);
   position: relative;
   z-index: 1;
 }
 
 .example-label {
   font-size: 0.75rem;
-  color: var(--deepseek-accent);
+  color: var(--lydianiq-accent);
   font-weight: 600;
   text-transform: uppercase;
   margin-bottom: 0.5rem;
@@ -848,7 +848,7 @@ body {
   top: 50%;
   transform: translateY(-50%);
   font-size: 2rem;
-  color: var(--deepseek-secondary);
+  color: var(--lydianiq-secondary);
 }
 
 .workflow-step:last-child::after {
@@ -881,7 +881,7 @@ body {
 }
 
 /* ========== Footer ========== */
-.footer-deepseek {
+.footer-lydianiq {
   background: var(--bg-secondary);
   border-top: 1px solid #e5e7eb;
   margin-top: 120px;
@@ -966,7 +966,7 @@ body {
 }
 
 .footer-links a:hover {
-  color: var(--deepseek-primary);
+  color: var(--lydianiq-primary);
   transform: translateX(4px);
 }
 
@@ -996,7 +996,7 @@ body {
 }
 
 .footer-tech i {
-  color: var(--deepseek-primary);
+  color: var(--lydianiq-primary);
 }
 
 /* ========== Loading Overlay ========== */
@@ -1216,7 +1216,7 @@ body {
     display: none;
   }
 
-  .hero-deepseek {
+  .hero-lydianiq {
     padding: 100px 1.5rem 60px;
   }
 
@@ -1288,15 +1288,15 @@ body {
 
 /* Focus visible for keyboard navigation */
 *:focus-visible {
-  outline: 2px solid var(--deepseek-primary);
+  outline: 2px solid var(--lydianiq-primary);
   outline-offset: 2px;
 }
 
 /* ========== Print Styles ========== */
 @media print {
   .neural-background,
-  .deepseek-nav,
-  .deepseek-footer,
+  .lydianiq-nav,
+  .lydianiq-footer,
   .loading-overlay {
     display: none !important;
   }
@@ -1335,7 +1335,7 @@ body {
 .metric-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 20px rgba(16, 163, 127, 0.15);
-  border-color: var(--deepseek-primary);
+  border-color: var(--lydianiq-primary);
 }
 
 .metric-icon {
@@ -1355,7 +1355,7 @@ body {
 .metric-value {
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--deepseek-primary);
+  color: var(--lydianiq-primary);
 }
 
 @media (max-width: 768px) {
@@ -1386,7 +1386,7 @@ body {
 .section-title-small {
   font-size: 1.05rem;
   font-weight: 600;
-  color: var(--deepseek-primary);
+  color: var(--lydianiq-primary);
   margin-bottom: 1.25rem;
   padding-bottom: 0.75rem;
   border-bottom: 2px solid rgba(16, 163, 127, 0.15);
@@ -1480,7 +1480,7 @@ body {
 .reasoning-header-compact {
   font-size: 1rem;
   font-weight: 600;
-  color: var(--deepseek-primary);
+  color: var(--lydianiq-primary);
   margin-bottom: 1rem;
   display: flex;
   align-items: center;
@@ -1500,7 +1500,7 @@ body {
   padding: 0.75rem;
   background: var(--bg-secondary);
   border-radius: 8px;
-  border-left: 3px solid var(--deepseek-primary);
+  border-left: 3px solid var(--lydianiq-primary);
   font-size: 0.9rem;
   line-height: 1.6;
 }
@@ -1511,7 +1511,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--deepseek-primary);
+  background: var(--lydianiq-primary);
   color: white;
   border-radius: 50%;
   font-size: 0.75rem;
@@ -1535,17 +1535,17 @@ body {
   align-items: center;
   margin-bottom: 1rem;
   padding-bottom: 0.75rem;
-  border-bottom: 2px solid var(--deepseek-primary);
+  border-bottom: 2px solid var(--lydianiq-primary);
   font-size: 1rem;
   font-weight: 600;
-  color: var(--deepseek-primary);
+  color: var(--lydianiq-primary);
 }
 
 .confidence-badge-compact {
   display: flex;
   align-items: center;
   gap: 0.375rem;
-  background: linear-gradient(135deg, var(--deepseek-primary), var(--deepseek-accent));
+  background: linear-gradient(135deg, var(--lydianiq-primary), var(--lydianiq-accent));
   color: white;
   padding: 0.375rem 0.75rem;
   border-radius: 20px;
@@ -1562,7 +1562,7 @@ body {
 .solution-content-compact h1,
 .solution-content-compact h2,
 .solution-content-compact h3 {
-  color: var(--deepseek-primary);
+  color: var(--lydianiq-primary);
   margin-top: 1rem;
   margin-bottom: 0.5rem;
 }
@@ -1629,7 +1629,7 @@ body {
 .metric-value-compact {
   font-size: 1.1rem;
   font-weight: 700;
-  color: var(--deepseek-primary);
+  color: var(--lydianiq-primary);
 }
 
 /* Responsive */

@@ -112,9 +112,9 @@ module.exports = async (req, res) => {
           });
 
           response = completion.choices[0]?.message?.content || 'Yanıt alınamadı';
-          model = 'Groq LLaMA 3.3 70B';
+          model = 'LyDian Legal AI';
         } catch (groqError) {
-          console.error('Groq API error, falling back to mock:', groqError.message);
+          console.error('AI API error, falling back to mock:', groqError.message);
           // Fallback to mock
           const mockResponses = mockLegalResponses[language] || mockLegalResponses.en;
           response = mockResponses[Math.floor(Math.random() * mockResponses.length)];

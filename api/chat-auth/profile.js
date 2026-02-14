@@ -31,7 +31,7 @@ module.exports = async function handler(req, res) {
   if (!token) {
     return res.status(401).json({
       success: false,
-      error: 'Giriş yapmanız gerekli'
+      error: 'Giriş yapmanız gerekli',
     });
   }
 
@@ -40,7 +40,7 @@ module.exports = async function handler(req, res) {
   if (!authResult.valid) {
     return res.status(401).json({
       success: false,
-      error: 'Oturum süresi dolmuş'
+      error: 'Oturum süresi dolmuş',
     });
   }
 
@@ -54,7 +54,7 @@ module.exports = async function handler(req, res) {
       if (!user) {
         return res.status(404).json({
           success: false,
-          error: 'Kullanıcı bulunamadı'
+          error: 'Kullanıcı bulunamadı',
         });
       }
 
@@ -66,8 +66,8 @@ module.exports = async function handler(req, res) {
           displayName: user.display_name,
           avatarUrl: user.avatar_url,
           createdAt: user.created_at,
-          lastLoginAt: user.last_login_at
-        }
+          lastLoginAt: user.last_login_at,
+        },
       });
     }
 
@@ -82,7 +82,7 @@ module.exports = async function handler(req, res) {
         if (!nameValidation.valid) {
           return res.status(400).json({
             success: false,
-            error: nameValidation.error
+            error: nameValidation.error,
           });
         }
       }
@@ -91,7 +91,7 @@ module.exports = async function handler(req, res) {
       if (avatarUrl && avatarUrl.length > 200000) {
         return res.status(400).json({
           success: false,
-          error: 'Avatar verisi çok büyük (max 200KB)'
+          error: 'Avatar verisi çok büyük (max 200KB)',
         });
       }
 
@@ -103,7 +103,7 @@ module.exports = async function handler(req, res) {
       if (Object.keys(updateData).length === 0) {
         return res.status(400).json({
           success: false,
-          error: 'Güncellenecek bir alan belirtilmedi'
+          error: 'Güncellenecek bir alan belirtilmedi',
         });
       }
 
@@ -119,18 +119,17 @@ module.exports = async function handler(req, res) {
           id: user.id,
           email: user.email,
           displayName: user.display_name,
-          avatarUrl: user.avatar_url
-        }
+          avatarUrl: user.avatar_url,
+        },
       });
     }
 
-    return res.status(405).json({ success: false, error: 'Method not allowed' });
-
+    return res.status(405).json({ success: false, error: 'Bu istek yöntemi desteklenmiyor' });
   } catch (error) {
     console.error('[CHAT_AUTH_PROFILE_ERROR]', error.message);
     return res.status(500).json({
       success: false,
-      error: 'İşlem başarısız'
+      error: 'İşlem başarısız',
     });
   }
 };

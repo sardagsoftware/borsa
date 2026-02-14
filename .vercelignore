@@ -6,16 +6,16 @@ node_modules
 
 # Logs
 *.log
-logs
-server.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+logs/
 
-# Test files
-test-results
-playwright-report
+# Test & Coverage
+tests/
+test/
+test-results/
+coverage/
+playwright-report/
 *.spec.js
+*.spec.ts
 *.test.js
 
 # IDE
@@ -25,51 +25,117 @@ playwright-report
 *.swp
 *.swo
 
-# Documentation
+# Documentation (keep README.md only)
 *.md
 !README.md
-docs
+docs/
+wiki/
 
-# Backup files
+# Backup & Archive
 *backup*
 *BACKUP*
 *.bak
 *.tar.gz
-
-# Azure services (local only)
-azure-services
-monitoring
-
-# Apps (using separate repos)
-apps
-
-# Multi-language libraries (local only)
-multi-language-libraries
-
-# Infrastructure (local only)
-infra
-
-# Database (local only)
-database
-
-# Backend (local only, if separate)
-backend
-
-# Security (local only)
-security
-
-# AI integrations (local only, if not needed)
-ai-integrations
-
-# Large files
-*.tar.gz
 *.zip
 *.rar
+archive/
+backups/
 
-# Optional analytics packages (blocking deployment with TypeScript strict mode errors)
-# These are not required for core authentication functionality
-packages/civic-grid
-packages/trust-layer
+# Reports
+reports/
+*.json
+!package.json
+!vercel.json
+!tsconfig.json
+!public/**/*.json
 
-# Optional civic analytics API endpoints (depend on excluded packages above)
+# Shell Scripts
+*.sh
+
+# Python
+*.py
+
+# Text files (keep public ones)
+*.txt
+!public/**/*.txt
+
+# Unused Directories
+Analytics/
+Desktop/
+GameProject/
+LiveOps/
+ai-brain/
+ai-integrations/
+apps/
+azure-services/
+backend/
+bin/
+biome/
+components/
+config/
+configs/
+core/
+data/
+database/
+hf_publish/
+infra/
+linkedin/
+middleware/
+monitoring/
+multi-language-libraries/
+ops/
+packages/
+perf/
+policies/
+prisma/
+routes/
+scripts/
+security/
+seo/
+story/
+telemetry/
+tools/
+types/
+web/
+
+# Large/Binary files
+*.db
+*.db-shm
+*.db-wal
+*.enc
+Dockerfile
+Makefile
+commitlint.config.js
+
+# Root test files
+test-*.js
+test-*.html
+comprehensive-smoke-test.js
+production-pwa-validation.js
+system-validation-test.js
+
+# Unused server files (Express - not needed on Vercel)
+server.js
+server-auth.js
+server-security-patch.js
+server.pid
+
+# Docker (not used on Vercel)
+docker-compose*.yml
+
+# Playwright configs
+playwright*.config.*
+
+# SQL files
+*.sql
+
+# Jest config
+jest.config.js
+
+# Performance config
+performance.config.js
+ecosystem.config.js
+
+# Excluded API packages
 api/insights
+api/v1/

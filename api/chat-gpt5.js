@@ -1,5 +1,5 @@
-// GPT-5 API - Azure AI Foundry Integration
-// Supports GPT-5, GPT-5 Mini, GPT-5 Nano, GPT-5 Chat
+// LyDian Ultra API - Azure AI Foundry Integration
+// Supports LyDian Ultra, Mini, Nano, Chat variants
 
 require('dotenv').config();
 const axios = require('axios');
@@ -80,8 +80,8 @@ async function handleRequest(req, res) {
     console.error('❌ Azure AI Foundry credentials not configured');
     return res.status(500).json({
       success: false,
-      error: 'Azure AI Foundry not configured',
-      message: 'Please set AZURE_AI_FOUNDRY_ENDPOINT and AZURE_AI_FOUNDRY_API_KEY',
+      error: 'LyDian AI servisi yapilandirilmamis',
+      message: 'Servis gecici olarak kullanilamiyor. Lutfen daha sonra tekrar deneyin.',
     });
   }
 
@@ -142,7 +142,9 @@ async function handleRequest(req, res) {
     }
 
     // Log request
-    console.log(`🤖 GPT-5 Request - Model: ${model}, Tokens: ${max_tokens}, Stream: ${stream}`);
+    console.log(
+      `🤖 LyDian Ultra Request - Model: ${model}, Tokens: ${max_tokens}, Stream: ${stream}`
+    );
 
     // Azure AI Foundry API call
     const apiUrl = `${AZURE_AI_FOUNDRY_ENDPOINT}/chat/completions`;
@@ -194,7 +196,9 @@ async function handleRequest(req, res) {
         });
       } catch (streamError) {
         console.error('❌ Stream initialization error:', streamError);
-        res.write(`data: ${JSON.stringify({ error: streamError.message })}\n\n`);
+        res.write(
+          `data: ${JSON.stringify({ error: 'Baglanti hatasi. Lutfen tekrar deneyin.' })}\n\n`
+        );
         res.end();
       }
     } else {
@@ -210,7 +214,7 @@ async function handleRequest(req, res) {
       const completion = response.data;
       const responseText = completion.choices[0]?.message?.content || '';
 
-      console.log(`✅ GPT-5 Response received - ${responseText.length} characters`);
+      console.log(`✅ LyDian Ultra Response received - ${responseText.length} characters`);
 
       res.status(200).json({
         success: true,
@@ -222,7 +226,7 @@ async function handleRequest(req, res) {
       });
     }
   } catch (error) {
-    console.error('❌ GPT-5 API Error:', error.message);
+    console.error('❌ AI API Error:', error.message);
 
     // Handle specific Azure errors
     if (error.response) {

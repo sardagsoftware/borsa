@@ -37,16 +37,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Öğrenme Yol Haritası | LyDian AI</title>
 
+    <style>
+      @font-face {
+        font-family: 'Righteous';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/righteous/v17/1cXxaUPXBpj2rGoU7C9WiHGF.woff2)
+          format('woff2');
+      }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      rel="preload" as="style"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap"
-      crossorigin="anonymous"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Righteous&display=swap"
       rel="stylesheet"
-      crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="/css/global-lydian-branding.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -54,16 +61,22 @@
     />
     <style>
       :root {
-        --primary: #10a37f;
-        --primary-hover: #0d8f6e;
-        --accent: #ff6b4a;
-        --bg-white: #ffffff;
-        --bg-gray: #f9fafb;
-        --gray-200: #e5e7eb;
-        --gray-300: #d1d5db;
-        --gray-500: #6b7280;
-        --gray-700: #374151;
-        --gray-900: #111827;
+        --black: #0a0b0d;
+        --white: #ffffff;
+        --gray-50: #0f1012;
+        --gray-100: #1a1b1e;
+        --gray-200: #25262b;
+        --gray-300: #373a40;
+        --gray-400: #909296;
+        --gray-500: #c1c2c5;
+        --gray-600: #dee2e6;
+        --gray-700: #f1f3f5;
+        --gray-800: #f8f9fa;
+        --gray-900: #ffffff;
+        --primary: #00e0ae;
+        --primary-hover: #00ffc6;
+        --accent: #6e84ff;
+        color-scheme: dark;
       }
       * {
         margin: 0;
@@ -71,31 +84,44 @@
         box-sizing: border-box;
       }
       body {
-        font-family: 'Inter', sans-serif;
-        background: var(--bg-white);
-        color: var(--gray-900);
+        font-family:
+          'Inter',
+          -apple-system,
+          BlinkMacSystemFont,
+          'Segoe UI',
+          sans-serif;
+        background: #0a0b0d;
+        background-image:
+          radial-gradient(at 27% 37%, rgba(0, 224, 174, 0.08) 0px, transparent 50%),
+          radial-gradient(at 97% 21%, rgba(110, 132, 255, 0.08) 0px, transparent 50%),
+          radial-gradient(at 52% 99%, rgba(184, 107, 255, 0.08) 0px, transparent 50%),
+          radial-gradient(at 10% 29%, rgba(0, 224, 174, 0.05) 0px, transparent 50%),
+          radial-gradient(at 97% 96%, rgba(110, 132, 255, 0.05) 0px, transparent 50%);
+        color: #ffffff;
+        line-height: 1.6;
+        overflow-x: hidden;
       }
-      .header {
-        background: linear-gradient(135deg, var(--bg-white), var(--bg-gray));
-        padding: 2rem;
-        border-bottom: 1px solid var(--gray-200);
-        position: sticky;
-        top: 0;
-        z-index: 100;
+      .main-content {
+        padding-top: 72px;
       }
-      .header-content {
-        max-width: 1400px;
-        margin: 0 auto;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+      .page-header {
+        text-align: center;
+        padding: 3rem 2rem;
+        margin-bottom: 2rem;
       }
-      .header h1 {
-        font-size: 2rem;
+      .page-header h1 {
+        font-size: 2.5rem;
         background: linear-gradient(135deg, var(--primary), var(--accent));
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         font-weight: 800;
+        margin-bottom: 1rem;
+      }
+      .page-header p {
+        color: var(--gray-400);
+        font-size: 1.1rem;
+        max-width: 600px;
+        margin: 0 auto;
       }
       .breadcrumb {
         color: var(--gray-500);
@@ -124,11 +150,11 @@
         gap: 2rem;
       }
       .card {
-        background: var(--bg-white);
+        background: rgba(255, 255, 255, 0.05);
         border-radius: 1rem;
         padding: 2rem;
-        border: 1px solid var(--gray-200);
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         margin-bottom: 2rem;
       }
       .form-group {
@@ -148,6 +174,14 @@
         border: 1px solid var(--gray-300);
         border-radius: 0.5rem;
         font-family: inherit;
+        background: rgba(255, 255, 255, 0.05);
+        color: var(--gray-900);
+      }
+      input:focus,
+      select:focus,
+      textarea:focus {
+        outline: none;
+        border-color: var(--primary);
       }
       button {
         background: linear-gradient(135deg, var(--primary), var(--accent));
@@ -171,14 +205,14 @@
         display: block;
       }
       .phase-card {
-        background: var(--bg-gray);
+        background: rgba(255, 255, 255, 0.05);
         padding: 1.5rem;
         border-radius: 0.5rem;
         margin-bottom: 1rem;
         border-left: 4px solid var(--primary);
       }
       .resource-item {
-        background: var(--bg-white);
+        background: rgba(255, 255, 255, 0.03);
         padding: 1rem;
         border-radius: 0.5rem;
         margin-bottom: 0.5rem;
@@ -198,9 +232,17 @@
           transform: rotate(360deg);
         }
       }
+      @media (max-width: 1024px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
       @media (max-width: 768px) {
         .grid {
           grid-template-columns: 1fr;
+        }
+        .page-header h1 {
+          font-size: 2rem;
         }
       }
     </style>
@@ -372,7 +414,7 @@
     <meta name="twitter:image:alt" content="Öğrenme Yol Haritası | LyDian AI" />
 
     <!-- /Premium SEO -->
-<!-- PWA Manifest -->
+    <!-- PWA Manifest -->
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#C4A962" />
     <!-- iOS Safari -->
@@ -427,107 +469,206 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon-48.png" />
     <link rel="icon" type="image/x-icon" href="/icons/favicon.ico" />
-    <link rel="shortcut icon" href="/icons/favicon.ico" /></head>
+    <link rel="shortcut icon" href="/icons/favicon.ico" />
+  </head>
   <body>
-    <div class="header">
-      <div class="header-content">
-        <div>
-          <h1>📚 Öğrenme Yol Haritası</h1>
-          <div class="breadcrumb"><a href="/ai-advisor-hub.html">AI Advisor Hub</a> / Öğrenme</div>
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="/" class="logo">
+          <span class="logo-text">LyDian</span>
+          <img src="/img/LyDian-logo.webp" alt="LyDian Logo" />
+        </a>
+        <ul class="nav-links">
+          <li><a href="/about.html">Hakkimizda</a></li>
+          <li><a href="/models.html">Modeller</a></li>
+          <li><a href="/developers.html">Gelistiriciler</a></li>
+          <li><a href="/research.html">Arastirma</a></li>
+          <li><a href="/blog.html">Blog</a></li>
+        </ul>
+        <div class="nav-cta">
+          <a href="/chat.html" class="btn btn-secondary">Giris Yap</a>
+          <a href="/chat.html" class="btn btn-primary">Simdi Dene</a>
         </div>
-        <span class="status-badge">CANLI</span>
+        <button class="mobile-menu-btn" aria-label="Menu">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <div class="page-header">
+      <h1>📚 Öğrenme Yol Haritası</h1>
+      <p>
+        <a href="/ai-advisor-hub.html" style="color: var(--primary); text-decoration: none"
+          >AI Advisor Hub</a
+        >
+        / Öğrenme
+      </p>
+    </div>
+
+    <div class="main-content">
+      <div class="container">
+        <div class="grid">
+          <div>
+            <div class="card">
+              <h2 style="margin-bottom: 1.5rem">Kişiselleştirilmiş Öğrenme Planı</h2>
+              <form id="learningForm">
+                <div class="form-group">
+                  <label>Ne Öğrenmek İstiyorsunuz?</label>
+                  <input
+                    type="text"
+                    id="topic"
+                    required=""
+                    placeholder="Örn: Python programlama, Dijital pazarlama"
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Mevcut Seviyeniz</label>
+                  <select id="currentLevel" required="">
+                    <option value="Başlangıç">Başlangıç</option>
+                    <option value="Temel">Temel</option>
+                    <option value="Orta">Orta</option>
+                    <option value="İleri">İleri</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Hedef Seviye</label>
+                  <select id="targetLevel" required="">
+                    <option value="Temel">Temel</option>
+                    <option value="Orta">Orta</option>
+                    <option value="İleri">İleri</option>
+                    <option value="Uzman">Uzman</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Haftalık Zaman</label>
+                  <select id="timeCommitment">
+                    <option value="2-5 saat">2-5 saat</option>
+                    <option value="5-10 saat" selected="">5-10 saat</option>
+                    <option value="10-20 saat">10-20 saat</option>
+                    <option value="20+ saat">20+ saat</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Öğrenme Stili</label>
+                  <select id="learningStyle">
+                    <option value="Görsel">Görsel (Video, infografik)</option>
+                    <option value="İşitsel">İşitsel (Podcast, audio)</option>
+                    <option value="Kinestetik">Kinestetik (Pratik, proje)</option>
+                    <option value="Karma" selected="">Karma</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Hedef Açıklama (Opsiyonel)</label>
+                  <textarea
+                    id="goalDescription"
+                    placeholder="Bu beceriyi neden öğrenmek istiyorsunuz?"
+                  ></textarea>
+                </div>
+                <button type="submit" id="analyzeBtn">
+                  <i class="fas fa-route"></i> AI ile Yol Haritası Oluştur
+                </button>
+              </form>
+            </div>
+            <div class="results" id="results"></div>
+          </div>
+          <div>
+            <div class="card">
+              <h3 style="margin-bottom: 1rem">✨ Ne Sunuyoruz?</h3>
+              <ul style="list-style: none; padding: 0">
+                <li style="padding: 0.5rem 0">
+                  <i class="fas fa-check" style="color: var(--primary)"></i> Fazlara ayrılmış plan
+                </li>
+                <li style="padding: 0.5rem 0">
+                  <i class="fas fa-check" style="color: var(--primary)"></i> Kaynak önerileri
+                </li>
+                <li style="padding: 0.5rem 0">
+                  <i class="fas fa-check" style="color: var(--primary)"></i> Pratik projeleri
+                </li>
+                <li style="padding: 0.5rem 0">
+                  <i class="fas fa-check" style="color: var(--primary)"></i> Çalışma programı
+                </li>
+                <li style="padding: 0.5rem 0">
+                  <i class="fas fa-check" style="color: var(--primary)"></i> Kilometre taşları
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="container">
-      <div class="grid">
-        <div>
-          <div class="card">
-            <h2 style="margin-bottom: 1.5rem">Kişiselleştirilmiş Öğrenme Planı</h2>
-            <form id="learningForm">
-              <div class="form-group">
-                <label>Ne Öğrenmek İstiyorsunuz?</label>
-                <input
-                  type="text"
-                  id="topic"
-                  required=""
-                  placeholder="Örn: Python programlama, Dijital pazarlama"
-                />
-              </div>
-              <div class="form-group">
-                <label>Mevcut Seviyeniz</label>
-                <select id="currentLevel" required="">
-                  <option value="Başlangıç">Başlangıç</option>
-                  <option value="Temel">Temel</option>
-                  <option value="Orta">Orta</option>
-                  <option value="İleri">İleri</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label>Hedef Seviye</label>
-                <select id="targetLevel" required="">
-                  <option value="Temel">Temel</option>
-                  <option value="Orta">Orta</option>
-                  <option value="İleri">İleri</option>
-                  <option value="Uzman">Uzman</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label>Haftalık Zaman</label>
-                <select id="timeCommitment">
-                  <option value="2-5 saat">2-5 saat</option>
-                  <option value="5-10 saat" selected="">5-10 saat</option>
-                  <option value="10-20 saat">10-20 saat</option>
-                  <option value="20+ saat">20+ saat</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label>Öğrenme Stili</label>
-                <select id="learningStyle">
-                  <option value="Görsel">Görsel (Video, infografik)</option>
-                  <option value="İşitsel">İşitsel (Podcast, audio)</option>
-                  <option value="Kinestetik">Kinestetik (Pratik, proje)</option>
-                  <option value="Karma" selected="">Karma</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label>Hedef Açıklama (Opsiyonel)</label>
-                <textarea
-                  id="goalDescription"
-                  placeholder="Bu beceriyi neden öğrenmek istiyorsunuz?"
-                ></textarea>
-              </div>
-              <button type="submit" id="analyzeBtn">
-                <i class="fas fa-route"></i> AI ile Yol Haritası Oluştur
-              </button>
-            </form>
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <span class="logo-text">LyDian</span>
+            <p>
+              Yapay zeka destekli yeni nesil asistan platformu. Turkce dil destegi ile guvenli ve
+              hizli AI deneyimi.
+            </p>
+            <div class="social-links">
+              <a href="#" class="social-link" aria-label="Twitter"
+                ><svg viewBox="0 0 24 24">
+                  <path
+                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                  /></svg
+              ></a>
+              <a href="#" class="social-link" aria-label="LinkedIn"
+                ><svg viewBox="0 0 24 24">
+                  <path
+                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                  /></svg
+              ></a>
+              <a href="#" class="social-link" aria-label="GitHub"
+                ><svg viewBox="0 0 24 24">
+                  <path
+                    d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
+                  /></svg
+              ></a>
+            </div>
           </div>
-          <div class="results" id="results"></div>
+          <div class="footer-links">
+            <h4>Urun</h4>
+            <a href="/chat.html">LyDian Chat</a><a href="/models.html">Modeller</a
+            ><a href="/developers.html">API</a><a href="/education.html">Egitim</a>
+          </div>
+          <div class="footer-links">
+            <h4>Sirket</h4>
+            <a href="/about.html">Hakkimizda</a><a href="/blog.html">Blog</a
+            ><a href="/careers.html">Kariyer</a><a href="/contact.html">Iletisim</a>
+          </div>
+          <div class="footer-links">
+            <h4>Kaynaklar</h4>
+            <a href="/docs.html">Dokumantasyon</a><a href="/help.html">Yardim</a
+            ><a href="/status.html">Durum</a><a href="/changelog.html">Degisiklikler</a>
+          </div>
+          <div class="footer-links">
+            <h4>Yasal</h4>
+            <a href="/help.html">Gizlilik</a><a href="/help.html">Kullanim Sartlari</a
+            ><a href="/help.html">Cerez Politikasi</a><a href="/help.html">KVKK</a>
+          </div>
         </div>
-        <div>
-          <div class="card">
-            <h3 style="margin-bottom: 1rem">✨ Ne Sunuyoruz?</h3>
-            <ul style="list-style: none; padding: 0">
-              <li style="padding: 0.5rem 0">
-                <i class="fas fa-check" style="color: var(--primary)"></i> Fazlara ayrılmış plan
-              </li>
-              <li style="padding: 0.5rem 0">
-                <i class="fas fa-check" style="color: var(--primary)"></i> Kaynak önerileri
-              </li>
-              <li style="padding: 0.5rem 0">
-                <i class="fas fa-check" style="color: var(--primary)"></i> Pratik projeleri
-              </li>
-              <li style="padding: 0.5rem 0">
-                <i class="fas fa-check" style="color: var(--primary)"></i> Çalışma programı
-              </li>
-              <li style="padding: 0.5rem 0">
-                <i class="fas fa-check" style="color: var(--primary)"></i> Kilometre taşları
-              </li>
-            </ul>
+        <div class="footer-bottom">
+          <p class="footer-copyright">&copy; 2025 AILYDIAN. Tum haklar saklidir.</p>
+          <div class="footer-legal">
+            <a href="/help.html">Gizlilik Politikasi</a>
+            <a href="/help.html">Kullanim Kosullari</a>
+            <a href="/help.html">Cerez Ayarlari</a>
           </div>
         </div>
       </div>
-    </div>
+    </footer>
 
     <script>
       document.getElementById('learningForm').addEventListener('submit', async e => {

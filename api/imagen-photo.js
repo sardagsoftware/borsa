@@ -13,7 +13,7 @@ const AZURE_DALLE = {
   endpoint: process.env.AZURE_OPENAI_ENDPOINT,
   apiKey: process.env.AZURE_OPENAI_API_KEY,
   deploymentName: process.env.AZURE_OPENAI_DALLE_DEPLOYMENT_NAME || 'dall-e-3',
-  apiVersion: '2024-02-01'
+  apiVersion: '2024-02-01',
 };
 
 // ==========================================
@@ -24,7 +24,7 @@ const VERTEX_CONFIG = {
   projectId: process.env.GOOGLE_CLOUD_PROJECT_ID,
   location: 'us-central1',
   model: 'imagen-3.0-generate-001',
-  endpoint: 'https://us-central1-aiplatform.googleapis.com'
+  endpoint: 'https://us-central1-aiplatform.googleapis.com',
 };
 
 // Initialize Google Auth
@@ -32,7 +32,7 @@ async function getGoogleAccessToken() {
   try {
     const auth = new GoogleAuth({
       credentials: JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS || '{}'),
-      scopes: ['https://www.googleapis.com/auth/cloud-platform']
+      scopes: ['https://www.googleapis.com/auth/cloud-platform'],
     });
     const client = await auth.getClient();
     const token = await client.getAccessToken();
@@ -50,7 +50,7 @@ async function generateWithAzureDallE(prompt, options = {}) {
   const {
     size = '1024x1024', // '1024x1024', '1792x1024', '1024x1792'
     quality = 'hd', // 'standard', 'hd'
-    style = 'vivid' // 'vivid', 'natural'
+    style = 'vivid', // 'vivid', 'natural'
   } = options;
 
   console.log('🎨 Azure DALL-E 3 Request:', { prompt, size, quality, style });
@@ -59,7 +59,7 @@ async function generateWithAzureDallE(prompt, options = {}) {
     apiKey: AZURE_DALLE.apiKey,
     baseURL: `${AZURE_DALLE.endpoint}openai/deployments/${AZURE_DALLE.deploymentName}`,
     defaultQuery: { 'api-version': AZURE_DALLE.apiVersion },
-    defaultHeaders: { 'api-key': AZURE_DALLE.apiKey }
+    defaultHeaders: { 'api-key': AZURE_DALLE.apiKey },
   });
 
   const response = await client.images.generate({
@@ -69,18 +69,18 @@ async function generateWithAzureDallE(prompt, options = {}) {
     size: size,
     quality: quality,
     style: style,
-    response_format: 'url'
+    response_format: 'url',
   });
 
   console.log('✅ Azure DALL-E 3 Generation Complete');
 
   return {
-    provider: 'Azure DALL-E 3',
+    provider: 'LyDian AI',
     images: response.data.map((img, idx) => ({
       index: idx + 1,
       url: img.url,
-      revisedPrompt: img.revised_prompt
-    }))
+      revisedPrompt: img.revised_prompt,
+    })),
   };
 }
 
@@ -93,7 +93,7 @@ async function generateWithGoogleImagen(prompt, options = {}) {
     aspectRatio = '1:1',
     negativePrompt = '',
     safetyFilterLevel = 'block_some',
-    personGeneration = 'allow_adult'
+    personGeneration = 'allow_adult',
   } = options;
 
   console.log('🎨 Google Imagen 3 Request:', { prompt, aspectRatio, numberOfImages });
@@ -104,14 +104,16 @@ async function generateWithGoogleImagen(prompt, options = {}) {
   const response = await fetch(apiUrl, {
     method: 'POST',
     headers: {
-      'Authorization': `Bearer ${accessToken}`,
-      'Content-Type': 'application/json'
+      Authorization: `Bearer ${accessToken}`,
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      instances: [{
-        prompt: prompt,
-        negativePrompt: negativePrompt
-      }],
+      instances: [
+        {
+          prompt: prompt,
+          negativePrompt: negativePrompt,
+        },
+      ],
       parameters: {
         sampleCount: numberOfImages,
         aspectRatio: aspectRatio,
@@ -119,9 +121,9 @@ async function generateWithGoogleImagen(prompt, options = {}) {
         personGeneration: personGeneration,
         addWatermark: false,
         compressionQuality: 100,
-        language: 'auto'
-      }
-    })
+        language: 'auto',
+      },
+    }),
   });
 
   if (!response.ok) {
@@ -135,13 +137,13 @@ async function generateWithGoogleImagen(prompt, options = {}) {
 
   const predictions = result.predictions || [];
   return {
-    provider: 'Google Imagen 3',
+    provider: 'LyDian AI',
     images: predictions.map((pred, idx) => ({
       index: idx + 1,
       bytesBase64Encoded: pred.bytesBase64Encoded,
       mimeType: pred.mimeType || 'image/png',
-      dataUrl: `data:${pred.mimeType || 'image/png'};base64,${pred.bytesBase64Encoded}`
-    }))
+      dataUrl: `data:${pred.mimeType || 'image/png'};base64,${pred.bytesBase64Encoded}`,
+    })),
   };
 }
 
@@ -154,7 +156,7 @@ async function generateWithOpenAIDallE(prompt, options = {}) {
   console.log('🎨 OpenAI DALL-E 3 Request:', { prompt, size, quality, style });
 
   const client = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY
+    apiKey: process.env.OPENAI_API_KEY,
   });
 
   const response = await client.images.generate({
@@ -164,18 +166,18 @@ async function generateWithOpenAIDallE(prompt, options = {}) {
     size: size,
     quality: quality,
     style: style,
-    response_format: 'url'
+    response_format: 'url',
   });
 
   console.log('✅ OpenAI DALL-E 3 Generation Complete');
 
   return {
-    provider: 'OpenAI DALL-E 3',
+    provider: 'LyDian AI',
     images: response.data.map((img, idx) => ({
       index: idx + 1,
       url: img.url,
-      revisedPrompt: img.revised_prompt
-    }))
+      revisedPrompt: img.revised_prompt,
+    })),
   };
 }
 
@@ -189,7 +191,7 @@ async function generateImage(prompt, options = {}) {
   if (AZURE_DALLE.enabled()) {
     providers.push({
       name: 'Azure DALL-E 3',
-      generate: () => generateWithAzureDallE(prompt, options)
+      generate: () => generateWithAzureDallE(prompt, options),
     });
   }
 
@@ -197,7 +199,7 @@ async function generateImage(prompt, options = {}) {
   if (VERTEX_CONFIG.enabled()) {
     providers.push({
       name: 'Google Imagen 3',
-      generate: () => generateWithGoogleImagen(prompt, options)
+      generate: () => generateWithGoogleImagen(prompt, options),
     });
   }
 
@@ -205,7 +207,7 @@ async function generateImage(prompt, options = {}) {
   if (process.env.OPENAI_API_KEY) {
     providers.push({
       name: 'OpenAI DALL-E 3',
-      generate: () => generateWithOpenAIDallE(prompt, options)
+      generate: () => generateWithOpenAIDallE(prompt, options),
     });
   }
 
@@ -224,7 +226,7 @@ async function generateImage(prompt, options = {}) {
       if (provider === providers[providers.length - 1]) {
         throw error; // Last provider failed, throw error
       }
-      console.log(`⚡ Falling back to next provider...`);
+      console.log('⚡ Falling back to next provider...');
     }
   }
 }
@@ -255,13 +257,13 @@ module.exports = async (req, res) => {
       aspectRatio = '1:1',
       negativePrompt = '',
       safetyFilterLevel = 'block_some',
-      personGeneration = 'allow_adult'
+      personGeneration = 'allow_adult',
     } = req.body;
 
     if (!prompt) {
       return res.status(400).json({
         success: false,
-        error: 'Görsel açıklaması gerekli'
+        error: 'Görsel açıklaması gerekli',
       });
     }
 
@@ -274,7 +276,7 @@ module.exports = async (req, res) => {
       aspectRatio,
       negativePrompt,
       safetyFilterLevel,
-      personGeneration
+      personGeneration,
     });
 
     const responseTime = Date.now() - startTime;
@@ -287,23 +289,22 @@ module.exports = async (req, res) => {
       count: result.images.length,
       provider: 'LyDian AI', // Hidden - never reveal actual provider
       model: 'Enterprise AI', // Generic name
-      actualProvider: result.provider, // For logging only (remove in production)
+      // actualProvider removed - never expose real provider to client
       responseTime: `${responseTime}ms`,
       timestamp: new Date().toISOString(),
       metadata: {
         prompt: prompt.substring(0, 100),
         quality: 'Ultra HD 8K',
-        technology: 'Advanced Neural Art Generation'
-      }
+        technology: 'Advanced Neural Art Generation',
+      },
     });
-
   } catch (error) {
     console.error('❌ Image Generation Error:', error);
     res.status(500).json({
       success: false,
       error: 'Görsel oluşturma başarısız oldu',
       message: 'Lütfen daha detaylı bir açıklama deneyin veya tekrar deneyin',
-      details: process.env.NODE_ENV === 'development' ? error.message : undefined
+      details: process.env.NODE_ENV === 'development' ? error.message : undefined,
     });
   }
 };

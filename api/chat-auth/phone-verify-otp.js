@@ -20,7 +20,7 @@ module.exports = async function handler(req, res) {
 
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') {
-    return res.status(405).json({ success: false, error: 'Method not allowed' });
+    return res.status(405).json({ success: false, error: 'Bu istek yöntemi desteklenmiyor' });
   }
 
   try {
@@ -34,7 +34,7 @@ module.exports = async function handler(req, res) {
     if (!TWILIO_SID || ((!API_KEY_SID || !API_KEY_SECRET) && !TWILIO_TOKEN) || !VERIFY_SID) {
       return res.status(503).json({
         success: false,
-        error: 'Telefon dogrulama servisi simdilik kullanim disi.'
+        error: 'Telefon dogrulama servisi simdilik kullanim disi.',
       });
     }
 
@@ -44,7 +44,7 @@ module.exports = async function handler(req, res) {
     if (!phoneNumber || !code) {
       return res.status(400).json({
         success: false,
-        error: 'Telefon numarasi ve dogrulama kodu gerekli'
+        error: 'Telefon numarasi ve dogrulama kodu gerekli',
       });
     }
 
@@ -54,7 +54,7 @@ module.exports = async function handler(req, res) {
     if (!rateLimit.allowed) {
       return res.status(429).json({
         success: false,
-        error: `Cok fazla deneme. ${rateLimit.resetIn} saniye sonra tekrar deneyin.`
+        error: `Cok fazla deneme. ${rateLimit.resetIn} saniye sonra tekrar deneyin.`,
       });
     }
 
@@ -63,26 +63,27 @@ module.exports = async function handler(req, res) {
     if (cleanCode.length !== 6) {
       return res.status(400).json({
         success: false,
-        error: '6 haneli dogrulama kodunu girin'
+        error: '6 haneli dogrulama kodunu girin',
       });
     }
 
     // Verify OTP via Twilio (prefer API Key auth)
-    const twilio = API_KEY_SID && API_KEY_SECRET
-      ? require('twilio')(API_KEY_SID, API_KEY_SECRET, { accountSid: TWILIO_SID })
-      : require('twilio')(TWILIO_SID, TWILIO_TOKEN);
+    const twilio =
+      API_KEY_SID && API_KEY_SECRET
+        ? require('twilio')(API_KEY_SID, API_KEY_SECRET, { accountSid: TWILIO_SID })
+        : require('twilio')(TWILIO_SID, TWILIO_TOKEN);
     const verificationCheck = await twilio.verify.v2
       .services(VERIFY_SID)
       .verificationChecks.create({
         to: phoneNumber,
-        code: cleanCode
+        code: cleanCode,
       });
 
     if (verificationCheck.status !== 'approved') {
       console.log('[PHONE_VERIFY] Verification failed:', verificationCheck.status);
       return res.status(401).json({
         success: false,
-        error: 'Gecersiz veya suresi dolmus dogrulama kodu'
+        error: 'Gecersiz veya suresi dolmus dogrulama kodu',
       });
     }
 
@@ -105,7 +106,7 @@ module.exports = async function handler(req, res) {
         displayName,
         {
           phoneNumber: phoneNumber,
-          authProvider: 'phone'
+          authProvider: 'phone',
         }
       );
       user = await chatUsers.findById(userId);
@@ -137,8 +138,8 @@ module.exports = async function handler(req, res) {
         id: user.id,
         displayName: user.display_name,
         phoneNumber: user.phone_number,
-        isNewUser
-      }
+        isNewUser,
+      },
     });
   } catch (error) {
     console.error('[PHONE_VERIFY] Error:', error.message);
@@ -147,13 +148,13 @@ module.exports = async function handler(req, res) {
     if (error.code === 60200) {
       return res.status(400).json({
         success: false,
-        error: 'Gecersiz dogrulama kodu'
+        error: 'Gecersiz dogrulama kodu',
       });
     }
 
     return res.status(500).json({
       success: false,
-      error: 'Dogrulama basarisiz. Lutfen tekrar deneyin.'
+      error: 'Dogrulama basarisiz. Lutfen tekrar deneyin.',
     });
   }
 };

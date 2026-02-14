@@ -223,8 +223,8 @@ module.exports = async (req, res) => {
 
     // Return audio directly
     res.setHeader('Content-Type', result.format);
-    res.setHeader('X-Provider', 'LyDian AI'); // Hidden
-    res.setHeader('X-Actual-Provider', result.provider); // For logging
+    res.setHeader('X-Provider', 'LyDian AI');
+    // X-Actual-Provider removed - never expose real provider to client
     res.setHeader('X-Response-Time', `${responseTime}ms`);
     res.status(200).send(result.audioData);
   } catch (error) {

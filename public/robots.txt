@@ -130,6 +130,7 @@ Allow: /assets/
 # ============================================
 
 Sitemap: https://www.ailydian.com/sitemap-index.xml
+Sitemap: https://www.ailydian.com/sitemap.xml
 
 # ============================================
 # ADDITIONAL INFORMATION

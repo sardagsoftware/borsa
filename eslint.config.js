@@ -5,6 +5,22 @@ const security = require('eslint-plugin-security');
 const node = require('eslint-plugin-node');
 
 module.exports = [
+  // Global ignores (must be standalone config object)
+  {
+    ignores: [
+      'node_modules/**',
+      'dist/**',
+      'build/**',
+      'coverage/**',
+      '.git/**',
+      '.vercel/**',
+      '*.min.js',
+      'public/**',
+      'apps/**',
+      '.backups/**',
+      'Desktop/**',
+    ],
+  },
   js.configs.recommended,
   prettier,
   {
@@ -31,6 +47,25 @@ module.exports = [
         clearTimeout: 'readonly',
         setInterval: 'readonly',
         clearInterval: 'readonly',
+        // Node 18+ Web API globals
+        fetch: 'readonly',
+        URL: 'readonly',
+        URLSearchParams: 'readonly',
+        AbortController: 'readonly',
+        Response: 'readonly',
+        Headers: 'readonly',
+        Request: 'readonly',
+        FormData: 'readonly',
+        TextEncoder: 'readonly',
+        TextDecoder: 'readonly',
+        structuredClone: 'readonly',
+        queueMicrotask: 'readonly',
+        atob: 'readonly',
+        btoa: 'readonly',
+        crypto: 'readonly',
+        global: 'readonly',
+        globalThis: 'readonly',
+        AbortSignal: 'readonly',
         // Jest globals (for test files)
         describe: 'readonly',
         it: 'readonly',
@@ -71,14 +106,5 @@ module.exports = [
       'node/no-missing-require': 'off',
       'node/no-unpublished-require': 'off',
     },
-    ignores: [
-      'node_modules/**',
-      'dist/**',
-      'build/**',
-      'coverage/**',
-      '.git/**',
-      '.vercel/**',
-      '*.min.js',
-    ],
   },
 ];

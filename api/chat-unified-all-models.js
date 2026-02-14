@@ -9,6 +9,7 @@ const axios = require('axios');
 const { getModelConfig, getActiveModels } = require('./models-config');
 const { obfuscation } = require('../services/localrecall');
 const { getCorsOrigin } = require('./_middleware/cors');
+const { trackMessage, trackError } = require('./_middleware/analytics');
 
 // Rate limiting
 const requestLog = new Map();
@@ -502,8 +503,17 @@ Başka bir konuda nasıl yardımcı olabilirim?`;
       confidence: confidence,
       timestamp: new Date().toISOString(),
     });
+
+    // Fire-and-forget analytics (NEVER blocks response)
+    trackMessage({
+      modelId: model,
+      engine: 'unified',
+      tokens: result.usage?.total_tokens || 0,
+      userId: userId,
+    });
   } catch (error) {
     console.error('❌ Unified AI Error:', error.message);
+    trackError('unified');
 
     // Generic error message (don't expose internal details)
     res.status(500).json({

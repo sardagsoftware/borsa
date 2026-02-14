@@ -5,34 +5,34 @@
  */
 
 class StatusIndicators {
-    constructor() {
-        this.statusData = {
-            apis: {},
-            websockets: {},
-            overall: 'unknown'
-        };
+  constructor() {
+    this.statusData = {
+      apis: {},
+      websockets: {},
+      overall: 'unknown',
+    };
 
-        this.updateInterval = 15000; // 15 seconds
-        this.websocket = null;
-        this.retryCount = 0;
-        this.maxRetries = 5;
+    this.updateInterval = 15000; // 15 seconds
+    this.websocket = null;
+    this.retryCount = 0;
+    this.maxRetries = 5;
 
-        this.init();
-    }
+    this.init();
+  }
 
-    async init() {
-        console.log('🔍 Initializing Status Indicators...');
+  async init() {
+    console.log('🔍 Initializing Status Indicators...');
 
-        this.createStatusElements();
-        this.startStatusUpdates();
-        this.setupWebSocketConnection();
+    this.createStatusElements();
+    this.startStatusUpdates();
+    this.setupWebSocketConnection();
 
-        console.log('✅ Status Indicators initialized');
-    }
+    console.log('✅ Status Indicators initialized');
+  }
 
-    createStatusElements() {
-        // Create status container for footer
-        const footerStatusHTML = `
+  createStatusElements() {
+    // Create status container for footer
+    const footerStatusHTML = `
             <div class="status-indicators" id="statusIndicators">
                 <div class="status-group">
                     <div class="status-item" id="apiStatus">
@@ -42,23 +42,23 @@ class StatusIndicators {
                         <span class="status-text">API</span>
                         <div class="status-details" id="apiDetails">
                             <div class="detail-row">
-                                <span>OMEGA_SYS:</span>
+                                <span>LyDian Labs:</span>
                                 <span class="status-value" id="OMEGA_SYS-status">-</span>
                             </div>
                             <div class="detail-row">
-                                <span>Azure:</span>
+                                <span>LyDian Enterprise:</span>
                                 <span class="status-value" id="azure-OMEGA_SYS-status">-</span>
                             </div>
                             <div class="detail-row">
-                                <span>Google AI:</span>
+                                <span>LyDian Vision:</span>
                                 <span class="status-value" id="google-ai-status">-</span>
                             </div>
                             <div class="detail-row">
-                                <span>Z.AI:</span>
+                                <span>LyDian Code:</span>
                                 <span class="status-value" id="z-ai-status">-</span>
                             </div>
                             <div class="detail-row">
-                                <span>EnterpriseAI:</span>
+                                <span>LyDian Pro:</span>
                                 <span class="status-value" id="AX9F7E2B-status">-</span>
                             </div>
                         </div>
@@ -121,30 +121,30 @@ class StatusIndicators {
             </div>
         `;
 
-        // Add to footer if exists
-        const footer = document.querySelector('footer');
-        if (footer) {
-            const statusContainer = document.createElement('div');
-            statusContainer.innerHTML = footerStatusHTML;
-            footer.appendChild(statusContainer.firstElementChild);
-        }
-
-        // Add to navbar if no footer exists
-        if (!footer) {
-            const navbar = document.querySelector('.navbar, .header, .top-nav');
-            if (navbar) {
-                const statusContainer = document.createElement('div');
-                statusContainer.className = 'navbar-status';
-                statusContainer.innerHTML = footerStatusHTML;
-                navbar.appendChild(statusContainer.firstElementChild);
-            }
-        }
-
-        this.addStatusStyles();
+    // Add to footer if exists
+    const footer = document.querySelector('footer');
+    if (footer) {
+      const statusContainer = document.createElement('div');
+      statusContainer.innerHTML = footerStatusHTML;
+      footer.appendChild(statusContainer.firstElementChild);
     }
 
-    addStatusStyles() {
-        const styles = `
+    // Add to navbar if no footer exists
+    if (!footer) {
+      const navbar = document.querySelector('.navbar, .header, .top-nav');
+      if (navbar) {
+        const statusContainer = document.createElement('div');
+        statusContainer.className = 'navbar-status';
+        statusContainer.innerHTML = footerStatusHTML;
+        navbar.appendChild(statusContainer.firstElementChild);
+      }
+    }
+
+    this.addStatusStyles();
+  }
+
+  addStatusStyles() {
+    const styles = `
             <style>
                 .status-indicators {
                     display: flex;
@@ -328,190 +328,195 @@ class StatusIndicators {
             </style>
         `;
 
-        document.head.insertAdjacentHTML('beforeend', styles);
+    document.head.insertAdjacentHTML('beforeend', styles);
+  }
+
+  startStatusUpdates() {
+    // Initial update
+    this.updateStatus();
+
+    // Set up periodic updates
+    setInterval(() => {
+      this.updateStatus();
+    }, this.updateInterval);
+
+    console.log('🔄 Status updates started');
+  }
+
+  async updateStatus() {
+    try {
+      const response = await fetch('/api/health-status');
+      const data = await response.json();
+
+      this.statusData = data;
+      this.updateStatusDisplay();
+    } catch (error) {
+      console.error('❌ Failed to fetch status:', error);
+      this.handleStatusError();
+    }
+  }
+
+  updateStatusDisplay() {
+    const { health, websockets } = this.statusData;
+
+    // Update API status
+    if (health) {
+      this.updateStatusIcon('apiStatusIcon', health.overall);
+
+      // Update individual API statuses
+      Object.entries(health.services).forEach(([name, status]) => {
+        const element = document.getElementById(`${name}-status`);
+        if (element) {
+          element.textContent = status.status.toUpperCase();
+          element.className = `status-value ${status.status}`;
+        }
+      });
     }
 
-    startStatusUpdates() {
-        // Initial update
-        this.updateStatus();
+    // Update WebSocket status
+    if (websockets) {
+      this.updateStatusIcon('websocketStatusIcon', websockets.overall);
 
-        // Set up periodic updates
-        setInterval(() => {
-            this.updateStatus();
-        }, this.updateInterval);
-
-        console.log('🔄 Status updates started');
+      // Update individual WebSocket statuses
+      Object.entries(websockets.connections).forEach(([name, status]) => {
+        const element = document.getElementById(`${name}-status`);
+        if (element) {
+          element.textContent = status.status.toUpperCase();
+          element.className = `status-value ${status.status}`;
+        }
+      });
     }
 
-    async updateStatus() {
+    // Update overall status
+    const overallStatus = this.determineOverallStatus();
+    this.updateStatusIcon('overallStatusIcon', overallStatus);
+
+    const overallText = document.getElementById('overallStatusText');
+    if (overallText) {
+      overallText.textContent = overallStatus.toUpperCase();
+    }
+
+    // Update timestamp
+    const timestampElement = document.getElementById('statusTimestamp');
+    if (timestampElement) {
+      timestampElement.textContent = new Date().toLocaleTimeString();
+    }
+  }
+
+  updateStatusIcon(iconId, status) {
+    const iconElement = document.getElementById(iconId);
+    if (iconElement) {
+      // Remove all status classes
+      iconElement.classList.remove('healthy', 'degraded', 'unhealthy', 'unknown', 'updating');
+
+      // Add current status class
+      iconElement.classList.add(status);
+
+      // Add updating animation temporarily
+      iconElement.classList.add('updating');
+      setTimeout(() => {
+        iconElement.classList.remove('updating');
+      }, 1000);
+    }
+  }
+
+  determineOverallStatus() {
+    const { health, websockets } = this.statusData;
+
+    if (!health || !websockets) return 'unknown';
+
+    if (health.overall === 'healthy' && websockets.overall === 'healthy') {
+      return 'healthy';
+    } else if (health.overall === 'unhealthy' || websockets.overall === 'unhealthy') {
+      return 'unhealthy';
+    } else {
+      return 'degraded';
+    }
+  }
+
+  handleStatusError() {
+    // Update all status indicators to show error state
+    const statusIcons = [
+      'apiStatusIcon',
+      'websocketStatusIcon',
+      'databaseStatusIcon',
+      'overallStatusIcon',
+    ];
+    statusIcons.forEach(iconId => {
+      this.updateStatusIcon(iconId, 'unhealthy');
+    });
+
+    // Update timestamp to show error
+    const timestampElement = document.getElementById('statusTimestamp');
+    if (timestampElement) {
+      timestampElement.textContent = 'Error updating';
+    }
+  }
+
+  setupWebSocketConnection() {
+    try {
+      this.websocket = new WebSocket(`ws://${window.location.host}/status-updates`);
+
+      this.websocket.onopen = () => {
+        console.log('🔌 Status WebSocket connected');
+        this.retryCount = 0;
+      };
+
+      this.websocket.onmessage = event => {
         try {
-            const response = await fetch('/api/health-status');
-            const data = await response.json();
-
-            this.statusData = data;
+          const data = JSON.parse(event.data);
+          if (data.type === 'status-update') {
+            this.statusData = data.data;
             this.updateStatusDisplay();
-
+          }
         } catch (error) {
-            console.error('❌ Failed to fetch status:', error);
-            this.handleStatusError();
+          console.error('❌ Failed to parse WebSocket message:', error);
         }
+      };
+
+      this.websocket.onclose = () => {
+        console.log('🔌 Status WebSocket disconnected');
+        this.reconnectWebSocket();
+      };
+
+      this.websocket.onerror = error => {
+        console.error('❌ Status WebSocket error:', error);
+      };
+    } catch (error) {
+      console.error('❌ Failed to setup WebSocket connection:', error);
     }
+  }
 
-    updateStatusDisplay() {
-        const { health, websockets } = this.statusData;
+  reconnectWebSocket() {
+    if (this.retryCount < this.maxRetries) {
+      this.retryCount++;
+      const delay = Math.min(1000 * Math.pow(2, this.retryCount), 30000);
 
-        // Update API status
-        if (health) {
-            this.updateStatusIcon('apiStatusIcon', health.overall);
+      console.log(
+        `🔄 Retrying WebSocket connection in ${delay}ms (attempt ${this.retryCount}/${this.maxRetries})`
+      );
 
-            // Update individual API statuses
-            Object.entries(health.services).forEach(([name, status]) => {
-                const element = document.getElementById(`${name}-status`);
-                if (element) {
-                    element.textContent = status.status.toUpperCase();
-                    element.className = `status-value ${status.status}`;
-                }
-            });
-        }
-
-        // Update WebSocket status
-        if (websockets) {
-            this.updateStatusIcon('websocketStatusIcon', websockets.overall);
-
-            // Update individual WebSocket statuses
-            Object.entries(websockets.connections).forEach(([name, status]) => {
-                const element = document.getElementById(`${name}-status`);
-                if (element) {
-                    element.textContent = status.status.toUpperCase();
-                    element.className = `status-value ${status.status}`;
-                }
-            });
-        }
-
-        // Update overall status
-        const overallStatus = this.determineOverallStatus();
-        this.updateStatusIcon('overallStatusIcon', overallStatus);
-
-        const overallText = document.getElementById('overallStatusText');
-        if (overallText) {
-            overallText.textContent = overallStatus.toUpperCase();
-        }
-
-        // Update timestamp
-        const timestampElement = document.getElementById('statusTimestamp');
-        if (timestampElement) {
-            timestampElement.textContent = new Date().toLocaleTimeString();
-        }
+      setTimeout(() => {
+        this.setupWebSocketConnection();
+      }, delay);
+    } else {
+      console.error('❌ Max WebSocket retry attempts reached');
     }
+  }
 
-    updateStatusIcon(iconId, status) {
-        const iconElement = document.getElementById(iconId);
-        if (iconElement) {
-            // Remove all status classes
-            iconElement.classList.remove('healthy', 'degraded', 'unhealthy', 'unknown', 'updating');
-
-            // Add current status class
-            iconElement.classList.add(status);
-
-            // Add updating animation temporarily
-            iconElement.classList.add('updating');
-            setTimeout(() => {
-                iconElement.classList.remove('updating');
-            }, 1000);
-        }
+  destroy() {
+    if (this.websocket) {
+      this.websocket.close();
     }
-
-    determineOverallStatus() {
-        const { health, websockets } = this.statusData;
-
-        if (!health || !websockets) return 'unknown';
-
-        if (health.overall === 'healthy' && websockets.overall === 'healthy') {
-            return 'healthy';
-        } else if (health.overall === 'unhealthy' || websockets.overall === 'unhealthy') {
-            return 'unhealthy';
-        } else {
-            return 'degraded';
-        }
-    }
-
-    handleStatusError() {
-        // Update all status indicators to show error state
-        const statusIcons = ['apiStatusIcon', 'websocketStatusIcon', 'databaseStatusIcon', 'overallStatusIcon'];
-        statusIcons.forEach(iconId => {
-            this.updateStatusIcon(iconId, 'unhealthy');
-        });
-
-        // Update timestamp to show error
-        const timestampElement = document.getElementById('statusTimestamp');
-        if (timestampElement) {
-            timestampElement.textContent = 'Error updating';
-        }
-    }
-
-    setupWebSocketConnection() {
-        try {
-            this.websocket = new WebSocket(`ws://${window.location.host}/status-updates`);
-
-            this.websocket.onopen = () => {
-                console.log('🔌 Status WebSocket connected');
-                this.retryCount = 0;
-            };
-
-            this.websocket.onmessage = (event) => {
-                try {
-                    const data = JSON.parse(event.data);
-                    if (data.type === 'status-update') {
-                        this.statusData = data.data;
-                        this.updateStatusDisplay();
-                    }
-                } catch (error) {
-                    console.error('❌ Failed to parse WebSocket message:', error);
-                }
-            };
-
-            this.websocket.onclose = () => {
-                console.log('🔌 Status WebSocket disconnected');
-                this.reconnectWebSocket();
-            };
-
-            this.websocket.onerror = (error) => {
-                console.error('❌ Status WebSocket error:', error);
-            };
-
-        } catch (error) {
-            console.error('❌ Failed to setup WebSocket connection:', error);
-        }
-    }
-
-    reconnectWebSocket() {
-        if (this.retryCount < this.maxRetries) {
-            this.retryCount++;
-            const delay = Math.min(1000 * Math.pow(2, this.retryCount), 30000);
-
-            console.log(`🔄 Retrying WebSocket connection in ${delay}ms (attempt ${this.retryCount}/${this.maxRetries})`);
-
-            setTimeout(() => {
-                this.setupWebSocketConnection();
-            }, delay);
-        } else {
-            console.error('❌ Max WebSocket retry attempts reached');
-        }
-    }
-
-    destroy() {
-        if (this.websocket) {
-            this.websocket.close();
-        }
-    }
+  }
 }
 
 // Auto-initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
-    window.statusIndicators = new StatusIndicators();
+  window.statusIndicators = new StatusIndicators();
 });
 
 // Export for module usage
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = StatusIndicators;
+  module.exports = StatusIndicators;
 }

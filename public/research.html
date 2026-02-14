@@ -26,7 +26,8 @@
       }
     </style>
     <link
-      rel="preload" as="style"
+      rel="preload"
+      as="style"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Righteous&amp;display=swap"
       crossorigin="anonymous"
     />
@@ -42,23 +43,45 @@
         box-sizing: border-box;
       }
       :root {
-        --black: #000;
-        --white: #fff;
-        --gray-50: #f9fafb;
-        --gray-200: #e5e7eb;
-        --gray-500: #6b7280;
-        --gray-600: #4b5563;
-        --gray-700: #374151;
-        --gray-800: #1f2937;
-        --gray-900: #111827;
-        --primary: #10a37f;
-        --accent: #ff6b4a;
+        --bg-0: #0a0b0d;
+        --bg-1: rgba(255, 255, 255, 0.05);
+        --glass: rgba(255, 255, 255, 0.05);
+        --glass-2: rgba(255, 255, 255, 0.03);
+        --stroke: rgba(255, 255, 255, 0.1);
+        --txt-1: #ffffff;
+        --txt-2: rgba(255, 255, 255, 0.7);
+        --txt-3: rgba(255, 255, 255, 0.6);
+        --accent-1: #00e0ae;
+        --accent-2: #6e84ff;
+        --accent-3: #b86bff;
+        --primary: #00e0ae;
+        --accent: #6e84ff;
       }
+
+      html {
+        color-scheme: dark;
+      }
+
       body {
-        font-family: 'Inter', sans-serif;
-        background: var(--white);
-        color: var(--gray-900);
+        font-family:
+          'Inter',
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          'Segoe UI',
+          Roboto,
+          sans-serif;
+        background: #0a0b0d;
+        background-image:
+          radial-gradient(at 27% 37%, rgba(0, 224, 174, 0.08) 0px, transparent 50%),
+          radial-gradient(at 97% 21%, rgba(110, 132, 255, 0.08) 0px, transparent 50%),
+          radial-gradient(at 52% 99%, rgba(184, 107, 255, 0.08) 0px, transparent 50%),
+          radial-gradient(at 10% 29%, rgba(0, 224, 174, 0.05) 0px, transparent 50%),
+          radial-gradient(at 97% 96%, rgba(110, 132, 255, 0.05) 0px, transparent 50%);
+        color: var(--txt-1);
         line-height: 1.6;
+        overflow-x: hidden;
       }
       .navbar {
         position: fixed;
@@ -66,9 +89,10 @@
         left: 0;
         right: 0;
         z-index: 1000;
-        background: rgba(255, 255, 255, 0.8);
+        background: rgba(0, 0, 0, 0.6);
         backdrop-filter: blur(20px);
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       }
       .nav-container {
         max-width: 1400px;
@@ -83,7 +107,7 @@
         font-family: 'Inter', sans-serif !important;
         font-size: 2.25rem;
         font-weight: 900 !important;
-        color: #ffffff;
+        color: var(--txt-1);
         text-decoration: none;
         text-shadow: 0 0 10px rgba(0, 224, 174, 0.3);
       }
@@ -93,15 +117,16 @@
         list-style: none;
       }
       .nav-links a {
-        color: var(--gray-700);
+        color: var(--txt-1);
         text-decoration: none;
       }
       .btn-primary {
-        background: var(--black);
-        color: var(--white);
+        background: var(--accent-1);
+        color: #000000;
         padding: 0.75rem 1.5rem;
         border-radius: 8px;
         text-decoration: none;
+        font-weight: 600;
       }
       .hero {
         min-height: 80vh;
@@ -155,8 +180,9 @@
       }
       .feature-card {
         padding: 2.5rem;
-        background: white;
-        border: 1px solid var(--gray-200);
+        background: var(--glass);
+        backdrop-filter: blur(20px);
+        border: 1px solid var(--stroke);
         border-radius: 16px;
       }
       .feature-title {
@@ -165,13 +191,14 @@
         margin-bottom: 1rem;
       }
       .feature-description {
-        color: var(--gray-600);
+        color: var(--txt-2);
         line-height: 1.7;
       }
       .footer {
         padding: 4rem 2rem 2rem;
-        background: var(--gray-900);
-        color: var(--gray-500);
+        background: rgba(0, 0, 0, 0.4);
+        color: var(--txt-2);
+        border-top: 1px solid var(--stroke);
       }
       .footer-container {
         max-width: 1400px;
@@ -217,6 +244,47 @@
       .footer-legal a {
         color: var(--gray-500);
         text-decoration: none;
+      }
+
+      /* Responsive */
+      @media (max-width: 1024px) {
+        .footer-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav-links,
+        .nav-cta {
+          display: none;
+        }
+
+        .mobile-menu-btn {
+          display: block;
+        }
+
+        .hero-title {
+          font-size: 2.5rem;
+        }
+
+        .features-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-bottom {
+          flex-direction: column;
+          gap: 16px;
+          text-align: center;
+        }
+
+        .footer-legal {
+          flex-wrap: wrap;
+          justify-content: center;
+        }
       }
     </style>
     <link rel="stylesheet" href="/css/global-lydian-branding.css" />
@@ -464,7 +532,7 @@
     />
 
     <!-- /Premium SEO -->
-<!-- PWA Manifest -->
+    <!-- PWA Manifest -->
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#C4A962" />
     <!-- iOS Safari -->
@@ -519,7 +587,8 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon-48.png" />
     <link rel="icon" type="image/x-icon" href="/icons/favicon.ico" />
-    <link rel="shortcut icon" href="/icons/favicon.ico" /></head>
+    <link rel="shortcut icon" href="/icons/favicon.ico" />
+  </head>
   <body>
     <nav class="navbar">
       <div class="nav-container">

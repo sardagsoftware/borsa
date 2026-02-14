@@ -22,7 +22,7 @@ module.exports = async function handler(req, res) {
   }
 
   if (req.method !== 'POST') {
-    return res.status(405).json({ success: false, error: 'Method not allowed' });
+    return res.status(405).json({ success: false, error: 'Bu istek yöntemi desteklenmiyor' });
   }
 
   // Parse cookies
@@ -34,7 +34,7 @@ module.exports = async function handler(req, res) {
   if (!token) {
     return res.status(401).json({
       success: false,
-      error: 'Giris yapmaniz gerekli'
+      error: 'Giris yapmaniz gerekli',
     });
   }
 
@@ -43,7 +43,7 @@ module.exports = async function handler(req, res) {
   if (!authResult.valid) {
     return res.status(401).json({
       success: false,
-      error: 'Oturum suresi dolmus'
+      error: 'Oturum suresi dolmus',
     });
   }
 
@@ -61,7 +61,7 @@ module.exports = async function handler(req, res) {
       if (!conversation) {
         return res.status(404).json({
           success: false,
-          error: 'Sohbet bulunamadi'
+          error: 'Sohbet bulunamadi',
         });
       }
 
@@ -80,7 +80,7 @@ module.exports = async function handler(req, res) {
       return res.status(201).json({
         success: true,
         message: 'Mesajlar kaydedildi',
-        messageIds
+        messageIds,
       });
     }
 
@@ -88,7 +88,7 @@ module.exports = async function handler(req, res) {
     if (!conversationId || !role || !content) {
       return res.status(400).json({
         success: false,
-        error: 'conversationId, role ve content gerekli'
+        error: 'conversationId, role ve content gerekli',
       });
     }
 
@@ -98,7 +98,7 @@ module.exports = async function handler(req, res) {
     if (!conversation) {
       return res.status(404).json({
         success: false,
-        error: 'Sohbet bulunamadi'
+        error: 'Sohbet bulunamadi',
       });
     }
 
@@ -114,14 +114,13 @@ module.exports = async function handler(req, res) {
     return res.status(201).json({
       success: true,
       message: 'Mesaj kaydedildi',
-      messageId
+      messageId,
     });
-
   } catch (error) {
     console.error('[CHAT_AUTH_MESSAGES_ERROR]', error.message);
     return res.status(500).json({
       success: false,
-      error: 'Islem basarisiz'
+      error: 'Islem basarisiz',
     });
   }
 };

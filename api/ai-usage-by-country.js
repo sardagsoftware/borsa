@@ -3,15 +3,17 @@
  *
  * Bu endpoint gerçek AI model kullanım verilerini ülke bazında döndürür:
  * - Toplam AI request sayıları
- * - Aktif AI model sayıları (LLM, GPT, CNN, RNN, CV, etc.)
+ * - Aktif AI model sayilari (LLM, NLP, CNN, RNN, CV, etc.)
  * - Kullanım yoğunluğu (intensity)
  * - Gerçek zamanlı veriler
  */
 
 // CORS ve güvenlik middleware'leri
 const { getCorsOrigin } = require('./_middleware/cors');
+const { applySanitization } = require('./_middleware/sanitize');
 
 module.exports = async (req, res) => {
+  applySanitization(req, res);
   // CORS headers
   res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
@@ -27,7 +29,7 @@ module.exports = async (req, res) => {
   if (req.method !== 'GET') {
     return res.status(405).json({
       error: 'Method not allowed',
-      allowedMethods: ['GET']
+      allowedMethods: ['GET'],
     });
   }
 
@@ -37,12 +39,11 @@ module.exports = async (req, res) => {
     const aiUsageData = await getAIUsageByCountry();
 
     return res.status(200).json(aiUsageData);
-
   } catch (error) {
     console.error('AI Usage Data Error:', error);
     return res.status(500).json({
       error: 'Internal server error',
-      message: 'Failed to fetch AI usage data'
+      message: 'Failed to fetch AI usage data',
     });
   }
 };
@@ -64,19 +65,68 @@ async function getAIUsageByCountry() {
   // - geo_location cache (ip_range, country_code, country_name)
 
   const countries = [
-    'United States', 'Canada', 'Mexico', 'Brazil', 'Argentina', 'Colombia', 'Chile',
-    'United Kingdom', 'France', 'Germany', 'Italy', 'Spain', 'Turkey', 'Russia',
-    'Poland', 'Netherlands', 'Sweden', 'Norway', 'Finland', 'Ukraine', 'Greece',
-    'China', 'Japan', 'India', 'South Korea', 'Indonesia', 'Thailand', 'Vietnam',
-    'Philippines', 'Malaysia', 'Singapore', 'Pakistan', 'Bangladesh',
-    'Saudi Arabia', 'UAE', 'Israel', 'Iran',
-    'Egypt', 'South Africa', 'Nigeria', 'Kenya', 'Morocco',
-    'Australia', 'New Zealand'
+    'United States',
+    'Canada',
+    'Mexico',
+    'Brazil',
+    'Argentina',
+    'Colombia',
+    'Chile',
+    'United Kingdom',
+    'France',
+    'Germany',
+    'Italy',
+    'Spain',
+    'Turkey',
+    'Russia',
+    'Poland',
+    'Netherlands',
+    'Sweden',
+    'Norway',
+    'Finland',
+    'Ukraine',
+    'Greece',
+    'China',
+    'Japan',
+    'India',
+    'South Korea',
+    'Indonesia',
+    'Thailand',
+    'Vietnam',
+    'Philippines',
+    'Malaysia',
+    'Singapore',
+    'Pakistan',
+    'Bangladesh',
+    'Saudi Arabia',
+    'UAE',
+    'Israel',
+    'Iran',
+    'Egypt',
+    'South Africa',
+    'Nigeria',
+    'Kenya',
+    'Morocco',
+    'Australia',
+    'New Zealand',
   ];
 
   const modelTypes = [
-    'LLM', 'GPT', 'CNN', 'RNN', 'GAN', 'NLP', 'CV', 'MLOps', 'RL',
-    'AX9F7E2B', 'Gemini', 'lydian-velocity', 'Imagen', 'Veo', 'Speech', 'Translation'
+    'LLM',
+    'NLP',
+    'CNN',
+    'RNN',
+    'GAN',
+    'CV',
+    'MLOps',
+    'RL',
+    'lydian-ultra',
+    'lydian-vision',
+    'lydian-velocity',
+    'lydian-creative',
+    'lydian-audio',
+    'Speech',
+    'Translation',
   ];
 
   const usageData = {};
@@ -92,21 +142,19 @@ async function getAIUsageByCountry() {
     );
 
     const activeModelCount = Math.floor(5 + Math.random() * 18); // 5-23 arası model
-    const activeModels = modelTypes
-      .sort(() => Math.random() - 0.5)
-      .slice(0, activeModelCount);
+    const activeModels = modelTypes.sort(() => Math.random() - 0.5).slice(0, activeModelCount);
 
     // Intensity: AI kullanım yoğunluğu (0.0 - 1.0)
     // Production'da: (totalRequests / maxRequestsInAnyCountry)
-    const intensity = Math.min(1.0, 0.3 + (aiAdoptionRate * 0.7));
+    const intensity = Math.min(1.0, 0.3 + aiAdoptionRate * 0.7);
 
     // Model bazında detaylı kullanım
     const modelUsage = {};
     activeModels.forEach(model => {
       modelUsage[model] = {
-        requests: Math.floor(totalRequests / activeModelCount * (0.5 + Math.random())),
+        requests: Math.floor((totalRequests / activeModelCount) * (0.5 + Math.random())),
         avgResponseTime: Math.floor(100 + Math.random() * 400), // ms
-        successRate: 0.95 + Math.random() * 0.05 // 95-100%
+        successRate: 0.95 + Math.random() * 0.05, // 95-100%
       };
     });
 
@@ -119,7 +167,7 @@ async function getAIUsageByCountry() {
       // Production'da ek metrikler:
       peakHour: Math.floor(Math.random() * 24),
       growthRate: 0.05 + Math.random() * 0.15, // %5-%20 aylık büyüme
-      topModels: activeModels.slice(0, 3)
+      topModels: activeModels.slice(0, 3),
     };
   });
 
@@ -132,15 +180,15 @@ async function getAIUsageByCountry() {
 function getCountryPopulationFactor(country) {
   const populationFactors = {
     'United States': 1.0,
-    'China': 1.2,
-    'India': 1.1,
-    'Japan': 0.7,
-    'Germany': 0.6,
+    China: 1.2,
+    India: 1.1,
+    Japan: 0.7,
+    Germany: 0.6,
     'United Kingdom': 0.5,
-    'France': 0.5,
-    'Brazil': 0.6,
-    'Russia': 0.5,
-    'South Korea': 0.4
+    France: 0.5,
+    Brazil: 0.6,
+    Russia: 0.5,
+    'South Korea': 0.4,
   };
   return populationFactors[country] || 0.3;
 }
@@ -151,20 +199,20 @@ function getCountryPopulationFactor(country) {
 function getAIAdoptionRate(country) {
   const adoptionRates = {
     'United States': 0.95,
-    'China': 0.90,
-    'Singapore': 0.92,
+    China: 0.9,
+    Singapore: 0.92,
     'United Kingdom': 0.88,
-    'Germany': 0.85,
-    'Japan': 0.87,
-    'South Korea': 0.90,
-    'UAE': 0.85,
-    'Israel': 0.88,
-    'Netherlands': 0.83,
-    'Sweden': 0.82,
-    'Norway': 0.81,
-    'Finland': 0.80,
-    'Canada': 0.85,
-    'Australia': 0.83
+    Germany: 0.85,
+    Japan: 0.87,
+    'South Korea': 0.9,
+    UAE: 0.85,
+    Israel: 0.88,
+    Netherlands: 0.83,
+    Sweden: 0.82,
+    Norway: 0.81,
+    Finland: 0.8,
+    Canada: 0.85,
+    Australia: 0.83,
   };
   return adoptionRates[country] || 0.5 + Math.random() * 0.3; // 0.5-0.8 arası
 }

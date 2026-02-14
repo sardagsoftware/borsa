@@ -21,7 +21,7 @@ module.exports = async function handler(req, res) {
   }
 
   if (req.method !== 'GET') {
-    return res.status(405).json({ success: false, error: 'Method not allowed' });
+    return res.status(405).json({ success: false, error: 'Bu istek yöntemi desteklenmiyor' });
   }
 
   try {
@@ -35,7 +35,7 @@ module.exports = async function handler(req, res) {
       return res.status(401).json({
         success: false,
         error: 'Oturum bulunamadı',
-        authenticated: false
+        authenticated: false,
       });
     }
 
@@ -46,7 +46,7 @@ module.exports = async function handler(req, res) {
         success: false,
         error: 'Oturum süresi dolmuş',
         authenticated: false,
-        expired: result.error === 'jwt expired'
+        expired: result.error === 'jwt expired',
       });
     }
 
@@ -57,7 +57,7 @@ module.exports = async function handler(req, res) {
       return res.status(404).json({
         success: false,
         error: 'Kullanıcı bulunamadı',
-        authenticated: false
+        authenticated: false,
       });
     }
 
@@ -75,22 +75,23 @@ module.exports = async function handler(req, res) {
         authProvider: user.auth_provider || 'email',
         googleLinked: user.google_linked === 'true' || user.auth_provider === 'google',
         twoFactorEnabled: user.two_factor_enabled === 'true',
-        createdAt: user.created_at
+        createdAt: user.created_at,
       },
-      settings: settings ? {
-        theme: settings.theme,
-        language: settings.language,
-        preferredModel: settings.preferred_model,
-        autoSave: settings.auto_save
-      } : null
+      settings: settings
+        ? {
+            theme: settings.theme,
+            language: settings.language,
+            preferredModel: settings.preferred_model,
+            autoSave: settings.auto_save,
+          }
+        : null,
     });
-
   } catch (error) {
     console.error('[CHAT_AUTH_ME_ERROR]', error.message);
     return res.status(500).json({
       success: false,
       error: 'Kullanıcı bilgisi alınamadı',
-      authenticated: false
+      authenticated: false,
     });
   }
 };

@@ -17,7 +17,7 @@ module.exports = async function handler(req, res) {
 
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') {
-    return res.status(405).json({ success: false, error: 'Method not allowed' });
+    return res.status(405).json({ success: false, error: 'Bu istek yöntemi desteklenmiyor' });
   }
 
   try {
@@ -32,7 +32,7 @@ module.exports = async function handler(req, res) {
       console.error('[PHONE_OTP] Twilio not configured');
       return res.status(503).json({
         success: false,
-        error: 'Telefon dogrulama servisi simdilik kullanim disi.'
+        error: 'Telefon dogrulama servisi simdilik kullanim disi.',
       });
     }
 
@@ -42,7 +42,7 @@ module.exports = async function handler(req, res) {
     if (!phoneNumber) {
       return res.status(400).json({
         success: false,
-        error: 'Telefon numarasi gerekli'
+        error: 'Telefon numarasi gerekli',
       });
     }
 
@@ -52,7 +52,7 @@ module.exports = async function handler(req, res) {
     if (!rateLimit.allowed) {
       return res.status(429).json({
         success: false,
-        error: `Cok fazla deneme. ${rateLimit.resetIn} saniye sonra tekrar deneyin.`
+        error: `Cok fazla deneme. ${rateLimit.resetIn} saniye sonra tekrar deneyin.`,
       });
     }
 
@@ -69,27 +69,26 @@ module.exports = async function handler(req, res) {
     if (fullNumber.length < 10 || fullNumber.length > 16) {
       return res.status(400).json({
         success: false,
-        error: 'Gecerli bir telefon numarasi girin'
+        error: 'Gecerli bir telefon numarasi girin',
       });
     }
 
     // Send OTP via Twilio Verify (prefer API Key auth)
-    const twilio = API_KEY_SID && API_KEY_SECRET
-      ? require('twilio')(API_KEY_SID, API_KEY_SECRET, { accountSid: TWILIO_SID })
-      : require('twilio')(TWILIO_SID, TWILIO_TOKEN);
-    const verification = await twilio.verify.v2
-      .services(VERIFY_SID)
-      .verifications.create({
-        to: fullNumber,
-        channel: 'sms'
-      });
+    const twilio =
+      API_KEY_SID && API_KEY_SECRET
+        ? require('twilio')(API_KEY_SID, API_KEY_SECRET, { accountSid: TWILIO_SID })
+        : require('twilio')(TWILIO_SID, TWILIO_TOKEN);
+    const verification = await twilio.verify.v2.services(VERIFY_SID).verifications.create({
+      to: fullNumber,
+      channel: 'sms',
+    });
 
     console.log('[PHONE_OTP] Verification sent:', verification.status, 'to:', fullNumber);
 
     return res.status(200).json({
       success: true,
       message: 'Dogrulama kodu gonderildi',
-      phoneNumber: fullNumber
+      phoneNumber: fullNumber,
     });
   } catch (error) {
     console.error('[PHONE_OTP] Error:', error.message);
@@ -98,19 +97,19 @@ module.exports = async function handler(req, res) {
     if (error.code === 60200) {
       return res.status(400).json({
         success: false,
-        error: 'Gecersiz telefon numarasi'
+        error: 'Gecersiz telefon numarasi',
       });
     }
     if (error.code === 60203) {
       return res.status(429).json({
         success: false,
-        error: 'Cok fazla OTP istegi. Lutfen bekleyin.'
+        error: 'Cok fazla OTP istegi. Lutfen bekleyin.',
       });
     }
 
     return res.status(500).json({
       success: false,
-      error: 'Dogrulama kodu gonderilemedi. Lutfen tekrar deneyin.'
+      error: 'Dogrulama kodu gonderilemedi. Lutfen tekrar deneyin.',
     });
   }
 };

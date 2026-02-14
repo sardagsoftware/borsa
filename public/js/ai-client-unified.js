@@ -1,12 +1,12 @@
 /**
- * 🤖 AILYDIAN AI CLIENT - UNIFIED MULTI-PROVIDER
- * Groq-first fallback strategy for maximum reliability
+ * AILYDIAN AI CLIENT - UNIFIED MULTI-PROVIDER
+ * Velocity-first fallback strategy for maximum reliability
  *
  * Priority Order:
- * 1. Groq (GX8E2D9A) - Ultra-fast, 0.5-1s response
- * 2. APEX_SYS AX9F7E2B - Best reasoning
- * 3. Azure OMEGA_SYS - Enterprise reliability
- * 4. OMEGA_SYS OX5C9E2B - Final fallback
+ * 1. LyDian Velocity (GX8E2D9A) - Ultra-fast, 0.5-1s response
+ * 2. LyDian Pro AX9F7E2B - Best reasoning
+ * 3. LyDian Enterprise - Enterprise reliability
+ * 4. LyDian Labs OX5C9E2B - Final fallback
  *
  * @version 2.0.0
  * @author Ailydian Team
@@ -19,15 +19,15 @@ class AilydianAIClient {
       retryAttempts: options.retryAttempts || 2,
       language: options.language || 'tr-TR',
       domain: options.domain || 'general',
-      ...options
+      ...options,
     };
 
-    // Provider priority order (Groq first!)
+    // Provider priority order (Velocity first!)
     this.providers = [
       { name: 'lydian-velocity', endpoint: '/api/lydian-iq/solve', priority: 1 },
       { name: 'AX9F7E2B', endpoint: '/api/chat/AX9F7E2B', priority: 2 },
       { name: 'Azure', endpoint: '/api/chat/azure', priority: 3 },
-      { name: 'lydian-labs', endpoint: '/api/chat/OMEGA_SYS', priority: 4 }
+      { name: 'lydian-labs', endpoint: '/api/chat/OMEGA_SYS', priority: 4 },
     ];
 
     this.currentProvider = null;
@@ -51,23 +51,22 @@ class AilydianAIClient {
       }
 
       try {
-        console.log(`🤖 Trying ${provider.name} AI...`);
+        console.log(`Trying LyDian provider...`);
 
         const response = await this._makeRequest(provider, message, requestOptions);
 
         // Success! Mark this as current provider
         this.currentProvider = provider.name;
-        console.log(`✅ ${provider.name} AI responded successfully`);
+        console.log(`LyDian AI responded successfully`);
 
         return {
           success: true,
           provider: provider.name,
           data: response,
-          timestamp: new Date().toISOString()
+          timestamp: new Date().toISOString(),
         };
-
       } catch (error) {
-        console.warn(`⚠️ ${provider.name} failed:`, error.message);
+        console.warn(`LyDian provider fallback triggered:`, error.message);
 
         // Mark provider as failed for this session
         this.failedProviders.add(provider.name);
@@ -94,7 +93,10 @@ class AilydianAIClient {
       let endpoint = provider.endpoint;
 
       // For LyDian IQ, always use solve endpoint
-      if (options.domain && ['mathematics', 'coding', 'science', 'strategy', 'logistics'].includes(options.domain)) {
+      if (
+        options.domain &&
+        ['mathematics', 'coding', 'science', 'strategy', 'logistics'].includes(options.domain)
+      ) {
         endpoint = '/api/lydian-iq/solve';
       }
 
@@ -105,16 +107,16 @@ class AilydianAIClient {
         language: options.language || 'tr-TR',
         temperature: options.temperature || 0.7,
         maxTokens: options.maxTokens || 4000,
-        stream: options.stream || false
+        stream: options.stream || false,
       };
 
       const response = await fetch(endpoint, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(requestBody),
-        signal: controller.signal
+        signal: controller.signal,
       });
 
       clearTimeout(timeoutId);
@@ -131,7 +133,6 @@ class AilydianAIClient {
       }
 
       return data;
-
     } catch (error) {
       clearTimeout(timeoutId);
 
@@ -158,16 +159,15 @@ class AilydianAIClient {
       }
 
       try {
-        console.log(`🤖 Streaming from ${provider.name}...`);
+        console.log(`Streaming from LyDian AI...`);
 
         await this._streamRequest(provider, message, onChunk, requestOptions);
 
         this.currentProvider = provider.name;
-        console.log(`✅ ${provider.name} stream completed`);
+        console.log(`LyDian AI stream completed`);
         return;
-
       } catch (error) {
-        console.warn(`⚠️ ${provider.name} stream failed:`, error.message);
+        console.warn(`LyDian AI stream fallback triggered:`, error.message);
         this.failedProviders.add(provider.name);
         continue;
       }
@@ -183,7 +183,10 @@ class AilydianAIClient {
   async _streamRequest(provider, message, onChunk, options) {
     let endpoint = provider.endpoint;
 
-    if (options.domain && ['mathematics', 'coding', 'science', 'strategy', 'logistics'].includes(options.domain)) {
+    if (
+      options.domain &&
+      ['mathematics', 'coding', 'science', 'strategy', 'logistics'].includes(options.domain)
+    ) {
       endpoint = '/api/lydian-iq/solve';
     }
 
@@ -192,15 +195,15 @@ class AilydianAIClient {
       message: message,
       domain: options.domain || 'general',
       language: options.language || 'tr-TR',
-      stream: true
+      stream: true,
     };
 
     const response = await fetch(endpoint, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(requestBody)
+      body: JSON.stringify(requestBody),
     });
 
     if (!response.ok) {
@@ -246,7 +249,7 @@ class AilydianAIClient {
       failedProviders: Array.from(this.failedProviders),
       availableProviders: this.providers
         .filter(p => !this.failedProviders.has(p.name))
-        .map(p => p.name)
+        .map(p => p.name),
     };
   }
 
@@ -271,7 +274,7 @@ class AilydianAIClient {
 
         await fetch('/api/health', {
           method: 'GET',
-          headers: { 'X-Provider': provider.name }
+          headers: { 'X-Provider': provider.name },
         });
 
         const responseTime = Date.now() - startTime;
@@ -279,14 +282,13 @@ class AilydianAIClient {
         results[provider.name] = {
           status: 'healthy',
           responseTime: `${responseTime}ms`,
-          priority: provider.priority
+          priority: provider.priority,
         };
-
       } catch (error) {
         results[provider.name] = {
           status: 'unhealthy',
           error: error.message,
-          priority: provider.priority
+          priority: provider.priority,
         };
       }
     }
@@ -301,7 +303,7 @@ window.AilydianAIClient = AilydianAIClient;
 // Create default instance
 window.ailydianAI = new AilydianAIClient({
   language: navigator.language || 'tr-TR',
-  timeout: 60000
+  timeout: 60000,
 });
 
-console.log('🤖 Ailydian AI Client loaded - Groq-first fallback strategy active');
+console.log('Ailydian AI Client loaded - Velocity-first fallback strategy active');

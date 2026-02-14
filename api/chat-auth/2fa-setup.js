@@ -18,7 +18,8 @@ module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Credentials', 'true');
 
   if (req.method === 'OPTIONS') return res.status(200).end();
-  if (req.method !== 'POST') return res.status(405).json({ success: false, error: 'Method not allowed' });
+  if (req.method !== 'POST')
+    return res.status(405).json({ success: false, error: 'Bu istek yöntemi desteklenmiyor' });
 
   try {
     req.cookies = parseCookies(req);
@@ -41,7 +42,7 @@ module.exports = async function handler(req, res) {
       name: `AILYDIAN:${user.email}`,
       issuer: 'AILYDIAN',
       length: 32,
-      algorithm: 'sha1'
+      algorithm: 'sha1',
     });
 
     // Store temp secret (not enabled yet - will be enabled after verification)
@@ -52,16 +53,15 @@ module.exports = async function handler(req, res) {
     const qrDataUrl = await QRCode.toDataURL(otpauthUrl, {
       width: 256,
       margin: 2,
-      color: { dark: '#000000', light: '#ffffff' }
+      color: { dark: '#000000', light: '#ffffff' },
     });
 
     return res.status(200).json({
       success: true,
       qrCode: qrDataUrl,
       manualKey: secret.base32,
-      otpauthUrl: otpauthUrl
+      otpauthUrl: otpauthUrl,
     });
-
   } catch (error) {
     console.error('[2FA_SETUP_ERROR]', error.message);
     return res.status(500).json({ success: false, error: '2FA kurulumu basarisiz' });

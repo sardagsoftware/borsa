@@ -33,7 +33,7 @@ module.exports = async function handler(req, res) {
   if (!token) {
     return res.status(401).json({
       success: false,
-      error: 'Giriş yapmanız gerekli'
+      error: 'Giriş yapmanız gerekli',
     });
   }
 
@@ -42,7 +42,7 @@ module.exports = async function handler(req, res) {
   if (!authResult.valid) {
     return res.status(401).json({
       success: false,
-      error: 'Oturum süresi dolmuş'
+      error: 'Oturum süresi dolmuş',
     });
   }
 
@@ -61,7 +61,7 @@ module.exports = async function handler(req, res) {
         if (!conversation) {
           return res.status(404).json({
             success: false,
-            error: 'Sohbet bulunamadı'
+            error: 'Sohbet bulunamadı',
           });
         }
 
@@ -75,15 +75,15 @@ module.exports = async function handler(req, res) {
             model: conversation.model_used,
             messageCount: conversation.message_count,
             createdAt: conversation.created_at,
-            updatedAt: conversation.updated_at
+            updatedAt: conversation.updated_at,
           },
           messages: messages.map(m => ({
             id: m.id,
             role: m.role,
             content: m.content,
             model: m.model,
-            createdAt: m.created_at
-          }))
+            createdAt: m.created_at,
+          })),
         });
       }
 
@@ -99,8 +99,8 @@ module.exports = async function handler(req, res) {
           model: c.model_used,
           messageCount: c.message_count,
           createdAt: c.created_at,
-          updatedAt: c.updated_at
-        }))
+          updatedAt: c.updated_at,
+        })),
       });
     }
 
@@ -118,7 +118,7 @@ module.exports = async function handler(req, res) {
       return res.status(201).json({
         success: true,
         message: 'Sohbet oluşturuldu',
-        conversationId
+        conversationId,
       });
     }
 
@@ -130,7 +130,7 @@ module.exports = async function handler(req, res) {
       if (!id) {
         return res.status(400).json({
           success: false,
-          error: 'Sohbet ID gerekli'
+          error: 'Sohbet ID gerekli',
         });
       }
 
@@ -139,7 +139,7 @@ module.exports = async function handler(req, res) {
       if (!conversation) {
         return res.status(404).json({
           success: false,
-          error: 'Sohbet bulunamadı'
+          error: 'Sohbet bulunamadı',
         });
       }
 
@@ -149,7 +149,7 @@ module.exports = async function handler(req, res) {
 
       return res.status(200).json({
         success: true,
-        message: 'Sohbet güncellendi'
+        message: 'Sohbet güncellendi',
       });
     }
 
@@ -161,7 +161,7 @@ module.exports = async function handler(req, res) {
       if (!conversationId) {
         return res.status(400).json({
           success: false,
-          error: 'Sohbet ID gerekli'
+          error: 'Sohbet ID gerekli',
         });
       }
 
@@ -170,7 +170,7 @@ module.exports = async function handler(req, res) {
       if (!conversation) {
         return res.status(404).json({
           success: false,
-          error: 'Sohbet bulunamadı'
+          error: 'Sohbet bulunamadı',
         });
       }
 
@@ -178,17 +178,16 @@ module.exports = async function handler(req, res) {
 
       return res.status(200).json({
         success: true,
-        message: 'Sohbet silindi'
+        message: 'Sohbet silindi',
       });
     }
 
-    return res.status(405).json({ success: false, error: 'Method not allowed' });
-
+    return res.status(405).json({ success: false, error: 'Bu istek yöntemi desteklenmiyor' });
   } catch (error) {
     console.error('[CHAT_AUTH_HISTORY_ERROR]', error.message);
     return res.status(500).json({
       success: false,
-      error: 'İşlem başarısız'
+      error: 'İşlem başarısız',
     });
   }
 };

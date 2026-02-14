@@ -23,7 +23,7 @@ module.exports = async function handler(req, res) {
   }
 
   if (req.method !== 'POST') {
-    return res.status(405).json({ success: false, error: 'Method not allowed' });
+    return res.status(405).json({ success: false, error: 'Bu istek yöntemi desteklenmiyor' });
   }
 
   try {
@@ -34,7 +34,7 @@ module.exports = async function handler(req, res) {
     if (!email || !password) {
       return res.status(400).json({
         success: false,
-        error: 'E-posta ve şifre gerekli'
+        error: 'E-posta ve şifre gerekli',
       });
     }
 
@@ -43,21 +43,22 @@ module.exports = async function handler(req, res) {
     if (!emailValidation.valid) {
       return res.status(400).json({
         success: false,
-        error: emailValidation.error
+        error: emailValidation.error,
       });
     }
 
     // Rate limiting by IP
-    const clientIP = req.headers['x-forwarded-for']?.split(',')[0].trim() ||
-                     req.headers['x-real-ip'] ||
-                     req.socket?.remoteAddress ||
-                     'unknown';
+    const clientIP =
+      req.headers['x-forwarded-for']?.split(',')[0].trim() ||
+      req.headers['x-real-ip'] ||
+      req.socket?.remoteAddress ||
+      'unknown';
 
     const rateLimit = checkRateLimit(`login:${clientIP}`);
     if (!rateLimit.allowed) {
       return res.status(429).json({
         success: false,
-        error: `Çok fazla deneme. ${rateLimit.resetIn} saniye sonra tekrar deneyin.`
+        error: `Çok fazla deneme. ${rateLimit.resetIn} saniye sonra tekrar deneyin.`,
       });
     }
 
@@ -67,17 +68,24 @@ module.exports = async function handler(req, res) {
     if (!user) {
       return res.status(401).json({
         success: false,
-        error: 'E-posta veya şifre hatalı'
+        error: 'E-posta veya şifre hatalı',
       });
     }
 
-    // Verify password
+    // Verify password (guard against null hash for OAuth/phone users)
+    if (!user.password_hash) {
+      return res.status(401).json({
+        success: false,
+        error: 'E-posta veya şifre hatalı',
+      });
+    }
+
     const isValidPassword = await verifyPassword(password, user.password_hash);
 
     if (!isValidPassword) {
       return res.status(401).json({
         success: false,
-        error: 'E-posta veya şifre hatalı'
+        error: 'E-posta veya şifre hatalı',
       });
     }
 
@@ -88,7 +96,7 @@ module.exports = async function handler(req, res) {
         return res.status(200).json({
           success: false,
           requires2FA: true,
-          message: 'Dogrulama kodu gerekli'
+          message: 'Dogrulama kodu gerekli',
         });
       }
 
@@ -100,13 +108,13 @@ module.exports = async function handler(req, res) {
         token: sanitizedTotp,
         algorithm: 'sha1',
         step: 30,
-        window: 3
+        window: 3,
       });
 
       if (!totpValid) {
         return res.status(401).json({
           success: false,
-          error: 'Dogrulama kodu hatali'
+          error: 'Dogrulama kodu hatali',
         });
       }
     }
@@ -140,15 +148,14 @@ module.exports = async function handler(req, res) {
         avatarUrl: user.avatar_url,
         authProvider: user.auth_provider || 'email',
         googleLinked: user.google_linked === 'true' || user.auth_provider === 'google',
-        twoFactorEnabled: user.two_factor_enabled === 'true'
-      }
+        twoFactorEnabled: user.two_factor_enabled === 'true',
+      },
     });
-
   } catch (error) {
     console.error('[CHAT_AUTH_LOGIN_ERROR]', error.message);
     return res.status(500).json({
       success: false,
-      error: 'Giriş işlemi başarısız. Lütfen tekrar deneyin.'
+      error: 'Giriş işlemi başarısız. Lütfen tekrar deneyin.',
     });
   }
 };

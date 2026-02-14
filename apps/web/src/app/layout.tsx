@@ -10,21 +10,55 @@ export const metadata: Metadata = {
   description:
     'Ailydian: Enterprise-grade multi-model AI platform supporting 41+ languages. Advanced AI solutions for healthcare, travel, finance, agriculture, legal, and more. KVKK & GDPR compliant.',
   keywords: [
-    'ailydian', 'yapay zeka platformu', 'enterprise ai platform', 'kurumsal yapay zeka',
-    'multi-model ai', 'turkish ai platform', 'ai solutions turkey', 'kvkk uyumlu yapay zeka',
-    'gdpr compliant ai', 'ai chatbot', 'yapay zeka asistan', 'ai for business',
+    // Core Brand
+    'ailydian', 'ailydian ai', 'ailydian yapay zeka',
+    // Turkish AI Keywords (Primary)
+    'yapay zeka', 'coklu yapay zeka', 'yapay zeka platformu', 'kurumsal yapay zeka',
+    'yapay zeka turkiye', 'turk yapay zeka', 'yerli yapay zeka', 'milli yapay zeka',
+    'yapay zeka asistani', 'yapay zeka sohbet', 'yapay zeka chat',
+    'cok modelli yapay zeka', 'yapay zeka cozumleri', 'ai platformu turkiye',
+    'ucretsiz yapay zeka', 'en iyi yapay zeka', 'yapay zeka karsilastirma',
+    // Turkish AI Use Cases
+    'yapay zeka kodlama', 'yapay zeka yazilim', 'yapay zeka analiz',
+    'yapay zeka ceviri', 'yapay zeka saglik', 'yapay zeka hukuk',
+    'yapay zeka finans', 'yapay zeka tarim', 'yapay zeka egitim',
+    'yapay zeka mimarlik', 'yapay zeka oyun', 'yapay zeka ses',
+    'yapay zeka goruntu', 'yapay zeka otomasyon', 'yapay zeka musteri hizmetleri',
+    'yapay zeka danismanlik', 'yapay zeka entegrasyonu', 'yapay zeka api',
+    // Turkish Technical
+    'dogal dil isleme', 'makine ogrenmesi', 'derin ogrenme', 'buyuk dil modeli',
+    'dijital asistan', 'sanal asistan', 'akilli asistan', 'coklu ai motoru',
+    'turkce yapay zeka', 'turkce dil modeli', 'turkce chatbot',
+    'veri analizi yapay zeka', 'bulut yapay zeka', 'yapay zeka saas',
+    '41 dilde yapay zeka', 'kvkk uyumlu yapay zeka',
+    // Turkish Business
+    'sirketler icin yapay zeka', 'kurumsal ai cozumleri', 'is zekasi yapay zeka',
+    'yapay zeka startup turkiye', 'yapay zeka teknoloji', 'yeni teknoloji',
+    'yazilim ai', 'yazilim teknolojileri',
+    // English AI Keywords (Primary)
+    'multi ai platform', 'multi-model ai', 'enterprise ai platform',
+    'ai assistant', 'ai chat', 'ai chatbot', 'ai for business',
+    'free ai', 'best ai platform', 'ai aggregator', 'multi-engine ai',
+    'ai solutions turkey', 'turkish ai platform', 'artificial intelligence turkey',
+    // English AI Use Cases
+    'ai coding assistant', 'ai code generation', 'ai analysis',
+    'ai automation', 'ai workflow', 'ai agent', 'autonomous ai',
+    'ai orchestration', 'enterprise ai solutions', 'ai customer service',
     'healthcare ai', 'travel ai', 'finance ai', 'agriculture ai', 'legal ai',
-    'voice ai', 'autonomous driving ai', 'ai analytics', 'enterprise ai solutions',
-    'yapay zeka cozumleri', 'cok modelli yapay zeka', 'ai platformu turkiye',
-    'artificial intelligence turkey', 'makine ogrenmesi', 'dogal dil isleme',
-    'ai entegrasyonu', 'bulut yapay zeka', 'on-premise ai', 'ai api',
-    'yapay zeka danismanlik', '41 dilde yapay zeka', 'multilingual ai platform',
-    'ai speech synthesis', 'ai image generation', 'ai code generation',
-    'real-time ai', 'enterprise chatbot', 'ai automation', 'business intelligence ai',
-    'yapay zeka otomasyon', 'veri analizi yapay zeka', 'ai data analytics',
-    'turkish language ai', 'turkce yapay zeka', 'ai customer service',
-    'yapay zeka musteri hizmetleri', 'cognitive computing', 'deep learning platform',
-    'neural network platform', 'ai saas', 'ai paas',
+    'voice ai', 'ai speech synthesis', 'ai image generation',
+    // English Technical
+    'enterprise chatbot', 'multilingual ai platform', 'real-time ai',
+    'ai data analytics', 'business intelligence ai', 'cognitive computing',
+    'deep learning platform', 'neural network platform', 'ai saas', 'ai paas',
+    'ai api', 'on-premise ai', 'gdpr compliant ai', 'turkish language ai',
+    // Russian AI Keywords
+    'искусственный интеллект', 'платформа ИИ', 'многоязычный ИИ',
+    'ИИ ассистент', 'турецкий ИИ', 'бесплатный ИИ',
+    // Spanish AI Keywords
+    'inteligencia artificial', 'plataforma ia', 'asistente ia',
+    'ia empresarial', 'ia multilingue',
+    // Chinese AI Keywords
+    '人工智能平台', '多模型AI', '企业AI', 'AI助手',
   ],
   authors: [{ name: 'Ailydian', url: 'https://www.ailydian.com' }],
   creator: 'Ailydian',
@@ -38,6 +72,9 @@ export const metadata: Metadata = {
       'de': 'https://www.ailydian.com/de',
       'fr': 'https://www.ailydian.com/fr',
       'ar': 'https://www.ailydian.com/ar',
+      'ru': 'https://www.ailydian.com/ru',
+      'es': 'https://www.ailydian.com/es',
+      'zh': 'https://www.ailydian.com/zh',
       'x-default': 'https://www.ailydian.com',
     },
   },
@@ -48,7 +85,7 @@ export const metadata: Metadata = {
     url: 'https://www.ailydian.com',
     siteName: 'Ailydian',
     locale: 'tr_TR',
-    alternateLocale: ['en_US', 'de_DE', 'fr_FR', 'ar_SA'],
+    alternateLocale: ['en_US', 'de_DE', 'fr_FR', 'ar_SA', 'ru_RU', 'es_ES', 'zh_CN'],
     type: 'website',
     images: [
       {
@@ -110,16 +147,31 @@ const jsonLd = {
       contactPoint: {
         '@type': 'ContactPoint',
         contactType: 'customer service',
-        availableLanguage: ['Turkish', 'English', 'German', 'French', 'Arabic'],
+        availableLanguage: ['Turkish', 'English', 'German', 'French', 'Arabic', 'Russian', 'Spanish', 'Chinese'],
       },
+      knowsAbout: [
+        'Artificial Intelligence', 'Machine Learning', 'Natural Language Processing',
+        'Deep Learning', 'Multi-model AI', 'Enterprise AI Solutions',
+        'Yapay Zeka', 'Coklu Yapay Zeka', 'Dogal Dil Isleme',
+      ],
+      areaServed: {
+        '@type': 'GeoCircle',
+        geoMidpoint: { '@type': 'GeoCoordinates', latitude: 39.9334, longitude: 32.8597 },
+        geoRadius: '20000',
+        description: 'Global service with headquarters in Turkey',
+      },
+      foundingDate: '2024',
+      numberOfEmployees: { '@type': 'QuantitativeValue', minValue: 10, maxValue: 50 },
+      slogan: 'Enterprise AI Platform - Coklu Yapay Zeka Platformu',
     },
     {
       '@type': 'WebSite',
       '@id': 'https://www.ailydian.com/#website',
       url: 'https://www.ailydian.com',
       name: 'Ailydian',
+      description: 'Turkiye\'nin lider coklu yapay zeka platformu. 41+ dil destegi, KVKK ve GDPR uyumlu kurumsal AI cozumleri.',
       publisher: { '@id': 'https://www.ailydian.com/#organization' },
-      inLanguage: ['tr', 'en', 'de', 'fr', 'ar'],
+      inLanguage: ['tr', 'en', 'de', 'fr', 'ar', 'ru', 'es', 'zh'],
       potentialAction: {
         '@type': 'SearchAction',
         target: {
@@ -134,12 +186,14 @@ const jsonLd = {
       '@id': 'https://www.ailydian.com/#software',
       name: 'Ailydian AI Platform',
       applicationCategory: 'BusinessApplication',
+      applicationSubCategory: 'Artificial Intelligence',
       operatingSystem: 'Web',
       offers: {
         '@type': 'Offer',
         price: '0',
         priceCurrency: 'USD',
         description: 'Free tier available',
+        availability: 'https://schema.org/InStock',
       },
       aggregateRating: {
         '@type': 'AggregateRating',
@@ -148,13 +202,105 @@ const jsonLd = {
         bestRating: '5',
       },
       featureList: [
-        'Multi-model AI',
-        '41+ Language Support',
-        'KVKK & GDPR Compliant',
-        'Enterprise Security',
-        'Real-time Analytics',
-        'Voice Synthesis',
-        'Code Generation',
+        'Multi-model AI', '41+ Language Support', 'KVKK & GDPR Compliant',
+        'Enterprise Security', 'Real-time Analytics', 'Voice Synthesis',
+        'Code Generation', 'Image Generation', 'Document Analysis',
+        'Multi-agent Orchestration', 'API Integration',
+      ],
+    },
+    {
+      '@type': 'WebApplication',
+      '@id': 'https://www.ailydian.com/#webapp',
+      name: 'Ailydian Coklu Yapay Zeka',
+      url: 'https://www.ailydian.com',
+      applicationCategory: 'UtilitiesApplication',
+      browserRequirements: 'Requires JavaScript. Requires HTML5.',
+      operatingSystem: 'All',
+      availableLanguage: ['tr', 'en', 'de', 'fr', 'ar', 'ru', 'es', 'zh'],
+      offers: {
+        '@type': 'Offer',
+        price: '0',
+        priceCurrency: 'TRY',
+      },
+      screenshot: 'https://www.ailydian.com/og-image.png',
+      softwareVersion: '2.0',
+      creator: { '@id': 'https://www.ailydian.com/#organization' },
+    },
+    {
+      '@type': 'Product',
+      '@id': 'https://www.ailydian.com/#product',
+      name: 'Ailydian Enterprise AI',
+      description: 'Kurumsal yapay zeka platformu. Saglik, finans, hukuk, tarim, egitim ve daha fazla sektor icin ozellestirilmis AI cozumleri.',
+      brand: { '@type': 'Brand', name: 'Ailydian' },
+      category: 'Software > Artificial Intelligence',
+      offers: [
+        {
+          '@type': 'Offer',
+          name: 'Free Plan',
+          price: '0',
+          priceCurrency: 'USD',
+          description: 'Ucretsiz baslangic plani',
+          availability: 'https://schema.org/InStock',
+        },
+        {
+          '@type': 'Offer',
+          name: 'Enterprise Plan',
+          price: '0',
+          priceCurrency: 'USD',
+          description: 'Kurumsal ozel cozumler - iletisime gecin',
+          availability: 'https://schema.org/InStock',
+        },
+      ],
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: '4.8',
+        reviewCount: '1250',
+        bestRating: '5',
+      },
+    },
+    {
+      '@type': 'HowTo',
+      '@id': 'https://www.ailydian.com/#howto',
+      name: 'Ailydian Yapay Zeka Platformunu Nasil Kullanirsiniz',
+      description: 'Ailydian coklu yapay zeka platformunu kullanmaya baslamanin adim adim rehberi.',
+      totalTime: 'PT5M',
+      step: [
+        {
+          '@type': 'HowToStep',
+          position: 1,
+          name: 'Hesap Olusturun',
+          text: 'www.ailydian.com adresine gidin ve ucretsiz hesabinizi olusturun. Email veya Google ile kayit olabilirsiniz.',
+        },
+        {
+          '@type': 'HowToStep',
+          position: 2,
+          name: 'AI Modunu Secin',
+          text: 'Ihtiyaciniza uygun yapay zeka modunu secin: genel sohbet, kod yazma, analiz, ceviri veya ozel sektorel cozumler.',
+        },
+        {
+          '@type': 'HowToStep',
+          position: 3,
+          name: 'Sorunuzu Sorun',
+          text: 'Turkce, Ingilizce veya 41+ dilden birinde sorunuzu yazin. Ailydian en uygun AI motorunu otomatik secer.',
+        },
+        {
+          '@type': 'HowToStep',
+          position: 4,
+          name: 'Sonuclari Alin',
+          text: 'Aninda yuksek kaliteli yanitlar alin. Sonuclari kaydedin, paylasin veya disa aktarin.',
+        },
+      ],
+    },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': 'https://www.ailydian.com/#breadcrumb',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Ana Sayfa',
+          item: 'https://www.ailydian.com',
+        },
       ],
     },
     {
@@ -171,6 +317,22 @@ const jsonLd = {
         },
         {
           '@type': 'Question',
+          name: 'Coklu yapay zeka ne demek?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Coklu yapay zeka, birden fazla AI motorunun ayni platformda bir arada calismasidir. Ailydian, her sorgu icin en uygun AI motorunu otomatik olarak secer ve en iyi sonucu saglar.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Ailydian ucretsiz mi?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Evet, Ailydian ucretsiz baslangic plani sunar. Temel yapay zeka ozellikleri ucretsiz kullanilabilir. Kurumsal cozumler icin ozel planlar mevcuttur.',
+          },
+        },
+        {
+          '@type': 'Question',
           name: 'What is Ailydian?',
           acceptedAnswer: {
             '@type': 'Answer',
@@ -183,6 +345,30 @@ const jsonLd = {
           acceptedAnswer: {
             '@type': 'Answer',
             text: 'Yes, Ailydian is fully compliant with both GDPR (EU) and KVKK (Turkey) data protection regulations, ensuring enterprise-grade data privacy and security.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'What is multi-AI platform?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'A multi-AI platform like Ailydian combines multiple AI engines into one interface, automatically selecting the best model for each query to deliver optimal results across coding, analysis, translation, and more.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Ailydian kac dil destekliyor?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Ailydian 41+ dili destekler. Turkce, Ingilizce, Almanca, Fransizca, Arapca, Rusca, Ispanyolca, Cince ve daha bircok dilde tam destek sunar.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Turkiye\'de en iyi yapay zeka platformu hangisi?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Ailydian, Turkiye\'nin lider coklu yapay zeka platformudur. KVKK uyumlu, Turkce dil destekli ve 41+ dilde hizmet veren kurumsal AI cozumu sunar.',
           },
         },
       ],

@@ -1,4 +1,4 @@
-/* global fetch, AbortController, TextDecoder */
+/* eslint no-redeclare: "off" -- Node 18 polyfills */
 /**
  * Code Generate API - STREAMING
  * POST /api/code-generate
@@ -10,6 +10,7 @@
 
 const crypto = require('crypto');
 const { getCorsOrigin } = require('./_middleware/cors');
+const { trackMessage, trackError } = require('./_middleware/analytics');
 
 // Rate limiting
 const rateLimitMap = new Map();
@@ -243,6 +244,9 @@ module.exports = async function handler(req, res) {
       const sanitized = sanitizeResponse(fullContent);
       res.write(`data: ${JSON.stringify({ done: true, full: sanitized })}\n\n`);
       res.write('data: [DONE]\n\n');
+
+      // Fire-and-forget analytics for streaming
+      trackMessage({ engine: 'code', userId: clientIP });
       return res.end();
     } else {
       // NON-STREAMING fallback
@@ -292,6 +296,9 @@ module.exports = async function handler(req, res) {
       const rawResponse = apiData.choices[0].message?.content || '';
       const sanitizedResponse = sanitizeResponse(rawResponse);
 
+      // Fire-and-forget analytics for non-streaming
+      trackMessage({ engine: 'code', userId: clientIP });
+
       return res.status(200).json({
         success: true,
         response: sanitizedResponse,
@@ -301,6 +308,7 @@ module.exports = async function handler(req, res) {
     }
   } catch (error) {
     console.error('[CODE_GEN] Error:', error.message);
+    trackError('code');
     return res.status(500).json({
       success: false,
       error: 'Kod uretme islemi basarisiz. Lutfen tekrar deneyin.',

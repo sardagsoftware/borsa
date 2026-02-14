@@ -66,32 +66,8 @@
       "destination": "/api/:path*"
     },
     {
-      "source": "/api/((?!chat-auth/|code-generate|voice|menu|healthmap|health$|ai-usage-by-country).*)",
+      "source": "/api/((?!chat-auth/|code-generate|voice|menu|healthmap|health$|ai-usage-by-country|admin-dashboard/|not-found).*)",
       "destination": "/api/index"
-    },
-    {
-      "source": "/api/rro/:path*",
-      "destination": "/api/civic?module=rro&path=:path*"
-    },
-    {
-      "source": "/api/umo/:path*",
-      "destination": "/api/civic?module=umo&path=:path*"
-    },
-    {
-      "source": "/api/phn/:path*",
-      "destination": "/api/civic?module=phn&path=:path*"
-    },
-    {
-      "source": "/api/svf/:path*",
-      "destination": "/api/civic?module=svf&path=:path*"
-    },
-    {
-      "source": "/api/map/:path*",
-      "destination": "/api/civic?module=map&path=:path*"
-    },
-    {
-      "source": "/api/atg/:path*",
-      "destination": "/api/civic?module=atg&path=:path*"
     },
     {
       "source": "/robots.txt",
@@ -154,12 +130,12 @@
       "destination": "/public/lydian-legal-search.html"
     },
     {
-      "source": "/quantum-test",
-      "destination": "/public/quantum-test.html"
-    },
-    {
       "source": "/",
       "destination": "/public/index.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/api/not-found"
     }
   ],
   "functions": {
@@ -265,7 +241,7 @@
       "headers": [
         {
           "key": "Access-Control-Allow-Origin",
-          "value": "https://ailydian.com, https://www.ailydian.com, https://ailydian-ultra-pro.vercel.app"
+          "value": "https://ailydian.com, https://www.ailydian.com, https://seo.ailydian.com, https://dashboard.ailydian.com"
         },
         {
           "key": "Access-Control-Allow-Methods",

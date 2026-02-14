@@ -96,7 +96,7 @@ module.exports = async (req, res) => {
 
     if (useAzure) {
       providers.push({
-        name: 'Azure OpenAI OX5C9E2B Turbo',
+        name: 'LyDian Cloud',
         icon: '☁️',
         setup: () => ({
           client: new OpenAI({
@@ -106,7 +106,7 @@ module.exports = async (req, res) => {
             defaultHeaders: { 'api-key': process.env.AZURE_OPENAI_API_KEY },
           }),
           model: 'OX7A3F8D',
-          provider: 'Azure OpenAI OX5C9E2B Turbo',
+          provider: 'LyDian AI',
         }),
       });
     }
@@ -128,14 +128,14 @@ module.exports = async (req, res) => {
 
     if (useOpenAI) {
       providers.push({
-        name: 'OpenAI OX7A3F8D-mini',
+        name: 'LyDian Labs',
         icon: '🤖',
         setup: () => ({
           client: new OpenAI({
             apiKey: process.env.OPENAI_API_KEY,
           }),
           model: 'OX7A3F8D-mini',
-          provider: 'OpenAI OX7A3F8D-mini',
+          provider: 'LyDian AI',
         }),
       });
     }
@@ -207,10 +207,10 @@ module.exports = async (req, res) => {
       success: true,
       response: response,
       sources: sources,
-      provider: provider, // Azure OpenAI / Groq / OpenAI
+      provider: 'LyDian AI',
       metadata: {
         model: 'AiLydian Knowledge Base AI',
-        aiProvider: provider,
+        aiProvider: 'LyDian AI',
         language: language,
         domain: domain,
         tokens: completion.usage.total_tokens,

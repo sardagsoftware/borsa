@@ -157,7 +157,7 @@ async function verifyRecaptcha(token, remoteIp = null) {
         success: false,
         error: 'Failed to contact reCAPTCHA server',
         code: 'REQUEST_ERROR',
-        details: error.message,
+        details: 'Dogrulama sunucusuna ulasilamadi.',
       });
     });
 

@@ -3,7 +3,8 @@
 
 require('dotenv').config();
 
-// Endpoint registry (encoded for security)
+// SECURITY: Endpoint registry is SERVER-SIDE ONLY - NEVER expose to client responses
+// These endpoints must never appear in any API response JSON
 const _E = {
   L1: Buffer.from('aHR0cHM6Ly9hcGkub3BlbmFpLmNvbS92MQ==', 'base64').toString(),
   L2: Buffer.from('aHR0cHM6Ly9hcGkuYW50aHJvcGljLmNvbS92MQ==', 'base64').toString(),
@@ -281,12 +282,18 @@ const ALL_AI_MODELS = {
 const _IKR = {};
 
 // Get all active models
+// SECURITY: Strips endpoint/apiKey - safe for internal routing only, never send raw to clients
 function getActiveModels() {
   return Object.entries(ALL_AI_MODELS)
     .filter(([_, config]) => config.active && config.apiKey)
     .map(([id, config]) => ({
       id,
-      ...config,
+      provider: config.provider,
+      model: config.model,
+      maxTokens: config.maxTokens,
+      category: config.category,
+      description: config.description,
+      active: config.active,
     }));
 }
 

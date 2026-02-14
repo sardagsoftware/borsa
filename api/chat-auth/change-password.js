@@ -12,7 +12,7 @@ const {
   hashPassword,
   verifyPassword,
   validatePasswordStrength,
-  checkRateLimit
+  checkRateLimit,
 } = require('./_lib/password');
 const { parseBody } = require('./_lib/body-parser');
 
@@ -28,7 +28,7 @@ module.exports = async function handler(req, res) {
   }
 
   if (req.method !== 'POST') {
-    return res.status(405).json({ success: false, error: 'Method not allowed' });
+    return res.status(405).json({ success: false, error: 'Bu istek yöntemi desteklenmiyor' });
   }
 
   try {
@@ -41,7 +41,7 @@ module.exports = async function handler(req, res) {
     if (!token) {
       return res.status(401).json({
         success: false,
-        error: 'Giriş yapmanız gerekli'
+        error: 'Giriş yapmanız gerekli',
       });
     }
 
@@ -50,7 +50,7 @@ module.exports = async function handler(req, res) {
     if (!authResult.valid) {
       return res.status(401).json({
         success: false,
-        error: 'Oturum süresi dolmuş'
+        error: 'Oturum süresi dolmuş',
       });
     }
 
@@ -61,21 +61,22 @@ module.exports = async function handler(req, res) {
     if (!currentPassword || !newPassword) {
       return res.status(400).json({
         success: false,
-        error: 'Mevcut şifre ve yeni şifre gerekli'
+        error: 'Mevcut şifre ve yeni şifre gerekli',
       });
     }
 
     // Rate limiting
-    const clientIP = req.headers['x-forwarded-for']?.split(',')[0].trim() ||
-                     req.headers['x-real-ip'] ||
-                     req.socket?.remoteAddress ||
-                     'unknown';
+    const clientIP =
+      req.headers['x-forwarded-for']?.split(',')[0].trim() ||
+      req.headers['x-real-ip'] ||
+      req.socket?.remoteAddress ||
+      'unknown';
 
     const rateLimit = checkRateLimit(`change:${authResult.payload.userId}:${clientIP}`);
     if (!rateLimit.allowed) {
       return res.status(429).json({
         success: false,
-        error: `Çok fazla deneme. ${rateLimit.resetIn} saniye sonra tekrar deneyin.`
+        error: `Çok fazla deneme. ${rateLimit.resetIn} saniye sonra tekrar deneyin.`,
       });
     }
 
@@ -85,7 +86,7 @@ module.exports = async function handler(req, res) {
     if (!user) {
       return res.status(404).json({
         success: false,
-        error: 'Kullanıcı bulunamadı'
+        error: 'Kullanıcı bulunamadı',
       });
     }
 
@@ -95,7 +96,7 @@ module.exports = async function handler(req, res) {
     if (!isCurrentPasswordValid) {
       return res.status(401).json({
         success: false,
-        error: 'Mevcut şifre yanlış'
+        error: 'Mevcut şifre yanlış',
       });
     }
 
@@ -103,7 +104,7 @@ module.exports = async function handler(req, res) {
     if (currentPassword === newPassword) {
       return res.status(400).json({
         success: false,
-        error: 'Yeni şifre mevcut şifreden farklı olmalı'
+        error: 'Yeni şifre mevcut şifreden farklı olmalı',
       });
     }
 
@@ -114,7 +115,7 @@ module.exports = async function handler(req, res) {
         success: false,
         error: passwordValidation.errors[0],
         errors: passwordValidation.errors,
-        strength: passwordValidation.strength
+        strength: passwordValidation.strength,
       });
     }
 
@@ -131,14 +132,13 @@ module.exports = async function handler(req, res) {
 
     return res.status(200).json({
       success: true,
-      message: 'Şifreniz başarıyla güncellendi'
+      message: 'Şifreniz başarıyla güncellendi',
     });
-
   } catch (error) {
     console.error('[CHAT_AUTH_CHANGE_PASSWORD_ERROR]', error.message);
     return res.status(500).json({
       success: false,
-      error: 'Şifre değiştirme başarısız. Lütfen tekrar deneyin.'
+      error: 'Şifre değiştirme başarısız. Lütfen tekrar deneyin.',
     });
   }
 };

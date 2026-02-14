@@ -41,7 +41,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
     <link
-      rel="preload" as="style"
+      rel="preload"
+      as="style"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap"
       crossorigin="anonymous"
     />
@@ -112,69 +113,126 @@
           BlinkMacSystemFont,
           'Segoe UI',
           sans-serif;
-        background: #0a0a0f;
+        background: #0a0b0d;
+        background-image:
+          radial-gradient(at 27% 37%, rgba(0, 224, 174, 0.08) 0px, transparent 50%),
+          radial-gradient(at 97% 21%, rgba(110, 132, 255, 0.08) 0px, transparent 50%),
+          radial-gradient(at 52% 99%, rgba(184, 107, 255, 0.08) 0px, transparent 50%),
+          radial-gradient(at 10% 29%, rgba(0, 224, 174, 0.05) 0px, transparent 50%),
+          radial-gradient(at 97% 96%, rgba(110, 132, 255, 0.05) 0px, transparent 50%);
         color: #ffffff;
         line-height: 1.6;
+        overflow-x: hidden;
       }
 
       /* Navigation */
-      .nav {
-        position: sticky;
+      .navbar {
+        position: fixed;
         top: 0;
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(20px);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        left: 0;
+        right: 0;
         z-index: 1000;
-        padding: 1rem 2rem;
+        padding: 0 24px;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
       }
 
-      .nav-content {
-        max-width: 1200px;
+      .nav-container {
+        max-width: 1400px;
         margin: 0 auto;
         display: flex;
         align-items: center;
         justify-content: space-between;
+        height: 72px;
       }
 
       .logo {
-        font-family: 'Righteous', cursive;
         display: flex;
         align-items: center;
-        gap: 0.75rem;
+        gap: 12px;
         text-decoration: none;
-        color: var(--text);
-        font-weight: 700;
-        font-size: 1.25rem;
       }
 
-      .logo-icon {
-        width: 32px;
+      .logo-text {
+        font-family: 'Righteous', cursive;
+        font-size: 1.5rem;
+        background: linear-gradient(135deg, #00e0ae, #6e84ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .logo img {
         height: 32px;
-        background: var(--gradient-primary);
-        border-radius: 8px;
+        width: auto;
+      }
+
+      .nav-links {
         display: flex;
         align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 18px;
-      }
-
-      .nav-menu {
-        display: flex;
-        gap: 2rem;
+        gap: 32px;
         list-style: none;
       }
 
-      .nav-link {
+      .nav-links a {
+        color: #909296;
         text-decoration: none;
-        color: var(--text-secondary);
-        font-weight: 500;
+        font-size: 0.95rem;
+        font-weight: 400;
         transition: color 0.2s ease;
       }
 
-      .nav-link:hover,
-      .nav-link.active {
-        color: var(--primary);
+      .nav-links a:hover {
+        color: #ffffff;
+      }
+
+      .nav-cta {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .btn {
+        padding: 10px 24px;
+        border-radius: 12px;
+        font-weight: 500;
+        font-size: 0.95rem;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        border: none;
+      }
+
+      .btn-primary {
+        background: #00e0ae;
+        color: #0a0b0d;
+      }
+
+      .btn-primary:hover {
+        background: #00ffc6;
+        transform: translateY(-1px);
+      }
+
+      .btn-secondary {
+        background: transparent;
+        color: #ffffff;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+      }
+
+      .btn-secondary:hover {
+        border-color: rgba(255, 255, 255, 0.3);
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .mobile-menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        color: white;
+        cursor: pointer;
+        padding: 8px;
       }
 
       /* Main Content */
@@ -440,10 +498,139 @@
         color: var(--text-secondary);
       }
 
+      /* Footer */
+      .footer {
+        background: rgba(0, 0, 0, 0.4);
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        padding: 80px 24px 40px;
+        margin-top: 120px;
+      }
+
+      .footer-container {
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+        gap: 48px;
+        margin-bottom: 60px;
+      }
+
+      .footer-brand .logo-text {
+        font-family: 'Righteous', cursive;
+        font-size: 1.5rem;
+        background: linear-gradient(135deg, #00e0ae, #6e84ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .footer-brand p {
+        color: #909296;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin: 16px 0 24px;
+        max-width: 300px;
+      }
+
+      .footer-links h4 {
+        color: #ffffff;
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 20px;
+      }
+
+      .footer-links a {
+        display: block;
+        color: #909296;
+        text-decoration: none;
+        font-size: 0.9rem;
+        padding: 6px 0;
+        transition: color 0.2s;
+      }
+
+      .footer-links a:hover {
+        color: #00e0ae;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 12px;
+      }
+
+      .social-link {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.06);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s;
+      }
+
+      .social-link:hover {
+        background: rgba(0, 224, 174, 0.15);
+        transform: translateY(-2px);
+      }
+
+      .social-link svg {
+        width: 18px;
+        height: 18px;
+        fill: #909296;
+      }
+
+      .social-link:hover svg {
+        fill: #00e0ae;
+      }
+
+      .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 32px;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .footer-copyright {
+        color: #909296;
+        font-size: 0.85rem;
+      }
+
+      .footer-legal {
+        display: flex;
+        gap: 24px;
+      }
+
+      .footer-legal a {
+        color: #909296;
+        text-decoration: none;
+        font-size: 0.85rem;
+        transition: color 0.2s;
+      }
+
+      .footer-legal a:hover {
+        color: #ffffff;
+      }
+
       /* Responsive */
+      @media (max-width: 1024px) {
+        .footer-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
       @media (max-width: 768px) {
-        .nav-menu {
+        .nav-links,
+        .nav-cta {
           display: none;
+        }
+
+        .mobile-menu-btn {
+          display: block;
         }
 
         .hero h1 {
@@ -458,6 +645,21 @@
 
         .version-stats {
           grid-template-columns: repeat(2, 1fr);
+        }
+
+        .footer-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-bottom {
+          flex-direction: column;
+          gap: 16px;
+          text-align: center;
+        }
+
+        .footer-legal {
+          flex-wrap: wrap;
+          justify-content: center;
         }
       }
     </style>
@@ -642,7 +844,7 @@
     />
 
     <!-- /Premium SEO -->
-<!-- PWA Manifest -->
+    <!-- PWA Manifest -->
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#C4A962" />
     <!-- iOS Safari -->
@@ -697,27 +899,39 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png" />
     <link rel="icon" type="image/png" sizes="48x48" href="/icons/favicon-48.png" />
     <link rel="icon" type="image/x-icon" href="/icons/favicon.ico" />
-    <link rel="shortcut icon" href="/icons/favicon.ico" /></head>
+    <link rel="shortcut icon" href="/icons/favicon.ico" />
+  </head>
   <body>
     <!-- Navigation -->
-    <nav class="nav">
-      <div class="nav-content">
-        <a
-          href="/"
-          class="logo"
-          style="font-family: 'Inter', sans-serif !important; font-weight: 900 !important"
-        >
-          <div class="logo-icon">🤖</div>
-          <span>LyDian</span>
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="/" class="logo">
+          <span class="logo-text">LyDian</span>
+          <img src="/img/LyDian-logo.webp" alt="LyDian Logo" />
         </a>
-        <ul class="nav-menu">
-          <li><a href="/" class="nav-link">Ana Sayfa</a></li>
-          <li><a href="/models" class="nav-link">AI Modelleri</a></li>
-          <li><a href="/developers" class="nav-link">Geliştiriciler</a></li>
-          <li><a href="/docs" class="nav-link">Dokümantasyon</a></li>
-          <li><a href="/status" class="nav-link">Sistem Durumu</a></li>
-          <li><a href="/changelog" class="nav-link active">Güncelleme Geçmişi</a></li>
+        <ul class="nav-links">
+          <li><a href="/about.html">Hakkimizda</a></li>
+          <li><a href="/models.html">Modeller</a></li>
+          <li><a href="/developers.html">Gelistiriciler</a></li>
+          <li><a href="/research.html">Arastirma</a></li>
+          <li><a href="/blog.html">Blog</a></li>
         </ul>
+        <div class="nav-cta">
+          <a href="/chat.html" class="btn btn-secondary">Giris Yap</a>
+          <a href="/chat.html" class="btn btn-primary">Simdi Dene</a>
+        </div>
+        <button class="mobile-menu-btn" aria-label="Menu">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M3 12h18M3 6h18M3 18h18" />
+          </svg>
+        </button>
       </div>
     </nav>
 
@@ -1019,6 +1233,77 @@
         </div>
       </div>
     </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <span class="logo-text">LyDian</span>
+            <p>
+              Yapay zeka destekli yeni nesil asistan platformu. Turkce dil destegi ile guvenli ve
+              hizli AI deneyimi.
+            </p>
+            <div class="social-links">
+              <a href="#" class="social-link" aria-label="Twitter"
+                ><svg viewBox="0 0 24 24">
+                  <path
+                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                  /></svg
+              ></a>
+              <a href="#" class="social-link" aria-label="LinkedIn"
+                ><svg viewBox="0 0 24 24">
+                  <path
+                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                  /></svg
+              ></a>
+              <a href="#" class="social-link" aria-label="GitHub"
+                ><svg viewBox="0 0 24 24">
+                  <path
+                    d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
+                  /></svg
+              ></a>
+            </div>
+          </div>
+          <div class="footer-links">
+            <h4>Urun</h4>
+            <a href="/chat.html">LyDian Chat</a>
+            <a href="/models.html">Modeller</a>
+            <a href="/developers.html">API</a>
+            <a href="/education.html">Egitim</a>
+          </div>
+          <div class="footer-links">
+            <h4>Sirket</h4>
+            <a href="/about.html">Hakkimizda</a>
+            <a href="/blog.html">Blog</a>
+            <a href="/careers.html">Kariyer</a>
+            <a href="/contact.html">Iletisim</a>
+          </div>
+          <div class="footer-links">
+            <h4>Kaynaklar</h4>
+            <a href="/docs.html">Dokumantasyon</a>
+            <a href="/help.html">Yardim</a>
+            <a href="/status.html">Durum</a>
+            <a href="/changelog.html">Degisiklikler</a>
+          </div>
+          <div class="footer-links">
+            <h4>Yasal</h4>
+            <a href="/help.html">Gizlilik</a>
+            <a href="/help.html">Kullanim Sartlari</a>
+            <a href="/help.html">Cerez Politikasi</a>
+            <a href="/help.html">KVKK</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p class="footer-copyright">&copy; 2025 AILYDIAN. Tum haklar saklidir.</p>
+          <div class="footer-legal">
+            <a href="/help.html">Gizlilik Politikasi</a>
+            <a href="/help.html">Kullanim Kosullari</a>
+            <a href="/help.html">Cerez Ayarlari</a>
+          </div>
+        </div>
+      </div>
+    </footer>
 
     <script>
       // Auto-update timestamps

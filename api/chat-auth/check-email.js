@@ -20,7 +20,7 @@ module.exports = async function handler(req, res) {
   }
 
   if (req.method !== 'POST') {
-    return res.status(405).json({ success: false, error: 'Method not allowed' });
+    return res.status(405).json({ success: false, error: 'Bu istek yöntemi desteklenmiyor' });
   }
 
   try {
@@ -31,7 +31,7 @@ module.exports = async function handler(req, res) {
     if (!email) {
       return res.status(400).json({
         success: false,
-        error: 'E-posta adresi gerekli'
+        error: 'E-posta adresi gerekli',
       });
     }
 
@@ -40,21 +40,22 @@ module.exports = async function handler(req, res) {
     if (!emailValidation.valid) {
       return res.status(400).json({
         success: false,
-        error: emailValidation.error
+        error: emailValidation.error,
       });
     }
 
     // Rate limiting by IP
-    const clientIP = req.headers['x-forwarded-for']?.split(',')[0].trim() ||
-                     req.headers['x-real-ip'] ||
-                     req.socket?.remoteAddress ||
-                     'unknown';
+    const clientIP =
+      req.headers['x-forwarded-for']?.split(',')[0].trim() ||
+      req.headers['x-real-ip'] ||
+      req.socket?.remoteAddress ||
+      'unknown';
 
     const rateLimit = checkRateLimit(`check-email:${clientIP}`);
     if (!rateLimit.allowed) {
       return res.status(429).json({
         success: false,
-        error: `Cok fazla deneme. ${rateLimit.resetIn} saniye sonra tekrar deneyin.`
+        error: `Cok fazla deneme. ${rateLimit.resetIn} saniye sonra tekrar deneyin.`,
       });
     }
 
@@ -63,14 +64,13 @@ module.exports = async function handler(req, res) {
 
     return res.status(200).json({
       success: true,
-      exists: !!user
+      exists: !!user,
     });
-
   } catch (error) {
     console.error('[CHAT_AUTH_CHECK_EMAIL_ERROR]', error.message);
     return res.status(500).json({
       success: false,
-      error: 'E-posta kontrol islemi basarisiz. Lutfen tekrar deneyin.'
+      error: 'E-posta kontrol islemi basarisiz. Lutfen tekrar deneyin.',
     });
   }
 };

@@ -18,7 +18,8 @@ module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Credentials', 'true');
 
   if (req.method === 'OPTIONS') return res.status(200).end();
-  if (req.method !== 'POST') return res.status(405).json({ success: false, error: 'Method not allowed' });
+  if (req.method !== 'POST')
+    return res.status(405).json({ success: false, error: 'Bu istek yöntemi desteklenmiyor' });
 
   try {
     req.cookies = parseCookies(req);
@@ -50,7 +51,7 @@ module.exports = async function handler(req, res) {
       token: sanitizedCode,
       algorithm: 'sha1',
       step: 30,
-      window: 3
+      window: 3,
     });
 
     if (!verified) {
@@ -62,9 +63,8 @@ module.exports = async function handler(req, res) {
 
     return res.status(200).json({
       success: true,
-      message: '2FA basariyla devre disi birakildi'
+      message: '2FA basariyla devre disi birakildi',
     });
-
   } catch (error) {
     console.error('[2FA_DISABLE_ERROR]', error.message);
     return res.status(500).json({ success: false, error: '2FA devre disi birakma basarisiz' });

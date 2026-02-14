@@ -21,7 +21,7 @@ module.exports = async function handler(req, res) {
   }
 
   if (req.method !== 'POST') {
-    return res.status(405).json({ success: false, error: 'Method not allowed' });
+    return res.status(405).json({ success: false, error: 'Bu istek yöntemi desteklenmiyor' });
   }
 
   try {
@@ -32,21 +32,22 @@ module.exports = async function handler(req, res) {
     if (!token || !password) {
       return res.status(400).json({
         success: false,
-        error: 'Token ve yeni şifre gerekli'
+        error: 'Token ve yeni şifre gerekli',
       });
     }
 
     // Rate limiting by IP
-    const clientIP = req.headers['x-forwarded-for']?.split(',')[0].trim() ||
-                     req.headers['x-real-ip'] ||
-                     req.socket?.remoteAddress ||
-                     'unknown';
+    const clientIP =
+      req.headers['x-forwarded-for']?.split(',')[0].trim() ||
+      req.headers['x-real-ip'] ||
+      req.socket?.remoteAddress ||
+      'unknown';
 
     const rateLimit = checkRateLimit(`reset:${clientIP}`);
     if (!rateLimit.allowed) {
       return res.status(429).json({
         success: false,
-        error: `Çok fazla deneme. ${rateLimit.resetIn} saniye sonra tekrar deneyin.`
+        error: `Çok fazla deneme. ${rateLimit.resetIn} saniye sonra tekrar deneyin.`,
       });
     }
 
@@ -56,7 +57,7 @@ module.exports = async function handler(req, res) {
     if (!resetRecord) {
       return res.status(400).json({
         success: false,
-        error: 'Geçersiz veya süresi dolmuş bağlantı'
+        error: 'Geçersiz veya süresi dolmuş bağlantı',
       });
     }
 
@@ -65,7 +66,7 @@ module.exports = async function handler(req, res) {
       await passwordResets.markUsed(token);
       return res.status(400).json({
         success: false,
-        error: 'Şifre sıfırlama bağlantısının süresi dolmuş'
+        error: 'Şifre sıfırlama bağlantısının süresi dolmuş',
       });
     }
 
@@ -76,7 +77,7 @@ module.exports = async function handler(req, res) {
         success: false,
         error: passwordValidation.errors[0],
         errors: passwordValidation.errors,
-        strength: passwordValidation.strength
+        strength: passwordValidation.strength,
       });
     }
 
@@ -92,18 +93,20 @@ module.exports = async function handler(req, res) {
     // Invalidate all existing sessions for security
     await chatSessions.invalidateAllForUser(resetRecord.user_id);
 
-    console.log('[CHAT_AUTH_RESET_PASSWORD] Password reset successful for user:', resetRecord.user_id);
+    console.log(
+      '[CHAT_AUTH_RESET_PASSWORD] Password reset successful for user:',
+      resetRecord.user_id
+    );
 
     return res.status(200).json({
       success: true,
-      message: 'Şifreniz başarıyla güncellendi. Şimdi giriş yapabilirsiniz.'
+      message: 'Şifreniz başarıyla güncellendi. Şimdi giriş yapabilirsiniz.',
     });
-
   } catch (error) {
     console.error('[CHAT_AUTH_RESET_PASSWORD_ERROR]', error.message);
     return res.status(500).json({
       success: false,
-      error: 'Şifre sıfırlama başarısız. Lütfen tekrar deneyin.'
+      error: 'Şifre sıfırlama başarısız. Lütfen tekrar deneyin.',
     });
   }
 };

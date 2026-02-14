@@ -10,7 +10,7 @@ const {
   validatePasswordStrength,
   validateEmail,
   validateDisplayName,
-  checkRateLimit
+  checkRateLimit,
 } = require('./_lib/password');
 const { parseBody } = require('./_lib/body-parser');
 
@@ -26,7 +26,7 @@ module.exports = async function handler(req, res) {
   }
 
   if (req.method !== 'POST') {
-    return res.status(405).json({ success: false, error: 'Method not allowed' });
+    return res.status(405).json({ success: false, error: 'Bu istek yöntemi desteklenmiyor' });
   }
 
   try {
@@ -37,21 +37,22 @@ module.exports = async function handler(req, res) {
     if (!email || !password || !displayName) {
       return res.status(400).json({
         success: false,
-        error: 'Tüm alanlar gerekli'
+        error: 'Tüm alanlar gerekli',
       });
     }
 
     // Rate limiting by IP
-    const clientIP = req.headers['x-forwarded-for']?.split(',')[0].trim() ||
-                     req.headers['x-real-ip'] ||
-                     req.socket?.remoteAddress ||
-                     'unknown';
+    const clientIP =
+      req.headers['x-forwarded-for']?.split(',')[0].trim() ||
+      req.headers['x-real-ip'] ||
+      req.socket?.remoteAddress ||
+      'unknown';
 
     const rateLimit = checkRateLimit(`register:${clientIP}`);
     if (!rateLimit.allowed) {
       return res.status(429).json({
         success: false,
-        error: `Çok fazla deneme. ${rateLimit.resetIn} saniye sonra tekrar deneyin.`
+        error: `Çok fazla deneme. ${rateLimit.resetIn} saniye sonra tekrar deneyin.`,
       });
     }
 
@@ -60,7 +61,7 @@ module.exports = async function handler(req, res) {
     if (!emailValidation.valid) {
       return res.status(400).json({
         success: false,
-        error: emailValidation.error
+        error: emailValidation.error,
       });
     }
 
@@ -69,7 +70,7 @@ module.exports = async function handler(req, res) {
     if (!nameValidation.valid) {
       return res.status(400).json({
         success: false,
-        error: nameValidation.error
+        error: nameValidation.error,
       });
     }
 
@@ -80,7 +81,7 @@ module.exports = async function handler(req, res) {
         success: false,
         error: passwordValidation.errors[0],
         errors: passwordValidation.errors,
-        strength: passwordValidation.strength
+        strength: passwordValidation.strength,
       });
     }
 
@@ -89,7 +90,7 @@ module.exports = async function handler(req, res) {
     if (existingUser) {
       return res.status(409).json({
         success: false,
-        error: 'Bu e-posta adresi zaten kayıtlı'
+        error: 'Bu e-posta adresi zaten kayıtlı',
       });
     }
 
@@ -111,9 +112,8 @@ module.exports = async function handler(req, res) {
     return res.status(201).json({
       success: true,
       message: 'Kayıt başarılı! Şimdi giriş yapabilirsiniz.',
-      userId
+      userId,
     });
-
   } catch (error) {
     console.error('[CHAT_AUTH_REGISTER_ERROR]', error.message);
 
@@ -121,13 +121,13 @@ module.exports = async function handler(req, res) {
     if (error.message?.includes('UNIQUE constraint failed')) {
       return res.status(409).json({
         success: false,
-        error: 'Bu e-posta adresi zaten kayıtlı'
+        error: 'Bu e-posta adresi zaten kayıtlı',
       });
     }
 
     return res.status(500).json({
       success: false,
-      error: 'Kayıt işlemi başarısız. Lütfen tekrar deneyin.'
+      error: 'Kayıt işlemi başarısız. Lütfen tekrar deneyin.',
     });
   }
 };
