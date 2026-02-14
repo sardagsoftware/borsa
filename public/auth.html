@@ -1,4 +1,4 @@
-<!-- Cache-Buster: 1759577324 --><!doctype html>
+<!doctype html>
 <html lang="tr">
   <head>
     <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
@@ -8,14 +8,12 @@
     <link rel="preconnect" href="https://www.google.com" />
     <link rel="preconnect" href="https://www.gstatic.com" crossorigin />
 
-    <!-- 🔒 SECURITY: Google reCAPTCHA v3 -->
     <script
       src="https://www.google.com/recaptcha/api.js?render=6LfGUKAqAAAAABe0Y7c7u_VuhkRHqQtX1QYXX5Bt"
       async
       defer
     ></script>
 
-    <!-- 🔒 SECURITY: Content Security Policy -->
     <meta
       http-equiv="Content-Security-Policy"
       content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' http://localhost:3102 https://www.ailydian.com https://www.google.com; frame-src https://www.google.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self';"
@@ -25,15 +23,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      rel="preload" as="style"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap"
-      crossorigin="anonymous"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Righteous&display=swap"
       rel="stylesheet"
-      crossorigin="anonymous"
+    />
+
+    <title>Giris & Kayit — LyDian AI</title>
+    <meta
+      name="description"
+      content="LyDian AI hesabinizi olusturun ve yapay zekanin gucunu kesfedin. Google ile hizli giris veya e-posta ile kayit."
+    />
+    <link rel="canonical" href="https://www.ailydian.com/auth" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Giris & Kayit — LyDian AI" />
+    <meta
+      property="og:description"
+      content="LyDian AI hesabinizi olusturun ve yapay zekanin gucunu kesfedin. Google ile hizli giris veya e-posta ile kayit."
+    />
+    <meta property="og:url" content="https://www.ailydian.com/auth" />
+    <meta property="og:site_name" content="LyDian AI" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Giris & Kayit — LyDian AI" />
+    <meta
+      name="twitter:description"
+      content="LyDian AI hesabinizi olusturun ve yapay zekanin gucunu kesfedin."
     />
 
     <style>
@@ -51,6 +70,13 @@
           'Segoe UI',
           sans-serif;
         background: #0a0b0d;
+        background-image:
+          radial-gradient(at 27% 37%, rgba(110, 132, 255, 0.06) 0px, transparent 50%),
+          radial-gradient(at 97% 21%, rgba(184, 107, 255, 0.06) 0px, transparent 50%),
+          radial-gradient(at 52% 99%, rgba(110, 132, 255, 0.04) 0px, transparent 50%),
+          radial-gradient(at 10% 29%, rgba(184, 107, 255, 0.04) 0px, transparent 50%),
+          radial-gradient(at 97% 96%, rgba(110, 132, 255, 0.03) 0px, transparent 50%);
+        color: #ffffff;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -60,172 +86,521 @@
 
       .container {
         width: 100%;
-        max-width: 400px;
+        max-width: 440px;
       }
 
       .logo {
-        font-family: 'Inter', sans-serif !important;
-        font-weight: 900 !important;
+        font-family: 'Righteous', cursive !important;
+        font-weight: 400 !important;
         text-align: center;
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
         font-size: 1.75rem;
-        color: #ffffff;
-        text-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+        background: linear-gradient(135deg, #6e84ff, #b86bff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
       }
 
-      .auth-card {
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 16px;
-        padding: 2rem;
-        text-align: center;
-        max-height: calc(100vh - 120px);
+      /* ============ AUTH PANEL (matching chat.html) ============ */
+      .chat-auth-panel {
+        background: rgba(26, 26, 26, 0.98);
+        backdrop-filter: blur(16px) saturate(180%);
+        -webkit-backdrop-filter: blur(16px) saturate(180%);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 24px;
+        width: 100%;
+        max-height: calc(100vh - 100px);
         overflow-y: auto;
-        overflow-x: hidden;
-      }
-
-      /* Custom scrollbar for auth card */
-      .auth-card::-webkit-scrollbar {
-        width: 8px;
-      }
-
-      .auth-card::-webkit-scrollbar-track {
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 10px;
-      }
-
-      .auth-card::-webkit-scrollbar-thumb {
-        background: rgba(255, 255, 255, 0.2);
-        border-radius: 10px;
-        transition: background 0.2s ease;
-      }
-
-      .auth-card::-webkit-scrollbar-thumb:hover {
-        background: rgba(255, 255, 255, 0.3);
-      }
-
-      /* Firefox scrollbar */
-      .auth-card {
+        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
+        position: relative;
         scrollbar-width: thin;
-        scrollbar-color: rgba(255, 255, 255, 0.2) rgba(255, 255, 255, 0.05);
+        scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+        animation: authFadeIn 0.25s ease;
+      }
+      .chat-auth-panel::-webkit-scrollbar {
+        width: 5px;
+      }
+      .chat-auth-panel::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .chat-auth-panel::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 3px;
       }
 
-      h1 {
-        font-size: 2rem;
-        font-weight: 400;
-        margin-bottom: 0.5rem;
+      @keyframes authFadeIn {
+        from {
+          opacity: 0;
+          transform: scale(0.96);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      /* Auth Steps */
+      .auth-step {
+        display: none;
+        padding: 2.25rem 1.75rem 1.75rem;
+        flex-direction: column;
+        gap: 0.625rem;
+      }
+      .auth-step.active {
+        display: flex;
+        animation: authStepIn 0.3s ease;
+      }
+      @keyframes authStepIn {
+        from {
+          opacity: 0;
+          transform: translateX(16px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      /* Title & Subtitle */
+      .auth-title {
+        font-size: 1.5rem;
+        font-weight: 700;
         color: #ffffff;
+        text-align: center;
+        margin: 0 0 0.125rem;
         line-height: 1.3;
       }
-
-      .subtitle {
-        font-size: 1rem;
-        color: #b0b0b0;
-        margin-bottom: 2rem;
+      .auth-subtitle {
+        font-size: 0.875rem;
+        color: rgba(255, 255, 255, 0.55);
+        text-align: center;
         line-height: 1.5;
+        margin-bottom: 0.75rem;
       }
 
-      .oauth-buttons {
+      /* Social Buttons */
+      .auth-social-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        width: 100%;
+        height: 48px;
+        padding: 0 1rem;
+        border-radius: 9999px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        background: rgba(255, 255, 255, 0.06);
+        color: #ffffff;
+        font-size: 0.9375rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-family: 'Inter', sans-serif;
+      }
+      .auth-social-btn:hover {
+        background: rgba(255, 255, 255, 0.12);
+        border-color: rgba(255, 255, 255, 0.25);
+      }
+      .auth-social-btn svg {
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+      }
+
+      /* Divider */
+      .auth-divider {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin: 0.375rem 0;
+      }
+      .auth-divider::before,
+      .auth-divider::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.1);
+      }
+      .auth-divider span {
+        font-size: 0.8125rem;
+        color: rgba(255, 255, 255, 0.35);
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      /* Input Fields */
+      .auth-input-group {
         display: flex;
         flex-direction: column;
-        gap: 0.75rem;
-        margin-bottom: 1rem;
+        gap: 4px;
+      }
+      .auth-input {
+        width: 100%;
+        height: 48px;
+        padding: 0 16px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 9999px;
+        color: #ffffff;
+        font-size: 1rem;
+        font-family: 'Inter', sans-serif;
+        outline: none;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+        box-sizing: border-box;
+      }
+      .auth-input:focus {
+        border-color: rgba(255, 255, 255, 0.4);
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.06);
+      }
+      .auth-input::placeholder {
+        color: rgba(255, 255, 255, 0.3);
       }
 
-      .oauth-btn {
+      /* Email display row (Step 2) */
+      .auth-email-display {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 16px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 9999px;
+      }
+      .auth-email-text {
+        font-size: 0.9375rem;
+        color: rgba(255, 255, 255, 0.75);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .auth-email-edit {
+        font-size: 0.8125rem;
+        color: #60a5fa;
+        cursor: pointer;
+        background: none;
+        border: none;
+        padding: 2px 6px;
+        border-radius: 4px;
+        transition: all 0.2s;
+        font-family: 'Inter', sans-serif;
+        flex-shrink: 0;
+      }
+      .auth-email-edit:hover {
+        color: #93bbfc;
+        background: rgba(96, 165, 250, 0.1);
+      }
+
+      /* Password wrapper with eye toggle */
+      .auth-password-wrapper {
+        position: relative;
+      }
+      .auth-password-wrapper .auth-input {
+        padding-right: 48px;
+      }
+      .auth-password-toggle {
+        position: absolute;
+        right: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: rgba(255, 255, 255, 0.35);
+        padding: 4px;
+        display: flex;
+        align-items: center;
+        transition: color 0.2s;
+      }
+      .auth-password-toggle:hover {
+        color: rgba(255, 255, 255, 0.7);
+      }
+      .auth-password-toggle svg {
+        width: 20px;
+        height: 20px;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 1.5;
+      }
+
+      /* Primary CTA (white bg) */
+      .auth-btn-primary {
+        width: 100%;
+        height: 48px;
+        padding: 0 1.5rem;
+        background: #ffffff;
+        border: none;
+        border-radius: 9999px;
+        color: #1a1a1a;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-family: 'Inter', sans-serif;
+        margin-top: 0.25rem;
+      }
+      .auth-btn-primary:hover:not(:disabled) {
+        background: #e8e8e8;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 16px rgba(255, 255, 255, 0.1);
+      }
+      .auth-btn-primary:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+      .auth-btn-primary.loading {
+        position: relative;
+        color: transparent;
+        pointer-events: none;
+      }
+      .auth-btn-primary.loading::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 20px;
+        height: 20px;
+        margin: -10px 0 0 -10px;
+        border: 2px solid rgba(0, 0, 0, 0.2);
+        border-top-color: #1a1a1a;
+        border-radius: 50%;
+        animation: authSpinner 0.6s linear infinite;
+      }
+      @keyframes authSpinner {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Secondary CTA (dark bg) */
+      .auth-btn-secondary {
+        width: 100%;
+        height: 48px;
+        padding: 0 1.5rem;
+        background: #1a1a1a;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 9999px;
+        color: #ffffff;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-family: 'Inter', sans-serif;
+      }
+      .auth-btn-secondary:hover:not(:disabled) {
+        background: #000000;
+        border-color: rgba(255, 255, 255, 0.3);
+      }
+      .auth-btn-secondary:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+      .auth-btn-secondary.loading {
+        position: relative;
+        color: transparent;
+        pointer-events: none;
+      }
+      .auth-btn-secondary.loading::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 20px;
+        height: 20px;
+        margin: -10px 0 0 -10px;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-top-color: #ffffff;
+        border-radius: 50%;
+        animation: authSpinner 0.6s linear infinite;
+      }
+
+      /* Link buttons */
+      .auth-link-btn {
+        background: none;
+        border: none;
+        color: rgba(255, 255, 255, 0.45);
+        font-size: 0.8125rem;
+        cursor: pointer;
+        text-align: center;
+        padding: 8px;
+        transition: color 0.2s;
+        font-family: 'Inter', sans-serif;
+      }
+      .auth-link-btn:hover {
+        color: #ffffff;
+      }
+
+      /* Footer */
+      .auth-footer {
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 0.75rem;
-        padding: 0.875rem 1rem;
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: 8px;
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(10px);
-        cursor: pointer;
-        font-size: 0.9375rem;
-        font-weight: 500;
-        color: #ffffff;
-        transition: all 0.2s ease;
-        text-decoration: none;
+        padding-top: 0.75rem;
+        margin-top: 0.5rem;
       }
-
-      .oauth-btn:hover {
-        background: rgba(255, 255, 255, 0.08);
-        border-color: rgba(255, 255, 255, 0.3);
-        box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
-      }
-
-      .oauth-btn:disabled {
-        opacity: 0.6;
-        cursor: not-allowed;
-      }
-
-      .oauth-btn svg {
-        width: 20px;
-        height: 20px;
-      }
-
-      .divider {
-        display: flex;
-        align-items: center;
-        margin: 1.5rem 0;
-        color: #666;
-        font-size: 0.875rem;
-      }
-
-      .divider::before,
-      .divider::after {
-        content: '';
-        flex: 1;
-        height: 1px;
-        background: rgba(255, 255, 255, 0.12);
-      }
-
-      .divider span {
-        padding: 0 1rem;
-        text-transform: uppercase;
+      .auth-footer a {
         font-size: 0.75rem;
-        color: #b0b0b0;
+        color: rgba(255, 255, 255, 0.35);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .auth-footer a:hover {
+        color: rgba(255, 255, 255, 0.7);
+      }
+      .auth-footer-sep {
+        width: 1px;
+        height: 12px;
+        background: rgba(255, 255, 255, 0.15);
       }
 
-      .email-form {
-        display: flex;
-        flex-direction: column;
-        gap: 0.75rem;
-      }
-
-      .form-input {
-        padding: 0.875rem 1rem;
-        border: 1px solid rgba(255, 255, 255, 0.12);
+      /* Error message */
+      .auth-error-msg {
+        font-size: 0.8125rem;
+        color: #ef4444;
+        text-align: center;
+        padding: 8px 12px;
+        background: rgba(239, 68, 68, 0.1);
         border-radius: 8px;
-        font-size: 0.9375rem;
-        font-family: inherit;
-        transition: all 0.2s ease;
+        display: none;
+      }
+      .auth-error-msg.visible {
+        display: block;
+      }
+
+      /* Rate limit warning */
+      .rate-limit-warning {
+        font-size: 0.8125rem;
+        color: #f59e0b;
+        text-align: center;
+        padding: 8px 12px;
+        background: rgba(245, 158, 11, 0.1);
+        border-radius: 8px;
+        display: none;
+      }
+      .rate-limit-warning.visible {
+        display: block;
+      }
+
+      /* Phone login */
+      .auth-phone-input-row {
+        display: flex;
+        gap: 8px;
+      }
+      .auth-country-code {
+        width: 88px;
+        height: 48px;
+        padding: 0 10px;
         background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 9999px;
+        color: #ffffff;
+        font-size: 0.9375rem;
+        font-family: 'Inter', sans-serif;
+        outline: none;
+        cursor: pointer;
+        appearance: none;
+        -webkit-appearance: none;
+        flex-shrink: 0;
+        text-align: center;
+      }
+      .auth-country-code:focus {
+        border-color: rgba(255, 255, 255, 0.4);
+      }
+      .auth-country-code option {
+        background: #2d2d2d;
         color: #ffffff;
       }
+      .auth-phone-input-row .auth-input {
+        flex: 1;
+        min-width: 0;
+      }
 
-      .form-input:focus {
+      /* OTP digits */
+      .auth-otp-row {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin: 0.75rem 0;
+      }
+      .auth-otp-digit {
+        width: 46px;
+        height: 54px;
+        text-align: center;
+        font-size: 1.375rem;
+        font-weight: 600;
+        font-family: monospace;
+        background: rgba(255, 255, 255, 0.05);
+        border: 2px solid rgba(255, 255, 255, 0.15);
+        border-radius: 12px;
+        color: #ffffff;
         outline: none;
-        border-color: rgba(255, 255, 255, 0.3);
-        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.08);
+        transition: border-color 0.2s;
+        caret-color: #ffffff;
+      }
+      .auth-otp-digit:focus {
+        border-color: rgba(255, 255, 255, 0.5);
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.06);
       }
 
-      .form-input::placeholder {
-        color: #666;
+      /* 2FA TOTP digits */
+      .auth-2fa-row {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin: 0.75rem 0;
+      }
+      .auth-2fa-digit {
+        width: 46px;
+        height: 54px;
+        text-align: center;
+        font-size: 1.375rem;
+        font-weight: 600;
+        font-family: monospace;
+        background: rgba(255, 255, 255, 0.05);
+        border: 2px solid rgba(255, 255, 255, 0.15);
+        border-radius: 12px;
+        color: #ffffff;
+        outline: none;
+        transition: border-color 0.2s;
+      }
+      .auth-2fa-digit:focus {
+        border-color: rgba(255, 255, 255, 0.5);
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.06);
       }
 
-      .form-input.error {
-        border-color: #dc2626;
+      /* Password strength */
+      .password-strength {
+        height: 3px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 2px;
+        margin-top: 6px;
+        overflow: hidden;
       }
-
-      .email-input-wrapper {
-        position: relative;
+      .password-strength-bar {
+        height: 100%;
+        width: 0;
+        border-radius: 2px;
+        transition:
+          width 0.3s,
+          background 0.3s;
+      }
+      .password-strength-bar.weak {
+        width: 33%;
+        background: #ef4444;
+      }
+      .password-strength-bar.medium {
+        width: 66%;
+        background: #f59e0b;
+      }
+      .password-strength-bar.strong {
         width: 100%;
+        background: #22c55e;
       }
 
+      /* Email suggestions dropdown */
       .email-suggestions {
         position: absolute;
         top: 100%;
@@ -234,12 +609,16 @@
         background: rgba(30, 30, 30, 0.98);
         backdrop-filter: blur(20px);
         border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: 8px;
+        border-radius: 12px;
         margin-top: 0.5rem;
         max-height: 200px;
         overflow-y: auto;
         z-index: 1000;
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+        display: none;
+      }
+      .email-suggestions.visible {
+        display: block;
       }
 
       .email-suggestion-item {
@@ -250,530 +629,594 @@
         display: flex;
         align-items: center;
         gap: 0.5rem;
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.7);
       }
-
       .email-suggestion-item:last-child {
         border-bottom: none;
       }
-
       .email-suggestion-item:hover {
         background: rgba(255, 255, 255, 0.08);
         color: #ffffff;
-      }
-
-      .email-suggestion-item .icon {
-        font-size: 1.25rem;
       }
 
       .suggestion-hint {
         color: #ffffff;
         font-size: 0.8125rem;
         text-align: left;
-        margin-top: -0.5rem;
         background: rgba(255, 255, 255, 0.08);
-        padding: 0.5rem;
-        border-radius: 4px;
+        padding: 0.5rem 0.75rem;
+        border-radius: 8px;
         border-left: 3px solid rgba(255, 255, 255, 0.4);
-        animation: slideIn 0.3s ease;
-      }
-
-      @keyframes slideIn {
-        from {
-          opacity: 0;
-          transform: translateY(-10px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      .error-message {
-        color: #dc2626;
-        font-size: 0.875rem;
-        text-align: left;
-        margin-top: -0.5rem;
-        background: rgba(220, 38, 38, 0.1);
-        padding: 0.5rem;
-        border-radius: 4px;
-      }
-
-      .success-message {
-        color: #10a37f;
-        font-size: 0.875rem;
-        text-align: left;
-        margin-top: -0.5rem;
-        background: rgba(16, 163, 127, 0.1);
-        padding: 0.5rem;
-        border-radius: 4px;
-      }
-
-      .password-strength {
-        height: 4px;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 2px;
-        margin-top: -0.5rem;
-        overflow: hidden;
-      }
-
-      .password-strength-bar {
-        height: 100%;
-        transition: all 0.3s ease;
-        width: 0%;
-      }
-
-      .password-strength-bar.weak {
-        background: #dc2626;
-        width: 33%;
-      }
-      .password-strength-bar.medium {
-        background: #f59e0b;
-        width: 66%;
-      }
-      .password-strength-bar.strong {
-        background: #10a37f;
-        width: 100%;
-      }
-
-      .form-label {
-        display: block;
-        font-size: 0.875rem;
-        font-weight: 500;
-        color: #ffffff;
-        margin-bottom: 0.5rem;
-        text-align: left;
-      }
-
-      .submit-btn {
-        padding: 0.875rem 1rem;
-        background: rgba(255, 255, 255, 0.9);
-        color: #000000;
-        border: none;
-        border-radius: 8px;
-        font-size: 0.9375rem;
-        font-weight: 600;
         cursor: pointer;
-        transition: all 0.2s ease;
-        font-family: inherit;
-      }
-
-      .submit-btn:hover:not(:disabled) {
-        background: #ffffff;
-        box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-        transform: translateY(-1px);
-      }
-
-      .submit-btn:disabled {
-        background: rgba(255, 255, 255, 0.1);
-        cursor: not-allowed;
-        opacity: 0.6;
-      }
-
-      .footer-links {
-        text-align: center;
-        margin-top: 2rem;
-        display: flex;
-        gap: 1.5rem;
-        justify-content: center;
-        font-size: 0.875rem;
-      }
-
-      .footer-links a {
-        color: #666;
-        text-decoration: none;
-      }
-
-      .footer-links a:hover {
-        color: rgba(255, 255, 255, 0.6);
-        text-decoration: underline;
-      }
-
-      .toggle-mode {
-        text-align: center;
-        margin-top: 1.5rem;
-        font-size: 0.875rem;
-        color: #666;
-      }
-
-      .toggle-mode a {
-        color: rgba(255, 255, 255, 0.6);
-        text-decoration: none;
-        font-weight: 500;
-      }
-
-      .toggle-mode a:hover {
-        text-decoration: underline;
-      }
-
-      .modal {
         display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.85);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        z-index: 10000;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
+      }
+      .suggestion-hint.visible {
+        display: block;
       }
 
-      .modal-content {
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        padding: 2.5rem;
-        border-radius: 16px;
-        max-width: 420px;
-        width: 100%;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.9);
-        animation: modalSlideIn 0.3s ease-out;
-      }
-
-      @keyframes modalSlideIn {
-        from {
-          opacity: 0;
-          transform: translateY(30px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      .modal h2 {
-        font-size: 1.5rem;
-        font-weight: 600;
-        margin-bottom: 0.75rem;
-        color: #ffffff;
-        text-align: center;
-      }
-
-      .modal p {
-        color: #b0b0b0;
-        margin-bottom: 1.5rem;
-        line-height: 1.6;
-        text-align: center;
-        font-size: 0.9375rem;
-      }
-
-      .modal-buttons {
+      /* Forgot password panel */
+      .forgot-panel-header {
         display: flex;
-        gap: 0.75rem;
-        margin-top: 1.5rem;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.25rem 1.25rem 0;
+        gap: 0.5rem;
       }
-
-      .modal-btn {
+      .forgot-panel-header h2 {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #ffffff;
         flex: 1;
-        padding: 0.875rem 1rem;
-        border-radius: 8px;
-        font-size: 0.9375rem;
-        font-weight: 600;
-        cursor: pointer;
-        border: none;
-        font-family: inherit;
-        transition: all 0.2s ease;
+        text-align: center;
+        margin: 0;
       }
-
-      .modal-btn-primary {
-        background: rgba(255, 255, 255, 0.9);
-        color: #000000;
-      }
-
-      .modal-btn-primary:hover:not(:disabled) {
-        background: #ffffff;
-        box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-        transform: translateY(-1px);
-      }
-
-      .modal-btn-secondary {
-        background: rgba(255, 255, 255, 0.05);
-        color: #ffffff;
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        backdrop-filter: blur(10px);
-      }
-
-      .modal-btn-secondary:hover {
-        background: rgba(255, 255, 255, 0.08);
-        border-color: rgba(255, 255, 255, 0.2);
-      }
-
-      .success-icon {
-        width: 80px;
-        height: 80px;
-        background: linear-gradient(135deg, #ffffff, #e0e0e0);
-        border-radius: 50%;
+      .auth-back-btn,
+      .auth-header-close-btn {
+        width: 32px;
+        height: 32px;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: 0 auto 1.5rem;
-        box-shadow: 0 8px 24px rgba(255, 255, 255, 0.3);
+        background: transparent;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        color: rgba(255, 255, 255, 0.4);
+        transition: all 0.2s;
+      }
+      .auth-back-btn:hover,
+      .auth-header-close-btn:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.8);
+      }
+      .auth-back-btn svg,
+      .auth-header-close-btn svg {
+        width: 18px;
+        height: 18px;
+        stroke: currentColor;
+        stroke-width: 2;
+        fill: none;
       }
 
+      .forgot-panel-body {
+        padding: 1rem 1.75rem 1.75rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.625rem;
+      }
+
+      /* Email input wrapper for suggestions positioning */
+      .email-input-wrapper {
+        position: relative;
+        width: 100%;
+      }
+
+      /* Hidden utility */
       .hidden {
         display: none !important;
       }
 
-      .rate-limit-warning {
-        background: rgba(245, 158, 11, 0.1);
-        border: 1px solid rgba(245, 158, 11, 0.3);
-        color: #f59e0b;
-        padding: 0.75rem 1rem;
-        border-radius: 8px;
-        font-size: 0.875rem;
-        margin-bottom: 1rem;
-      }
-
       @media (max-width: 480px) {
-        h1 {
-          font-size: 1.5rem;
+        .container {
+          max-width: 100%;
         }
-
-        .subtitle {
-          font-size: 0.9rem;
+        .auth-step {
+          padding: 1.75rem 1.25rem 1.25rem;
         }
-
-        /* Mobile: Centered scale animation for modals */
-        .modal {
-          align-items: center;
-          justify-content: center;
-          padding: 16px;
+        .auth-title {
+          font-size: 1.25rem;
         }
-
-        .modal-content {
-          animation: modalScaleIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-          max-width: 90%;
-          width: 380px;
-        }
-
-        @keyframes modalScaleIn {
-          from {
-            opacity: 0;
-            transform: scale(0.9);
-          }
-          to {
-            opacity: 1;
-            transform: scale(1);
-          }
+        .forgot-panel-body {
+          padding: 1rem 1.25rem 1.25rem;
         }
       }
     </style>
-
-    <title>Giriş & Kayıt — LyDian AI | Ücretsiz Hesap Oluşturun</title>
-    <meta
-      name="description"
-      content="LyDian AI hesabınızı oluşturun ve yapay zekanın gücünü keşfedin. Google ile hızlı giriş veya e-posta ile kayıt. Ücretsiz deneme dahil."
-    /></head>
+  </head>
   <body>
     <div class="container">
       <div class="logo">LyDian</div>
 
-      <div class="auth-card">
-        <!-- Login/Register Mode -->
-        <div id="auth-mode-login">
-          <h1>Oturum açın ya da<br />kaydolun</h1>
-          <p class="subtitle">
-            Daha zeki yanıtlar alabilir, dosya ile görsel yükleyebilir ve daha fazlasını
-            yapabilirsin.
+      <!-- MAIN PANEL -->
+      <div class="chat-auth-panel" id="mainPanel">
+        <!-- STEP 1: Social + Email -->
+        <div class="auth-step active" id="step1">
+          <h2 class="auth-title">Oturum ac veya kaydol</h2>
+          <p class="auth-subtitle">
+            Daha zeki yanitlar alin, dosya ve gorsel yukleyin, daha fazlasini kesfedin.
           </p>
 
-          <!-- Rate Limit Warning (Hidden by default) -->
-          <div id="rate-limit-warning" class="rate-limit-warning hidden">
-            ⚠️ Çok fazla deneme yaptınız. Lütfen <span id="rate-limit-time">60</span> saniye
-            bekleyin.
+          <div class="rate-limit-warning" id="rateLimitWarning">
+            Cok fazla deneme yaptiniz. Lutfen <span id="rateLimitTime">60</span> saniye bekleyin.
           </div>
 
-          <!-- OAuth Buttons -->
-          <div class="oauth-buttons">
-            <button class="oauth-btn" onclick="handleGoogleAuth()" id="google-btn">
-              <svg viewBox="0 0 24 24" width="20" height="20">
-                <path
-                  fill="#4285F4"
-                  d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
-                ></path>
-                <path
-                  fill="#34A853"
-                  d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-                ></path>
-                <path
-                  fill="#FBBC05"
-                  d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
-                ></path>
-                <path
-                  fill="#EA4335"
-                  d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
-                ></path>
-              </svg>
-              Google ile devam et
-            </button>
-          </div>
+          <button type="button" class="auth-social-btn" onclick="AuthPage.socialLogin('google')">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"
+                fill="#4285F4"
+              />
+              <path
+                d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                fill="#34A853"
+              />
+              <path
+                d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                fill="#FBBC05"
+              />
+              <path
+                d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                fill="#EA4335"
+              />
+            </svg>
+            Google ile devam et
+          </button>
 
-          <div class="divider">
-            <span>ya da</span>
-          </div>
+          <button type="button" class="auth-social-btn" onclick="AuthPage.openPhonePanel()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
+              <line x1="12" y1="18" x2="12.01" y2="18" />
+            </svg>
+            Telefonla devam et
+          </button>
 
-          <!-- Email Form -->
-          <form class="email-form" id="email-form" onsubmit="handleEmailSubmit(event)">
+          <div class="auth-divider"><span>YA DA</span></div>
+
+          <div class="auth-input-group">
             <div class="email-input-wrapper">
               <input
                 type="email"
-                class="form-input"
-                id="email-input"
+                class="auth-input"
+                id="emailInput"
                 placeholder="E-posta adresi"
                 autocomplete="email"
                 required
               />
-              <!-- Email Suggestions Dropdown -->
-              <div id="email-suggestions" class="email-suggestions hidden"></div>
+              <div class="email-suggestions" id="emailSuggestions"></div>
             </div>
-            <div id="email-error" class="error-message hidden"></div>
-            <div id="email-suggestion-hint" class="suggestion-hint hidden"></div>
-            <button type="submit" class="submit-btn" id="submit-btn">Devam et</button>
-          </form>
-
-          <div class="toggle-mode">
-            <a
-              href="#"
-              onclick="
-                showForgotPassword();
-                return false;
-              "
-              >Şifremi unuttum?</a
-            >
           </div>
 
-          <div class="footer-links">
-            <a href="/terms.html">Kullanım Şartları</a>
-            <a href="/privacy.html">Gizlilik Politikası</a>
-          </div>
-        </div>
+          <div class="suggestion-hint" id="emailSuggestionHint"></div>
 
-        <!-- Password Step (Hidden initially) -->
-        <div id="password-step" class="hidden">
-          <h1>Şifrenizi girin</h1>
-          <p class="subtitle" id="user-email-display"></p>
+          <div class="auth-error-msg" id="step1Error"></div>
 
-          <form class="email-form" onsubmit="handlePasswordSubmit(event)">
-            <label for="password-input" class="form-label">Şifre</label>
-            <input
-              type="password"
-              class="form-input"
-              id="password-input"
-              placeholder="Şifrenizi girin"
-              autocomplete="current-password"
-              required
-            />
-            <div id="login-error" class="error-message hidden"></div>
-            <button type="submit" class="submit-btn" id="login-btn">Giriş Yap</button>
-          </form>
+          <button
+            type="button"
+            class="auth-btn-primary"
+            id="emailContinueBtn"
+            onclick="AuthPage.handleEmailContinue()"
+          >
+            Devam
+          </button>
 
-          <div class="toggle-mode">
-            <a
-              href="#"
-              onclick="
-                backToEmail();
-                return false;
-              "
-              >← Geri dön</a
-            >
+          <div class="auth-footer">
+            <a href="/terms.html">Kullanim Sartlari</a>
+            <div class="auth-footer-sep"></div>
+            <a href="/privacy.html">Gizlilik Politikasi</a>
           </div>
         </div>
 
-        <!-- Register Step (Hidden initially) -->
-        <div id="register-step" class="hidden">
-          <h1>Hesabınızı oluşturun</h1>
-          <p class="subtitle" id="register-email-display"></p>
+        <!-- STEP 2a: Login (existing user) -->
+        <div class="auth-step" id="step2Login">
+          <h2 class="auth-title">Hos geldiniz</h2>
 
-          <form class="email-form" onsubmit="handleRegisterSubmit(event)">
-            <label for="register-name" class="form-label">Ad Soyad</label>
+          <div class="auth-email-display">
+            <span class="auth-email-text" id="loginEmailDisplay"></span>
+            <button type="button" class="auth-email-edit" onclick="AuthPage.goBackToStep1()">
+              Duzenle
+            </button>
+          </div>
+
+          <div class="auth-input-group">
+            <div class="auth-password-wrapper">
+              <input
+                type="password"
+                class="auth-input"
+                id="loginPassword"
+                placeholder="Sifre"
+                autocomplete="current-password"
+                required
+              />
+              <button
+                type="button"
+                class="auth-password-toggle"
+                onclick="AuthPage.togglePasswordVisibility('loginPassword', this)"
+              >
+                <svg viewBox="0 0 24 24">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="auth-error-msg" id="step2LoginError"></div>
+
+          <button
+            type="button"
+            class="auth-btn-secondary"
+            id="loginBtn"
+            onclick="AuthPage.handleLoginSubmit()"
+          >
+            Devam et
+          </button>
+
+          <div class="auth-divider"><span>YA DA</span></div>
+
+          <button type="button" class="auth-link-btn" onclick="AuthPage.openForgotPanel()">
+            Sifremi unuttum
+          </button>
+
+          <div class="auth-footer">
+            <a href="/terms.html">Kullanim Sartlari</a>
+            <div class="auth-footer-sep"></div>
+            <a href="/privacy.html">Gizlilik Politikasi</a>
+          </div>
+        </div>
+
+        <!-- STEP 2b: Register (new user) -->
+        <div class="auth-step" id="step2Register">
+          <h2 class="auth-title">Hesabinizi olusturun</h2>
+
+          <div class="auth-email-display">
+            <span class="auth-email-text" id="registerEmailDisplay"></span>
+            <button type="button" class="auth-email-edit" onclick="AuthPage.goBackToStep1()">
+              Duzenle
+            </button>
+          </div>
+
+          <div class="auth-input-group">
             <input
               type="text"
-              class="form-input"
-              id="register-name"
-              placeholder="Ad ve soyadınızı girin"
+              class="auth-input"
+              id="registerName"
+              placeholder="Ad Soyad"
               autocomplete="name"
+              required
               minlength="2"
-              required
+              maxlength="100"
             />
-            <label for="register-password" class="form-label">Şifre</label>
-            <input
-              type="password"
-              class="form-input"
-              id="register-password"
-              placeholder="En az 8 karakter"
-              autocomplete="new-password"
-              minlength="8"
-              required
-            />
-            <div class="password-strength">
-              <div class="password-strength-bar" id="strength-bar"></div>
-            </div>
-            <div id="register-error" class="error-message hidden"></div>
-            <div id="register-success" class="success-message hidden"></div>
-            <button type="submit" class="submit-btn" id="register-btn">Hesap Oluştur</button>
-          </form>
-
-          <div class="toggle-mode">
-            <a
-              href="#"
-              onclick="
-                backToEmail();
-                return false;
-              "
-              >← Geri dön</a
-            >
           </div>
+
+          <div class="auth-input-group">
+            <div class="auth-password-wrapper">
+              <input
+                type="password"
+                class="auth-input"
+                id="registerPassword"
+                placeholder="Sifre (en az 8 karakter)"
+                autocomplete="new-password"
+                required
+                minlength="8"
+              />
+              <button
+                type="button"
+                class="auth-password-toggle"
+                onclick="AuthPage.togglePasswordVisibility('registerPassword', this)"
+              >
+                <svg viewBox="0 0 24 24">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+              </button>
+            </div>
+            <div class="password-strength" id="registerStrength">
+              <div class="password-strength-bar" id="registerStrengthBar"></div>
+            </div>
+          </div>
+
+          <div class="auth-input-group">
+            <div class="auth-password-wrapper">
+              <input
+                type="password"
+                class="auth-input"
+                id="registerPasswordConfirm"
+                placeholder="Sifre tekrar"
+                autocomplete="new-password"
+                required
+              />
+              <button
+                type="button"
+                class="auth-password-toggle"
+                onclick="AuthPage.togglePasswordVisibility('registerPasswordConfirm', this)"
+              >
+                <svg viewBox="0 0 24 24">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="auth-error-msg" id="step2RegisterError"></div>
+
+          <button
+            type="button"
+            class="auth-btn-secondary"
+            id="registerBtn"
+            onclick="AuthPage.handleRegisterSubmit()"
+          >
+            Hesap olustur
+          </button>
+
+          <div class="auth-footer">
+            <a href="/terms.html">Kullanim Sartlari</a>
+            <div class="auth-footer-sep"></div>
+            <a href="/privacy.html">Gizlilik Politikasi</a>
+          </div>
+        </div>
+
+        <!-- STEP 3: 2FA TOTP -->
+        <div class="auth-step" id="step2FA">
+          <h2 class="auth-title">Iki faktorlu dogrulama</h2>
+          <p class="auth-subtitle">Authenticator uygulamanizdan 6 haneli kodu girin.</p>
+
+          <div class="auth-2fa-row" id="totpDigitsRow">
+            <input
+              type="text"
+              class="auth-2fa-digit"
+              maxlength="1"
+              inputmode="numeric"
+              pattern="[0-9]"
+            />
+            <input
+              type="text"
+              class="auth-2fa-digit"
+              maxlength="1"
+              inputmode="numeric"
+              pattern="[0-9]"
+            />
+            <input
+              type="text"
+              class="auth-2fa-digit"
+              maxlength="1"
+              inputmode="numeric"
+              pattern="[0-9]"
+            />
+            <input
+              type="text"
+              class="auth-2fa-digit"
+              maxlength="1"
+              inputmode="numeric"
+              pattern="[0-9]"
+            />
+            <input
+              type="text"
+              class="auth-2fa-digit"
+              maxlength="1"
+              inputmode="numeric"
+              pattern="[0-9]"
+            />
+            <input
+              type="text"
+              class="auth-2fa-digit"
+              maxlength="1"
+              inputmode="numeric"
+              pattern="[0-9]"
+            />
+          </div>
+
+          <div class="auth-error-msg" id="step2FAError"></div>
+
+          <button
+            type="button"
+            class="auth-btn-primary"
+            id="totpVerifyBtn"
+            onclick="AuthPage.handle2FAVerify()"
+          >
+            Dogrula
+          </button>
+
+          <button type="button" class="auth-link-btn" onclick="AuthPage.goBackToStep1()">
+            Geri don
+          </button>
         </div>
       </div>
-    </div>
 
-    <!-- Forgot Password Modal -->
-    <div id="forgot-password-modal" class="modal">
-      <div class="modal-content">
-        <div id="forgot-step-1">
-          <h2>Şifrenizi mi unuttunuz?</h2>
-          <p>E-posta adresinizi girin, size şifre sıfırlama bağlantısı gönderelim</p>
-          <label for="forgot-email" class="form-label">E-posta</label>
-          <input
-            type="email"
-            class="form-input"
-            id="forgot-email"
-            placeholder="E-posta adresinizi girin"
-            autocomplete="email"
-          />
-          <div class="modal-buttons">
-            <button class="modal-btn modal-btn-secondary" onclick="closeForgotPassword()">
-              İptal
-            </button>
-            <button class="modal-btn modal-btn-primary" onclick="sendResetLink()">Gönder</button>
+      <!-- PHONE PANEL -->
+      <div class="chat-auth-panel hidden" id="phonePanel">
+        <!-- Phone Step 1: Enter number -->
+        <div class="auth-step active" id="phoneStep1">
+          <h2 class="auth-title">Telefon ile giris</h2>
+          <p class="auth-subtitle">Telefon numaraniza bir dogrulama kodu gonderecegiz.</p>
+
+          <div class="auth-phone-input-row">
+            <select class="auth-country-code" id="phoneCountryCode">
+              <option value="+90" selected>+90</option>
+              <option value="+1">+1</option>
+              <option value="+44">+44</option>
+              <option value="+49">+49</option>
+              <option value="+33">+33</option>
+              <option value="+34">+34</option>
+              <option value="+39">+39</option>
+              <option value="+81">+81</option>
+              <option value="+82">+82</option>
+              <option value="+86">+86</option>
+              <option value="+91">+91</option>
+              <option value="+7">+7</option>
+              <option value="+55">+55</option>
+              <option value="+61">+61</option>
+              <option value="+966">+966</option>
+              <option value="+971">+971</option>
+            </select>
+            <input
+              type="tel"
+              class="auth-input"
+              id="phoneNumberInput"
+              placeholder="5XX XXX XX XX"
+              autocomplete="tel"
+              inputmode="numeric"
+            />
           </div>
+
+          <div class="auth-error-msg" id="phoneStep1Error"></div>
+
+          <button
+            type="button"
+            class="auth-btn-primary"
+            id="phoneSendBtn"
+            onclick="AuthPage.sendPhoneOTP()"
+          >
+            Kod gonder
+          </button>
+
+          <button type="button" class="auth-link-btn" onclick="AuthPage.backToMainPanel()">
+            Geri don
+          </button>
         </div>
 
-        <div id="forgot-step-2" class="hidden" style="text-align: center">
-          <div class="success-icon">
-            <svg width="40" height="40" fill="none" stroke="white" viewBox="0 0 24 24">
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M5 13l4 4L19 7"
-              ></path>
+        <!-- Phone Step 2: Enter OTP -->
+        <div class="auth-step" id="phoneStep2">
+          <h2 class="auth-title">Dogrulama kodu</h2>
+          <p class="auth-subtitle">Telefonunuza gonderilen 6 haneli kodu girin.</p>
+
+          <div class="auth-otp-row" id="phoneOtpRow">
+            <input
+              type="text"
+              class="auth-otp-digit"
+              maxlength="1"
+              inputmode="numeric"
+              pattern="[0-9]"
+            />
+            <input
+              type="text"
+              class="auth-otp-digit"
+              maxlength="1"
+              inputmode="numeric"
+              pattern="[0-9]"
+            />
+            <input
+              type="text"
+              class="auth-otp-digit"
+              maxlength="1"
+              inputmode="numeric"
+              pattern="[0-9]"
+            />
+            <input
+              type="text"
+              class="auth-otp-digit"
+              maxlength="1"
+              inputmode="numeric"
+              pattern="[0-9]"
+            />
+            <input
+              type="text"
+              class="auth-otp-digit"
+              maxlength="1"
+              inputmode="numeric"
+              pattern="[0-9]"
+            />
+            <input
+              type="text"
+              class="auth-otp-digit"
+              maxlength="1"
+              inputmode="numeric"
+              pattern="[0-9]"
+            />
+          </div>
+
+          <div class="auth-error-msg" id="phoneStep2Error"></div>
+
+          <button
+            type="button"
+            class="auth-btn-primary"
+            id="phoneVerifyBtn"
+            onclick="AuthPage.verifyPhoneOTP()"
+          >
+            Dogrula
+          </button>
+
+          <button
+            type="button"
+            class="auth-link-btn"
+            id="phoneResendBtn"
+            onclick="AuthPage.resendPhoneOTP()"
+            disabled
+          >
+            Kodu tekrar gonder (60s)
+          </button>
+        </div>
+      </div>
+
+      <!-- FORGOT PASSWORD PANEL -->
+      <div class="chat-auth-panel hidden" id="forgotPanel">
+        <div class="forgot-panel-header">
+          <button class="auth-back-btn" onclick="AuthPage.backToMainPanel()" aria-label="Geri">
+            <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          </button>
+          <h2>Sifremi Unuttum</h2>
+          <div style="width: 32px"></div>
+        </div>
+        <div class="forgot-panel-body">
+          <p class="auth-subtitle" style="margin-bottom: 0">
+            E-posta adresinizi girin, sifre sifirlama baglantisi gonderecegiz.
+          </p>
+          <div class="auth-input-group">
+            <input
+              type="email"
+              class="auth-input"
+              id="forgotEmailInput"
+              placeholder="E-posta adresi"
+              autocomplete="email"
+            />
+          </div>
+          <div class="auth-error-msg" id="forgotError"></div>
+          <button
+            type="button"
+            class="auth-btn-primary"
+            id="forgotSubmitBtn"
+            onclick="AuthPage.sendResetLink()"
+          >
+            Sifirlama Baglantisi Gonder
+          </button>
+          <button type="button" class="auth-link-btn" onclick="AuthPage.backToMainPanel()">
+            Giris Yap'a Don
+          </button>
+        </div>
+      </div>
+
+      <!-- FORGOT SUCCESS PANEL -->
+      <div class="chat-auth-panel hidden" id="forgotSuccessPanel">
+        <div class="auth-step active">
+          <div style="text-align: center; margin-bottom: 0.5rem">
+            <svg
+              width="48"
+              height="48"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#22c55e"
+              stroke-width="2"
+            >
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+              <polyline points="22 4 12 14.01 9 11.01" />
             </svg>
           </div>
-          <h2>E-posta Gönderildi!</h2>
-          <p>
-            E-posta adresinize şifre sıfırlama bağlantısı gönderdik. Lütfen e-postanızı kontrol
+          <h2 class="auth-title">E-posta Gonderildi!</h2>
+          <p class="auth-subtitle">
+            Sifre sifirlama baglantisi e-posta adresinize gonderildi. Lutfen e-postanizi kontrol
             edin.
           </p>
-          <button
-            class="modal-btn modal-btn-primary"
-            style="width: 100%"
-            onclick="closeForgotPassword()"
-          >
+          <button type="button" class="auth-btn-primary" onclick="AuthPage.backToMainPanel()">
             Tamam
           </button>
         </div>
@@ -782,428 +1225,675 @@
 
     <script>
       // ==========================================
-      // 🔒 CONFIGURATION
+      // CONFIGURATION
       // ==========================================
       const API_BASE_URL = window.location.hostname === 'localhost' ? 'http://localhost:3102' : '';
       const RECAPTCHA_SITE_KEY = '6LfGUKAqAAAAABe0Y7c7u_VuhkRHqQtX1QYXX5Bt';
 
       const SECURITY_CONFIG = {
         maxLoginAttempts: 5,
-        rateLimitWindow: 60000, // 1 minute
+        rateLimitWindow: 60000,
         passwordMinLength: 8,
       };
 
-      // Rate limiting state
+      // Rate limiting
       const rateLimiter = {
         attempts: {},
         isBlocked: function (key) {
           const now = Date.now();
-          if (!this.attempts[key]) {
-            this.attempts[key] = [];
-          }
-
-          // Clean old attempts
+          if (!this.attempts[key]) this.attempts[key] = [];
           this.attempts[key] = this.attempts[key].filter(
-            time => now - time < SECURITY_CONFIG.rateLimitWindow
+            t => now - t < SECURITY_CONFIG.rateLimitWindow
           );
-
           return this.attempts[key].length >= SECURITY_CONFIG.maxLoginAttempts;
         },
         recordAttempt: function (key) {
-          if (!this.attempts[key]) {
-            this.attempts[key] = [];
-          }
+          if (!this.attempts[key]) this.attempts[key] = [];
           this.attempts[key].push(Date.now());
         },
         getRemainingTime: function (key) {
           if (!this.attempts[key] || this.attempts[key].length === 0) return 0;
-          const oldestAttempt = Math.min(...this.attempts[key]);
-          const elapsed = Date.now() - oldestAttempt;
-          return Math.max(0, Math.ceil((SECURITY_CONFIG.rateLimitWindow - elapsed) / 1000));
+          const oldest = Math.min(...this.attempts[key]);
+          return Math.max(
+            0,
+            Math.ceil((SECURITY_CONFIG.rateLimitWindow - (Date.now() - oldest)) / 1000)
+          );
         },
       };
 
       let currentEmail = '';
       let csrfToken = '';
+      let savedPassword = '';
+      let phoneVerifyData = null;
+      let phoneResendTimer = null;
 
       // ==========================================
-      // 🔒 Get CSRF Token on page load
+      // CSRF + reCAPTCHA
       // ==========================================
       window.addEventListener('DOMContentLoaded', async () => {
         try {
-          const response = await fetch(`${API_BASE_URL}/api/csrf-token`, {
-            credentials: 'include',
-          });
-          const data = await response.json();
+          const res = await fetch(API_BASE_URL + '/api/csrf-token', { credentials: 'include' });
+          const data = await res.json();
           csrfToken = data.csrfToken;
-        } catch (error) {
-          console.warn('Failed to get CSRF token:', error);
+        } catch (e) {
+          console.warn('CSRF token alma hatasi');
         }
+        setupEmailAutocomplete();
+        setupOTPDigitInputs('phoneOtpRow');
+        setupOTPDigitInputs('totpDigitsRow');
+        setupEnterKeyHandlers();
       });
 
-      // ==========================================
-      // 🔒 RECAPTCHA Helper
-      // ==========================================
       async function getRecaptchaToken(action) {
         try {
-          if (typeof grecaptcha === 'undefined') {
-            console.warn('reCAPTCHA not loaded yet');
-            return null;
-          }
-          return await grecaptcha.execute(RECAPTCHA_SITE_KEY, { action });
-        } catch (error) {
-          console.error('reCAPTCHA error:', error);
+          if (typeof grecaptcha === 'undefined') return null;
+          return await grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: action });
+        } catch (e) {
           return null;
         }
       }
 
       // ==========================================
-      // 🔒 Utility Functions
+      // UTILITY
       // ==========================================
       function sanitizeInput(input) {
-        const div = document.createElement('div');
+        var div = document.createElement('div');
         div.textContent = input;
         return div.innerHTML;
       }
 
       function validateEmail(email) {
-        const re =
+        var re =
           /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
         return re.test(email) && email.length <= 254;
       }
 
       function calculatePasswordStrength(password) {
-        let strength = 0;
-        if (password.length >= 8) strength++;
-        if (password.length >= 12) strength++;
-        if (/[a-z]/.test(password) && /[A-Z]/.test(password)) strength++;
-        if (/[0-9]/.test(password)) strength++;
-        if (/[!@#$%^&*(),.?":{}|<>]/.test(password)) strength++;
-
-        if (strength <= 2) return 'weak';
-        if (strength <= 4) return 'medium';
+        var s = 0;
+        if (password.length >= 8) s++;
+        if (password.length >= 12) s++;
+        if (/[a-z]/.test(password) && /[A-Z]/.test(password)) s++;
+        if (/[0-9]/.test(password)) s++;
+        if (/[!@#$%^&*(),.?":{}|<>]/.test(password)) s++;
+        if (s <= 2) return 'weak';
+        if (s <= 4) return 'medium';
         return 'strong';
       }
 
-      function showError(elementId, message) {
-        const el = document.getElementById(elementId);
+      function showError(id, msg) {
+        var el = document.getElementById(id);
         if (el) {
-          el.textContent = sanitizeInput(message);
-          el.classList.remove('hidden');
+          el.textContent = sanitizeInput(msg);
+          el.classList.add('visible');
         }
       }
 
-      function hideError(elementId) {
-        const el = document.getElementById(elementId);
-        if (el) {
-          el.classList.add('hidden');
-        }
+      function hideError(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.remove('visible');
       }
 
-      function showSuccess(elementId, message) {
-        const el = document.getElementById(elementId);
-        if (el) {
-          el.textContent = sanitizeInput(message);
-          el.classList.remove('hidden');
+      function setLoading(btnId, loading) {
+        var btn = document.getElementById(btnId);
+        if (!btn) return;
+        if (loading) {
+          btn.classList.add('loading');
+          btn.disabled = true;
+        } else {
+          btn.classList.remove('loading');
+          btn.disabled = false;
         }
       }
 
       function showRateLimitWarning() {
-        const warning = document.getElementById('rate-limit-warning');
-        const timeSpan = document.getElementById('rate-limit-time');
-        warning.classList.remove('hidden');
-
-        const updateTime = () => {
-          const remaining = rateLimiter.getRemainingTime('login');
-          if (remaining > 0) {
-            timeSpan.textContent = remaining;
-            setTimeout(updateTime, 1000);
+        var w = document.getElementById('rateLimitWarning');
+        var t = document.getElementById('rateLimitTime');
+        w.classList.add('visible');
+        var update = function () {
+          var rem = rateLimiter.getRemainingTime('login');
+          if (rem > 0) {
+            t.textContent = rem;
+            setTimeout(update, 1000);
           } else {
-            warning.classList.add('hidden');
+            w.classList.remove('visible');
           }
         };
-        updateTime();
+        update();
       }
 
-      // OAuth Handlers
-      function handleGoogleAuth() {
-        if (rateLimiter.isBlocked('oauth')) {
-          showRateLimitWarning();
-          return;
-        }
-        rateLimiter.recordAttempt('oauth');
-        window.location.href = `${API_BASE_URL}/api/auth/google`;
+      // ==========================================
+      // PANEL SWITCHING
+      // ==========================================
+      function showPanel(panelId) {
+        ['mainPanel', 'phonePanel', 'forgotPanel', 'forgotSuccessPanel'].forEach(function (id) {
+          document.getElementById(id).classList.add('hidden');
+        });
+        document.getElementById(panelId).classList.remove('hidden');
       }
 
-      // Email Submit Handler
-      async function handleEmailSubmit(event) {
-        event.preventDefault();
-        hideError('email-error');
+      function showStep(stepId) {
+        var panel = document.getElementById(stepId).parentElement;
+        panel.querySelectorAll('.auth-step').forEach(function (s) {
+          s.classList.remove('active');
+        });
+        document.getElementById(stepId).classList.add('active');
+      }
 
-        const email = document.getElementById('email-input').value.trim();
+      // ==========================================
+      // AUTH PAGE NAMESPACE
+      // ==========================================
+      var AuthPage = {
+        // ---- Social Login ----
+        socialLogin: function (provider) {
+          if (rateLimiter.isBlocked('oauth')) {
+            showRateLimitWarning();
+            return;
+          }
+          rateLimiter.recordAttempt('oauth');
+          window.location.href = API_BASE_URL + '/api/chat-auth/google-auth';
+        },
 
-        if (!validateEmail(email)) {
-          showError('email-error', 'Geçerli bir e-posta adresi girin');
-          return;
-        }
+        // ---- Phone Panel ----
+        openPhonePanel: function () {
+          showPanel('phonePanel');
+          showStep('phoneStep1');
+          hideError('phoneStep1Error');
+          document.getElementById('phoneNumberInput').value = '';
+          document.getElementById('phoneNumberInput').focus();
+        },
 
-        if (rateLimiter.isBlocked('email-check')) {
-          showRateLimitWarning();
-          return;
-        }
-        rateLimiter.recordAttempt('email-check');
+        backToMainPanel: function () {
+          showPanel('mainPanel');
+        },
 
-        currentEmail = email;
+        // ---- Forgot Panel ----
+        openForgotPanel: function () {
+          showPanel('forgotPanel');
+          hideError('forgotError');
+          document.getElementById('forgotEmailInput').value = currentEmail || '';
+          document.getElementById('forgotEmailInput').focus();
+        },
 
-        // Check if user exists
-        try {
-          const response = await fetch(`${API_BASE_URL}/api/auth/check-email`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'X-CSRF-Token': csrfToken,
-            },
-            credentials: 'include',
-            body: JSON.stringify({ email }),
+        // ---- Email Continue ----
+        handleEmailContinue: async function () {
+          hideError('step1Error');
+          var email = document.getElementById('emailInput').value.trim();
+
+          if (!validateEmail(email)) {
+            showError('step1Error', 'Gecerli bir e-posta adresi girin');
+            return;
+          }
+          if (rateLimiter.isBlocked('email-check')) {
+            showRateLimitWarning();
+            return;
+          }
+          rateLimiter.recordAttempt('email-check');
+
+          currentEmail = email;
+          setLoading('emailContinueBtn', true);
+
+          try {
+            var res = await fetch(API_BASE_URL + '/api/chat-auth/check-email', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': csrfToken },
+              credentials: 'include',
+              body: JSON.stringify({ email: email }),
+            });
+            var data = await res.json();
+
+            if (data.success && data.exists) {
+              document.getElementById('loginEmailDisplay').textContent = currentEmail;
+              showStep('step2Login');
+              document.getElementById('loginPassword').focus();
+            } else {
+              document.getElementById('registerEmailDisplay').textContent = currentEmail;
+              showStep('step2Register');
+              document.getElementById('registerName').focus();
+            }
+          } catch (e) {
+            showError('step1Error', 'Baglanti hatasi. Lutfen tekrar deneyin.');
+          } finally {
+            setLoading('emailContinueBtn', false);
+          }
+        },
+
+        // ---- Go Back to Step 1 ----
+        goBackToStep1: function () {
+          showPanel('mainPanel');
+          showStep('step1');
+          hideError('step1Error');
+          hideError('step2LoginError');
+          hideError('step2RegisterError');
+          hideError('step2FAError');
+          currentEmail = '';
+          savedPassword = '';
+        },
+
+        // ---- Password Visibility Toggle ----
+        togglePasswordVisibility: function (inputId, btn) {
+          var input = document.getElementById(inputId);
+          var isPassword = input.type === 'password';
+          input.type = isPassword ? 'text' : 'password';
+
+          var eyeOpen =
+            '<svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>';
+          var eyeClosed =
+            '<svg viewBox="0 0 24 24"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>';
+          btn.innerHTML = isPassword ? eyeClosed : eyeOpen;
+        },
+
+        // ---- Login Submit ----
+        handleLoginSubmit: async function () {
+          hideError('step2LoginError');
+          var password = document.getElementById('loginPassword').value;
+
+          if (!password) {
+            showError('step2LoginError', 'Sifre girin');
+            return;
+          }
+          if (rateLimiter.isBlocked('login')) {
+            showRateLimitWarning();
+            return;
+          }
+          rateLimiter.recordAttempt('login');
+
+          setLoading('loginBtn', true);
+
+          try {
+            var recaptchaToken = await getRecaptchaToken('login');
+
+            var res = await fetch(API_BASE_URL + '/api/chat-auth/login', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': csrfToken },
+              credentials: 'include',
+              body: JSON.stringify({
+                email: currentEmail,
+                password: password,
+                recaptchaToken: recaptchaToken,
+              }),
+            });
+            var data = await res.json();
+
+            // Check if 2FA required (login returns success:false + requires2FA:true)
+            if (data.requires2FA) {
+              savedPassword = password;
+              showStep('step2FA');
+              var firstDigit = document.querySelector('#totpDigitsRow .auth-2fa-digit');
+              if (firstDigit) firstDigit.focus();
+              return;
+            }
+
+            if (!res.ok || !data.success) {
+              showError('step2LoginError', data.error || 'Giris basarisiz');
+              return;
+            }
+
+            // Tokens are in httpOnly cookies (set by server), just store user data
+            if (data.user) localStorage.setItem('lydian_user', JSON.stringify(data.user));
+            window.location.href = '/chat';
+          } catch (e) {
+            showError('step2LoginError', 'Baglanti hatasi');
+          } finally {
+            setLoading('loginBtn', false);
+          }
+        },
+
+        // ---- 2FA Verify ----
+        handle2FAVerify: async function () {
+          hideError('step2FAError');
+          var digits = document.querySelectorAll('#totpDigitsRow .auth-2fa-digit');
+          var code = '';
+          digits.forEach(function (d) {
+            code += d.value;
           });
 
-          const data = await response.json();
-
-          if (data.success && data.exists) {
-            showPasswordStep();
-          } else {
-            showRegisterStep();
+          if (code.length !== 6) {
+            showError('step2FAError', '6 haneli kodu girin');
+            return;
           }
-        } catch (error) {
-          showError('email-error', 'Bağlantı hatası. Lütfen tekrar deneyin.');
-        }
-      }
 
-      // Password Submit Handler
-      async function handlePasswordSubmit(event) {
-        event.preventDefault();
-        hideError('login-error');
+          setLoading('totpVerifyBtn', true);
 
-        const password = document.getElementById('password-input').value;
+          try {
+            // Re-call login with totpCode (login.js handles 2FA inline)
+            var res = await fetch(API_BASE_URL + '/api/chat-auth/login', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': csrfToken },
+              credentials: 'include',
+              body: JSON.stringify({
+                email: currentEmail,
+                password: savedPassword,
+                totpCode: code,
+              }),
+            });
+            var data = await res.json();
 
-        if (rateLimiter.isBlocked('login')) {
-          showRateLimitWarning();
-          return;
-        }
-        rateLimiter.recordAttempt('login');
+            if (!res.ok || !data.success) {
+              showError('step2FAError', data.error || '2FA dogrulama basarisiz');
+              digits.forEach(function (d) {
+                d.value = '';
+              });
+              digits[0].focus();
+              return;
+            }
 
-        const loginBtn = document.getElementById('login-btn');
-        loginBtn.disabled = true;
-        loginBtn.textContent = 'Giriş yapılıyor...';
+            savedPassword = '';
+            if (data.user) localStorage.setItem('lydian_user', JSON.stringify(data.user));
+            window.location.href = '/chat';
+          } catch (e) {
+            showError('step2FAError', 'Baglanti hatasi');
+          } finally {
+            setLoading('totpVerifyBtn', false);
+          }
+        },
 
-        try {
-          // Get reCAPTCHA token
-          const recaptchaToken = await getRecaptchaToken('login');
+        // ---- Register Submit ----
+        handleRegisterSubmit: async function () {
+          hideError('step2RegisterError');
 
-          const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'X-CSRF-Token': csrfToken,
-            },
-            credentials: 'include',
-            body: JSON.stringify({
-              email: currentEmail,
-              password,
-              recaptchaToken,
-            }),
+          var name = document.getElementById('registerName').value.trim();
+          var password = document.getElementById('registerPassword').value;
+          var passwordConfirm = document.getElementById('registerPasswordConfirm').value;
+
+          if (name.length < 2) {
+            showError('step2RegisterError', 'Ad soyad en az 2 karakter olmali');
+            return;
+          }
+          if (password.length < SECURITY_CONFIG.passwordMinLength) {
+            showError(
+              'step2RegisterError',
+              'Sifre en az ' + SECURITY_CONFIG.passwordMinLength + ' karakter olmali'
+            );
+            return;
+          }
+          if (password !== passwordConfirm) {
+            showError('step2RegisterError', 'Sifreler eslesmiyor');
+            return;
+          }
+          if (rateLimiter.isBlocked('register')) {
+            showRateLimitWarning();
+            return;
+          }
+          rateLimiter.recordAttempt('register');
+
+          setLoading('registerBtn', true);
+
+          try {
+            var recaptchaToken = await getRecaptchaToken('register');
+
+            var res = await fetch(API_BASE_URL + '/api/chat-auth/register', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': csrfToken },
+              credentials: 'include',
+              body: JSON.stringify({
+                email: currentEmail,
+                password: password,
+                displayName: name,
+                recaptchaToken: recaptchaToken,
+              }),
+            });
+            var data = await res.json();
+
+            if (!res.ok || !data.success) {
+              showError('step2RegisterError', data.error || 'Kayit basarisiz');
+              return;
+            }
+
+            window.location.href = '/chat';
+          } catch (e) {
+            showError('step2RegisterError', 'Baglanti hatasi');
+          } finally {
+            setLoading('registerBtn', false);
+          }
+        },
+
+        // ---- Phone OTP ----
+        sendPhoneOTP: async function () {
+          hideError('phoneStep1Error');
+          var countryCode = document.getElementById('phoneCountryCode').value;
+          var phone = document.getElementById('phoneNumberInput').value.replace(/\D/g, '');
+
+          if (!phone || phone.length < 7) {
+            showError('phoneStep1Error', 'Gecerli bir telefon numarasi girin');
+            return;
+          }
+
+          setLoading('phoneSendBtn', true);
+
+          try {
+            var res = await fetch(API_BASE_URL + '/api/chat-auth/phone-send-otp', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              credentials: 'include',
+              body: JSON.stringify({ phoneNumber: phone, countryCode: countryCode }),
+            });
+            var data = await res.json();
+
+            if (!res.ok || !data.success) {
+              showError('phoneStep1Error', data.error || 'Kod gonderilemedi');
+              return;
+            }
+
+            phoneVerifyData = { phoneNumber: phone, countryCode: countryCode };
+            showStep('phoneStep2');
+            AuthPage.startResendCountdown();
+            var firstOtp = document.querySelector('#phoneOtpRow .auth-otp-digit');
+            if (firstOtp) firstOtp.focus();
+          } catch (e) {
+            showError('phoneStep1Error', 'Baglanti hatasi');
+          } finally {
+            setLoading('phoneSendBtn', false);
+          }
+        },
+
+        verifyPhoneOTP: async function () {
+          hideError('phoneStep2Error');
+          var digits = document.querySelectorAll('#phoneOtpRow .auth-otp-digit');
+          var code = '';
+          digits.forEach(function (d) {
+            code += d.value;
           });
 
-          const data = await response.json();
-
-          if (!response.ok || !data.success) {
-            throw new Error(data.error || 'Giriş başarısız');
+          if (code.length !== 6) {
+            showError('phoneStep2Error', '6 haneli kodu girin');
+            return;
+          }
+          if (!phoneVerifyData) {
+            showError('phoneStep2Error', 'Telefon bilgisi bulunamadi');
+            return;
           }
 
-          // Store tokens and user data
-          localStorage.setItem('accessToken', data.accessToken);
-          if (data.refreshToken) {
-            localStorage.setItem('refreshToken', data.refreshToken);
+          setLoading('phoneVerifyBtn', true);
+
+          try {
+            var res = await fetch(API_BASE_URL + '/api/chat-auth/phone-verify-otp', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              credentials: 'include',
+              body: JSON.stringify({
+                phoneNumber:
+                  '+' +
+                  phoneVerifyData.countryCode.replace(/\D/g, '') +
+                  phoneVerifyData.phoneNumber.replace(/\D/g, ''),
+                code: code,
+              }),
+            });
+            var data = await res.json();
+
+            if (!res.ok || !data.success) {
+              showError('phoneStep2Error', data.error || 'Dogrulama basarisiz');
+              digits.forEach(function (d) {
+                d.value = '';
+              });
+              digits[0].focus();
+              return;
+            }
+
+            // Tokens are in httpOnly cookies, just store user data
+            if (data.user) localStorage.setItem('lydian_user', JSON.stringify(data.user));
+            window.location.href = '/chat';
+          } catch (e) {
+            showError('phoneStep2Error', 'Baglanti hatasi');
+          } finally {
+            setLoading('phoneVerifyBtn', false);
           }
-          localStorage.setItem('lydian_user', JSON.stringify(data.user));
+        },
 
-          // Redirect to dashboard
-          window.location.href = '/dashboard.html';
-        } catch (error) {
-          showError('login-error', error.message);
-        } finally {
-          loginBtn.disabled = false;
-          loginBtn.textContent = 'Giriş Yap';
-        }
-      }
+        resendPhoneOTP: async function () {
+          if (!phoneVerifyData) return;
+          var btn = document.getElementById('phoneResendBtn');
+          btn.disabled = true;
 
-      // Register Submit Handler
-      async function handleRegisterSubmit(event) {
-        event.preventDefault();
-        hideError('register-error');
-        hideError('register-success');
+          try {
+            await fetch(API_BASE_URL + '/api/chat-auth/phone-send-otp', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              credentials: 'include',
+              body: JSON.stringify(phoneVerifyData),
+            });
+            AuthPage.startResendCountdown();
+          } catch (e) {
+            btn.disabled = false;
+            btn.textContent = 'Kodu tekrar gonder';
+          }
+        },
 
-        const name = document.getElementById('register-name').value.trim();
-        const password = document.getElementById('register-password').value;
+        startResendCountdown: function () {
+          var btn = document.getElementById('phoneResendBtn');
+          var seconds = 60;
+          btn.disabled = true;
+          btn.textContent = 'Kodu tekrar gonder (' + seconds + 's)';
 
-        if (name.length < 2) {
-          showError('register-error', 'Ad soyad en az 2 karakter olmalı');
-          return;
-        }
+          if (phoneResendTimer) clearInterval(phoneResendTimer);
+          phoneResendTimer = setInterval(function () {
+            seconds--;
+            if (seconds <= 0) {
+              clearInterval(phoneResendTimer);
+              btn.disabled = false;
+              btn.textContent = 'Kodu tekrar gonder';
+            } else {
+              btn.textContent = 'Kodu tekrar gonder (' + seconds + 's)';
+            }
+          }, 1000);
+        },
 
-        if (password.length < SECURITY_CONFIG.passwordMinLength) {
-          showError(
-            'register-error',
-            `Şifre en az ${SECURITY_CONFIG.passwordMinLength} karakter olmalı`
-          );
-          return;
-        }
+        // ---- Forgot Password ----
+        sendResetLink: async function () {
+          hideError('forgotError');
+          var email = document.getElementById('forgotEmailInput').value.trim();
 
-        if (rateLimiter.isBlocked('register')) {
-          showRateLimitWarning();
-          return;
-        }
-        rateLimiter.recordAttempt('register');
+          if (!validateEmail(email)) {
+            showError('forgotError', 'Gecerli bir e-posta adresi girin');
+            return;
+          }
 
-        const registerBtn = document.getElementById('register-btn');
-        registerBtn.disabled = true;
-        registerBtn.textContent = 'Hesap oluşturuluyor...';
+          setLoading('forgotSubmitBtn', true);
 
-        try {
-          // Get reCAPTCHA token
-          const recaptchaToken = await getRecaptchaToken('register');
+          try {
+            await fetch(API_BASE_URL + '/api/chat-auth/forgot-password', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': csrfToken },
+              credentials: 'include',
+              body: JSON.stringify({ email: email }),
+            });
+          } catch (e) {
+            // Always show success (prevents email enumeration)
+          }
 
-          const response = await fetch(`${API_BASE_URL}/api/auth/register`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'X-CSRF-Token': csrfToken,
-            },
-            credentials: 'include',
-            body: JSON.stringify({
-              email: currentEmail,
-              password,
-              name,
-              recaptchaToken,
-            }),
+          setLoading('forgotSubmitBtn', false);
+          showPanel('forgotSuccessPanel');
+        },
+      };
+
+      // ==========================================
+      // OTP DIGIT INPUT HANDLING
+      // ==========================================
+      function setupOTPDigitInputs(rowId) {
+        var row = document.getElementById(rowId);
+        if (!row) return;
+        var digits = row.querySelectorAll('input');
+
+        digits.forEach(function (input, idx) {
+          input.addEventListener('input', function (e) {
+            var val = e.target.value.replace(/\D/g, '');
+            e.target.value = val.charAt(0) || '';
+            if (val && idx < digits.length - 1) {
+              digits[idx + 1].focus();
+            }
           });
 
-          const data = await response.json();
+          input.addEventListener('keydown', function (e) {
+            if (e.key === 'Backspace' && !e.target.value && idx > 0) {
+              digits[idx - 1].focus();
+              digits[idx - 1].value = '';
+            }
+          });
 
-          if (!response.ok || !data.success) {
-            throw new Error(data.error || 'Kayıt başarısız');
-          }
-
-          // Show success message
-          showSuccess(
-            'register-success',
-            '✅ Kayıt başarılı! E-posta doğrulama linki gönderildi. Lütfen e-postanızı kontrol edin.'
-          );
-
-          // Clear form
-          document.getElementById('register-name').value = '';
-          document.getElementById('register-password').value = '';
-
-          // Redirect to email verification page after 3 seconds
-          setTimeout(() => {
-            window.location.href = `/verify-email.html?email=${encodeURIComponent(currentEmail)}`;
-          }, 3000);
-        } catch (error) {
-          showError('register-error', error.message);
-        } finally {
-          registerBtn.disabled = false;
-          registerBtn.textContent = 'Hesap Oluştur';
-        }
+          input.addEventListener('paste', function (e) {
+            e.preventDefault();
+            var paste = (e.clipboardData || window.clipboardData)
+              .getData('text')
+              .replace(/\D/g, '');
+            for (var i = 0; i < digits.length && i < paste.length; i++) {
+              digits[i].value = paste.charAt(i);
+            }
+            var lastIdx = Math.min(paste.length, digits.length) - 1;
+            if (lastIdx >= 0) digits[lastIdx].focus();
+          });
+        });
       }
 
-      // Password strength indicator
-      document.getElementById('register-password')?.addEventListener('input', function (e) {
-        const strength = calculatePasswordStrength(e.target.value);
-        const bar = document.getElementById('strength-bar');
+      // ==========================================
+      // ENTER KEY HANDLERS
+      // ==========================================
+      function setupEnterKeyHandlers() {
+        document.getElementById('emailInput').addEventListener('keydown', function (e) {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            AuthPage.handleEmailContinue();
+          }
+        });
+        document.getElementById('loginPassword').addEventListener('keydown', function (e) {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            AuthPage.handleLoginSubmit();
+          }
+        });
+        document
+          .getElementById('registerPasswordConfirm')
+          .addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+              e.preventDefault();
+              AuthPage.handleRegisterSubmit();
+            }
+          });
+        document.getElementById('phoneNumberInput').addEventListener('keydown', function (e) {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            AuthPage.sendPhoneOTP();
+          }
+        });
+        document.getElementById('forgotEmailInput').addEventListener('keydown', function (e) {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            AuthPage.sendResetLink();
+          }
+        });
+      }
+
+      // ==========================================
+      // PASSWORD STRENGTH INDICATOR
+      // ==========================================
+      document.getElementById('registerPassword').addEventListener('input', function (e) {
+        var strength = calculatePasswordStrength(e.target.value);
+        var bar = document.getElementById('registerStrengthBar');
         bar.className = 'password-strength-bar ' + strength;
       });
 
-      // UI Navigation Functions
-      function showPasswordStep() {
-        document.getElementById('auth-mode-login').classList.add('hidden');
-        document.getElementById('register-step').classList.add('hidden');
-        document.getElementById('password-step').classList.remove('hidden');
-        document.getElementById('user-email-display').textContent = currentEmail;
-      }
-
-      function showRegisterStep() {
-        document.getElementById('auth-mode-login').classList.add('hidden');
-        document.getElementById('password-step').classList.add('hidden');
-        document.getElementById('register-step').classList.remove('hidden');
-        document.getElementById('register-email-display').textContent = currentEmail;
-      }
-
-      function backToEmail() {
-        document.getElementById('auth-mode-login').classList.remove('hidden');
-        document.getElementById('password-step').classList.add('hidden');
-        document.getElementById('register-step').classList.add('hidden');
-        currentEmail = '';
-        hideError('email-error');
-        hideError('login-error');
-        hideError('register-error');
-        hideError('register-success');
-      }
-
-      // Forgot Password Functions
-      function showForgotPassword() {
-        document.getElementById('forgot-password-modal').style.display = 'flex';
-        document.getElementById('forgot-step-1').classList.remove('hidden');
-        document.getElementById('forgot-step-2').classList.add('hidden');
-      }
-
-      function closeForgotPassword() {
-        document.getElementById('forgot-password-modal').style.display = 'none';
-        document.getElementById('forgot-email').value = '';
-      }
-
-      async function sendResetLink() {
-        const email = document.getElementById('forgot-email').value.trim();
-
-        if (!validateEmail(email)) {
-          alert('Geçerli bir e-posta adresi girin');
-          return;
-        }
-
-        try {
-          await fetch(`${API_BASE_URL}/api/auth/request-reset`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'X-CSRF-Token': csrfToken,
-            },
-            credentials: 'include',
-            body: JSON.stringify({ email }),
-          });
-
-          // Always show success (security best practice)
-          document.getElementById('forgot-step-1').classList.add('hidden');
-          document.getElementById('forgot-step-2').classList.remove('hidden');
-        } catch (error) {
-          // Still show success (prevents email enumeration)
-          document.getElementById('forgot-step-1').classList.add('hidden');
-          document.getElementById('forgot-step-2').classList.remove('hidden');
-        }
-      }
-
-      // Close modal on outside click
-      window.onclick = function (event) {
-        const forgotModal = document.getElementById('forgot-password-modal');
-        if (event.target === forgotModal) {
-          closeForgotPassword();
-        }
-      };
-
-      // ========================================
-      // 🚀 PREMIUM EMAIL AUTO-COMPLETE FEATURES
-      // ========================================
-
-      // Common email providers for autocomplete
-      const emailProviders = [
+      // ==========================================
+      // EMAIL AUTOCOMPLETE
+      // ==========================================
+      var emailProviders = [
         'gmail.com',
         'outlook.com',
         'hotmail.com',
@@ -1217,8 +1907,7 @@
         'zoho.com',
       ];
 
-      // Common typos mapping for email domain correction
-      const emailTypos = {
+      var emailTypos = {
         'gmial.com': 'gmail.com',
         'gmai.com': 'gmail.com',
         'gmil.com': 'gmail.com',
@@ -1237,135 +1926,122 @@
         'yandeks.com': 'yandex.com',
       };
 
-      let selectedSuggestionIndex = -1;
+      var selectedSuggestionIndex = -1;
 
-      // Email input autocomplete handler
       function setupEmailAutocomplete() {
-        const emailInput = document.getElementById('email-input');
-        const suggestionsDiv = document.getElementById('email-suggestions');
-        const hintDiv = document.getElementById('email-suggestion-hint');
-
+        var emailInput = document.getElementById('emailInput');
+        var suggestionsDiv = document.getElementById('emailSuggestions');
+        var hintDiv = document.getElementById('emailSuggestionHint');
         if (!emailInput || !suggestionsDiv) return;
 
-        // Input event for real-time suggestions
         emailInput.addEventListener('input', function (e) {
-          const value = e.target.value;
-          const atIndex = value.indexOf('@');
+          var value = e.target.value;
+          var atIndex = value.indexOf('@');
 
-          // Hide suggestions if no @ or email is complete
           if (atIndex === -1 || value.includes(' ')) {
-            suggestionsDiv.classList.add('hidden');
-            hintDiv.classList.add('hidden');
+            suggestionsDiv.classList.remove('visible');
+            hintDiv.classList.remove('visible');
             return;
           }
 
-          const username = value.substring(0, atIndex);
-          const domain = value.substring(atIndex + 1);
+          var username = value.substring(0, atIndex);
+          var domain = value.substring(atIndex + 1);
 
-          // Check for typos in domain
-          const correctedDomain = emailTypos[domain];
-          if (correctedDomain && domain.length > 3) {
-            const correctedEmail = username + '@' + correctedDomain;
-            hintDiv.innerHTML = `💡 <strong>${sanitizeInput(
-              value
-            )}</strong> yerine <strong>${sanitizeInput(correctedEmail)}</strong> demek istediniz mi?`;
-            hintDiv.classList.remove('hidden');
-            hintDiv.onclick = () => {
+          // Check for typos
+          var corrected = emailTypos[domain];
+          if (corrected && domain.length > 3) {
+            var correctedEmail = username + '@' + corrected;
+            hintDiv.innerHTML =
+              '&#x1F4A1; <strong>' +
+              sanitizeInput(value) +
+              '</strong> yerine <strong>' +
+              sanitizeInput(correctedEmail) +
+              '</strong> demek istediniz mi?';
+            hintDiv.classList.add('visible');
+            hintDiv.onclick = function () {
               emailInput.value = correctedEmail;
-              hintDiv.classList.add('hidden');
-              suggestionsDiv.classList.add('hidden');
+              hintDiv.classList.remove('visible');
+              suggestionsDiv.classList.remove('visible');
               emailInput.focus();
             };
           } else {
-            hintDiv.classList.add('hidden');
+            hintDiv.classList.remove('visible');
           }
 
-          // Show autocomplete suggestions
+          // Show autocomplete
           if (username && domain.length > 0 && domain.length < 15) {
-            const matches = emailProviders.filter(provider =>
-              provider.toLowerCase().startsWith(domain.toLowerCase())
-            );
-
+            var matches = emailProviders.filter(function (p) {
+              return p.toLowerCase().startsWith(domain.toLowerCase());
+            });
             if (matches.length > 0) {
               showEmailSuggestions(matches, username, domain);
             } else {
-              suggestionsDiv.classList.add('hidden');
+              suggestionsDiv.classList.remove('visible');
             }
           } else {
-            suggestionsDiv.classList.add('hidden');
+            suggestionsDiv.classList.remove('visible');
           }
         });
 
-        // Keyboard navigation for suggestions
         emailInput.addEventListener('keydown', function (e) {
-          const items = suggestionsDiv.querySelectorAll('.email-suggestion-item');
+          var items = suggestionsDiv.querySelectorAll('.email-suggestion-item');
           if (items.length === 0) return;
 
           if (e.key === 'ArrowDown') {
             e.preventDefault();
             selectedSuggestionIndex = Math.min(selectedSuggestionIndex + 1, items.length - 1);
-            updateSuggestionSelection(items);
+            updateSuggestionHighlight(items);
           } else if (e.key === 'ArrowUp') {
             e.preventDefault();
             selectedSuggestionIndex = Math.max(selectedSuggestionIndex - 1, 0);
-            updateSuggestionSelection(items);
+            updateSuggestionHighlight(items);
           } else if (e.key === 'Enter' && selectedSuggestionIndex >= 0) {
             e.preventDefault();
             items[selectedSuggestionIndex].click();
           } else if (e.key === 'Escape') {
-            suggestionsDiv.classList.add('hidden');
-            hintDiv.classList.add('hidden');
+            suggestionsDiv.classList.remove('visible');
+            hintDiv.classList.remove('visible');
             selectedSuggestionIndex = -1;
           }
         });
 
-        // Close suggestions on outside click
         document.addEventListener('click', function (e) {
           if (!emailInput.contains(e.target) && !suggestionsDiv.contains(e.target)) {
-            suggestionsDiv.classList.add('hidden');
+            suggestionsDiv.classList.remove('visible');
             selectedSuggestionIndex = -1;
           }
         });
       }
 
       function showEmailSuggestions(matches, username, currentDomain) {
-        const suggestionsDiv = document.getElementById('email-suggestions');
+        var suggestionsDiv = document.getElementById('emailSuggestions');
         suggestionsDiv.innerHTML = '';
         selectedSuggestionIndex = -1;
 
-        matches.slice(0, 5).forEach((provider, index) => {
-          const item = document.createElement('div');
+        matches.slice(0, 5).forEach(function (provider) {
+          var item = document.createElement('div');
           item.className = 'email-suggestion-item';
 
-          const icon = document.createElement('span');
-          icon.className = 'icon';
-          icon.textContent = '📧';
+          var highlighted = provider.replace(new RegExp('^' + currentDomain, 'i'), function (m) {
+            return '<strong>' + m + '</strong>';
+          });
+          item.innerHTML = sanitizeInput(username) + '@' + highlighted;
 
-          const text = document.createElement('span');
-          const highlightedDomain = provider.replace(
-            new RegExp('^' + currentDomain, 'i'),
-            match => `<strong>${match}</strong>`
-          );
-          text.innerHTML = `${sanitizeInput(username)}@${highlightedDomain}`;
-
-          item.appendChild(icon);
-          item.appendChild(text);
-
-          item.addEventListener('click', () => {
-            document.getElementById('email-input').value = `${username}@${provider}`;
-            suggestionsDiv.classList.add('hidden');
-            document.getElementById('email-input').focus();
+          item.addEventListener('click', function () {
+            document.getElementById('emailInput').value = username + '@' + provider;
+            suggestionsDiv.classList.remove('visible');
+            document.getElementById('emailInput').focus();
           });
 
           suggestionsDiv.appendChild(item);
         });
 
-        suggestionsDiv.classList.remove('hidden');
+        suggestionsDiv.classList.add('visible');
       }
 
-      function updateSuggestionSelection(items) {
-        items.forEach((item, index) => {
-          if (index === selectedSuggestionIndex) {
+      function updateSuggestionHighlight(items) {
+        items.forEach(function (item, i) {
+          if (i === selectedSuggestionIndex) {
             item.style.background = 'rgba(255, 255, 255, 0.08)';
             item.style.color = '#ffffff';
           } else {
@@ -1374,9 +2050,6 @@
           }
         });
       }
-
-      // Initialize email autocomplete on page load
-      window.addEventListener('DOMContentLoaded', setupEmailAutocomplete);
     </script>
     <script src="/js/auth-secure.js"></script>
   </body>
