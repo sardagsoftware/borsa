@@ -1,4 +1,4 @@
-// LyDian Image Generation - Azure DALL-E 3 (Primary) + Google Imagen 3 (Fallback)
+// LyDian Image Generation - Multi-Provider Engine
 // Multi-Provider with Hidden AI
 
 const { GoogleAuth } = require('google-auth-library');
@@ -6,7 +6,7 @@ const OpenAI = require('lydian-labs');
 const { getCorsOrigin } = require('./_middleware/cors');
 
 // ==========================================
-// AZURE DALL-E 3 CONFIGURATION (PRIMARY)
+// PRIMARY PROVIDER CONFIGURATION
 // ==========================================
 const AZURE_DALLE = {
   enabled: () => !!(process.env.AZURE_OPENAI_ENDPOINT && process.env.AZURE_OPENAI_API_KEY),
@@ -17,7 +17,7 @@ const AZURE_DALLE = {
 };
 
 // ==========================================
-// GOOGLE IMAGEN 3 CONFIGURATION (FALLBACK)
+// SECONDARY PROVIDER CONFIGURATION
 // ==========================================
 const VERTEX_CONFIG = {
   enabled: () => !!process.env.GOOGLE_APPLICATION_CREDENTIALS,
@@ -44,7 +44,7 @@ async function getGoogleAccessToken() {
 }
 
 // ==========================================
-// AZURE DALL-E 3 IMAGE GENERATION
+// PRIMARY IMAGE GENERATION
 // ==========================================
 async function generateWithAzureDallE(prompt, options = {}) {
   const {
@@ -53,7 +53,7 @@ async function generateWithAzureDallE(prompt, options = {}) {
     style = 'vivid', // 'vivid', 'natural'
   } = options;
 
-  console.log('🎨 Azure DALL-E 3 Request:', { prompt, size, quality, style });
+  console.log('🎨 LyDian Image Primary Request:', { prompt, size, quality, style });
 
   const client = new OpenAI({
     apiKey: AZURE_DALLE.apiKey,
@@ -72,7 +72,7 @@ async function generateWithAzureDallE(prompt, options = {}) {
     response_format: 'url',
   });
 
-  console.log('✅ Azure DALL-E 3 Generation Complete');
+  console.log('✅ LyDian Image Primary Complete');
 
   return {
     provider: 'LyDian AI',
@@ -85,7 +85,7 @@ async function generateWithAzureDallE(prompt, options = {}) {
 }
 
 // ==========================================
-// GOOGLE IMAGEN 3 IMAGE GENERATION
+// SECONDARY IMAGE GENERATION
 // ==========================================
 async function generateWithGoogleImagen(prompt, options = {}) {
   const {
@@ -96,7 +96,7 @@ async function generateWithGoogleImagen(prompt, options = {}) {
     personGeneration = 'allow_adult',
   } = options;
 
-  console.log('🎨 Google Imagen 3 Request:', { prompt, aspectRatio, numberOfImages });
+  console.log('🎨 LyDian Image Secondary Request:', { prompt, aspectRatio, numberOfImages });
 
   const accessToken = await getGoogleAccessToken();
   const apiUrl = `${VERTEX_CONFIG.endpoint}/v1/projects/${VERTEX_CONFIG.projectId}/locations/${VERTEX_CONFIG.location}/publishers/google/models/${VERTEX_CONFIG.model}:predict`;
@@ -133,7 +133,7 @@ async function generateWithGoogleImagen(prompt, options = {}) {
   }
 
   const result = await response.json();
-  console.log('✅ Google Imagen 3 Generation Complete');
+  console.log('✅ LyDian Image Secondary Complete');
 
   const predictions = result.predictions || [];
   return {
@@ -148,12 +148,12 @@ async function generateWithGoogleImagen(prompt, options = {}) {
 }
 
 // ==========================================
-// OPENAI DALL-E 3 (FALLBACK)
+// FALLBACK IMAGE GENERATION
 // ==========================================
 async function generateWithOpenAIDallE(prompt, options = {}) {
   const { size = '1024x1024', quality = 'hd', style = 'vivid' } = options;
 
-  console.log('🎨 OpenAI DALL-E 3 Request:', { prompt, size, quality, style });
+  console.log('🎨 LyDian Image Fallback Request:', { prompt, size, quality, style });
 
   const client = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
@@ -169,7 +169,7 @@ async function generateWithOpenAIDallE(prompt, options = {}) {
     response_format: 'url',
   });
 
-  console.log('✅ OpenAI DALL-E 3 Generation Complete');
+  console.log('✅ LyDian Image Fallback Complete');
 
   return {
     provider: 'LyDian AI',
@@ -187,26 +187,26 @@ async function generateWithOpenAIDallE(prompt, options = {}) {
 async function generateImage(prompt, options = {}) {
   const providers = [];
 
-  // Priority 1: Azure DALL-E 3
+  // Priority 1: Primary Provider
   if (AZURE_DALLE.enabled()) {
     providers.push({
-      name: 'Azure DALL-E 3',
+      name: 'LyDian-Primary',
       generate: () => generateWithAzureDallE(prompt, options),
     });
   }
 
-  // Priority 2: Google Imagen 3
+  // Priority 2: Secondary Provider
   if (VERTEX_CONFIG.enabled()) {
     providers.push({
-      name: 'Google Imagen 3',
+      name: 'LyDian-Secondary',
       generate: () => generateWithGoogleImagen(prompt, options),
     });
   }
 
-  // Priority 3: OpenAI DALL-E 3 (Fallback)
+  // Priority 3: Fallback Provider
   if (process.env.OPENAI_API_KEY) {
     providers.push({
-      name: 'OpenAI DALL-E 3',
+      name: 'LyDian-Fallback',
       generate: () => generateWithOpenAIDallE(prompt, options),
     });
   }
@@ -248,11 +248,11 @@ module.exports = async (req, res) => {
   try {
     const {
       prompt,
-      // Azure DALL-E options
+      // Primary provider options
       size = '1024x1024',
       quality = 'hd',
       style = 'vivid',
-      // Google Imagen options
+      // Secondary provider options
       numberOfImages = 1,
       aspectRatio = '1:1',
       negativePrompt = '',

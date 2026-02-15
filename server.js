@@ -2032,44 +2032,44 @@ const aiModels = [
   // European Models
   {
     id: 'MX7C4E9A-2',
-    name: 'Mistral Large 2',
+    name: 'LyDian Enterprise Large',
     provider: 'lydian-enterprise',
     tokens: '128K',
     category: 'EUROPEAN',
-    description: "Mistral'ın büyük modeli",
+    description: 'Gelismis kurumsal AI modeli',
     capabilities: ['text', 'reasoning', 'multilingual'],
     available: true,
   },
   // Search Models
   {
     id: 'perplexity-llama-3.1-sonar-large',
-    name: 'Perplexity Sonar Large',
+    name: 'LyDian Search Pro',
     provider: 'perplexity',
     tokens: '127K',
     category: 'SEARCH',
-    description: "Perplexity'nin arama odaklı modeli",
+    description: 'Arama odakli AI modeli',
     capabilities: ['text', 'search', 'real-time'],
     available: true,
   },
   // X Models
   {
     id: 'grok-beta',
-    name: 'Grok Beta',
+    name: 'LyDian X-Engine',
     provider: 'x',
     tokens: '128K',
     category: 'X',
-    description: "X'in AI modeli",
+    description: 'Hizli cikarim motoru',
     capabilities: ['text', 'social', 'real-time'],
     available: true,
   },
   // Open Source Models
   {
     id: 'deepseek-v3',
-    name: 'DeepSeek-V3',
+    name: 'LyDian Deep Engine',
     provider: 'deepseek',
     tokens: '64K',
     category: 'OPEN_SOURCE',
-    description: 'DeepSeek açık kaynak modeli',
+    description: 'Derin analiz motoru',
     capabilities: ['text', 'code', 'reasoning'],
     available: true,
   },
@@ -2710,27 +2710,27 @@ app.post('/api/chat', async (req, res) => {
     const provider = selectedModel.provider.toLowerCase();
 
     if (provider === 'lydian-research' && process.env.ANTHROPIC_API_KEY) {
-      console.log('🤖 Calling Anthropic AX9F7E2B API...');
+      console.log('🤖 Calling LyDian Research Engine...');
       const result = await callAnthropicAPI(message, history, temperature, max_tokens);
       aiResponse = result.response;
       usage = result.usage;
     } else if (provider === 'lydian-labs' && process.env.OPENAI_API_KEY) {
-      console.log('🤖 Calling OpenAI API...');
+      console.log('🤖 Calling LyDian Engine A...');
       const result = await callOpenAIAPI(message, history, temperature, max_tokens);
       aiResponse = result.response;
       usage = result.usage;
     } else if (provider === 'lydian-velocity' && process.env.GROQ_API_KEY) {
-      console.log('🤖 Calling Groq API...');
+      console.log('🤖 Calling LyDian Velocity...');
       const result = await callGroqAPI(message, history, temperature, max_tokens, selectedModel.id);
       aiResponse = result.response;
       usage = result.usage;
     } else if (provider === 'lydian-vision' && process.env.GOOGLE_AI_API_KEY) {
-      console.log('🤖 Calling Google Gemini API...');
+      console.log('🤖 Calling LyDian Engine B...');
       const result = await callGoogleGeminiAPI(message, history, temperature, max_tokens);
       aiResponse = result.response;
       usage = result.usage;
     } else if (provider === 'zhipu' && process.env.ZHIPU_API_KEY) {
-      console.log('🤖 Calling Zhipu AI API...');
+      console.log('🤖 Calling LyDian Engine C...');
       const result = await callZhipuAPI(
         message,
         history,
@@ -2741,12 +2741,12 @@ app.post('/api/chat', async (req, res) => {
       aiResponse = result.response;
       usage = result.usage;
     } else if (provider === 'yi' && process.env.YI_API_KEY) {
-      console.log('🤖 Calling 01.AI (Yi) API...');
+      console.log('🤖 Calling LyDian Engine D...');
       const result = await callYiAPI(message, history, temperature, max_tokens, selectedModel.id);
       aiResponse = result.response;
       usage = result.usage;
     } else if (provider === 'lydian-enterprise' && process.env.MISTRAL_API_KEY) {
-      console.log('🤖 Calling Mistral AI API...');
+      console.log('🤖 Calling LyDian Enterprise Engine...');
       const result = await callMistralAPI(
         message,
         history,
@@ -5763,11 +5763,11 @@ app.post('/api/gemini', async (req, res) => {
       'gemini-2.0-flash': {
         generate: {
           success: true,
-          model: 'Google Gemini 2.0 Flash',
+          model: 'LyDian Vision Flash',
           response: {
             text:
               data.prompt ||
-              'Bu Google Gemini 2.0 Flash ile üretilmiş bir yanıttır. Multimodal AI yetenekleri ile gelişmiş analiz ve içerik üretimi sağlar.',
+              'Bu LyDian Vision Flash ile uretilmis bir yanittir. Multimodal AI yetenekleri ile gelismis analiz ve icerik uretimi saglar.',
             reasoning: 'Advanced reasoning with multimodal understanding',
             safety: { blocked: false, category: 'safe', probability: 'low' },
             tokens: { input: 25, output: 150, total: 175 },
@@ -5779,7 +5779,7 @@ app.post('/api/gemini', async (req, res) => {
           analysis: {
             objects: ['workspace', 'computer', 'documents'],
             scene: 'Professional office environment with AI development setup',
-            text_detected: 'Gemini AI - Next Generation Intelligence',
+            text_detected: 'LyDian Vision - Advanced Intelligence',
             sentiment: 'positive',
             colors: ['blue', 'white', 'gray'],
             composition: 'well-balanced, professional layout',
@@ -5789,9 +5789,9 @@ app.post('/api/gemini', async (req, res) => {
       GE6D8A4F: {
         generate: {
           success: true,
-          model: 'Google Gemini 1.5 Pro',
+          model: 'LyDian Vision Pro',
           response: {
-            text: 'Gemini 1.5 Pro ile gelişmiş dil işleme ve çok modlu analiz yetenekleri.',
+            text: 'LyDian Vision Pro ile gelismis dil isleme ve cok modlu analiz yetenekleri.',
             reasoning: 'Long context understanding with enhanced capabilities',
             safety: { blocked: false, category: 'safe', probability: 'low' },
             tokens: { input: 30, output: 120, total: 150 },
@@ -5834,8 +5834,7 @@ app.post('/api/gemini', async (req, res) => {
   } catch (error) {
     res.status(500).json({
       success: false,
-      error: 'Google Gemini AI error',
-      details: error.message,
+      error: 'Islem basarisiz oldu',
     });
   }
 });
@@ -5845,18 +5844,18 @@ app.post('/api/openai', async (req, res) => {
   try {
     const { model = 'OX7A3F8D', messages, data = {}, region = 'us-east-1' } = req.body;
 
-    // Enterprise OpenAI Services
+    // Enterprise LyDian Prime Services
     const openaiModels = {
       OX7A3F8D: {
         chat: {
           success: true,
-          model: 'OpenAI OX5C9E2B Turbo',
+          model: 'LyDian Prime Turbo',
           response: {
             message: {
               role: 'assistant',
               content:
                 data.prompt ||
-                'Bu OpenAI OX5C9E2B Turbo ile üretilmiş gelişmiş bir yanıttır. Son teknoloji dil modeli ile yüksek kaliteli analiz ve içerik üretimi sağlar.',
+                'Bu LyDian Prime Turbo ile uretilmis gelismis bir yanittir. Son teknoloji dil modeli ile yuksek kaliteli analiz ve icerik uretimi saglar.',
             },
             usage: { prompt_tokens: 50, completion_tokens: 200, total_tokens: 250 },
             finish_reason: 'stop',
@@ -5868,7 +5867,7 @@ app.post('/api/openai', async (req, res) => {
           analysis: {
             description: 'Professional workspace with advanced AI development tools',
             objects: ['laptop', 'monitors', 'keyboard', 'documents'],
-            text_detected: 'OX5C9E2B Turbo - Advanced Language Model',
+            text_detected: 'LyDian Prime - Advanced AI',
             confidence: 0.96,
             technical_analysis: 'High-resolution image showing modern AI development environment',
           },
@@ -5877,7 +5876,7 @@ app.post('/api/openai', async (req, res) => {
       'OX5C9E2B-vision': {
         vision: {
           success: true,
-          model: 'OpenAI OX5C9E2B Vision',
+          model: 'LyDian Prime Vision',
           analysis: {
             scene_description: 'Modern AI research laboratory setup',
             detected_objects: ['computer', 'screens', 'ai_interface'],
@@ -5924,8 +5923,7 @@ app.post('/api/openai', async (req, res) => {
   } catch (error) {
     res.status(500).json({
       success: false,
-      error: 'OpenAI OX5C9E2B error',
-      details: error.message,
+      error: 'Islem basarisiz oldu',
     });
   }
 });
@@ -5940,13 +5938,13 @@ app.post('/api/AX9F7E2B', async (req, res) => {
       AX9F7E2B: {
         chat: {
           success: true,
-          model: 'Anthropic AX9F7E2B 3.5 Sonnet',
+          model: 'LyDian Elite Sonnet',
           response: {
             message: {
               role: 'assistant',
               content:
                 data.prompt ||
-                'Bu Anthropic AX9F7E2B 3.5 Sonnet ile üretilmiş yüksek kaliteli bir yanıttır. Gelişmiş analitik düşünme ve güvenli AI yetenekleri ile enterprise seviyede hizmet sağlar.',
+                'Bu LyDian Elite Sonnet ile uretilmis yuksek kaliteli bir yanittir. Gelismis analitik dusunme ve guvenli AI yetenekleri ile enterprise seviyede hizmet saglar.',
             },
             usage: { input_tokens: 45, output_tokens: 180, total_tokens: 225 },
             stop_reason: 'end_turn',
@@ -5958,7 +5956,7 @@ app.post('/api/AX9F7E2B', async (req, res) => {
           analysis: {
             description: 'Sophisticated AI development environment with multiple screens',
             detected_elements: ['code_editor', 'terminal', 'documentation', 'ai_interface'],
-            technical_assessment: 'AX9F7E2B 3.5 Sonnet - Advanced Constitutional AI',
+            technical_assessment: 'LyDian Elite Sonnet - Advanced Constitutional AI',
             safety_analysis: 'Content appears safe and educational',
             confidence: 0.97,
           },
@@ -5967,12 +5965,12 @@ app.post('/api/AX9F7E2B', async (req, res) => {
       AX2B6E9F: {
         chat: {
           success: true,
-          model: 'Anthropic AX9F7E2B 3 Haiku',
+          model: 'LyDian Elite Haiku',
           response: {
             message: {
               role: 'assistant',
               content:
-                'AX9F7E2B 3 Haiku ile hızlı ve verimli AI yanıtları. Düşük latency ile yüksek performans.',
+                'LyDian Elite Haiku ile hizli ve verimli AI yanitlari. Dusuk latency ile yuksek performans.',
             },
             usage: { input_tokens: 30, output_tokens: 100, total_tokens: 130 },
             stop_reason: 'end_turn',
@@ -5982,12 +5980,12 @@ app.post('/api/AX9F7E2B', async (req, res) => {
       AX4D8C1A: {
         chat: {
           success: true,
-          model: 'Anthropic AX9F7E2B 3 Opus',
+          model: 'LyDian Elite Opus',
           response: {
             message: {
               role: 'assistant',
               content:
-                'AX9F7E2B 3 Opus ile en gelişmiş analitik düşünme ve problem çözme yetenekleri.',
+                'LyDian Elite Opus ile en gelismis analitik dusunme ve problem cozme yetenekleri.',
             },
             usage: { input_tokens: 60, output_tokens: 250, total_tokens: 310 },
             stop_reason: 'end_turn',
@@ -6025,7 +6023,7 @@ app.post('/api/AX9F7E2B', async (req, res) => {
         monitoring: 'enabled',
         rateLimit: '1000 requests/minute',
         safety: 'constitutional_ai_enabled',
-        responsible_ai: 'anthropic_safety_measures',
+        responsible_ai: 'lydian_safety_measures',
       },
     };
 
@@ -6033,8 +6031,7 @@ app.post('/api/AX9F7E2B', async (req, res) => {
   } catch (error) {
     res.status(500).json({
       success: false,
-      error: 'Anthropic AX9F7E2B error',
-      details: error.message,
+      error: 'Islem basarisiz oldu',
     });
   }
 });
@@ -8386,7 +8383,7 @@ if (shouldStartServer) {
         },
         hero: {
           title: 'Enterprise AI Platform',
-          subtitle: 'Integrate Microsoft Azure, Google Gemini & Z.AI Services',
+          subtitle: 'Integrate Advanced AI Services',
           cta: 'Start Building',
           learnMore: 'Learn More',
         },
@@ -8414,7 +8411,7 @@ if (shouldStartServer) {
         },
         hero: {
           title: 'Kurumsal AI Platformu',
-          subtitle: 'Microsoft Azure, Google Gemini ve Z.AI Servislerini Entegre Edin',
+          subtitle: 'Gelismis AI Servislerini Entegre Edin',
           cta: 'Başlayın',
           learnMore: 'Daha Fazla Öğren',
         },
@@ -8442,7 +8439,7 @@ if (shouldStartServer) {
         },
         hero: {
           title: 'Plataforma IA Empresarial',
-          subtitle: 'Integra Microsoft Azure, Google Gemini y Servicios Z.AI',
+          subtitle: 'Integra Servicios Avanzados de IA',
           cta: 'Comenzar',
           learnMore: 'Saber Más',
         },
@@ -8470,7 +8467,7 @@ if (shouldStartServer) {
         },
         hero: {
           title: "Plateforme IA d'Entreprise",
-          subtitle: 'Intégrez Microsoft Azure, Google Gemini et Services Z.AI',
+          subtitle: 'Integrez des Services IA Avances',
           cta: 'Commencer',
           learnMore: 'En Savoir Plus',
         },
@@ -8498,7 +8495,7 @@ if (shouldStartServer) {
         },
         hero: {
           title: 'Unternehmens-KI-Plattform',
-          subtitle: 'Integrieren Sie Microsoft Azure, Google Gemini & Z.AI Services',
+          subtitle: 'Integrieren Sie Fortschrittliche KI-Services',
           cta: 'Jetzt Beginnen',
           learnMore: 'Mehr Erfahren',
         },
@@ -8526,7 +8523,7 @@ if (shouldStartServer) {
         },
         hero: {
           title: 'エンタープライズAIプラットフォーム',
-          subtitle: 'Microsoft Azure、Google Gemini、Z.AIサービスを統合',
+          subtitle: '高度なAIサービスを統合',
           cta: '開始する',
           learnMore: 'もっと見る',
         },
@@ -8554,7 +8551,7 @@ if (shouldStartServer) {
         },
         hero: {
           title: '엔터프라이즈 AI 플랫폼',
-          subtitle: 'Microsoft Azure, Google Gemini 및 Z.AI 서비스 통합',
+          subtitle: '고급 AI 서비스 통합',
           cta: '시작하기',
           learnMore: '더 알아보기',
         },
@@ -8582,7 +8579,7 @@ if (shouldStartServer) {
         },
         hero: {
           title: '企业AI平台',
-          subtitle: '集成Microsoft Azure、Google Gemini和Z.AI服务',
+          subtitle: '集成高级AI服务',
           cta: '开始使用',
           learnMore: '了解更多',
         },
@@ -8610,7 +8607,7 @@ if (shouldStartServer) {
         },
         hero: {
           title: 'منصة الذكاء الاصطناعي للمؤسسات',
-          subtitle: 'دمج خدمات Microsoft Azure و Google Gemini و Z.AI',
+          subtitle: 'دمج خدمات الذكاء الاصطناعي المتقدمة',
           cta: 'ابدأ الآن',
           learnMore: 'اعرف المزيد',
         },
@@ -8638,7 +8635,7 @@ if (shouldStartServer) {
         },
         hero: {
           title: 'एंटरप्राइज़ AI प्लेटफ़ॉर्म',
-          subtitle: 'Microsoft Azure, Google Gemini और Z.AI सेवाओं को एकीकृत करें',
+          subtitle: 'उन्नत AI सेवाओं को एकीकृत करें',
           cta: 'शुरू करें',
           learnMore: 'और जानें',
         },
@@ -8666,7 +8663,7 @@ if (shouldStartServer) {
         },
         hero: {
           title: 'Корпоративная ИИ Платформа',
-          subtitle: 'Интегрируйте Microsoft Azure, Google Gemini и Z.AI сервисы',
+          subtitle: 'Интегрируйте Продвинутые ИИ Сервисы',
           cta: 'Начать',
           learnMore: 'Узнать Больше',
         },
@@ -12992,19 +12989,19 @@ app.get('/compare', (req, res) => {
                     <div id="model-selection">
                         <div class="model-checkbox">
                             <input type="checkbox" id="OX5C9E2B" value="OX5C9E2B">
-                            <label for="OX5C9E2B">OX5C9E2B (OpenAI)</label>
+                            <label for="OX5C9E2B">LyDian Prime</label>
                         </div>
                         <div class="model-checkbox">
                             <input type="checkbox" id="AX9F7E2B" value="AX9F7E2B">
-                            <label for="AX9F7E2B">AX9F7E2B 3.5 Sonnet (Anthropic)</label>
+                            <label for="AX9F7E2B">LyDian Elite</label>
                         </div>
                         <div class="model-checkbox">
                             <input type="checkbox" id="GE6D8A4F" value="GE6D8A4F">
-                            <label for="GE6D8A4F">Gemini Pro (Google)</label>
+                            <label for="GE6D8A4F">LyDian Vision</label>
                         </div>
                         <div class="model-checkbox">
                             <input type="checkbox" id="GX9A5E1D" value="GX9A5E1D">
-                            <label for="GX9A5E1D">Llama 3 70B (Meta)</label>
+                            <label for="GX9A5E1D">LyDian Velocity</label>
                         </div>
                     </div>
                 </div>
@@ -17260,7 +17257,7 @@ app.post('/api/chat/specialized', async (req, res) => {
         break;
 
       case 'reasoning':
-        console.log('🧠 Deep Reasoning - DeepSeek R1');
+        console.log('🧠 Deep Reasoning - LyDian Deep');
         if (process.env.DEEPSEEK_API_KEY) {
           try {
             const deepseekResponse = await fetch('https://api.deepseek.com/v1/chat/completions', {
@@ -17276,8 +17273,8 @@ app.post('/api/chat/specialized', async (req, res) => {
                     role: 'system',
                     content:
                       detectedLang === 'tr'
-                        ? "Sen DeepSeek R1, gelişmiş akıl yürütme yapan bir AI'sın. Adım adım düşün ve detaylı açıklamalar sun. TÜRKÇE yanıt ver."
-                        : 'You are DeepSeek R1, an advanced reasoning AI. Think step-by-step and provide detailed explanations.',
+                        ? "Sen LyDian Deep, gelismis akil yurutme yapan bir AI'sin. Adim adim dusun ve detayli aciklamalar sun. TURKCE yanit ver."
+                        : 'You are LyDian Deep, an advanced reasoning AI. Think step-by-step and provide detailed explanations.',
                   },
                   ...history.map(h => ({ role: h.role, content: h.content })),
                   {
@@ -17382,7 +17379,7 @@ app.post('/api/chat/specialized', async (req, res) => {
         break;
 
       case 'video':
-        console.log('🎥 Video Generation - Google Veo');
+        console.log('🎥 Video Generation - LyDian Video');
         result = {
           response: `🎥 **Video Oluşturma**\n\n**İstek:** ${message}\n\n**İşlem Detayları:**\n- Çözünürlük: 1080p (1920x1080)\n- Süre: 5-10 saniye\n- Stil: Sinematik/Fotorealistik\n- Kare Hızı: 30 FPS\n\n**Tahmini Süre:** 2-3 dakika\n\n*Not: Video oluşturma için API yapılandırması gerekiyor.*`,
           usage: { prompt_tokens: 50, completion_tokens: 100, total_tokens: 150 },
@@ -17391,7 +17388,7 @@ app.post('/api/chat/specialized', async (req, res) => {
         break;
 
       case 'general':
-        console.log('⚡ Ultra-Fast - Groq Llama 3.3');
+        console.log('⚡ Ultra-Fast - LyDian Velocity');
         try {
           // Dile özel sistem promptu al
           const systemPrompt = getSystemPromptForLanguage(detectedLang, 'general');
@@ -17553,7 +17550,7 @@ app.post('/api/chat/specialized', async (req, res) => {
         break;
 
       case 'web-search': {
-        console.log('🌐 Web Search Mode - Perplexity AI');
+        console.log('🌐 Web Search Mode - LyDian Search');
 
         let webSearchImages = [];
 

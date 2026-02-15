@@ -13,7 +13,7 @@ let videoIdCounter = 0;
 
 /**
  * POST /api/video/analyze
- * Analyze video content using Google Gemini Vision
+ * Analyze video content using LyDian Vision
  */
 async function handleAnalyze(req, res) {
   try {
@@ -26,7 +26,7 @@ async function handleAnalyze(req, res) {
       });
     }
 
-    // Prepare video data for Gemini
+    // Prepare video data for vision API
     let videoData;
     if (videoBase64) {
       videoData = {
@@ -41,7 +41,7 @@ async function handleAnalyze(req, res) {
       };
     }
 
-    // Call Gemini API for video analysis
+    // Call vision API for video analysis
     const response = await fetch(
       `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${process.env.GOOGLE_AI_API_KEY}`,
       {
@@ -80,7 +80,7 @@ async function handleAnalyze(req, res) {
     const data = await response.json();
 
     if (!data.candidates || data.candidates.length === 0) {
-      throw new Error('No analysis results from Gemini');
+      throw new Error('No analysis results from vision API');
     }
 
     const analysis = data.candidates[0].content.parts[0].text;
@@ -163,7 +163,7 @@ async function handleGenerate(req, res) {
 
 /**
  * POST /api/video/transcribe
- * Transcribe video audio using OpenAI Whisper
+ * Transcribe video audio using LyDian Audio
  */
 async function handleTranscribe(req, res) {
   try {
@@ -179,7 +179,7 @@ async function handleTranscribe(req, res) {
     // Convert base64 to buffer
     const audioBuffer = Buffer.from(audioBase64.replace(/^data:audio\/\w+;base64,/, ''), 'base64');
 
-    // Create form data for Whisper API
+    // Create form data for audio transcription API
     const FormData = require('form-data');
     const form = new FormData();
     form.append('file', audioBuffer, {
@@ -192,7 +192,7 @@ async function handleTranscribe(req, res) {
       form.append('language', language);
     }
 
-    // Call OpenAI Whisper API
+    // Call audio transcription API
     const response = await fetch('https://api.openai.com/v1/audio/transcriptions', {
       method: 'POST',
       headers: {
@@ -204,7 +204,7 @@ async function handleTranscribe(req, res) {
 
     if (!response.ok) {
       const errorText = await response.text();
-      throw new Error(`OpenAI Whisper API error: ${response.statusText} - ${errorText}`);
+      throw new Error(`Audio transcription API error: ${response.statusText}`);
     }
 
     const data = await response.json();
@@ -257,7 +257,7 @@ function handleStatus(req, res) {
 
 /**
  * POST /api/video/extract-frames
- * Extract frames from video using Gemini
+ * Extract frames from video using LyDian Vision
  */
 async function handleExtractFrames(req, res) {
   try {
@@ -285,7 +285,7 @@ async function handleExtractFrames(req, res) {
       };
     }
 
-    // Use Gemini to describe key frames
+    // Use vision API to describe key frames
     const response = await fetch(
       `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${process.env.GOOGLE_AI_API_KEY}`,
       {

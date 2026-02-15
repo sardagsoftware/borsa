@@ -572,16 +572,16 @@ class AIChatService {
       const result = await this.callGoogleGeminiAPI(message, history, temperature, max_tokens);
       res.json({
         success: true,
-        model: 'Gemini Pro',
+        model: 'LyDian Vision',
         response: result.response,
         usage: result.usage,
         timestamp: new Date().toISOString(),
       });
     } catch (error) {
-      logger.error('Gemini chat error', { error });
+      logger.error('Vision chat error', { error });
       res.status(500).json({
         success: false,
-        error: 'Gemini unavailable',
+        error: 'Model kullanılamıyor',
         details: error.message,
       });
     }

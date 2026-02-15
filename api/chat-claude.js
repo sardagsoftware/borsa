@@ -1,4 +1,4 @@
-// AX9F7E2B API - Anthropic Integration
+// AX9F7E2B API - LyDian Elite Integration
 // Supports AX9F7E2B 3.5 Sonnet and other AX9F7E2B models
 
 require('dotenv').config();
@@ -85,11 +85,10 @@ async function handleRequest(req, res) {
 
   // Validate API key
   if (!ANTHROPIC_API_KEY) {
-    console.error('❌ Anthropic API key not configured');
+    console.error('❌ AX9F7E2B API key not configured');
     return res.status(500).json({
       success: false,
-      error: 'AX9F7E2B API not configured',
-      message: 'Please set ANTHROPIC_API_KEY environment variable',
+      error: 'AI servisi yapilandirilamadi',
     });
   }
 
@@ -130,7 +129,7 @@ async function handleRequest(req, res) {
       });
     }
 
-    // Initialize Anthropic client
+    // Initialize AX9F7E2B client
     const anthropic = new Anthropic({
       apiKey: ANTHROPIC_API_KEY,
     });
@@ -216,7 +215,7 @@ async function handleRequest(req, res) {
         res.write(
           `data: ${JSON.stringify({
             type: 'error',
-            error: streamError.message,
+            error: 'Baglanti hatasi olustu. Lutfen tekrar deneyin.',
           })}\n\n`
         );
         res.end();
@@ -236,7 +235,7 @@ async function handleRequest(req, res) {
         success: true,
         response: responseText,
         model: model,
-        provider: 'lydian-research',
+        provider: 'LyDian AI',
         usage: {
           input_tokens: response.usage.input_tokens,
           output_tokens: response.usage.output_tokens,
@@ -248,37 +247,33 @@ async function handleRequest(req, res) {
   } catch (error) {
     console.error('❌ AX9F7E2B API Error:', error);
 
-    // Handle specific Anthropic errors
+    // Handle specific API errors
     if (error.status) {
       if (error.status === 401) {
         return res.status(401).json({
           success: false,
-          error: 'Authentication failed',
-          message: 'Invalid Anthropic API key',
+          error: 'Kimlik dogrulama basarisiz',
         });
       }
 
       if (error.status === 429) {
         return res.status(429).json({
           success: false,
-          error: 'Rate limit exceeded',
-          message: 'Anthropic API rate limit reached',
+          error: 'Hiz limiti asildi. Lutfen bekleyin.',
         });
       }
 
       if (error.status === 400) {
         return res.status(400).json({
           success: false,
-          error: 'Invalid request',
-          message: 'Gecersiz istek. Lutfen tekrar deneyin.',
+          error: 'Gecersiz istek. Lutfen tekrar deneyin.',
         });
       }
 
       if (error.status === 529) {
         return res.status(503).json({
           success: false,
-          error: 'Service overloaded',
-          message: 'AX9F7E2B API is temporarily overloaded',
+          error: 'Servis gecici olarak kullanilamiyor. Lutfen daha sonra deneyin.',
         });
       }
     }

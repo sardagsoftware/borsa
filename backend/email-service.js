@@ -107,7 +107,7 @@ const sendWelcomeEmail = async (user) => {
           <p>Start exploring our AI features:</p>
           <ul>
             <li>AI Chat - Multilingual conversational AI</li>
-            <li>Image Generation - Create stunning visuals with DALL-E</li>
+            <li>Image Generation - Create stunning visuals with LyDian Image Engine</li>
             <li>Voice Assistant - Speech recognition and synthesis</li>
             <li>Document Analysis - Extract insights from your files</li>
           </ul>

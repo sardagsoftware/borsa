@@ -163,7 +163,7 @@ class SendGridEmailService {
           name: this.fromName
         },
         subject: '🎉 Ailydian AI Platform\'a hoş geldiniz!',
-        text: `Merhaba ${userName},\n\nAilydian AI Platform'a katıldığınız için teşekkür ederiz!\n\nÜcretsiz planınızla 100 AI kredisi kazandınız. Hemen kullanmaya başlayabilirsiniz:\n\n- OX5C9E2B Turbo\n- AX9F7E2B 3.5 Sonnet\n- Gemini 2.0 Flash\n- Groq Mixtral (sınırsız!)\n- ve daha fazlası...\n\nİyi günler,\nAilydian Ekibi`,
+        text: `Merhaba ${userName},\n\nAilydian AI Platform'a katıldığınız için teşekkür ederiz!\n\nÜcretsiz planınızla 100 AI kredisi kazandınız. Hemen kullanmaya başlayabilirsiniz:\n\n- LyDian Prime\n- LyDian Elite\n- LyDian Vision\n- LyDian Velocity (sınırsız!)\n- ve daha fazlası...\n\nİyi günler,\nAilydian Ekibi`,
         html: this.getWelcomeEmailTemplate(userName)
       };
 
@@ -306,23 +306,23 @@ class SendGridEmailService {
       <p>Ücretsiz planınızla 100 AI kredisi kazandınız. İşte kullanabileceğiniz modeller:</p>
 
       <div class="feature">
-        <strong>🤖 OX5C9E2B Turbo</strong><br>
-        OpenAI'ın en gelişmiş modeli
+        <strong>🤖 LyDian Prime</strong><br>
+        En gelismis dil modeli
       </div>
 
       <div class="feature">
-        <strong>🧠 AX9F7E2B 3.5 Sonnet</strong><br>
-        Anthropic'in akıllı asistanı (varsayılan)
+        <strong>🧠 LyDian Elite</strong><br>
+        Akilli asistan (varsayilan)
       </div>
 
       <div class="feature">
-        <strong>⚡ Gemini 2.0 Flash</strong><br>
-        Google'ın hızlı ve güçlü modeli
+        <strong>⚡ LyDian Vision</strong><br>
+        Hizli ve guclu model
       </div>
 
       <div class="feature">
-        <strong>🚀 Groq Mixtral</strong><br>
-        Ultra hızlı - SINIRSIZ kullanım!
+        <strong>🚀 LyDian Velocity</strong><br>
+        Ultra hizli - SINIRSIZ kullanim!
       </div>
 
       <center>

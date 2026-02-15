@@ -1,10 +1,10 @@
-// Ailydian AI - Image Generation with Azure DALL-E 3
+// Ailydian AI - Image Generation Engine
 // Model names are HIDDEN from frontend
 
 const { AzureOpenAI } = require('lydian-labs');
 const { getCorsOrigin } = require('./_middleware/cors');
 
-// Azure OpenAI Configuration
+// Primary Provider Configuration
 const AZURE_OPENAI_ENDPOINT = process.env.AZURE_OPENAI_ENDPOINT || process.env.AZURE_ENDPOINT;
 const AZURE_OPENAI_KEY = process.env.AZURE_OPENAI_API_KEY || process.env.AZURE_OPENAI_KEY;
 const AZURE_OPENAI_DEPLOYMENT = process.env.AZURE_OPENAI_DALLE_DEPLOYMENT || 'dall-e-3';
@@ -32,10 +32,10 @@ function checkRateLimit(userId = 'anonymous') {
   return true;
 }
 
-// Generate image with Azure DALL-E 3
+// Generate image with primary provider
 async function generateWithAzure(prompt, size = '1024x1024', quality = 'standard') {
   if (!AZURE_OPENAI_ENDPOINT || !AZURE_OPENAI_KEY) {
-    throw new Error('Azure OpenAI not configured');
+    throw new Error('Primary image provider not configured');
   }
 
   const client = new AzureOpenAI({
@@ -44,7 +44,7 @@ async function generateWithAzure(prompt, size = '1024x1024', quality = 'standard
     apiVersion: AZURE_API_VERSION,
   });
 
-  console.log(`🎨 Azure DALL-E 3 Request - Size: ${size}, Quality: ${quality}`);
+  console.log(`🎨 LyDian Image Generation Request - Size: ${size}, Quality: ${quality}`);
 
   const response = await client.images.generate({
     model: AZURE_OPENAI_DEPLOYMENT,
@@ -73,7 +73,7 @@ async function generateWithOpenAI(prompt, size = '1024x1024', quality = 'standar
     apiKey: OPENAI_API_KEY,
   });
 
-  console.log(`🎨 OpenAI DALL-E 3 Request - Size: ${size}, Quality: ${quality}`);
+  console.log(`🎨 LyDian Image Fallback Request - Size: ${size}, Quality: ${quality}`);
 
   const response = await client.images.generate({
     model: 'dall-e-3',
@@ -144,7 +144,7 @@ module.exports = async (req, res) => {
     // Return response WITHOUT revealing model name
     res.status(200).json({
       success: true,
-      provider: 'Ailydian AI', // HIDDEN - Never reveal "DALL-E" or "Azure"
+      provider: 'Ailydian AI', // HIDDEN - Never reveal real provider names
       imageUrl: result.url,
       revisedPrompt: result.revised_prompt,
       size: size,

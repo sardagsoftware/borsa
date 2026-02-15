@@ -113,32 +113,32 @@ const SEO_TEMPLATES = {
   "chat": {
     tr: {
       title: "AI Chat — 5 AI Modeli Tek Arayüzde | Çok Modelli Sohbet",
-      description: "AX9F7E2B, OX5C9E2B, Gemini birleşik arayüz. Metin, görsel, kod analizi. 1M+ konuşma, 40+ dil desteği. Ücretsiz sohbet başlat.",
+      description: "AX9F7E2B, OX5C9E2B, VX2F8A0E birleşik arayüz. Metin, görsel, kod analizi. 1M+ konuşma, 40+ dil desteği. Ücretsiz sohbet başlat.",
       keywords: "ai sohbet, yapay zeka chat, çok modelli ai, AX9F7E2B chat, OX5C9E2B türkçe, ai asistan"
     },
     en: {
       title: "AI Chat — 5 AI Models in One Interface | Multi-Model Chat",
-      description: "AX9F7E2B, OX5C9E2B, Gemini unified interface. Text, vision, code analysis. 1M+ conversations, 40+ language support. Start free chat.",
+      description: "AX9F7E2B, OX5C9E2B, VX2F8A0E unified interface. Text, vision, code analysis. 1M+ conversations, 40+ language support. Start free chat.",
       keywords: "ai chat, artificial intelligence chat, multi model ai, AX9F7E2B chat, OX5C9E2B chat, ai assistant"
     },
     de: {
       title: "AI Chat — 5 KI-Modelle in einer Oberfläche | Multi-Modell-Chat",
-      description: "AX9F7E2B, OX5C9E2B, Gemini vereinheitlichte Schnittstelle. Text, Vision, Code-Analyse. 1M+ Gespräche, 40+ Sprachunterstützung.",
+      description: "AX9F7E2B, OX5C9E2B, VX2F8A0E vereinheitlichte Schnittstelle. Text, Vision, Code-Analyse. 1M+ Gespräche, 40+ Sprachunterstützung.",
       keywords: "ki chat, künstliche intelligenz chat, multi modell ki, AX9F7E2B chat, OX5C9E2B chat, ki assistent"
     },
     ar: {
       title: "AI Chat — 5 نماذج AI في واجهة واحدة | دردشة متعددة النماذج",
-      description: "واجهة موحدة لـ AX9F7E2B و OX5C9E2B و Gemini. تحليل النص والصورة والكود. +1 مليون محادثة، دعم +40 لغة. ابدأ دردشة مجانية.",
+      description: "واجهة موحدة لـ AX9F7E2B و OX5C9E2B و VX2F8A0E. تحليل النص والصورة والكود. +1 مليون محادثة، دعم +40 لغة. ابدأ دردشة مجانية.",
       keywords: "دردشة ذكاء اصطناعي, شات ai, ذكاء اصطناعي متعدد النماذج, AX9F7E2B شات, OX5C9E2B عربي"
     },
     ru: {
       title: "AI Chat — 5 ИИ Моделей в Одном Интерфейсе | Мультимодельный Чат",
-      description: "Единый интерфейс AX9F7E2B, OX5C9E2B, Gemini. Анализ текста, изображений, кода. 1М+ разговоров, поддержка 40+ языков.",
+      description: "Единый интерфейс AX9F7E2B, OX5C9E2B, VX2F8A0E. Анализ текста, изображений, кода. 1М+ разговоров, поддержка 40+ языков.",
       keywords: "ии чат, чат искусственный интеллект, мультимодельный ии, AX9F7E2B чат, OX5C9E2B русский, ии ассистент"
     },
     zh: {
       title: "AI Chat — 5个AI模型一个界面 | 多模型聊天",
-      description: "AX9F7E2B、OX5C9E2B、Gemini统一界面。文本、视觉、代码分析。100万+对话，支持40+种语言。开始免费聊天。",
+      description: "AX9F7E2B、OX5C9E2B、VX2F8A0E统一界面。文本、视觉、代码分析。100万+对话，支持40+种语言。开始免费聊天。",
       keywords: "ai聊天, 人工智能聊天, 多模型ai, AX9F7E2B聊天, OX5C9E2B中文, ai助手"
     }
   },

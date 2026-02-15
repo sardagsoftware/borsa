@@ -1004,33 +1004,33 @@ const TIER_2A_CONTENT = {
   'models.html': {
     tr: {
       title: 'AI Modelleri — LyDian AI | 50+ Güçlü Yapay Zeka Modeli',
-      description: 'LyDian AI platformunda 50+ son teknoloji yapay zeka modeli. OX5C9E2B, AX9F7E2B, Gemini ve daha fazlası. Metin, görüntü, video ve ses için AI modelleri.',
-      keywords: 'ai modelleri, yapay zeka modelleri lydian, OX5C9E2B türkiye, AX9F7E2B ai, gemini ai, çok modelli ai'
+      description: 'LyDian AI platformunda 50+ son teknoloji yapay zeka modeli. OX5C9E2B, AX9F7E2B, VX2F8A0E ve daha fazlası. Metin, görüntü, video ve ses için AI modelleri.',
+      keywords: 'ai modelleri, yapay zeka modelleri lydian, OX5C9E2B türkiye, AX9F7E2B ai, lydian ai, çok modelli ai'
     },
     en: {
       title: 'AI Models — LyDian AI | 50+ Powerful AI Models',
-      description: 'Access 50+ state-of-the-art AI models on LyDian AI platform. OX5C9E2B, AX9F7E2B, Gemini, and more. AI models for text, image, video, and audio processing.',
-      keywords: 'ai models, artificial intelligence models lydian, OX5C9E2B, AX9F7E2B ai, gemini ai, multi-model ai'
+      description: 'Access 50+ state-of-the-art AI models on LyDian AI platform. OX5C9E2B, AX9F7E2B, VX2F8A0E, and more. AI models for text, image, video, and audio processing.',
+      keywords: 'ai models, artificial intelligence models lydian, OX5C9E2B, AX9F7E2B ai, lydian ai, multi-model ai'
     },
     de: {
       title: 'KI-Modelle — LyDian AI | 50+ Leistungsstarke KI-Modelle',
-      description: 'Zugriff auf 50+ hochmoderne KI-Modelle auf der LyDian AI-Plattform. OX5C9E2B, AX9F7E2B, Gemini und mehr. KI-Modelle für Text, Bild, Video und Audio.',
-      keywords: 'ki modelle, künstliche intelligenz modelle lydian, OX5C9E2B deutschland, AX9F7E2B ki, gemini ki, multi-modell ki'
+      description: 'Zugriff auf 50+ hochmoderne KI-Modelle auf der LyDian AI-Plattform. OX5C9E2B, AX9F7E2B, VX2F8A0E und mehr. KI-Modelle für Text, Bild, Video und Audio.',
+      keywords: 'ki modelle, künstliche intelligenz modelle lydian, OX5C9E2B deutschland, AX9F7E2B ki, lydian ki, multi-modell ki'
     },
     ar: {
       title: 'نماذج الذكاء الاصطناعي — LyDian AI | أكثر من 50 نموذج AI قوي',
-      description: 'الوصول إلى أكثر من 50 نموذج AI متطور على منصة LyDian AI. OX5C9E2B، AX9F7E2B، Gemini، والمزيد. نماذج AI للنص والصورة والفيديو والصوت.',
-      keywords: 'نماذج ai, نماذج الذكاء الاصطناعي lydian, OX5C9E2B, AX9F7E2B ai, gemini ai, ai متعدد النماذج'
+      description: 'الوصول إلى أكثر من 50 نموذج AI متطور على منصة LyDian AI. OX5C9E2B، AX9F7E2B، VX2F8A0E، والمزيد. نماذج AI للنص والصورة والفيديو والصوت.',
+      keywords: 'نماذج ai, نماذج الذكاء الاصطناعي lydian, OX5C9E2B, AX9F7E2B ai, lydian ai, ai متعدد النماذج'
     },
     ru: {
       title: 'ИИ-модели — LyDian AI | Более 50 мощных моделей ИИ',
-      description: 'Доступ к более чем 50 передовым моделям ИИ на платформе LyDian AI. OX5C9E2B, AX9F7E2B, Gemini и другие. Модели ИИ для текста, изображений, видео и аудио.',
-      keywords: 'модели ии, модели искусственного интеллекта lydian, OX5C9E2B россия, AX9F7E2B ии, gemini ии, мультимодельный ии'
+      description: 'Доступ к более чем 50 передовым моделям ИИ на платформе LyDian AI. OX5C9E2B, AX9F7E2B, VX2F8A0E и другие. Модели ИИ для текста, изображений, видео и аудио.',
+      keywords: 'модели ии, модели искусственного интеллекта lydian, OX5C9E2B россия, AX9F7E2B ии, lydian ии, мультимодельный ии'
     },
     zh: {
       title: 'AI模型库 — LyDian AI 平台 | 50多个强大AI模型',
-      description: '在LyDian AI平台访问50多个最先进的AI模型。OX5C9E2B、AX9F7E2B、Gemini等。用于文本、图像、视频和音频处理的AI模型。企业级稳定性保证，满足各类智能化需求。',
-      keywords: 'ai模型, lydian人工智能模型, OX5C9E2B中国, AX9F7E2B ai, gemini ai, 多模型ai'
+      description: '在LyDian AI平台访问50多个最先进的AI模型。OX5C9E2B、AX9F7E2B、VX2F8A0E等。用于文本、图像、视频和音频处理的AI模型。企业级稳定性保证，满足各类智能化需求。',
+      keywords: 'ai模型, lydian人工智能模型, OX5C9E2B中国, AX9F7E2B ai, lydian ai, 多模型ai'
     }
   },
 

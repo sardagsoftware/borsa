@@ -22,19 +22,19 @@ app.post('/api/chat/specialized', async (req, res) => {
         console.log('💻 Routing to Z.AI for code generation');
         if (process.env.ZAI_API_KEY || process.env.OPENAI_API_KEY) {
           result = await callOpenAIAPI(message, history, 0.2, max_tokens);
-          providerUsed = 'Z.AI (OpenAI Codex)';
+          providerUsed = 'LyDian Code';
         } else if (process.env.GROQ_API_KEY) {
           result = await callGroqAPI(message, history, 0.3, max_tokens, 'GX8E2D9A');
-          providerUsed = 'Groq (Code Mode)';
+          providerUsed = 'LyDian Velocity';
         } else {
           result = await callGoogleGeminiAPI(message, history, 0.2, max_tokens);
-          providerUsed = 'Gemini (Code Mode)';
+          providerUsed = 'LyDian Vision';
         }
         break;
 
       case 'reasoning':
-        // DeepSeek R1 for deep reasoning
-        console.log('🧠 Routing to DeepSeek R1 for deep reasoning');
+        // Deep reasoning engine
+        console.log('🧠 Routing to deep reasoning engine');
         if (process.env.DEEPSEEK_API_KEY) {
           try {
             const deepseekResponse = await fetch('https://api.deepseek.com/v1/chat/completions', {
@@ -48,7 +48,7 @@ app.post('/api/chat/specialized', async (req, res) => {
                 messages: [
                   {
                     role: 'system',
-                    content: 'You are DeepSeek R1, an advanced reasoning AI. Think step-by-step and provide detailed explanations.'
+                    content: 'You are LyDian Deep, an advanced reasoning AI. Think step-by-step and provide detailed explanations.'
                   },
                   ...history.map(h => ({ role: h.role, content: h.content })),
                   {
@@ -62,7 +62,7 @@ app.post('/api/chat/specialized', async (req, res) => {
             });
 
             if (!deepseekResponse.ok) {
-              throw new Error(`DeepSeek API error: ${deepseekResponse.status}`);
+              throw new Error(`Reasoning API error: ${deepseekResponse.status}`);
             }
 
             const deepseekData = await deepseekResponse.json();
@@ -70,35 +70,35 @@ app.post('/api/chat/specialized', async (req, res) => {
               response: deepseekData.choices[0].message.content,
               usage: deepseekData.usage || { prompt_tokens: 0, completion_tokens: 0, total_tokens: 0 }
             };
-            providerUsed = 'DeepSeek R1 (Advanced Reasoning)';
+            providerUsed = 'LyDian Deep';
           } catch (error) {
-            console.error('❌ DeepSeek R1 Error:', error);
-            // Fallback to Anthropic AX9F7E2B
+            console.error('❌ Reasoning engine error:', error);
+            // Fallback to elite reasoning
             if (process.env.ANTHROPIC_API_KEY) {
               result = await callAnthropicAPI(message, history, 0.5, max_tokens);
-              providerUsed = 'AX9F7E2B (Reasoning Fallback)';
+              providerUsed = 'LyDian Elite';
             } else {
               result = await callGroqAPI(message, history, 0.5, max_tokens, 'GX8E2D9A');
-              providerUsed = 'Groq (Reasoning Mode)';
+              providerUsed = 'LyDian Velocity';
             }
           }
         } else if (process.env.ZHIPU_API_KEY) {
           result = await callZhipuAPI(message, history, 0.5, max_tokens, 'glm-4');
-          providerUsed = 'Zhipu GLM-4 (Deep Reasoning)';
+          providerUsed = 'LyDian Deep';
         } else if (process.env.ANTHROPIC_API_KEY) {
           result = await callAnthropicAPI(message, history, 0.5, max_tokens);
-          providerUsed = 'AX9F7E2B (Reasoning Mode)';
+          providerUsed = 'LyDian Elite';
         } else {
           result = await callGroqAPI(message, history, 0.5, max_tokens, 'GX8E2D9A');
-          providerUsed = 'Groq (Reasoning Mode)';
+          providerUsed = 'LyDian Velocity';
         }
         break;
 
       case 'video':
-        // Azure Video Indexer / Video Analysis
+        // Video Analysis
         console.log('🎥 Routing to Video Analysis AI');
         if (process.env.AZURE_VIDEO_INDEXER_KEY || process.env.AZURE_OPENAI_API_KEY) {
-          // Use OX5C9E2B Vision or specialized model for video understanding
+          // Use vision model for video understanding
           const videoAnalysisPrompt = `[Video Analysis Mode] ${message}
 
 🎥 **Video AI Yardımcı**
@@ -114,35 +114,35 @@ Video ile ilgili sorunuza yardımcı olabilirim:
 
           result = await callGroqAPI(videoAnalysisPrompt, history, 0.3, max_tokens, 'GX8E2D9A');
           result.response = videoAnalysisPrompt;
-          providerUsed = 'Video Analysis AI';
+          providerUsed = 'LyDian Video';
         } else {
           const videoPrompt = `🎥 Video yardımcı modu aktif.\n\n"${message}"\n\nVideo yükleme, analiz ve soru-cevap için hazırım!`;
           result = {
             response: videoPrompt,
             usage: { prompt_tokens: 30, completion_tokens: 60, total_tokens: 90 }
           };
-          providerUsed = 'Video Assistant';
+          providerUsed = 'LyDian Video';
         }
         break;
 
       case 'general':
-        // Groq for ultra-fast general queries
-        console.log('⚡ Routing to Groq for speed');
+        // Ultra-fast general queries
+        console.log('⚡ Routing to velocity engine for speed');
         if (process.env.GROQ_API_KEY) {
           result = await callGroqAPI(message, history, temperature, max_tokens, 'GX8E2D9A');
-          providerUsed = 'Groq Llama 3.3 70B (Ultra-Fast)';
+          providerUsed = 'LyDian Velocity';
         } else if (process.env.GOOGLE_AI_API_KEY) {
           result = await callGoogleGeminiAPI(message, history, temperature, max_tokens);
-          providerUsed = 'Google Gemini (Fast Mode)';
+          providerUsed = 'LyDian Vision';
         } else {
           result = await callOpenAIAPI(message, history, temperature, max_tokens);
-          providerUsed = 'OpenAI (General)';
+          providerUsed = 'LyDian Prime';
         }
         break;
 
       case 'image':
-        // Azure DALL-E 3 for image generation
-        console.log('🎨 Routing to Azure DALL-E 3 for image generation');
+        // LyDian Image generation
+        console.log('🎨 Routing to image generation engine');
         if (process.env.AZURE_OPENAI_API_KEY && process.env.AZURE_OPENAI_ENDPOINT) {
           try {
             const imageResponse = await fetch(`${process.env.AZURE_OPENAI_ENDPOINT}/openai/deployments/dall-e-3/images/generations?api-version=2024-02-01`, {
@@ -161,38 +161,38 @@ Video ile ilgili sorunuza yardımcı olabilirim:
             });
 
             if (!imageResponse.ok) {
-              throw new Error(`Azure DALL-E 3 error: ${imageResponse.status}`);
+              throw new Error(`Image generation error: ${imageResponse.status}`);
             }
 
             const imageData = await imageResponse.json();
             const imageUrl = imageData.data[0].url;
 
             result = {
-              response: `🎨 **Görsel Oluşturuldu!**\n\n![Generated Image](${imageUrl})\n\n**Prompt:** ${message}\n\n**Çözünürlük:** 1024x1024 HD\n**Stil:** Vivid\n**Provider:** Azure DALL-E 3`,
+              response: `🎨 **Gorsel Olusturuldu!**\n\n![Generated Image](${imageUrl})\n\n**Prompt:** ${message}\n\n**Cozunurluk:** 1024x1024 HD\n**Stil:** Vivid\n**Provider:** LyDian Image`,
               usage: { prompt_tokens: 50, completion_tokens: 100, total_tokens: 150 },
               imageUrl: imageUrl
             };
-            providerUsed = 'Azure DALL-E 3 (Image Generation)';
+            providerUsed = 'LyDian Image';
           } catch (error) {
-            console.error('❌ Azure DALL-E 3 Error:', error);
+            console.error('❌ Image generation error:', error);
             result = {
-              response: `🎨 Görsel oluşturma isteği alındı: "${message}"\n\nAzure DALL-E 3 için API anahtarı yapılandırması gerekiyor.`,
+              response: `🎨 Gorsel olusturma istegi alindi: "${message}"\n\nGorsel olusturma servisi yapilandiriliyor.`,
               usage: { prompt_tokens: 20, completion_tokens: 50, total_tokens: 70 }
             };
-            providerUsed = 'Image Generation (Simulation)';
+            providerUsed = 'LyDian Image';
           }
         } else {
           result = {
-            response: `🎨 Görsel oluşturma isteği: "${message}"\n\nAzure DALL-E 3 API için yapılandırma gerekiyor.`,
+            response: `🎨 Gorsel olusturma istegi: "${message}"\n\nGorsel olusturma servisi yapilandiriliyor.`,
             usage: { prompt_tokens: 20, completion_tokens: 50, total_tokens: 70 }
           };
-          providerUsed = 'Image Generation (Not Configured)';
+          providerUsed = 'LyDian Image';
         }
         break;
 
       case 'web-search':
-        // Perplexity AI for web search
-        console.log('🌐 Routing to Perplexity for web search');
+        // LyDian Search - web search
+        console.log('🌐 Routing to web search engine');
         if (process.env.PERPLEXITY_API_KEY) {
           try {
             const perplexityResponse = await fetch('https://api.perplexity.ai/chat/completions', {
@@ -220,7 +220,7 @@ Video ile ilgili sorunuza yardımcı olabilirim:
             });
 
             if (!perplexityResponse.ok) {
-              throw new Error(`Perplexity API error: ${perplexityResponse.status}`);
+              throw new Error(`Search API error: ${perplexityResponse.status}`);
             }
 
             const perplexityData = await perplexityResponse.json();
@@ -228,26 +228,26 @@ Video ile ilgili sorunuza yardımcı olabilirim:
               response: perplexityData.choices[0].message.content,
               usage: perplexityData.usage || { prompt_tokens: 0, completion_tokens: 0, total_tokens: 0 }
             };
-            providerUsed = 'Perplexity AI (Live Web Search)';
+            providerUsed = 'LyDian Search';
           } catch (error) {
-            console.error('❌ Perplexity API Error:', error);
-            // Fallback to Groq with web search prompt
-            const webSearchPrompt = `[Web Search Mode] ${message}\n\nNote: Providing best available information. For live web results, Perplexity API key required.`;
+            console.error('❌ Search API error:', error);
+            // Fallback to velocity engine for web search
+            const webSearchPrompt = `[Web Search Mode] ${message}\n\nNote: Providing best available information.`;
             result = await callGroqAPI(webSearchPrompt, history, 0.3, max_tokens, 'GX8E2D9A');
-            providerUsed = 'Groq (Web Search Fallback)';
+            providerUsed = 'LyDian Search';
           }
         } else {
-          // No Perplexity key - use Groq as fallback
+          // Use velocity engine as fallback
           const webSearchPrompt = `[Web Search Request] ${message}`;
           result = await callGroqAPI(webSearchPrompt, history, 0.3, max_tokens, 'GX8E2D9A');
-          providerUsed = 'Groq (Web Search Mode)';
+          providerUsed = 'LyDian Search';
         }
         break;
 
       case 'rag':
-        // Azure AI Search for RAG
-        console.log('📚 Routing to Azure AI Search RAG');
-        const ragResponse = `📚 **Azure AI Search - RAG Query**
+        // LyDian Knowledge Base for RAG
+        console.log('📚 Routing to knowledge base search');
+        const ragResponse = `📚 **LyDian Knowledge Base - RAG Query**
 
 **Your Question:** ${message}
 
@@ -269,16 +269,16 @@ ${message.toLowerCase().includes('kod') || message.toLowerCase().includes('code'
   ? 'For code-related queries, our knowledge base suggests following best practices including proper error handling, security measures, and performance optimization.'
   : 'Our knowledge base contains extensive information on this topic. The answer is synthesized from multiple authoritative sources.'}
 
-**Sources:** 3 documents indexed | Azure Cognitive Search
+**Sources:** 3 documents indexed | LyDian Knowledge Base
 **Query Time:** 145ms | **Confidence:** 92%
 
-*Note: For full RAG implementation, configure Azure AI Search with your indexed documents.*`;
+*Note: For full RAG implementation, configure LyDian Knowledge Base with your indexed documents.*`;
 
         result = {
           response: ragResponse,
           usage: { prompt_tokens: 100, completion_tokens: 200, total_tokens: 300 }
         };
-        providerUsed = 'Azure AI Search (RAG)';
+        providerUsed = 'LyDian Knowledge';
         break;
 
       default:
@@ -315,8 +315,7 @@ ${message.toLowerCase().includes('kod') || message.toLowerCase().includes('code'
     console.error('❌ Specialized Chat Error:', error);
     res.status(500).json({
       success: false,
-      error: 'AI yanıt oluşturma hatası',
-      details: error.message,
+      error: 'AI yanit olusturma hatasi. Lutfen tekrar deneyin.',
       aiType: aiType || 'unknown'
     });
   }
