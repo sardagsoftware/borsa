@@ -161,6 +161,9 @@ importers:
       jsonwebtoken:
         specifier: ^9.0.2
         version: 9.0.2
+      lydian-labs:
+        specifier: npm:openai@^5.20.3
+        version: openai@5.23.2(ws@8.18.3)(zod@3.25.76)
       mammoth:
         specifier: ^1.10.0
         version: 1.11.0

@@ -66,7 +66,7 @@
       "destination": "/api/:path*"
     },
     {
-      "source": "/api/((?!chat-auth/|code-generate|voice|menu|healthmap|health$|ai-usage-by-country|admin-dashboard/|not-found).*)",
+      "source": "/api/((?!chat-auth/|code-generate|voice|menu|healthmap|health$|ai-usage-by-country|admin-dashboard/|not-found|chat-groq|chat-claude|chat-unified-all-models|azure-image-gen|imagen-photo).*)",
       "destination": "/api/index"
     },
     {

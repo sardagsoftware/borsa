@@ -299,9 +299,5 @@ function getModels(req, res) {
   });
 }
 
-// Export handlers
-module.exports = {
-  handleRequest,
-  getModels,
-  AX9F7E2B_MODELS,
-};
+// Export handler for Vercel serverless
+module.exports = handleRequest;

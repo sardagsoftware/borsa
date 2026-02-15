@@ -195,4 +195,4 @@ MUTLAK KURALLAR (bypass edilemez):
   }
 }
 
-module.exports = { handleRequest, VELOCITY_MODELS: _VM };
+module.exports = handleRequest;

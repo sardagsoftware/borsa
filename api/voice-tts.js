@@ -1,9 +1,9 @@
 // LyDian Voice TTS - Azure Speech Services (Primary) + ElevenLabs (Fallback)
 // Multi-Provider with Hidden AI
 
-const fetch = require('node-fetch');
 const sdk = require('microsoft-cognitiveservices-speech-sdk');
 const { getCorsOrigin } = require('./_middleware/cors');
+const { applySanitization } = require('./_middleware/sanitize');
 
 // ==========================================
 // AZURE SPEECH SERVICES CONFIGURATION (PRIMARY)
@@ -83,7 +83,7 @@ async function generateWithAzureSpeech(text, options = {}) {
             synthesizer.close();
 
             resolve({
-              provider: 'Azure Speech Services',
+              provider: 'LyDian AI',
               audioData: Buffer.from(result.audioData),
               format: 'audio/mpeg',
               sampleRate: 24000,
@@ -135,11 +135,11 @@ async function generateWithElevenLabs(text, options = {}) {
     throw new Error(`ElevenLabs Error: ${response.status}`);
   }
 
-  const audioBuffer = await response.buffer();
+  const audioBuffer = Buffer.from(await response.arrayBuffer());
   console.log('✅ ElevenLabs Generation Complete');
 
   return {
-    provider: 'ElevenLabs',
+    provider: 'LyDian AI',
     audioData: audioBuffer,
     format: 'audio/mpeg',
   };
@@ -191,13 +191,15 @@ async function generateVoice(text, options = {}) {
 // API HANDLER
 // ==========================================
 module.exports = async (req, res) => {
-  // CORS
+  // Sanitization + CORS
+  applySanitization(req, res);
   res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
   if (req.method === 'OPTIONS') return res.status(200).end();
-  if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
+  if (req.method !== 'POST')
+    return res.status(405).json({ error: 'Yalnızca POST metodu desteklenir' });
 
   const startTime = Date.now();
 
