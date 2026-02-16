@@ -128,7 +128,7 @@ module.exports = async function handler(req, res) {
     // Optionally: Invalidate other sessions (keep current one)
     // chatSessions.invalidateAllForUser(user.id);
 
-    console.log('[CHAT_AUTH_CHANGE_PASSWORD] Password changed for user:', user.email);
+    console.log('[CHAT_AUTH_CHANGE_PASSWORD] Password changed for uid:', user.id);
 
     return res.status(200).json({
       success: true,

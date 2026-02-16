@@ -107,7 +107,7 @@ module.exports = async function handler(req, res) {
     // Create default settings
     await chatSettings.create(userId);
 
-    console.log('[CHAT_AUTH_REGISTER]', `New user registered: ${emailValidation.email}`);
+    console.log('[CHAT_AUTH_REGISTER]', `New user registered: uid=${userId}`);
 
     return res.status(201).json({
       success: true,

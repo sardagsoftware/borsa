@@ -62,7 +62,7 @@ const { handleCORS } = require('../../middleware/cors-handler');
       userAgent: req.headers['user-agent']
     });
 
-    console.log(`✅ Email verified for user ${user.email}`);
+    console.log(`✅ Email verified for uid=${user.id}`);
 
     return res.status(200).json({
       success: true,

@@ -53,7 +53,7 @@ class WebSocketManager {
 
         this.connections.set(connectionId, connection);
 
-        console.log(`WebSocket connected: ${connectionId} (${userInfo.email})`);
+        console.log(`WebSocket connected: ${connectionId} (uid=${userInfo.id})`);
 
         return {
             success: true,

@@ -200,7 +200,7 @@ const { handleCORS } = require('../../middleware/cors-handler');
             location: 'Unknown'
           }).catch(err => console.error('Failed to send login notification:', err.message));
 
-          console.log(`[2FA] Login notification sent to ${user.email}`);
+          console.log(`[2FA] Login notification sent for uid=${user.id}`);
         }
       } finally {
         db3.close();

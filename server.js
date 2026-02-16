@@ -172,10 +172,11 @@ const os = require('os');
 // Load balancer configuration
 class LoadBalancer {
   constructor() {
+    const baseUrl = process.env.BASE_URL || 'http://localhost';
     this.servers = [
-      { id: 'server1', url: 'http://localhost:3300', weight: 1, active: true, connections: 0 },
-      { id: 'server2', url: 'http://localhost:3301', weight: 1, active: false, connections: 0 },
-      { id: 'server3', url: 'http://localhost:3302', weight: 1, active: false, connections: 0 },
+      { id: 'server1', url: `${baseUrl}:3300`, weight: 1, active: true, connections: 0 },
+      { id: 'server2', url: `${baseUrl}:3301`, weight: 1, active: false, connections: 0 },
+      { id: 'server3', url: `${baseUrl}:3302`, weight: 1, active: false, connections: 0 },
     ];
     this.currentIndex = 0;
     this.totalRequests = 0;

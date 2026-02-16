@@ -91,7 +91,7 @@ async function findOrCreateUser(userInfo, tokens) {
                 user.id
             );
 
-            console.log(`[Google OAuth] Existing user updated: ${user.email}`);
+            console.log(`[Google OAuth] Existing user updated: uid=${user.id}`);
         } else {
             // Create new user
             const result = db.prepare(`
@@ -114,7 +114,7 @@ async function findOrCreateUser(userInfo, tokens) {
 
             user = db.prepare('SELECT * FROM users WHERE id = ?').get(result.lastInsertRowid);
 
-            console.log(`[Google OAuth] New user created: ${user.email}`);
+            console.log(`[Google OAuth] New user created: uid=${user.id}`);
 
             // Create initial usage stats
             db.prepare(`
@@ -167,7 +167,7 @@ module.exports = async (req, res) => {
 
         // Get user info from Google
         const userInfo = await getUserInfo(tokens.access_token);
-        console.log('[Google OAuth] ✓ User info received:', userInfo.email);
+        console.log('[Google OAuth] ✓ User info received');
 
         // 🔒 BEYAZ ŞAPKALI: Find or create user in database
         const user = await findOrCreateUser(userInfo, tokens);
@@ -276,7 +276,7 @@ module.exports = async (req, res) => {
                         location: 'Unknown'
                     }).catch(err => console.error('Failed to send login notification:', err.message));
 
-                    console.log(`[Google OAuth] Login notification sent to ${user.email}`);
+                    console.log(`[Google OAuth] Login notification sent for uid=${user.id}`);
                 }
             } finally {
                 db2.close();
@@ -295,7 +295,7 @@ module.exports = async (req, res) => {
         ]);
 
         // Redirect to dashboard with success
-        console.log(`[Google OAuth] ✓ Login successful for ${user.email}`);
+        console.log(`[Google OAuth] ✓ Login successful for uid=${user.id}`);
         return res.redirect('/dashboard.html?login=success&provider=google');
 
     } catch (error) {

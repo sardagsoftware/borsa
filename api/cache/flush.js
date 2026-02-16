@@ -61,13 +61,13 @@ module.exports = async (req, res) => {
       // 📝 Audit log - Critical action
       await auditMiddleware(req, res, () => {});
 
-      console.warn(`⚠️  CACHE FLUSH: Full cache cleared by ${req.user.email} (${req.user.id}) - Reason: ${reason}`);
+      console.warn(`⚠️  CACHE FLUSH: Full cache cleared by uid=${req.user.id} - Reason: ${reason}`);
 
       return res.status(200).json({
         success: true,
         message: 'Tüm önbellek temizlendi',
         action: 'FULL_FLUSH',
-        performedBy: req.user.email,
+        performedBy: req.user.id,
         timestamp: new Date().toISOString(),
         previousStats: cacheStats
       });
@@ -77,14 +77,14 @@ module.exports = async (req, res) => {
       // 📝 Audit log
       await auditMiddleware(req, res, () => {});
 
-      console.warn(`⚠️  CACHE FLUSH: Pattern '${pattern}' cleared by ${req.user.email} - Reason: ${reason}`);
+      console.warn(`⚠️  CACHE FLUSH: Pattern '${pattern}' cleared by uid=${req.user.id} - Reason: ${reason}`);
 
       return res.status(200).json({
         success: true,
         message: `Pattern temizlendi: ${pattern}`,
         action: 'PATTERN_FLUSH',
         pattern: pattern,
-        performedBy: req.user.email,
+        performedBy: req.user.id,
         timestamp: new Date().toISOString()
       });
     }

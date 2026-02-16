@@ -119,7 +119,7 @@ async function findOrCreateUser(userInfo, emailInfo, tokens) {
                 user.id
             );
 
-            console.log(`[GitHub OAuth] Existing user updated: ${user.email}`);
+            console.log(`[GitHub OAuth] Existing user updated: uid=${user.id}`);
         } else {
             // Create new user
             const result = db.prepare(`
@@ -142,7 +142,7 @@ async function findOrCreateUser(userInfo, emailInfo, tokens) {
 
             user = db.prepare('SELECT * FROM users WHERE id = ?').get(result.lastInsertRowid);
 
-            console.log(`[GitHub OAuth] New user created: ${user.email}`);
+            console.log(`[GitHub OAuth] New user created: uid=${user.id}`);
 
             // Create initial usage stats
             db.prepare(`
@@ -307,7 +307,7 @@ module.exports = async (req, res) => {
                         location: 'Unknown'
                     }).catch(err => console.error('Failed to send login notification:', err.message));
 
-                    console.log(`[GitHub OAuth] Login notification sent to ${user.email}`);
+                    console.log(`[GitHub OAuth] Login notification sent for uid=${user.id}`);
                 }
             } finally {
                 db2.close();
@@ -326,7 +326,7 @@ module.exports = async (req, res) => {
         ]);
 
         // Redirect to dashboard with success
-        console.log(`[GitHub OAuth] ✓ Login successful for ${user.email}`);
+        console.log(`[GitHub OAuth] ✓ Login successful for uid=${user.id}`);
         return res.redirect('/dashboard.html?login=success&provider=github');
 
     } catch (error) {

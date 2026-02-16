@@ -80,7 +80,7 @@ module.exports = async function handler(req, res) {
       // Send password reset email
       try {
         await sendPasswordResetEmail({ email: user.email, name: user.display_name }, resetToken);
-        console.log('[CHAT_AUTH_FORGOT_PASSWORD] Reset email sent to:', emailValidation.email);
+        console.log('[CHAT_AUTH_FORGOT_PASSWORD] Reset email sent for uid:', user.id);
       } catch (emailError) {
         // Log error but don't fail the request (security)
         console.error('[CHAT_AUTH_FORGOT_PASSWORD] Email send error:', emailError.message);

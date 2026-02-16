@@ -63,7 +63,7 @@ module.exports = async (req, res) => {
       // const resetLink = `${req.headers.origin}/reset-password.html?token=${resetToken}`;
       // await sendEmail(user.email, 'Password Reset', resetLink);
 
-      console.log(`Password reset requested for ${user.email}`);
+      console.log(`Password reset requested for uid=${user.id}`);
     }
 
     // 🔒 SECURITY: Always return the same response

@@ -75,7 +75,7 @@ module.exports = async function handler(req, res) {
     }
 
     const googleUser = await userInfoResponse.json();
-    console.log('[GOOGLE_CALLBACK] Google user:', googleUser.email);
+    console.log('[GOOGLE_CALLBACK] Google user authenticated');
 
     if (!googleUser.email) {
       return res.redirect(302, '/chat?error=google_no_email');

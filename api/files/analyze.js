@@ -363,12 +363,9 @@ module.exports = async function handler(req, res) {
   } catch (error) {
     console.error('[FILE_ANALYZE_ERR]', error.message, error.stack);
 
-    // Return more specific error message
     const errorMessage = error.message.includes('yapılandırılmamış')
       ? 'AI servisi geçici olarak kullanılamıyor.'
-      : error.message.includes('analizi başarısız')
-        ? error.message
-        : 'Dosya analizi başarısız. Lütfen tekrar deneyin.';
+      : 'Dosya analizi başarısız. Lütfen tekrar deneyin.';
 
     return res.status(500).json({
       success: false,
