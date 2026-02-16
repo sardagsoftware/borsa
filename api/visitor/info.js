@@ -1,4 +1,3 @@
-/* global fetch */
 /**
  * AILYDIAN Visitor Info API
  * IP Geolocation, VPN Detection, Device Detection, Security
@@ -353,7 +352,7 @@ function maskIP(ip) {
  * Hash IP for logging (privacy-preserving)
  */
 function hashIP(ip) {
-  const salt = process.env.IP_HASH_SALT || 'LYDIAN_2026_SECURE';
+  const salt = process.env.IP_HASH_SALT || 'default_salt';
   return crypto.createHash('sha256').update(`${ip}:${salt}`).digest('hex').substring(0, 16);
 }
 

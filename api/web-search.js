@@ -18,7 +18,7 @@ const GOOGLE_CUSTOM_SEARCH_URL = 'https://www.googleapis.com/customsearch/v1';
 const searchCache = new NodeCache({
   stdTTL: 3600, // Cache for 1 hour
   checkperiod: 600, // Check expired keys every 10 minutes
-  maxKeys: 1000
+  maxKeys: 1000,
 });
 
 // Rate limiting
@@ -60,7 +60,7 @@ function formatResults(items) {
     displayLink: item.displayLink,
     formattedUrl: item.formattedUrl,
     image: item.pagemap?.cse_image?.[0]?.src || null,
-    thumbnail: item.pagemap?.cse_thumbnail?.[0]?.src || null
+    thumbnail: item.pagemap?.cse_thumbnail?.[0]?.src || null,
   }));
 }
 
@@ -79,7 +79,7 @@ async function handleSearch(req, res) {
   if (req.method !== 'GET') {
     return res.status(405).json({
       success: false,
-      error: 'Method not allowed'
+      error: 'Method not allowed',
     });
   }
 
@@ -89,7 +89,7 @@ async function handleSearch(req, res) {
     return res.status(500).json({
       success: false,
       error: 'Search API not configured',
-      message: 'Please set GOOGLE_AI_API_KEY environment variable'
+      message: 'Please set GOOGLE_AI_API_KEY environment variable',
     });
   }
 
@@ -99,7 +99,7 @@ async function handleSearch(req, res) {
     return res.status(429).json({
       success: false,
       error: 'Rate limit exceeded',
-      message: `Maximum ${RATE_LIMIT} requests per minute`
+      message: `Maximum ${RATE_LIMIT} requests per minute`,
     });
   }
 
@@ -110,14 +110,14 @@ async function handleSearch(req, res) {
       start = 1, // Starting index
       language = 'tr', // Search language
       safe = 'active', // Safe search
-      nocache = false
+      nocache = false,
     } = req.query;
 
     if (!query) {
       return res.status(400).json({
         success: false,
         error: 'Query parameter required',
-        message: 'Please provide a search query using ?q=your+search+term'
+        message: 'Please provide a search query using ?q=your+search+term',
       });
     }
 
@@ -132,7 +132,7 @@ async function handleSearch(req, res) {
         return res.status(200).json({
           success: true,
           cached: true,
-          ...cachedResults
+          ...cachedResults,
         });
       }
     }
@@ -145,7 +145,7 @@ async function handleSearch(req, res) {
       const searchUrl = `${GOOGLE_CUSTOM_SEARCH_URL}?key=${GOOGLE_AI_API_KEY}&cx=${GOOGLE_SEARCH_ENGINE_ID}&q=${encodeURIComponent(query)}&num=${num}&start=${start}&lr=lang_${language}&safe=${safe}`;
 
       const response = await axios.get(searchUrl, {
-        timeout: 10000
+        timeout: 10000,
       });
 
       searchResults = {
@@ -153,9 +153,8 @@ async function handleSearch(req, res) {
         totalResults: parseInt(response.data.searchInformation?.totalResults || 0),
         searchTime: parseFloat(response.data.searchInformation?.searchTime || 0),
         results: formatResults(response.data.items),
-        resultCount: response.data.items?.length || 0
+        resultCount: response.data.items?.length || 0,
       };
-
     } else {
       // Fallback: Use DuckDuckGo Instant Answer API (free, no API key required)
       // Note: This is a basic implementation. For production, use Google Custom Search
@@ -164,8 +163,8 @@ async function handleSearch(req, res) {
       const response = await axios.get(duckduckgoUrl, {
         timeout: 10000,
         headers: {
-          'User-Agent': 'Ailydian-Ultra-Pro/1.0'
-        }
+          'User-Agent': 'Ailydian-Ultra-Pro/1.0',
+        },
       });
 
       const data = response.data;
@@ -182,7 +181,7 @@ async function handleSearch(req, res) {
           displayLink: data.AbstractSource,
           formattedUrl: data.AbstractURL,
           image: data.Image || null,
-          thumbnail: null
+          thumbnail: null,
         });
       }
 
@@ -197,7 +196,7 @@ async function handleSearch(req, res) {
               displayLink: new URL(topic.FirstURL).hostname,
               formattedUrl: topic.FirstURL,
               image: topic.Icon?.URL || null,
-              thumbnail: null
+              thumbnail: null,
             });
           }
         });
@@ -209,7 +208,7 @@ async function handleSearch(req, res) {
         searchTime: 0,
         results: results,
         resultCount: results.length,
-        provider: 'DuckDuckGo'
+        provider: 'DuckDuckGo',
       };
 
       // Add warning about using fallback
@@ -220,7 +219,7 @@ async function handleSearch(req, res) {
           query: query,
           results: [],
           resultCount: 0,
-          message: 'Try using Google Custom Search API for better results'
+          message: 'Try using Google Custom Search API for better results',
         });
       }
     }
@@ -234,9 +233,8 @@ async function handleSearch(req, res) {
       success: true,
       cached: false,
       ...searchResults,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
-
   } catch (error) {
     console.error('❌ Search API Error:', error.message);
 
@@ -248,7 +246,7 @@ async function handleSearch(req, res) {
         return res.status(401).json({
           success: false,
           error: 'Authentication failed',
-          message: 'Invalid Google API key or Custom Search Engine ID'
+          message: 'Invalid Google API key or Custom Search Engine ID',
         });
       }
 
@@ -256,7 +254,7 @@ async function handleSearch(req, res) {
         return res.status(429).json({
           success: false,
           error: 'Rate limit exceeded',
-          message: 'Google Custom Search API rate limit reached'
+          message: 'Google Custom Search API rate limit reached',
         });
       }
     }
@@ -265,14 +263,14 @@ async function handleSearch(req, res) {
     res.status(500).json({
       success: false,
       error: 'Arama istegi basarisiz oldu. Lutfen tekrar deneyin.',
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
   }
 }
 
 // Clear cache handler
-  applySanitization(req, res);
 async function clearCache(req, res) {
+  applySanitization(req, res);
   res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
 
   try {
@@ -292,28 +290,28 @@ async function clearCache(req, res) {
 
       res.status(200).json({
         success: true,
-        message: `Cleared ${cleared} cached entries for query: ${query}`
+        message: `Cleared ${cleared} cached entries for query: ${query}`,
       });
     } else {
       // Clear all cache
       searchCache.flushAll();
       res.status(200).json({
         success: true,
-        message: 'All search cache cleared'
+        message: 'All search cache cleared',
       });
     }
   } catch (error) {
     console.error('❌ Cache clear error:', error.message);
     res.status(500).json({
       success: false,
-      error: 'Onbellek temizleme basarisiz oldu.'
+      error: 'Onbellek temizleme basarisiz oldu.',
     });
   }
 }
 
-  applySanitization(req, res);
 // Get cache statistics
 async function getCacheStats(req, res) {
+  applySanitization(req, res);
   res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
 
   try {
@@ -327,14 +325,14 @@ async function getCacheStats(req, res) {
         hits: stats.hits,
         misses: stats.misses,
         hitRate: stats.hits / (stats.hits + stats.misses) || 0,
-        cachedQueries: keys.length
-      }
+        cachedQueries: keys.length,
+      },
     });
   } catch (error) {
     console.error('❌ Cache stats error:', error.message);
     res.status(500).json({
       success: false,
-      error: 'Onbellek istatistikleri alinamadi.'
+      error: 'Onbellek istatistikleri alinamadi.',
     });
   }
 }
@@ -343,5 +341,5 @@ async function getCacheStats(req, res) {
 module.exports = {
   handleSearch,
   clearCache,
-  getCacheStats
+  getCacheStats,
 };

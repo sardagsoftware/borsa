@@ -154,7 +154,7 @@ async function trackAras(trackingNo, secrets, locale) {
       },
       {
         headers: {
-          'Authorization': `Bearer ${secrets.apiKey}`,
+          Authorization: `Bearer ${secrets.apiKey}`,
           'Content-Type': 'application/json',
         },
         timeout: 10000,
@@ -186,7 +186,7 @@ async function trackAras(trackingNo, secrets, locale) {
       },
     };
   } catch (error) {
-    console.error('[Aras] Tracking error:', error);
+    console.error('[Aras] Tracking error:', error.message);
     throw {
       code: 'VENDOR_ERROR',
       statusCode: 502,
@@ -201,14 +201,14 @@ async function trackAras(trackingNo, secrets, locale) {
 async function trackYurtici(trackingNo, secrets, locale) {
   try {
     const response = await axios.get(
-      `https://api.yurticikargo.com/api/v1/ShipmentTracking/GetShipmentDetails`,
+      'https://api.yurticikargo.com/api/v1/ShipmentTracking/GetShipmentDetails',
       {
         params: {
           shipmentNumber: trackingNo,
           language: locale === 'tr' ? 'TR' : 'EN',
         },
         headers: {
-          'ApiKey': secrets.apiKey,
+          ApiKey: secrets.apiKey,
         },
         timeout: 10000,
       }
@@ -239,7 +239,7 @@ async function trackYurtici(trackingNo, secrets, locale) {
       },
     };
   } catch (error) {
-    console.error('[Yurtiçi] Tracking error:', error);
+    console.error('[Yurtiçi] Tracking error:', error.message);
     throw {
       code: 'VENDOR_ERROR',
       statusCode: 502,
@@ -253,16 +253,13 @@ async function trackYurtici(trackingNo, secrets, locale) {
  */
 async function trackHepsiJet(trackingNo, secrets, locale) {
   try {
-    const response = await axios.get(
-      `https://api.hepsijet.com/v1/tracking/${trackingNo}`,
-      {
-        headers: {
-          'X-API-Key': secrets.apiKey,
-          'Accept-Language': locale,
-        },
-        timeout: 10000,
-      }
-    );
+    const response = await axios.get(`https://api.hepsijet.com/v1/tracking/${trackingNo}`, {
+      headers: {
+        'X-API-Key': secrets.apiKey,
+        'Accept-Language': locale,
+      },
+      timeout: 10000,
+    });
 
     const data = response.data;
 
@@ -289,7 +286,7 @@ async function trackHepsiJet(trackingNo, secrets, locale) {
       },
     };
   } catch (error) {
-    console.error('[HepsiJet] Tracking error:', error);
+    console.error('[HepsiJet] Tracking error:', error.message);
     throw {
       code: 'VENDOR_ERROR',
       statusCode: 502,
@@ -310,7 +307,7 @@ async function trackMNG(trackingNo, secrets, locale) {
       },
       {
         headers: {
-          'ApiKey': secrets.apiKey,
+          ApiKey: secrets.apiKey,
           'Content-Type': 'application/json',
         },
         timeout: 10000,
@@ -342,7 +339,7 @@ async function trackMNG(trackingNo, secrets, locale) {
       },
     };
   } catch (error) {
-    console.error('[MNG] Tracking error:', error);
+    console.error('[MNG] Tracking error:', error.message);
     throw {
       code: 'VENDOR_ERROR',
       statusCode: 502,
@@ -357,15 +354,12 @@ async function trackMNG(trackingNo, secrets, locale) {
 async function trackSurat(trackingNo, secrets, locale) {
   // Sürat uses similar API to MNG
   try {
-    const response = await axios.get(
-      `https://api.suratkargo.com.tr/api/tracking/${trackingNo}`,
-      {
-        headers: {
-          'Authorization': `Bearer ${secrets.apiKey}`,
-        },
-        timeout: 10000,
-      }
-    );
+    const response = await axios.get(`https://api.suratkargo.com.tr/api/tracking/${trackingNo}`, {
+      headers: {
+        Authorization: `Bearer ${secrets.apiKey}`,
+      },
+      timeout: 10000,
+    });
 
     const data = response.data;
 
@@ -392,7 +386,7 @@ async function trackSurat(trackingNo, secrets, locale) {
       },
     };
   } catch (error) {
-    console.error('[Sürat] Tracking error:', error);
+    console.error('[Sürat] Tracking error:', error.message);
     throw {
       code: 'VENDOR_ERROR',
       statusCode: 502,
@@ -406,17 +400,14 @@ async function trackSurat(trackingNo, secrets, locale) {
  */
 async function trackUPS(trackingNo, secrets, locale) {
   try {
-    const response = await axios.get(
-      `https://onlinetools.ups.com/track/v1/details/${trackingNo}`,
-      {
-        headers: {
-          'Authorization': `Bearer ${secrets.apiKey}`,
-          'transId': `lydian-${Date.now()}`,
-          'transactionSrc': 'Lydian-IQ',
-        },
-        timeout: 10000,
-      }
-    );
+    const response = await axios.get(`https://onlinetools.ups.com/track/v1/details/${trackingNo}`, {
+      headers: {
+        Authorization: `Bearer ${secrets.apiKey}`,
+        transId: `lydian-${Date.now()}`,
+        transactionSrc: 'Lydian-IQ',
+      },
+      timeout: 10000,
+    });
 
     const data = response.data.trackResponse.shipment[0];
 
@@ -443,7 +434,7 @@ async function trackUPS(trackingNo, secrets, locale) {
       },
     };
   } catch (error) {
-    console.error('[UPS] Tracking error:', error);
+    console.error('[UPS] Tracking error:', error.message);
     throw {
       code: 'VENDOR_ERROR',
       statusCode: 502,
@@ -455,11 +446,11 @@ async function trackUPS(trackingNo, secrets, locale) {
 // Status mapping functions (vendor-specific to unified)
 function mapArasStatus(vendorStatus) {
   const statusMap = {
-    'DELIVERED': 'DELIVERED',
-    'IN_TRANSIT': 'IN_TRANSIT',
-    'OUT_FOR_DELIVERY': 'OUT_FOR_DELIVERY',
-    'PENDING': 'PENDING',
-    'EXCEPTION': 'EXCEPTION',
+    DELIVERED: 'DELIVERED',
+    IN_TRANSIT: 'IN_TRANSIT',
+    OUT_FOR_DELIVERY: 'OUT_FOR_DELIVERY',
+    PENDING: 'PENDING',
+    EXCEPTION: 'EXCEPTION',
   };
   return statusMap[vendorStatus] || 'UNKNOWN';
 }
@@ -467,19 +458,19 @@ function mapArasStatus(vendorStatus) {
 function mapYurticiStatus(vendorStatus) {
   const statusMap = {
     'Teslim Edildi': 'DELIVERED',
-    'Dağıtımda': 'OUT_FOR_DELIVERY',
-    'Aktarımda': 'IN_TRANSIT',
-    'Şubede': 'IN_TRANSIT',
+    Dağıtımda: 'OUT_FOR_DELIVERY',
+    Aktarımda: 'IN_TRANSIT',
+    Şubede: 'IN_TRANSIT',
   };
   return statusMap[vendorStatus] || 'IN_TRANSIT';
 }
 
 function mapHepsiJetStatus(vendorStatus) {
   const statusMap = {
-    'delivered': 'DELIVERED',
-    'in_transit': 'IN_TRANSIT',
-    'out_for_delivery': 'OUT_FOR_DELIVERY',
-    'pending': 'PENDING',
+    delivered: 'DELIVERED',
+    in_transit: 'IN_TRANSIT',
+    out_for_delivery: 'OUT_FOR_DELIVERY',
+    pending: 'PENDING',
   };
   return statusMap[vendorStatus] || 'UNKNOWN';
 }
@@ -494,11 +485,11 @@ function mapSuratStatus(vendorStatus) {
 
 function mapUPSStatus(statusCode) {
   const statusMap = {
-    'D': 'DELIVERED',
-    'I': 'IN_TRANSIT',
-    'O': 'OUT_FOR_DELIVERY',
-    'P': 'PENDING',
-    'X': 'EXCEPTION',
+    D: 'DELIVERED',
+    I: 'IN_TRANSIT',
+    O: 'OUT_FOR_DELIVERY',
+    P: 'PENDING',
+    X: 'EXCEPTION',
   };
   return statusMap[statusCode] || 'IN_TRANSIT';
 }

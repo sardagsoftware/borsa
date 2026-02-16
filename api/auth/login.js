@@ -161,7 +161,7 @@ export default async function handler(req, res) {
       message: 'Login successful',
     });
   } catch (error) {
-    console.error('Login error:', error);
+    console.error('Login error:', error.message);
 
     if (error.message.includes('Invalid email or password')) {
       return res.status(401).json({

@@ -22,41 +22,45 @@ const OAUTH_CONFIGS = {
   google: {
     clientId: process.env.GOOGLE_CLIENT_ID || 'your-google-client-id',
     clientSecret: process.env.GOOGLE_CLIENT_SECRET || 'your-google-client-secret',
-    redirectUri: process.env.GOOGLE_REDIRECT_URI || 'https://www.ailydian.com/api/auth/google/callback',
+    redirectUri:
+      process.env.GOOGLE_REDIRECT_URI || 'https://www.ailydian.com/api/auth/google/callback',
     authUrl: 'https://accounts.google.com/o/oauth2/v2/auth',
     tokenUrl: 'https://oauth2.googleapis.com/token',
     userInfoUrl: 'https://www.googleapis.com/oauth2/v2/userinfo',
-    scope: 'openid email profile'
+    scope: 'openid email profile',
   },
   microsoft: {
     clientId: process.env.MICROSOFT_CLIENT_ID || 'your-microsoft-client-id',
     clientSecret: process.env.MICROSOFT_CLIENT_SECRET || 'your-microsoft-client-secret',
-    redirectUri: process.env.MICROSOFT_REDIRECT_URI || 'https://www.ailydian.com/api/auth/microsoft/callback',
+    redirectUri:
+      process.env.MICROSOFT_REDIRECT_URI || 'https://www.ailydian.com/api/auth/microsoft/callback',
     authUrl: 'https://login.microsoftonline.com/common/oauth2/v2.0/authorize',
     tokenUrl: 'https://login.microsoftonline.com/common/oauth2/v2.0/token',
     userInfoUrl: 'https://graph.microsoft.com/v1.0/me',
-    scope: 'openid email profile User.Read'
+    scope: 'openid email profile User.Read',
   },
   github: {
     clientId: process.env.GITHUB_CLIENT_ID || 'your-github-client-id',
     clientSecret: process.env.GITHUB_CLIENT_SECRET || 'your-github-client-secret',
-    redirectUri: process.env.GITHUB_REDIRECT_URI || 'https://www.ailydian.com/api/auth/github/callback',
+    redirectUri:
+      process.env.GITHUB_REDIRECT_URI || 'https://www.ailydian.com/api/auth/github/callback',
     authUrl: 'https://github.com/login/oauth/authorize',
     tokenUrl: 'https://github.com/login/oauth/access_token',
     userInfoUrl: 'https://api.github.com/user',
     emailUrl: 'https://api.github.com/user/emails',
-    scope: 'read:user user:email'
+    scope: 'read:user user:email',
   },
   apple: {
     clientId: process.env.APPLE_CLIENT_ID || 'your-apple-client-id',
     teamId: process.env.APPLE_TEAM_ID || 'your-apple-team-id',
     keyId: process.env.APPLE_KEY_ID || 'your-apple-key-id',
     privateKey: process.env.APPLE_PRIVATE_KEY || 'your-apple-private-key',
-    redirectUri: process.env.APPLE_REDIRECT_URI || 'https://www.ailydian.com/api/auth/apple/callback',
+    redirectUri:
+      process.env.APPLE_REDIRECT_URI || 'https://www.ailydian.com/api/auth/apple/callback',
     authUrl: 'https://appleid.apple.com/auth/authorize',
     tokenUrl: 'https://appleid.apple.com/auth/token',
-    scope: 'name email'
-  }
+    scope: 'name email',
+  },
 };
 
 // Helper: Generate secure state token
@@ -71,7 +75,7 @@ function generateToken(user) {
       userId: user.id,
       email: user.email,
       name: user.name,
-      provider: user.provider
+      provider: user.provider,
     },
     JWT_SECRET,
     { expiresIn: '7d' }
@@ -92,7 +96,7 @@ function createOrUpdateUser(profile, provider) {
       avatar: profile.picture || profile.avatar_url,
       provider: provider,
       createdAt: new Date(),
-      lastLogin: new Date()
+      lastLogin: new Date(),
     };
     users.set(userId, user);
   } else {
@@ -125,14 +129,14 @@ async function handleGoogleAuth(req, res) {
     scope: OAUTH_CONFIGS.google.scope,
     state: state,
     access_type: 'offline',
-    prompt: 'consent'
+    prompt: 'consent',
   });
 
   res.redirect(`${OAUTH_CONFIGS.google.authUrl}?${params.toString()}`);
 }
 
-  applySanitization(req, res);
 async function handleGoogleCallback(req, res) {
+  applySanitization(req, res);
   const { code, state } = req.query;
 
   if (!state || !oauthStates.has(state)) {
@@ -148,14 +152,14 @@ async function handleGoogleCallback(req, res) {
       client_id: OAUTH_CONFIGS.google.clientId,
       client_secret: OAUTH_CONFIGS.google.clientSecret,
       redirect_uri: OAUTH_CONFIGS.google.redirectUri,
-      grant_type: 'authorization_code'
+      grant_type: 'authorization_code',
     });
 
     const { access_token } = tokenResponse.data;
 
     // Get user info
     const userResponse = await axios.get(OAUTH_CONFIGS.google.userInfoUrl, {
-      headers: { Authorization: `Bearer ${access_token}` }
+      headers: { Authorization: `Bearer ${access_token}` },
     });
 
     const user = createOrUpdateUser(userResponse.data, 'lydian-vision');
@@ -172,9 +176,9 @@ async function handleGoogleCallback(req, res) {
 // ========================================
 // MICROSOFT OAUTH
 // ========================================
-  applySanitization(req, res);
 
 async function handleMicrosoftAuth(req, res) {
+  applySanitization(req, res);
   // 🔒 SECURITY: Check if OAuth is configured
   if (!OAUTH_CONFIGS.microsoft.clientId || OAUTH_CONFIGS.microsoft.clientId.includes('your-')) {
     return res.redirect('/auth.html?error=oauth_not_configured&provider=microsoft');
@@ -189,14 +193,14 @@ async function handleMicrosoftAuth(req, res) {
     response_type: 'code',
     scope: OAUTH_CONFIGS.microsoft.scope,
     state: state,
-    response_mode: 'query'
+    response_mode: 'query',
   });
 
   res.redirect(`${OAUTH_CONFIGS.microsoft.authUrl}?${params.toString()}`);
-  applySanitization(req, res);
 }
 
 async function handleMicrosoftCallback(req, res) {
+  applySanitization(req, res);
   const { code, state } = req.query;
 
   if (!state || !oauthStates.has(state)) {
@@ -214,10 +218,10 @@ async function handleMicrosoftCallback(req, res) {
         client_id: OAUTH_CONFIGS.microsoft.clientId,
         client_secret: OAUTH_CONFIGS.microsoft.clientSecret,
         redirect_uri: OAUTH_CONFIGS.microsoft.redirectUri,
-        grant_type: 'authorization_code'
+        grant_type: 'authorization_code',
       }),
       {
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       }
     );
 
@@ -225,14 +229,14 @@ async function handleMicrosoftCallback(req, res) {
 
     // Get user info
     const userResponse = await axios.get(OAUTH_CONFIGS.microsoft.userInfoUrl, {
-      headers: { Authorization: `Bearer ${access_token}` }
+      headers: { Authorization: `Bearer ${access_token}` },
     });
 
     const profile = {
       id: userResponse.data.id,
       email: userResponse.data.mail || userResponse.data.userPrincipalName,
       name: userResponse.data.displayName,
-      picture: null
+      picture: null,
     };
 
     const user = createOrUpdateUser(profile, 'microsoft');
@@ -246,11 +250,11 @@ async function handleMicrosoftCallback(req, res) {
 }
 
 // ========================================
-  applySanitization(req, res);
 // GITHUB OAUTH
 // ========================================
 
 async function handleGithubAuth(req, res) {
+  applySanitization(req, res);
   // 🔒 SECURITY: Check if OAuth is configured
   if (!OAUTH_CONFIGS.github.clientId || OAUTH_CONFIGS.github.clientId.includes('your-')) {
     return res.redirect('/auth.html?error=oauth_not_configured&provider=github');
@@ -264,14 +268,14 @@ async function handleGithubAuth(req, res) {
     redirect_uri: OAUTH_CONFIGS.github.redirectUri,
     scope: OAUTH_CONFIGS.github.scope,
     state: state,
-    allow_signup: 'true'
+    allow_signup: 'true',
   });
-  applySanitization(req, res);
 
   res.redirect(`${OAUTH_CONFIGS.github.authUrl}?${params.toString()}`);
 }
 
 async function handleGithubCallback(req, res) {
+  applySanitization(req, res);
   const { code, state } = req.query;
 
   if (!state || !oauthStates.has(state)) {
@@ -288,10 +292,10 @@ async function handleGithubCallback(req, res) {
         code,
         client_id: OAUTH_CONFIGS.github.clientId,
         client_secret: OAUTH_CONFIGS.github.clientSecret,
-        redirect_uri: OAUTH_CONFIGS.github.redirectUri
+        redirect_uri: OAUTH_CONFIGS.github.redirectUri,
       },
       {
-        headers: { Accept: 'application/json' }
+        headers: { Accept: 'application/json' },
       }
     );
 
@@ -301,8 +305,8 @@ async function handleGithubCallback(req, res) {
     const userResponse = await axios.get(OAUTH_CONFIGS.github.userInfoUrl, {
       headers: {
         Authorization: `Bearer ${access_token}`,
-        Accept: 'application/json'
-      }
+        Accept: 'application/json',
+      },
     });
 
     // Get email (GitHub may not return it in profile)
@@ -311,8 +315,8 @@ async function handleGithubCallback(req, res) {
       const emailResponse = await axios.get(OAUTH_CONFIGS.github.emailUrl, {
         headers: {
           Authorization: `Bearer ${access_token}`,
-          Accept: 'application/json'
-        }
+          Accept: 'application/json',
+        },
       });
       const primaryEmail = emailResponse.data.find(e => e.primary);
       email = primaryEmail ? primaryEmail.email : emailResponse.data[0]?.email;
@@ -323,7 +327,7 @@ async function handleGithubCallback(req, res) {
       email: email,
       name: userResponse.data.name || userResponse.data.login,
       login: userResponse.data.login,
-      avatar_url: userResponse.data.avatar_url
+      avatar_url: userResponse.data.avatar_url,
     };
 
     const user = createOrUpdateUser(profile, 'github');
@@ -335,13 +339,13 @@ async function handleGithubCallback(req, res) {
     res.redirect('/auth.html?error=github_auth_failed');
   }
 }
-  applySanitization(req, res);
 
 // ========================================
 // APPLE OAUTH (Sign in with Apple)
 // ========================================
 
 async function handleAppleAuth(req, res) {
+  applySanitization(req, res);
   // 🔒 SECURITY: Check if OAuth is configured
   if (!OAUTH_CONFIGS.apple.clientId || OAUTH_CONFIGS.apple.clientId.includes('your-')) {
     return res.redirect('/auth.html?error=oauth_not_configured&provider=apple');
@@ -356,14 +360,14 @@ async function handleAppleAuth(req, res) {
     response_type: 'code id_token',
     response_mode: 'form_post',
     scope: OAUTH_CONFIGS.apple.scope,
-  applySanitization(req, res);
-    state: state
+    state: state,
   });
 
   res.redirect(`${OAUTH_CONFIGS.apple.authUrl}?${params.toString()}`);
 }
 
 async function handleAppleCallback(req, res) {
+  applySanitization(req, res);
   const { code, state, id_token, user } = req.body;
 
   if (!state || !oauthStates.has(state)) {
@@ -379,7 +383,7 @@ async function handleAppleCallback(req, res) {
     let profile = {
       id: decodedToken.sub,
       email: decodedToken.email,
-      name: decodedToken.email // Apple doesn't always provide name
+      name: decodedToken.email, // Apple doesn't always provide name
     };
 
     // If user data is provided (first time only)
@@ -395,7 +399,6 @@ async function handleAppleCallback(req, res) {
   } catch (error) {
     console.error('Apple OAuth error:', error.message);
     res.redirect('/auth.html?error=apple_auth_failed');
-  applySanitization(req, res);
   }
 }
 
@@ -404,30 +407,30 @@ async function handleAppleCallback(req, res) {
 // ========================================
 
 async function handleCheckEmail(req, res) {
+  applySanitization(req, res);
   const { email } = req.body;
 
   // Check if user exists with this email
   const existingUser = Array.from(users.values()).find(u => u.email === email);
-  applySanitization(req, res);
 
   res.json({
     success: true,
     exists: !!existingUser,
-    provider: existingUser?.provider
+    provider: existingUser?.provider,
   });
 }
 
 async function handleLogout(req, res) {
+  applySanitization(req, res);
   const token = req.headers.authorization?.replace('Bearer ', '');
 
   if (token) {
-  applySanitization(req, res);
     sessions.delete(token);
   }
 
   res.json({
     success: true,
-    message: 'Logged out successfully'
+    message: 'Logged out successfully',
   });
 }
 
@@ -454,9 +457,9 @@ async function handleVerifyToken(req, res) {
           email: user.email,
           name: user.name,
           avatar: user.avatar,
-          provider: user.provider
-        }
-      }
+          provider: user.provider,
+        },
+      },
     });
   } catch (error) {
     res.status(401).json({ success: false, message: 'Invalid token' });
@@ -487,5 +490,5 @@ module.exports = {
   // Utilities
   handleCheckEmail,
   handleLogout,
-  handleVerifyToken
+  handleVerifyToken,
 };

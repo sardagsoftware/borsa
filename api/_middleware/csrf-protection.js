@@ -80,7 +80,7 @@ class CSRFProtection {
 
       return { valid: true };
     } catch (error) {
-      console.error('[CSRF] Token validation error:', error);
+      console.error('[CSRF] Token validation error:', error.message);
       return { valid: false, error: 'Invalid CSRF token format' };
     }
   }

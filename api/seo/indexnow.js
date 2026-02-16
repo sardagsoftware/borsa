@@ -1,6 +1,6 @@
 const { applySanitization } = require('../_middleware/sanitize');
 
-const INDEXNOW_KEY = process.env.INDEXNOW_KEY || 'a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6';
+const INDEXNOW_KEY = process.env.INDEXNOW_KEY || '';
 
 /**
  * Handle IndexNow submission
@@ -12,7 +12,7 @@ async function handleIndexNow(req, res) {
 
     if (!url && !urlList) {
       return res.status(400).json({
-        error: 'Either url or urlList is required'
+        error: 'Either url or urlList is required',
       });
     }
 
@@ -21,9 +21,8 @@ async function handleIndexNow(req, res) {
     res.status(200).json({
       success: true,
       message: 'IndexNow submission acknowledged',
-      key: INDEXNOW_KEY.substring(0, 8) + '...'
+      key: INDEXNOW_KEY.substring(0, 8) + '...',
     });
-
   } catch (error) {
     console.error('❌ IndexNow submission error:', error);
     res.status(500).json({ error: 'Internal Server Error' });
@@ -33,13 +32,12 @@ async function handleIndexNow(req, res) {
 /**
  * Handle IndexNow key verification
  */
-  applySanitization(req, res);
 async function handleKeyVerification(req, res) {
+  applySanitization(req, res);
   try {
     res.setHeader('Content-Type', 'text/plain; charset=UTF-8');
     res.setHeader('Cache-Control', 'public, max-age=86400'); // 24 hours
     res.status(200).send(INDEXNOW_KEY);
-
   } catch (error) {
     console.error('❌ IndexNow key verification error:', error);
     res.status(500).send('Internal Server Error');
@@ -48,5 +46,5 @@ async function handleKeyVerification(req, res) {
 
 module.exports = {
   handleIndexNow,
-  handleKeyVerification
+  handleKeyVerification,
 };

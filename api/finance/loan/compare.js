@@ -1,8 +1,10 @@
 /**
-
- * 💰 Loan Comparison API
+ * Loan Comparison API
  * Compare loan offers from multiple banks
  */
+
+const { getCorsOrigin } = require('../../_middleware/cors');
+const { applySanitization } = require('../../_middleware/sanitize');
 
 /**
  * Turkish banks with typical loan rates
@@ -12,38 +14,38 @@ const BANKS = [
     name: 'Garanti BBVA',
     baseRate: 2.49,
     processingFee: 0,
-    logo: '🏦'
+    logo: '🏦',
   },
   {
     name: 'Yapı Kredi',
     baseRate: 2.59,
     processingFee: 0,
-    logo: '🏦'
+    logo: '🏦',
   },
   {
     name: 'İş Bankası',
     baseRate: 2.39,
     processingFee: 0,
-    logo: '🏦'
+    logo: '🏦',
   },
   {
     name: 'Akbank',
     baseRate: 2.69,
     processingFee: 0,
-    logo: '🏦'
+    logo: '🏦',
   },
   {
     name: 'Ziraat Bankası',
     baseRate: 2.29,
     processingFee: 0,
-    logo: '🏦'
+    logo: '🏦',
   },
   {
     name: 'Halkbank',
     baseRate: 2.35,
     processingFee: 0,
-    logo: '🏦'
-  }
+    logo: '🏦',
+  },
 ];
 
 /**
@@ -61,7 +63,7 @@ function calculateLoan(amount, term, interestRate) {
     monthlyPayment: Math.round(monthlyPayment * 100) / 100,
     totalPayment: Math.round(totalPayment * 100) / 100,
     totalInterest: Math.round(totalInterest * 100) / 100,
-    interestRate: Math.round(interestRate * 100) / 100
+    interestRate: Math.round(interestRate * 100) / 100,
   };
 }
 
@@ -69,25 +71,34 @@ function calculateLoan(amount, term, interestRate) {
  * Compare loan offers
  */
 async function compareLoan(req, res) {
+  // CORS headers
+  res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  if (req.method === 'OPTIONS') return res.status(200).end();
+
+  applySanitization(req, res);
+
   const { amount, term, loanType = 'consumer' } = req.body;
 
   // Validation
   if (!amount || amount < 1000) {
     return res.status(400).json({
       success: false,
-      error: 'Amount must be at least 1,000 TL'
+      error: 'Amount must be at least 1,000 TL',
     });
   }
 
   if (!term || term < 1 || term > 360) {
     return res.status(400).json({
       success: false,
-      error: 'Term must be between 1 and 360 months'
+      error: 'Term must be between 1 and 360 months',
     });
   }
 
   // Calculate offers from all banks
-  const offers = BANKS.map((bank) => {
+  const offers = BANKS.map(bank => {
     // Add some variance based on loan type and amount
     let rateAdjustment = 0;
 
@@ -114,7 +125,7 @@ async function compareLoan(req, res) {
       monthlyPayment: calculation.monthlyPayment,
       totalPayment: calculation.totalPayment,
       totalInterest: calculation.totalInterest,
-      processingFee: bank.processingFee
+      processingFee: bank.processingFee,
     };
   });
 
@@ -128,7 +139,7 @@ async function compareLoan(req, res) {
     loanType,
     offers,
     bestOffer: offers[0],
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
   });
 }
 

@@ -1,4 +1,3 @@
-/* global fetch */
 /**
  * AILYDIAN File Analysis API
  * Upload and analyze files (PDF, PNG, JPEG, Word)
@@ -363,7 +362,7 @@ module.exports = async function handler(req, res) {
       analysis,
     });
   } catch (error) {
-    console.error('[FILE_ANALYZE_ERR]', error.message, error.stack);
+    console.error('[FILE_ANALYZE_ERR]', error.message);
 
     const errorMessage = error.message.includes('yapılandırılmamış')
       ? 'AI servisi geçici olarak kullanılamıyor.'

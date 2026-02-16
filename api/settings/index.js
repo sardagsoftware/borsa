@@ -164,7 +164,7 @@ router.post('/password', authenticateToken, async (req, res) => {
       db.close();
     }
   } catch (error) {
-    console.error('Change password error:', error);
+    console.error('Change password error:', error.message);
     res.status(500).json({
       success: false,
       error: 'Failed to change password',
@@ -355,7 +355,7 @@ router.get('/api-keys', authenticateToken, async (req, res) => {
       db.close();
     }
   } catch (error) {
-    console.error('Get API keys error:', error);
+    console.error('Get API keys error:', error.message);
     res.status(500).json({
       success: false,
       error: 'Failed to get API keys',
@@ -409,7 +409,7 @@ router.post('/api-keys', authenticateToken, async (req, res) => {
       db.close();
     }
   } catch (error) {
-    console.error('Create API key error:', error);
+    console.error('Create API key error:', error.message);
     res.status(500).json({
       success: false,
       error: 'Failed to create API key',
@@ -455,7 +455,7 @@ router.delete('/api-keys/:id', authenticateToken, async (req, res) => {
       db.close();
     }
   } catch (error) {
-    console.error('Revoke API key error:', error);
+    console.error('Revoke API key error:', error.message);
     res.status(500).json({
       success: false,
       error: 'Failed to revoke API key',

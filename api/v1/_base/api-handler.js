@@ -27,6 +27,7 @@ const { sanitizeInput } = require('../../../security/input-sanitizer');
 const { emitTelemetry } = require('../../../lib/monitoring/telemetry');
 const { getVaultSecret } = require('../../../lib/vault/secrets');
 const { applySanitization } = require('../../_middleware/sanitize');
+const { getCorsOrigin } = require('../../_middleware/cors');
 
 /**
  * Create a standardized API handler
@@ -52,6 +53,16 @@ function createApiHandler(config) {
   } = config;
 
   return async (req, res) => {
+    // CORS headers
+    res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.setHeader(
+      'Access-Control-Allow-Headers',
+      'Content-Type, Authorization, Idempotency-Key, X-CSRF-Token'
+    );
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    if (req.method === 'OPTIONS') return res.status(200).end();
+
     applySanitization(req, res);
     const startTime = Date.now();
     const telemetryData = {
@@ -107,11 +118,7 @@ function createApiHandler(config) {
       // ═══════════════════════════════════════════════════════════════
       // 3. Rate Limiting (429 with Retry-After)
       // ═══════════════════════════════════════════════════════════════
-      const rateLimitResult = await rateLimitCheck(
-        req,
-        `${connector}:${action}`,
-        rateLimit
-      );
+      const rateLimitResult = await rateLimitCheck(req, `${connector}:${action}`, rateLimit);
 
       if (!rateLimitResult.allowed) {
         telemetryData.error = 'RATE_LIMIT_EXCEEDED';
@@ -231,12 +238,11 @@ function createApiHandler(config) {
           retries: result.retries || 0,
         },
       });
-
     } catch (error) {
       // ═══════════════════════════════════════════════════════════════
       // 10. Error Handling
       // ═══════════════════════════════════════════════════════════════
-      console.error(`[API Handler] ${connector}.${action} error:`, error);
+      console.error(`[API Handler] ${connector}.${action} error:`, error.message);
 
       telemetryData.error = error.code || 'EXECUTION_ERROR';
       telemetryData.latency = Date.now() - startTime;

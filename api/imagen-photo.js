@@ -39,7 +39,7 @@ async function getGoogleAccessToken() {
     const token = await client.getAccessToken();
     return token.token;
   } catch (error) {
-    console.error('❌ Google Auth Error:', error);
+    console.error('❌ Google Auth Error:', error.message);
     throw error;
   }
 }

@@ -110,7 +110,7 @@ async function handleTrendyol(action, params, secrets, locale) {
         throw new Error('Invalid action');
     }
   } catch (error) {
-    console.error('[Trendyol] Operation error:', error);
+    console.error('[Trendyol] Operation error:', error.message);
     throw {
       code: 'VENDOR_ERROR',
       statusCode: 502,
@@ -132,7 +132,7 @@ async function searchTrendyol(query, secrets, locale) {
         channelId: 1,
       },
       headers: {
-        'Authorization': `Bearer ${secrets.apiKey}`,
+        Authorization: `Bearer ${secrets.apiKey}`,
         'User-Agent': 'Lydian-IQ/1.0',
       },
       timeout: 10000,
@@ -174,7 +174,7 @@ async function getTrendyolProduct(sku, secrets, locale) {
     `https://api.trendyol.com/sapigw/product-gateway/api/products/${sku}`,
     {
       headers: {
-        'Authorization': `Bearer ${secrets.apiKey}`,
+        Authorization: `Bearer ${secrets.apiKey}`,
         'User-Agent': 'Lydian-IQ/1.0',
       },
       timeout: 10000,
@@ -221,7 +221,7 @@ async function updateTrendyolProduct(sku, updates, secrets, locale) {
     },
     {
       headers: {
-        'Authorization': `Basic ${Buffer.from(`${secrets.apiKey}:${secrets.apiSecret}`).toString('base64')}`,
+        Authorization: `Basic ${Buffer.from(`${secrets.apiKey}:${secrets.apiSecret}`).toString('base64')}`,
         'Content-Type': 'application/json',
         'User-Agent': 'Lydian-IQ/1.0',
       },
@@ -255,7 +255,7 @@ async function handleHepsiburada(action, params, secrets, locale) {
         throw new Error('Invalid action');
     }
   } catch (error) {
-    console.error('[Hepsiburada] Operation error:', error);
+    console.error('[Hepsiburada] Operation error:', error.message);
     throw {
       code: 'VENDOR_ERROR',
       statusCode: 502,
@@ -268,19 +268,16 @@ async function handleHepsiburada(action, params, secrets, locale) {
  * Search products on Hepsiburada
  */
 async function searchHepsiburada(query, secrets, locale) {
-  const response = await axios.get(
-    'https://listing-external.hepsiburada.com/listings/merchantid',
-    {
-      params: {
-        searchText: query,
-        merchantId: secrets.merchantId,
-      },
-      headers: {
-        'Authorization': `Bearer ${secrets.apiKey}`,
-      },
-      timeout: 10000,
-    }
-  );
+  const response = await axios.get('https://listing-external.hepsiburada.com/listings/merchantid', {
+    params: {
+      searchText: query,
+      merchantId: secrets.merchantId,
+    },
+    headers: {
+      Authorization: `Bearer ${secrets.apiKey}`,
+    },
+    timeout: 10000,
+  });
 
   const data = response.data;
 
@@ -315,7 +312,7 @@ async function getHepsiburadaProduct(sku, secrets, locale) {
     `https://listing-external.hepsiburada.com/listings/merchantid/${secrets.merchantId}/sku/${sku}`,
     {
       headers: {
-        'Authorization': `Bearer ${secrets.apiKey}`,
+        Authorization: `Bearer ${secrets.apiKey}`,
       },
       timeout: 10000,
     }
@@ -356,7 +353,7 @@ async function updateHepsiburadaProduct(sku, updates, secrets, locale) {
     },
     {
       headers: {
-        'Authorization': `Bearer ${secrets.apiKey}`,
+        Authorization: `Bearer ${secrets.apiKey}`,
         'Content-Type': 'application/json',
       },
       timeout: 10000,
@@ -389,7 +386,7 @@ async function handleN11(action, params, secrets, locale) {
         throw new Error('Invalid action');
     }
   } catch (error) {
-    console.error('[N11] Operation error:', error);
+    console.error('[N11] Operation error:', error.message);
     throw {
       code: 'VENDOR_ERROR',
       statusCode: 502,
@@ -542,19 +539,16 @@ async function handleSahibinden(action, params, secrets, locale) {
   }
 
   try {
-    const response = await axios.get(
-      'https://api.sahibinden.com/v1/search',
-      {
-        params: {
-          query,
-          category: 'all',
-        },
-        headers: {
-          'X-API-Key': secrets.apiKey,
-        },
-        timeout: 10000,
-      }
-    );
+    const response = await axios.get('https://api.sahibinden.com/v1/search', {
+      params: {
+        query,
+        category: 'all',
+      },
+      headers: {
+        'X-API-Key': secrets.apiKey,
+      },
+      timeout: 10000,
+    });
 
     const data = response.data;
 
@@ -582,7 +576,7 @@ async function handleSahibinden(action, params, secrets, locale) {
       pageSize: data.results?.length || 0,
     };
   } catch (error) {
-    console.error('[Sahibinden] Search error:', error);
+    console.error('[Sahibinden] Search error:', error.message);
     throw {
       code: 'VENDOR_ERROR',
       statusCode: 502,
@@ -606,18 +600,15 @@ async function handleArabam(action, params, secrets, locale) {
   }
 
   try {
-    const response = await axios.get(
-      'https://api.arabam.com/v1/search',
-      {
-        params: {
-          q: query,
-        },
-        headers: {
-          'Authorization': `Bearer ${secrets.apiKey}`,
-        },
-        timeout: 10000,
-      }
-    );
+    const response = await axios.get('https://api.arabam.com/v1/search', {
+      params: {
+        q: query,
+      },
+      headers: {
+        Authorization: `Bearer ${secrets.apiKey}`,
+      },
+      timeout: 10000,
+    });
 
     const data = response.data;
 
@@ -649,7 +640,7 @@ async function handleArabam(action, params, secrets, locale) {
       pageSize: data.listings?.length || 0,
     };
   } catch (error) {
-    console.error('[Arabam] Search error:', error);
+    console.error('[Arabam] Search error:', error.message);
     throw {
       code: 'VENDOR_ERROR',
       statusCode: 502,

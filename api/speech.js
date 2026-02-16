@@ -184,8 +184,8 @@ async function handleTranscribe(req, res) {
 }
 
 // Text-to-Speech Handler (Synthesis)
-  applySanitization(req, res);
 async function handleSynthesize(req, res) {
+  applySanitization(req, res);
   // CORS headers
   res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -309,9 +309,9 @@ async function handleSynthesize(req, res) {
   }
 }
 
-  applySanitization(req, res);
 // Get available voices
 async function getVoices(req, res) {
+  applySanitization(req, res);
   res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
 
   // Validate credentials

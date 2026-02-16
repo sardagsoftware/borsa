@@ -10,7 +10,10 @@ const User = require('../../backend/models/User');
 const { authenticateToken } = require('../../backend/middleware/auth');
 const { applySanitization } = require('../_middleware/sanitize');
 
-router.use((req, res, next) => { applySanitization(req, res); next(); });
+router.use((req, res, next) => {
+  applySanitization(req, res);
+  next();
+});
 
 /**
  * POST /api/auth/check-email
@@ -377,7 +380,7 @@ router.post('/refresh', async (req, res) => {
       refreshToken: newRefreshToken,
     });
   } catch (error) {
-    console.error('Token refresh error:', error);
+    console.error('Token refresh error:', error.message);
 
     res.status(401).json({
       success: false,

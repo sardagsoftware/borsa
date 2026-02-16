@@ -107,8 +107,8 @@ async function handleAnalyze(req, res) {
  * POST /api/video/generate
  * Generate video using Google Veo (via Imagen/Vertex AI)
  */
-  applySanitization(req, res);
 async function handleGenerate(req, res) {
+  applySanitization(req, res);
   try {
     const { prompt, duration = 5, resolution = '1280x720', style = 'realistic' } = req.body;
 
@@ -167,9 +167,9 @@ async function handleGenerate(req, res) {
 /**
  * POST /api/video/transcribe
  * Transcribe video audio using LyDian Audio
-  applySanitization(req, res);
  */
 async function handleTranscribe(req, res) {
+  applySanitization(req, res);
   try {
     const { audioBase64, language = 'auto' } = req.body;
 
@@ -261,10 +261,10 @@ function handleStatus(req, res) {
 
 /**
  * POST /api/video/extract-frames
-  applySanitization(req, res);
  * Extract frames from video using LyDian Vision
  */
 async function handleExtractFrames(req, res) {
+  applySanitization(req, res);
   try {
     const { videoUrl, videoBase64, frameCount = 5 } = req.body;
 

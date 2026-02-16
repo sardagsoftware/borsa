@@ -13,8 +13,7 @@ const { URLSearchParams } = require('url');
  * reCAPTCHA Secret Key
  * Set as environment variable: RECAPTCHA_SECRET_KEY
  */
-const RECAPTCHA_SECRET_KEY =
-  process.env.RECAPTCHA_SECRET_KEY || '6LfGUKAqAAAAAMVc-XZR8sW4x6KZtL_PQVnhX3zA';
+const RECAPTCHA_SECRET_KEY = process.env.RECAPTCHA_SECRET_KEY || '';
 
 /**
  * Minimum score threshold for reCAPTCHA v3

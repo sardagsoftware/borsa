@@ -10,7 +10,7 @@ const VERTEX_CONFIG = {
   projectId: process.env.GOOGLE_CLOUD_PROJECT_ID,
   location: 'us-central1',
   model: 'veo-2.0', // Latest Veo model
-  endpoint: 'https://us-central1-aiplatform.googleapis.com'
+  endpoint: 'https://us-central1-aiplatform.googleapis.com',
 };
 
 // Initialize Google Auth
@@ -18,13 +18,13 @@ async function getAccessToken() {
   try {
     const auth = new GoogleAuth({
       credentials: JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS || '{}'),
-      scopes: ['https://www.googleapis.com/auth/cloud-platform']
+      scopes: ['https://www.googleapis.com/auth/cloud-platform'],
     });
     const client = await auth.getClient();
     const token = await client.getAccessToken();
     return token.token;
   } catch (error) {
-    console.error('Auth Error:', error);
+    console.error('Auth Error:', error.message);
     throw error;
   }
 }
@@ -44,13 +44,13 @@ module.exports = async (req, res) => {
       prompt,
       durationSeconds = 8, // Max duration for Veo 2.0
       aspectRatio = '16:9', // or '9:16'
-      sampleCount = 1
+      sampleCount = 1,
     } = req.body;
 
     if (!prompt) {
       return res.status(400).json({
         success: false,
-        error: 'Video açıklaması gerekli'
+        error: 'Video açıklaması gerekli',
       });
     }
 
@@ -69,19 +69,21 @@ module.exports = async (req, res) => {
     const response = await fetch(apiUrl, {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${accessToken}`,
-        'Content-Type': 'application/json'
+        Authorization: `Bearer ${accessToken}`,
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        instances: [{
-          prompt: prompt,
-          durationSeconds: validDuration,
-          aspectRatio: aspectRatio
-        }],
+        instances: [
+          {
+            prompt: prompt,
+            durationSeconds: validDuration,
+            aspectRatio: aspectRatio,
+          },
+        ],
         parameters: {
-          sampleCount: sampleCount
-        }
-      })
+          sampleCount: sampleCount,
+        },
+      }),
     });
 
     if (!response.ok) {
@@ -106,15 +108,12 @@ module.exports = async (req, res) => {
     while (!operationComplete && pollCount < maxPolls) {
       await new Promise(resolve => setTimeout(resolve, 1000)); // Wait 1 second
 
-      const statusResponse = await fetch(
-        `${VERTEX_CONFIG.endpoint}/v1/${operationName}`,
-        {
-          headers: {
-            'Authorization': `Bearer ${accessToken}`,
-            'Content-Type': 'application/json'
-          }
-        }
-      );
+      const statusResponse = await fetch(`${VERTEX_CONFIG.endpoint}/v1/${operationName}`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          'Content-Type': 'application/json',
+        },
+      });
 
       const statusData = await statusResponse.json();
 
@@ -134,7 +133,7 @@ module.exports = async (req, res) => {
         operationName: operationName,
         message: 'Video oluşturuluyor... Bu işlem birkaç dakika sürebilir.',
         provider: 'LyDian AI',
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
       });
     }
 
@@ -154,17 +153,16 @@ module.exports = async (req, res) => {
       metadata: {
         prompt: prompt.substring(0, 100), // Show truncated prompt
         quality: 'Premium 4K',
-        technology: 'Advanced Neural Generation'
-      }
+        technology: 'Advanced Neural Generation',
+      },
     });
-
   } catch (error) {
     console.error('❌ Veo Video Generation Error:', error);
     res.status(500).json({
       success: false,
       error: 'Video oluşturma başarısız oldu',
       message: 'Lütfen daha kısa bir açıklama deneyin veya tekrar deneyin',
-      details: process.env.NODE_ENV === 'development' ? error.message : undefined
+      details: process.env.NODE_ENV === 'development' ? error.message : undefined,
     });
   }
 };

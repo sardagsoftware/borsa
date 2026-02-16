@@ -24,7 +24,7 @@ router.post('/request', async (req, res) => {
     if (!email) {
       return res.status(400).json({
         success: false,
-        error: 'Email is required'
+        error: 'Email is required',
       });
     }
 
@@ -35,7 +35,7 @@ router.post('/request', async (req, res) => {
     if (!user) {
       return res.json({
         success: true,
-        message: 'If the email exists, a password reset link has been sent'
+        message: 'If the email exists, a password reset link has been sent',
       });
     }
 
@@ -50,11 +50,12 @@ router.post('/request', async (req, res) => {
       db.prepare('DELETE FROM password_reset WHERE userId = ? AND used = 0').run(user.id);
 
       // Create new token
-      db.prepare(`
+      db.prepare(
+        `
         INSERT INTO password_reset (userId, token, expiresAt)
         VALUES (?, ?, ?)
-      `).run(user.id, token, expiresAt.toISOString());
-
+      `
+      ).run(user.id, token, expiresAt.toISOString());
     } finally {
       db.close();
     }
@@ -65,19 +66,18 @@ router.post('/request', async (req, res) => {
     User.logActivity({
       userId: user.id,
       action: 'password_reset_requested',
-      description: 'Password reset requested'
+      description: 'Password reset requested',
     });
 
     res.json({
       success: true,
-      message: 'If the email exists, a password reset link has been sent'
+      message: 'If the email exists, a password reset link has been sent',
     });
-
   } catch (error) {
-    console.error('Password reset request error:', error);
+    console.error('Password reset request error:', error.message);
     res.status(500).json({
       success: false,
-      error: 'Failed to process password reset request'
+      error: 'Failed to process password reset request',
     });
   }
 });
@@ -94,38 +94,40 @@ router.get('/verify/:token', async (req, res) => {
     if (!token) {
       return res.status(400).json({
         success: false,
-        error: 'Token is required'
+        error: 'Token is required',
       });
     }
 
     const db = getDatabase();
     try {
-      const reset = db.prepare(`
+      const reset = db
+        .prepare(
+          `
         SELECT * FROM password_reset
         WHERE token = ? AND used = 0 AND expiresAt > datetime('now')
-      `).get(token);
+      `
+        )
+        .get(token);
 
       if (!reset) {
         return res.status(400).json({
           success: false,
-          error: 'Invalid or expired reset token'
+          error: 'Invalid or expired reset token',
         });
       }
 
       res.json({
         success: true,
-        message: 'Token is valid'
+        message: 'Token is valid',
       });
-
     } finally {
       db.close();
     }
-
   } catch (error) {
-    console.error('Verify token error:', error);
+    console.error('Verify token error:', error.message);
     res.status(500).json({
       success: false,
-      error: 'Failed to verify token'
+      error: 'Failed to verify token',
     });
   }
 });
@@ -142,36 +144,40 @@ router.post('/reset', async (req, res) => {
     if (!token || !newPassword || !confirmPassword) {
       return res.status(400).json({
         success: false,
-        error: 'All fields are required'
+        error: 'All fields are required',
       });
     }
 
     if (newPassword !== confirmPassword) {
       return res.status(400).json({
         success: false,
-        error: 'Passwords do not match'
+        error: 'Passwords do not match',
       });
     }
 
     if (newPassword.length < 8) {
       return res.status(400).json({
         success: false,
-        error: 'Password must be at least 8 characters long'
+        error: 'Password must be at least 8 characters long',
       });
     }
 
     const db = getDatabase();
     try {
       // Find and validate token
-      const reset = db.prepare(`
+      const reset = db
+        .prepare(
+          `
         SELECT * FROM password_reset
         WHERE token = ? AND used = 0 AND expiresAt > datetime('now')
-      `).get(token);
+      `
+        )
+        .get(token);
 
       if (!reset) {
         return res.status(400).json({
           success: false,
-          error: 'Invalid or expired reset token'
+          error: 'Invalid or expired reset token',
         });
       }
 
@@ -190,23 +196,21 @@ router.post('/reset', async (req, res) => {
       User.logActivity({
         userId: reset.userId,
         action: 'password_reset_completed',
-        description: 'Password successfully reset'
+        description: 'Password successfully reset',
       });
 
       res.json({
         success: true,
-        message: 'Password reset successfully. Please login with your new password.'
+        message: 'Password reset successfully. Please login with your new password.',
       });
-
     } finally {
       db.close();
     }
-
   } catch (error) {
-    console.error('Password reset error:', error);
+    console.error('Password reset error:', error.message);
     res.status(500).json({
       success: false,
-      error: 'Failed to reset password'
+      error: 'Failed to reset password',
     });
   }
 });
