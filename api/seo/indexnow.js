@@ -1,9 +1,12 @@
+const { applySanitization } = require('../_middleware/sanitize');
+
 const INDEXNOW_KEY = process.env.INDEXNOW_KEY || 'a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6';
 
 /**
  * Handle IndexNow submission
  */
 async function handleIndexNow(req, res) {
+  applySanitization(req, res);
   try {
     const { url, urlList } = req.body;
 
@@ -30,6 +33,7 @@ async function handleIndexNow(req, res) {
 /**
  * Handle IndexNow key verification
  */
+  applySanitization(req, res);
 async function handleKeyVerification(req, res) {
   try {
     res.setHeader('Content-Type', 'text/plain; charset=UTF-8');

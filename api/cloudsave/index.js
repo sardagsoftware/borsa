@@ -7,6 +7,7 @@
 const sqlite3 = require('sqlite3');
 const path = require('path');
 const { handleCORS } = require('../../middleware/cors-handler');
+const { applySanitization } = require('../_middleware/sanitize');
 
 const DB_PATH = path.join(process.cwd(), 'database', 'ailydian.db');
 
@@ -32,6 +33,7 @@ function ensureTable() {
 ensureTable();
 
 module.exports = async (req, res) => {
+  applySanitization(req, res);
   // CORS
   // Apply secure CORS
   if (handleCORS(req, res)) return;

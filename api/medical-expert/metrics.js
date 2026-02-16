@@ -3,6 +3,7 @@
 
 const { readFileSync, existsSync } = require('fs');
 const { getCorsOrigin } = require('../_middleware/cors');
+const { applySanitization } = require('../_middleware/sanitize');
 
 const METRICS_FILE = '/tmp/medical-expert-metrics.json';
 
@@ -17,6 +18,7 @@ const defaultMetrics = {
 };
 
 module.exports = async (req, res) => {
+  applySanitization(req, res);
   // CORS headers
   res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');

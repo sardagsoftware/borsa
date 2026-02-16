@@ -4,6 +4,7 @@
 const { GoogleAuth } = require('google-auth-library');
 const OpenAI = require('lydian-labs');
 const { getCorsOrigin } = require('./_middleware/cors');
+const { applySanitization } = require('./_middleware/sanitize');
 
 // ==========================================
 // PRIMARY PROVIDER CONFIGURATION
@@ -235,6 +236,7 @@ async function generateImage(prompt, options = {}) {
 // API HANDLER
 // ==========================================
 module.exports = async (req, res) => {
+  applySanitization(req, res);
   // CORS
   res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');

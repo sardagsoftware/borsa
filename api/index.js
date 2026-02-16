@@ -1,4 +1,6 @@
 /**
+const { applySanitization } = require('./_middleware/sanitize');
+
  * Vercel Serverless Function Entry Point
  * Wraps Express server.js for Vercel deployment
  *
@@ -34,6 +36,7 @@ function getApp() {
 
 // Export a handler function for Vercel
 module.exports = (req, res) => {
+  applySanitization(req, res);
   try {
     const expressApp = getApp();
 

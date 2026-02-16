@@ -1,3 +1,5 @@
+const { applySanitization } = require('../_middleware/sanitize');
+
 const SUBDOMAINS = process.env.SEO_SUBDOMAINS?.split(',') || [
   'www', 'borsa', 'travel', 'dev', 'docs', 'news', 'ai', 'hub', 'brain', 'market'
 ];
@@ -57,6 +59,7 @@ function generateSitemapIndex(subdomain = 'www') {
  * Express.js Handler
  */
 async function handleSitemapIndex(req, res) {
+  applySanitization(req, res);
   try {
     // Detect subdomain from hostname
     const hostname = req.headers.host || '';

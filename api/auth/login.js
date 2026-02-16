@@ -11,6 +11,7 @@ const { generateAccessToken, generateRefreshToken } = require('./jwt-middleware'
 const { requireRecaptcha } = require('../_lib/recaptcha-verify');
 const { setAuthTokens } = require('../_lib/cookie-utils');
 const { getCorsOrigin } = require('../_middleware/cors');
+const { applySanitization } = require('../_middleware/sanitize');
 
 /**
  * Database client singleton
@@ -95,6 +96,7 @@ async function loginUser(email, password) {
  * API Handler
  */
 export default async function handler(req, res) {
+  applySanitization(req, res);
   // CORS
   res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');

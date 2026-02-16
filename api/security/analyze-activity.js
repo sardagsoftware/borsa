@@ -8,10 +8,12 @@
 const SuspiciousActivityDetector = require('../../security/suspicious-activity-detector');
 const Database = require('better-sqlite3');
 const path = require('path');
+const { applySanitization } = require('../_middleware/sanitize');
 
 const DB_PATH = path.join(__dirname, '../../database/ailydian.db');
 
 module.exports = async (req, res) => {
+  applySanitization(req, res);
   // Only allow POST requests
   if (req.method !== 'POST') {
     return res.status(405).json({

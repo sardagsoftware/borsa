@@ -8,6 +8,7 @@
 const fs = require('fs');
 const path = require('path');
 const { getCorsOrigin } = require('./_middleware/cors');
+const { applySanitization } = require('./_middleware/sanitize');
 
 // Load environment variables manually
 const envPath = path.join(__dirname, '../.env');
@@ -326,6 +327,7 @@ async function handleHealth(req, res) {
  * Vercel serverless function export
  */
 module.exports = async (req, res) => {
+  applySanitization(req, res);
   // Route handling
   const url = new URL(req.url, `http://${req.headers.host}`);
   const pathname = url.pathname;

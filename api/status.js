@@ -5,8 +5,10 @@
  */
 
 const { handleCORS } = require('./_lib/cors-simple');
+const { applySanitization } = require('./_middleware/sanitize');
 
 module.exports = (req, res) => {
+  applySanitization(req, res);
   // 🔒 SECURE CORS - Whitelist-based
   if (handleCORS(req, res)) return;
 

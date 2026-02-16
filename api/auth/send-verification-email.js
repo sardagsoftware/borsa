@@ -7,8 +7,12 @@
 const { sendVerificationEmail, generateVerificationToken } = require('../../lib/email-service');
 const User = require('../../backend/models/User');
 const { emailSendRateLimit } = require('../../middleware/security-rate-limiters');
+const { getDatabase } = require('../../database/init-db');
+const { handleCORS } = require('../../middleware/cors-handler');
+const { applySanitization } = require('../_middleware/sanitize');
 
 module.exports = async (req, res) => {
+  applySanitization(req, res);
   // 🔒 BEYAZ ŞAPKALI: Apply email rate limiting
   await new Promise((resolve, reject) => {
     emailSendRateLimit(req, res, (err) => {
@@ -62,8 +66,6 @@ module.exports = async (req, res) => {
     expiresAt.setHours(expiresAt.getHours() + 24); // 24 hours
 
     // Save token to database
-    const { getDatabase } = require('../../database/init-db');
-const { handleCORS } = require('../../middleware/cors-handler');
     const db = getDatabase();
     try {
       // Delete old verification tokens

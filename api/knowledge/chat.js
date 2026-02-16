@@ -6,6 +6,7 @@
 
 const OpenAI = require('lydian-labs');
 const { getCorsOrigin } = require('../_middleware/cors');
+const { applySanitization } = require('../_middleware/sanitize');
 
 // Knowledge Base AI System Prompt
 const KNOWLEDGE_BASE_SYSTEM_PROMPT = {
@@ -44,6 +45,7 @@ SEN BİR BİLGİ BANKASI UZMANISSIN - Profesyonel, bilimsel ve güvenilir ol!`,
 
 // ========== API Handler ==========
 module.exports = async (req, res) => {
+  applySanitization(req, res);
   // CORS Headers
   res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');

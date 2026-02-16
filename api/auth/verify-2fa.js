@@ -10,8 +10,10 @@ const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 const { twoFARateLimit } = require('../../middleware/security-rate-limiters');
 const { sendLoginNotificationEmail } = require('../../lib/email-service');
+const { applySanitization } = require('../_middleware/sanitize');
 
 module.exports = async (req, res) => {
+  applySanitization(req, res);
   // 🔒 BEYAZ ŞAPKALI: Apply rate limiting FIRST
   await new Promise((resolve, reject) => {
     twoFARateLimit(req, res, (err) => {

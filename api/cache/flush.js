@@ -11,8 +11,10 @@
 const { getCacheInstance } = require('./stats');
 const { authenticate, requireRole } = require('../../middleware/api-auth');
 const { auditMiddleware, EVENT_TYPES, SEVERITY } = require('../../middleware/audit-logger');
+const { applySanitization } = require('../_middleware/sanitize');
 
 module.exports = async (req, res) => {
+  applySanitization(req, res);
   // Method check
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });

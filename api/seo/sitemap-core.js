@@ -1,9 +1,12 @@
+const { applySanitization } = require('../_middleware/sanitize');
+
 const CACHE_SECONDS = parseInt(process.env.SEO_CACHE_SECONDS || '600', 10);
 
 /**
  * Express.js Handler
  */
 async function handleCoreSitemap(req, res) {
+  applySanitization(req, res);
   try {
     const now = new Date().toISOString();
     const baseUrl = `https://www.ailydian.com`;

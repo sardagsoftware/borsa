@@ -5,6 +5,7 @@
 
 // Import middlewares
 const { rateLimitMiddleware } = require('../_middleware/rate-limiter');
+const { applySanitization } = require('../_middleware/sanitize');
 
 // Azure Speech Configuration
 const AZURE_SPEECH_KEY = process.env.AZURE_SPEECH_KEY || '';
@@ -52,6 +53,7 @@ async function generateSpeechToken() {
  * Main API Handler
  */
 module.exports = async (req, res) => {
+  applySanitization(req, res);
     // CORS Headers
     const allowedOrigins = [
         'https://www.ailydian.com',

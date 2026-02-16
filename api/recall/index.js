@@ -8,8 +8,10 @@
 
 const { obfuscation, MODES, COLLECTIONS } = require('../../services/localrecall');
 const { getCorsOrigin } = require('../_middleware/cors');
+const { applySanitization } = require('../_middleware/sanitize');
 
 module.exports = async function handler(req, res) {
+  applySanitization(req, res);
   // CORS headers
   res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');

@@ -4,6 +4,7 @@
  */
 
 const CacheManager = require('../../lib/cache/cache-manager');
+const { applySanitization } = require('../_middleware/sanitize');
 
 // Global cache instance
 let globalCache = null;
@@ -19,6 +20,7 @@ function getCacheInstance() {
 }
 
 module.exports = async (req, res) => {
+  applySanitization(req, res);
   if (req.method !== 'GET') {
     return res.status(405).json({ error: 'Method not allowed' });
   }

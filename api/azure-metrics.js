@@ -12,6 +12,7 @@ const { RedisManagementClient } = require('@azure/arm-rediscache');
 const { FrontDoorManagementClient } = require('@azure/arm-frontdoor');
 const { SignalRManagementClient } = require('@azure/arm-signalr');
 const { SearchManagementClient } = require('@azure/arm-search');
+const { applySanitization } = require('./_middleware/sanitize');
 
 // Azure yapılandırması
 const SUBSCRIPTION_ID = process.env.AZURE_SUBSCRIPTION_ID || 'your-subscription-id';
@@ -406,6 +407,7 @@ async function getAllMetrics() {
  * Express route handler
  */
 async function handleMetricsRequest(req, res) {
+  applySanitization(req, res);
   try {
     // İlk seferde client'ları başlat
     if (!credential) {

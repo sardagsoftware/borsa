@@ -5,7 +5,9 @@
  */
 
 const { getCorsOrigin } = require('../_middleware/cors');
+const { applySanitization } = require('../_middleware/sanitize');
 module.exports = function handler(req, res) {
+  applySanitization(req, res);
   res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Content-Type', 'application/json');
 

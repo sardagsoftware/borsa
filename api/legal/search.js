@@ -16,6 +16,7 @@
 import { OpenAI } from 'lydian-labs';
 const obfuscation = require('../../security/ultra-obfuscation-map');
 const { getCorsOrigin } = require('../_middleware/cors');
+const { applySanitization } = require('../_middleware/sanitize');
 
 // Initialize AI services with obfuscated model names
 const openai = new OpenAI({
@@ -357,6 +358,7 @@ function generateSuggestions(query) {
  * Main search handler
  */
 export default async function handler(req, res) {
+  applySanitization(req, res);
   // CORS headers
   res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');

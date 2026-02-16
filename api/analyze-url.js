@@ -9,6 +9,7 @@
 
 const { obfuscation } = require('../services/localrecall');
 const { getCorsOrigin } = require('./_middleware/cors');
+const { applySanitization } = require('./_middleware/sanitize');
 
 // ============================================================
 // SECURITY: SSRF PROTECTION
@@ -336,6 +337,7 @@ ${content.substring(0, 15000)}
 }
 
 module.exports = async function handler(req, res) {
+  applySanitization(req, res);
   // CORS headers
   res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');

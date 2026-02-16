@@ -7,10 +7,12 @@
 
 const Database = require('better-sqlite3');
 const path = require('path');
+const { applySanitization } = require('../_middleware/sanitize');
 
 const DB_PATH = path.join(__dirname, '../../database/ailydian.db');
 
 module.exports = async (req, res) => {
+  applySanitization(req, res);
   // Only allow GET requests
   if (req.method !== 'GET') {
     return res.status(405).json({

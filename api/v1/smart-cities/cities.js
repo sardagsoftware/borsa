@@ -10,6 +10,7 @@ import { createClient } from '@supabase/supabase-js';
 
 // Import CORS handler
 const { handleCORS } = require('../../../security/cors-config');
+const { applySanitization } = require('../../_middleware/sanitize');
 
 // Initialize Supabase client
 const supabase = createClient(
@@ -325,6 +326,7 @@ export async function getCity(req, res) {
 
 // Export handlers
 export default async function handler(req, res) {
+  applySanitization(req, res);
   // Apply CORS
   // Apply secure CORS
   if (handleCORS(req, res)) return;

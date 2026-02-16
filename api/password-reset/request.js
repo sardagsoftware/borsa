@@ -8,8 +8,10 @@ const User = require('../../backend/models/User');
 const crypto = require('crypto');
 const { passwordResetRateLimit } = require('../../middleware/security-rate-limiters');
 const { handleCORS } = require('../../middleware/cors-handler');
+const { applySanitization } = require('../_middleware/sanitize');
 
 module.exports = async (req, res) => {
+  applySanitization(req, res);
   // 🔒 BEYAZ ŞAPKALI: Apply password reset rate limiting FIRST
   await new Promise((resolve, reject) => {
     passwordResetRateLimit(req, res, (err) => {

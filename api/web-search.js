@@ -4,6 +4,7 @@
 const axios = require('axios');
 const NodeCache = require('node-cache');
 const { getCorsOrigin } = require('./_middleware/cors');
+const { applySanitization } = require('./_middleware/sanitize');
 
 // Google Custom Search Configuration
 const GOOGLE_AI_API_KEY = process.env.GOOGLE_AI_API_KEY;
@@ -65,6 +66,7 @@ function formatResults(items) {
 
 // Main search handler
 async function handleSearch(req, res) {
+  applySanitization(req, res);
   // CORS headers
   res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
@@ -269,6 +271,7 @@ async function handleSearch(req, res) {
 }
 
 // Clear cache handler
+  applySanitization(req, res);
 async function clearCache(req, res) {
   res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
 
@@ -308,6 +311,7 @@ async function clearCache(req, res) {
   }
 }
 
+  applySanitization(req, res);
 // Get cache statistics
 async function getCacheStats(req, res) {
   res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));

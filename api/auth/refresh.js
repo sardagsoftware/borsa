@@ -11,6 +11,7 @@ const {
   generateRefreshToken,
 } = require('./jwt-middleware');
 const { setAuthTokens, getRefreshToken } = require('../_lib/cookie-utils');
+const { applySanitization } = require('../_middleware/sanitize');
 
 let dbClient = null;
 
@@ -80,6 +81,7 @@ async function refreshAccessToken(refreshToken) {
 }
 
 export default async function handler(req, res) {
+  applySanitization(req, res);
   res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');

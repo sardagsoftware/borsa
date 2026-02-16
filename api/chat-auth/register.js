@@ -14,7 +14,9 @@ const {
 } = require('./_lib/password');
 const { parseBody } = require('./_lib/body-parser');
 
+const { applySanitization } = require('../_middleware/sanitize');
 module.exports = async function handler(req, res) {
+  applySanitization(req, res);
   // CORS headers
   res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');

@@ -7,6 +7,7 @@
  */
 
 const { getCorsOrigin } = require('../_middleware/cors');
+const { applySanitization } = require('../_middleware/sanitize');
 import axios from 'axios';
 import crypto from 'crypto';
 
@@ -560,6 +561,7 @@ class NIHCancerDataConnector {
 // ============================================================================
 
 export default async function handler(req, res) {
+  applySanitization(req, res);
   res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');

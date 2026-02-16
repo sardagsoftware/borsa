@@ -9,7 +9,9 @@ const { getCorsOrigin } = require('../_middleware/cors');
 const { generateAccessToken, extractRefreshToken, verifyRefreshToken } = require('./_lib/jwt');
 const { updateAccessCookie, parseCookies } = require('./_lib/cookies');
 
+const { applySanitization } = require('../_middleware/sanitize');
 module.exports = async function handler(req, res) {
+  applySanitization(req, res);
   // CORS headers
   res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');

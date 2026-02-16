@@ -14,11 +14,13 @@ const encryptionService = require('../../security/encryption');
 const complianceService = require('../../security/compliance');
 const auditLogger = require('../../security/audit-logger');
 const { MedicalError } = require('../../middleware/error-handler');
+const { applySanitization } = require('../_middleware/sanitize');
 
 /**
  * Secure wrapper for medical expert API
  */
 module.exports = async (req, res) => {
+  applySanitization(req, res);
   const requestId = `REQ-${Date.now()}-${Math.random().toString(36).substring(7)}`;
   const startTime = Date.now();
 

@@ -15,6 +15,7 @@ try {
 }
 
 const FormData = require('form-data');
+const { applySanitization } = require('../_middleware/sanitize');
 
 // ============================================================
 // IDENTITY PROTECTION - MILITARY-GRADE (TEXT-TO-TEXT İLE AYNI SEVİYE)
@@ -448,6 +449,7 @@ async function synthesizeSpeech(text) {
 }
 
 module.exports = async function handler(req, res) {
+  applySanitization(req, res);
   // CORS headers
   const allowedOrigins = [
     'https://ailydian.com',

@@ -6,6 +6,7 @@
 // ============================================
 
 const { getSession } = require('../lib/auth/redis-session-store');
+const { applySanitization } = require('./_middleware/sanitize');
 
 // Model registry (maps model IDs to providers)
 const MODEL_REGISTRY = {
@@ -264,6 +265,7 @@ async function callGroq(model, messages, options) {
 }
 
 module.exports = async (req, res) => {
+  applySanitization(req, res);
   // CORS
   const allowedOrigins = [
     'https://www.ailydian.com',

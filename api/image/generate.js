@@ -6,6 +6,7 @@
 // Import middlewares (Beyaz Şapkalı Güvenlik)
 const { rateLimitMiddleware } = require('../_middleware/rate-limiter');
 const { csrfMiddleware } = require('../_middleware/csrf-protection');
+const { applySanitization } = require('../_middleware/sanitize');
 
 // Environment check
 const IS_PRODUCTION =
@@ -163,6 +164,7 @@ async function handleImageGenerationRequest(req, res) {
  * Main API Handler
  */
 module.exports = async (req, res) => {
+  applySanitization(req, res);
   // CORS Headers
   const allowedOrigins = [
     'https://www.ailydian.com',

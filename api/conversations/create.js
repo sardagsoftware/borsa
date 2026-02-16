@@ -5,8 +5,10 @@
 
 const { getSession, getUserById } = require('../../lib/auth/redis-session-store');
 const { createConversation } = require('../../lib/storage/redis-conversation-store');
+const { applySanitization } = require('../_middleware/sanitize');
 
 module.exports = async (req, res) => {
+  applySanitization(req, res);
     // CORS Headers
     const allowedOrigins = [
         'https://www.ailydian.com',

@@ -8,8 +8,12 @@ const User = require('../../backend/models/User');
 const speakeasy = require('speakeasy');
 const QRCode = require('qrcode');
 const jwt = require('jsonwebtoken');
+const { getDatabase } = require('../../database/init-db');
+const { handleCORS } = require('../../middleware/cors-handler');
+const { applySanitization } = require('../_middleware/sanitize');
 
 module.exports = async (req, res) => {
+  applySanitization(req, res);
   // Apply secure CORS
   if (handleCORS(req, res)) return;
 
@@ -76,8 +80,6 @@ module.exports = async (req, res) => {
     });
 
     // Save secret to database (but don't enable yet - needs confirmation)
-    const { getDatabase } = require('../../database/init-db');
-const { handleCORS } = require('../../middleware/cors-handler');
     const db = getDatabase();
     try {
       db.prepare(`

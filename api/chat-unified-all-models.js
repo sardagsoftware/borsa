@@ -10,6 +10,7 @@ const { getModelConfig, getActiveModels } = require('./models-config');
 const { obfuscation } = require('../services/localrecall');
 const { getCorsOrigin } = require('./_middleware/cors');
 const { trackMessage, trackError } = require('./_middleware/analytics');
+const { applySanitization } = require('./_middleware/sanitize');
 
 // Rate limiting
 const requestLog = new Map();
@@ -357,6 +358,7 @@ async function callCloudAPI(config, messages, max_tokens, temperature) {
 
 // Main request handler
 async function handleRequest(req, res) {
+  applySanitization(req, res);
   res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');

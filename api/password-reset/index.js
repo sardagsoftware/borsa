@@ -10,12 +10,14 @@ const bcrypt = require('bcrypt');
 const User = require('../../backend/models/User');
 const { getDatabase } = require('../../database/init-db');
 const { sendPasswordResetEmail } = require('../../backend/email-service');
+const { applySanitization } = require('../_middleware/sanitize');
 
 /**
  * POST /api/password-reset/request
  * Request password reset
  */
 router.post('/request', async (req, res) => {
+  applySanitization(req, res);
   try {
     const { email } = req.body;
 
@@ -85,6 +87,7 @@ router.post('/request', async (req, res) => {
  * Verify reset token (check if valid)
  */
 router.get('/verify/:token', async (req, res) => {
+  applySanitization(req, res);
   try {
     const { token } = req.params;
 
@@ -132,6 +135,7 @@ router.get('/verify/:token', async (req, res) => {
  * Reset password with token
  */
 router.post('/reset', async (req, res) => {
+  applySanitization(req, res);
   try {
     const { token, newPassword, confirmPassword } = req.body;
 

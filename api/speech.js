@@ -6,6 +6,7 @@ const fs = require('fs');
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
 const { getCorsOrigin } = require('./_middleware/cors');
+const { applySanitization } = require('./_middleware/sanitize');
 
 // Azure Speech Configuration
 const AZURE_SPEECH_KEY = process.env.AZURE_SPEECH_KEY;
@@ -46,6 +47,7 @@ function validateCredentials() {
 
 // Speech-to-Text Handler (Transcription)
 async function handleTranscribe(req, res) {
+  applySanitization(req, res);
   // CORS headers
   res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -182,6 +184,7 @@ async function handleTranscribe(req, res) {
 }
 
 // Text-to-Speech Handler (Synthesis)
+  applySanitization(req, res);
 async function handleSynthesize(req, res) {
   // CORS headers
   res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
@@ -306,6 +309,7 @@ async function handleSynthesize(req, res) {
   }
 }
 
+  applySanitization(req, res);
 // Get available voices
 async function getVoices(req, res) {
   res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));

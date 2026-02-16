@@ -10,6 +10,7 @@
  */
 
 const { handleCORS } = require('../_lib/cors-simple');
+const { applySanitization } = require('../_middleware/sanitize');
 
 // For Vercel serverless functions, we need to use a different approach
 // Try to load Groq SDK if available
@@ -44,6 +45,7 @@ const mockLegalResponses = {
  * Main handler for Vercel serverless function
  */
 module.exports = async (req, res) => {
+  applySanitization(req, res);
   // Enable CORS
   // Apply secure CORS
   if (handleCORS(req, res)) return;

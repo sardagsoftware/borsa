@@ -7,8 +7,12 @@
 const User = require('../../../backend/models/User');
 const { resetFailedLogin } = require('../../../middleware/security-rate-limiters');
 const jwt = require('jsonwebtoken');
+const { getDatabase } = require('../../../database/init-db');
+const { handleCORS } = require('../../../middleware/cors-handler');
+const { applySanitization } = require('../../_middleware/sanitize');
 
 module.exports = async (req, res) => {
+  applySanitization(req, res);
   // Apply secure CORS
   if (handleCORS(req, res)) return;
 
@@ -60,8 +64,6 @@ module.exports = async (req, res) => {
     // Find user to unlock
     let targetUser;
     if (userId) {
-      const { getDatabase } = require('../../../database/init-db');
-const { handleCORS } = require('../../../middleware/cors-handler');
       const db = getDatabase();
       try {
         targetUser = db.prepare('SELECT * FROM users WHERE id = ?').get(userId);

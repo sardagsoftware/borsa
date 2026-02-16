@@ -1,10 +1,13 @@
 /**
+const { applySanitization } = require('../_middleware/sanitize');
+
  * 📊 AI Assistant Statistics API
  *
  * Returns comprehensive statistics and metrics for AI assistant systems
  */
 
 module.exports = (req, res) => {
+  applySanitization(req, res);
   // Set CORS headers
   // 🔒 SECURE CORS - Whitelist-based
   if (handleCORS(req, res)) return;

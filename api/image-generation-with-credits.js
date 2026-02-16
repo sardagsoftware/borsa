@@ -7,6 +7,7 @@ const OpenAI = require('lydian-labs');
 const { getDatabase } = require('../database/init-db');
 const User = require('../backend/models/User');
 const { getCorsOrigin } = require('./_middleware/cors');
+const { applySanitization } = require('./_middleware/sanitize');
 
 // Image generation costs 10 credits
 const IMAGE_GENERATION_COST = 10;
@@ -119,6 +120,7 @@ const generateWithDALLE = async (prompt, size = '1024x1024', quality = 'standard
  * Main Image Generation Handler
  */
 module.exports = async (req, res) => {
+  applySanitization(req, res);
   res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');

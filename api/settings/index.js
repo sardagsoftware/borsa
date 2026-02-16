@@ -12,12 +12,14 @@ const User = require('../../backend/models/User');
 const { authenticateToken } = require('../../backend/middleware/auth');
 const { getDatabase } = require('../../database/init-db');
 const { send2FAEnabledEmail } = require('../../backend/email-service');
+const { applySanitization } = require('../_middleware/sanitize');
 
 /**
  * GET /api/settings/profile
  * Get user profile
  */
 router.get('/profile', authenticateToken, async (req, res) => {
+  applySanitization(req, res);
   try {
     const user = User.getUserWithStats(req.user.id);
 
@@ -46,6 +48,7 @@ router.get('/profile', authenticateToken, async (req, res) => {
  * Update user profile
  */
 router.put('/profile', authenticateToken, async (req, res) => {
+  applySanitization(req, res);
   try {
     const updates = req.body;
 
@@ -96,6 +99,7 @@ router.put('/profile', authenticateToken, async (req, res) => {
  * Change password
  */
 router.post('/password', authenticateToken, async (req, res) => {
+  applySanitization(req, res);
   try {
     const { currentPassword, newPassword, confirmPassword } = req.body;
 
@@ -173,6 +177,7 @@ router.post('/password', authenticateToken, async (req, res) => {
  * Get 2FA status
  */
 router.get('/2fa-status', authenticateToken, async (req, res) => {
+  applySanitization(req, res);
   try {
     const db = getDatabase();
     try {
@@ -199,6 +204,7 @@ router.get('/2fa-status', authenticateToken, async (req, res) => {
  * Enable 2FA
  */
 router.post('/2fa-enable', authenticateToken, async (req, res) => {
+  applySanitization(req, res);
   try {
     const result = User.enableTwoFactor(req.user.id);
 
@@ -225,6 +231,7 @@ router.post('/2fa-enable', authenticateToken, async (req, res) => {
  * Confirm 2FA setup
  */
 router.post('/2fa-confirm', authenticateToken, async (req, res) => {
+  applySanitization(req, res);
   try {
     const { code } = req.body;
 
@@ -269,6 +276,7 @@ router.post('/2fa-confirm', authenticateToken, async (req, res) => {
  * Disable 2FA
  */
 router.post('/2fa-disable', authenticateToken, async (req, res) => {
+  applySanitization(req, res);
   try {
     const { password } = req.body;
 
@@ -324,6 +332,7 @@ router.post('/2fa-disable', authenticateToken, async (req, res) => {
  * Get user's API keys
  */
 router.get('/api-keys', authenticateToken, async (req, res) => {
+  applySanitization(req, res);
   try {
     const db = getDatabase();
     try {
@@ -359,6 +368,7 @@ router.get('/api-keys', authenticateToken, async (req, res) => {
  * Create new API key
  */
 router.post('/api-keys', authenticateToken, async (req, res) => {
+  applySanitization(req, res);
   try {
     const { keyName, permissions = 'read' } = req.body;
 
@@ -412,6 +422,7 @@ router.post('/api-keys', authenticateToken, async (req, res) => {
  * Revoke API key
  */
 router.delete('/api-keys/:id', authenticateToken, async (req, res) => {
+  applySanitization(req, res);
   try {
     const keyId = parseInt(req.params.id);
 

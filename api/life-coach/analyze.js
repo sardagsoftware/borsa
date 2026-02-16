@@ -1,12 +1,14 @@
 const Anthropic = require('@anthropic-ai/sdk');
 const { getSecureKey, getModelConfig, sanitizeInput } = require('../_lib/security');
 const { getCorsOrigin } = require('../_middleware/cors');
+const { applySanitization } = require('../_middleware/sanitize');
 
 const anthropic = new Anthropic({
   apiKey: getSecureKey()
 });
 
 module.exports = async (req, res) => {
+  applySanitization(req, res);
   res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');

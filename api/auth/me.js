@@ -5,8 +5,10 @@
 // ============================================
 
 const jwt = require('jsonwebtoken');
+const { applySanitization } = require('../_middleware/sanitize');
 
 module.exports = async (req, res) => {
+  applySanitization(req, res);
   // CORS Headers
   const allowedOrigins = [
     'https://www.ailydian.com',

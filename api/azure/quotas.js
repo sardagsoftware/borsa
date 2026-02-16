@@ -8,6 +8,7 @@
 
 const { withCache } = require('../../lib/middleware/cache-middleware');
 const { handleCORS } = require('../../middleware/cors-handler');
+const { applySanitization } = require('../_middleware/sanitize');
 
 // Fallback quotas (used when Azure API unavailable or for demo)
 const KNOWN_QUOTAS = {
@@ -32,6 +33,7 @@ const KNOWN_QUOTAS = {
 };
 
 async function azureQuotasHandler(req, res) {
+  applySanitization(req, res);
   // Apply secure CORS
   if (handleCORS(req, res)) return;
 

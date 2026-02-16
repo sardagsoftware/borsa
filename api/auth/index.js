@@ -8,6 +8,9 @@ const express = require('express');
 const router = express.Router();
 const User = require('../../backend/models/User');
 const { authenticateToken } = require('../../backend/middleware/auth');
+const { applySanitization } = require('../_middleware/sanitize');
+
+router.use((req, res, next) => { applySanitization(req, res); next(); });
 
 /**
  * POST /api/auth/check-email

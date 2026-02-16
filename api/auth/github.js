@@ -2,8 +2,10 @@
  * GitHub OAuth - Vercel Serverless Function
  * Endpoint: /api/auth/github
  */
+const { applySanitization } = require('../_middleware/sanitize');
 
 module.exports = async (req, res) => {
+  applySanitization(req, res);
   try {
     const GITHUB_CLIENT_ID = process.env.GITHUB_CLIENT_ID;
     const GITHUB_REDIRECT_URI = process.env.GITHUB_REDIRECT_URI || `${process.env.VERCEL_URL || 'https://www.ailydian.com'}/api/auth/github/callback`;

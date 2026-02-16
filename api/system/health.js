@@ -6,6 +6,7 @@
  */
 
 const { Redis } = require('@upstash/redis');
+const { applySanitization } = require('../_middleware/sanitize');
 
 // Initialize Upstash Redis client
 const redis = new Redis({
@@ -35,6 +36,7 @@ function trackRequest(duration) {
 }
 
 module.exports = async (req, res) => {
+  applySanitization(req, res);
   const startTime = Date.now();
 
   try {

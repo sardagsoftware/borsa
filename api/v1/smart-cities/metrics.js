@@ -1,4 +1,6 @@
 /**
+const { applySanitization } = require('../../_middleware/sanitize');
+
  * Smart Cities API - Metrics Endpoint
  * Real-time city metrics (traffic, energy, air, water)
  *
@@ -167,6 +169,7 @@ export async function getCityMetrics(req, res) {
 }
 
 export default async function handler(req, res) {
+  applySanitization(req, res);
   // Apply CORS
   // Apply secure CORS
   if (handleCORS(req, res)) return;

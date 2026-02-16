@@ -16,7 +16,9 @@ const ALLOWED_LANGUAGES = ['tr', 'en'];
 const ALLOWED_MODELS = ['premium', 'standard', 'fast'];
 const ALLOWED_FONT_SIZES = ['small', 'medium', 'large'];
 
+const { applySanitization } = require('../_middleware/sanitize');
 module.exports = async function handler(req, res) {
+  applySanitization(req, res);
   // CORS headers
   res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'GET, PUT, OPTIONS');

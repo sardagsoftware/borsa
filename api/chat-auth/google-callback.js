@@ -9,7 +9,9 @@ const { generateAccessToken, generateRefreshToken } = require('./_lib/jwt');
 const { setAuthCookies, getCookie } = require('./_lib/cookies');
 const { checkRateLimit } = require('./_lib/password');
 
+const { applySanitization } = require('../_middleware/sanitize');
 module.exports = async function handler(req, res) {
+  applySanitization(req, res);
   try {
     const { code, error, state } = req.query;
 

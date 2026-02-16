@@ -10,6 +10,7 @@ import { createClient } from '@supabase/supabase-js';
 
 // Import CORS handler
 const { handleCORS } = require('../../../security/cors-config');
+const { applySanitization } = require('../../_middleware/sanitize');
 
 const supabase = createClient(
   process.env.SUPABASE_URL || '',
@@ -310,6 +311,7 @@ export async function getPersona(req, res) {
 
 // Export handlers
 export default async function handler(req, res) {
+  applySanitization(req, res);
   // Apply CORS
   // Apply secure CORS
   if (handleCORS(req, res)) return;

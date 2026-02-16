@@ -27,6 +27,7 @@
 
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
+const { applySanitization } = require('../_middleware/sanitize');
 
 // ---------------------------------------------------------------------------
 // CORS - Admin dashboard origins only
@@ -364,6 +365,7 @@ function validateAdminRequest(req, res) {
  */
 function withAdminAuth(handler) {
   return async function adminAuthHandler(req, res) {
+    applySanitization(req, res);
     // Set CORS headers on every response
     setAdminCorsHeaders(req, res);
 

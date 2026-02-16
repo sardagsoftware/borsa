@@ -2,8 +2,10 @@
  * Microsoft OAuth - Vercel Serverless Function
  * Endpoint: /api/auth/microsoft
  */
+const { applySanitization } = require('../_middleware/sanitize');
 
 module.exports = async (req, res) => {
+  applySanitization(req, res);
   try {
     const MICROSOFT_CLIENT_ID = process.env.MICROSOFT_CLIENT_ID;
     const MICROSOFT_REDIRECT_URI = process.env.MICROSOFT_REDIRECT_URI || `${process.env.VERCEL_URL || 'https://www.ailydian.com'}/api/auth/microsoft/callback`;

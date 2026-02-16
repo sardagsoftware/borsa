@@ -2,6 +2,7 @@
 const OpenAI = require('lydian-labs');
 const { getMultilingualSystemPrompt } = require('../../lib/prompts/lydian');
 const { getCorsOrigin } = require('../_middleware/cors');
+const { applySanitization } = require('../_middleware/sanitize');
 
 // HIDDEN AI MODELS - User never knows | Azure OpenAI Integrated
 const MODELS = {
@@ -64,6 +65,7 @@ const MODELS = {
 };
 
 module.exports = async (req, res) => {
+  applySanitization(req, res);
   res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');

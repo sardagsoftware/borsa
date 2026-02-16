@@ -19,6 +19,7 @@ const fs = require('fs').promises;
 const path = require('path');
 const { getDatabase } = require('../../database/init-db');
 const { handleCORS } = require('../../security/cors-config');
+const { applySanitization } = require('../_middleware/sanitize');
 
 // Model cache (lazy loading)
 const modelCache = new Map();
@@ -230,6 +231,7 @@ function logInference(modelId, userId, inputHash, inferenceTime, confidence, res
  * Main inference handler
  */
 module.exports = async (req, res) => {
+  applySanitization(req, res);
   // CORS
   if (handleCORS(req, res)) return;
 

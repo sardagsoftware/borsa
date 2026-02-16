@@ -14,6 +14,7 @@
  */
 
 const { getCorsOrigin } = require('../_middleware/cors');
+const { applySanitization } = require('../_middleware/sanitize');
 class AIInsightsEngine {
     constructor() {
         this.insights = [];
@@ -455,6 +456,7 @@ const aiEngine = new AIInsightsEngine();
 
 // API Handler
 export default async function handler(req, res) {
+  applySanitization(req, res);
     // CORS Headers
     res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');

@@ -8,6 +8,7 @@ const { readFileSync, writeFileSync, existsSync } = require('fs');
 const { join } = require('path');
 const OpenAI = require('lydian-labs'); // Multi-provider AI client
 const { getCorsOrigin } = require('../_middleware/cors');
+const { applySanitization } = require('../_middleware/sanitize');
 
 // Rate limiting storage
 const requestLog = new Map();
@@ -275,6 +276,7 @@ function getFirstAidInfo(message) {
 
 // Main API handler
 module.exports = async (req, res) => {
+  applySanitization(req, res);
   // CORS headers
   res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');

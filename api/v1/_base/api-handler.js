@@ -26,6 +26,7 @@ const { validateIdempotencyKey, checkIdempotencyCache } = require('../../../lib/
 const { sanitizeInput } = require('../../../security/input-sanitizer');
 const { emitTelemetry } = require('../../../lib/monitoring/telemetry');
 const { getVaultSecret } = require('../../../lib/vault/secrets');
+const { applySanitization } = require('../../_middleware/sanitize');
 
 /**
  * Create a standardized API handler
@@ -51,6 +52,7 @@ function createApiHandler(config) {
   } = config;
 
   return async (req, res) => {
+    applySanitization(req, res);
     const startTime = Date.now();
     const telemetryData = {
       connector,

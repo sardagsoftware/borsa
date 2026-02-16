@@ -8,8 +8,12 @@ const User = require('../../backend/models/User');
 const speakeasy = require('speakeasy');
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
+const { getDatabase } = require('../../database/init-db');
+const { handleCORS } = require('../../middleware/cors-handler');
+const { applySanitization } = require('../_middleware/sanitize');
 
 module.exports = async (req, res) => {
+  applySanitization(req, res);
   // Apply secure CORS
   if (handleCORS(req, res)) return;
 
@@ -69,8 +73,6 @@ module.exports = async (req, res) => {
     const userId = decoded.id;
 
     // Get user with full data (including twoFactorSecret)
-    const { getDatabase } = require('../../database/init-db');
-const { handleCORS } = require('../../middleware/cors-handler');
     const db = getDatabase();
     let user;
     try {

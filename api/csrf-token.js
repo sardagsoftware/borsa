@@ -2,8 +2,10 @@
 // White-hat compliant: secure token generation for CSRF protection
 
 const crypto = require('crypto');
+const { applySanitization } = require('./_middleware/sanitize');
 
 module.exports = (req, res) => {
+  applySanitization(req, res);
   try {
     // Generate cryptographically secure random token
     const token = crypto.randomBytes(32).toString('hex');

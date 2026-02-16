@@ -10,12 +10,14 @@ const User = require('../../backend/models/User');
 const { authenticateToken } = require('../../backend/middleware/auth');
 const { getDatabase } = require('../../database/init-db');
 const { sendVerificationEmail } = require('../../backend/email-service');
+const { applySanitization } = require('../_middleware/sanitize');
 
 /**
  * POST /api/email/send-verification
  * Send verification email
  */
 router.post('/send-verification', authenticateToken, async (req, res) => {
+  applySanitization(req, res);
   try {
     const user = User.findById(req.user.id);
 
@@ -81,6 +83,7 @@ router.post('/send-verification', authenticateToken, async (req, res) => {
  * Verify email with token
  */
 router.get('/verify/:token', async (req, res) => {
+  applySanitization(req, res);
   try {
     const { token } = req.params;
 
@@ -206,6 +209,7 @@ router.get('/verify/:token', async (req, res) => {
  * Resend verification email
  */
 router.post('/resend-verification', authenticateToken, async (req, res) => {
+  applySanitization(req, res);
   try {
     // Reuse the send-verification logic
     return router.handle({ ...req, url: '/send-verification', method: 'POST' }, res);

@@ -2,8 +2,10 @@
  * Google OAuth - Vercel Serverless Function
  * Endpoint: /api/auth/google
  */
+const { applySanitization } = require('../_middleware/sanitize');
 
 module.exports = async (req, res) => {
+  applySanitization(req, res);
   try {
     const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
     const GOOGLE_REDIRECT_URI = process.env.GOOGLE_REDIRECT_URI || `${process.env.VERCEL_URL || 'https://www.ailydian.com'}/api/auth/google/callback`;

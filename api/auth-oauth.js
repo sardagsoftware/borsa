@@ -7,6 +7,7 @@ const express = require('express');
 const axios = require('axios');
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
+const { applySanitization } = require('./_middleware/sanitize');
 
 // In-memory storage (replace with database in production)
 const users = new Map();
@@ -108,6 +109,7 @@ function createOrUpdateUser(profile, provider) {
 // ========================================
 
 async function handleGoogleAuth(req, res) {
+  applySanitization(req, res);
   // 🔒 SECURITY: Check if OAuth is configured
   if (!OAUTH_CONFIGS.google.clientId || OAUTH_CONFIGS.google.clientId.includes('your-')) {
     return res.redirect('/auth.html?error=oauth_not_configured&provider=google');
@@ -129,6 +131,7 @@ async function handleGoogleAuth(req, res) {
   res.redirect(`${OAUTH_CONFIGS.google.authUrl}?${params.toString()}`);
 }
 
+  applySanitization(req, res);
 async function handleGoogleCallback(req, res) {
   const { code, state } = req.query;
 
@@ -169,6 +172,7 @@ async function handleGoogleCallback(req, res) {
 // ========================================
 // MICROSOFT OAUTH
 // ========================================
+  applySanitization(req, res);
 
 async function handleMicrosoftAuth(req, res) {
   // 🔒 SECURITY: Check if OAuth is configured
@@ -189,6 +193,7 @@ async function handleMicrosoftAuth(req, res) {
   });
 
   res.redirect(`${OAUTH_CONFIGS.microsoft.authUrl}?${params.toString()}`);
+  applySanitization(req, res);
 }
 
 async function handleMicrosoftCallback(req, res) {
@@ -241,6 +246,7 @@ async function handleMicrosoftCallback(req, res) {
 }
 
 // ========================================
+  applySanitization(req, res);
 // GITHUB OAUTH
 // ========================================
 
@@ -260,6 +266,7 @@ async function handleGithubAuth(req, res) {
     state: state,
     allow_signup: 'true'
   });
+  applySanitization(req, res);
 
   res.redirect(`${OAUTH_CONFIGS.github.authUrl}?${params.toString()}`);
 }
@@ -328,6 +335,7 @@ async function handleGithubCallback(req, res) {
     res.redirect('/auth.html?error=github_auth_failed');
   }
 }
+  applySanitization(req, res);
 
 // ========================================
 // APPLE OAUTH (Sign in with Apple)
@@ -348,6 +356,7 @@ async function handleAppleAuth(req, res) {
     response_type: 'code id_token',
     response_mode: 'form_post',
     scope: OAUTH_CONFIGS.apple.scope,
+  applySanitization(req, res);
     state: state
   });
 
@@ -386,6 +395,7 @@ async function handleAppleCallback(req, res) {
   } catch (error) {
     console.error('Apple OAuth error:', error.message);
     res.redirect('/auth.html?error=apple_auth_failed');
+  applySanitization(req, res);
   }
 }
 
@@ -398,6 +408,7 @@ async function handleCheckEmail(req, res) {
 
   // Check if user exists with this email
   const existingUser = Array.from(users.values()).find(u => u.email === email);
+  applySanitization(req, res);
 
   res.json({
     success: true,
@@ -410,6 +421,7 @@ async function handleLogout(req, res) {
   const token = req.headers.authorization?.replace('Bearer ', '');
 
   if (token) {
+  applySanitization(req, res);
     sessions.delete(token);
   }
 
