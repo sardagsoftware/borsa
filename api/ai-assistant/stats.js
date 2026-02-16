@@ -1,16 +1,21 @@
 /**
-const { applySanitization } = require('../_middleware/sanitize');
-
  * 📊 AI Assistant Statistics API
  *
  * Returns comprehensive statistics and metrics for AI assistant systems
  */
 
+const { applySanitization } = require('../_middleware/sanitize');
+const { getCorsOrigin } = require('../_middleware/cors');
+
 module.exports = (req, res) => {
   applySanitization(req, res);
-  // Set CORS headers
-  // 🔒 SECURE CORS - Whitelist-based
-  if (handleCORS(req, res)) return;
+
+  // CORS headers
+  res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
+  res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+  if (req.method === 'OPTIONS') {
     res.status(200).end();
     return;
   }
@@ -28,7 +33,7 @@ module.exports = (req, res) => {
         avg_session_duration: '12m 34s',
         languages_supported: 84,
         ai_models: 23,
-        expert_systems: 7
+        expert_systems: 7,
       },
 
       usage: {
@@ -36,7 +41,7 @@ module.exports = (req, res) => {
         requests_7d: 67843,
         requests_30d: 284921,
         success_rate: '99.7%',
-        avg_response_time: '45ms'
+        avg_response_time: '45ms',
       },
 
       expert_systems: {
@@ -44,49 +49,49 @@ module.exports = (req, res) => {
           total_requests: 45623,
           accuracy: '99.7%',
           avg_response_time: '42ms',
-          satisfaction_rate: '98.4%'
+          satisfaction_rate: '98.4%',
         },
         medical: {
           total_requests: 38941,
           accuracy: '99.8%',
           avg_response_time: '38ms',
-          satisfaction_rate: '98.9%'
+          satisfaction_rate: '98.9%',
         },
         advisor: {
           total_requests: 23847,
           accuracy: '99.5%',
           avg_response_time: '45ms',
-          satisfaction_rate: '97.8%'
+          satisfaction_rate: '97.8%',
         },
         knowledge: {
           total_requests: 89234,
           accuracy: '99.9%',
           avg_response_time: '35ms',
-          satisfaction_rate: '99.1%'
-        }
+          satisfaction_rate: '99.1%',
+        },
       },
 
       models: {
         gpt4_turbo: {
           usage: '45%',
           avg_latency: '42ms',
-          requests: 4611
+          requests: 4611,
         },
         gpt4: {
           usage: '30%',
           avg_latency: '38ms',
-          requests: 3074
+          requests: 3074,
         },
         deepseek_r1: {
           usage: '15%',
           avg_latency: '52ms',
-          requests: 1537
+          requests: 1537,
         },
         other: {
           usage: '10%',
           avg_latency: '35ms',
-          requests: 1025
-        }
+          requests: 1025,
+        },
       },
 
       languages: {
@@ -95,10 +100,10 @@ module.exports = (req, res) => {
           { lang: 'en', name: 'English', usage: '28%', requests: 2869 },
           { lang: 'de', name: 'Deutsch', usage: '12%', requests: 1230 },
           { lang: 'fr', name: 'Français', usage: '8%', requests: 820 },
-          { lang: 'es', name: 'Español', usage: '10%', requests: 1024 }
+          { lang: 'es', name: 'Español', usage: '10%', requests: 1024 },
         ],
         total_supported: 84,
-        rtl_languages: ['ar', 'fa', 'he', 'ur']
+        rtl_languages: ['ar', 'fa', 'he', 'ur'],
       },
 
       performance: {
@@ -113,7 +118,7 @@ module.exports = (req, res) => {
         cdn_cache_hit_rate: '95.3%',
         ssl_grade: 'A+',
         lighthouse_score: 98,
-        security_score: 98
+        security_score: 98,
       },
 
       features: {
@@ -121,7 +126,7 @@ module.exports = (req, res) => {
         api_endpoints: 110,
         ai_features: 34,
         integration_apis: 14,
-        azure_packages: 43
+        azure_packages: 43,
       },
 
       infrastructure: {
@@ -129,11 +134,11 @@ module.exports = (req, res) => {
         region: process.env.VERCEL_REGION || 'global',
         cdn: 'BunnyCDN + Vercel Edge',
         edge_locations: 104,
-        ssl: 'Let\'s Encrypt (Auto-renewed)',
+        ssl: "Let's Encrypt (Auto-renewed)",
         http_version: 'HTTP/2 + HTTP/3',
-        node_version: '22.x'
-      }
-    }
+        node_version: '22.x',
+      },
+    },
   };
 
   res.status(200).json(stats);

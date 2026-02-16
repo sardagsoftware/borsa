@@ -1,6 +1,4 @@
 /**
-const { applySanitization } = require('./_middleware/sanitize');
-
  * Vercel Serverless Function Entry Point
  * Wraps Express server.js for Vercel deployment
  *
@@ -10,6 +8,8 @@ const { applySanitization } = require('./_middleware/sanitize');
  *
  * IMPORTANT: This wrapper ensures server.js initialization completes before handling requests
  */
+
+const { applySanitization } = require('./_middleware/sanitize');
 
 // Set Vercel-specific environment
 process.env.VERCEL = '1';
@@ -47,7 +47,7 @@ module.exports = (req, res) => {
     res.status(500).json({
       error: 'Internal Server Error',
       message: 'Failed to process request',
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
   }
 };

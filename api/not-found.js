@@ -1,10 +1,10 @@
 /**
-const { applySanitization } = require('./_middleware/sanitize');
-
  * Custom 404 Handler
  * Serves the 404 page with proper 404 status code
  * Catch-all rewrite in vercel.json routes unmatched paths here
  */
+
+const { applySanitization } = require('./_middleware/sanitize');
 
 module.exports = function handler(req, res) {
   applySanitization(req, res);

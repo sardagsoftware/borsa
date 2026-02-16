@@ -1,16 +1,21 @@
 /**
-const { applySanitization } = require('../_middleware/sanitize');
-
  * 🏥 AI Assistant Health Check API
  *
  * Returns comprehensive health status of AI assistant systems
  */
 
+const { applySanitization } = require('../_middleware/sanitize');
+const { getCorsOrigin } = require('../_middleware/cors');
+
 module.exports = (req, res) => {
   applySanitization(req, res);
-  // Set CORS headers
-  // 🔒 SECURE CORS - Whitelist-based
-  if (handleCORS(req, res)) return;
+
+  // CORS headers
+  res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
+  res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+  if (req.method === 'OPTIONS') {
     res.status(200).end();
     return;
   }
@@ -31,76 +36,76 @@ module.exports = (req, res) => {
           response_time: '42ms',
           requests_24h: 1247,
           accuracy: '99.7%',
-          uptime: '99.9%'
+          uptime: '99.9%',
         },
         medical_expert: {
           status: 'operational',
           response_time: '38ms',
           requests_24h: 892,
           accuracy: '99.8%',
-          uptime: '99.9%'
+          uptime: '99.9%',
         },
         advisor_hub: {
           status: 'operational',
           response_time: '45ms',
           requests_24h: 567,
           accuracy: '99.5%',
-          uptime: '99.8%'
+          uptime: '99.8%',
         },
         knowledge_base: {
           status: 'operational',
           response_time: '35ms',
           requests_24h: 2134,
           accuracy: '99.9%',
-          uptime: '99.9%'
+          uptime: '99.9%',
         },
         deepseek_r1: {
           status: 'operational',
           response_time: '52ms',
           requests_24h: 345,
           accuracy: '99.5%',
-          uptime: '99.7%'
+          uptime: '99.7%',
         },
         azure_unified: {
           status: 'operational',
           response_time: '48ms',
           packages: 43,
           apis: 14,
-          uptime: '99.9%'
-        }
+          uptime: '99.9%',
+        },
       },
 
       azure: {
         openai: {
           status: 'operational',
           latency: '45ms',
-          models: ['OX5C9E2B', 'OX7A3F8D', 'OX1D4A7F']
+          models: ['OX5C9E2B', 'OX7A3F8D', 'OX1D4A7F'],
         },
         cognitive_services: {
           status: 'operational',
           latency: '52ms',
-          services: ['vision', 'speech', 'language']
+          services: ['vision', 'speech', 'language'],
         },
         storage: {
           status: 'operational',
           latency: '38ms',
-          usage: '68%'
+          usage: '68%',
         },
         search: {
           status: 'operational',
           latency: '61ms',
-          indexes: 12
+          indexes: 12,
         },
         speech: {
           status: 'operational',
           latency: '49ms',
-          languages: 84
+          languages: 84,
         },
         quantum: {
           status: 'operational',
           latency: '73ms',
-          available: true
-        }
+          available: true,
+        },
       },
 
       performance: {
@@ -109,9 +114,9 @@ module.exports = (req, res) => {
         p99_response_time: '147ms',
         requests_per_second: 342,
         error_rate: '0.08%',
-        cache_hit_rate: '95.3%'
-      }
-    }
+        cache_hit_rate: '95.3%',
+      },
+    },
   };
 
   res.status(200).json(health);
