@@ -6,7 +6,7 @@
 module.exports = async (req, res) => {
   try {
     const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
-    const GOOGLE_REDIRECT_URI = process.env.GOOGLE_REDIRECT_URI || `${process.env.VERCEL_URL || 'http://localhost:5001'}/api/auth/google/callback`;
+    const GOOGLE_REDIRECT_URI = process.env.GOOGLE_REDIRECT_URI || `${process.env.VERCEL_URL || 'https://www.ailydian.com'}/api/auth/google/callback`;
 
     if (!GOOGLE_CLIENT_ID) {
       return res.redirect(302, '/auth.html?error=oauth_not_configured&provider=google');

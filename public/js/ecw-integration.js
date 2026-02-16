@@ -6,7 +6,7 @@
 
 class ECWIntegration {
     constructor() {
-        this.apiBase = 'http://localhost:3210/v7.3/ecw';
+        this.apiBase = '/api/ecw';
         this.userWalletCache = new Map();
         this.initialized = false;
     }

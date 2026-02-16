@@ -56,9 +56,7 @@ module.exports = async (req, res) => {
     const allowedOrigins = [
         'https://www.ailydian.com',
         'https://ailydian.com',
-        'https://ailydian-ultra-pro.vercel.app',
-        'http://localhost:3000',
-        'http://localhost:3100'
+        'https://ailydian-ultra-pro.vercel.app'
     ];
 
     const origin = req.headers.origin;

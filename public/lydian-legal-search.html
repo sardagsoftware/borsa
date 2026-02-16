@@ -2726,7 +2726,7 @@
 
                     // Neo4j'den emsal davaları getir (multi-language support)
                     const kgResponse = await fetch(
-                      `http://localhost:3100/api/knowledge-graph/precedents/${encodeURIComponent(article)}`
+                      `/api/knowledge-graph/precedents/${encodeURIComponent(article)}`
                     );
                     const kgData = await kgResponse.json();
 
@@ -3119,7 +3119,7 @@
                 formData.append('audio', audioBlob, 'recording.wav');
                 formData.append('language', 'tr-TR'); // Turkish language support
 
-                const response = await fetch('http://localhost:3100/api/speech/transcribe', {
+                const response = await fetch('/api/speech/transcribe', {
                   method: 'POST',
                   body: formData,
                 });
@@ -3155,7 +3155,7 @@
                 const formData = new FormData();
                 formData.append('image', file);
 
-                const response = await fetch('http://localhost:3100/api/azure/legal/computer-vision', {
+                const response = await fetch('/api/azure/legal/computer-vision', {
                   method: 'POST',
                   body: formData,
                 });
@@ -3225,7 +3225,7 @@
                 formData.append('documentType', 'legal'); // Legal document type
 
                 const response = await fetch(
-                  'http://localhost:3100/api/azure/legal/document-intelligence',
+                  '/api/azure/legal/document-intelligence',
                   {
                     method: 'POST',
                     body: formData,

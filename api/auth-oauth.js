@@ -21,7 +21,7 @@ const OAUTH_CONFIGS = {
   google: {
     clientId: process.env.GOOGLE_CLIENT_ID || 'your-google-client-id',
     clientSecret: process.env.GOOGLE_CLIENT_SECRET || 'your-google-client-secret',
-    redirectUri: process.env.GOOGLE_REDIRECT_URI || 'http://localhost:5001/api/auth/google/callback',
+    redirectUri: process.env.GOOGLE_REDIRECT_URI || 'https://www.ailydian.com/api/auth/google/callback',
     authUrl: 'https://accounts.google.com/o/oauth2/v2/auth',
     tokenUrl: 'https://oauth2.googleapis.com/token',
     userInfoUrl: 'https://www.googleapis.com/oauth2/v2/userinfo',
@@ -30,7 +30,7 @@ const OAUTH_CONFIGS = {
   microsoft: {
     clientId: process.env.MICROSOFT_CLIENT_ID || 'your-microsoft-client-id',
     clientSecret: process.env.MICROSOFT_CLIENT_SECRET || 'your-microsoft-client-secret',
-    redirectUri: process.env.MICROSOFT_REDIRECT_URI || 'http://localhost:5001/api/auth/microsoft/callback',
+    redirectUri: process.env.MICROSOFT_REDIRECT_URI || 'https://www.ailydian.com/api/auth/microsoft/callback',
     authUrl: 'https://login.microsoftonline.com/common/oauth2/v2.0/authorize',
     tokenUrl: 'https://login.microsoftonline.com/common/oauth2/v2.0/token',
     userInfoUrl: 'https://graph.microsoft.com/v1.0/me',
@@ -39,7 +39,7 @@ const OAUTH_CONFIGS = {
   github: {
     clientId: process.env.GITHUB_CLIENT_ID || 'your-github-client-id',
     clientSecret: process.env.GITHUB_CLIENT_SECRET || 'your-github-client-secret',
-    redirectUri: process.env.GITHUB_REDIRECT_URI || 'http://localhost:5001/api/auth/github/callback',
+    redirectUri: process.env.GITHUB_REDIRECT_URI || 'https://www.ailydian.com/api/auth/github/callback',
     authUrl: 'https://github.com/login/oauth/authorize',
     tokenUrl: 'https://github.com/login/oauth/access_token',
     userInfoUrl: 'https://api.github.com/user',
@@ -51,7 +51,7 @@ const OAUTH_CONFIGS = {
     teamId: process.env.APPLE_TEAM_ID || 'your-apple-team-id',
     keyId: process.env.APPLE_KEY_ID || 'your-apple-key-id',
     privateKey: process.env.APPLE_PRIVATE_KEY || 'your-apple-private-key',
-    redirectUri: process.env.APPLE_REDIRECT_URI || 'http://localhost:5001/api/auth/apple/callback',
+    redirectUri: process.env.APPLE_REDIRECT_URI || 'https://www.ailydian.com/api/auth/apple/callback',
     authUrl: 'https://appleid.apple.com/auth/authorize',
     tokenUrl: 'https://appleid.apple.com/auth/token',
     scope: 'name email'

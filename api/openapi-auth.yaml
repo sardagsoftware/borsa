@@ -18,9 +18,7 @@ info:
     name: Proprietary
     
 servers:
-  - url: http://localhost:3100
-    description: Local development
-  - url: https://api.ailydian.com
+  - url: https://www.ailydian.com
     description: Production
 
 tags:

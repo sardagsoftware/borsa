@@ -122,8 +122,6 @@ function csrfMiddleware(req, res, next) {
 
   // 🔧 TRUSTED ORIGINS: Skip CSRF for trusted domains
   const trustedOrigins = [
-    'localhost',
-    '127.0.0.1',
     'www.ailydian.com',
     'ailydian.com',
     'ailydian-ultra-pro.vercel.app',

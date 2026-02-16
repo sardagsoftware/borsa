@@ -6,7 +6,7 @@
 module.exports = async (req, res) => {
   try {
     const GITHUB_CLIENT_ID = process.env.GITHUB_CLIENT_ID;
-    const GITHUB_REDIRECT_URI = process.env.GITHUB_REDIRECT_URI || `${process.env.VERCEL_URL || 'http://localhost:5001'}/api/auth/github/callback`;
+    const GITHUB_REDIRECT_URI = process.env.GITHUB_REDIRECT_URI || `${process.env.VERCEL_URL || 'https://www.ailydian.com'}/api/auth/github/callback`;
 
     if (!GITHUB_CLIENT_ID) {
       return res.redirect(302, '/auth.html?error=oauth_not_configured&provider=github');

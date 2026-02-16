@@ -6,7 +6,7 @@
 module.exports = async (req, res) => {
   try {
     const MICROSOFT_CLIENT_ID = process.env.MICROSOFT_CLIENT_ID;
-    const MICROSOFT_REDIRECT_URI = process.env.MICROSOFT_REDIRECT_URI || `${process.env.VERCEL_URL || 'http://localhost:5001'}/api/auth/microsoft/callback`;
+    const MICROSOFT_REDIRECT_URI = process.env.MICROSOFT_REDIRECT_URI || `${process.env.VERCEL_URL || 'https://www.ailydian.com'}/api/auth/microsoft/callback`;
 
     if (!MICROSOFT_CLIENT_ID) {
       return res.redirect(302, '/auth.html?error=oauth_not_configured&provider=microsoft');

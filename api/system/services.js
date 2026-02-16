@@ -66,8 +66,6 @@ module.exports = async (req, res) => {
     const allowedOrigins = [
       'https://www.ailydian.com',
       'https://ailydian.com',
-      'http://localhost:3002',
-      'http://localhost:3100',
     ];
     const origin = req.headers.origin;
     if (allowedOrigins.includes(origin)) {

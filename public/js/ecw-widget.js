@@ -532,7 +532,7 @@ class ECWWidget {
      * Open full view
      */
     openFull() {
-        window.open('http://localhost:3210/index.html', '_blank');
+        window.open('/dashboard', '_blank');
     }
 
     /**

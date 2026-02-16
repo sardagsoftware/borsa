@@ -168,8 +168,6 @@ module.exports = async (req, res) => {
     'https://www.ailydian.com',
     'https://ailydian.com',
     'https://ailydian-ultra-pro.vercel.app',
-    'http://localhost:3000',
-    'http://localhost:3100',
   ];
 
   const origin = req.headers.origin;
