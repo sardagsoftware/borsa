@@ -3,13 +3,26 @@
 // Multimodal AI: Image Analysis + Vision-Language Models
 // ============================================
 
-const OpenAI = require('lydian-labs');
-const Anthropic = require('@anthropic-ai/sdk');
+// Graceful loading - SDK may throw if API keys not set
+let OpenAI, Anthropic;
+let loadError = null;
+try {
+  OpenAI = require('lydian-labs');
+  Anthropic = require('@anthropic-ai/sdk');
+} catch (e) {
+  loadError = e.message;
+  console.warn('Vision API dependencies not available:', e.message);
+}
 
-// Import middlewares (Beyaz Şapkalı Güvenlik)
-const { rateLimitMiddleware } = require('../_middleware/rate-limiter');
-const { inputValidationMiddleware } = require('../_middleware/input-validator');
-const { csrfMiddleware } = require('../_middleware/csrf-protection');
+// Import middlewares (Beyaz Sapkali Guvenlik)
+let rateLimitMiddleware, inputValidationMiddleware, csrfMiddleware;
+try {
+  ({ rateLimitMiddleware } = require('../_middleware/rate-limiter'));
+  ({ inputValidationMiddleware } = require('../_middleware/input-validator'));
+  ({ csrfMiddleware } = require('../_middleware/csrf-protection'));
+} catch (e) {
+  console.warn('Vision middleware not available:', e.message);
+}
 
 const { applySanitization } = require('../_middleware/sanitize');
 // Import Redis cache (optional - graceful degradation)
@@ -31,14 +44,18 @@ try {
 const IS_PRODUCTION =
   process.env.VERCEL_ENV === 'production' || process.env.NODE_ENV === 'production';
 
-// Initialize AI providers
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-
-const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY,
-});
+// Initialize AI providers (lazy - may fail if API keys not set)
+let openai = null;
+let anthropic = null;
+if (OpenAI && Anthropic && !loadError) {
+  try {
+    openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+    anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+  } catch (e) {
+    loadError = e.message;
+    console.warn('Vision AI providers init failed:', e.message);
+  }
+}
 
 // Generic error response helper (Beyaz Şapkalı)
 function getGenericError(userMessage = 'Bir hata oluştu. Lütfen tekrar deneyin.') {
@@ -353,6 +370,17 @@ function extractObjects(analysisText) {
 module.exports = async (req, res) => {
   // Apply sanitization middleware (obfuscate AI model names in responses)
   applySanitization(req, res);
+
+  // Check if dependencies loaded
+  if (loadError) {
+    const { getCorsOrigin } = require('../_middleware/cors');
+    res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
+    return res.status(503).json({
+      success: false,
+      error: 'Vision servisi gecici olarak kullanilamiyor.',
+    });
+  }
+
   // CORS Headers
   const allowedOrigins = [
     'https://www.ailydian.com',

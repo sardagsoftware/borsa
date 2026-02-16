@@ -337,9 +337,5 @@ async function getCacheStats(req, res) {
   }
 }
 
-// Export handlers
-module.exports = {
-  handleSearch,
-  clearCache,
-  getCacheStats,
-};
+// Export as Vercel serverless function (must be single function)
+module.exports = handleSearch;

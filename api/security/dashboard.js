@@ -15,12 +15,21 @@
  * - Audit log access
  */
 
-require('dotenv').config();
-const soc2 = require('../../security/soc2-compliance');
-const rateLimiter = require('../../security/rate-limiter');
-const ipWhitelist = require('../../security/ip-whitelist');
 const { getCorsOrigin } = require('../_middleware/cors');
 const { applySanitization } = require('../_middleware/sanitize');
+
+// Graceful loading - soc2 module creates directories at init, may fail on Vercel
+let soc2, rateLimiter, ipWhitelist;
+let loadError = null;
+try {
+  require('dotenv').config();
+  soc2 = require('../../security/soc2-compliance');
+  rateLimiter = require('../../security/rate-limiter');
+  ipWhitelist = require('../../security/ip-whitelist');
+} catch (e) {
+  loadError = e.message;
+  console.warn('Security dashboard dependencies not available:', e.message);
+}
 
 module.exports = async (req, res) => {
   applySanitization(req, res);
@@ -28,6 +37,16 @@ module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+  if (req.method === 'OPTIONS') return res.status(200).end();
+
+  // Check if dependencies loaded
+  if (loadError) {
+    return res.status(503).json({
+      success: false,
+      error: 'Guvenlik paneli gecici olarak kullanilamiyor.',
+    });
+  }
 
   if (req.method === 'OPTIONS') return res.status(200).end();
 
@@ -88,14 +107,19 @@ module.exports = async (req, res) => {
   } catch (error) {
     console.error('Security Dashboard Error:', error);
 
-    soc2.logSecurityEvent({
-      type: 'DASHBOARD_ERROR',
-      severity: 'MEDIUM',
-      details: {
-        error: error.message || 'Unknown error',
-        stack: error.stack,
-      },
-    });
+    if (soc2) {
+      try {
+        soc2.logSecurityEvent({
+          type: 'DASHBOARD_ERROR',
+          severity: 'MEDIUM',
+          details: {
+            error: 'Dashboard error occurred',
+          },
+        });
+      } catch {
+        /* ignore audit log errors */
+      }
+    }
 
     res.status(500).json({
       success: false,

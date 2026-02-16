@@ -5,13 +5,38 @@
  * @version 2.0.0 - Added reCAPTCHA v3 protection
  */
 
-const User = require('../../backend/models/User');
-const { handleCORS } = require('../../middleware/cors-handler');
-const { requireRecaptcha } = require('../_lib/recaptcha-verify');
 const { applySanitization } = require('../_middleware/sanitize');
+const { getCorsOrigin } = require('../_middleware/cors');
+
+// Graceful loading - User model requires better-sqlite3 which may not work on Vercel
+let User, handleCORS, requireRecaptcha;
+let loadError = null;
+try {
+  User = require('../../backend/models/User');
+  ({ handleCORS } = require('../../middleware/cors-handler'));
+  ({ requireRecaptcha } = require('../_lib/recaptcha-verify'));
+} catch (e) {
+  loadError = e.message;
+  console.warn('Register dependencies not available:', e.message);
+}
 
 module.exports = async (req, res) => {
   applySanitization(req, res);
+
+  // CORS
+  res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  if (req.method === 'OPTIONS') return res.status(200).end();
+
+  // Check if dependencies loaded
+  if (loadError) {
+    return res.status(503).json({
+      success: false,
+      error: 'Kayit servisi gecici olarak kullanilamiyor.',
+    });
+  }
+
   // Apply secure CORS
   if (handleCORS(req, res)) return;
 

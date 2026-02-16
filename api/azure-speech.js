@@ -1,4 +1,3 @@
-/* global fetch */
 /**
  * Azure Speech Services API
  * - Speech-to-Text (Ses → Metin)
@@ -22,7 +21,7 @@ module.exports = async (req, res) => {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { action, text, audioData } = req.body;
+  const { action, text } = req.body;
 
   // Azure Speech Configuration
   const AZURE_SPEECH_KEY = process.env.AZURE_SPEECH_KEY;
@@ -96,7 +95,7 @@ module.exports = async (req, res) => {
       success: false,
       error: 'Speech service error',
       message: 'Ses tanıma hatası',
-      details: process.env.NODE_ENV === 'development' ? error.stack : undefined,
+      details: process.env.NODE_ENV === 'development' ? error.message : undefined,
     });
   }
 };

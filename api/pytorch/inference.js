@@ -12,14 +12,24 @@
  * - Security: Input validation, sanitization
  */
 
-const ort = require('onnxruntime-node');
-const sharp = require('sharp');
 const crypto = require('crypto');
 const fs = require('fs').promises;
 const path = require('path');
-const { getDatabase } = require('../../database/init-db');
-const { handleCORS } = require('../../security/cors-config');
 const { applySanitization } = require('../_middleware/sanitize');
+const { getCorsOrigin } = require('../_middleware/cors');
+
+// Graceful loading - these packages may not be available on Vercel
+let ort, sharp, getDatabase, handleCORS;
+let loadError = null;
+try {
+  ort = require('onnxruntime-node');
+  sharp = require('sharp');
+  ({ getDatabase } = require('../../database/init-db'));
+  ({ handleCORS } = require('../../security/cors-config'));
+} catch (e) {
+  loadError = e.message;
+  console.warn('PyTorch inference dependencies not available:', e.message);
+}
 
 // Model cache (lazy loading)
 const modelCache = new Map();
@@ -232,8 +242,21 @@ function logInference(modelId, userId, inputHash, inferenceTime, confidence, res
  */
 module.exports = async (req, res) => {
   applySanitization(req, res);
+
   // CORS
-  if (handleCORS(req, res)) return;
+  res.setHeader('Access-Control-Allow-Origin', getCorsOrigin(req));
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  if (req.method === 'OPTIONS') return res.status(200).end();
+
+  // Check if dependencies loaded
+  if (loadError) {
+    return res.status(503).json({
+      success: false,
+      error: 'PyTorch/ONNX calisma ortami mevcut degil.',
+      service: 'pytorch-inference',
+    });
+  }
 
   if (req.method !== 'POST') {
     return res.status(405).json({
@@ -338,7 +361,7 @@ module.exports = async (req, res) => {
     res.status(500).json({
       success: false,
       error: 'Çıkarım işlemi başarısız',
-      details: process.env.NODE_ENV === 'development' ? error.stack : undefined,
+      details: process.env.NODE_ENV === 'development' ? error.message : undefined,
       performance: {
         total_ms: totalTime,
       },
