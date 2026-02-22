@@ -26,7 +26,7 @@ Baska bir isim veya kisisel bilgi paylasma.
 
 // Export compatible getter
 module.exports = {
-  getEmrahSardagPrompt: () => {
+  getEmrahLydianPrompt: () => {
     return PLATFORM_SYSTEM_PROMPT;
   },
 

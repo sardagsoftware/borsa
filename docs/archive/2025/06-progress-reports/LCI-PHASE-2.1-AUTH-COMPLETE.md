@@ -173,7 +173,7 @@ model User {
 ### 1. Start Docker Services
 
 ```bash
-cd /Users/sardag/Desktop/ailydian-ultra-pro/infra/lci-db
+cd /home/lydian/Desktop/ailydian-ultra-pro/infra/lci-db
 docker-compose up -d
 ```
 
@@ -185,7 +185,7 @@ Expected services:
 ### 2. Run Prisma Migrations
 
 ```bash
-cd /Users/sardag/Desktop/ailydian-ultra-pro/infra/lci-db
+cd /home/lydian/Desktop/ailydian-ultra-pro/infra/lci-db
 npx prisma migrate dev --name add_password_hash
 ```
 
@@ -197,7 +197,7 @@ This will:
 ### 3. Start Backend API
 
 ```bash
-cd /Users/sardag/Desktop/ailydian-ultra-pro/apps/lci-api
+cd /home/lydian/Desktop/ailydian-ultra-pro/apps/lci-api
 npm run start:dev
 ```
 

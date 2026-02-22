@@ -1469,7 +1469,7 @@ Tasks:
   - Verify all tables created
 
 Commands:
-  cd /Users/sardag/Desktop/ailydian-ultra-pro
+  cd /home/lydian/Desktop/ailydian-ultra-pro
   npx prisma migrate dev --name initial_migration
   npx prisma db push (if migration fails)
 
@@ -1970,6 +1970,6 @@ Layer 5: Database Query Cache (Prisma)
 ---
 
 **Generated:** 2025-10-09
-**Author:** AX9F7E2B Code (Sardag AI Platform)
+**Author:** AX9F7E2B Code (Lydian AI Platform)
 **Versiyon:** 3.0
 **Durum:** ✅ KAPSAMLI ANALİZ TAMAMLANDI

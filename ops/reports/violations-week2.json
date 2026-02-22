@@ -6792,7 +6792,7 @@
       "match": "AX9F7E2B"
     },
     {
-      "file": "EMRAH-SARDAG-SECURITY-REPORT.md",
+      "file": "EMRAH-Lydian-SECURITY-REPORT.md",
       "line": 169,
       "type": "provider",
       "name": "OpenAI",
@@ -6800,7 +6800,7 @@
       "match": "OpenAI"
     },
     {
-      "file": "EMRAH-SARDAG-SECURITY-REPORT.md",
+      "file": "EMRAH-Lydian-SECURITY-REPORT.md",
       "line": 169,
       "type": "model",
       "name": "GPT models",
@@ -6808,7 +6808,7 @@
       "match": "OX5C9E2B"
     },
     {
-      "file": "EMRAH-SARDAG-SECURITY-REPORT.md",
+      "file": "EMRAH-Lydian-SECURITY-REPORT.md",
       "line": 170,
       "type": "provider",
       "name": "Anthropic",
@@ -6816,7 +6816,7 @@
       "match": "Anthropic"
     },
     {
-      "file": "EMRAH-SARDAG-SECURITY-REPORT.md",
+      "file": "EMRAH-Lydian-SECURITY-REPORT.md",
       "line": 170,
       "type": "model",
       "name": "AX9F7E2B models",
@@ -6824,7 +6824,7 @@
       "match": "AX9F7E2B"
     },
     {
-      "file": "EMRAH-SARDAG-SECURITY-REPORT.md",
+      "file": "EMRAH-Lydian-SECURITY-REPORT.md",
       "line": 171,
       "type": "provider",
       "name": "Google AI",
@@ -6832,7 +6832,7 @@
       "match": "Google AI"
     },
     {
-      "file": "EMRAH-SARDAG-SECURITY-REPORT.md",
+      "file": "EMRAH-Lydian-SECURITY-REPORT.md",
       "line": 171,
       "type": "model",
       "name": "Gemini models",
@@ -6840,7 +6840,7 @@
       "match": "Gemini"
     },
     {
-      "file": "EMRAH-SARDAG-SECURITY-REPORT.md",
+      "file": "EMRAH-Lydian-SECURITY-REPORT.md",
       "line": 172,
       "type": "model",
       "name": "LLaMA models",
@@ -6848,7 +6848,7 @@
       "match": "Llama"
     },
     {
-      "file": "EMRAH-SARDAG-SECURITY-REPORT.md",
+      "file": "EMRAH-Lydian-SECURITY-REPORT.md",
       "line": 173,
       "type": "model",
       "name": "Mistral models",
@@ -8544,7 +8544,7 @@
       "match": "openai"
     },
     {
-      "file": "KNOWLEDGE-BASE-ROADMAP-v2.1-SARDAG.md",
+      "file": "KNOWLEDGE-BASE-ROADMAP-v2.1-Lydian.md",
       "line": 6,
       "type": "model",
       "name": "AX9F7E2B models",
@@ -8552,7 +8552,7 @@
       "match": "AX9F7E2B"
     },
     {
-      "file": "KNOWLEDGE-BASE-ROADMAP-v2.1-SARDAG.md",
+      "file": "KNOWLEDGE-BASE-ROADMAP-v2.1-Lydian.md",
       "line": 75,
       "type": "model",
       "name": "GPT models",
@@ -8560,7 +8560,7 @@
       "match": "OX5C9E2B"
     },
     {
-      "file": "KNOWLEDGE-BASE-ROADMAP-v2.1-SARDAG.md",
+      "file": "KNOWLEDGE-BASE-ROADMAP-v2.1-Lydian.md",
       "line": 75,
       "type": "model",
       "name": "AX9F7E2B models",
@@ -8568,7 +8568,7 @@
       "match": "AX9F7E2B"
     },
     {
-      "file": "KNOWLEDGE-BASE-ROADMAP-v2.1-SARDAG.md",
+      "file": "KNOWLEDGE-BASE-ROADMAP-v2.1-Lydian.md",
       "line": 75,
       "type": "model",
       "name": "Gemini models",
@@ -8576,7 +8576,7 @@
       "match": "Gemini"
     },
     {
-      "file": "KNOWLEDGE-BASE-ROADMAP-v2.1-SARDAG.md",
+      "file": "KNOWLEDGE-BASE-ROADMAP-v2.1-Lydian.md",
       "line": 1001,
       "type": "model",
       "name": "AX9F7E2B models",
@@ -15424,7 +15424,7 @@
       "match": "OpenAI"
     },
     {
-      "file": "ai-integrations/emrah-sardag-system-prompt.js",
+      "file": "ai-integrations/lydian-system-prompt.js",
       "line": 71,
       "type": "provider",
       "name": "OpenAI",
@@ -15432,7 +15432,7 @@
       "match": "OpenAI"
     },
     {
-      "file": "ai-integrations/emrah-sardag-system-prompt.js",
+      "file": "ai-integrations/lydian-system-prompt.js",
       "line": 82,
       "type": "provider",
       "name": "OpenAI",
@@ -15440,7 +15440,7 @@
       "match": "OpenAI"
     },
     {
-      "file": "ai-integrations/emrah-sardag-system-prompt.js",
+      "file": "ai-integrations/lydian-system-prompt.js",
       "line": 82,
       "type": "model",
       "name": "GPT models",
@@ -15448,7 +15448,7 @@
       "match": "OX5C9E2B"
     },
     {
-      "file": "ai-integrations/emrah-sardag-system-prompt.js",
+      "file": "ai-integrations/lydian-system-prompt.js",
       "line": 83,
       "type": "provider",
       "name": "Anthropic",
@@ -15456,7 +15456,7 @@
       "match": "Anthropic"
     },
     {
-      "file": "ai-integrations/emrah-sardag-system-prompt.js",
+      "file": "ai-integrations/lydian-system-prompt.js",
       "line": 83,
       "type": "model",
       "name": "AX9F7E2B models",
@@ -15464,7 +15464,7 @@
       "match": "AX9F7E2B"
     },
     {
-      "file": "ai-integrations/emrah-sardag-system-prompt.js",
+      "file": "ai-integrations/lydian-system-prompt.js",
       "line": 84,
       "type": "provider",
       "name": "Google AI",
@@ -15472,7 +15472,7 @@
       "match": "Google AI"
     },
     {
-      "file": "ai-integrations/emrah-sardag-system-prompt.js",
+      "file": "ai-integrations/lydian-system-prompt.js",
       "line": 84,
       "type": "model",
       "name": "Gemini models",
@@ -15480,7 +15480,7 @@
       "match": "Gemini"
     },
     {
-      "file": "ai-integrations/emrah-sardag-system-prompt.js",
+      "file": "ai-integrations/lydian-system-prompt.js",
       "line": 85,
       "type": "model",
       "name": "LLaMA models",
@@ -15488,7 +15488,7 @@
       "match": "Llama"
     },
     {
-      "file": "ai-integrations/emrah-sardag-system-prompt.js",
+      "file": "ai-integrations/lydian-system-prompt.js",
       "line": 86,
       "type": "model",
       "name": "Mistral models",
@@ -15496,7 +15496,7 @@
       "match": "Mistral"
     },
     {
-      "file": "ai-integrations/emrah-sardag-system-prompt.js",
+      "file": "ai-integrations/lydian-system-prompt.js",
       "line": 221,
       "type": "model",
       "name": "LLaMA models",
@@ -15504,7 +15504,7 @@
       "match": "Llama"
     },
     {
-      "file": "ai-integrations/emrah-sardag-system-prompt.js",
+      "file": "ai-integrations/lydian-system-prompt.js",
       "line": 221,
       "type": "model",
       "name": "Mistral models",
@@ -15512,7 +15512,7 @@
       "match": "Mistral"
     },
     {
-      "file": "ai-integrations/emrah-sardag-system-prompt.js",
+      "file": "ai-integrations/lydian-system-prompt.js",
       "line": 230,
       "type": "provider",
       "name": "Hugging Face",

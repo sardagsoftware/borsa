@@ -3,7 +3,7 @@
 ## Executive Summary
 
 Successfully created the complete Information Architecture (IA) for LyDian Enterprise Documentation Platform at:
-`/Users/sardag/Desktop/ailydian-ultra-pro/docs/`
+`/home/lydian/Desktop/ailydian-ultra-pro/docs/`
 
 **Status:** Complete and Ready for Content Population
 
@@ -280,6 +280,6 @@ The LyDian Enterprise Documentation Platform IA has been successfully created wi
 ---
 
 **Report Generated:** 2025-10-06  
-**Location:** `/Users/sardag/Desktop/ailydian-ultra-pro/docs/`  
+**Location:** `/home/lydian/Desktop/ailydian-ultra-pro/docs/`  
 **Status:** IA Complete - Ready for Content Population  
 **Version:** 1.0.0

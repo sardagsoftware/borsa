@@ -49,8 +49,8 @@ The enhanced "PLAY-PRO CINEMATIC" script attempted to add:
 The script created files in the wrong directory structure. Files exist but aren't in the correct location:
 
 **Created (but wrong location):**
-- ✅ `/Users/sardag/Desktop/ailydian-ultra-pro/apps/console/src/components/playpro/` (3 files)
-- ❌ `/Users/sardag/Desktop/ailydian-ultra-pro/apps/console/src/lib/playpro/` (MISSING)
+- ✅ `/home/lydian/Desktop/ailydian-ultra-pro/apps/console/src/components/playpro/` (3 files)
+- ❌ `/home/lydian/Desktop/ailydian-ultra-pro/apps/console/src/lib/playpro/` (MISSING)
 
 **Expected location:**
 - ✅ `apps/console/src/components/playpro/` ← **EXISTS**
@@ -79,7 +79,7 @@ mkdir -p apps/console/src/lib/playpro
 
 2. **Run the script again from the correct directory:**
 ```bash
-cd /Users/sardag/Desktop/ailydian-ultra-pro
+cd /home/lydian/Desktop/ailydian-ultra-pro
 ./play-pro-cinematic.sh
 ```
 
@@ -172,7 +172,7 @@ When the script ran, `$ROOT` resolved to a different directory than expected, ca
 ### Fix for Future:
 Always run setup scripts from the project root:
 ```bash
-cd /Users/sardag/Desktop/ailydian-ultra-pro
+cd /home/lydian/Desktop/ailydian-ultra-pro
 ./your-script.sh
 ```
 

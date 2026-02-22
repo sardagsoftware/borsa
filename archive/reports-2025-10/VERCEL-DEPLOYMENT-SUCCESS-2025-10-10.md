@@ -191,12 +191,12 @@ https://www.ailydian.com/lydian-legal-search
 
 ### Vercel Deployment URL
 ```
-https://ailydian-dfgs4b49h-emrahsardag-yandexcoms-projects.vercel.app
+https://ailydian-dfgs4b49h-lydian-projects.vercel.app
 ```
 
 ### Vercel Inspect URL
 ```
-https://vercel.com/emrahsardag-yandexcoms-projects/ailydian/J6LZhkzzUjgQmbf4LRgx6bGpiLPq
+https://vercel.com/lydian-projects/ailydian/J6LZhkzzUjgQmbf4LRgx6bGpiLPq
 ```
 
 ---

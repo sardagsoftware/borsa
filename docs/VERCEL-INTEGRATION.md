@@ -165,7 +165,7 @@ Cache-Control: no-cache, no-store, must-revalidate
 
 **Verification:**
 ```bash
-curl -I https://ailydian-dc09h7jel-emrahsardag-yandexcoms-projects.vercel.app/
+curl -I https://ailydian-dc09h7jel-lydian-projects.vercel.app/
 ```
 
 **Response:**
@@ -441,7 +441,7 @@ vercel env add JWT_SECRET production
 
 **Vercel Dashboard:**
 ```
-https://vercel.com/emrahsardag-yandexcoms-projects/ailydian
+https://vercel.com/lydian-projects/ailydian
 ```
 
 **Key Metrics:**
@@ -592,13 +592,13 @@ Status: ✅ Exceeding target
 vercel ls --prod
 
 # Test security headers
-curl -I https://ailydian-dc09h7jel-emrahsardag-yandexcoms-projects.vercel.app/
+curl -I https://ailydian-dc09h7jel-lydian-projects.vercel.app/
 
 # Test API endpoint
-curl https://ailydian-dc09h7jel-emrahsardag-yandexcoms-projects.vercel.app/api/ping
+curl https://ailydian-dc09h7jel-lydian-projects.vercel.app/api/ping
 
 # Check cache status
-curl -I https://ailydian-dc09h7jel-emrahsardag-yandexcoms-projects.vercel.app/ | grep x-vercel-cache
+curl -I https://ailydian-dc09h7jel-lydian-projects.vercel.app/ | grep x-vercel-cache
 
 # Stream logs
 vercel logs --follow
@@ -611,18 +611,18 @@ vercel inspect <deployment-url>
 
 ```bash
 # Lighthouse test (requires Chrome)
-lighthouse https://ailydian-dc09h7jel-emrahsardag-yandexcoms-projects.vercel.app/ \
+lighthouse https://ailydian-dc09h7jel-lydian-projects.vercel.app/ \
   --output html \
   --output-path ./lighthouse-report.html
 
 # Load testing (requires artillery)
 artillery quick --count 100 --num 10 \
-  https://ailydian-dc09h7jel-emrahsardag-yandexcoms-projects.vercel.app/
+  https://ailydian-dc09h7jel-lydian-projects.vercel.app/
 
 # Edge performance test
 for region in fra1 iad1 lhr1 sin1; do
   curl -w "@curl-format.txt" -o /dev/null -s \
-    "https://ailydian-dc09h7jel-emrahsardag-yandexcoms-projects.vercel.app/?region=$region"
+    "https://ailydian-dc09h7jel-lydian-projects.vercel.app/?region=$region"
 done
 ```
 
@@ -643,7 +643,7 @@ done
 
 ### Support Channels
 - **Email:** support@ailydian.com
-- **GitHub Issues:** https://github.com/sardagsoftware/ailydian/issues
+- **GitHub Issues:** https://github.com/lydiansoftware/ailydian/issues
 - **Vercel Support:** support@vercel.com
 
 ---

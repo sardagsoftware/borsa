@@ -341,7 +341,7 @@ export VERCEL_TOKEN="s6uC...wfR"
 
 **Execute command:**
 ```bash
-cd /Users/sardag/Desktop/ailydian-ultra-pro/ops
+cd /home/lydian/Desktop/ailydian-ultra-pro/ops
 ./dns-cutover.sh
 ```
 

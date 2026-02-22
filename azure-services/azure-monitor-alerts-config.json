@@ -9,7 +9,7 @@
       "enabled": true,
       "emailReceivers": [
         {
-          "name": "Emrah Sardag - Primary",
+          "name": "Lydian - Primary",
           "emailAddress": "contact@ailydian.com",
           "useCommonAlertSchema": true
         }
@@ -30,7 +30,7 @@
       "enabled": true,
       "emailReceivers": [
         {
-          "name": "Emrah Sardag - Secondary",
+          "name": "Lydian - Secondary",
           "emailAddress": "contact@ailydian.com",
           "useCommonAlertSchema": true
         }
@@ -335,7 +335,7 @@
   "deployment_instructions": {
     "azure_cli": [
       "# 1. Create Action Groups",
-      "az monitor action-group create --name ailydian-critical-alerts --short-name CRIT-ALERT --resource-group ailydian-ultra-pro-rg --email-receiver name='Emrah Sardag' email-address='contact@ailydian.com'",
+      "az monitor action-group create --name ailydian-critical-alerts --short-name CRIT-ALERT --resource-group ailydian-ultra-pro-rg --email-receiver name='Lydian' email-address='contact@ailydian.com'",
       "",
       "# 2. Create Alert Rules (example for 5xx error rate)",
       "az monitor scheduled-query create --name ailydian-5xx-error-rate-critical --resource-group ailydian-ultra-pro-rg --scopes /subscriptions/{subscription-id}/resourceGroups/ailydian-ultra-pro-rg/providers/microsoft.insights/components/ailydian-insights --condition \"count 'Kusto Query' > 5\" --evaluation-frequency PT1M --window-size PT5M --severity 0 --action ailydian-critical-alerts",

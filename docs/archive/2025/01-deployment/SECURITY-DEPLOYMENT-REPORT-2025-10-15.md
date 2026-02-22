@@ -178,7 +178,7 @@ Tüm düzeltmeler beyaz şapkalı etik hacking prensipleriyle yapıldı:
 - CORS whitelist aktif
 - Zero critical errors
 
-**Deployment URL:** https://ailydian-g4ljpo0oc-emrahsardag-yandexcoms-projects.vercel.app
+**Deployment URL:** https://ailydian-g4ljpo0oc-lydian-projects.vercel.app
 
 ---
 

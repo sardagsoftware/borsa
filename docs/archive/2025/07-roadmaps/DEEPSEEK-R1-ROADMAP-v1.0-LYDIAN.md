@@ -1,6 +1,6 @@
 # 🧠 DeepSeek R1 Reasoning Portal - Roadmap & Implementation Plan
 
-**Version:** 1.0 Sardag Enterprise Edition
+**Version:** 1.0 Lydian Enterprise Edition
 **Date:** 2025-10-02
 **Model:** DeepSeek-R1 via Azure AI Foundry
 **Status:** Production-Ready Design
@@ -870,7 +870,7 @@ az webapp up --name deepseek-r1-portal
 
 **🧠 DeepSeek R1 - Where Logic Meets Innovation**
 
-**Version:** 1.0 Sardag Enterprise Edition
+**Version:** 1.0 Lydian Enterprise Edition
 **Model:** DeepSeek-R1 via Azure AI Foundry
 **Accuracy:** 99.5%
 **Status:** Ready for Implementation

@@ -4,21 +4,21 @@
 
 ### 📦 Configuration Files (3)
 
-1. `/Users/sardag/Desktop/ailydian-ultra-pro/docs/cli/package.json`
+1. `/home/lydian/Desktop/ailydian-ultra-pro/docs/cli/package.json`
    - Dependencies and npm scripts
    - Project metadata
 
-2. `/Users/sardag/Desktop/ailydian-ultra-pro/docs/cli/tsconfig.json`
+2. `/home/lydian/Desktop/ailydian-ultra-pro/docs/cli/tsconfig.json`
    - TypeScript compiler configuration
    - Strict type checking enabled
 
-3. `/Users/sardag/Desktop/ailydian-ultra-pro/docs/cli/.gitignore`
+3. `/home/lydian/Desktop/ailydian-ultra-pro/docs/cli/.gitignore`
    - Git ignore patterns
    - Excludes node_modules, dist, etc.
 
 ### 🚀 Executable (1)
 
-4. `/Users/sardag/Desktop/ailydian-ultra-pro/docs/cli/bin/lydian.js`
+4. `/home/lydian/Desktop/ailydian-ultra-pro/docs/cli/bin/lydian.js`
    - Main executable entry point
    - Node.js version check
    - Permissions: 755 (executable)
@@ -26,133 +26,133 @@
 ### 💻 TypeScript Source Files (15)
 
 #### Main Entry
-5. `/Users/sardag/Desktop/ailydian-ultra-pro/docs/cli/src/index.ts`
+5. `/home/lydian/Desktop/ailydian-ultra-pro/docs/cli/src/index.ts`
    - Main CLI application
    - Command registration
    - Global options handling
 
 #### Command Modules (7)
-6. `/Users/sardag/Desktop/ailydian-ultra-pro/docs/cli/src/commands/auth.ts`
+6. `/home/lydian/Desktop/ailydian-ultra-pro/docs/cli/src/commands/auth.ts`
    - Authentication commands
    - OAuth2 device flow
 
-7. `/Users/sardag/Desktop/ailydian-ultra-pro/docs/cli/src/commands/config.ts`
+7. `/home/lydian/Desktop/ailydian-ultra-pro/docs/cli/src/commands/config.ts`
    - Configuration management
    - Profile switching
 
-8. `/Users/sardag/Desktop/ailydian-ultra-pro/docs/cli/src/commands/apikey.ts`
+8. `/home/lydian/Desktop/ailydian-ultra-pro/docs/cli/src/commands/apikey.ts`
    - API key creation
    - Key management
 
-9. `/Users/sardag/Desktop/ailydian-ultra-pro/docs/cli/src/commands/cities.ts`
+9. `/home/lydian/Desktop/ailydian-ultra-pro/docs/cli/src/commands/cities.ts`
    - Smart Cities module
    - City, asset, metric commands
 
-10. `/Users/sardag/Desktop/ailydian-ultra-pro/docs/cli/src/commands/personas.ts`
+10. `/home/lydian/Desktop/ailydian-ultra-pro/docs/cli/src/commands/personas.ts`
     - Insan-IQ module
     - Persona and skill management
 
-11. `/Users/sardag/Desktop/ailydian-ultra-pro/docs/cli/src/commands/signals.ts`
+11. `/home/lydian/Desktop/ailydian-ultra-pro/docs/cli/src/commands/signals.ts`
     - LyDian-IQ module
     - Signal and knowledge graph
 
-12. `/Users/sardag/Desktop/ailydian-ultra-pro/docs/cli/src/commands/modules.ts`
+12. `/home/lydian/Desktop/ailydian-ultra-pro/docs/cli/src/commands/modules.ts`
     - Module listing
     - Module information
 
 #### Library Files (5)
-13. `/Users/sardag/Desktop/ailydian-ultra-pro/docs/cli/src/lib/client.ts`
+13. `/home/lydian/Desktop/ailydian-ultra-pro/docs/cli/src/lib/client.ts`
     - HTTP client with axios
     - Request interceptors
     - Token refresh logic
 
-14. `/Users/sardag/Desktop/ailydian-ultra-pro/docs/cli/src/lib/auth.ts`
+14. `/home/lydian/Desktop/ailydian-ultra-pro/docs/cli/src/lib/auth.ts`
     - OAuth2 device flow
     - Token management
     - User info retrieval
 
-15. `/Users/sardag/Desktop/ailydian-ultra-pro/docs/cli/src/lib/config.ts`
+15. `/home/lydian/Desktop/ailydian-ultra-pro/docs/cli/src/lib/config.ts`
     - Config file management
     - Profile handling
     - YAML parsing
 
-16. `/Users/sardag/Desktop/ailydian-ultra-pro/docs/cli/src/lib/output.ts`
+16. `/home/lydian/Desktop/ailydian-ultra-pro/docs/cli/src/lib/output.ts`
     - Output formatting
     - Table/JSON/YAML formatters
     - Colored output
 
-17. `/Users/sardag/Desktop/ailydian-ultra-pro/docs/cli/src/lib/errors.ts`
+17. `/home/lydian/Desktop/ailydian-ultra-pro/docs/cli/src/lib/errors.ts`
     - Error handling
     - Custom error classes
     - Exit codes
 
 #### Type Definitions (1)
-18. `/Users/sardag/Desktop/ailydian-ultra-pro/docs/cli/src/types/index.ts`
+18. `/home/lydian/Desktop/ailydian-ultra-pro/docs/cli/src/types/index.ts`
     - All TypeScript types
     - Interface definitions
     - 50+ type definitions
 
 ### 🐚 Shell Completions (4)
 
-19. `/Users/sardag/Desktop/ailydian-ultra-pro/docs/cli/completions/bash.sh`
+19. `/home/lydian/Desktop/ailydian-ultra-pro/docs/cli/completions/bash.sh`
     - Bash completion script
     - Command and flag completion
 
-20. `/Users/sardag/Desktop/ailydian-ultra-pro/docs/cli/completions/zsh.sh`
+20. `/home/lydian/Desktop/ailydian-ultra-pro/docs/cli/completions/zsh.sh`
     - Zsh completion script
     - Context-aware suggestions
 
-21. `/Users/sardag/Desktop/ailydian-ultra-pro/docs/cli/completions/fish.sh`
+21. `/home/lydian/Desktop/ailydian-ultra-pro/docs/cli/completions/fish.sh`
     - Fish shell completion
     - Native fish format
 
-22. `/Users/sardag/Desktop/ailydian-ultra-pro/docs/cli/completions/powershell.ps1`
+22. `/home/lydian/Desktop/ailydian-ultra-pro/docs/cli/completions/powershell.ps1`
     - PowerShell completion
     - Windows support
 
 ### 📚 Example Scripts (3)
 
-23. `/Users/sardag/Desktop/ailydian-ultra-pro/docs/cli/examples/quickstart.sh`
+23. `/home/lydian/Desktop/ailydian-ultra-pro/docs/cli/examples/quickstart.sh`
     - Quick start guide
     - Basic setup workflow
     - Permissions: 755 (executable)
 
-24. `/Users/sardag/Desktop/ailydian-ultra-pro/docs/cli/examples/cities-workflow.sh`
+24. `/home/lydian/Desktop/ailydian-ultra-pro/docs/cli/examples/cities-workflow.sh`
     - Smart Cities demo
     - Complete workflow example
     - Permissions: 755 (executable)
 
-25. `/Users/sardag/Desktop/ailydian-ultra-pro/docs/cli/examples/personas-workflow.sh`
+25. `/home/lydian/Desktop/ailydian-ultra-pro/docs/cli/examples/personas-workflow.sh`
     - Personas demo
     - Skill management example
     - Permissions: 755 (executable)
 
 ### 📖 Documentation (5)
 
-26. `/Users/sardag/Desktop/ailydian-ultra-pro/docs/cli/README.md`
+26. `/home/lydian/Desktop/ailydian-ultra-pro/docs/cli/README.md`
     - Installation guide
     - Quick start
     - Command overview
     - Examples
 
-27. `/Users/sardag/Desktop/ailydian-ultra-pro/docs/cli/MANUAL.md`
+27. `/home/lydian/Desktop/ailydian-ultra-pro/docs/cli/MANUAL.md`
     - Complete command reference
     - All options documented
     - Usage examples
     - Exit codes
 
-28. `/Users/sardag/Desktop/ailydian-ultra-pro/docs/cli/BRIEF-D.md`
+28. `/home/lydian/Desktop/ailydian-ultra-pro/docs/cli/BRIEF-D.md`
     - Implementation report
     - Architecture overview
     - Statistics
     - Example outputs
 
-29. `/Users/sardag/Desktop/ailydian-ultra-pro/docs/cli/STRUCTURE.md`
+29. `/home/lydian/Desktop/ailydian-ultra-pro/docs/cli/STRUCTURE.md`
     - Project structure
     - Command tree
     - Technology stack
 
-30. `/Users/sardag/Desktop/ailydian-ultra-pro/docs/cli/FILES.md`
+30. `/home/lydian/Desktop/ailydian-ultra-pro/docs/cli/FILES.md`
     - This file
     - Complete file listing
 
@@ -169,7 +169,7 @@
 ## Directory Structure
 
 ```
-/Users/sardag/Desktop/ailydian-ultra-pro/docs/cli/
+/home/lydian/Desktop/ailydian-ultra-pro/docs/cli/
 ├── .gitignore
 ├── package.json
 ├── tsconfig.json
@@ -289,7 +289,7 @@ node_modules/
 
 ### View Source Code
 ```bash
-cd /Users/sardag/Desktop/ailydian-ultra-pro/docs/cli
+cd /home/lydian/Desktop/ailydian-ultra-pro/docs/cli
 ls -la
 cat src/index.ts
 ```
@@ -318,7 +318,7 @@ npm link
 
 1. **Install Dependencies:**
    ```bash
-   cd /Users/sardag/Desktop/ailydian-ultra-pro/docs/cli
+   cd /home/lydian/Desktop/ailydian-ultra-pro/docs/cli
    npm install
    ```
 
@@ -347,7 +347,7 @@ npm link
 ---
 
 **All files are located in:**
-`/Users/sardag/Desktop/ailydian-ultra-pro/docs/cli/`
+`/home/lydian/Desktop/ailydian-ultra-pro/docs/cli/`
 
 **Total Files Created:** 30
 **Total Lines of Code:** ~4,700

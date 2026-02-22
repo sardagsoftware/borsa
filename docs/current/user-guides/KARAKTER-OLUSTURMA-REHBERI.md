@@ -98,10 +98,10 @@ Blendshapes: ARKit 52
 #### 6. Dosyaları Kopyala
 ```bash
 # İndirdiğiniz GLB dosyalarını şu klasöre kopyalayın:
-/Users/sardag/Desktop/ailydian-ultra-pro/apps/console/public/assets/play/characters/
+/home/lydian/Desktop/ailydian-ultra-pro/apps/console/public/assets/play/characters/
 
 # Mevcut dosyaların yedeğini alın:
-cd /Users/sardag/Desktop/ailydian-ultra-pro/apps/console/public/assets/play/characters/
+cd /home/lydian/Desktop/ailydian-ultra-pro/apps/console/public/assets/play/characters/
 mv Elif.glb Elif.glb.backup
 mv Melih.glb Melih.glb.backup
 

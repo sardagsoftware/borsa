@@ -399,7 +399,7 @@ curl "http://localhost:3100/api/web-search?q=AI&num=5"
 ## File Structure
 
 ```
-/Users/sardag/Desktop/ailydian-ultra-pro/
+/home/lydian/Desktop/ailydian-ultra-pro/
 ├── api/
 │   ├── chat-gpt5.js          (263 lines)
 │   ├── chat-AX9F7E2B.js        (253 lines)

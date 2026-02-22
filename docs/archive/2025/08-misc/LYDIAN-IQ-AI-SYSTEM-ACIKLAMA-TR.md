@@ -479,12 +479,12 @@ if (problem.length > 10000) {
 
 ### Frontend
 ```
-https://ailydian-o89burta5-emrahsardag-yandexcoms-projects.vercel.app/lydian-iq.html
+https://ailydian-o89burta5-lydian-projects.vercel.app/lydian-iq.html
 ```
 
 ### API Endpoint
 ```
-POST https://ailydian-o89burta5-emrahsardag-yandexcoms-projects.vercel.app/api/lydian-iq/solve
+POST https://ailydian-o89burta5-lydian-projects.vercel.app/api/lydian-iq/solve
 
 Headers:
   Content-Type: application/json
@@ -569,7 +569,7 @@ Süre: ~3s
 - ✅ Production'da sorunsuz çalışıyor
 
 **Production URL:**
-https://ailydian-o89burta5-emrahsardag-yandexcoms-projects.vercel.app/lydian-iq.html
+https://ailydian-o89burta5-lydian-projects.vercel.app/lydian-iq.html
 
 ---
 

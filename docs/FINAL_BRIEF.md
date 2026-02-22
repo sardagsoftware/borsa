@@ -762,7 +762,7 @@ curl -X GET "http://localhost:3100/api/insights/price-trend?region=istanbul&sect
 ### 1. Start Infrastructure
 
 ```bash
-cd /Users/sardag/Desktop/ailydian-ultra-pro
+cd /home/lydian/Desktop/ailydian-ultra-pro
 
 # Start services
 docker-compose up -d postgres redis kafka temporal vault prometheus grafana

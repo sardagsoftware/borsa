@@ -111,7 +111,7 @@ az deployment group create \
 
 #### Usage:
 ```bash
-cd /Users/sardag/Desktop/ailydian-ultra-pro
+cd /home/lydian/Desktop/ailydian-ultra-pro
 ./azure-services/deploy-dashboard.sh
 ```
 
@@ -299,7 +299,7 @@ customMetrics
 
 ```bash
 # Navigate to project directory
-cd /Users/sardag/Desktop/ailydian-ultra-pro
+cd /home/lydian/Desktop/ailydian-ultra-pro
 
 # Run deployment script
 ./azure-services/deploy-dashboard.sh

@@ -38,7 +38,7 @@
 
 **#5 (Current):**
 ```
-https://ailydian-jffd9t71s-emrahsardag-yandexcoms-projects.vercel.app
+https://ailydian-jffd9t71s-lydian-projects.vercel.app
 Status: ✅ Live
 Security: ✅ All headers
 Cache: ✅ HIT
@@ -46,25 +46,25 @@ Cache: ✅ HIT
 
 **#4:**
 ```
-https://ailydian-1xwy6fz8j-emrahsardag-yandexcoms-projects.vercel.app
+https://ailydian-1xwy6fz8j-lydian-projects.vercel.app
 Status: ✅ Live
 ```
 
 **#3:**
 ```
-https://ailydian-dh48fvtks-emrahsardag-yandexcoms-projects.vercel.app
+https://ailydian-dh48fvtks-lydian-projects.vercel.app
 Status: ✅ Live
 ```
 
 **#2:**
 ```
-https://ailydian-r3lxmq08j-emrahsardag-yandexcoms-projects.vercel.app
+https://ailydian-r3lxmq08j-lydian-projects.vercel.app
 Status: ✅ Live
 ```
 
 **#1:**
 ```
-https://ailydian-na7ucqsda-emrahsardag-yandexcoms-projects.vercel.app
+https://ailydian-na7ucqsda-lydian-projects.vercel.app
 Status: ✅ Live
 ```
 
@@ -201,16 +201,16 @@ vercel --prod --yes
 **Test Commands:**
 ```bash
 # Check latest deployment
-curl -I https://ailydian-dh48fvtks-emrahsardag-yandexcoms-projects.vercel.app/
+curl -I https://ailydian-dh48fvtks-lydian-projects.vercel.app/
 
 # Test API
-curl https://ailydian-dh48fvtks-emrahsardag-yandexcoms-projects.vercel.app/api/ping
+curl https://ailydian-dh48fvtks-lydian-projects.vercel.app/api/ping
 
 # Check auth
-curl https://ailydian-dh48fvtks-emrahsardag-yandexcoms-projects.vercel.app/auth.html
+curl https://ailydian-dh48fvtks-lydian-projects.vercel.app/auth.html
 
 # Test settings
-curl https://ailydian-dh48fvtks-emrahsardag-yandexcoms-projects.vercel.app/settings.html
+curl https://ailydian-dh48fvtks-lydian-projects.vercel.app/settings.html
 ```
 
 ---
@@ -259,7 +259,7 @@ vercel logs --follow
 **Check health:**
 ```bash
 while true; do
-  curl -sI https://ailydian-dh48fvtks-emrahsardag-yandexcoms-projects.vercel.app/ | grep "HTTP\|cache\|security" -i
+  curl -sI https://ailydian-dh48fvtks-lydian-projects.vercel.app/ | grep "HTTP\|cache\|security" -i
   sleep 30
 done
 ```
@@ -355,12 +355,12 @@ curl -I <previous-url>
 
 **Vercel Dashboard:**
 ```
-https://vercel.com/emrahsardag-yandexcoms-projects/ailydian
+https://vercel.com/lydian-projects/ailydian
 ```
 
 **Latest Production:**
 ```
-https://ailydian-jffd9t71s-emrahsardag-yandexcoms-projects.vercel.app
+https://ailydian-jffd9t71s-lydian-projects.vercel.app
 ```
 
 ---

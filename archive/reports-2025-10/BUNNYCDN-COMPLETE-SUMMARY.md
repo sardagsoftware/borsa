@@ -37,7 +37,7 @@
 
 ### 📄 Dokümantasyon (9 dosya)
 ```
-/Users/sardag/Desktop/ailydian-ultra-pro/
+/home/lydian/Desktop/ailydian-ultra-pro/
 
 ✅ BUNNYCDN-IMPLEMENTATION-GUIDE.md        # Komple kurulum rehberi
 ✅ bunnycdn-setup-checklist.txt            # Basılabilir checklist
@@ -52,7 +52,7 @@
 
 ### 🔧 Automation Scripts (5 script)
 ```
-/Users/sardag/Desktop/ailydian-ultra-pro/scripts/
+/home/lydian/Desktop/ailydian-ultra-pro/scripts/
 
 ✅ bunnycdn-quick-start.sh         # Interactive wizard
 ✅ bunnycdn-validator.sh           # 8 kapsamlı test

@@ -468,7 +468,7 @@ if (isAndroidDevice()) {
 
 ---
 
-## ✅ SARDAG ONAY - iOS & ANDROID PWA FIX
+## ✅ Lydian ONAY - iOS & ANDROID PWA FIX
 
 ```
 ╔═══════════════════════════════════════════════════╗
@@ -507,8 +507,8 @@ if (isAndroidDevice()) {
 
 ---
 
-**Fixed By:** White-Hat AI Engineer + SARDAG
-**Approved By:** SARDAG
+**Fixed By:** White-Hat AI Engineer + Lydian
+**Approved By:** Lydian
 **Date:** 2025-10-07 22:10
 **Status:** ✅ **PRODUCTION READY - ZERO ERRORS**
 

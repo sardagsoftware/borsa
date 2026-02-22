@@ -76,7 +76,7 @@
 
 **Ana Dashboard:**
 ```
-https://ailydian-heugj7lff-emrahsardag-yandexcoms-projects.vercel.app/ai-advisor-hub.html
+https://ailydian-heugj7lff-lydian-projects.vercel.app/ai-advisor-hub.html
 ```
 
 **Modüller:**
@@ -289,7 +289,7 @@ GOOGLE_API_KEY=...
 ## 📞 DESTEK
 
 **Deployment URL:**
-https://ailydian-heugj7lff-emrahsardag-yandexcoms-projects.vercel.app
+https://ailydian-heugj7lff-lydian-projects.vercel.app
 
 **Custom Domain (Yakında):**
 https://www.ailydian.com

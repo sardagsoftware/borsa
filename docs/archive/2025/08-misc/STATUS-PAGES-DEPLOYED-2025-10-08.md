@@ -87,7 +87,7 @@ System Status:    https://www.ailydian.com/system-status.html
 
 ### Latest Deployment
 ```
-Deployment #21:   https://ailydian-i36khh061-emrahsardag-yandexcoms-projects.vercel.app
+Deployment #21:   https://ailydian-i36khh061-lydian-projects.vercel.app
 Status:           ✅ Ready
 HTTP:             200 OK
 Build Time:       ~2 minutes
@@ -243,8 +243,8 @@ vercel logs --follow
 **Live URLs:**
 ```
 Production:       https://www.ailydian.com/system-status.html
-Latest Deploy:    https://ailydian-i36khh061-emrahsardag-yandexcoms-projects.vercel.app
-Vercel Dashboard: https://vercel.com/emrahsardag-yandexcoms-projects/ailydian
+Latest Deploy:    https://ailydian-i36khh061-lydian-projects.vercel.app
+Vercel Dashboard: https://vercel.com/lydian-projects/ailydian
 ```
 
 **Verification:**

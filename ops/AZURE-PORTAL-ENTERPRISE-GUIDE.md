@@ -642,7 +642,7 @@ Cache Hit Ratio: ≥ 80%
 - [Monitoring Best Practices](https://docs.microsoft.com/azure/frontdoor/front-door-diagnostics)
 
 **Ailydian Resources:**
-- Workspace: `/Users/sardag/Desktop/ailydian-ultra-pro/ops`
+- Workspace: `/home/lydian/Desktop/ailydian-ultra-pro/ops`
 - Audit Log: `dns-change-log.ndjson`
 - Validation: `./validate-and-brief.sh`
 - Rollback: `./rollback.sh all`

@@ -1,7 +1,7 @@
 # 🔍 AILYDIAN AFD - FINAL INVESTIGATION REPORT
 
 **Generated:** $(date '+%Y-%m-%d %H:%M:%S %Z')  
-**Principal SRE:** Emrah Sardag
+**Principal SRE:** Lydian
 
 ---
 
@@ -249,6 +249,6 @@ All automation work completed within constraints:
 
 ---
 
-**Principal SRE:** Emrah Sardag  
+**Principal SRE:** Lydian  
 **Timestamp:** $(date -u +%Y-%m-%dT%H:%M:%SZ)  
 **White-Hat Discipline:** ✅ MAINTAINED

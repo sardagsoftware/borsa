@@ -318,7 +318,7 @@ The unified chat interface is now:
 ## 🔗 Quick Links
 
 - **Development Server**: http://localhost:3200/chat-test
-- **Main Codebase**: `/Users/sardag/Desktop/ailydian-ultra-pro/apps/messaging/`
+- **Main Codebase**: `/home/lydian/Desktop/ailydian-ultra-pro/apps/messaging/`
 - **Real Implementations**: `/lib/webrtc/`, `/lib/location/`, `/lib/files/`
 - **State Management**: `/lib/chat/ChatContext.tsx`
 

@@ -1,7 +1,7 @@
 # 🛡️ PENETRASYON TESTİ HIZLI ÖZET - BEYAZ ŞAPKALI
 
 **Tarih:** 2025-10-08
-**Production URL:** https://ailydian-ps8euyp0x-emrahsardag-yandexcoms-projects.vercel.app
+**Production URL:** https://ailydian-ps8euyp0x-lydian-projects.vercel.app
 
 ---
 
@@ -55,7 +55,7 @@
 
 **Test:**
 ```bash
-curl https://ailydian-ps8euyp0x-emrahsardag-yandexcoms-projects.vercel.app/api/health-check
+curl https://ailydian-ps8euyp0x-lydian-projects.vercel.app/api/health-check
 ```
 
 ### 2️⃣ NPM Vulnerabilities Fix (ORTA)

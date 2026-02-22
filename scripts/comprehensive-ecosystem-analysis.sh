@@ -6,7 +6,7 @@
 
 set -e
 
-PROJECT_DIR="/Users/sardag/Desktop/ailydian-ultra-pro/ailydian-from-github"
+PROJECT_DIR="/home/lydian/Desktop/ailydian-ultra-pro/ailydian-from-github"
 REPORT_FILE="${PROJECT_DIR}/ECOSYSTEM_ANALYSIS_REPORT.md"
 
 cd "$PROJECT_DIR"

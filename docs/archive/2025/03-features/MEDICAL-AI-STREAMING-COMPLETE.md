@@ -289,7 +289,7 @@ data: {"reason":"COMPLETE","totalTokens":1234...}
 ## 📚 File Structure
 
 ```
-/Users/sardag/Desktop/ailydian-ultra-pro/
+/home/lydian/Desktop/ailydian-ultra-pro/
 ├── api/medical/
 │   ├── rare-disease-assistant.js          ✅ Full streaming
 │   ├── mental-health-triage.js            ✅ Full streaming

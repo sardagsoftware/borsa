@@ -33,7 +33,7 @@
 ```bash
 # 1. Vercel'in düzelmesini bekle (1-4 saat)
 # 2. Veya manuel retry:
-cd /Users/sardag/Desktop/ailydian-ultra-pro
+cd /home/lydian/Desktop/ailydian-ultra-pro
 vercel --prod --yes
 
 # 3. Production kontrol:

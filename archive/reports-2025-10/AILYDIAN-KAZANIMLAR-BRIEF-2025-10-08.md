@@ -14,7 +14,7 @@
 **ÖNCESI:**
 ```
 ❌ Sadece geçici Vercel URL'leri
-https://ailydian-[random-hash]-emrahsardag-yandexcoms-projects.vercel.app
+https://ailydian-[random-hash]-lydian-projects.vercel.app
 ```
 
 **ŞİMDİ:**

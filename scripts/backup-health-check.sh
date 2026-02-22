@@ -5,7 +5,7 @@
 
 set -e
 
-BACKUP_DIR="/Users/sardag/Desktop/ailydian-backups"
+BACKUP_DIR="/home/lydian/Desktop/ailydian-backups"
 ENCRYPTION_KEY="${BACKUP_DIR}/.backup_encryption.key"
 HEALTH_LOG="${BACKUP_DIR}/health-check.log"
 
@@ -100,7 +100,7 @@ fi
 # Check 6: Backup script exists
 echo -n "6. Backup script exists... "
 TOTAL_CHECKS=$((TOTAL_CHECKS + 1))
-BACKUP_SCRIPT="/Users/sardag/Desktop/ailydian-ultra-pro/ailydian-from-github/scripts/automated-encrypted-backup.sh"
+BACKUP_SCRIPT="/home/lydian/Desktop/ailydian-ultra-pro/ailydian-from-github/scripts/automated-encrypted-backup.sh"
 if [ -x "$BACKUP_SCRIPT" ]; then
     echo -e "${GREEN}✅ PASS${NC}"
     PASSED_CHECKS=$((PASSED_CHECKS + 1))
@@ -133,7 +133,7 @@ fi
 # Check 8: Post-commit hook
 echo -n "8. Post-commit hook installed... "
 TOTAL_CHECKS=$((TOTAL_CHECKS + 1))
-POST_COMMIT_HOOK="/Users/sardag/Desktop/ailydian-ultra-pro/ailydian-from-github/.git/hooks/post-commit"
+POST_COMMIT_HOOK="/home/lydian/Desktop/ailydian-ultra-pro/ailydian-from-github/.git/hooks/post-commit"
 if [ -x "$POST_COMMIT_HOOK" ]; then
     echo -e "${GREEN}✅ PASS${NC}"
     PASSED_CHECKS=$((PASSED_CHECKS + 1))

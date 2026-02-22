@@ -372,7 +372,7 @@ ailydian-ultra-pro/
 
 #### 1. Deploy Updated Files to Production
 ```bash
-cd /Users/sardag/Desktop/ailydian-ultra-pro
+cd /home/lydian/Desktop/ailydian-ultra-pro
 
 # Add all new files
 git add public/robots.txt
@@ -426,7 +426,7 @@ vercel --prod --yes
 
 #### 3. Install Cron Job
 ```bash
-cd /Users/sardag/Desktop/ailydian-ultra-pro/ops/indexing
+cd /home/lydian/Desktop/ailydian-ultra-pro/ops/indexing
 ./setup_cron.sh
 ```
 
@@ -454,7 +454,7 @@ curl -I https://www.ailydian.com/.well-known/ai-plugin.json
 curl https://www.ailydian.com/robots.txt | grep -E 'GPTBot|Claude|Perplexity'
 
 # Run verification script
-python3 /Users/sardag/Desktop/ailydian-ultra-pro/ops/indexing/verify_indexing.py
+python3 /home/lydian/Desktop/ailydian-ultra-pro/ops/indexing/verify_indexing.py
 ```
 
 #### Trigger AI Indexing
@@ -467,7 +467,7 @@ python3 /Users/sardag/Desktop/ailydian-ultra-pro/ops/indexing/verify_indexing.py
 
 #### Run Security Compliance Check
 ```bash
-python3 /Users/sardag/Desktop/ailydian-ultra-pro/ops/indexing/security_compliance_check.py
+python3 /home/lydian/Desktop/ailydian-ultra-pro/ops/indexing/security_compliance_check.py
 ```
 
 ---

@@ -337,7 +337,7 @@ const API_BASE_URL = window.location.hostname === 'localhost'
 - **Evidence Upload**: https://www.ailydian.com/api/lci/v1/evidence/upload
 
 ### Vercel Deployment
-- **Latest**: https://ailydian-2okjuwmw7-emrahsardag-yandexcoms-projects.vercel.app
+- **Latest**: https://ailydian-2okjuwmw7-lydian-projects.vercel.app
 - **Status**: ● Ready
 - **Build Time**: 2 minutes
 - **Deployed**: 2 minutes ago
@@ -381,7 +381,7 @@ const API_BASE_URL = window.location.hostname === 'localhost'
 
 ---
 
-**Geliştirici**: Claude + Sardag
+**Geliştirici**: Claude + Lydian
 **Tarih**: 17 Ekim 2025
 **Proje**: LCI - Lydian Complaint Intelligence
 **Versiyon**: v1.0 - Production API

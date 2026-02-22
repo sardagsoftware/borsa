@@ -604,7 +604,7 @@ See `.env.example` for complete list of environment variables.
 
 ### Links
 
-- **GitHub Repository:** https://github.com/sardagsoftware/borsa
+- **GitHub Repository:** https://github.com/lydiansoftware/borsa
 - **Azure Portal:** https://portal.azure.com
 - **Vercel Dashboard:** https://vercel.com/dashboard
 - **Supabase Dashboard:** https://supabase.com/dashboard

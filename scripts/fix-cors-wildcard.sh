@@ -6,12 +6,12 @@ echo "🔒 Fixing CORS wildcard vulnerabilities..."
 echo ""
 
 # Count files with CORS wildcard
-BEFORE_COUNT=$(grep -r "Access-Control-Allow-Origin.*\*" /Users/sardag/Desktop/ailydian-ultra-pro/api --include="*.js" | wc -l | tr -d ' ')
+BEFORE_COUNT=$(grep -r "Access-Control-Allow-Origin.*\*" /home/lydian/Desktop/ailydian-ultra-pro/api --include="*.js" | wc -l | tr -d ' ')
 echo "📊 Found $BEFORE_COUNT files with CORS wildcard"
 echo ""
 
 # Find all API files with wildcard CORS
-FILES=$(grep -rl "Access-Control-Allow-Origin.*\*" /Users/sardag/Desktop/ailydian-ultra-pro/api --include="*.js")
+FILES=$(grep -rl "Access-Control-Allow-Origin.*\*" /home/lydian/Desktop/ailydian-ultra-pro/api --include="*.js")
 
 FIXED_COUNT=0
 
@@ -63,13 +63,13 @@ echo ""
 echo "✅ Fixed $FIXED_COUNT files"
 
 # Count remaining wildcards
-AFTER_COUNT=$(grep -r "Access-Control-Allow-Origin.*\*" /Users/sardag/Desktop/ailydian-ultra-pro/api --include="*.js" | wc -l | tr -d ' ')
+AFTER_COUNT=$(grep -r "Access-Control-Allow-Origin.*\*" /home/lydian/Desktop/ailydian-ultra-pro/api --include="*.js" | wc -l | tr -d ' ')
 echo "📊 Remaining wildcards: $AFTER_COUNT"
 
 # Clean up backup files
 echo ""
 echo "🧹 Cleaning up backup files..."
-find /Users/sardag/Desktop/ailydian-ultra-pro/api -name "*.bak" -delete
+find /home/lydian/Desktop/ailydian-ultra-pro/api -name "*.bak" -delete
 
 echo ""
 echo "🎉 CORS security fix complete!"

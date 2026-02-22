@@ -255,7 +255,7 @@ http://localhost:3333/lydian-legal-search.html
 
 ### Main File
 ```
-/Users/sardag/Desktop/ailydian-ultra-pro/public/lydian-legal-search.html
+/home/lydian/Desktop/ailydian-ultra-pro/public/lydian-legal-search.html
 ```
 
 **Changes:**
@@ -272,13 +272,13 @@ http://localhost:3333/lydian-legal-search.html
 
 ### Backup File
 ```
-/Users/sardag/Desktop/ailydian-ultra-pro/public/lydian-legal-search-BACKUP-20251005-*.html
+/home/lydian/Desktop/ailydian-ultra-pro/public/lydian-legal-search-BACKUP-20251005-*.html
 ```
 Original Turkish version preserved.
 
 ### Reference File
 ```
-/Users/sardag/Desktop/ailydian-ultra-pro/public/lydian-legal-search-i18n.html
+/home/lydian/Desktop/ailydian-ultra-pro/public/lydian-legal-search-i18n.html
 ```
 Standalone translation system for reference.
 

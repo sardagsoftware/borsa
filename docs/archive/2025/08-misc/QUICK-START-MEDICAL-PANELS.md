@@ -4,7 +4,7 @@
 
 1. **Start Server**:
    ```bash
-   cd /Users/sardag/Desktop/ailydian-ultra-pro
+   cd /home/lydian/Desktop/ailydian-ultra-pro
    node server.js
    ```
 

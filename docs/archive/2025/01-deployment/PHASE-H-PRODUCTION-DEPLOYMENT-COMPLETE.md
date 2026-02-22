@@ -2,7 +2,7 @@
 
 **Date**: 2025-10-07
 **Status**: ✅ Production Deployment Successful
-**Vercel URL**: https://ailydian-qe7akg02l-emrahsardag-yandexcoms-projects.vercel.app
+**Vercel URL**: https://ailydian-qe7akg02l-lydian-projects.vercel.app
 
 ---
 
@@ -20,7 +20,7 @@ Phase H successfully completed with:
 
 ### Vercel Deployment Status: ✅ LIVE
 
-**Production URL**: https://ailydian-qe7akg02l-emrahsardag-yandexcoms-projects.vercel.app
+**Production URL**: https://ailydian-qe7akg02l-lydian-projects.vercel.app
 
 ### Deployment Verification
 ```bash

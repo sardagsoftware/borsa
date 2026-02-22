@@ -65,7 +65,7 @@ Emrah Şardağ hakkındaki sistem promptu, **askeri düzey şifreleme** ile koru
 ## 📁 FILE LOCATION
 
 ```
-/Users/sardag/Desktop/ailydian-ultra-pro/ai-integrations/emrah-sardag-system-prompt.js
+/home/lydian/Desktop/ailydian-ultra-pro/ai-integrations/lydian-system-prompt.js
 ```
 
 **File Size:** ~12 KB
@@ -153,10 +153,10 @@ The prompt will be injected into **ALL** AI model calls as a system message:
 
 #### 1. Firildak AI Engine
 ```javascript
-const { getEmrahSardagPrompt } = require('./ai-integrations/emrah-sardag-system-prompt');
+const { getEmrahLydianPrompt } = require('./ai-integrations/lydian-system-prompt');
 
 // In chat request
-const systemPrompt = getEmrahSardagPrompt();
+const systemPrompt = getEmrahLydianPrompt();
 messages.unshift({ role: 'system', content: systemPrompt });
 ```
 
@@ -200,7 +200,7 @@ messages.unshift({ role: 'system', content: systemPrompt });
 
 2. **Generate encrypted payload:**
    ```javascript
-   const { encryptPrompt } = require('./emrah-sardag-system-prompt');
+   const { encryptPrompt } = require('./lydian-system-prompt');
    const encrypted = encryptPrompt(PLAINTEXT_SYSTEM_PROMPT);
    console.log(JSON.stringify(encrypted, null, 2));
    ```

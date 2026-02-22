@@ -2,7 +2,7 @@
 
 **Tarih:** 2025-10-08
 **Durum:** ✅ **TAM KAPSAMLI KULLANICI PANELİ - 0 HATA**
-**Production URL:** https://ailydian-dc09h7jel-emrahsardag-yandexcoms-projects.vercel.app/settings.html
+**Production URL:** https://ailydian-dc09h7jel-lydian-projects.vercel.app/settings.html
 
 ---
 
@@ -611,7 +611,7 @@ curl -X POST https://ailydian-dc09h7jel.../api/user/settings/revoke-api-key \
 
 **Settings Page:**
 ```
-https://ailydian-dc09h7jel-emrahsardag-yandexcoms-projects.vercel.app/settings.html
+https://ailydian-dc09h7jel-lydian-projects.vercel.app/settings.html
 ```
 
 **API Endpoints:**

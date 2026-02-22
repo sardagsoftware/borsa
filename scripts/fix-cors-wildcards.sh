@@ -20,13 +20,13 @@ SKIPPED=0
 ERRORS=0
 
 # Backup directory
-BACKUP_DIR="/Users/sardag/Desktop/ailydian-ultra-pro/.cors-backups-$(date +%Y%m%d-%H%M%S)"
+BACKUP_DIR="/home/lydian/Desktop/ailydian-ultra-pro/.cors-backups-$(date +%Y%m%d-%H%M%S)"
 mkdir -p "$BACKUP_DIR"
 echo "📦 Backups will be saved to: $BACKUP_DIR"
 echo ""
 
 # Find all files with wildcard CORS
-FILES=$(grep -rl "setHeader.*Access-Control-Allow-Origin.*\*" /Users/sardag/Desktop/ailydian-ultra-pro/api/ 2>/dev/null || true)
+FILES=$(grep -rl "setHeader.*Access-Control-Allow-Origin.*\*" /home/lydian/Desktop/ailydian-ultra-pro/api/ 2>/dev/null || true)
 
 if [ -z "$FILES" ]; then
   echo "${GREEN}✓ No CORS wildcards found! System is secure.${NC}"

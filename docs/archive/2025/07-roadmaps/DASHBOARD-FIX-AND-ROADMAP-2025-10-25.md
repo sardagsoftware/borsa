@@ -18,13 +18,13 @@
    URL: https://dashboard.ailydian.com
    Durum: ❌ Vercel Deployment Protection aktif (HTTP 307 → /private-access-required)
    Type: Next.js 14, Server-Side Rendering
-   Location: /Users/sardag/Desktop/lydian-master-dashboard/
+   Location: /home/lydian/Desktop/lydian-master-dashboard/
 
 2. LyDian Ultra Pro Dashboard (Static HTML)
    URL: https://www.ailydian.com/dashboard
    Durum: ✅ ÇALIŞIYOR (HTTP 200)
    Type: Static HTML with Client-Side Auth
-   Location: /Users/sardag/Desktop/ailydian-ultra-pro/public/dashboard.html
+   Location: /home/lydian/Desktop/ailydian-ultra-pro/public/dashboard.html
 ```
 
 ### Root Cause
@@ -69,7 +69,7 @@ curl -I https://www.ailydian.com/dashboard
 
 1. **Vercel Dashboard'a Git**:
    ```
-   https://vercel.com/emrahsardag-yandexcoms-projects/lydian-master-dashboard
+   https://vercel.com/lydian-projects/lydian-master-dashboard
    ```
 
 2. **Settings → Deployment Protection**:
@@ -82,7 +82,7 @@ curl -I https://www.ailydian.com/dashboard
 
 3. **Redeploy** (Optional):
    ```bash
-   cd /Users/sardag/Desktop/lydian-master-dashboard
+   cd /home/lydian/Desktop/lydian-master-dashboard
    vercel --prod
    ```
 

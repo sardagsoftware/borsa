@@ -107,7 +107,7 @@ parseUtterance("trendyol fiyatları göster", 0.55);
 
 **Latest Deployment:**
 ```
-https://ailydian-a1lzvufsc-emrahsardag-yandexcoms-projects.vercel.app
+https://ailydian-a1lzvufsc-lydian-projects.vercel.app
 ```
 
 **Custom Domain:**
@@ -117,7 +117,7 @@ https://ailydian.com/lydian-iq
 
 **Inspect:**
 ```
-https://vercel.com/emrahsardag-yandexcoms-projects/ailydian/BfzN4mVAV96ifKwUb9tWwi5i2PHc
+https://vercel.com/lydian-projects/ailydian/BfzN4mVAV96ifKwUb9tWwi5i2PHc
 ```
 
 ---
@@ -300,7 +300,7 @@ PRODUCTION:
 • <5s build time
 
 🧪 Test URL:
-https://ailydian-a1lzvufsc-emrahsardag-yandexcoms-projects.vercel.app/lydian-iq
+https://ailydian-a1lzvufsc-lydian-projects.vercel.app/lydian-iq
 
 🔍 Natural Language Examples:
 • "trendyol fiyatları %5 düşür"

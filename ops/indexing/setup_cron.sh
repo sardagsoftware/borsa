@@ -9,8 +9,8 @@ set -e
 echo "🔧 Setting up Live Indexer cron job..."
 
 # Paths
-SCRIPT_PATH="/Users/sardag/Desktop/ailydian-ultra-pro/ops/indexing/live_indexer.py"
-LOG_PATH="/Users/sardag/Desktop/ailydian-ultra-pro/ops/artifacts/cron.log"
+SCRIPT_PATH="/home/lydian/Desktop/ailydian-ultra-pro/ops/indexing/live_indexer.py"
+LOG_PATH="/home/lydian/Desktop/ailydian-ultra-pro/ops/artifacts/cron.log"
 
 # Verify script exists
 if [ ! -f "$SCRIPT_PATH" ]; then
@@ -24,7 +24,7 @@ chmod +x "$SCRIPT_PATH"
 # Create cron entry
 # Format: minute hour day month weekday command
 # Schedule: 03:00 UTC daily
-CRON_SCHEDULE="0 3 * * * cd /Users/sardag/Desktop/ailydian-ultra-pro && /usr/bin/python3 $SCRIPT_PATH >> $LOG_PATH 2>&1"
+CRON_SCHEDULE="0 3 * * * cd /home/lydian/Desktop/ailydian-ultra-pro && /usr/bin/python3 $SCRIPT_PATH >> $LOG_PATH 2>&1"
 
 # Check if cron job already exists
 if crontab -l 2>/dev/null | grep -q "live_indexer.py"; then

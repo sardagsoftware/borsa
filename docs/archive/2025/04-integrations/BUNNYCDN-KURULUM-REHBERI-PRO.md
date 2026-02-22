@@ -92,7 +92,7 @@ PULL ZONE CONFIGURATION
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 Name: ailydian-prod
-Origin URL: https://ailydian-6avnx8zcg-emrahsardag-yandexcoms-projects.vercel.app
+Origin URL: https://ailydian-6avnx8zcg-lydian-projects.vercel.app
 Type: Standard (not Premium)
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -935,7 +935,7 @@ Bu kurulum **beyaz şapka (white hat) etik hacking prensiplerine** uygun olarak 
 ✅ Best practices (endüstri standartları)
 ✅ Privacy-focused (kullanıcı gizliliği korunuyor)
 
-**Kurulum Raporu:** `/Users/sardag/Desktop/ailydian-ultra-pro/BUNNYCDN-KURULUM-REHBERI-PRO.md`
+**Kurulum Raporu:** `/home/lydian/Desktop/ailydian-ultra-pro/BUNNYCDN-KURULUM-REHBERI-PRO.md`
 
 ---
 

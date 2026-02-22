@@ -200,7 +200,7 @@ $ az resource list --resource-group aly-core-prod-rg
 ## FILES GENERATED - COMPLETE INVENTORY
 ## ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-### Location: `/Users/sardag/Desktop/ailydian-ultra-pro/ops/`
+### Location: `/home/lydian/Desktop/ailydian-ultra-pro/ops/`
 
 #### Automation Scripts (7 files)
 1. **full-dns-cutover-automated.sh** (570 lines)
@@ -588,7 +588,7 @@ whois newsai.earth | grep -i "Name Server"
 
 ### Complete File Inventory
 ```
-/Users/sardag/Desktop/ailydian-ultra-pro/ops/
+/home/lydian/Desktop/ailydian-ultra-pro/ops/
 ├── full-dns-cutover-automated.sh          (570 lines - full automation)
 ├── manual-cutover-steps.sh                (386 lines - manual steps)
 ├── fix-and-resume.sh                      (252 lines - comprehensive fix)

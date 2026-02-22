@@ -30,7 +30,7 @@ Complaints API: https://www.ailydian.com/api/lci/v1/complaints (API)
 **Admin Hesap Bilgileri**:
 - **Email**: admin@ailydian.com
 - **Password**: Admin@2025!Secure
-- **Name**: Sardag Admin
+- **Name**: Lydian Admin
 - **Role**: ADMIN
 - **User ID**: 2
 - **Durum**: ✅ Aktif ve Kullanıma Hazır
@@ -67,7 +67,7 @@ Farklı bir admin hesabı oluşturmak isterseniz aşağıdaki yöntemlerden biri
 {
   "email": "admin@ailydian.com",
   "password": "Admin@2025!Secure",
-  "name": "Sardag Admin",
+  "name": "Lydian Admin",
   "phone": "+90XXXXXXXXXX"
 }
 ```
@@ -79,7 +79,7 @@ curl -X POST "https://www.ailydian.com/api/auth/register" \
   -d '{
     "email": "admin@ailydian.com",
     "password": "Admin@2025!Secure",
-    "name": "Sardag Admin",
+    "name": "Lydian Admin",
     "phone": "+905551234567"
   }'
 ```
@@ -103,7 +103,7 @@ curl -X POST "https://www.ailydian.com/api/auth/register" \
 3. Bilgileri doldurun:
    - Email: `admin@ailydian.com`
    - Password: Güçlü bir şifre (yukarıdaki kurallara uygun)
-   - Name: `Sardag Admin`
+   - Name: `Lydian Admin`
    - Phone: `+90XXXXXXXXXX`
 4. "Kayıt Ol" butonuna tıklayın
 
@@ -112,7 +112,7 @@ curl -X POST "https://www.ailydian.com/api/auth/register" \
 ### Yöntem 3: Doğrudan Database ile Oluşturma
 
 ```bash
-cd /Users/sardag/Desktop/ailydian-ultra-pro
+cd /home/lydian/Desktop/ailydian-ultra-pro
 node -e "
 const User = require('./backend/models/User');
 
@@ -121,7 +121,7 @@ const User = require('./backend/models/User');
     const user = await User.createUser({
       email: 'admin@ailydian.com',
       password: 'Admin@2025!Secure',
-      name: 'Sardag Admin',
+      name: 'Lydian Admin',
       phone: '+905551234567'
     });
 
@@ -179,7 +179,7 @@ curl -X POST "https://www.ailydian.com/api/auth/login" \
   "user": {
     "id": 1,
     "email": "admin@ailydian.com",
-    "name": "Sardag Admin",
+    "name": "Lydian Admin",
     "role": "ADMIN",
     "subscription": "free",
     "credits": 100
@@ -315,10 +315,10 @@ Role: ADMIN
 
 ```bash
 # SQLite Database
-/Users/sardag/Desktop/ailydian-ultra-pro/database/ailydian.db
+/home/lydian/Desktop/ailydian-ultra-pro/database/ailydian.db
 
 # Backup Location
-/Users/sardag/Desktop/ailydian-ultra-pro/database/backups/
+/home/lydian/Desktop/ailydian-ultra-pro/database/backups/
 ```
 
 ### Database Tables
@@ -371,7 +371,7 @@ Role: ADMIN
    ```bash
    curl -X POST "https://www.ailydian.com/api/auth/register" \
      -H "Content-Type: application/json" \
-     -d '{"email":"admin@ailydian.com","password":"Admin@2025!Secure","name":"Sardag Admin"}'
+     -d '{"email":"admin@ailydian.com","password":"Admin@2025!Secure","name":"Lydian Admin"}'
    ```
 
 2. **Login Yap**
@@ -395,7 +395,7 @@ Role: ADMIN
 
 ---
 
-**Geliştirici**: Claude + Sardag
+**Geliştirici**: Claude + Lydian
 **Tarih**: 17 Ekim 2025
 **Versiyon**: v1.0 - Authentication System
 

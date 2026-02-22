@@ -79,7 +79,7 @@ app.use(helmet({
 
 **Option 2: Download & Self-Host Libraries:**
 ```bash
-cd /Users/sardag/Desktop/ailydian-ultra-pro/public/js
+cd /home/lydian/Desktop/ailydian-ultra-pro/public/js
 wget https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js
 wget https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js
 wget https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js

@@ -34,7 +34,7 @@ for (const c of CHARACTERS){
 
 ### AssetHealth.tsx (Güncellenmiş)
 
-**Dosya:** `/Users/sardag/Desktop/ailydian-ultra-pro/apps/console/src/components/playpro/AssetHealth.tsx`
+**Dosya:** `/home/lydian/Desktop/ailydian-ultra-pro/apps/console/src/components/playpro/AssetHealth.tsx`
 
 ```typescript
 'use client';
@@ -121,7 +121,7 @@ HTTP/1.1 200 OK                                    ✅
 
 # 2. GLB Dosyası Mevcut
 $ ls -lh apps/console/public/assets/play/characters/Elif.glb
--rw-r--r--  1 sardag  staff   2.1M Oct 13 17:02  ✅
+-rw-r--r--  1 lydian  staff   2.1M Oct 13 17:02  ✅
 
 # 3. Kod Güncellendi
 $ cat apps/console/src/components/playpro/AssetHealth.tsx | grep "c.candidates"

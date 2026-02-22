@@ -2,7 +2,7 @@
 
 **Tarih:** 2025-10-08
 **Durum:** ✅ **SORUNSUZ - TÜM SORUNLAR ÇÖZÜLDÜ**
-**Production URL:** https://ailydian-incwua865-emrahsardag-yandexcoms-projects.vercel.app
+**Production URL:** https://ailydian-incwua865-lydian-projects.vercel.app
 
 ---
 
@@ -160,30 +160,30 @@
 
 ```bash
 # ✅ Ana sayfa
-curl -I https://ailydian-incwua865-emrahsardag-yandexcoms-projects.vercel.app/
+curl -I https://ailydian-incwua865-lydian-projects.vercel.app/
 # HTTP/2 200 ✅
 
 # ✅ Ping API
-curl https://ailydian-incwua865-emrahsardag-yandexcoms-projects.vercel.app/api/ping
+curl https://ailydian-incwua865-lydian-projects.vercel.app/api/ping
 # {"status":"success","message":"pong"} ✅
 
 # ✅ Status API
-curl https://ailydian-incwua865-emrahsardag-yandexcoms-projects.vercel.app/api/status
+curl https://ailydian-incwua865-lydian-projects.vercel.app/api/status
 # {"status":"operational","i18n":{"total":11}} ✅
 
 # ✅ Azerice çeviriler
-curl https://ailydian-incwua865-emrahsardag-yandexcoms-projects.vercel.app/i18n/v2/az/common.json
+curl https://ailydian-incwua865-lydian-projects.vercel.app/i18n/v2/az/common.json
 # 7 keys ✅
 
 # ✅ Locale engine
-curl https://ailydian-incwua865-emrahsardag-yandexcoms-projects.vercel.app/js/locale-engine.js | grep "az"
+curl https://ailydian-incwua865-lydian-projects.vercel.app/js/locale-engine.js | grep "az"
 # 'az' bulundu ✅
 ```
 
 ### Security Headers Test
 
 ```bash
-curl -I https://ailydian-incwua865-emrahsardag-yandexcoms-projects.vercel.app/
+curl -I https://ailydian-incwua865-lydian-projects.vercel.app/
 
 ✅ Content-Security-Policy: default-src 'self'...
 ✅ X-Frame-Options: DENY
@@ -360,19 +360,19 @@ Kapsamlı sistem durumu endpoint
 
 **Yeni Production URL:**
 ```
-https://ailydian-incwua865-emrahsardag-yandexcoms-projects.vercel.app
+https://ailydian-incwua865-lydian-projects.vercel.app
 ```
 
 **Test Endpoint'leri:**
 ```bash
 # Health Check
-https://ailydian-incwua865-emrahsardag-yandexcoms-projects.vercel.app/api/ping
+https://ailydian-incwua865-lydian-projects.vercel.app/api/ping
 
 # System Status
-https://ailydian-incwua865-emrahsardag-yandexcoms-projects.vercel.app/api/status
+https://ailydian-incwua865-lydian-projects.vercel.app/api/status
 
 # i18n Test
-https://ailydian-incwua865-emrahsardag-yandexcoms-projects.vercel.app/?lang=az
+https://ailydian-incwua865-lydian-projects.vercel.app/?lang=az
 ```
 
 ---

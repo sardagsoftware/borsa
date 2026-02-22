@@ -449,7 +449,7 @@ STATUS: PRODUCTION LIVE
 **Platform:** Vercel Production
 **Domain:** www.ailydian.com
 **Development:** AX9F7E2B (LyDian Research AI Assistant)
-**User:** Sardag
+**User:** Lydian
 **Organization:** LyDian AI Platform
 
 ---
@@ -459,7 +459,7 @@ STATUS: PRODUCTION LIVE
 **Live URLs:**
 - Production: https://www.ailydian.com
 - Vercel App: https://ailydian-ultra-pro.vercel.app
-- Dashboard: https://vercel.com/emrahsardag-yandexcoms-projects/ailydian-ultra-pro
+- Dashboard: https://vercel.com/lydian-projects/ailydian-ultra-pro
 
 **Feeds:**
 - JSON: https://www.ailydian.com/feed/ai_models.json

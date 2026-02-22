@@ -75,7 +75,7 @@ Uptime:          99.97%
 
 ### Kullanım Senaryosu
 ```
-Sen (Emrah Sardag) → Master Dashboard → Tüm Ekosistem
+Sen (Lydian) → Master Dashboard → Tüm Ekosistem
                           ↓
     ┌─────────────────────┼─────────────────────┐
     ↓                     ↓                     ↓
@@ -1155,7 +1155,7 @@ model AuditLog {
 ### 🎭 Rol Tabanlı Erişim (RBAC)
 ```
 ┌─────────────────────────────────────────┐
-│ Admin (Emrah Sardag)                    │
+│ Admin (Lydian)                    │
 │ ├─ Full access (all modules)            │
 │ ├─ User management                      │
 │ ├─ System configuration                 │

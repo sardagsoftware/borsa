@@ -292,7 +292,7 @@ Detailed implementation plan available in:
 - **Status:** ● Ready
 - **Environment:** Production
 - **Duration:** 17s
-- **URL:** https://ailydian-rn7dj0wi3-emrahsardag-yandexcoms-projects.vercel.app
+- **URL:** https://ailydian-rn7dj0wi3-lydian-projects.vercel.app
 
 ### Deployment Verification
 - ✅ Homepage loads

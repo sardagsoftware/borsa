@@ -216,7 +216,7 @@ Sistem durumu alınamadı. Lütfen bağlantınızı kontrol edin.
 
 **Deployment #22:**
 ```
-URL:        https://ailydian-t2x14j4pm-emrahsardag-yandexcoms-projects.vercel.app
+URL:        https://ailydian-t2x14j4pm-lydian-projects.vercel.app
 Production: https://www.ailydian.com
 Build Time: ~7 seconds
 Status:     ✅ Success
@@ -443,8 +443,8 @@ API Endpoints:
 
 ### Deployment URLs
 ```
-Latest:           https://ailydian-t2x14j4pm-emrahsardag-yandexcoms-projects.vercel.app
-Dashboard:        https://vercel.com/emrahsardag-yandexcoms-projects/ailydian
+Latest:           https://ailydian-t2x14j4pm-lydian-projects.vercel.app
+Dashboard:        https://vercel.com/lydian-projects/ailydian
 ```
 
 ---

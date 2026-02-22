@@ -107,7 +107,7 @@
 
 ### **Production URL:**
 ```
-https://ailydian-8i8c86s3b-emrahsardag-yandexcoms-projects.vercel.app
+https://ailydian-8i8c86s3b-lydian-projects.vercel.app
 ```
 
 ### **Ana Dashboard:**
@@ -279,16 +279,16 @@ POST /api/knowledge-assistant/analyze (YENİ ✅)
 # Tüm endpoint'ler 405 Method Not Allowed döndürüyor
 # (GET yerine POST bekliyorlar - DOĞRU DAVRANIŞI)
 
-curl https://ailydian-8i8c86s3b-emrahsardag-yandexcoms-projects.vercel.app/api/life-coach/analyze
+curl https://ailydian-8i8c86s3b-lydian-projects.vercel.app/api/life-coach/analyze
 # → HTTP 405 ✅
 
-curl https://ailydian-8i8c86s3b-emrahsardag-yandexcoms-projects.vercel.app/api/learning-path/analyze
+curl https://ailydian-8i8c86s3b-lydian-projects.vercel.app/api/learning-path/analyze
 # → HTTP 405 ✅
 
-curl https://ailydian-8i8c86s3b-emrahsardag-yandexcoms-projects.vercel.app/api/cultural-advisor/analyze
+curl https://ailydian-8i8c86s3b-lydian-projects.vercel.app/api/cultural-advisor/analyze
 # → HTTP 405 ✅
 
-curl https://ailydian-8i8c86s3b-emrahsardag-yandexcoms-projects.vercel.app/api/knowledge-assistant/analyze
+curl https://ailydian-8i8c86s3b-lydian-projects.vercel.app/api/knowledge-assistant/analyze
 # → HTTP 405 ✅
 ```
 
@@ -316,7 +316,7 @@ curl https://ailydian-8i8c86s3b-emrahsardag-yandexcoms-projects.vercel.app/api/k
 ## 📞 DESTEK & DOKÜMANTASYON
 
 **Production URL:**
-https://ailydian-8i8c86s3b-emrahsardag-yandexcoms-projects.vercel.app
+https://ailydian-8i8c86s3b-lydian-projects.vercel.app
 
 **Custom Domain (Yakında):**
 https://www.ailydian.com

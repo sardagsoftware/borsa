@@ -7,7 +7,7 @@
 
 ## 🏢 Company Overview
 
-**Company Name:** LyDian AI (Sardag Software)
+**Company Name:** LyDian AI (Lydian Software)
 **Website:** https://www.ailydian.com
 **Founded:** 2024
 **Location:** Turkey
@@ -276,7 +276,7 @@ SSL: Managed by Vercel
 
 ## 📞 Contact Information
 
-**Primary Contact:** Emrah Sardag
+**Primary Contact:** Lydian
 **Role:** Founder & CEO
 **Email:** [Available in Vercel Partner Portal]
 **Company Website:** https://www.ailydian.com

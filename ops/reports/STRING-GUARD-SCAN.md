@@ -863,14 +863,14 @@
 | DEPLOYMENT-TAMAMLANDI-TR.md | 187 | model | AX9F7E2B models | `AX9F7E2B` |
 | DEPLOYMENT-TAMAMLANDI-TR.md | 188 | provider | LyDian Research | `LyDian Research` |
 | DEPLOYMENT-TAMAMLANDI-TR.md | 333 | model | AX9F7E2B models | `AX9F7E2B` |
-| EMRAH-SARDAG-SECURITY-REPORT.md | 169 | provider | LyDian Labs | `LyDian Labs` |
-| EMRAH-SARDAG-SECURITY-REPORT.md | 169 | model | LyDian Core models | `OX5C9E2B` |
-| EMRAH-SARDAG-SECURITY-REPORT.md | 170 | provider | LyDian Research | `LyDian Research` |
-| EMRAH-SARDAG-SECURITY-REPORT.md | 170 | model | AX9F7E2B models | `AX9F7E2B` |
-| EMRAH-SARDAG-SECURITY-REPORT.md | 171 | provider | Google AI | `Google AI` |
-| EMRAH-SARDAG-SECURITY-REPORT.md | 171 | model | LyDian Vision models | `LyDian Vision` |
-| EMRAH-SARDAG-SECURITY-REPORT.md | 172 | model | LLaMA models | `LyDian Velocity` |
-| EMRAH-SARDAG-SECURITY-REPORT.md | 173 | model | Mistral models | `Mistral` |
+| EMRAH-Lydian-SECURITY-REPORT.md | 169 | provider | LyDian Labs | `LyDian Labs` |
+| EMRAH-Lydian-SECURITY-REPORT.md | 169 | model | LyDian Core models | `OX5C9E2B` |
+| EMRAH-Lydian-SECURITY-REPORT.md | 170 | provider | LyDian Research | `LyDian Research` |
+| EMRAH-Lydian-SECURITY-REPORT.md | 170 | model | AX9F7E2B models | `AX9F7E2B` |
+| EMRAH-Lydian-SECURITY-REPORT.md | 171 | provider | Google AI | `Google AI` |
+| EMRAH-Lydian-SECURITY-REPORT.md | 171 | model | LyDian Vision models | `LyDian Vision` |
+| EMRAH-Lydian-SECURITY-REPORT.md | 172 | model | LLaMA models | `LyDian Velocity` |
+| EMRAH-Lydian-SECURITY-REPORT.md | 173 | model | Mistral models | `Mistral` |
 | ENTERPRISE-34-FEATURES-COMPLETE-REPORT.md | 108 | provider | LyDian Labs | `LyDian Labs` |
 | ENTERPRISE-34-FEATURES-COMPLETE-REPORT.md | 273 | model | LyDian Core models | `OX5C9E2B` |
 | ENTERPRISE-34-FEATURES-COMPLETE-REPORT.md | 416 | provider | LyDian Labs | `LyDian Labs` |
@@ -1082,11 +1082,11 @@
 | KNOWLEDGE-BASE-IMPLEMENTATION-REPORT.md | 318 | provider | LyDian Labs | `LyDian Labs` |
 | KNOWLEDGE-BASE-IMPLEMENTATION-REPORT.md | 318 | model | LyDian Core models | `OX7A3F8D` |
 | KNOWLEDGE-BASE-REAL-API-FINAL-REPORT.md | 515 | provider | LyDian Labs | `openai` |
-| KNOWLEDGE-BASE-ROADMAP-v2.1-SARDAG.md | 6 | model | AX9F7E2B models | `AX9F7E2B` |
-| KNOWLEDGE-BASE-ROADMAP-v2.1-SARDAG.md | 75 | model | LyDian Core models | `OX5C9E2B` |
-| KNOWLEDGE-BASE-ROADMAP-v2.1-SARDAG.md | 75 | model | AX9F7E2B models | `AX9F7E2B` |
-| KNOWLEDGE-BASE-ROADMAP-v2.1-SARDAG.md | 75 | model | LyDian Vision models | `LyDian Vision` |
-| KNOWLEDGE-BASE-ROADMAP-v2.1-SARDAG.md | 1001 | model | AX9F7E2B models | `AX9F7E2B` |
+| KNOWLEDGE-BASE-ROADMAP-v2.1-Lydian.md | 6 | model | AX9F7E2B models | `AX9F7E2B` |
+| KNOWLEDGE-BASE-ROADMAP-v2.1-Lydian.md | 75 | model | LyDian Core models | `OX5C9E2B` |
+| KNOWLEDGE-BASE-ROADMAP-v2.1-Lydian.md | 75 | model | AX9F7E2B models | `AX9F7E2B` |
+| KNOWLEDGE-BASE-ROADMAP-v2.1-Lydian.md | 75 | model | LyDian Vision models | `LyDian Vision` |
+| KNOWLEDGE-BASE-ROADMAP-v2.1-Lydian.md | 1001 | model | AX9F7E2B models | `AX9F7E2B` |
 | LOCALHOST-SYSTEM-STATUS-REPORT.md | 147 | provider | LyDian Labs | `LyDian Labs` |
 | LOCALHOST-SYSTEM-STATUS-REPORT.md | 147 | provider | LyDian Research | `LyDian Research` |
 | LOCALHOST-SYSTEM-STATUS-REPORT.md | 153 | provider | Microsoft Azure AI | `Microsoft Azure` |
@@ -1851,18 +1851,18 @@
 | ai-brain/super-ai-medical-expert.js | 440 | model | LyDian Core models | `OX5C9E2B` |
 | ai-brain/ultimate-knowledge-base.js | 292 | model | LyDian Vision models | `LyDian Vision` |
 | ai-brain/unified-expert-orchestrator.js | 821 | provider | LyDian Labs | `LyDian Labs` |
-| ai-integrations/emrah-sardag-system-prompt.js | 71 | provider | LyDian Labs | `LyDian Labs` |
-| ai-integrations/emrah-sardag-system-prompt.js | 82 | provider | LyDian Labs | `LyDian Labs` |
-| ai-integrations/emrah-sardag-system-prompt.js | 82 | model | LyDian Core models | `OX5C9E2B` |
-| ai-integrations/emrah-sardag-system-prompt.js | 83 | provider | LyDian Research | `LyDian Research` |
-| ai-integrations/emrah-sardag-system-prompt.js | 83 | model | AX9F7E2B models | `AX9F7E2B` |
-| ai-integrations/emrah-sardag-system-prompt.js | 84 | provider | Google AI | `Google AI` |
-| ai-integrations/emrah-sardag-system-prompt.js | 84 | model | LyDian Vision models | `LyDian Vision` |
-| ai-integrations/emrah-sardag-system-prompt.js | 85 | model | LLaMA models | `LyDian Velocity` |
-| ai-integrations/emrah-sardag-system-prompt.js | 86 | model | Mistral models | `Mistral` |
-| ai-integrations/emrah-sardag-system-prompt.js | 221 | model | LLaMA models | `LyDian Velocity` |
-| ai-integrations/emrah-sardag-system-prompt.js | 221 | model | Mistral models | `Mistral` |
-| ai-integrations/emrah-sardag-system-prompt.js | 230 | provider | Hugging Face | `Hugging Face` |
+| ai-integrations/lydian-system-prompt.js | 71 | provider | LyDian Labs | `LyDian Labs` |
+| ai-integrations/lydian-system-prompt.js | 82 | provider | LyDian Labs | `LyDian Labs` |
+| ai-integrations/lydian-system-prompt.js | 82 | model | LyDian Core models | `OX5C9E2B` |
+| ai-integrations/lydian-system-prompt.js | 83 | provider | LyDian Research | `LyDian Research` |
+| ai-integrations/lydian-system-prompt.js | 83 | model | AX9F7E2B models | `AX9F7E2B` |
+| ai-integrations/lydian-system-prompt.js | 84 | provider | Google AI | `Google AI` |
+| ai-integrations/lydian-system-prompt.js | 84 | model | LyDian Vision models | `LyDian Vision` |
+| ai-integrations/lydian-system-prompt.js | 85 | model | LLaMA models | `LyDian Velocity` |
+| ai-integrations/lydian-system-prompt.js | 86 | model | Mistral models | `Mistral` |
+| ai-integrations/lydian-system-prompt.js | 221 | model | LLaMA models | `LyDian Velocity` |
+| ai-integrations/lydian-system-prompt.js | 221 | model | Mistral models | `Mistral` |
+| ai-integrations/lydian-system-prompt.js | 230 | provider | Hugging Face | `Hugging Face` |
 | ai-integrations/firildak-ai-engine.js | 3 | provider | LyDian Labs | `LyDian Labs` |
 | ai-integrations/firildak-ai-engine.js | 28 | provider | LyDian Labs | `LyDian Labs` |
 | ai-integrations/firildak-ai-engine.js | 30 | provider | LyDian Labs | `LyDian Labs` |

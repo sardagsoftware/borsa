@@ -3,7 +3,7 @@
 **Tarih**: 17 Ekim 2025, Perşembe - 17:07
 **Durum**: 🟢 ZERO ERRORS - PRODUCTION READY
 **Domain**: www.ailydian.com
-**Developer**: Claude + Sardag
+**Developer**: Claude + Lydian
 
 ---
 
@@ -18,7 +18,7 @@ Files: 11 files changed, 3311 insertions(+)
 
 ### Vercel Deployment
 ```
-Project: emrahsardag-yandexcoms-projects/ailydian
+Project: lydian-projects/ailydian
 Status: ✅ SUCCESS
 Deployment ID: HA15K6yk469UtDkBY3ACAK4edqUL
 Production URL: https://www.ailydian.com
@@ -280,7 +280,7 @@ Data Loader:       https://www.ailydian.com/js/ops-center-data-loader.js
 ### Git Log
 ```
 commit 63c65b0
-Author: Sardag + Claude
+Author: Lydian + Claude
 Date:   Fri Oct 17 17:05:00 2025
 
 feat(ai-ops-center): Add real data integration with premium icons
@@ -297,11 +297,11 @@ Security: Zero secrets, White hat compliance
 
 ## 🔗 KAYNAKLAR
 
-**Vercel Dashboard**: https://vercel.com/emrahsardag-yandexcoms-projects/ailydian
+**Vercel Dashboard**: https://vercel.com/lydian-projects/ailydian
 
 **Deployment Details**:
 - Deployment ID: HA15K6yk469UtDkBY3ACAK4edqUL
-- Inspect URL: https://vercel.com/emrahsardag-yandexcoms-projects/ailydian/HA15K6yk469UtDkBY3ACAK4edqUL
+- Inspect URL: https://vercel.com/lydian-projects/ailydian/HA15K6yk469UtDkBY3ACAK4edqUL
 
 **Production URL**: https://www.ailydian.com
 
@@ -330,6 +330,6 @@ Security: Zero secrets, White hat compliance
 ---
 
 *Deployment raporu oluşturuldu: 17 Ekim 2025, 17:07*
-*Developer: Claude AI + Sardag*
+*Developer: Claude AI + Lydian*
 *Domain: www.ailydian.com*
 *Status: ✅ LIVE & OPERATIONAL*

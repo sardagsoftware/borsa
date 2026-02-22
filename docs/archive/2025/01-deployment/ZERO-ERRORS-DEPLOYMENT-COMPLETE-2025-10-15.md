@@ -216,8 +216,8 @@ function handleCORS(req, res) {
 ## 📞 DESTEK
 
 **Deployment URL:** https://www.ailydian.com
-**Vercel Project:** emrahsardag-yandexcoms-projects/ailydian
-**Latest Deploy:** https://ailydian-ns15ddtnl-emrahsardag-yandexcoms-projects.vercel.app
+**Vercel Project:** lydian-projects/ailydian
+**Latest Deploy:** https://ailydian-ns15ddtnl-lydian-projects.vercel.app
 
 ---
 

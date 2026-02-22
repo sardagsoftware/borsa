@@ -575,7 +575,7 @@ Enter        → Arama yap
 **Rapor Oluşturma Tarihi:** 17 Ekim 2025
 **Versiyon:** v2.0.0
 **Durum:** ✅ Production Ready
-**Geliştirici:** Sardag Edition
+**Geliştirici:** Lydian Edition
 
 ╔════════════════════════════════════════════════════════════════╗
 ║                                                                ║

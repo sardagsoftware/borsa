@@ -426,7 +426,7 @@ GET  /cc/v1/citations         # Get citations
 ### 📁 Monorepo Yapısı
 
 ```
-/Users/sardag/Desktop/ailydian-ultra-pro/
+/home/lydian/Desktop/ailydian-ultra-pro/
 ├── apps/
 │   ├── web/                    # Next.js 14 App Router (3100)
 │   ├── console/                # Admin/Compliance UI

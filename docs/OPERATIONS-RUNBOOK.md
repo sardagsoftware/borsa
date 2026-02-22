@@ -93,7 +93,7 @@
 
 ```bash
 # Build Docker image
-cd /Users/sardag/Desktop/ailydian-ultra-pro
+cd /home/lydian/Desktop/ailydian-ultra-pro
 docker build -t ghcr.io/ailydian/lydian-iq:v3.0.0 .
 
 # Sign with cosign (keyless)

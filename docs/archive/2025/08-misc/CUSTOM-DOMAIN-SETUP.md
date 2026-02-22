@@ -3,7 +3,7 @@
 ## 📋 Mevcut Durum
 
 **Vercel Production URL:**
-https://ailydian-pp0fw7v58-emrahsardag-yandexcoms-projects.vercel.app
+https://ailydian-pp0fw7v58-lydian-projects.vercel.app
 
 **Hedef URL:**
 https://www.ailydian.com/lydian-legal-search.html
@@ -152,7 +152,7 @@ veya
 Domain bağlayana kadar mevcut Vercel URL'sini kullanabilirsiniz:
 
 **Legal AI Sayfası:**
-https://ailydian-pp0fw7v58-emrahsardag-yandexcoms-projects.vercel.app/lydian-legal-search.html
+https://ailydian-pp0fw7v58-lydian-projects.vercel.app/lydian-legal-search.html
 
 ---
 
@@ -168,4 +168,4 @@ https://ailydian-pp0fw7v58-emrahsardag-yandexcoms-projects.vercel.app/lydian-leg
 **Not:** Domain'i Vercel'e bağlamak için Vercel Dashboard kullanmanız gerekiyor. CLI ile domain ekleme, domain sahibi doğrulaması gerektirir.
 
 **Vercel Dashboard Link:**
-https://vercel.com/emrahsardag-yandexcoms-projects/ailydian/settings/domains
+https://vercel.com/lydian-projects/ailydian/settings/domains

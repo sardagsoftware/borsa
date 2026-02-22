@@ -397,10 +397,10 @@ bash ops/runbooks/api-smoke-test.sh
 ### Emergency Rollback
 ```bash
 # If issues detected, rollback to previous deployment
-vercel rollback ailydian-idrqjiakw-emrahsardag-yandexcoms-projects.vercel.app
+vercel rollback ailydian-idrqjiakw-lydian-projects.vercel.app
 
 # Or via Vercel Dashboard:
-# https://vercel.com/emrahsardag-yandexcoms-projects/ailydian
+# https://vercel.com/lydian-projects/ailydian
 ```
 
 ---
@@ -509,7 +509,7 @@ vercel rollback ailydian-idrqjiakw-emrahsardag-yandexcoms-projects.vercel.app
 **Primary Domain:** https://www.ailydian.com
 **Feature Flags:** https://www.ailydian.com/api/feature-flags
 **Health Check:** https://www.ailydian.com/api/health
-**Vercel Dashboard:** https://vercel.com/emrahsardag-yandexcoms-projects/ailydian
+**Vercel Dashboard:** https://vercel.com/lydian-projects/ailydian
 
 ---
 

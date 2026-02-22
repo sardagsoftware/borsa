@@ -21,7 +21,7 @@ open https://supabase.com/dashboard/project/ceipxudbpixhfsnrfjvv/database/extens
 open https://supabase.com/dashboard/project/ceipxudbpixhfsnrfjvv/sql/new
 
 # 2. Schema'yı kopyala
-cat /Users/sardag/Desktop/ailydian-ultra-pro/schema-generated.sql | pbcopy
+cat /home/lydian/Desktop/ailydian-ultra-pro/schema-generated.sql | pbcopy
 
 # 3. SQL Editor'a yapıştır ve RUN (CMD+Enter)
 # Beklenen: 40 table, 50+ index, 9 enum oluşacak ✅

@@ -229,7 +229,7 @@ Break-even:        3.2 ay ⚡
 
 ---
 
-**Hazırlayan**: Claude AI + Emrah Sardag
+**Hazırlayan**: Claude AI + Lydian
 **Tarih**: 25 Ekim 2025
 **Durum**: ✅ APPROVED
 

@@ -55,7 +55,7 @@ Result → ESKİ KOD DEPLOY EDİLDİ ❌
 ### **ADIM 1: Settings'e Git**
 
 ```
-https://vercel.com/emrahsardag-yandexcoms-projects/ailydian/settings/git
+https://vercel.com/lydian-projects/ailydian/settings/git
 ```
 
 ---
@@ -150,10 +150,10 @@ Eğer Deploy Hook işe yaramazsa (çok düşük ihtimal):
 
 **Vercel Settings → Git:**
 ```
-1. https://vercel.com/emrahsardag-yandexcoms-projects/ailydian/settings/git
+1. https://vercel.com/lydian-projects/ailydian/settings/git
 2. "Disconnect" GitHub Integration
 3. "Connect" GitHub Integration yeniden
-4. Repository: sardagsoftware/borsa seç
+4. Repository: lydiansoftware/borsa seç
 5. Branch: main
 6. Auto-deploy: ON
 7. Save
@@ -179,7 +179,7 @@ Eğer Deploy Hook işe yaramazsa (çok düşük ihtimal):
 ## 🚀 ÖZET ADIMLAR:
 
 ```
-1. ✅ https://vercel.com/emrahsardag-yandexcoms-projects/ailydian/settings/git
+1. ✅ https://vercel.com/lydian-projects/ailydian/settings/git
 2. ✅ Deploy Hooks → Create Hook
 3. ✅ Name: production-force-deploy
 4. ✅ Branch: main

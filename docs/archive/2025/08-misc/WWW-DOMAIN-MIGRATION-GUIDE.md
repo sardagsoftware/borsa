@@ -84,7 +84,7 @@ vercel domains rm ailydian.com
 **Switch back to ailydian-ultra-pro:**
 ```bash
 # Make sure you're in the correct project
-cd /Users/sardag/Desktop/ailydian-ultra-pro
+cd /home/lydian/Desktop/ailydian-ultra-pro
 
 # Verify project
 vercel project ls
@@ -333,12 +333,12 @@ https://ailydian.com     →  https://www.ailydian.com (308)
 
 ### Vercel Dashboard
 ```
-https://vercel.com/emrahsardag-yandexcoms-projects/ailydian
+https://vercel.com/lydian-projects/ailydian
 ```
 
 ### Current Deployment
 ```
-https://ailydian-mb25vhpl1-emrahsardag-yandexcoms-projects.vercel.app
+https://ailydian-mb25vhpl1-lydian-projects.vercel.app
 (This will remain active during migration)
 ```
 
@@ -376,7 +376,7 @@ vercel domains add ailydian.com
 ```
 
 **Note:** Current Vercel deployment URLs remain unaffected during this process. The platform is still accessible via:
-- https://ailydian-mb25vhpl1-emrahsardag-yandexcoms-projects.vercel.app
+- https://ailydian-mb25vhpl1-lydian-projects.vercel.app
 
 ---
 

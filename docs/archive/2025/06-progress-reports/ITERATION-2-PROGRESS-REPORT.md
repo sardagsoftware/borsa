@@ -64,7 +64,7 @@
 **Vercel Production Deploy:**
 ```
 ✅ Deployment complete
-✅ Production: https://ailydian-eaerrjqk1-emrahsardag-yandexcoms-projects.vercel.app
+✅ Production: https://ailydian-eaerrjqk1-lydian-projects.vercel.app
 ✅ Custom domains configured:
    - https://ailydian.com
    - https://www.ailydian.com

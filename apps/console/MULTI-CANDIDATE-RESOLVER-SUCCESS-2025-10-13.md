@@ -90,8 +90,8 @@ useEffect(()=>{ (async ()=>{
 
 ```bash
 $ ls -lh apps/console/public/assets/play/characters/
--rw-r--r--@ 1 sardag  staff   2.1M Oct 13 17:02 Elif.glb
--rw-r--r--@ 1 sardag  staff    14B Oct 13 17:00 RobotExpressive.glb
+-rw-r--r--@ 1 lydian  staff   2.1M Oct 13 17:02 Elif.glb
+-rw-r--r--@ 1 lydian  staff    14B Oct 13 17:00 RobotExpressive.glb
 ```
 
 **Elif.glb**: Three.js Soldier model (2.1MB, animasyonlu)

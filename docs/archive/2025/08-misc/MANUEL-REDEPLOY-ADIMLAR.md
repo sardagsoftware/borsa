@@ -6,7 +6,7 @@
 
 **Link:**
 ```
-https://vercel.com/emrahsardag-yandexcoms-projects/ailydian
+https://vercel.com/lydian-projects/ailydian
 ```
 
 ---
@@ -127,7 +127,7 @@ Building... ⏳
 ## 🚀 ÖZET ADIMLAR:
 
 ```
-1. ✅ https://vercel.com/emrahsardag-yandexcoms-projects/ailydian
+1. ✅ https://vercel.com/lydian-projects/ailydian
 2. ✅ En son deployment → Tıkla
 3. ✅ "..." menü → "Redeploy" → Tıkla
 4. ✅ "Build Cache" ☐ İŞARETSİZ yap

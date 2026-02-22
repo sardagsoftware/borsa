@@ -3,7 +3,7 @@
 ## ✅ Durum: Yeni Deployment Hazır!
 
 ```
-Deployment URL: https://ailydian-8kroj6waz-emrahsardag-yandexcoms-projects.vercel.app/
+Deployment URL: https://ailydian-8kroj6waz-lydian-projects.vercel.app/
 Status: ✅ Ready
 API Health: ✅ OK
 Medical Expert Fixes: ✅ Deployed
@@ -18,7 +18,7 @@ Concurrent Manager: ✅ Active
 
 1. **Deployments sayfasını aç:**
    ```
-   https://vercel.com/emrahsardag-yandexcoms-projects/ailydian
+   https://vercel.com/lydian-projects/ailydian
    ```
 
 2. **Deployments listesinde ara:**
@@ -63,7 +63,7 @@ Concurrent Manager: ✅ Active
 
 1. **Project Settings:**
    ```
-   https://vercel.com/emrahsardag-yandexcoms-projects/ailydian/settings
+   https://vercel.com/lydian-projects/ailydian/settings
    ```
 
 2. **General sekmesi** → Scroll down
@@ -115,7 +115,7 @@ https://www.ailydian.com/medical-expert.html
    ```
    ✅ www.ailydian.com (Production)
    ✅ ailydian.com (Production)
-   ✅ ailydian-8kroj6waz-emrahsardag-yandexcoms-projects.vercel.app (Preview)
+   ✅ ailydian-8kroj6waz-lydian-projects.vercel.app (Preview)
    ```
 
 4. **Eğer www.ailydian.com yoksa:**
@@ -187,7 +187,7 @@ Her adımda söyle:
 
 **Şimdi Vercel Dashboard'a git ve bu deployment'ı bul!**
 
-1. https://vercel.com/emrahsardag-yandexcoms-projects/ailydian
+1. https://vercel.com/lydian-projects/ailydian
 2. URL'de `8kroj6waz` geçen deployment'ı ara
 3. Detayına tıkla
 4. "Promote to Production" var mı kontrol et

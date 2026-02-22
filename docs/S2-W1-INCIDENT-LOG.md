@@ -318,7 +318,7 @@ This document records the **dry-run incident response tests** conducted for Seas
 
 2. **Execute Rollback Script**
    ```bash
-   $ cd /Users/sardag/Desktop/ailydian-ultra-pro/LiveOps/runbook
+   $ cd /home/lydian/Desktop/ailydian-ultra-pro/LiveOps/runbook
    $ ./w1-rollback.sh economy
    ```
 
@@ -369,7 +369,7 @@ This document records the **dry-run incident response tests** conducted for Seas
 
 2. **Execute Kill Switch**
    ```bash
-   $ cd /Users/sardag/Desktop/ailydian-ultra-pro/LiveOps/runbook
+   $ cd /home/lydian/Desktop/ailydian-ultra-pro/LiveOps/runbook
    $ ./w1-rollback.sh ab_experiment abx-storm-reward variant_b
    ```
 
@@ -415,7 +415,7 @@ This document records the **dry-run incident response tests** conducted for Seas
 
 2. **Execute Pause**
    ```bash
-   $ cd /Users/sardag/Desktop/ailydian-ultra-pro/LiveOps/runbook
+   $ cd /home/lydian/Desktop/ailydian-ultra-pro/LiveOps/runbook
    $ ./w1-rollback.sh event_pause photomode-storm-trails
    ```
 

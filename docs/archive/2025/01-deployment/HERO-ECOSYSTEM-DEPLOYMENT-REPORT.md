@@ -194,12 +194,12 @@
 
 **Production URL:**
 ```
-https://ailydian-qlep9n870-emrahsardag-yandexcoms-projects.vercel.app
+https://ailydian-qlep9n870-lydian-projects.vercel.app
 ```
 
 **Inspect:**
 ```
-https://vercel.com/emrahsardag-yandexcoms-projects/ailydian/FFUFBKdDbNZ8Wu65VX2B6BjneiJY
+https://vercel.com/lydian-projects/ailydian/FFUFBKdDbNZ8Wu65VX2B6BjneiJY
 ```
 
 ---
@@ -390,7 +390,7 @@ https://vercel.com/emrahsardag-yandexcoms-projects/ailydian/FFUFBKdDbNZ8Wu65VX2B
 
 ## 📞 TECHNICAL SUPPORT
 
-**Documentation:** `/Users/sardag/Desktop/ailydian-ultra-pro/HERO-SECTION-AI-VIDEO-BRIEF-TR.md`
+**Documentation:** `/home/lydian/Desktop/ailydian-ultra-pro/HERO-SECTION-AI-VIDEO-BRIEF-TR.md`
 
 **Test Scripts:**
 - `/tmp/hero-ecosystem-smoke-test.sh`
@@ -436,7 +436,7 @@ https://vercel.com/emrahsardag-yandexcoms-projects/ailydian/FFUFBKdDbNZ8Wu65VX2B
 - https://ailydian.com
 
 **Deployment Preview:**
-- https://ailydian-qlep9n870-emrahsardag-yandexcoms-projects.vercel.app
+- https://ailydian-qlep9n870-lydian-projects.vercel.app
 
 ---
 

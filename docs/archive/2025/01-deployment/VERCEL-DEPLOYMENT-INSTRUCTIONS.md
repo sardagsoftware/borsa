@@ -14,12 +14,12 @@
 
 **Link:**
 ```
-https://vercel.com/emrahsardag-yandexcoms-projects/ailydian
+https://vercel.com/lydian-projects/ailydian
 ```
 
 Ya da:
 ```
-https://vercel.com/emrahsardag-yandexcoms-projects/ailydian/DRmTYqj2iYHpR71NRMz7SCA75JCL
+https://vercel.com/lydian-projects/ailydian/DRmTYqj2iYHpR71NRMz7SCA75JCL
 ```
 
 ---
@@ -71,7 +71,7 @@ Eğer hiç deployment yoksa ya da GitHub bağlı değilse:
 1. **Settings** ▸ **Git** sekmesi
 2. **"Connect Git Repository"** ▸ Click
 3. **GitHub** ▸ Select
-4. **Repository:** `sardagsoftware/borsa` ▸ Select
+4. **Repository:** `lydiansoftware/borsa` ▸ Select
 5. **Branch:** `main` ▸ Confirm
 6. **Save** ▸ Click
 
@@ -241,7 +241,7 @@ Deployment **başladığında** ve **tamamlandığında** bana haber ver:
 
 **ŞUAN YAPMAN GEREKEN TEK ŞEY:**
 
-1. 🌐 Bu linki aç: https://vercel.com/emrahsardag-yandexcoms-projects/ailydian
+1. 🌐 Bu linki aç: https://vercel.com/lydian-projects/ailydian
 
 2. 👀 Deployment durumunu kontrol et:
    - Otomatik başlamış mı? ▸ İzle

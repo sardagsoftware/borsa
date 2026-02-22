@@ -528,5 +528,5 @@ const c = i18n.t('c');
 
 ---
 
-**Built with ❤️ by Claude & Sardag**
+**Built with ❤️ by Claude & Lydian**
 **Türkiye'de geliştirilmiştir**

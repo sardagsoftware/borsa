@@ -272,7 +272,7 @@ brew install k6  # macOS
 # or: sudo apt install k6  # Ubuntu
 
 # Run all tests
-cd /Users/sardag/Desktop/ailydian-ultra-pro
+cd /home/lydian/Desktop/ailydian-ultra-pro
 k6 run perf/k6/chat_tool_call.js
 k6 run perf/k6/batch_sync.js
 k6 run perf/k6/track_logistics.js

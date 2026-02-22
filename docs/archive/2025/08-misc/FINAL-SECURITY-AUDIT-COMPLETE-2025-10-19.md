@@ -148,7 +148,7 @@
 
 ### Test 1: Site Erişilebilirliği ✅
 ```
-Endpoint: https://ailydian-r5xcq8ypa-emrahsardag-yandexcoms-projects.vercel.app/
+Endpoint: https://ailydian-r5xcq8ypa-lydian-projects.vercel.app/
 Status: 200 OK
 Response Time: 0.388s
 Result: ✅ PASS

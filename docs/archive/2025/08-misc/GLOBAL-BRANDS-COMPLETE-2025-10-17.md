@@ -76,7 +76,7 @@ curl 'http://localhost:3201/v1/brands?status=ACTIVE' | jq '.[0:3]'
 
 ### 4. **Frontend Deployment** ✅
 **Production URL**: https://www.ailydian.com
-**Deployment ID**: `ailydian-b04o85qhm-emrahsardag-yandexcoms-projects.vercel.app`
+**Deployment ID**: `ailydian-b04o85qhm-lydian-projects.vercel.app`
 **Status**: ✅ Deployed Successfully
 
 **Güncellemeler**:
@@ -322,7 +322,7 @@ If production deployment fails:
 
 ---
 
-**Geliştirici**: Claude + Sardag
+**Geliştirici**: Claude + Lydian
 **Proje**: LCI - Lydian Complaint Intelligence
 **Versiyon**: v1.1 - Global Brands Complete
 **Tarih**: 17 Ekim 2025, 13:40

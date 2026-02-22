@@ -14,7 +14,7 @@
 
 1. **Vercel Dashboard aç:**
    ```
-   https://vercel.com/emrahsardag-yandexcoms-projects/ailydian/settings/git
+   https://vercel.com/lydian-projects/ailydian/settings/git
    ```
 
 2. **Deploy Hooks bölümüne scroll et**
@@ -48,7 +48,7 @@
 
 1. **Vercel Dashboard:**
    ```
-   https://vercel.com/emrahsardag-yandexcoms-projects/ailydian
+   https://vercel.com/lydian-projects/ailydian
    ```
 
 2. **Deployments** sekmesi
@@ -103,7 +103,7 @@ curl -X POST "$HOOK"
 ### **3. Kontrol Et:**
 
 ```
-https://vercel.com/emrahsardag-yandexcoms-projects/ailydian
+https://vercel.com/lydian-projects/ailydian
 → Deployments
 → En yeni "Building..." görünmeli
 ```

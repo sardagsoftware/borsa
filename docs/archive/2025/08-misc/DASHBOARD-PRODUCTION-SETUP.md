@@ -4,18 +4,18 @@
 
 **Production URL:**
 ```
-https://www.ailydian.com/dashboard-sardag
+https://www.ailydian.com/dashboard-lydian
 ```
 
 **Localhost Test:**
 ```
-http://localhost:3100/dashboard-sardag.html
+http://localhost:3100/dashboard-lydian.html
 ```
 
 ## 🔑 Access Key (PRIVATE - KEEP SECRET!)
 
 ```
-EMRAH-SARDAG-ULTRA-SECURE-2025-7X9K4M
+EMRAH-Lydian-ULTRA-SECURE-2025-7X9K4M
 ```
 
 ⚠️  **Bu key'i kimseyle paylaşma!**
@@ -27,14 +27,14 @@ EMRAH-SARDAG-ULTRA-SECURE-2025-7X9K4M
 Vercel Dashboard → Settings → Environment Variables:
 
 ```bash
-DASHBOARD_ACCESS_KEY=EMRAH-SARDAG-ULTRA-SECURE-2025-7X9K4M
+DASHBOARD_ACCESS_KEY=EMRAH-Lydian-ULTRA-SECURE-2025-7X9K4M
 DASHBOARD_URL=http://localhost:3002
 ```
 
 ### 2. Deploy
 
 ```bash
-cd /Users/sardag/Desktop/ailydian-ultra-pro
+cd /home/lydian/Desktop/ailydian-ultra-pro
 vercel --prod
 ```
 
@@ -109,9 +109,9 @@ Permissions-Policy: geolocation=(), microphone=(), camera=()
 
 ## 🎯 Access Flow
 
-1. User visits: `https://www.ailydian.com/dashboard-sardag`
+1. User visits: `https://www.ailydian.com/dashboard-lydian`
 2. Beautiful secure login page loads
-3. Enter access key: `EMRAH-SARDAG-ULTRA-SECURE-2025-7X9K4M`
+3. Enter access key: `EMRAH-Lydian-ULTRA-SECURE-2025-7X9K4M`
 4. Client validates key
 5. Server validates key (rate limited)
 6. On success: Redirect to `http://localhost:3002` (dashboard)
@@ -142,14 +142,14 @@ done
 ```bash
 curl -X POST https://www.ailydian.com/api/dashboard-auth \
   -H "Content-Type: application/json" \
-  -d '{"accessKey": "EMRAH-SARDAG-ULTRA-SECURE-2025-7X9K4M"}'
+  -d '{"accessKey": "EMRAH-Lydian-ULTRA-SECURE-2025-7X9K4M"}'
 ```
 
 ## 🔄 Changing Access Key
 
 1. Generate new key:
 ```bash
-node -e "console.log('EMRAH-SARDAG-' + require('crypto').randomBytes(16).toString('hex').toUpperCase())"
+node -e "console.log('EMRAH-Lydian-' + require('crypto').randomBytes(16).toString('hex').toUpperCase())"
 ```
 
 2. Update in `api/dashboard-auth.js`:
@@ -157,7 +157,7 @@ node -e "console.log('EMRAH-SARDAG-' + require('crypto').randomBytes(16).toStrin
 const PRIVATE_ACCESS_KEY = 'NEW-KEY-HERE';
 ```
 
-3. Update in `public/dashboard-sardag.html`:
+3. Update in `public/dashboard-lydian.html`:
 ```javascript
 const CORRECT_KEY = 'NEW-KEY-HERE';
 ```

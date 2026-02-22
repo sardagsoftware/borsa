@@ -136,9 +136,9 @@ cat .vercel/project.json
 
 **OR** from your deployment URL:
 ```
-https://vercel.com/emrahsardag-yandexcoms-projects/ailydian-prod/9wMfumXS2xVbnSFTFdD2o76DRp2g
+https://vercel.com/lydian-projects/ailydian-prod/9wMfumXS2xVbnSFTFdD2o76DRp2g
 
-Organization ID: emrahsardag-yandexcoms-projects
+Organization ID: lydian-projects
 ```
 
 #### Secret 3: VERCEL_PROJECT_ID
@@ -157,7 +157,7 @@ cat .vercel/project.json
 ```
 
 **OR** from Vercel Dashboard:
-1. Go to your project: https://vercel.com/emrahsardag-yandexcoms-projects/ailydian-prod
+1. Go to your project: https://vercel.com/lydian-projects/ailydian-prod
 2. Click **Settings**
 3. Look for **Project ID** (usually starts with `prj_`)
 

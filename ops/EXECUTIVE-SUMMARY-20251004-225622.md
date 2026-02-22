@@ -432,7 +432,7 @@ watch -n 30 './monitor-propagation.sh'
 - [Monitoring Best Practices](https://docs.microsoft.com/azure/frontdoor/front-door-diagnostics)
 
 ### Workspace
-- Location: `/Users/sardag/Desktop/ailydian-ultra-pro/ops`
+- Location: `/home/lydian/Desktop/ailydian-ultra-pro/ops`
 - Audit Log: `dns-change-log.ndjson` (25 events)
 - DNS Backups: `dns-backup-*.json` (6 domains)
 

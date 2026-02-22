@@ -15,14 +15,14 @@ The E2EE messaging feature has been successfully deployed to production and inte
 ### Main System
 - **Project:** ailydian
 - **Production URL:** https://www.ailydian.com
-- **Latest Deploy:** https://ailydian-5rvmsw5sk-emrahsardag-yandexcoms-projects.vercel.app
+- **Latest Deploy:** https://ailydian-5rvmsw5sk-lydian-projects.vercel.app
 - **Deploy Time:** October 12, 2025 19:48 GMT+3
 - **Build Status:** ✅ Success (56s)
 
 ### Messaging App
 - **Project:** ailydian-messaging
 - **Production URL:** https://ailydian-messaging.vercel.app
-- **Latest Deploy:** https://ailydian-messaging-6es3b0zw9-emrahsardag-yandexcoms-projects.vercel.app
+- **Latest Deploy:** https://ailydian-messaging-6es3b0zw9-lydian-projects.vercel.app
 - **Deploy Time:** October 12, 2025 19:48 GMT+3
 - **Build Status:** ✅ Success
 
@@ -225,8 +225,8 @@ If you want to use `messaging.ailydian.com` instead:
 - **Alternative:** https://ailydian.com
 
 ### Deployment Inspection
-- **Main System:** https://vercel.com/emrahsardag-yandexcoms-projects/ailydian
-- **Messaging App:** https://vercel.com/emrahsardag-yandexcoms-projects/ailydian-messaging
+- **Main System:** https://vercel.com/lydian-projects/ailydian
+- **Messaging App:** https://vercel.com/lydian-projects/ailydian-messaging
 
 ### Direct Messaging URL
 - **Production:** https://ailydian-messaging.vercel.app/chat-test
@@ -271,11 +271,11 @@ If you want to use `messaging.ailydian.com` instead:
 
 ```bash
 # Deploy main system
-cd /Users/sardag/Desktop/ailydian-ultra-pro
+cd /home/lydian/Desktop/ailydian-ultra-pro
 vercel deploy --prod --yes
 
 # Deploy messaging app
-cd /Users/sardag/Desktop/ailydian-ultra-pro/apps/messaging
+cd /home/lydian/Desktop/ailydian-ultra-pro/apps/messaging
 vercel deploy --prod --yes
 
 # Inspect deployment

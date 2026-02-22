@@ -342,7 +342,7 @@ data:
 
 ```bash
 # 1. Install dependencies
-cd /Users/sardag/Desktop/ailydian-ultra-pro
+cd /home/lydian/Desktop/ailydian-ultra-pro
 pnpm install
 
 # 2. Configure environment

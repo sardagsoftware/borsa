@@ -159,8 +159,8 @@ https://www.ailydian.com/cost-dashboard.html (production)
 ### Implementation Details
 
 **Files Created:**
-- `ai-integrations/emrah-sardag-system-prompt.js` (348 lines)
-- `EMRAH-SARDAG-SECURITY-REPORT.md` (comprehensive security audit)
+- `ai-integrations/lydian-system-prompt.js` (348 lines)
+- `EMRAH-Lydian-SECURITY-REPORT.md` (comprehensive security audit)
 
 ### Security Architecture:
 

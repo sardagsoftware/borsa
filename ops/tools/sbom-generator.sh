@@ -182,12 +182,12 @@ cat > "$PROVENANCE_FILE" << EOF
   ],
   "predicate": {
     "builder": {
-      "id": "https://github.com/sardagsoftware/borsa/actions"
+      "id": "https://github.com/lydiansoftware/borsa/actions"
     },
     "buildType": "https://github.com/Attestations/GitHubActionsWorkflow@v1",
     "invocation": {
       "configSource": {
-        "uri": "git+https://github.com/sardagsoftware/borsa@refs/heads/$GIT_BRANCH",
+        "uri": "git+https://github.com/lydiansoftware/borsa@refs/heads/$GIT_BRANCH",
         "digest": {
           "sha256": "$GIT_COMMIT"
         },
@@ -217,7 +217,7 @@ cat > "$PROVENANCE_FILE" << EOF
     },
     "materials": [
       {
-        "uri": "git+https://github.com/sardagsoftware/borsa",
+        "uri": "git+https://github.com/lydiansoftware/borsa",
         "digest": {
           "sha256": "$GIT_COMMIT"
         }

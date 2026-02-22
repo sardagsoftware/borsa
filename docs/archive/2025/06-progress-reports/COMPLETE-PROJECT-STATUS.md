@@ -521,7 +521,7 @@ VERCEL_PROJECT_ID=...
 
 **Project:** LyDian AI - Global AI Data Source Publisher
 **Lead Developer:** Claude (Anthropic AI Assistant)
-**User:** Sardag
+**User:** Lydian
 **Organization:** LyDian AI Platform
 **License:** Proprietary
 **Website:** https://www.ailydian.com

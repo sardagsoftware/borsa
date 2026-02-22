@@ -57,7 +57,7 @@ A comprehensive multilingual system has been successfully implemented for the Ai
 ## 📁 File Structure
 
 ```
-/Users/sardag/Desktop/ailydian-ultra-pro/public/
+/home/lydian/Desktop/ailydian-ultra-pro/public/
 ├── index.html                           # Main application with integrated language system
 ├── js/
 │   ├── translations.js                  # Complete translation database (20KB)

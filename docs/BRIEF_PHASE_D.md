@@ -133,7 +133,7 @@ google-auth-httplib2>=0.1.1  # Google HTTP library
 
 **Installation:**
 ```bash
-cd /Users/sardag/Desktop/ailydian-ultra-pro/ops/index_bridge
+cd /home/lydian/Desktop/ailydian-ultra-pro/ops/index_bridge
 pip install -r requirements.txt
 ```
 
@@ -274,38 +274,38 @@ https://www.ailydian.com/feed/ai_models.rss
 ### Script Validation
 ```bash
 # Check script is executable
-ls -lah /Users/sardag/Desktop/ailydian-ultra-pro/ops/index_bridge/index_trigger.py
+ls -lah /home/lydian/Desktop/ailydian-ultra-pro/ops/index_bridge/index_trigger.py
 # Expected: -rwxr-xr-x (executable)
 
 # Validate Python syntax
-python -m py_compile /Users/sardag/Desktop/ailydian-ultra-pro/ops/index_bridge/index_trigger.py
+python -m py_compile /home/lydian/Desktop/ailydian-ultra-pro/ops/index_bridge/index_trigger.py
 # Expected: No errors
 
 # Run help command
-python /Users/sardag/Desktop/ailydian-ultra-pro/ops/index_bridge/index_trigger.py --help
+python /home/lydian/Desktop/ailydian-ultra-pro/ops/index_bridge/index_trigger.py --help
 # Expected: Usage message and examples
 
 # Test AI platform ping (no credentials required)
-python /Users/sardag/Desktop/ailydian-ultra-pro/ops/index_bridge/index_trigger.py --ping-ai-platforms
+python /home/lydian/Desktop/ailydian-ultra-pro/ops/index_bridge/index_trigger.py --ping-ai-platforms
 # Expected: 4 platforms checked (may fail if endpoints don't exist)
 ```
 
 ### File Verification
 ```bash
 # Check all files exist
-ls -lh /Users/sardag/Desktop/ailydian-ultra-pro/ops/index_bridge/
+ls -lh /home/lydian/Desktop/ailydian-ultra-pro/ops/index_bridge/
 # Expected: index_trigger.py, requirements.txt, urls.txt, README.md
 
 # Validate requirements.txt
-cat /Users/sardag/Desktop/ailydian-ultra-pro/ops/index_bridge/requirements.txt
+cat /home/lydian/Desktop/ailydian-ultra-pro/ops/index_bridge/requirements.txt
 # Expected: requests, google-auth packages
 
 # Validate urls.txt
-cat /Users/sardag/Desktop/ailydian-ultra-pro/ops/index_bridge/urls.txt
+cat /home/lydian/Desktop/ailydian-ultra-pro/ops/index_bridge/urls.txt
 # Expected: 3 HTTPS URLs
 
 # Check README is complete
-wc -l /Users/sardag/Desktop/ailydian-ultra-pro/ops/index_bridge/README.md
+wc -l /home/lydian/Desktop/ailydian-ultra-pro/ops/index_bridge/README.md
 # Expected: 400+ lines
 ```
 

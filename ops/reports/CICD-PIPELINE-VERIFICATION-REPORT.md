@@ -1,7 +1,7 @@
 # CI/CD Pipeline Verification Report - Phase K
 **Date:** October 8, 2025
 **Platform:** LyDian Ultra Pro
-**Repository:** sardagsoftware/borsa
+**Repository:** lydiansoftware/borsa
 **Status:** ✅ COMPLETE
 
 ---
@@ -516,7 +516,7 @@ strategy:
 - ✅ Resource usage
 - ✅ Artifact storage
 
-**Access:** `https://github.com/sardagsoftware/borsa/actions`
+**Access:** `https://github.com/lydiansoftware/borsa/actions`
 
 ### 6.3 Alerting
 

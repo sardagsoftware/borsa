@@ -159,7 +159,7 @@ node scripts/update-og-svg-refs.js
 
 **Vercel Deployment:**
 - **Production URL:** https://www.ailydian.com
-- **Preview URL:** https://ailydian-j8wv4ssl1-emrahsardag-yandexcoms-projects.vercel.app
+- **Preview URL:** https://ailydian-j8wv4ssl1-lydian-projects.vercel.app
 - **Deploy Time:** ~6 seconds
 - **Status:** ✅ Completed
 

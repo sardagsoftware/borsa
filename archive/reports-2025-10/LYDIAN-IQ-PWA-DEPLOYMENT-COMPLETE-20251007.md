@@ -79,7 +79,7 @@ Deploy Errors:    0 (ZERO)
 Status:           ✅ CANLI
 
 Production URL:
-https://ailydian-amby0z2oc-emrahsardag-yandexcoms-projects.vercel.app
+https://ailydian-amby0z2oc-lydian-projects.vercel.app
 ```
 
 #### 6️⃣ Custom Domain Verification ✅
@@ -288,7 +288,7 @@ Cache Strategy:     public, max-age=0, must-revalidate
    https://medical.ailydian.com/lydian-iq.html
 
 🔧 Vercel Direct (Active Now):
-   https://ailydian-amby0z2oc-emrahsardag-yandexcoms-projects.vercel.app/lydian-iq.html
+   https://ailydian-amby0z2oc-lydian-projects.vercel.app/lydian-iq.html
 ```
 
 ### Service Worker & Manifest

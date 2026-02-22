@@ -2,7 +2,7 @@
 
 **Tarih**: 17 Ekim 2025, Perşembe
 **Durum**: 🟢 TAMAMLANDI - SIFIR HATA
-**Developer**: Claude + Sardag
+**Developer**: Claude + Lydian
 **Project**: Ailydian Ultra Pro - AI Ops Center Modernization
 
 ---
@@ -231,7 +231,7 @@ now.toLocaleTimeString('tr-TR')
 
 ### monitoring.html
 
-**Dosya Yolu**: `/Users/sardag/Desktop/ailydian-ultra-pro/public/monitoring.html`
+**Dosya Yolu**: `/home/lydian/Desktop/ailydian-ultra-pro/public/monitoring.html`
 
 **Değişiklikler**:
 - JavaScript dynamic text: 15+ değişiklik
@@ -257,7 +257,7 @@ console.error('Gerçek zamanlı bağlantı başlatılamadı:', error);
 
 ### ai-ops-center.html
 
-**Dosya Yolu**: `/Users/sardag/Desktop/ailydian-ultra-pro/public/ai-ops-center.html`
+**Dosya Yolu**: `/home/lydian/Desktop/ailydian-ultra-pro/public/ai-ops-center.html`
 
 **Toplam Satır**: 340+ satır
 
@@ -572,7 +572,7 @@ Firefox: ✓ Compatible
 ### Quick Commands
 ```bash
 # Local sunucuyu başlat
-cd /Users/sardag/Desktop/ailydian-ultra-pro
+cd /home/lydian/Desktop/ailydian-ultra-pro
 npx serve public -l 3000
 
 # Smoke test çalıştır
@@ -619,7 +619,7 @@ Bu projede AI Ops Center sayfaları başarıyla Türkçeleştirildi ve çok dill
 
 **Tarih**: 17 Ekim 2025, Perşembe
 **Saat**: 13:30 Turkish Time
-**Developer**: Claude AI + Sardag
+**Developer**: Claude AI + Lydian
 **Version**: Ailydian Ultra Pro v1.0
 
 **Zero Errors. Full Turkish. i18n Compatible. Production Ready.**

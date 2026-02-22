@@ -177,13 +177,13 @@ Age     URL                                              Status      Duration
 
 ### Deployment #22 Details
 ```
-Deployment URL:   https://ailydian-t2x14j4pm-emrahsardag-yandexcoms-projects.vercel.app
+Deployment URL:   https://ailydian-t2x14j4pm-lydian-projects.vercel.app
 Production URL:   https://www.ailydian.com
 Status:           ● Ready
 Environment:      Production
 Build Duration:   2 minutes
 Deploy Time:      10 minutes ago
-Username:         emrahsardag-9142
+Username:         lydian-9142
 ```
 
 ### Total Deployment Stats
@@ -452,8 +452,8 @@ API Endpoints:
 
 ### Deployment URLs
 ```
-Latest Deploy:    https://ailydian-t2x14j4pm-emrahsardag-yandexcoms-projects.vercel.app
-Vercel Dashboard: https://vercel.com/emrahsardag-yandexcoms-projects/ailydian
+Latest Deploy:    https://ailydian-t2x14j4pm-lydian-projects.vercel.app
+Vercel Dashboard: https://vercel.com/lydian-projects/ailydian
 ```
 
 ---

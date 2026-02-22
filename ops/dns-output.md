@@ -32,5 +32,5 @@ curl -f https://ailydian.com/api/health
 
 ## Backup Location
 ```
-/Users/sardag/Desktop/ailydian-ultra-pro/ops/preflight-dns.json
+/home/lydian/Desktop/ailydian-ultra-pro/ops/preflight-dns.json
 ```

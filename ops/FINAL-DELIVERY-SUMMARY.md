@@ -177,7 +177,7 @@
 
 ```bash
 # 1. Navigate to project
-cd /Users/sardag/Desktop/ailydian-ultra-pro
+cd /home/lydian/Desktop/ailydian-ultra-pro
 
 # 2. Verify scripts are executable
 ls -l ops/*.sh

@@ -47,7 +47,7 @@ This runbook provides guidelines for monitoring Ailydian's production systems, i
 
 ### 1. Vercel Analytics Dashboard
 
-**URL**: https://vercel.com/sardagsoftware/ailydian-ultra-pro/analytics
+**URL**: https://vercel.com/lydiansoftware/ailydian-ultra-pro/analytics
 
 **Monitors**:
 - Deployment status
@@ -61,7 +61,7 @@ This runbook provides guidelines for monitoring Ailydian's production systems, i
 
 ### 2. Vercel Logs
 
-**URL**: https://vercel.com/sardagsoftware/ailydian-ultra-pro/logs
+**URL**: https://vercel.com/lydiansoftware/ailydian-ultra-pro/logs
 
 **Real-time logs**:
 ```bash

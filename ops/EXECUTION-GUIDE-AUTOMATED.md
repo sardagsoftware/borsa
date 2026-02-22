@@ -376,7 +376,7 @@ az afd origin show -g aly-core-prod-rg \
 
 ## ✅ READY FOR EXECUTION
 
-**Location:** `/Users/sardag/Desktop/ailydian-ultra-pro/ops/`
+**Location:** `/home/lydian/Desktop/ailydian-ultra-pro/ops/`
 
 **Execute:**
 ```bash

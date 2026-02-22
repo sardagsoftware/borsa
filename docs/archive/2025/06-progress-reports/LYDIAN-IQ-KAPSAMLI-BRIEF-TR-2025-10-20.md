@@ -633,7 +633,7 @@ GROQ_API_KEY=your_key_here
 - **GitHub:** (Private repository)
 
 ### Katkıda Bulunanlar
-- **Lead Developer:** Sardag Software
+- **Lead Developer:** Lydian Software
 - **AI Provider:** Anthropic, OpenAI, Groq
 - **Design:** LyDian AI Design Team
 

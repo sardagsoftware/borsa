@@ -227,7 +227,7 @@ Stabilization: 60s up, 300s down
 
 ```bash
 # 1. Build and sign Docker image
-cd /Users/sardag/Desktop/ailydian-ultra-pro
+cd /home/lydian/Desktop/ailydian-ultra-pro
 chmod +x ops/deploy/build-and-sign.sh
 ./ops/deploy/build-and-sign.sh 3.0.1
 
@@ -392,7 +392,7 @@ Severity 4 (Low)      → Ticket queue
    Grafana:   https://grafana.ailydian.com/d/lydian-iq-prod
 
 📦 Deployment Command:
-   cd /Users/sardag/Desktop/ailydian-ultra-pro
+   cd /home/lydian/Desktop/ailydian-ultra-pro
    ./ops/deploy/build-and-sign.sh 3.0.1
    cd ops/terraform && terraform apply
    kubectl apply -f ops/deploy/deployment-3.0.1.yaml

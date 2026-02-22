@@ -3,7 +3,7 @@
 #===============================================================================
 # AILYDIAN EKOSISTEM BACKUP SCRIPT
 # White-Hat Security Compliant
-# SARDAG Edition - 13 EKİM 2025
+# Lydian Edition - 13 EKİM 2025
 #===============================================================================
 
 set -e
@@ -18,12 +18,12 @@ NC='\033[0m'
 
 # Backup Configuration
 BACKUP_DATE=$(date +%Y%m%d-%H%M%S)
-BACKUP_NAME="AILYDIAN-ECOSYSTEM-SARDAG-13-EKIM-2025-${BACKUP_DATE}"
+BACKUP_NAME="AILYDIAN-ECOSYSTEM-Lydian-13-EKIM-2025-${BACKUP_DATE}"
 BACKUP_DIR="${HOME}/Desktop/${BACKUP_NAME}"
 PROJECT_DIR=$(pwd)
 
 echo -e "${BLUE}═══════════════════════════════════════════════════════════${NC}"
-echo -e "${CYAN}   AILYDIAN EKOSISTEM BACKUP - SARDAG 13 EKİM 2025${NC}"
+echo -e "${CYAN}   AILYDIAN EKOSISTEM BACKUP - Lydian 13 EKİM 2025${NC}"
 echo -e "${BLUE}═══════════════════════════════════════════════════════════${NC}"
 echo ""
 echo -e "${YELLOW}Backup Name:${NC} $BACKUP_NAME"
@@ -48,7 +48,7 @@ GIT_REMOTE=$(git remote get-url origin 2>/dev/null || echo "unknown")
 
 cat > "$BACKUP_DIR/GIT-INFO.txt" <<EOF
 ═══════════════════════════════════════════════════════════
-AILYDIAN GIT REPOSITORY INFO - SARDAG 13 EKİM 2025
+AILYDIAN GIT REPOSITORY INFO - Lydian 13 EKİM 2025
 ═══════════════════════════════════════════════════════════
 
 Branch: $GIT_BRANCH
@@ -104,7 +104,7 @@ fi
 # Create masked .env template
 cat > "$BACKUP_DIR/.env.TEMPLATE.txt" <<'EOF'
 #===============================================================================
-# AILYDIAN ENVIRONMENT VARIABLES - SARDAG 13 EKİM 2025
+# AILYDIAN ENVIRONMENT VARIABLES - Lydian 13 EKİM 2025
 # ⚠️  SECURITY: Real values NOT included in backup (white-hat policy)
 # 📝 Restore: Set these values from your secure vault
 #===============================================================================
@@ -259,7 +259,7 @@ echo -e "${CYAN}[10/10]${NC} Creating backup manifest..."
 
 cat > "$BACKUP_DIR/BACKUP-MANIFEST.md" <<EOF
 # AILYDIAN EKOSISTEM BACKUP MANIFEST
-**SARDAG 13 EKİM 2025**
+**Lydian 13 EKİM 2025**
 
 ---
 
@@ -445,7 +445,7 @@ shasum -a 256 -c CHECKSUMS.sha256
 ---
 
 **Backup Created:** $(date '+%Y-%m-%d %H:%M:%S')
-**Created By:** SARDAG Backup System
+**Created By:** Lydian Backup System
 **Classification:** CONFIDENTIAL - For Recovery Only
 
 ---
@@ -477,7 +477,7 @@ echo -e "${GREEN}✓${NC} Compressed archive created"
 #===============================================================================
 echo ""
 echo -e "${BLUE}═══════════════════════════════════════════════════════════${NC}"
-echo -e "${GREEN}   BACKUP COMPLETE - SARDAG 13 EKİM 2025${NC}"
+echo -e "${GREEN}   BACKUP COMPLETE - Lydian 13 EKİM 2025${NC}"
 echo -e "${BLUE}═══════════════════════════════════════════════════════════${NC}"
 echo ""
 echo -e "${YELLOW}Backup Directory:${NC} $BACKUP_DIR"

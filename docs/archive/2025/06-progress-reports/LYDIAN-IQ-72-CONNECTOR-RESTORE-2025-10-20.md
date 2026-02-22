@@ -405,7 +405,7 @@ Lydian-IQ: [Booking.com Connector] → Otel önerileri
 
 ### Ana Dosya
 ```
-/Users/sardag/Desktop/ailydian-ultra-pro/public/lydian-iq.html
+/home/lydian/Desktop/ailydian-ultra-pro/public/lydian-iq.html
 ```
 **Değişiklik:** Tüm dosya değiştirildi (unified-demo kopyalandı)
 **Boyut:** 200KB → 54KB
@@ -414,7 +414,7 @@ Lydian-IQ: [Booking.com Connector] → Otel önerileri
 
 ### Yedek Dosya (Yeni)
 ```
-/Users/sardag/Desktop/ailydian-ultra-pro/public/lydian-iq-BACKUP-BUTTON-FIX-20251020-134400.html
+/home/lydian/Desktop/ailydian-ultra-pro/public/lydian-iq-BACKUP-BUTTON-FIX-20251020-134400.html
 ```
 **İçerik:** Önceki buton düzeltmesi (200KB)
 
@@ -536,7 +536,7 @@ tail -f /tmp/server-lydian.log
 
 **5. Dosyayı Manuel Doğrula**
 ```bash
-grep "72 Connector" /Users/sardag/Desktop/ailydian-ultra-pro/public/lydian-iq.html
+grep "72 Connector" /home/lydian/Desktop/ailydian-ultra-pro/public/lydian-iq.html
 ```
 Eğer "72 Connector" görünüyorsa dosya doğru!
 

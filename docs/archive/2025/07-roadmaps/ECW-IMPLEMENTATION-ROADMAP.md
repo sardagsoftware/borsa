@@ -492,6 +492,6 @@
 ---
 
 *Roadmap oluşturuldu: 17 Ekim 2025*
-*Developer: Claude AI + Sardag*
+*Developer: Claude AI + Lydian*
 *Süre: 10 hafta (50 iş günü)*
 *Status: 📋 APPROVED & READY*

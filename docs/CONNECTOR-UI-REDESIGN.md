@@ -493,7 +493,7 @@ grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
 open http://localhost:3100/connectors.html
 
 # Or directly open
-open /Users/sardag/Desktop/ailydian-ultra-pro/public/connectors.html
+open /home/lydian/Desktop/ailydian-ultra-pro/public/connectors.html
 ```
 
 ### React Components (TypeScript)
@@ -669,6 +669,6 @@ function ConnectorsPage() {
 
 ---
 
-**Built with ❤️ by AX9F7E2B & Sardag**
+**Built with ❤️ by AX9F7E2B & Lydian**
 **Türkiye'de geliştirilmiştir**
 **White-Hat Certified • KVKK/GDPR Compliant • 0 Tolerance Policy**

@@ -22,7 +22,7 @@
 
 #### Backend Entegrasyonu:
 ```javascript
-// /Users/sardag/Desktop/ailydian-ultra-pro/server.js - Z.AI Integration
+// /home/lydian/Desktop/ailydian-ultra-pro/server.js - Z.AI Integration
 class ZAIDevPackIntegration {
   constructor() {
     this.apiKey = process.env.Z_AI_API_KEY;
@@ -69,7 +69,7 @@ class ZAIDevPackIntegration {
 
 #### Frontend Entegrasyonu:
 ```html
-<!-- /Users/sardag/Desktop/ailydian-ultra-pro/public/search.html içine ekle -->
+<!-- /home/lydian/Desktop/ailydian-ultra-pro/public/search.html içine ekle -->
 <div class="api-service-card" id="zai-devpack">
   <div class="service-icon">
     <i class="ph-code-bold"></i>

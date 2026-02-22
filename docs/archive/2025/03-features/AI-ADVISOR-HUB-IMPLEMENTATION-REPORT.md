@@ -381,7 +381,7 @@ AZURE_GPT4_VISION_DEPLOYMENT
 **Production:** https://www.ailydian.com (sonraki deploy)
 
 **Geliştirici:** Claude (Anthropic)
-**İstemci:** Emrah Sardag
+**İstemci:** Lydian
 **Tarih:** 5 Ekim 2025
 
 ---

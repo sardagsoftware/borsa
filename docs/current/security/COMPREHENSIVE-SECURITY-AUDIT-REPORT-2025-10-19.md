@@ -52,7 +52,7 @@ GOOGLE_AI_API_KEY=AIzaSyCVhkPVM2ag7fcOGgzhPxEfjnEGYJI0P60
 # Google AI: https://console.cloud.google.com/apis/credentials
 
 # 2. REMOVE FROM REPOSITORY HISTORY
-cd /Users/sardag/Desktop/ailydian-ultra-pro
+cd /home/lydian/Desktop/ailydian-ultra-pro
 git filter-branch --force --index-filter \
   "git rm --cached --ignore-unmatch IMPLEMENTATION-REPORT.md NEW-AI-APIS-DOCUMENTATION.md" \
   --prune-empty --tag-name-filter cat -- --all
@@ -760,7 +760,7 @@ echo "✅ ZAP scan complete: /tmp/zap-report.html"
 ## 🎯 QUICK FIX CHECKLIST (Copy-Paste Commands)
 
 ```bash
-cd /Users/sardag/Desktop/ailydian-ultra-pro
+cd /home/lydian/Desktop/ailydian-ultra-pro
 
 # 1. CRITICAL: Revoke exposed API keys (DO MANUALLY)
 # https://console.anthropic.com/settings/keys
@@ -848,7 +848,7 @@ curl -X POST https://ailydian.com/api/auth/login \
 
 ## 📞 NEXT STEPS
 
-### For User (Sardag):
+### For User (Lydian):
 
 **IMMEDIATE (Next 24 Hours):**
 1. ✅ Revoke exposed LyDian Research API key

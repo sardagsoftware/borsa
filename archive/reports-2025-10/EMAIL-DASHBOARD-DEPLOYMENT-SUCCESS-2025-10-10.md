@@ -243,10 +243,10 @@ Email Setup Status:
 https://www.ailydian.com/email-setup-status
 
 Deployment URL:
-https://ailydian-2k5ktelmd-emrahsardag-yandexcoms-projects.vercel.app
+https://ailydian-2k5ktelmd-lydian-projects.vercel.app
 
 Inspect URL:
-https://vercel.com/emrahsardag-yandexcoms-projects/ailydian/7uKDkvD6PcDGXDFxgGi5kGZ6hRx5
+https://vercel.com/lydian-projects/ailydian/7uKDkvD6PcDGXDFxgGi5kGZ6hRx5
 ```
 
 ### Step 4: Verification ✅
@@ -308,7 +308,7 @@ This is the ONLY blocking task preventing email functionality.
 
 **Method 1: Vercel Dashboard (Recommended)**
 
-1. Go to: https://vercel.com/emrahsardag-yandexcoms-projects/ailydian
+1. Go to: https://vercel.com/lydian-projects/ailydian
 2. Click: **Settings** → **Domains**
 3. Click: **ailydian.com**
 4. Scroll to: **DNS Records**
@@ -469,13 +469,13 @@ https://www.ailydian.com/dashboard
 ### Vercel Management
 ```
 Project Dashboard:
-https://vercel.com/emrahsardag-yandexcoms-projects/ailydian
+https://vercel.com/lydian-projects/ailydian
 
 Domain Settings:
-https://vercel.com/emrahsardag-yandexcoms-projects/ailydian/settings/domains
+https://vercel.com/lydian-projects/ailydian/settings/domains
 
 Latest Deployment:
-https://vercel.com/emrahsardag-yandexcoms-projects/ailydian/7uKDkvD6PcDGXDFxgGi5kGZ6hRx5
+https://vercel.com/lydian-projects/ailydian/7uKDkvD6PcDGXDFxgGi5kGZ6hRx5
 ```
 
 ---
@@ -514,7 +514,7 @@ https://vercel.com/emrahsardag-yandexcoms-projects/ailydian/7uKDkvD6PcDGXDFxgGi5
 **YAPILACAKLAR:**
 
 1. **Vercel Dashboard'a Git**:
-   - Link: https://vercel.com/emrahsardag-yandexcoms-projects/ailydian
+   - Link: https://vercel.com/lydian-projects/ailydian
    - Settings → Domains → ailydian.com
    - DNS Records → Add Record
 

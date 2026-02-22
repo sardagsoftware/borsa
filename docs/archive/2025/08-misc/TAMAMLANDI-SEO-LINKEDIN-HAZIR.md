@@ -130,7 +130,7 @@ Tüm SEO/Visibility ve LinkedIn altyapısı **0 hata ile** oluşturuldu ve test 
 
 Terminalden çalıştır:
 ```bash
-cd /Users/sardag/Desktop/ailydian-ultra-pro
+cd /home/lydian/Desktop/ailydian-ultra-pro
 ./scripts/deploy-seo-complete.sh
 ```
 
@@ -399,7 +399,7 @@ ailydian-ultra-pro/
 
 **Tek komutla başla:**
 ```bash
-cd /Users/sardag/Desktop/ailydian-ultra-pro
+cd /home/lydian/Desktop/ailydian-ultra-pro
 ./scripts/deploy-seo-complete.sh
 ```
 

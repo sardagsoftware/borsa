@@ -436,7 +436,7 @@ curl https://ailydian.com/api/cache/health
 ## Support
 
 ### Resources
-- **GitHub:** https://github.com/sardagsoftware/borsa
+- **GitHub:** https://github.com/lydiansoftware/borsa
 - **Docs:** `/ops/reports/` and `/ops/runbooks/`
 - **Monitoring:** `/api/monitoring/health`
 

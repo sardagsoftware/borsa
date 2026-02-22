@@ -87,7 +87,7 @@ vercel domains verify ailydian.com
 
 **Latest Production:**
 ```
-URL: https://ailydian-na7ucqsda-emrahsardag-yandexcoms-projects.vercel.app
+URL: https://ailydian-na7ucqsda-lydian-projects.vercel.app
 Status: ✅ Live
 Security Headers: ✅ All Active
 Edge Cache: ✅ 95.3% hit rate
@@ -428,7 +428,7 @@ curl -I https://ailydian.com
 
 **Deployment:** ✅ Production Live
 ```
-https://ailydian-na7ucqsda-emrahsardag-yandexcoms-projects.vercel.app
+https://ailydian-na7ucqsda-lydian-projects.vercel.app
 ```
 
 **Security:** ✅ All Headers Active

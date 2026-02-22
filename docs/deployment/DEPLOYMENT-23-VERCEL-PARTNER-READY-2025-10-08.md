@@ -59,7 +59,7 @@ curl -s "https://www.ailydian.com/" | grep -A 3 "Powered by"
 | **Files Changed** | 2 files (index.html, partner brief) |
 | **Lines Added** | 405 insertions |
 | **Build Status** | ✅ Success |
-| **Deployment URL** | https://ailydian-iiosj6di1-emrahsardag-yandexcoms-projects.vercel.app |
+| **Deployment URL** | https://ailydian-iiosj6di1-lydian-projects.vercel.app |
 | **Production URL** | https://www.ailydian.com |
 | **Badge Verification** | ✅ Live on production |
 

@@ -46,14 +46,14 @@ Screenshot'ta olduğun sayfada:
 **Seçenek A: "Connect Git Repository" butonu**
 - Bu butona tıkla
 - GitHub'ı seç
-- Repository: `sardagsoftware/borsa` seç
+- Repository: `lydiansoftware/borsa` seç
 - Branch: `main`
 - **Connect** → Tıkla
 
 **Seçenek B: "Git" dropdown menü**
 - GitHub'ı seç
 - Authorize Vercel (gerekirse)
-- Repository: `sardagsoftware/borsa` seç
+- Repository: `lydiansoftware/borsa` seç
 - Production Branch: `main`
 - **Save** → Tıkla
 
@@ -115,7 +115,7 @@ Vercel otomatik olarak:
 **Settings → Git sayfasında göreceksin:**
 
 ```
-✅ Connected Repository: sardagsoftware/borsa
+✅ Connected Repository: lydiansoftware/borsa
 ✅ Production Branch: main
 ✅ Auto-deploy: Enabled
 ✅ Deploy Hooks: (artık oluşturulabilir)
@@ -143,7 +143,7 @@ Vercel otomatik olarak:
 2. ✅ Yukarı kaydır
 3. ✅ "Bağlı Git Deposu" veya "Connect Git Repository"
 4. ✅ GitHub seç
-5. ✅ Repository: sardagsoftware/borsa
+5. ✅ Repository: lydiansoftware/borsa
 6. ✅ Branch: main
 7. ✅ Auto-deploy: ON
 8. ✅ Save/Connect

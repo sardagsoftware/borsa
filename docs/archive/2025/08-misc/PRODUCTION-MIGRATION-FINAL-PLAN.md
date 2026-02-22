@@ -314,7 +314,7 @@ Migration başarılı sayılır eğer:
 
 Migration öncesi backup dosyaları:
 ```
-/Users/sardag/Desktop/ailydian-ultra-pro/
+/home/lydian/Desktop/ailydian-ultra-pro/
 ├── dns-backup-20251005.txt
 ├── performance-before-20251005.txt
 ├── BUNNYCDN-TEST-SUCCESS-REPORT.md

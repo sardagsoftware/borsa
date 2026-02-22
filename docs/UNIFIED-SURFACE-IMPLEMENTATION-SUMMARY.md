@@ -195,7 +195,7 @@ const result = await apiFetch('/api/connectors/trendyol/health', {
 ## 📁 File Structure
 
 ```
-/Users/sardag/Desktop/ailydian-ultra-pro/
+/home/lydian/Desktop/ailydian-ultra-pro/
 ├── ops/canary/
 │   └── feature-flags.json              ✅ 14 feature flags
 ├── docs/

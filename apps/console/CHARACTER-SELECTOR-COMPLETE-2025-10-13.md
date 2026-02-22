@@ -90,23 +90,23 @@ Eğer elinizde Melih.glb yoksa, şu kaynaklardan indirebilirsiniz:
 
 ```bash
 # Hedef konum:
-/Users/sardag/Desktop/ailydian-ultra-pro/apps/console/public/assets/play/characters/Melih.glb
+/home/lydian/Desktop/ailydian-ultra-pro/apps/console/public/assets/play/characters/Melih.glb
 
 # Mac Finder'dan sürükle-bırak YAP
 # veya Terminal:
-cp /path/to/your/Melih.glb /Users/sardag/Desktop/ailydian-ultra-pro/apps/console/public/assets/play/characters/Melih.glb
+cp /path/to/your/Melih.glb /home/lydian/Desktop/ailydian-ultra-pro/apps/console/public/assets/play/characters/Melih.glb
 ```
 
 **Alternatif Konum (2. öncelik):**
 ```bash
-/Users/sardag/Desktop/ailydian-ultra-pro/apps/console/public/assets/models/Melih.glb
+/home/lydian/Desktop/ailydian-ultra-pro/apps/console/public/assets/models/Melih.glb
 ```
 
 ### Adım 3: Doğrula
 
 ```bash
 # Dosya mevcut mu?
-ls -lh /Users/sardag/Desktop/ailydian-ultra-pro/apps/console/public/assets/play/characters/Melih.glb
+ls -lh /home/lydian/Desktop/ailydian-ultra-pro/apps/console/public/assets/play/characters/Melih.glb
 
 # Server'dan erişilebiliyor mu?
 curl -I http://localhost:3100/assets/play/characters/Melih.glb
@@ -246,7 +246,7 @@ T+5s:  Eski karakter unmount, yeni karakter mount
 **Çözüm:**
 ```bash
 # Dosyayı doğru yere kopyala:
-cp /your/path/Melih.glb /Users/sardag/Desktop/ailydian-ultra-pro/apps/console/public/assets/play/characters/Melih.glb
+cp /your/path/Melih.glb /home/lydian/Desktop/ailydian-ultra-pro/apps/console/public/assets/play/characters/Melih.glb
 
 # Doğrula:
 curl -I http://localhost:3100/assets/play/characters/Melih.glb

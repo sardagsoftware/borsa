@@ -2,7 +2,7 @@
 
 **Tarih:** 2025-10-08
 **Durum:** ✅ **GERÇEK KULLANICILAR İÇİN HAZIR - 0 HATA**
-**Production URL:** https://ailydian-g4pff1l5s-emrahsardag-yandexcoms-projects.vercel.app
+**Production URL:** https://ailydian-g4pff1l5s-lydian-projects.vercel.app
 
 ---
 
@@ -276,22 +276,22 @@ if (user.twoFactorEnabled) {
 
 ```bash
 # ✅ Auth sayfası
-curl -I https://ailydian-g4pff1l5s-emrahsardag-yandexcoms-projects.vercel.app/auth.html
+curl -I https://ailydian-g4pff1l5s-lydian-projects.vercel.app/auth.html
 # HTTP/2 200 ✅
 
 # ✅ CSRF token
-curl https://ailydian-g4pff1l5s-emrahsardag-yandexcoms-projects.vercel.app/api/csrf-token
+curl https://ailydian-g4pff1l5s-lydian-projects.vercel.app/api/csrf-token
 # {"success":true,"csrfToken":"..."} ✅
 
 # ✅ API ping
-curl https://ailydian-g4pff1l5s-emrahsardag-yandexcoms-projects.vercel.app/api/ping
+curl https://ailydian-g4pff1l5s-lydian-projects.vercel.app/api/ping
 # {"status":"success","message":"pong"} ✅
 ```
 
 ### Security Headers Test
 
 ```bash
-curl -I https://ailydian-g4pff1l5s-emrahsardag-yandexcoms-projects.vercel.app/auth.html
+curl -I https://ailydian-g4pff1l5s-lydian-projects.vercel.app/auth.html
 
 ✅ Content-Security-Policy: ...
 ✅ X-Frame-Options: DENY
@@ -352,16 +352,16 @@ curl -I https://ailydian-g4pff1l5s-emrahsardag-yandexcoms-projects.vercel.app/au
 
 **Auth Sayfası:**
 ```
-https://ailydian-g4pff1l5s-emrahsardag-yandexcoms-projects.vercel.app/auth.html
+https://ailydian-g4pff1l5s-lydian-projects.vercel.app/auth.html
 ```
 
 **API Endpoints:**
 ```
-https://ailydian-g4pff1l5s-emrahsardag-yandexcoms-projects.vercel.app/api/auth/check-email
-https://ailydian-g4pff1l5s-emrahsardag-yandexcoms-projects.vercel.app/api/auth/login
-https://ailydian-g4pff1l5s-emrahsardag-yandexcoms-projects.vercel.app/api/auth/register
-https://ailydian-g4pff1l5s-emrahsardag-yandexcoms-projects.vercel.app/api/auth/verify-2fa
-https://ailydian-g4pff1l5s-emrahsardag-yandexcoms-projects.vercel.app/api/password-reset/request
+https://ailydian-g4pff1l5s-lydian-projects.vercel.app/api/auth/check-email
+https://ailydian-g4pff1l5s-lydian-projects.vercel.app/api/auth/login
+https://ailydian-g4pff1l5s-lydian-projects.vercel.app/api/auth/register
+https://ailydian-g4pff1l5s-lydian-projects.vercel.app/api/auth/verify-2fa
+https://ailydian-g4pff1l5s-lydian-projects.vercel.app/api/password-reset/request
 ```
 
 ---

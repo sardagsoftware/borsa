@@ -302,7 +302,7 @@ console.log(translations)
 
 ### Run Smoke Test:
 ```bash
-cd /Users/sardag/Desktop/ailydian-ultra-pro
+cd /home/lydian/Desktop/ailydian-ultra-pro
 bash i18n-quick-smoke-test.sh
 ```
 
@@ -346,7 +346,7 @@ The AILYDIAN Ultra Pro i18n system is **fully operational** and **production-rea
 ---
 
 **Report Generated:** 2025-10-04
-**Principal Localization Architect:** Emrah Sardag
+**Principal Localization Architect:** Lydian
 **Status:** ✅ **PHASE COMPLETE - PRODUCTION READY**
 
 🌍 **AILYDIAN Ultra Pro - Enterprise i18n System ACTIVE**

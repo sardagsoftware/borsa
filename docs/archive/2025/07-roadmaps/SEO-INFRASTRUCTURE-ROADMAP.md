@@ -60,7 +60,7 @@ cs-CZ, ro-RO, hu-HU, bg-BG, sk-SK, hr-HR, sr-RS
 ## 🗂️ DİZİN YAPISI
 
 ```
-/Users/sardag/Desktop/ailydian-ultra-pro/
+/home/lydian/Desktop/ailydian-ultra-pro/
 ├── .env (✅ SEO variables eklendi)
 ├── api/
 │   ├── seo/
@@ -387,4 +387,4 @@ const PURPOSES = ['analiz', 'karşılaştırma', 'üretim', 'optimizasyon', 'oto
 
 **Last Updated:** 2025-10-03
 **Next Review:** 2025-10-10
-**Owner:** SARDAG (Ailydian DevOps)
+**Owner:** Lydian (Ailydian DevOps)

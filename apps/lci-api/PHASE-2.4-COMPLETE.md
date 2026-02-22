@@ -234,7 +234,7 @@ Once Docker services are running, test the following:
 - **Action**: User needs to manually start Docker Desktop
 - **Command**: Once Docker is running, execute:
   ```bash
-  cd /Users/sardag/Desktop/ailydian-ultra-pro/infra/lci-db
+  cd /home/lydian/Desktop/ailydian-ultra-pro/infra/lci-db
   docker-compose up -d
   cd ../../apps/lci-api
   npx prisma migrate dev --name add_complaints

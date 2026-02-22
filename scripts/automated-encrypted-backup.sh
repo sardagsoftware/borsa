@@ -23,8 +23,8 @@ set -e  # Exit on error
 # ===============================
 
 PROJECT_NAME="ailydian-ultra-pro"
-PROJECT_DIR="/Users/sardag/Desktop/ailydian-ultra-pro/ailydian-from-github"
-BACKUP_BASE_DIR="/Users/sardag/Desktop/ailydian-backups"
+PROJECT_DIR="/home/lydian/Desktop/ailydian-ultra-pro/ailydian-from-github"
+BACKUP_BASE_DIR="/home/lydian/Desktop/ailydian-backups"
 TIMESTAMP=$(date +%Y%m%d_%H%M%S)
 BACKUP_DIR="${BACKUP_BASE_DIR}/${PROJECT_NAME}_${TIMESTAMP}"
 

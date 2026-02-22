@@ -11,12 +11,12 @@
   ],
   "predicate": {
     "builder": {
-      "id": "https://github.com/sardagsoftware/borsa/actions"
+      "id": "https://github.com/lydiansoftware/borsa/actions"
     },
     "buildType": "https://github.com/Attestations/GitHubActionsWorkflow@v1",
     "invocation": {
       "configSource": {
-        "uri": "git+https://github.com/sardagsoftware/borsa@refs/heads/main",
+        "uri": "git+https://github.com/lydiansoftware/borsa@refs/heads/main",
         "digest": {
           "sha256": "b02de92a026d283464a215096064d7b17424c5d8"
         },
@@ -46,7 +46,7 @@
     },
     "materials": [
       {
-        "uri": "git+https://github.com/sardagsoftware/borsa",
+        "uri": "git+https://github.com/lydiansoftware/borsa",
         "digest": {
           "sha256": "b02de92a026d283464a215096064d7b17424c5d8"
         }

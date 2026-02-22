@@ -306,7 +306,7 @@ We'll respond within 24 hours and provide a fix within 72 hours.
 
 Built with ❤️ by the Ailydian team.
 
-- **Lead Developer**: [@sardag](https://github.com/sardag)
+- **Lead Developer**: [@lydian](https://github.com/lydian)
 - **Security Advisor**: [@security-team](https://github.com/ailydian/security-team)
 - **Community**: [Contributors](https://github.com/ailydian/messaging/graphs/contributors)
 

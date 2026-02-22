@@ -15,7 +15,7 @@ Vercel production deployment başarıyla tamamlandı. Custom domain www.ailydian
 ## 📊 DEPLOYMENT DETAYLARI
 
 ### Production Deployment
-- **URL:** https://ailydian-ultra-6ipa8tve4-emrahsardag-yandexcoms-projects.vercel.app
+- **URL:** https://ailydian-ultra-6ipa8tve4-lydian-projects.vercel.app
 - **Status:** ● Ready
 - **Duration:** 3 dakika
 - **Deploy Time:** 2025-10-09 13:49 UTC
@@ -30,7 +30,7 @@ Vercel production deployment başarıyla tamamlandı. Custom domain www.ailydian
 
 ### Vercel Project
 - **Project:** ailydian-ultra-pro
-- **Team:** emrahsardag-yandexcoms-projects
+- **Team:** lydian-projects
 - **Region:** Global (Edge)
 - **Framework:** Node.js Serverless Functions
 
@@ -128,12 +128,12 @@ https://www.ailydian.com
 ### Vercel Default
 ```
 https://ailydian-ultra-pro.vercel.app
-https://ailydian-ultra-6ipa8tve4-emrahsardag-yandexcoms-projects.vercel.app
+https://ailydian-ultra-6ipa8tve4-lydian-projects.vercel.app
 ```
 
 ### Deployment Inspect
 ```
-https://vercel.com/emrahsardag-yandexcoms-projects/ailydian-ultra-pro/CycVu8Np39qkPHGcUZELCJ9H5myA
+https://vercel.com/lydian-projects/ailydian-ultra-pro/CycVu8Np39qkPHGcUZELCJ9H5myA
 ```
 
 ---
@@ -341,7 +341,7 @@ curl https://www.ailydian.com?v=$(date +%s)
 
 **Erişim:**
 - 🌐 **www.ailydian.com** → ACTIVE
-- 📊 **Dashboard:** https://vercel.com/emrahsardag-yandexcoms-projects/ailydian-ultra-pro
+- 📊 **Dashboard:** https://vercel.com/lydian-projects/ailydian-ultra-pro
 - 🔍 **Inspect:** https://vercel.com/.../CycVu8Np39qkPHGcUZELCJ9H5myA
 
 ---

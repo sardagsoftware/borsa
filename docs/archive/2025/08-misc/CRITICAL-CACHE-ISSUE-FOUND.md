@@ -77,7 +77,7 @@ Webhook güvenilir değil, direkt sen tetikle:
 
 1. **Vercel Dashboard'a git:**
    ```
-   https://vercel.com/emrahsardag-yandexcoms-projects/ailydian
+   https://vercel.com/lydian-projects/ailydian
    ```
 
 2. **Deployments → En son deployment (commit 42abc5e olmalı)**

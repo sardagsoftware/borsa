@@ -9,7 +9,7 @@ Enterprise-grade security system for Medical AI - HIPAA Compliant
 ## Files Created/Updated
 
 ### 1. OAuth 2.0 Authentication System
-**File:** `/Users/sardag/Desktop/ailydian-ultra-pro/api/auth/oauth.js`
+**File:** `/home/lydian/Desktop/ailydian-ultra-pro/api/auth/oauth.js`
 
 **Features:**
 - Azure AD B2C integration for healthcare organizations
@@ -30,7 +30,7 @@ Enterprise-grade security system for Medical AI - HIPAA Compliant
 ---
 
 ### 2. CSRF Protection
-**File:** `/Users/sardag/Desktop/ailydian-ultra-pro/middleware/csrf.js`
+**File:** `/home/lydian/Desktop/ailydian-ultra-pro/middleware/csrf.js`
 
 **Features:**
 - Double submit cookie pattern
@@ -55,7 +55,7 @@ app.use(conditionalCSRF); // Auto-protects all routes
 ---
 
 ### 3. Rate Limiting
-**File:** `/Users/sardag/Desktop/ailydian-ultra-pro/middleware/rate-limit.js`
+**File:** `/home/lydian/Desktop/ailydian-ultra-pro/middleware/rate-limit.js`
 
 **7 Rate Limit Tiers:**
 1. **Auth**: 5 req/5min (brute force protection)
@@ -81,7 +81,7 @@ setupRateLimiting(app); // Auto-applies smart rate limiting
 ---
 
 ### 4. Input Validation & Sanitization
-**File:** `/Users/sardag/Desktop/ailydian-ultra-pro/middleware/input-validation.js`
+**File:** `/home/lydian/Desktop/ailydian-ultra-pro/middleware/input-validation.js`
 
 **Features:**
 - Joi schema validation
@@ -119,7 +119,7 @@ app.post('/api/medical/chat', validateMedicalChat, validateMedicalData, handler)
 ---
 
 ### 5. Role-Based Access Control (RBAC)
-**File:** `/Users/sardag/Desktop/ailydian-ultra-pro/middleware/rbac.js`
+**File:** `/home/lydian/Desktop/ailydian-ultra-pro/middleware/rbac.js`
 
 **10 Medical Roles:**
 1. **SUPER_ADMIN** (Level 100) - Full access, PHI, prescribe, diagnose
@@ -173,7 +173,7 @@ app.get('/api/medical/dashboard', requireMedicalProfessional, handler);
 ---
 
 ### 6. Comprehensive Documentation
-**File:** `/Users/sardag/Desktop/ailydian-ultra-pro/MEDICAL-AI-SECURITY-DOCUMENTATION.md`
+**File:** `/home/lydian/Desktop/ailydian-ultra-pro/MEDICAL-AI-SECURITY-DOCUMENTATION.md`
 
 **Contents:**
 - Complete security architecture overview

@@ -53,7 +53,7 @@ done
 
 ### dns-cutover.sh (Already Created)
 ```bash
-cd /Users/sardag/Desktop/ailydian-ultra-pro/ops
+cd /home/lydian/Desktop/ailydian-ultra-pro/ops
 ./dns-cutover.sh
 ```
 
@@ -108,7 +108,7 @@ time curl -o /dev/null -s https://travel.ailydian.com
 
 ```bash
 # 1. Read backup
-cat /Users/sardag/Desktop/ailydian-ultra-pro/ops/preflight-dns.json
+cat /home/lydian/Desktop/ailydian-ultra-pro/ops/preflight-dns.json
 
 # 2. Restore old DNS records via Vercel API
 # (Automated in dns-cutover.sh via phase4_rollback function)
@@ -181,7 +181,7 @@ export VERCEL_TOKEN="s6uC...wfR"  # (redacted)
 export PRIMARY_REGION="westeurope"
 export DR_REGION="northeurope"
 
-cd /Users/sardag/Desktop/ailydian-ultra-pro/ops
+cd /home/lydian/Desktop/ailydian-ultra-pro/ops
 ./dns-cutover.sh
 ```
 

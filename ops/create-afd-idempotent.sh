@@ -82,4 +82,4 @@ echo "  curl -sI https://$AFD_FQDN | grep x-azure-ref"
 echo ""
 
 # Audit log entry
-echo "{\"timestamp\":\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\",\"action\":\"afd_idempotent_creation\",\"resource_group\":\"$RG\",\"profile\":\"$PROFILE\",\"endpoint\":\"$ENDPOINT\",\"fqdn\":\"$AFD_FQDN\",\"status\":\"complete\",\"operator\":\"sardag\"}" >> dns-change-log.ndjson
+echo "{\"timestamp\":\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\",\"action\":\"afd_idempotent_creation\",\"resource_group\":\"$RG\",\"profile\":\"$PROFILE\",\"endpoint\":\"$ENDPOINT\",\"fqdn\":\"$AFD_FQDN\",\"status\":\"complete\",\"operator\":\"lydian\"}" >> dns-change-log.ndjson

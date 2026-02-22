@@ -138,8 +138,8 @@ Node Version:         22.x
 
 ### Before: Vercel Preview URLs
 ```
-Format:   https://ailydian-[hash]-emrahsardag-yandexcoms-projects.vercel.app
-Example:  https://ailydian-mb25vhpl1-emrahsardag-yandexcoms-projects.vercel.app
+Format:   https://ailydian-[hash]-lydian-projects.vercel.app
+Example:  https://ailydian-mb25vhpl1-lydian-projects.vercel.app
 Status:   ✅ Still accessible (20 deployments)
 ```
 
@@ -276,12 +276,12 @@ https://ailydian.com
 
 **Vercel Dashboard:**
 ```
-https://vercel.com/emrahsardag-yandexcoms-projects/ailydian
+https://vercel.com/lydian-projects/ailydian
 ```
 
 **Latest Deployment:**
 ```
-https://ailydian-mb25vhpl1-emrahsardag-yandexcoms-projects.vercel.app
+https://ailydian-mb25vhpl1-lydian-projects.vercel.app
 (Still accessible as backup)
 ```
 

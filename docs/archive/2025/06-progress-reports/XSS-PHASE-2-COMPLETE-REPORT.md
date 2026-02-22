@@ -160,7 +160,7 @@ These assume `sanitizer.js` is loaded by parent HTML page.
 ### 3. Backup Files
 All original files backed up to:
 ```
-/Users/sardag/Desktop/ailydian-ultra-pro/.backups/xss-fix/
+/home/lydian/Desktop/ailydian-ultra-pro/.backups/xss-fix/
 ```
 
 ### 4. Test Activation

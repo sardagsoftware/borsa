@@ -11,7 +11,7 @@
 ```bash
 Commit: 9a920be
 Branch: main
-Remote: https://github.com/sardagsoftware/borsa.git
+Remote: https://github.com/lydiansoftware/borsa.git
 Status: ✅ Pushed successfully
 ```
 

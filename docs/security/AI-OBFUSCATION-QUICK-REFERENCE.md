@@ -159,7 +159,7 @@ When modifying AI integration code:
 ### Run Validation Script
 
 ```bash
-node /Users/sardag/Desktop/ailydian-ultra-pro/ops/security/validate-ai-obfuscation.js
+node /home/lydian/Desktop/ailydian-ultra-pro/ops/security/validate-ai-obfuscation.js
 ```
 
 ### Check Specific File

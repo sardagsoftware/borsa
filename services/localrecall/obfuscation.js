@@ -614,7 +614,7 @@ function sanitizeModelNames(text) {
   sanitized = sanitized.replace(/developed by Emrah Şardağ/gi, 'developed by AILYDIAN');
   sanitized = sanitized.replace(/created by Emrah Şardağ/gi, 'created by AILYDIAN');
   sanitized = sanitized.replace(/Emrah Şardağ/gi, 'AILYDIAN');
-  sanitized = sanitized.replace(/Emrah Sardag/gi, 'AILYDIAN');
+  sanitized = sanitized.replace(/Lydian/gi, 'AILYDIAN');
 
   // ═══════════════════════════════════════════════════
   // PHASE 4: FINAL VERIFICATION (Double-check)

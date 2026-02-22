@@ -287,16 +287,16 @@ Part of Global AI Data Source Publisher initiative
 **URL:** https://www.ailydian.com
 **Deployment Time:** ~6 seconds
 **Uploaded:** 51KB (feed files)
-**Inspect URL:** https://vercel.com/emrahsardag-yandexcoms-projects/ailydian/D6AjJp5r5UDVMLdR9BUQcY6Tg135
+**Inspect URL:** https://vercel.com/lydian-projects/ailydian/D6AjJp5r5UDVMLdR9BUQcY6Tg135
 
 **Deployment Log:**
 ```
 Vercel CLI 48.1.6
 Retrieving project…
-Deploying emrahsardag-yandexcoms-projects/ailydian
+Deploying lydian-projects/ailydian
 Uploading [====================] (51.0KB/51KB)
-Inspect: https://vercel.com/emrahsardag-yandexcoms-projects/ailydian/D6AjJp5r5UDVMLdR9BUQcY6Tg135 [6s]
-Production: https://ailydian-31kc8pfgi-emrahsardag-yandexcoms-projects.vercel.app [6s]
+Inspect: https://vercel.com/lydian-projects/ailydian/D6AjJp5r5UDVMLdR9BUQcY6Tg135 [6s]
+Production: https://ailydian-31kc8pfgi-lydian-projects.vercel.app [6s]
 Queued → Building → Completing
 ```
 

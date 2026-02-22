@@ -2,7 +2,7 @@
 
 **Tarih:** 2025-10-08
 **Durum:** ✅ **BAŞARILI - 0 HATA**
-**Deployment URL:** https://ailydian-ps8euyp0x-emrahsardag-yandexcoms-projects.vercel.app
+**Deployment URL:** https://ailydian-ps8euyp0x-lydian-projects.vercel.app
 
 ---
 
@@ -51,19 +51,19 @@ Permissions-Policy: camera=(), microphone=(), geolocation=()
 
 **1. Locale Engine:**
 ```bash
-curl https://ailydian-ps8euyp0x-emrahsardag-yandexcoms-projects.vercel.app/js/locale-engine.js
+curl https://ailydian-ps8euyp0x-lydian-projects.vercel.app/js/locale-engine.js
 ```
 ✅ Başarılı - LyDian Locale Engine v2.0 aktif
 
 **2. Azerice Çeviriler:**
 ```bash
-curl https://ailydian-ps8euyp0x-emrahsardag-yandexcoms-projects.vercel.app/i18n/v2/az/common.json
+curl https://ailydian-ps8euyp0x-lydian-projects.vercel.app/i18n/v2/az/common.json
 ```
 ✅ Başarılı - 7 Azerice key yüklü
 
 **3. Otomatik İnit:**
 ```bash
-curl https://ailydian-ps8euyp0x-emrahsardag-yandexcoms-projects.vercel.app/
+curl https://ailydian-ps8euyp0x-lydian-projects.vercel.app/
 ```
 ✅ Başarılı - "i18n system initialized" log görüldü
 
@@ -178,28 +178,28 @@ NODE_ENV=production
 ### HTTP Status Test
 
 ```bash
-curl -I https://ailydian-ps8euyp0x-emrahsardag-yandexcoms-projects.vercel.app/
+curl -I https://ailydian-ps8euyp0x-lydian-projects.vercel.app/
 ```
 **Sonuç:** HTTP/2 200 ✅
 
 ### Security Headers Test
 
 ```bash
-curl -I https://ailydian-ps8euyp0x-emrahsardag-yandexcoms-projects.vercel.app/ | grep -E "(X-Frame|Content-Security|Strict-Transport)"
+curl -I https://ailydian-ps8euyp0x-lydian-projects.vercel.app/ | grep -E "(X-Frame|Content-Security|Strict-Transport)"
 ```
 **Sonuç:** Tüm header'lar aktif ✅
 
 ### i18n Locale Detection Test
 
 ```bash
-curl -H "Accept-Language: de-DE" https://ailydian-ps8euyp0x-emrahsardag-yandexcoms-projects.vercel.app/
+curl -H "Accept-Language: de-DE" https://ailydian-ps8euyp0x-lydian-projects.vercel.app/
 ```
 **Sonuç:** Otomatik Almanca tespiti çalışıyor ✅
 
 ### Azerice Translation Test
 
 ```bash
-curl https://ailydian-ps8euyp0x-emrahsardag-yandexcoms-projects.vercel.app/i18n/v2/az/common.json
+curl https://ailydian-ps8euyp0x-lydian-projects.vercel.app/i18n/v2/az/common.json
 ```
 **Sonuç:** 7 Azerice key başarıyla yüklendi ✅
 
@@ -222,10 +222,10 @@ curl https://ailydian-ps8euyp0x-emrahsardag-yandexcoms-projects.vercel.app/i18n/
 ```
 Vercel CLI 48.1.6
 Retrieving project…
-Deploying emrahsardag-yandexcoms-projects/ailydian
+Deploying lydian-projects/ailydian
 Uploading [====================] (3.7MB/3.7MB)
-Inspect: https://vercel.com/emrahsardag-yandexcoms-projects/ailydian/382i5uFLuRh8b4X2bsaLgU3V9as1
-Production: https://ailydian-ps8euyp0x-emrahsardag-yandexcoms-projects.vercel.app
+Inspect: https://vercel.com/lydian-projects/ailydian/382i5uFLuRh8b4X2bsaLgU3V9as1
+Production: https://ailydian-ps8euyp0x-lydian-projects.vercel.app
 ✅ Deployment Ready
 ```
 
@@ -296,7 +296,7 @@ git push origin main
 
 **Production URL:**
 ```
-https://ailydian-ps8euyp0x-emrahsardag-yandexcoms-projects.vercel.app
+https://ailydian-ps8euyp0x-lydian-projects.vercel.app
 ```
 
 **Custom Domain (DNS ayarı sonrası):**
@@ -318,7 +318,7 @@ https://vercel.com/dashboard
 
 **Deployment Logs:**
 ```
-https://vercel.com/emrahsardag-yandexcoms-projects/ailydian
+https://vercel.com/lydian-projects/ailydian
 ```
 
 **Documentation:**

@@ -498,7 +498,7 @@ URL: https://www.ailydian.com/image-generation.html
 {
   "email": "admin@ailydian.com",
   "password": "Admin@2025!Secure",
-  "name": "Sardag Admin",
+  "name": "Lydian Admin",
   "role": "ADMIN"
 }
 ```
@@ -510,7 +510,7 @@ curl -X POST "https://www.ailydian.com/api/auth/register" \
   -d '{
     "email": "admin@ailydian.com",
     "password": "Admin@2025!Secure",
-    "name": "Sardag Admin"
+    "name": "Lydian Admin"
   }'
 ```
 
@@ -591,11 +591,11 @@ kill -9 $(lsof -t -i:3000)
 **Status**: ✅ LIVE
 **Latest Deploy**: 2 minutes ago
 
-**Vercel URL**: https://ailydian-2okjuwmw7-emrahsardag-yandexcoms-projects.vercel.app
+**Vercel URL**: https://ailydian-2okjuwmw7-lydian-projects.vercel.app
 
 **Deploy Komutu**:
 ```bash
-cd /Users/sardag/Desktop/ailydian-ultra-pro
+cd /home/lydian/Desktop/ailydian-ultra-pro
 vercel --prod
 ```
 
@@ -604,8 +604,8 @@ vercel --prod
 ## 📁 Database
 
 **Type**: SQLite
-**Location**: `/Users/sardag/Desktop/ailydian-ultra-pro/database/ailydian.db`
-**Backup**: `/Users/sardag/Desktop/ailydian-ultra-pro/database/backups/`
+**Location**: `/home/lydian/Desktop/ailydian-ultra-pro/database/ailydian.db`
+**Backup**: `/home/lydian/Desktop/ailydian-ultra-pro/database/backups/`
 
 **Tables**:
 - `users` - Kullanıcı bilgileri
@@ -615,7 +615,7 @@ vercel --prod
 
 **Database Kontrol**:
 ```bash
-sqlite3 /Users/sardag/Desktop/ailydian-ultra-pro/database/ailydian.db
+sqlite3 /home/lydian/Desktop/ailydian-ultra-pro/database/ailydian.db
 
 # Query examples
 SELECT * FROM users;
@@ -639,7 +639,7 @@ SELECT * FROM sessions WHERE expiresAt > datetime('now');
 
 **Kontrol**:
 ```bash
-cat /Users/sardag/Desktop/ailydian-ultra-pro/.env | grep API_KEY
+cat /home/lydian/Desktop/ailydian-ultra-pro/.env | grep API_KEY
 ```
 
 ---
@@ -648,7 +648,7 @@ cat /Users/sardag/Desktop/ailydian-ultra-pro/.env | grep API_KEY
 
 ### Server Start
 ```bash
-cd /Users/sardag/Desktop/ailydian-ultra-pro
+cd /home/lydian/Desktop/ailydian-ultra-pro
 npm run dev
 # or
 npx serve public -l 3000
@@ -777,6 +777,6 @@ kill -9 $(lsof -t -i:3000)
 
 **Son Güncelleme**: 17 Ekim 2025
 **Versiyon**: v2.0 - Complete System
-**Geliştirici**: Claude + Sardag
+**Geliştirici**: Claude + Lydian
 
 🚀 **FULL SYSTEM OPERATIONAL!** ✅

@@ -49,8 +49,8 @@ fi
 echo -e "${GREEN}Environment Mode: $MODE${NC}"
 
 # Detect workspace
-if [ -d "/Users/sardag/Desktop/ailydian-ultra-pro" ]; then
-  WORKSPACE="/Users/sardag/Desktop/ailydian-ultra-pro"
+if [ -d "/home/lydian/Desktop/ailydian-ultra-pro" ]; then
+  WORKSPACE="/home/lydian/Desktop/ailydian-ultra-pro"
 elif [ -d "$HOME/Desktop/ailydian-ultra-pro" ]; then
   WORKSPACE="$HOME/Desktop/ailydian-ultra-pro"
 else

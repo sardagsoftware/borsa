@@ -47,7 +47,7 @@ Successfully executed **4 of 7 phases** of DNS cutover automation:
 - ✅ **VERCEL_TOKEN:** s6uC...wfR (masked)
 - ✅ **PRIMARY_REGION:** westeurope
 - ✅ **ORIGIN_UI_HOST:** ailydian.vercel.app
-- ✅ **Workspace:** `/Users/sardag/Desktop/ailydian-ultra-pro/ops`
+- ✅ **Workspace:** `/home/lydian/Desktop/ailydian-ultra-pro/ops`
 
 ### Security Compliance ✅
 - ✅ Token masking enforced (first4...last3)
@@ -471,7 +471,7 @@ bash manual-cutover-steps.sh
 
 ### Files in Workspace
 ```
-/Users/sardag/Desktop/ailydian-ultra-pro/ops/
+/home/lydian/Desktop/ailydian-ultra-pro/ops/
 ├── preflight-dns-ailydian-com.json      (DNS backup)
 ├── preflight-dns-newsai-earth.json      (DNS backup)
 ├── manual-cutover-steps.sh              (execution script)

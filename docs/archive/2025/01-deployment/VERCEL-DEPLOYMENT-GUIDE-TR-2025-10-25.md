@@ -47,7 +47,7 @@
 Vercel CLI token süresi dolmuş. Yeni login yapın:
 
 ```bash
-cd /Users/sardag/Desktop/ailydian-ultra-pro
+cd /home/lydian/Desktop/ailydian-ultra-pro
 vercel login
 ```
 
@@ -163,7 +163,7 @@ dig www.ailydian.com
 ```
 
 **Kontrol 2**: Vercel dashboard'da domain ekli mi?
-- https://vercel.com/sardagsoftware/ailydian/settings/domains
+- https://vercel.com/lydiansoftware/ailydian/settings/domains
 
 **Çözüm**: Domain ekle:
 ```bash
@@ -269,9 +269,9 @@ vercel --prod
 
 Deployment sırasında sorun çıkarsa:
 
-1. **Vercel Dashboard**: https://vercel.com/sardagsoftware/ailydian
+1. **Vercel Dashboard**: https://vercel.com/lydiansoftware/ailydian
 2. **Deployment Logs**: Vercel dashboard > Deployments > Latest > Logs
-3. **GitHub Actions**: https://github.com/sardagsoftware/borsa/actions
+3. **GitHub Actions**: https://github.com/lydiansoftware/borsa/actions
 
 ### SEO Validasyon
 

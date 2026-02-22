@@ -164,10 +164,10 @@ Ref: PENETRATION-TEST-REPORT-2025-10-09.md
 
 ```bash
 # Find all files with wildcard CORS
-grep -r "Access-Control-Allow-Origin.*\*" /Users/sardag/Desktop/ailydian-ultra-pro/api --include="*.js"
+grep -r "Access-Control-Allow-Origin.*\*" /home/lydian/Desktop/ailydian-ultra-pro/api --include="*.js"
 
 # Count them
-grep -r "Access-Control-Allow-Origin.*\*" /Users/sardag/Desktop/ailydian-ultra-pro/api --include="*.js" | wc -l
+grep -r "Access-Control-Allow-Origin.*\*" /home/lydian/Desktop/ailydian-ultra-pro/api --include="*.js" | wc -l
 ```
 
 ## ✅ Verification
@@ -176,7 +176,7 @@ After fixing, verify with:
 
 ```bash
 # No more wildcards
-grep -r "Access-Control-Allow-Origin.*\*" /Users/sardag/Desktop/ailydian-ultra-pro/api --include="*.js"
+grep -r "Access-Control-Allow-Origin.*\*" /home/lydian/Desktop/ailydian-ultra-pro/api --include="*.js"
 
 # Should return empty (exit code 1)
 ```

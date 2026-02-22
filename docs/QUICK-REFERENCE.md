@@ -2,7 +2,7 @@
 
 ## Location
 ```
-/Users/sardag/Desktop/ailydian-ultra-pro/docs/
+/home/lydian/Desktop/ailydian-ultra-pro/docs/
 ```
 
 ## Statistics at a Glance
@@ -118,7 +118,7 @@ docs/ops/brief/                 # Documentation briefs
 
 ### Navigate to docs
 ```bash
-cd /Users/sardag/Desktop/ailydian-ultra-pro/docs/
+cd /home/lydian/Desktop/ailydian-ultra-pro/docs/
 ```
 
 ### Count directories
@@ -165,4 +165,4 @@ cat MANIFEST.json
 ---
 **Version:** 1.0.0  
 **Created:** 2025-10-06  
-**Location:** `/Users/sardag/Desktop/ailydian-ultra-pro/docs/`
+**Location:** `/home/lydian/Desktop/ailydian-ultra-pro/docs/`

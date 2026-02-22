@@ -35,7 +35,7 @@ docs/
 ### Latest Reports (Archived)
 ```
 archive/reports-2025-10/
-├── FINAL-MISSION-COMPLETE-SARDAG-13-EKIM-2025.md
+├── FINAL-MISSION-COMPLETE-Lydian-13-EKIM-2025.md
 ├── PENETRATION-TEST-COMPLETE-2025-10-10.md
 ├── DEPLOYMENT-COMPLETE-ZERO-ERRORS-20251007.md
 └── ... (81 report files)
@@ -75,7 +75,7 @@ archive/reports-2025-10/
 
 ## 🔗 External Links
 - **Production:** https://www.ailydian.com
-- **GitHub:** /sardagsoftware/ailydian-ultra-pro
+- **GitHub:** /lydiansoftware/ailydian-ultra-pro
 - **Vercel:** https://ailydian-ultra-pro.vercel.app
 
 ---

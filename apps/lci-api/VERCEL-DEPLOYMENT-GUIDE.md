@@ -27,7 +27,7 @@
 
 ### Step 1: Initial Deployment
 ```bash
-cd /Users/sardag/Desktop/ailydian-ultra-pro/apps/lci-api
+cd /home/lydian/Desktop/ailydian-ultra-pro/apps/lci-api
 
 # Deploy to Vercel
 vercel --prod

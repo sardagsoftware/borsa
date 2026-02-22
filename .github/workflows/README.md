@@ -251,7 +251,7 @@ git push origin feature/my-awesome-feature
 
 ```bash
 # Option A: Via Vercel Dashboard (Fastest)
-1. Go to https://vercel.com/emrahsardag-yandexcoms-projects/ailydian-prod
+1. Go to https://vercel.com/lydian-projects/ailydian-prod
 2. Find the last known good deployment
 3. Click the deployment
 4. Click "Promote to Production"

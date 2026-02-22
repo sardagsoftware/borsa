@@ -27,7 +27,7 @@ HTTP Status: 200 OK
 
 **Link:**
 ```
-https://vercel.com/emrahsardag-yandexcoms-projects/ailydian
+https://vercel.com/lydian-projects/ailydian
 ```
 
 **Kontrol Et:**
@@ -239,7 +239,7 @@ Cloudflare Dashboard → Caching → Purge Everything
 ## 📋 CHECKLIST - SIRA İLE YAP
 
 - [ ] **1. Vercel Dashboard aç**
-      https://vercel.com/emrahsardag-yandexcoms-projects/ailydian
+      https://vercel.com/lydian-projects/ailydian
 
 - [ ] **2. Latest deployment durumu kontrol et**
       - Ready ✅ mi?

@@ -38,7 +38,7 @@ Xrubyphyton1985.!?
 - **Email:** emrah@ailydian.com
 - **Password:** Xrubyphyton1985.!?
 - **Icon:** 👤
-- **Purpose:** Kişisel hesap - Emrah Sardag
+- **Purpose:** Kişisel hesap - Lydian
 - **Forwarding:** None (Independent inbox)
 - **Status:** ✅ Active
 

@@ -2,7 +2,7 @@
 
 **Tarih**: 17 Ekim 2025, 13:50
 **Durum**: ✅ Deployed | ⚠️ Authentication Protection Active
-**URL**: https://lci-1mys6r4fx-emrahsardag-yandexcoms-projects.vercel.app
+**URL**: https://lci-1mys6r4fx-lydian-projects.vercel.app
 
 ---
 
@@ -23,8 +23,8 @@
    - Prisma client generation
 
 3. **Deployment** ✅
-   - Project: `emrahsardag-yandexcoms-projects/lci-api`
-   - URL: https://lci-1mys6r4fx-emrahsardag-yandexcoms-projects.vercel.app
+   - Project: `lydian-projects/lci-api`
+   - URL: https://lci-1mys6r4fx-lydian-projects.vercel.app
    - Region: Frankfurt (fra1)
    - Status: ● Ready
 
@@ -43,7 +43,7 @@
 
 ### Adım 1: Vercel Dashboard'a Git
 ```
-https://vercel.com/emrahsardag-yandexcoms-projects/lci-api/settings
+https://vercel.com/lydian-projects/lci-api/settings
 ```
 
 ### Adım 2: Deployment Protection Ayarları
@@ -54,13 +54,13 @@ https://vercel.com/emrahsardag-yandexcoms-projects/lci-api/settings
 
 ### Adım 3: Yeni Deployment Tetikle
 ```bash
-cd /Users/sardag/Desktop/ailydian-ultra-pro/apps/lci-api
+cd /home/lydian/Desktop/ailydian-ultra-pro/apps/lci-api
 vercel --prod
 ```
 
 ### Alternatif: Production Alias Kullan
 ```bash
-vercel alias set lci-1mys6r4fx-emrahsardag-yandexcoms-projects.vercel.app lci-api.ailydian.com
+vercel alias set lci-1mys6r4fx-lydian-projects.vercel.app lci-api.ailydian.com
 ```
 
 ---
@@ -125,19 +125,19 @@ X-XSS-Protection: 1; mode=block
 
 ### 1. Health Check
 ```bash
-curl https://lci-1mys6r4fx-emrahsardag-yandexcoms-projects.vercel.app/v1/health
+curl https://lci-1mys6r4fx-lydian-projects.vercel.app/v1/health
 # Expected: {"status":"ok","timestamp":"...","uptime":...}
 ```
 
 ### 2. Brands Endpoint
 ```bash
-curl https://lci-1mys6r4fx-emrahsardag-yandexcoms-projects.vercel.app/v1/brands?status=ACTIVE
+curl https://lci-1mys6r4fx-lydian-projects.vercel.app/v1/brands?status=ACTIVE
 # Expected: Array of 139 brands
 ```
 
 ### 3. From Frontend
 ```javascript
-fetch('https://lci-1mys6r4fx-emrahsardag-yandexcoms-projects.vercel.app/v1/brands?status=ACTIVE')
+fetch('https://lci-1mys6r4fx-lydian-projects.vercel.app/v1/brands?status=ACTIVE')
   .then(r => r.json())
   .then(brands => console.log(`✅ ${brands.length} brands loaded`))
 ```
@@ -201,7 +201,7 @@ TTL: Auto
 
 ### Step 3: Set Alias
 ```bash
-vercel alias set lci-1mys6r4fx-emrahsardag-yandexcoms-projects.vercel.app lci-api.ailydian.com
+vercel alias set lci-1mys6r4fx-lydian-projects.vercel.app lci-api.ailydian.com
 ```
 
 ### Step 4: Update Frontend
@@ -357,9 +357,9 @@ const expressApp = express();
 - Railway: https://docs.railway.app/databases/postgresql
 
 ### Troubleshooting
-- Check function logs: `vercel logs lci-1mys6r4fx-emrahsardag-yandexcoms-projects.vercel.app`
+- Check function logs: `vercel logs lci-1mys6r4fx-lydian-projects.vercel.app`
 - Test locally: `vercel dev`
-- Deployment inspector: https://vercel.com/emrahsardag-yandexcoms-projects/lci-api
+- Deployment inspector: https://vercel.com/lydian-projects/lci-api
 
 ---
 
@@ -370,7 +370,7 @@ const expressApp = express();
 
 ---
 
-**Geliştirici**: Claude + Sardag
+**Geliştirici**: Claude + Lydian
 **Proje**: LCI - Lydian Complaint Intelligence
 **Versiyon**: v1.0 - Production API Deployed
 **Tarih**: 17 Ekim 2025, 13:50
@@ -383,7 +383,7 @@ const expressApp = express();
 
 **3 Basit Adım ile Canlıya Al**:
 
-1. **Vercel'e Git**: https://vercel.com/emrahsardag-yandexcoms-projects/lci-api/settings
+1. **Vercel'e Git**: https://vercel.com/lydian-projects/lci-api/settings
 2. **Deployment Protection** → **"None"** yap
 3. **Test Et**: `curl https://lci-api-url/v1/health`
 

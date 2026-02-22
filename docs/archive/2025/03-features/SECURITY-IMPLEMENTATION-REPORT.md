@@ -208,7 +208,7 @@ const sanitizeInput = (input) => {
 
 **Production URL:**
 ```
-https://ailydian-eftcu3g50-emrahsardag-yandexcoms-projects.vercel.app
+https://ailydian-eftcu3g50-lydian-projects.vercel.app
 ```
 
 **Custom Domain:**

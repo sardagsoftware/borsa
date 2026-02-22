@@ -1,7 +1,7 @@
 # AILYDIAN // STRICT-MAX ZERO-MISS SPRINT REPORT
 **Execution Time:** $(date -u +"%Y-%m-%d %H:%M:%S UTC")  
 **Mode:** Hybrid (Local Development)  
-**Workspace:** /Users/sardag/Desktop/aily dian-ultra-pro
+**Workspace:** /home/lydian/Desktop/aily dian-ultra-pro
 
 ---
 
@@ -311,8 +311,8 @@ Production (Azure AFD):
 
 ### Artifacts & URLs
 
-**Workspace:** `/Users/sardag/Desktop/ailydian-ultra-pro`  
-**Ops Directory:** `/Users/sardag/Desktop/ailydian-ultra-pro/ops`
+**Workspace:** `/home/lydian/Desktop/ailydian-ultra-pro`  
+**Ops Directory:** `/home/lydian/Desktop/ailydian-ultra-pro/ops`
 
 **Key Files:**
 - `AZURE-PORTAL-QUICK-START.md` - Immediate action guide
@@ -374,7 +374,7 @@ Production (Azure AFD):
 
 **DNS Rollback (RTO < 5 minutes):**
 ```bash
-cd /Users/sardag/Desktop/ailydian-ultra-pro/ops
+cd /home/lydian/Desktop/ailydian-ultra-pro/ops
 ./rollback.sh all
 ```
 

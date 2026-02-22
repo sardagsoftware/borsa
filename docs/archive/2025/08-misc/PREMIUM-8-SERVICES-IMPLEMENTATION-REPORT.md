@@ -143,7 +143,7 @@
 
 ### ✅ **Frontend Files Modified**
 
-#### 1. `/Users/sardag/Desktop/ailydian-ultra-pro/public/lydian-legal-search.html`
+#### 1. `/home/lydian/Desktop/ailydian-ultra-pro/public/lydian-legal-search.html`
 **Changes**:
 - ✅ Fixed endpoint paths (lines 828, 862, 891)
   - Changed `/api/azure/document-intelligence` → `/api/azure/legal/document-intelligence`
@@ -163,7 +163,7 @@
 
 ### ✅ **Backend Services Enhanced**
 
-#### 2. `/Users/sardag/Desktop/ailydian-ultra-pro/services/azure-multimodal-legal-ai.js`
+#### 2. `/home/lydian/Desktop/ailydian-ultra-pro/services/azure-multimodal-legal-ai.js`
 **Changes**:
 - ✅ Added comprehensive error handling (lines 52-129)
   - Try-catch blocks for all SDK initializations
@@ -178,7 +178,7 @@
   - Professional Turkish legal document formatting
   - Demo mode support
 
-#### 3. `/Users/sardag/Desktop/ailydian-ultra-pro/services/specialized-chat-service.js`
+#### 3. `/home/lydian/Desktop/ailydian-ultra-pro/services/specialized-chat-service.js`
 **Status**: ✅ **CREATED**
 **Purpose**: Wrapper for OpenAI GPT-4 Turbo
 **Features**:
@@ -189,7 +189,7 @@
 
 ### ✅ **Routes Enhanced**
 
-#### 4. `/Users/sardag/Desktop/ailydian-ultra-pro/routes/azure-multimodal-routes.js`
+#### 4. `/home/lydian/Desktop/ailydian-ultra-pro/routes/azure-multimodal-routes.js`
 **Changes**:
 - ✅ Added file validation to all routes (lines 35-40, 77-82, 119-124)
   - 100MB max file size
@@ -204,7 +204,7 @@
   - Error codes
   - Consistent format
 
-#### 5. `/Users/sardag/Desktop/ailydian-ultra-pro/server-auth.js`
+#### 5. `/home/lydian/Desktop/ailydian-ultra-pro/server-auth.js`
 **Changes**:
 - ✅ Added Azure Multimodal routes (lines 43-49)
   - Mounted at `/api/azure/legal`

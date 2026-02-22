@@ -27,7 +27,7 @@
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/sardagsoftware/borsa.git
+git clone https://github.com/lydiansoftware/borsa.git
 cd ailydian-ultra-pro
 
 # 2. Install dependencies
@@ -677,7 +677,7 @@ Long keys are harder to maintain. Split into multiple keys if needed.
 
 1. Check workflow logs at:
    ```
-   https://github.com/sardagsoftware/borsa/actions
+   https://github.com/lydiansoftware/borsa/actions
    ```
 
 2. Run validation locally:
@@ -761,7 +761,7 @@ function MyComponent() {
 ## 📞 Support
 
 **Issues:**
-https://github.com/sardagsoftware/borsa/issues
+https://github.com/lydiansoftware/borsa/issues
 
 **Documentation:**
 https://docs.ailydian.com/i18n

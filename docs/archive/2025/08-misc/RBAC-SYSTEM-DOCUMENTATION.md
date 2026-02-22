@@ -622,7 +622,7 @@ const response = await fetch('/api/developer/logs', {
 
 ## 📞 Support
 
-**Developer:** Claude AI + Sardag
+**Developer:** Claude AI + Lydian
 **Project:** Ailydian Ultra Pro
 **Repository:** Desktop/ailydian-ultra-pro
 **Documentation Date:** 2025-10-02

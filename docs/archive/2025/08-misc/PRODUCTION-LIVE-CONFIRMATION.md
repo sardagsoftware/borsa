@@ -16,9 +16,9 @@ https://www.ailydian.com/lydian-iq.html
 
 ### 2. Vercel Production URLs
 ```
-https://ailydian-lsjix9918-emrahsardag-yandexcoms-projects.vercel.app
-https://ailydian-15ahftb0c-emrahsardag-yandexcoms-projects.vercel.app
-https://ailydian-o89burta5-emrahsardag-yandexcoms-projects.vercel.app
+https://ailydian-lsjix9918-lydian-projects.vercel.app
+https://ailydian-15ahftb0c-lydian-projects.vercel.app
+https://ailydian-o89burta5-lydian-projects.vercel.app
 ```
 **Status:** ● Ready (Production)
 

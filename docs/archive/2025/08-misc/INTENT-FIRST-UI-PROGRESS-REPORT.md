@@ -494,7 +494,7 @@ import { ShipmentCard } from '@/components/MessageCards';
 ## 🤝 Contributors
 
 - **LyDian AI Platform Team** - Complete implementation
-- **Emrah Sardag** - Product oversight & requirements
+- **Lydian** - Product oversight & requirements
 
 ---
 

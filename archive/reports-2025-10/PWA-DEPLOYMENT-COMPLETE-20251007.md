@@ -11,7 +11,7 @@
 
 ### Production URLs
 - **Primary:** https://ailydian.com/lydian-iq.html
-- **Vercel:** https://ailydian-4azb5b0ej-emrahsardag-yandexcoms-projects.vercel.app/lydian-iq.html
+- **Vercel:** https://ailydian-4azb5b0ej-lydian-projects.vercel.app/lydian-iq.html
 
 ### PWA Install
 - **Location:** Header (next to theme toggle button)
@@ -250,7 +250,7 @@
 ### Commit Details
 ```
 Commit: a38592f
-Author: Emrah Sardag + AX9F7E2B Code
+Author: Lydian + AX9F7E2B Code
 Date: 2025-10-07
 Message: feat(pwa): Optimize PWA install experience for all platforms
 ```
@@ -349,7 +349,7 @@ npx lighthouse https://ailydian.com/lydian-iq.html --view
 
 **Production URLs:**
 - Primary: https://ailydian.com/lydian-iq.html
-- Vercel: https://ailydian-4azb5b0ej-emrahsardag-yandexcoms-projects.vercel.app/lydian-iq.html
+- Vercel: https://ailydian-4azb5b0ej-lydian-projects.vercel.app/lydian-iq.html
 
 **Installation Ready:** ✅ Users can install on all platforms NOW!
 

@@ -107,7 +107,7 @@ Format: Hexadecimal
 - ✅ "Arşiv" (Archive)
 - ✅ "Ayarlar" (Settings)
 - ✅ "Çıkış Yap" (Logout)
-- ✅ "Sardag" (Username)
+- ✅ "Lydian" (Username)
 
 **Perfect Score**: 8/8 🎯
 

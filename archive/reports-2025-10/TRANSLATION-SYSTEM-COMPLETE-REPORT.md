@@ -36,7 +36,7 @@ Successfully implemented a professional multi-language translation system for th
 ## 📁 Created Files
 
 ### 1. Backend API Service
-**File:** `/Users/sardag/Desktop/ailydian-ultra-pro/api/translate.js`
+**File:** `/home/lydian/Desktop/ailydian-ultra-pro/api/translate.js`
 
 **Features:**
 - Z.AI powered translation
@@ -60,7 +60,7 @@ Successfully implemented a professional multi-language translation system for th
 ---
 
 ### 2. Frontend Translation Library
-**File:** `/Users/sardag/Desktop/ailydian-ultra-pro/public/js/translation.js`
+**File:** `/home/lydian/Desktop/ailydian-ultra-pro/public/js/translation.js`
 
 **Features:**
 - Automatic language detection from browser
@@ -85,7 +85,7 @@ window.translationManager
 ---
 
 ### 3. Translation Key-Value Map
-**File:** `/Users/sardag/Desktop/ailydian-ultra-pro/public/js/i18n-keys.js`
+**File:** `/home/lydian/Desktop/ailydian-ultra-pro/public/js/i18n-keys.js`
 
 **Content:**
 - Common UI elements (home, features, login, etc.)
@@ -106,7 +106,7 @@ I18N_TRANSLATIONS = {
 ---
 
 ### 4. UI Integration (index.html)
-**File:** `/Users/sardag/Desktop/ailydian-ultra-pro/public/index.html`
+**File:** `/home/lydian/Desktop/ailydian-ultra-pro/public/index.html`
 
 **Added:**
 - Professional language dropdown in navbar
@@ -126,7 +126,7 @@ I18N_TRANSLATIONS = {
 ---
 
 ### 5. Smoke Test Suite
-**File:** `/Users/sardag/Desktop/ailydian-ultra-pro/test-translation-system.js`
+**File:** `/home/lydian/Desktop/ailydian-ultra-pro/test-translation-system.js`
 
 **Tests:**
 1. ✅ Frontend files existence
@@ -316,7 +316,7 @@ console.log(translatedText); // "Hello world"
 
 ### Integration Script Available:
 ```bash
-chmod +x /Users/sardag/Desktop/ailydian-ultra-pro/public/integrate-translations.sh
+chmod +x /home/lydian/Desktop/ailydian-ultra-pro/public/integrate-translations.sh
 ./public/integrate-translations.sh
 ```
 

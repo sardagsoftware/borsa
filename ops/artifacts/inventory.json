@@ -9,7 +9,7 @@
     "name": "ailydian-ultra-pro",
     "version": "1.0.0",
     "package_manager": "pnpm@9.15.9",
-    "repository": "https://github.com/sardagsoftware/borsa.git",
+    "repository": "https://github.com/lydiansoftware/borsa.git",
     "license": "ISC"
   },
   "architecture": {

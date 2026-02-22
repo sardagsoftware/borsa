@@ -98,7 +98,7 @@ Use this when you have time to diagnose before rolling back.
    vercel logs --follow | grep -i "error"
 
    # Check metrics dashboard
-   open https://vercel.com/sardagsoftware/ailydian-ultra-pro/analytics
+   open https://vercel.com/lydiansoftware/ailydian-ultra-pro/analytics
 
    # Check user reports
    # Review #customer-support channel
@@ -163,7 +163,7 @@ curl https://www.ailydian.com/api/health | jq -r '.version'
 
 #### Option B: Rollback via Vercel Dashboard
 
-1. Go to https://vercel.com/sardagsoftware/ailydian-ultra-pro/deployments
+1. Go to https://vercel.com/lydiansoftware/ailydian-ultra-pro/deployments
 2. Find last known good deployment (green checkmark)
 3. Click "..." → "Promote to Production"
 4. Confirm promotion

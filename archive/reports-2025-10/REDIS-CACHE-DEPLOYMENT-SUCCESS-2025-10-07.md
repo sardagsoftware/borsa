@@ -434,7 +434,7 @@ const cacheKey = `lydian-iq:${hash}:${domain}:${language}:v${MODEL_VERSION}`;
 ## 🔗 USEFUL LINKS
 
 - **Upstash Dashboard:** https://console.upstash.com/redis/sincere-tahr-6713
-- **Vercel Dashboard:** https://vercel.com/emrahsardag-yandexcoms-projects/ailydian
+- **Vercel Dashboard:** https://vercel.com/lydian-projects/ailydian
 - **Production URL:** https://www.ailydian.com
 - **Cache Stats API:** https://www.ailydian.com/api/cache-stats
 - **Test Endpoint:** https://www.ailydian.com/api/test-redis-import
@@ -493,6 +493,6 @@ try {
 ---
 
 **Generated:** 2025-10-07 14:48
-**Author:** AX9F7E2B Code (Emrah Sardag request)
+**Author:** AX9F7E2B Code (Lydian request)
 **Project:** LyDian IQ - AI-Powered Problem Solver
 **Status:** ✅ Production Deployment Successful

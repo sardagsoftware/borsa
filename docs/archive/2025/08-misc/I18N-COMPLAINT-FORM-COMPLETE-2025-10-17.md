@@ -306,7 +306,7 @@ git commit -m "feat: Add complete i18n multi-language support"
 vercel --prod
 
 # Result
-✅ Production: https://ailydian-elhzm2bie-emrahsardag-yandexcoms-projects.vercel.app
+✅ Production: https://ailydian-elhzm2bie-lydian-projects.vercel.app
 ✅ Build: Successful
 ✅ Deploy Time: 8 seconds
 ```
@@ -485,7 +485,7 @@ complaint.
 
 ---
 
-**Geliştirici**: Claude + Sardag
+**Geliştirici**: Claude + Lydian
 **Tarih**: 17 Ekim 2025
 **Proje**: LCI - Lydian Complaint Intelligence
 **Versiyon**: v2.0 - i18n Multi-Language

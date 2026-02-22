@@ -419,7 +419,7 @@ Azure Portal → Front Door → Logs
 - BRIEFs: `BRIEF-*.txt`
 
 **Automation:**
-- Workspace: `/Users/sardag/Desktop/ailydian-ultra-pro/ops`
+- Workspace: `/home/lydian/Desktop/ailydian-ultra-pro/ops`
 - Validation: `./validate-and-brief.sh`
 - Monitoring: `./monitor-propagation.sh`
 - Rollback: `./rollback.sh all`

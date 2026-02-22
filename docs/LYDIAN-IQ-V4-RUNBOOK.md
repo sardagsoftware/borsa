@@ -118,7 +118,7 @@ open http://localhost:3100/lydian-iq
 # ✅ Connector API Adapter initialized (white-hat mode)
 
 # 2. Deploy to Vercel
-cd /Users/sardag/Desktop/ailydian-ultra-pro
+cd /home/lydian/Desktop/ailydian-ultra-pro
 vercel --prod --yes
 
 # 3. Verify production

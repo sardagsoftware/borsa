@@ -15,7 +15,7 @@ Successfully integrated the AI Compliance Engine (ACE) governance dashboards int
 ## ✅ COMPLETED TASKS
 
 ### 1. Navigation Menu Integration ✅
-**File:** `/Users/sardag/Desktop/ailydian-ultra-pro/public/index.html`
+**File:** `/home/lydian/Desktop/ailydian-ultra-pro/public/index.html`
 **Line:** 2448
 
 **Changes Made:**
@@ -39,7 +39,7 @@ Successfully integrated the AI Compliance Engine (ACE) governance dashboards int
 ```
 
 ### 2. Feature Card Update ✅
-**File:** `/Users/sardag/Desktop/ailydian-ultra-pro/public/index.html`
+**File:** `/home/lydian/Desktop/ailydian-ultra-pro/public/index.html`
 **Lines:** 2736-2747
 
 **Changes Made:**
@@ -239,7 +239,7 @@ Governance Dashboard (governance-dashboard.html)
 ### For Developers
 ```bash
 # Start server
-cd /Users/sardag/Desktop/ailydian-ultra-pro
+cd /home/lydian/Desktop/ailydian-ultra-pro
 node governance-demo-server.js
 
 # Access dashboards

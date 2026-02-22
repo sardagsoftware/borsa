@@ -391,7 +391,7 @@ dig @1.1.1.1 ailydian.com
 - [Troubleshooting Guide](https://docs.microsoft.com/azure/frontdoor/troubleshoot)
 
 **Ailydian Resources:**
-- Workspace: `/Users/sardag/Desktop/ailydian-ultra-pro/ops`
+- Workspace: `/home/lydian/Desktop/ailydian-ultra-pro/ops`
 - Quick Start: `AZURE-PORTAL-QUICK-START.md`
 - Full Guide: `AZURE-PORTAL-ENTERPRISE-GUIDE.md`
 - Validation: `./final-validation-summary.sh`

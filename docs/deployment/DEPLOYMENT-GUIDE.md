@@ -46,7 +46,7 @@ vercel login
 
 ### Step 3: Deploy to Production
 ```bash
-cd /Users/sardag/Desktop/ailydian-ultra-pro
+cd /home/lydian/Desktop/ailydian-ultra-pro
 vercel --prod
 ```
 

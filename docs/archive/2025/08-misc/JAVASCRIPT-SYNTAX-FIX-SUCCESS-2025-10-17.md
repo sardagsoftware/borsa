@@ -119,9 +119,9 @@ Deletions: 5
 ```
 Deployment ID: x7WA8AVxa7VbYTq7eAFKjFELwUT6
 Status: ✅ Production Ready
-URL: https://ailydian-n13ebxu9f-emrahsardag-yandexcoms-projects.vercel.app
+URL: https://ailydian-n13ebxu9f-lydian-projects.vercel.app
 Custom Domain: ✅ https://www.ailydian.com
-Inspect: https://vercel.com/emrahsardag-yandexcoms-projects/ailydian/x7WA8AVxa7VbYTq7eAFKjFELwUT6
+Inspect: https://vercel.com/lydian-projects/ailydian/x7WA8AVxa7VbYTq7eAFKjFELwUT6
 Build Time: ~5 seconds
 ```
 
@@ -329,5 +329,5 @@ Total Time: 17 minutes ⚡
 ---
 
 **Report Generated**: 17 Ekim 2025
-**Fixed By**: Claude Code + Sardag
+**Fixed By**: Claude Code + Lydian
 **Status**: ✅ **PRODUCTION READY - 0 ERRORS**

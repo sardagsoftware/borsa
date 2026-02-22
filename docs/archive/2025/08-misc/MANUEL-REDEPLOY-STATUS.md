@@ -116,7 +116,7 @@ Ben otomatik izliyorum:
 
 **Vercel Dashboard:**
 ```
-https://vercel.com/emrahsardag-yandexcoms-projects/ailydian
+https://vercel.com/lydian-projects/ailydian
 → Deployments
 → En yeni deployment'ı gör
 → Status: Building... / Deploying... / Ready

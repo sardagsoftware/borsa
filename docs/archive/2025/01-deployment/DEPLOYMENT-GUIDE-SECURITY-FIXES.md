@@ -19,7 +19,7 @@ node -e "console.log('SESSION_SECRET=' + require('crypto').randomBytes(64).toStr
 ### 2. Validation Çalıştır
 
 ```bash
-cd /Users/sardag/Desktop/ailydian-ultra-pro
+cd /home/lydian/Desktop/ailydian-ultra-pro
 npm run validate:env
 ```
 

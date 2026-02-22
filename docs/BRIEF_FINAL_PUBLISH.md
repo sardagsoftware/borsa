@@ -331,7 +331,7 @@ Part of Global AI Data Source Publisher initiative
 **Deployment URL:**
 ```
 Production: https://www.ailydian.com
-Inspect: https://vercel.com/emrahsardag-yandexcoms-projects/ailydian/D6AjJp5r5UDVMLdR9BUQcY6Tg135
+Inspect: https://vercel.com/lydian-projects/ailydian/D6AjJp5r5UDVMLdR9BUQcY6Tg135
 ```
 
 **Cache Status:** HIT (Vercel edge caching active)
@@ -665,7 +665,7 @@ python ops/index_bridge/index_trigger.py --platform yandex
 crontab -e
 
 # Add daily monitoring at 03:00 UTC
-0 3 * * * /Users/sardag/Desktop/ailydian-ultra-pro/ops/index_bridge/cron_daily.sh >> /Users/sardag/Desktop/ailydian-ultra-pro/logs/index_bridge_cron.log 2>&1
+0 3 * * * /home/lydian/Desktop/ailydian-ultra-pro/ops/index_bridge/cron_daily.sh >> /home/lydian/Desktop/ailydian-ultra-pro/logs/index_bridge_cron.log 2>&1
 ```
 
 **Verification:**

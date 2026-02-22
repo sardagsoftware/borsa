@@ -232,5 +232,5 @@ curl -X POST https://www.ailydian.com/api/lydian-iq/solve \
 ---
 
 **Generated:** 2025-10-07 13:15 UTC  
-**Engineer:** Claude Code (Sardag AI Platform)  
+**Engineer:** Claude Code (Lydian AI Platform)  
 **Next Phase:** Phase 2 - Caching & Performance

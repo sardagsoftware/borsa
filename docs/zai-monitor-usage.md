@@ -43,7 +43,7 @@ Betik, her komutu çalıştırır, sonuçları konsola yazar ve `logs/zai-monito
 ## 4. Cron Örneği (30 dakikada bir)
 
 ```cron
-*/30 * * * * cd /Users/sardag/Desktop/ailydian-ultra-pro && Z_AI_API_KEY=xxx node scripts/zai-monitor.js >> /var/log/zai-monitor.log 2>&1
+*/30 * * * * cd /home/lydian/Desktop/ailydian-ultra-pro && Z_AI_API_KEY=xxx node scripts/zai-monitor.js >> /var/log/zai-monitor.log 2>&1
 ```
 
 - Eğer macOS launchd veya Linux systemd kullanıyorsanız ilgili unit dosyalarında aynı komut tanımlanabilir.

@@ -371,7 +371,7 @@ try {
 
 **Platform Team:** platform@ailydian.com
 **Security Team:** security@ailydian.com
-**Documentation:** `/Users/sardag/Desktop/ailydian-ultra-pro/docs/`
+**Documentation:** `/home/lydian/Desktop/ailydian-ultra-pro/docs/`
 
 ---
 
@@ -398,5 +398,5 @@ try {
 **Branch:** main
 **Commit:** [pending]
 **Engineer:** AX9F7E2B Code AI Assistant
-**Approval:** SARDAG ✅
+**Approval:** Lydian ✅
 

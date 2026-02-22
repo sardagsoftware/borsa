@@ -232,7 +232,7 @@ Edit `/apps/lci-web/public/data/sla-config.json` to adjust targets:
 ### 1. Start Dev Server
 
 ```bash
-cd /Users/sardag/Desktop/ailydian-ultra-pro/apps/lci-web
+cd /home/lydian/Desktop/ailydian-ultra-pro/apps/lci-web
 npm run dev
 ```
 

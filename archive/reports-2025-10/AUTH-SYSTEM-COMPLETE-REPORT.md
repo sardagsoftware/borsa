@@ -341,5 +341,5 @@ open http://localhost:3100/auth.html
 
 **Created**: 2025-01-02
 **Version**: 1.0.0
-**Author**: AX9F7E2B & Sardag
+**Author**: AX9F7E2B & Lydian
 **Status**: ✅ Complete & Production Ready

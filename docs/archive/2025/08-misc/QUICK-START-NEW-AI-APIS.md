@@ -16,7 +16,7 @@ AZURE_SPEECH_REGION=swedencentral
 
 ### 2. Start Server
 ```bash
-cd /Users/sardag/Desktop/ailydian-ultra-pro
+cd /home/lydian/Desktop/ailydian-ultra-pro
 npm start
 ```
 Server runs on: http://localhost:3100

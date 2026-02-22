@@ -302,7 +302,7 @@ Documentation/
 
 ```bash
 # Navigate to project directory
-cd /Users/sardag/Desktop/ailydian-ultra-pro
+cd /home/lydian/Desktop/ailydian-ultra-pro
 
 # Start governance demo server
 node governance-demo-server.js

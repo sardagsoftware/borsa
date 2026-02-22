@@ -209,7 +209,7 @@ NLP, computer vision, and decision support. Try free today.
 
 2. **Deploy to Vercel**
    ```bash
-   cd /Users/sardag/Desktop/ailydian-ultra-pro
+   cd /home/lydian/Desktop/ailydian-ultra-pro
    vercel --prod --yes
    ```
 
@@ -292,8 +292,8 @@ NLP, computer vision, and decision support. Try free today.
 
 ## 📞 CONTACT & SUPPORT
 
-**Project Lead**: Emrah Sardag
-**Email**: emrah.sardag@ailydian.com
+**Project Lead**: Lydian
+**Email**: emrah.lydian@ailydian.com
 **Website**: https://www.ailydian.com
 **Status Page**: https://ailydian.com/status
 

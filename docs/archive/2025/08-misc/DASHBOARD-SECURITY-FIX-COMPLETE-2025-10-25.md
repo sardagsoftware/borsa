@@ -40,13 +40,13 @@ Cause: Vercel Deployment Protection (Next.js app)
    - URL: dashboard.ailydian.com
    - Status: Protected (password required)
    - Type: Server-Side Rendered
-   - Location: /Users/sardag/Desktop/lydian-master-dashboard/
+   - Location: /home/lydian/Desktop/lydian-master-dashboard/
 
 2. **ailydian-ultra-pro Dashboard** (Static HTML)
    - URL: www.ailydian.com/dashboard
    - Status: ✅ Accessible (JWT auth)
    - Type: Client-Side
-   - Location: /Users/sardag/Desktop/ailydian-ultra-pro/public/dashboard.html
+   - Location: /home/lydian/Desktop/ailydian-ultra-pro/public/dashboard.html
 
 ### Çözüm Seçimi
 

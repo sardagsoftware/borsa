@@ -324,7 +324,7 @@ Arayüz profesyonel, modern ve kullanıma hazır. Tüm animasyonlar smooth çal�
 
 ---
 
-**Hazırlayan:** Claude & Sardag
+**Hazırlayan:** Claude & Lydian
 **Versiyon:** v2.0 Ultra-Modern Premium
 **Teknoloji:** Vanilla JS + CSS3 + Glassmorphism
 **Tarih:** 2025-10-10

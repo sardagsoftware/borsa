@@ -2,7 +2,7 @@
 
 **Tamamlanma Tarihi:** 2025-10-03
 **Versiyon:** 1.0.0 (Production Ready)
-**Geliştirici:** Emrah Sardag
+**Geliştirici:** Lydian
 **Güvenlik Durumu:** ✅ Beyaz Şapkalı AI Kuralları Aktif
 **API Durumu:** ✅ Gerçek Azure API Anahtarları Entegre
 **Veri Kaynakları:** ✅ Gerçek Zamanlı Türk Hukuk Verileri
@@ -623,7 +623,7 @@ Azure Subscription: Active
 
 1. **Bağımlılıkları yükleyin:**
 ```bash
-cd /Users/sardag/Desktop/ailydian-ultra-pro
+cd /home/lydian/Desktop/ailydian-ultra-pro
 npm install
 # veya
 pnpm install
@@ -699,7 +699,7 @@ curl -X POST http://localhost:3100/api/legal-ai/analyze \
 
 ## 📞 DESTEK & İLETİŞİM
 
-**Geliştirici:** Emrah Sardag
+**Geliştirici:** Lydian
 **Email:** seninmailin@gmail.com
 **Proje:** LyDian AI - Turkish Legal AI Platform
 **Güvenlik:** White-Hat AI Rules Active

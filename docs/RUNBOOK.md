@@ -25,7 +25,7 @@
 
 ```bash
 # Automatic rollback to previous Vercel deployment
-cd /Users/sardag/Desktop/ailydian-ultra-pro
+cd /home/lydian/Desktop/ailydian-ultra-pro
 ./ops/scripts/ROLLBACK.sh
 
 # Verify
@@ -126,7 +126,7 @@ curl https://www.ailydian.com/api/health
 
 ## 📞 CONTACTS
 
-- **Founder:** Emrah Sardag (sardagemrah@gmail.com)
+- **Founder:** Lydian (security@ailydian.com)
 - **On-Call:** TBD
 - **Vercel Support:** https://vercel.com/support
 

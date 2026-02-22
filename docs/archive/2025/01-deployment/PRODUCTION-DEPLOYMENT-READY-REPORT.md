@@ -12,7 +12,7 @@
 AiLydian Ultra Pro ekosistemi **tüm kritik güvenlik düzeltmeleriyle birlikte production'a hazır**. Comprehensive smoke test sonuçları sistemin %86.7 başarı oranıyla çalıştığını gösteriyor.
 
 **Overall System Health:** 🟢 EXCELLENT
-**Production URL:** https://ailydian-rn7dj0wi3-emrahsardag-yandexcoms-projects.vercel.app
+**Production URL:** https://ailydian-rn7dj0wi3-lydian-projects.vercel.app
 **Deployment Status:** ✅ LIVE & STABLE
 
 ---
@@ -144,7 +144,7 @@ Status:          ✅ Ready
 Last Deploy:     ~15 minutes ago
 Build Duration:  17s
 Git Commit:      9d366cb (latest security fixes)
-Domain:          ailydian-rn7dj0wi3-emrahsardag-yandexcoms-projects.vercel.app
+Domain:          ailydian-rn7dj0wi3-lydian-projects.vercel.app
 ```
 
 ### Recent Commits (Latest 3)
@@ -379,7 +379,7 @@ The system is secure, performant, and fully functional for end users.
 
 ## 📞 Support & Monitoring
 
-**Production URL:** https://ailydian-rn7dj0wi3-emrahsardag-yandexcoms-projects.vercel.app
+**Production URL:** https://ailydian-rn7dj0wi3-lydian-projects.vercel.app
 **Status Dashboard:** [To Be Setup]
 **Error Tracking:** [To Be Configured]
 **Security Contact:** security@ailydian.com

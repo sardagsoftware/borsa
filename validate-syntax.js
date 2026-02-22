@@ -1,7 +1,7 @@
 const fs = require('fs');
 const vm = require('vm');
 
-const html = fs.readFileSync('/Users/sardag/Desktop/ailydian-ultra-pro/public/medical-expert.html', 'utf8');
+const html = fs.readFileSync('/home/lydian/Desktop/ailydian-ultra-pro/public/medical-expert.html', 'utf8');
 
 // Extract all <script> blocks
 const scriptMatches = html.match(/<script(?:\s+[^>]*)?>([\s\S]*?)<\/script>/gi) || [];

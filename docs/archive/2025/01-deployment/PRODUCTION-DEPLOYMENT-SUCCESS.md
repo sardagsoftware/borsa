@@ -12,7 +12,7 @@
 ## 🌐 Production URLs
 
 ### Main Deployment:
-**URL:** https://ailydian-pp0fw7v58-emrahsardag-yandexcoms-projects.vercel.app
+**URL:** https://ailydian-pp0fw7v58-lydian-projects.vercel.app
 
 ### Key Pages:
 - **Legal AI Search:** `/lydian-legal-search.html`
@@ -21,7 +21,7 @@
 - **Legal AI API:** `/api/legal-ai`
 
 ### Inspection Dashboard:
-https://vercel.com/emrahsardag-yandexcoms-projects/ailydian/5WyvpYk8kDPAJEc7F5Xb4HqLBDaN
+https://vercel.com/lydian-projects/ailydian/5WyvpYk8kDPAJEc7F5Xb4HqLBDaN
 
 ---
 
@@ -135,7 +135,7 @@ NODE_ENV=production
 ### To Configure Custom Domain:
 
 1. **Go to Vercel Dashboard:**
-   https://vercel.com/emrahsardag-yandexcoms-projects/ailydian
+   https://vercel.com/lydian-projects/ailydian
 
 2. **Add Domain:**
    - Click "Settings" → "Domains"
@@ -177,10 +177,10 @@ NODE_ENV=production
 vercel --prod --yes
 
 # Verify deployment
-curl https://ailydian-pp0fw7v58-emrahsardag-yandexcoms-projects.vercel.app/lydian-legal-search.html
+curl https://ailydian-pp0fw7v58-lydian-projects.vercel.app/lydian-legal-search.html
 
 # Check logs
-vercel inspect ailydian-pp0fw7v58-emrahsardag-yandexcoms-projects.vercel.app --logs
+vercel inspect ailydian-pp0fw7v58-lydian-projects.vercel.app --logs
 ```
 
 ---

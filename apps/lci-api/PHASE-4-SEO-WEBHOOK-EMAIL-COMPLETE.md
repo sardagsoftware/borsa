@@ -416,7 +416,7 @@ curl http://localhost:3201/v1/health
 
 ---
 
-**Geliştirici**: AX9F7E2B + Sardag
+**Geliştirici**: AX9F7E2B + Lydian
 **Proje**: LCI - Lydian Complaint Intelligence
 **Versiyon**: v1.0 - Phase 4 Complete
 **Tarih**: 17 Ekim 2025

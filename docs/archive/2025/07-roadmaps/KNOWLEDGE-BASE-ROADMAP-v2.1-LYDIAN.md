@@ -1,9 +1,9 @@
 # 🌟 LyDian Bilgi Bankası - Ultimate Knowledge Base Portal
-## Enterprise Roadmap v2.1 - Sardag Edition
+## Enterprise Roadmap v2.1 - Lydian Edition
 
 **Tarih:** 2 Ekim 2025
 **Versiyon:** 2.1 Professional
-**Hazırlayan:** Claude Code + Sardag
+**Hazırlayan:** Claude Code + Lydian
 **Güvenlik:** Beyaz Şapka Kuralları Aktif ✅
 
 ---
@@ -997,13 +997,13 @@ TOPLAM:                    6 hafta
 
 ## 14. İletişim & Destek
 
-**Proje Sahibi:** Sardag
-**Geliştirme:** Claude Code + Sardag Team
+**Proje Sahibi:** Lydian
+**Geliştirme:** Claude Code + Lydian Team
 **Versiyon:** v2.1 Professional
 **Son Güncelleme:** 2 Ekim 2025
 
 **Dokümantasyon:**
-- 📁 `/KNOWLEDGE-BASE-ROADMAP-v2.1-SARDAG.md`
+- 📁 `/KNOWLEDGE-BASE-ROADMAP-v2.1-Lydian.md`
 - 📁 `/ai-brain/ultimate-knowledge-base.js`
 - 📁 `/public/system-status.html`
 

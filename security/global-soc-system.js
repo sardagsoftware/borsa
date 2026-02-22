@@ -54,11 +54,11 @@ class GlobalSOCSystem extends EventEmitter {
 
     async setupSecurityDirectories() {
         const securityDirs = [
-            '/Users/sardag/Desktop/ailydian-ultra-pro/security',
-            '/Users/sardag/Desktop/ailydian-ultra-pro/security/logs',
-            '/Users/sardag/Desktop/ailydian-ultra-pro/security/keys',
-            '/Users/sardag/Desktop/ailydian-ultra-pro/security/policies',
-            '/Users/sardag/Desktop/ailydian-ultra-pro/security/quarantine'
+            '/home/lydian/Desktop/ailydian-ultra-pro/security',
+            '/home/lydian/Desktop/ailydian-ultra-pro/security/logs',
+            '/home/lydian/Desktop/ailydian-ultra-pro/security/keys',
+            '/home/lydian/Desktop/ailydian-ultra-pro/security/policies',
+            '/home/lydian/Desktop/ailydian-ultra-pro/security/quarantine'
         ];
 
         for (const dir of securityDirs) {
@@ -74,7 +74,7 @@ class GlobalSOCSystem extends EventEmitter {
 
     async loadSecurityPolicies() {
         try {
-            const policiesPath = path.join('/Users/sardag/Desktop/ailydian-ultra-pro/security/policies', 'security-policies.json');
+            const policiesPath = path.join('/home/lydian/Desktop/ailydian-ultra-pro/security/policies', 'security-policies.json');
             const policiesData = await fs.readFile(policiesPath, 'utf8');
             this.securityPolicies = { ...this.securityPolicies, ...JSON.parse(policiesData) };
         } catch (error) {
@@ -84,7 +84,7 @@ class GlobalSOCSystem extends EventEmitter {
     }
 
     async saveSecurityPolicies() {
-        const policiesPath = path.join('/Users/sardag/Desktop/ailydian-ultra-pro/security/policies', 'security-policies.json');
+        const policiesPath = path.join('/home/lydian/Desktop/ailydian-ultra-pro/security/policies', 'security-policies.json');
         await fs.writeFile(policiesPath, JSON.stringify(this.securityPolicies, null, 2));
     }
 
@@ -296,7 +296,7 @@ class GlobalSOCSystem extends EventEmitter {
 
     async saveSecurityLog(event) {
         try {
-            const logPath = path.join('/Users/sardag/Desktop/ailydian-ultra-pro/security/logs', `security-${new Date().toISOString().split('T')[0]}.log`);
+            const logPath = path.join('/home/lydian/Desktop/ailydian-ultra-pro/security/logs', `security-${new Date().toISOString().split('T')[0]}.log`);
             const logEntry = `${event.timestamp} [${event.severity}] ${event.type}: ${JSON.stringify(event.details)}\n`;
             await fs.appendFile(logPath, logEntry);
         } catch (error) {

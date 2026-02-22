@@ -61,7 +61,7 @@ Priority: 50
 
 **If DNS is managed by Vercel:**
 
-1. Go to https://vercel.com/emrahsardag-yandexcoms-projects/ailydian
+1. Go to https://vercel.com/lydian-projects/ailydian
 2. Click **Settings** → **Domains**
 3. Click on **ailydian.com**
 4. Scroll to **DNS Records** section
@@ -291,7 +291,7 @@ Project: ailydian
 Latest: 30 minutes ago
 Status: ● Ready (Production)
 Build: 2m
-URL: https://ailydian-717ywqhgq-emrahsardag-yandexcoms-projects.vercel.app
+URL: https://ailydian-717ywqhgq-lydian-projects.vercel.app
 ```
 
 ---
@@ -368,7 +368,7 @@ Use Vercel web dashboard instead of CLI for DNS management (see Option 1 above)
 - OAuth Setup: https://www.zoho.com/mail/help/api/oauth-overview.html
 
 ### Vercel DNS Documentation
-- Dashboard: https://vercel.com/emrahsardag-yandexcoms-projects/ailydian/settings/domains
+- Dashboard: https://vercel.com/lydian-projects/ailydian/settings/domains
 - DNS Docs: https://vercel.com/docs/concepts/projects/domains/dns-records
 
 ### Current Status Check
@@ -381,7 +381,7 @@ dig TXT ailydian.com +short
 curl -I https://www.ailydian.com/email-dashboard
 
 # Check Vercel deployment
-vercel ls --scope emrahsardag-yandexcoms-projects
+vercel ls --scope lydian-projects
 ```
 
 ---

@@ -33,7 +33,7 @@ Submit LyDian AI discovery feeds to:
 ### 1. Install Python Dependencies
 
 ```bash
-cd /Users/sardag/Desktop/ailydian-ultra-pro/ops/index_bridge
+cd /home/lydian/Desktop/ailydian-ultra-pro/ops/index_bridge
 pip install -r requirements.txt
 ```
 
@@ -337,7 +337,7 @@ curl "https://yandex.com/search/?text=site:www.ailydian.com/feed/ai_models.json"
 crontab -e
 
 # Add daily submission at 03:00 UTC
-0 3 * * * source ~/.env && cd /Users/sardag/Desktop/ailydian-ultra-pro/ops/index_bridge && python index_trigger.py --platform all >> logs/index_bridge.log 2>&1
+0 3 * * * source ~/.env && cd /home/lydian/Desktop/ailydian-ultra-pro/ops/index_bridge && python index_trigger.py --platform all >> logs/index_bridge.log 2>&1
 ```
 
 ### CI/CD Integration (GitHub Actions)

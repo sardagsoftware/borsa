@@ -65,7 +65,7 @@ if curl -s "$BASE_URL/api/health" > /dev/null 2>&1; then
 else
     echo -e "${RED}❌ Server is not running!${NC}"
     echo "Please start the server first:"
-    echo "  cd /Users/sardag/Desktop/ailydian-ultra-pro"
+    echo "  cd /home/lydian/Desktop/ailydian-ultra-pro"
     echo "  PORT=3100 node server.js"
     exit 1
 fi

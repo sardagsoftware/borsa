@@ -530,7 +530,7 @@ pipeline_tag: text-generation
 
 ---
 
-**Proje Sahibi**: Emrah Sardag
+**Proje Sahibi**: Lydian
 **Execution Timeline**: 12 weeks (3 months)
 **Budget Estimate**: $25,000 - $50,000 (professional translations, tools, consulting)
 **ROI Expected**: 500%+ in first year

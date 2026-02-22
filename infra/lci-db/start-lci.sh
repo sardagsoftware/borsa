@@ -25,7 +25,7 @@ echo ""
 
 # Start PostgreSQL container
 echo "2️⃣  Starting PostgreSQL container..."
-cd /Users/sardag/Desktop/ailydian-ultra-pro/infra/lci-db
+cd /home/lydian/Desktop/ailydian-ultra-pro/infra/lci-db
 docker-compose up -d
 echo -e "${GREEN}✅ PostgreSQL started${NC}"
 echo ""
@@ -60,7 +60,7 @@ echo ""
 
 # Start LCI API
 echo "7️⃣  Starting LCI API..."
-cd /Users/sardag/Desktop/ailydian-ultra-pro/apps/lci-api
+cd /home/lydian/Desktop/ailydian-ultra-pro/apps/lci-api
 echo -e "${YELLOW}Starting API server on http://localhost:3201${NC}"
 npm run start:dev &
 API_PID=$!
@@ -88,7 +88,7 @@ echo "   • Moderator:  moderator@lci.lydian.ai / Demo1234!"
 echo "   • User:       ahmet.yilmaz@gmail.com / Demo1234!"
 echo ""
 echo "🧪 Run E2E Tests:"
-echo "   cd /Users/sardag/Desktop/ailydian-ultra-pro/apps/lci-api"
+echo "   cd /home/lydian/Desktop/ailydian-ultra-pro/apps/lci-api"
 echo "   npm run test:e2e"
 echo ""
 echo "📚 Documentation:"

@@ -473,8 +473,8 @@
 
 ## 📞 CONTACT
 
-**Project Lead**: Emrah Sardag
-**Email**: emrah.sardag@ailydian.com
+**Project Lead**: Lydian
+**Email**: emrah.lydian@ailydian.com
 **Website**: https://www.ailydian.com
 
 **Documentation:**

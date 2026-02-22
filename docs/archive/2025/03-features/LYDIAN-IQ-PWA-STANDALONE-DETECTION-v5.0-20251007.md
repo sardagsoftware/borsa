@@ -4,7 +4,7 @@
 **Date:** 2025-10-07
 **Version:** 5.0
 **Status:** ✅ DEPLOYED TO PRODUCTION
-**Deployment URL:** https://ailydian-hv8cccxte-emrahsardag-yandexcoms-projects.vercel.app
+**Deployment URL:** https://ailydian-hv8cccxte-lydian-projects.vercel.app
 
 ---
 
@@ -148,7 +148,7 @@ if (isRunningAsStandalone()) {
 ### Production Deployment
 - **Status:** ✅ SUCCESS
 - **Platform:** Vercel
-- **URL:** https://ailydian-hv8cccxte-emrahsardag-yandexcoms-projects.vercel.app/lydian-iq.html
+- **URL:** https://ailydian-hv8cccxte-lydian-projects.vercel.app/lydian-iq.html
 - **Build Time:** 3 seconds
 - **Upload Size:** 31.1 KB
 - **Deployment ID:** 5czqYqvja278PB6Dpdei58XfcCXj
@@ -372,7 +372,7 @@ Exit Script   Continue
 ## 🚀 Next Steps
 
 ### For User Testing
-1. Open https://ailydian-hv8cccxte-emrahsardag-yandexcoms-projects.vercel.app/lydian-iq.html
+1. Open https://ailydian-hv8cccxte-lydian-projects.vercel.app/lydian-iq.html
 2. Install LyDian IQ PWA (using browser's install prompt or instructions)
 3. Close browser
 4. Open LyDian IQ from home screen/app drawer

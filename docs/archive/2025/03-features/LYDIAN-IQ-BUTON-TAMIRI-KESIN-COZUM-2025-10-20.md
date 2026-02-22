@@ -70,7 +70,7 @@ elements.sendBtn.addEventListener('click', processQuery);
 ## 🛠️ Uygulanan Çözüm
 
 ### Değişiklik 1: Element Deklarasyonu
-**Dosya:** `/Users/sardag/Desktop/ailydian-ultra-pro/public/lydian-iq.html`
+**Dosya:** `/home/lydian/Desktop/ailydian-ultra-pro/public/lydian-iq.html`
 **Satır:** 1796-1797
 
 **ESKİ KOD:**
@@ -105,7 +105,7 @@ let elements;
 ---
 
 ### Değişiklik 2: Element İnisyalizasyonu
-**Dosya:** `/Users/sardag/Desktop/ailydian-ultra-pro/public/lydian-iq.html`
+**Dosya:** `/home/lydian/Desktop/ailydian-ultra-pro/public/lydian-iq.html`
 **Satır:** 3669-3689 (DOMContentLoaded içine eklendi)
 
 **YENİ KOD:**
@@ -324,7 +324,7 @@ Tarayıcı Developer Tools (F12) > Console açıldığında göreceksiniz:
 
 ### Ana Düzeltme
 ```
-/Users/sardag/Desktop/ailydian-ultra-pro/public/lydian-iq.html
+/home/lydian/Desktop/ailydian-ultra-pro/public/lydian-iq.html
 ```
 **Değişiklikler:**
 - Satır 1796-1797: `const elements` → `let elements`
@@ -332,7 +332,7 @@ Tarayıcı Developer Tools (F12) > Console açıldığında göreceksiniz:
 
 ### Test Dosyası (Yeni)
 ```
-/Users/sardag/Desktop/ailydian-ultra-pro/test-lydian-iq-fix.js
+/home/lydian/Desktop/ailydian-ultra-pro/test-lydian-iq-fix.js
 ```
 **Amaç:** Düzeltmeleri otomatik olarak doğrula
 

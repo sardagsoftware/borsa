@@ -66,7 +66,7 @@ Lines: 807-808
 
 ### 2. Vercel Deployment
 ```bash
-✅ Deployment: https://ailydian-9ljf6nk6o-emrahsardag-yandexcoms-projects.vercel.app
+✅ Deployment: https://ailydian-9ljf6nk6o-lydian-projects.vercel.app
 ✅ Status: ● Ready (Production)
 ✅ Duration: 2 minutes
 ✅ Age: 4 minutes ago
@@ -208,7 +208,7 @@ Author: Claude <noreply@anthropic.com>
 ### Vercel
 ```
 Project: ailydian
-Team: emrahsardag-yandexcoms-projects
+Team: lydian-projects
 Region: Global (Edge)
 Deployment: dpl_9iEDYMdDABaqocJKbxdju6h4BcLD
 Status: ● Ready (Production)
@@ -401,7 +401,7 @@ api/lydian-iq/solve.js
 - **Deployment Docs:** `/docs/VERCEL-INTEGRATION.md`
 
 ### Monitoring
-- **Vercel Dashboard:** https://vercel.com/emrahsardag-yandexcoms-projects/ailydian
+- **Vercel Dashboard:** https://vercel.com/lydian-projects/ailydian
 - **Deployment Logs:** Available in Vercel dashboard
 - **Error Tracking:** Console logs + Vercel logs
 

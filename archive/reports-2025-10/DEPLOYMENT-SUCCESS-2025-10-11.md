@@ -70,35 +70,35 @@ Cache-Control: public, max-age=0, must-revalidate
 
 ### 1st Deployment (Initial)
 ```
-URL: https://ailydian-nu6otvw9x-emrahsardag-yandexcoms-projects.vercel.app
+URL: https://ailydian-nu6otvw9x-lydian-projects.vercel.app
 Time: 7 seconds
 Status: ✅ Success
 ```
 
 ### 2nd Deployment (Validation)
 ```
-URL: https://ailydian-2kl32u31k-emrahsardag-yandexcoms-projects.vercel.app
+URL: https://ailydian-2kl32u31k-lydian-projects.vercel.app
 Time: 4 seconds
 Status: ✅ Success
 ```
 
 ### 3rd Deployment (Content Verification)
 ```
-URL: https://ailydian-hggw5n5xl-emrahsardag-yandexcoms-projects.vercel.app
+URL: https://ailydian-hggw5n5xl-lydian-projects.vercel.app
 Time: 4 seconds
 Status: ✅ Success
 ```
 
 ### 4th Deployment (Stability Check)
 ```
-URL: https://ailydian-am573k7nl-emrahsardag-yandexcoms-projects.vercel.app
+URL: https://ailydian-am573k7nl-lydian-projects.vercel.app
 Time: 4 seconds
 Status: ✅ Success
 ```
 
 ### 5th Deployment (Final)
 ```
-URL: https://ailydian-9vbgg41bf-emrahsardag-yandexcoms-projects.vercel.app
+URL: https://ailydian-9vbgg41bf-lydian-projects.vercel.app
 Time: 5 seconds
 Status: ✅ Success
 ```
@@ -326,8 +326,8 @@ Deployed 5 times to ensure:
 
 ### Production URLs
 - **Main Domain**: https://www.ailydian.com
-- **Latest Deploy**: https://ailydian-9vbgg41bf-emrahsardag-yandexcoms-projects.vercel.app
-- **Vercel Dashboard**: https://vercel.com/emrahsardag-yandexcoms-projects/ailydian
+- **Latest Deploy**: https://ailydian-9vbgg41bf-lydian-projects.vercel.app
+- **Vercel Dashboard**: https://vercel.com/lydian-projects/ailydian
 
 ### Documentation
 - `LYDIAN-ECOSYSTEM-PERFECT-2025-10-11.md` - Full ecosystem report
@@ -343,7 +343,7 @@ curl -I https://www.ailydian.com
 vercel logs ailydian
 
 # Inspect latest deployment
-vercel inspect ailydian-9vbgg41bf-emrahsardag-yandexcoms-projects.vercel.app --logs
+vercel inspect ailydian-9vbgg41bf-lydian-projects.vercel.app --logs
 ```
 
 ---

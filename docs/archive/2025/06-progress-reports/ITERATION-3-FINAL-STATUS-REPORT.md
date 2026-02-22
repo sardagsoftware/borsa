@@ -170,7 +170,7 @@ Files changed: 139 files, 77775 insertions(+), 2523 deletions(-)
 **Vercel Production Deploy:**
 ```
 ✅ Deployment complete
-✅ Production: https://ailydian-e6bj1op6y-emrahsardag-yandexcoms-projects.vercel.app
+✅ Production: https://ailydian-e6bj1op6y-lydian-projects.vercel.app
 ✅ Custom domain: https://www.ailydian.com
 ✅ HTTP/2 200 OK
 ✅ Age: 0 (fresh deployment)

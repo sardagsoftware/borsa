@@ -13,7 +13,7 @@
 2. Click **"Create Token"**
 3. Configuration:
    - **Token Name:** `ailydian-afd-dns-automation`
-   - **Scope:** Select **"emrahsardag-9142"** team
+   - **Scope:** Select **"lydian-9142"** team
    - **Expiration:** 30 days (or longer)
    - **Permissions:** Full access (or DNS records write access)
 4. Click **"Create"**
@@ -26,7 +26,7 @@ If you have a token, verify it works:
 ```bash
 # Test token validity
 export VERCEL_TOKEN="your-token-here"
-export VERCEL_TEAM_ID="emrahsardag-9142"
+export VERCEL_TEAM_ID="lydian-9142"
 
 curl -s -H "Authorization: Bearer $VERCEL_TOKEN" \
   "https://api.vercel.com/v2/domains/ailydian.com/records?teamId=$VERCEL_TEAM_ID" \
@@ -56,7 +56,7 @@ curl -s -H "Authorization: Bearer $VERCEL_TOKEN" \
 ```bash
 # In your terminal (NOT in scripts)
 export VERCEL_TOKEN="paste-your-token-here"
-export VERCEL_TEAM_ID="emrahsardag-9142"
+export VERCEL_TEAM_ID="lydian-9142"
 
 # Verify
 echo "Token length: ${#VERCEL_TOKEN} characters"
@@ -297,7 +297,7 @@ Domain: newsai.earth
 - Finalization: `./afd-portal-finalization.sh`
 - Rollback: `./rollback.sh all`
 
-**Workspace:** `/Users/sardag/Desktop/ailydian-ultra-pro/ops`
+**Workspace:** `/home/lydian/Desktop/ailydian-ultra-pro/ops`
 
 ---
 

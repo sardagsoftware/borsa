@@ -2,7 +2,7 @@
 ## Ailydian Ultra Pro - Zero-Downtime Cutover
 
 **Last Updated:** 2025-10-04
-**Owner:** Sardag Engineering Team
+**Owner:** Lydian Engineering Team
 **Criticality:** P0 - Production Migration
 
 ---
@@ -299,7 +299,7 @@ az consumption reservation recommendation list \
 
 | Role                | Name   | Contact           |
 |---------------------|--------|-------------------|
-| Lead Engineer       | Sardag | sardag@ailydian.com |
+| Lead Engineer       | Lydian | lydian@ailydian.com |
 | Backend Lead        | TBD    | -                 |
 | DevOps Lead         | TBD    | -                 |
 | Database Admin      | TBD    | -                 |

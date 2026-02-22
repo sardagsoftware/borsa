@@ -10,8 +10,8 @@
 ### Project Information
 - **Project Name:** ailydian
 - **Vercel Project ID:** prj_6nWRAEyT6cVQpa4eIGFa6lf44VfJ
-- **Production URL:** https://ailydian-rn7dj0wi3-emrahsardag-yandexcoms-projects.vercel.app
-- **GitHub Repository:** sardagsoftware/borsa
+- **Production URL:** https://ailydian-rn7dj0wi3-lydian-projects.vercel.app
+- **GitHub Repository:** lydiansoftware/borsa
 - **Branch:** main
 - **Commit:** 2d53410 - "feat: Add İnsan IQ menu with LyDian IQ & Knowledge Base + major improvements"
 
@@ -51,7 +51,7 @@
 - `/public/js/lydian-iq.js` - Functionality and API calls
 
 **Page Status:** ✅ HTTP 200 OK
-**URL:** https://ailydian-rn7dj0wi3-emrahsardag-yandexcoms-projects.vercel.app/lydian-iq.html
+**URL:** https://ailydian-rn7dj0wi3-lydian-projects.vercel.app/lydian-iq.html
 
 ---
 
@@ -69,7 +69,7 @@
 - `/api/knowledge/chat` - Interactive knowledge chat
 
 **Page Status:** ✅ HTTP 200 OK
-**URL:** https://ailydian-rn7dj0wi3-emrahsardag-yandexcoms-projects.vercel.app/knowledge-base.html
+**URL:** https://ailydian-rn7dj0wi3-lydian-projects.vercel.app/knowledge-base.html
 
 ---
 
@@ -270,7 +270,7 @@ feat: Add İnsan IQ menu with LyDian IQ & Knowledge Base + major improvements
 ### Production Deployment
 - ✅ **Deployed:** Yes
 - ✅ **Status:** Ready
-- ✅ **URL:** https://ailydian-rn7dj0wi3-emrahsardag-yandexcoms-projects.vercel.app
+- ✅ **URL:** https://ailydian-rn7dj0wi3-lydian-projects.vercel.app
 - ✅ **Menu Visible:** Yes (İnsan IQ with dropdown)
 - ✅ **Pages Accessible:** LyDian IQ + Knowledge Base
 - ✅ **APIs Configured:** All endpoints operational
@@ -279,7 +279,7 @@ feat: Add İnsan IQ menu with LyDian IQ & Knowledge Base + major improvements
 ⚠️ **Note:** This deployment is currently on Vercel's preview URL. For production domain (www.ailydian.com), custom domain configuration in Vercel dashboard may be needed.
 
 **Current Domains:**
-- Preview: `ailydian-rn7dj0wi3-emrahsardag-yandexcoms-projects.vercel.app`
+- Preview: `ailydian-rn7dj0wi3-lydian-projects.vercel.app`
 - Production (GitHub linked): `borsa.ailydian.com` (different project)
 - Target: `www.ailydian.com` (needs domain configuration)
 
@@ -334,7 +334,7 @@ The deployment was **100% successful** with all requested features implemented a
 - ✅ Scroll overflow bug fixed
 - ✅ Production deployment live and accessible
 
-**Production URL:** https://ailydian-rn7dj0wi3-emrahsardag-yandexcoms-projects.vercel.app
+**Production URL:** https://ailydian-rn7dj0wi3-lydian-projects.vercel.app
 
 **Status:** 🟢 PRODUCTION READY
 

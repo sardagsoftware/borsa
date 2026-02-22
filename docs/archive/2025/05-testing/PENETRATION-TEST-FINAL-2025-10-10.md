@@ -289,7 +289,7 @@ if (typeof message !== 'string' || message.length === 0) {
 ```bash
 #!/bin/bash
 # Penetrasyon test suite
-bash /Users/sardag/Desktop/ailydian-ultra-pro/test-penetration-suite.sh
+bash /home/lydian/Desktop/ailydian-ultra-pro/test-penetration-suite.sh
 ```
 
 ### API Testleri

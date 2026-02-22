@@ -35,7 +35,7 @@
 ### Successful Deployment
 
 ```
-Deployment URL: https://ailydian-ultra-ccqo9ev52-emrahsardag-yandexcoms-projects.vercel.app
+Deployment URL: https://ailydian-ultra-ccqo9ev52-lydian-projects.vercel.app
 Deployment ID: CorZYzxuNRcwo84fTDt268p9P4vq
 Status: Completed (exit code 0)
 Upload Size: 38.2 MB
@@ -46,7 +46,7 @@ Deploy Time: ~6 minutes
 ### Problem: HTTP 401 - Authentication Required
 
 ```bash
-$ curl -I https://ailydian-ultra-ccqo9ev52-emrahsardag-yandexcoms-projects.vercel.app
+$ curl -I https://ailydian-ultra-ccqo9ev52-lydian-projects.vercel.app
 
 HTTP/2 401
 title: Authentication Required
@@ -81,7 +81,7 @@ LyDian AI — Yapay Zeka Platformu | Türkiye'nin GPT Çözümü
 ### Domain Assignment Problem
 
 ```
-Error: You don't have access to the domain www.ailydian.com under emrahsardag-yandexcoms-projects
+Error: You don't have access to the domain www.ailydian.com under lydian-projects
 ```
 
 **Sebep**: Domain başka bir Vercel org'a bağlı veya scope mismatch.
@@ -154,7 +154,7 @@ GitHub Actions workflow `amondnet/vercel-action@v25` kullanıyor ancak **VERCEL_
 
 1. **Vercel Dashboard'a Git**:
    ```
-   https://vercel.com/emrahsardag-yandexcoms-projects/ailydian-ultra-pro
+   https://vercel.com/lydian-projects/ailydian-ultra-pro
    ```
 
 2. **Latest Deployment'ı Bul**:
@@ -253,7 +253,7 @@ ca9da9b - feat(seo): Tier 2B+2C SEO content (120 packages)
 1. Local CLI deployment succeeded ✅
 2. But deployment is password-protected (HTTP 401) ❌
 3. Custom domain www.ailydian.com not assigned to new deployment ❌
-4. Token scope: "emrahsardag-9142"
+4. Token scope: "lydian-9142"
 5. Project org: "team_Thpt1qz2YEezX9COIDbSfAOP"
 6. Scope mismatch prevents domain management ❌
 ```
@@ -277,7 +277,7 @@ ca9da9b - feat(seo): Tier 2B+2C SEO content (120 packages)
 ### Kısa Vade (Bugün)
 
 1. ✅ **Vercel Dashboard'da Deployment'ı Kontrol Et**
-   - https://vercel.com/emrahsardag-yandexcoms-projects/ailydian-ultra-pro
+   - https://vercel.com/lydian-projects/ailydian-ultra-pro
    - Password protection varsa kaldır
    - www.ailydian.com domain'ini yeni deployment'a assign et
 
@@ -344,7 +344,7 @@ ca9da9b - feat(seo): Tier 2B+2C SEO content (120 packages)
 
 ```bash
 # Check if deployment is accessible
-curl -I https://ailydian-ultra-ccqo9ev52-emrahsardag-yandexcoms-projects.vercel.app
+curl -I https://ailydian-ultra-ccqo9ev52-lydian-projects.vercel.app
 
 # Check if custom domain updated
 curl https://www.ailydian.com | grep hreflang | wc -l

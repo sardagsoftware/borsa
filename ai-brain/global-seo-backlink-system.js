@@ -537,7 +537,7 @@ class GlobalSEOBacklinkSystem {
     }
 
     async saveSEOReport(report) {
-        const reportPath = `/Users/sardag/Desktop/ailydian-ultra-pro/reports/seo-report-${Date.now()}.json`;
+        const reportPath = `/home/lydian/Desktop/ailydian-ultra-pro/reports/seo-report-${Date.now()}.json`;
         await fs.writeFile(reportPath, JSON.stringify(report, null, 2));
         console.log(`📊 SEO raporu kaydedildi: ${reportPath}`);
     }

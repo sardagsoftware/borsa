@@ -33,7 +33,7 @@ git commit -m "fix(mobile): Improve orbital rendering quality and reduce node si
 git push origin main
 ```
 **Status:** ✅ GitHub'a push edildi
-**Repository:** github.com/sardagsoftware/borsa.git
+**Repository:** github.com/lydiansoftware/borsa.git
 **Branch:** main
 
 ### 3. Vercel Deployment Denemeleri
@@ -107,11 +107,11 @@ curl -sI https://www.ailydian.com/ | grep -i "last-modified"
 **URL:** https://vercel.com/help
 **Include:**
 - Inspect URLs:
-  - https://vercel.com/emrahsardag-yandexcoms-projects/ailydian/9zd9bc2uxCt5cfYaiYHgs5vUuWUK
-  - https://vercel.com/emrahsardag-yandexcoms-projects/ailydian/GF69jp8JtCMZZyE4uKmCtWqzDoMf
-  - https://vercel.com/emrahsardag-yandexcoms-projects/ailydian/3b9y22kJA6czPGJcQVtazmqajd81
+  - https://vercel.com/lydian-projects/ailydian/9zd9bc2uxCt5cfYaiYHgs5vUuWUK
+  - https://vercel.com/lydian-projects/ailydian/GF69jp8JtCMZZyE4uKmCtWqzDoMf
+  - https://vercel.com/lydian-projects/ailydian/3b9y22kJA6czPGJcQVtazmqajd81
 - Error: "An unexpected error happened when running this build"
-- Project: emrahsardag-yandexcoms-projects/ailydian
+- Project: lydian-projects/ailydian
 
 ### Option 3: Manual FTP/SFTP Upload (NOT RECOMMENDED)
 **Why Not:** Vercel doesn't support direct file uploads
@@ -179,14 +179,14 @@ Availability: 100% (site still works, just old version)
    ```
 
 2. **Check GitHub Actions** (if configured)
-   - URL: https://github.com/sardagsoftware/borsa/actions
+   - URL: https://github.com/lydiansoftware/borsa/actions
    - Look for failed workflow runs
 
 ### Short-term (1-4 hours)
 1. **Retry Deployment**
    ```bash
    # Vercel platform düzeldiğinde:
-   cd /Users/sardag/Desktop/ailydian-ultra-pro
+   cd /home/lydian/Desktop/ailydian-ultra-pro
    vercel --prod --yes
    ```
 
@@ -210,11 +210,11 @@ Availability: 100% (site still works, just old version)
 
 ### Vercel Support
 - **URL:** https://vercel.com/help
-- **Dashboard:** https://vercel.com/emrahsardag-yandexcoms-projects/ailydian
+- **Dashboard:** https://vercel.com/lydian-projects/ailydian
 - **Status Page:** https://www.vercel-status.com/
 
 ### GitHub Repository
-- **URL:** https://github.com/sardagsoftware/borsa
+- **URL:** https://github.com/lydiansoftware/borsa
 - **Latest Commit:** b2f6118 (Mobile fix)
 - **Branch:** main
 

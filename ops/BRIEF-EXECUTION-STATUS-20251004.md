@@ -21,7 +21,7 @@
 - ✅ `nslookup` - available
 
 ### Environment Setup ✅
-- ✅ Workspace: `/Users/sardag/Desktop/ailydian-ultra-pro/ops`
+- ✅ Workspace: `/home/lydian/Desktop/ailydian-ultra-pro/ops`
 - ✅ Azure CLI authenticated
 - ⚠️  VERCEL_TOKEN: **NOT SET** (required for DNS operations)
 

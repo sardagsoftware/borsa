@@ -37,7 +37,7 @@ Successfully executed 6-phase DNS cutover automation with complete infrastructur
 - ✅ PRIMARY_REGION: westeurope
 - ✅ ORIGIN_UI_HOST: ailydian.vercel.app
 - ✅ Azure authenticated
-- ✅ Workspace: /Users/sardag/Desktop/ailydian-ultra-pro/ops
+- ✅ Workspace: /home/lydian/Desktop/ailydian-ultra-pro/ops
 
 ---
 
@@ -71,14 +71,14 @@ Successfully executed 6-phase DNS cutover automation with complete infrastructur
 {
   "error": {
     "code": "forbidden",
-    "message": "Not authorized: Trying to access resource under scope 'emrahsardag-9142'. You must re-authenticate to this scope or use a token with access to this scope.",
-    "scope": "emrahsardag-9142"
+    "message": "Not authorized: Trying to access resource under scope 'lydian-9142'. You must re-authenticate to this scope or use a token with access to this scope.",
+    "scope": "lydian-9142"
   }
 }
 ```
 
 ### Resolution Required ⚠️
-The VERCEL_TOKEN needs to be scoped to "emrahsardag-9142" team/account.
+The VERCEL_TOKEN needs to be scoped to "lydian-9142" team/account.
 
 **Options:**
 1. Re-authenticate with correct scope at https://vercel.com/account/tokens
@@ -295,7 +295,7 @@ Script contains complete Vercel API integration:
 
 ### Finding #1: Vercel Token Scope Issue ⚠️
 
-**Issue:** VERCEL_TOKEN lacks access to "emrahsardag-9142" scope
+**Issue:** VERCEL_TOKEN lacks access to "lydian-9142" scope
 
 **Impact:**
 - Cannot backup DNS via Vercel API
@@ -304,7 +304,7 @@ Script contains complete Vercel API integration:
 
 **Resolution:**
 1. Go to https://vercel.com/account/tokens
-2. Create new token with "emrahsardag-9142" team access
+2. Create new token with "lydian-9142" team access
 3. Or re-authenticate existing token to this scope
 4. Update ENV: `export VERCEL_TOKEN="new_token_here"`
 5. Re-run script
@@ -369,7 +369,7 @@ Script contains complete Vercel API integration:
 ```bash
 # Create new token with team access
 # Go to: https://vercel.com/account/tokens
-# Scope: emrahsardag-9142
+# Scope: lydian-9142
 
 # Update environment
 export VERCEL_TOKEN="new_token_with_team_access"
@@ -420,7 +420,7 @@ cd ~/Desktop/ailydian-ultra-pro/ops
 
 ### File Locations
 ```
-/Users/sardag/Desktop/ailydian-ultra-pro/ops/
+/home/lydian/Desktop/ailydian-ultra-pro/ops/
 ├── afd.txt                           (AFD endpoint)
 ├── dns-output.json                   (machine config)
 ├── dns-output.md                     (human guide)
@@ -471,7 +471,7 @@ curl -sS "https://api.vercel.com/v2/domains/ailydian.com/records" \
 - ✅ Complete audit trail
 
 **Blocking Issues:**
-- ⚠️  Vercel token needs "emrahsardag-9142" scope
+- ⚠️  Vercel token needs "lydian-9142" scope
 - ⚠️  Azure Portal AFD setup required (or use real endpoint)
 
 **Ready For:**

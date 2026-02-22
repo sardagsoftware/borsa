@@ -30,10 +30,10 @@ HTTP Status: 200 OK ✅
 
 ### 3. Write Permissions
 ```
-Directory: /Users/sardag/Desktop/ailydian-ultra-pro/public
+Directory: /home/lydian/Desktop/ailydian-ultra-pro/public
 Status: Writable ✅
 
-Directory: /Users/sardag/Desktop/ailydian-ultra-pro/public/feed
+Directory: /home/lydian/Desktop/ailydian-ultra-pro/public/feed
 Status: Writable ✅
 ```
 **Result:** ✅ **PASS** - All required directories writable

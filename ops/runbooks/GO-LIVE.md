@@ -126,7 +126,7 @@ watch -n 5 'curl -s https://www.ailydian.com/api/health | jq .'
 vercel logs --follow
 
 # Monitor metrics
-open https://vercel.com/sardagsoftware/ailydian-ultra-pro/analytics
+open https://vercel.com/lydiansoftware/ailydian-ultra-pro/analytics
 ```
 
 **Decision**: ✅ Proceed to Phase 2 / ❌ Rollback

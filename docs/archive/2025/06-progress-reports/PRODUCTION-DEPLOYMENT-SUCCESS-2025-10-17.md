@@ -12,7 +12,7 @@
 ### Production URLs
 - 🌐 **Primary:** https://www.ailydian.com
 - 🌐 **Alias:** https://ailydian.com
-- 🔍 **Vercel:** https://ailydian-emrahsardag-yandexcoms-projects.vercel.app
+- 🔍 **Vercel:** https://ailydian-lydian-projects.vercel.app
 
 ### Deployment Details
 - **ID:** dpl_H5Y1Nvat2QeQwqPHb2zSS8cf6MPw

@@ -298,7 +298,7 @@ M  vercel.json
 
 **Git Push:**
 ```
-To https://github.com/sardagsoftware/borsa.git
+To https://github.com/lydiansoftware/borsa.git
    b2f6118..180b995  main -> main
 ✅ BAŞARILI
 ```
@@ -312,9 +312,9 @@ To https://github.com/sardagsoftware/borsa.git
 **Denemeler:**
 | # | Zaman | Method | Sonuç | Inspect URL |
 |---|-------|--------|-------|-------------|
-| 1 | 09:24 | `vercel --prod` | ❌ Error | [9zd9bc2ux](https://vercel.com/emrahsardag-yandexcoms-projects/ailydian/9zd9bc2uxCt5cfYaiYHgs5vUuWUK) |
-| 2 | 09:29 | `vercel --prod` retry | ❌ Error | [GF69jp8Jt](https://vercel.com/emrahsardag-yandexcoms-projects/ailydian/GF69jp8JtCMZZyE4uKmCtWqzDoMf) |
-| 3 | 09:36 | `vercel deploy` (preview) | ❌ Error | [3b9y22kJA](https://vercel.com/emrahsardag-yandexcoms-projects/ailydian/3b9y22kJA6czPGJcQVtazmqajd81) |
+| 1 | 09:24 | `vercel --prod` | ❌ Error | [9zd9bc2ux](https://vercel.com/lydian-projects/ailydian/9zd9bc2uxCt5cfYaiYHgs5vUuWUK) |
+| 2 | 09:29 | `vercel --prod` retry | ❌ Error | [GF69jp8Jt](https://vercel.com/lydian-projects/ailydian/GF69jp8JtCMZZyE4uKmCtWqzDoMf) |
+| 3 | 09:36 | `vercel deploy` (preview) | ❌ Error | [3b9y22kJA](https://vercel.com/lydian-projects/ailydian/3b9y22kJA6czPGJcQVtazmqajd81) |
 
 **Hata Mesajı:**
 ```
@@ -395,7 +395,7 @@ watch -n 900 'vercel ls | head -5'
 #### Short-term (1-4 saat)
 ```bash
 # Platform düzeldiğinde yeniden deploy:
-cd /Users/sardag/Desktop/ailydian-ultra-pro
+cd /home/lydian/Desktop/ailydian-ultra-pro
 vercel --prod --yes
 
 # Deployment başarılı olursa production test:
@@ -478,12 +478,12 @@ python3 /tmp/test_production_api.py
 ## 📞 DESTEK BİLGİLERİ
 
 ### Vercel Support
-- **Dashboard:** [emrahsardag-yandexcoms-projects/ailydian](https://vercel.com/emrahsardag-yandexcoms-projects/ailydian)
+- **Dashboard:** [lydian-projects/ailydian](https://vercel.com/lydian-projects/ailydian)
 - **Help:** https://vercel.com/help
 - **Status:** https://www.vercel-status.com/
 
 ### GitHub Repository
-- **URL:** https://github.com/sardagsoftware/borsa
+- **URL:** https://github.com/lydiansoftware/borsa
 - **Latest Commit:** `180b995` (API & Vercel fixes)
 - **Branch:** `main`
 

@@ -12,7 +12,7 @@
 
 1. **Project Settings'e git:**
    ```
-   https://vercel.com/emrahsardag-yandexcoms-projects/ailydian/settings
+   https://vercel.com/lydian-projects/ailydian/settings
    ```
 
 2. **"Git"** sekmesi → Scroll down
@@ -106,7 +106,7 @@ echo "$RESPONSE" | jq .
 
 echo ""
 echo "🌐 Check status:"
-echo "https://vercel.com/emrahsardag-yandexcoms-projects/ailydian"
+echo "https://vercel.com/lydian-projects/ailydian"
 ```
 
 ### **Kullan:**
@@ -144,7 +144,7 @@ chmod +x deploy.sh
 
 1. **Vercel Dashboard:**
    ```
-   https://vercel.com/emrahsardag-yandexcoms-projects/ailydian
+   https://vercel.com/lydian-projects/ailydian
    ```
 
 2. **Deployments sekmesi** → En yeni deployment görünür

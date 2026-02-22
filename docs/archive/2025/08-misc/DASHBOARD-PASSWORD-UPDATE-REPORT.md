@@ -2,7 +2,7 @@
 
 **Tarih:** 2025-10-08
 **Durum:** ✅ Tamamlandı
-**Deployment URL:** https://www.ailydian.com/dashboard-sardag
+**Deployment URL:** https://www.ailydian.com/dashboard-lydian
 
 ---
 
@@ -10,7 +10,7 @@
 
 ### 1. Yeni Şifre
 ```
-Eski Şifre: EMRAH-SARDAG-ULTRA-SECURE-2025-7X9K4M
+Eski Şifre: EMRAH-Lydian-ULTRA-SECURE-2025-7X9K4M
 Yeni Şifre: Xrubyphyton1985.!?
 ```
 
@@ -44,7 +44,7 @@ Yeni Şifre: Xrubyphyton1985.!?
 
 ## 📁 GÜNCELLENEN DOSYALAR
 
-### 1. `/public/dashboard-sardag.html`
+### 1. `/public/dashboard-lydian.html`
 ```diff
 - Eski: 537 satır
 + Yeni: ~360 satır
@@ -58,7 +58,7 @@ Yeni Şifre: Xrubyphyton1985.!?
 
 ### 2. `/api/dashboard-auth.js`
 ```diff
-- Eski: EMRAH-SARDAG-ULTRA-SECURE-2025-7X9K4M
+- Eski: EMRAH-Lydian-ULTRA-SECURE-2025-7X9K4M
 + Yeni: Xrubyphyton1985.!?
 ```
 
@@ -114,15 +114,15 @@ Yeni Şifre: Xrubyphyton1985.!?
 ### Vercel Deployment
 ```
 Deployment ID: 9gR32ouHcELSY15ucs63Qr3LPcWt
-Preview URL: https://ailydian-n1os6jm2o-emrahsardag-yandexcoms-projects.vercel.app
-Custom Domain: https://www.ailydian.com/dashboard-sardag
+Preview URL: https://ailydian-n1os6jm2o-lydian-projects.vercel.app
+Custom Domain: https://www.ailydian.com/dashboard-lydian
 Status: ✅ Building → Production
 Deploy Time: ~6-10 seconds
 ```
 
 ### Deployment Komutu
 ```bash
-cd /Users/sardag/Desktop/ailydian-ultra-pro
+cd /home/lydian/Desktop/ailydian-ultra-pro
 vercel --prod --yes
 ```
 
@@ -131,7 +131,7 @@ vercel --prod --yes
 ## 🎯 KULLANIM REHBERİ
 
 ### Giriş Yapma
-1. Sayfayı aç: https://www.ailydian.com/dashboard-sardag
+1. Sayfayı aç: https://www.ailydian.com/dashboard-lydian
 2. Şifrenizi girin: `Xrubyphyton1985.!?`
 3. "Giriş Yap" butonuna tıklayın
 4. Dashboard'a yönlendirileceksiniz: http://localhost:3002
@@ -218,7 +218,7 @@ localStorage.setItem('dashboardAttempts', '0');
 
 ### "Şifre değiştirmek istiyorum"
 ➡️ Kod düzenlemesi gerekir:
-1. `/public/dashboard-sardag.html` - satır 216
+1. `/public/dashboard-lydian.html` - satır 216
 2. `/api/dashboard-auth.js` - satır 10
 3. Yeniden deploy: `vercel --prod --yes`
 
@@ -252,7 +252,7 @@ localStorage.setItem('dashboardAttempts', '0');
 
 ### Erişim Bilgileri
 ```
-URL: https://www.ailydian.com/dashboard-sardag
+URL: https://www.ailydian.com/dashboard-lydian
 Şifre: Xrubyphyton1985.!?
 Dashboard: http://localhost:3002
 ```

@@ -410,7 +410,7 @@ export PRIMARY_REGION="westeurope"
 export DR_REGION="northeurope"
 
 # 2. Execute DNS cutover
-cd /Users/sardag/Desktop/ailydian-ultra-pro/ops
+cd /home/lydian/Desktop/ailydian-ultra-pro/ops
 ./dns-cutover.sh
 
 # 3. Monitor progress

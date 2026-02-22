@@ -80,7 +80,7 @@ if [ -z "${VERCEL_TOKEN:-}" ]; then
   echo -e "${CYAN}To enable automated TXT validation:${NC}"
   echo "  1. Get token from: https://vercel.com/account/tokens"
   echo "  2. export VERCEL_TOKEN=\"your-token-here\""
-  echo "  3. export VERCEL_TEAM_ID=\"emrahsardag-9142\""
+  echo "  3. export VERCEL_TEAM_ID=\"lydian-9142\""
   echo "  4. Run this script again"
   echo ""
   echo -e "${YELLOW}Proceeding with manual Portal workflow...${NC}"

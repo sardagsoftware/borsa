@@ -279,7 +279,7 @@ brew upgrade ngrok
 ```bash
 # Doğru dizinde olduğunuzu kontrol edin
 pwd
-# Output: /Users/sardag/Desktop/ailydian-ultra-pro/ailydian-from-github
+# Output: /home/lydian/Desktop/ailydian-ultra-pro/ailydian-from-github
 
 # Dosya varsa
 ls -lh rate-limit.yml

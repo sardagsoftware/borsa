@@ -1,5 +1,5 @@
 // LCI API - White-hat production-grade entry point
-// Author: Claude + Sardag
+// Author: Claude + Lydian
 // Date: 2025-10-13
 
 import { NestFactory } from '@nestjs/core';

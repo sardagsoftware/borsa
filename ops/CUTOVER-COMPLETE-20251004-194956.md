@@ -3,7 +3,7 @@
 **Completion Time:** $(date -u +"%Y-%m-%dT%H:%M:%SZ")  
 **Production AFD Endpoint:** `ailydian-production-fd-endpoint.z01.azurefd.net`  
 **Resource Group:** `aly-core-prod-rg`  
-**Workspace:** `/Users/sardag/Desktop/ailydian-ultra-pro/ops`
+**Workspace:** `/home/lydian/Desktop/ailydian-ultra-pro/ops`
 
 ## Executive Summary
 
@@ -139,7 +139,7 @@ cd ~/Desktop/ailydian-ultra-pro/ops
 # 4. Validate with ./validate.sh
 ```
 
-**Backup Location:** `/Users/sardag/Desktop/ailydian-ultra-pro/ops/preflight-dns.json`
+**Backup Location:** `/home/lydian/Desktop/ailydian-ultra-pro/ops/preflight-dns.json`
 
 ## Next Steps (72-Hour Window)
 
@@ -217,7 +217,7 @@ Internet → Azure Front Door Premium (WAF, CDN, SSL) → Vercel Edge → Functi
 ## Contact & Support
 
 **Primary SRE:** Principal SRE & Cloud Orchestrator  
-**Workspace:** `/Users/sardag/Desktop/ailydian-ultra-pro/ops`  
+**Workspace:** `/home/lydian/Desktop/ailydian-ultra-pro/ops`  
 **Audit Log:** `dns-change-log.ndjson`  
 **Rollback Script:** `rollback.sh`  
 **Validation Script:** `validate.sh`

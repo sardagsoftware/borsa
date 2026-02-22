@@ -2,7 +2,7 @@
 
 **Tarih**: 17 Ekim 2025, Perşembe
 **Durum**: 🟢 TAMAMLANDI - SIFIR HATA
-**Developer**: Claude + Sardag
+**Developer**: Claude + Lydian
 **Project**: Ailydian Ultra Pro - AI Ops Center Full Implementation
 
 ---
@@ -293,7 +293,7 @@ document.querySelectorAll('nav a[href^="#"]').forEach(link => {
 
 ### Dosya Bilgileri
 
-**Dosya**: `/Users/sardag/Desktop/ailydian-ultra-pro/public/ai-ops-center.html`
+**Dosya**: `/home/lydian/Desktop/ailydian-ultra-pro/public/ai-ops-center.html`
 
 **Boyut**: ~1370 satır (önceki ~560 satırdan)
 
@@ -663,7 +663,7 @@ ops_center.status_completed = "Tamamlandı"
 
 **Tarih**: 17 Ekim 2025, Perşembe
 **Saat**: 14:00 Turkish Time
-**Developer**: Claude AI + Sardag
+**Developer**: Claude AI + Lydian
 **Version**: AI Ops Center v2.0 - Full Featured
 
 **Tam özellikli AI Ops Center hazır. Menüler aktif. Veriler çalışıyor. Zero errors.**

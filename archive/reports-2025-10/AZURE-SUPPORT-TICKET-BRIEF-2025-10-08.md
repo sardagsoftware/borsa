@@ -2,7 +2,7 @@
 
 **Ticket ID:** 2510040050000619
 **Date:** 5 October 2025
-**Contact:** sardagemrah@gmail.com
+**Contact:** security@ailydian.com
 **Status:** ⏳ **AWAITING OUR RESPONSE**
 
 ---
@@ -219,7 +219,7 @@ TOPLAM: 3 Front Door profili gerekli
 ```
 Subscription Name:    lydianai software
 Subscription ID:      2510040050000619
-Contact Email:        sardagemrah@gmail.com
+Contact Email:        security@ailydian.com
 Account Type:         Basic (Free tier + Pay-as-you-go)
 Region Preference:    West Europe (primary)
                       North Europe (secondary)
@@ -364,9 +364,9 @@ Please let me know if you need any additional information.
 Thank you for your support!
 
 Best regards,
-Emrah Sardag
+Lydian
 LyDian AI Platform
-sardagemrah@gmail.com
+security@ailydian.com
 ```
 
 ---
@@ -538,7 +538,7 @@ WHY? Enterprise features:
 
 **Prepared by:** AX9F7E2B (LyDian AI Assistant)
 **Date:** 2025-10-08
-**For:** Emrah Sardag / LyDian AI Platform
+**For:** Lydian / LyDian AI Platform
 **Purpose:** Azure Support Ticket Response Brief
 
 **Status:** 📝 **READY TO SEND**

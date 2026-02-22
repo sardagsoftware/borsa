@@ -54,8 +54,8 @@ Result: ✅ Safe deployment without exposing secrets
 vercel --prod --force --yes
 
 Deployment:
-- URL: https://ailydian-6j79lbbva-emrahsardag-yandexcoms-projects.vercel.app
-- Inspect: https://vercel.com/emrahsardag-yandexcoms-projects/ailydian/6awbuwTM2jMRji2y6vMrAbmevgMn
+- URL: https://ailydian-6j79lbbva-lydian-projects.vercel.app
+- Inspect: https://vercel.com/lydian-projects/ailydian/6awbuwTM2jMRji2y6vMrAbmevgMn
 - Status: ✅ Ready
 - Build Time: ~2 minutes
 ```
@@ -188,8 +188,8 @@ Total Duration: 10.4s
 
 ### Vercel Dashboard:
 ```
-Inspect: https://vercel.com/emrahsardag-yandexcoms-projects/ailydian/6awbuwTM2jMRji2y6vMrAbmevgMn
-Project: https://vercel.com/emrahsardag-yandexcoms-projects/ailydian
+Inspect: https://vercel.com/lydian-projects/ailydian/6awbuwTM2jMRji2y6vMrAbmevgMn
+Project: https://vercel.com/lydian-projects/ailydian
 ```
 
 ---
@@ -423,5 +423,5 @@ window.lydianChatHistory.exportHistory()
 ---
 
 **Report Generated**: 17 Ekim 2025
-**Deployment Engineer**: Claude Code + Sardag
+**Deployment Engineer**: Claude Code + Lydian
 **Approval Status**: ✅ **PRODUCTION READY**

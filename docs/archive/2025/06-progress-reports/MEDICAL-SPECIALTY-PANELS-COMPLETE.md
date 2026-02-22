@@ -1,7 +1,7 @@
 # Medical Specialty Panels - Complete Implementation Report
 
 ## Overview
-Successfully created comprehensive frontend UI panels for **ALL 8 medical specialties** in `/Users/sardag/Desktop/ailydian-ultra-pro/public/medical-expert.html` with full backend API integration.
+Successfully created comprehensive frontend UI panels for **ALL 8 medical specialties** in `/home/lydian/Desktop/ailydian-ultra-pro/public/medical-expert.html` with full backend API integration.
 
 ## Implementation Summary
 
@@ -529,7 +529,7 @@ All 40+ medical API endpoints are:
 ## Files Modified
 
 ### Main File
-- **Path**: `/Users/sardag/Desktop/ailydian-ultra-pro/public/medical-expert.html`
+- **Path**: `/home/lydian/Desktop/ailydian-ultra-pro/public/medical-expert.html`
 - **Lines Before**: 2,392 lines
 - **Lines After**: 4,422 lines
 - **Lines Added**: 2,030 lines

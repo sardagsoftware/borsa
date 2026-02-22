@@ -39,7 +39,7 @@ Phase 2.2 implements Role-Based Access Control (RBAC) for the LCI platform, allo
 
 ### Backend Files Created
 
-#### 1. `/Users/sardag/Desktop/ailydian-ultra-pro/apps/lci-api/src/auth/decorators/roles.decorator.ts`
+#### 1. `/home/lydian/Desktop/ailydian-ultra-pro/apps/lci-api/src/auth/decorators/roles.decorator.ts`
 ```typescript
 // Role decorator for endpoints
 export type Actor = 'USER' | 'BRAND_AGENT' | 'MODERATOR' | 'ADMIN' | 'SYSTEM';
@@ -58,7 +58,7 @@ async adminPanel() { ... }
 
 ---
 
-#### 2. `/Users/sardag/Desktop/ailydian-ultra-pro/apps/lci-api/src/auth/guards/roles.guard.ts`
+#### 2. `/home/lydian/Desktop/ailydian-ultra-pro/apps/lci-api/src/auth/guards/roles.guard.ts`
 ```typescript
 @Injectable()
 export class RolesGuard implements CanActivate {
@@ -96,7 +96,7 @@ export class RolesGuard implements CanActivate {
 
 ### Backend Files Modified
 
-#### 3. `/Users/sardag/Desktop/ailydian-ultra-pro/apps/lci-api/src/auth/auth.service.ts`
+#### 3. `/home/lydian/Desktop/ailydian-ultra-pro/apps/lci-api/src/auth/auth.service.ts`
 **Changes**:
 - `register()`: Added `role` to user response
 - `login()`: Added `role` to user response
@@ -119,7 +119,7 @@ return {
 
 ---
 
-#### 4. `/Users/sardag/Desktop/ailydian-ultra-pro/apps/lci-api/src/auth/auth.controller.ts`
+#### 4. `/home/lydian/Desktop/ailydian-ultra-pro/apps/lci-api/src/auth/auth.controller.ts`
 **Changes**:
 - Imported `RolesGuard` and `Roles` decorator
 - Added example admin-only endpoint
@@ -143,7 +143,7 @@ async adminPanel(@CurrentUser() user: any) {
 
 ### Database Schema Changes
 
-#### 5. `/Users/sardag/Desktop/ailydian-ultra-pro/infra/lci-db/prisma/schema.prisma`
+#### 5. `/home/lydian/Desktop/ailydian-ultra-pro/infra/lci-db/prisma/schema.prisma`
 ```prisma
 model User {
   id           String     @id @default(uuid()) @db.Uuid
@@ -184,7 +184,7 @@ enum Actor {
 
 ### Frontend Files Modified
 
-#### 6. `/Users/sardag/Desktop/ailydian-ultra-pro/apps/lci-web/src/app/dashboard/page.tsx`
+#### 6. `/home/lydian/Desktop/ailydian-ultra-pro/apps/lci-web/src/app/dashboard/page.tsx`
 **Changes**:
 - Updated `User` interface with `role` field
 - Added role display in profile card with color-coded badges
@@ -420,7 +420,7 @@ Response
 
 1. **Start Docker Services**:
    ```bash
-   cd /Users/sardag/Desktop/ailydian-ultra-pro/infra/lci-db
+   cd /home/lydian/Desktop/ailydian-ultra-pro/infra/lci-db
    docker-compose up -d
    ```
 
@@ -436,7 +436,7 @@ Response
 
 4. **Start Backend API**:
    ```bash
-   cd /Users/sardag/Desktop/ailydian-ultra-pro/apps/lci-api
+   cd /home/lydian/Desktop/ailydian-ultra-pro/apps/lci-api
    npm run start:dev
    ```
 

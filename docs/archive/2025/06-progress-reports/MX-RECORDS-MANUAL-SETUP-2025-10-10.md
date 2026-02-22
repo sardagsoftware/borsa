@@ -27,7 +27,7 @@ Error: You don't have permissions to add records to domain ailydian.com
 🔗 https://vercel.com/login
 
 **2. Ailydian Projesine Git**
-🔗 https://vercel.com/emrahsardag-yandexcoms-projects/ailydian
+🔗 https://vercel.com/lydian-projects/ailydian
 
 **3. Settings'e Tıkla**
 Sol menüden **Settings** sekmesini aç
@@ -41,7 +41,7 @@ Domain listesinden **ailydian.com** (apex domain) satırını bul
 **6. DNS Records'a Git**
 - Domain satırında **...** (3 nokta) veya **Manage** butonuna tıkla
 - **DNS Records** bölümüne git
-- Veya direkt: https://vercel.com/emrahsardag-yandexcoms-projects/ailydian/settings/domains/ailydian.com/records
+- Veya direkt: https://vercel.com/lydian-projects/ailydian/settings/domains/ailydian.com/records
 
 **7. Add Record Butonuna Tıkla**
 
@@ -304,7 +304,7 @@ Body: Testing Zoho Mail on ailydian.com
 
 **EN KOLAY YÖNTEM**: Vercel Web Dashboard
 
-1. 🔗 https://vercel.com/emrahsardag-yandexcoms-projects/ailydian/settings/domains
+1. 🔗 https://vercel.com/lydian-projects/ailydian/settings/domains
 2. ailydian.com → DNS Records
 3. Add 3 MX records:
    - Priority 10: mx.zoho.eu

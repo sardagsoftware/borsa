@@ -208,9 +208,9 @@
 - **FAQ Schema:** https://www.ailydian.com/faq.jsonld
 
 ### Vercel Dashboard
-- **Project:** https://vercel.com/emrahsardag-yandexcoms-projects/ailydian
-- **Deployments:** https://vercel.com/emrahsardag-yandexcoms-projects/ailydian/deployments
-- **Settings:** https://vercel.com/emrahsardag-yandexcoms-projects/ailydian/settings
+- **Project:** https://vercel.com/lydian-projects/ailydian
+- **Deployments:** https://vercel.com/lydian-projects/ailydian/deployments
+- **Settings:** https://vercel.com/lydian-projects/ailydian/settings
 
 ### Validation Tools
 - **Google Rich Results:** https://search.google.com/test/rich-results?url=https://www.ailydian.com

@@ -85,7 +85,7 @@ python vqe_molecular_simulation.py
 ### Node.js Server Başlat
 
 ```bash
-cd /Users/sardag/Desktop/ailydian-ultra-pro
+cd /home/lydian/Desktop/ailydian-ultra-pro
 PORT=3100 node server.js
 ```
 

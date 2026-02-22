@@ -276,7 +276,7 @@ NEO4J_URI=bolt://xxxxx.databases.neo4j.io   # ❌ Yanlış (cloud için)
 ```bash
 # Error: "AUTHORIZATION_INVALID_TOKEN"
 # Çözüm: Private key path'i doğru mu kontrol edin
-DOCUSIGN_PRIVATE_KEY_PATH=/Users/sardag/docusign/private.key # ✅ Absolute path
+DOCUSIGN_PRIVATE_KEY_PATH=/home/lydian/docusign/private.key # ✅ Absolute path
 DOCUSIGN_PRIVATE_KEY_PATH=./private.key # ❌ Relative path (hata verebilir)
 ```
 

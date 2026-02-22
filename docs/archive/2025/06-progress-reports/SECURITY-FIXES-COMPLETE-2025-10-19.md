@@ -356,8 +356,8 @@ chmod +x ops/security/penetration-test-suite.sh
 
 ### Vercel Production Deployment
 - 🔄 Status: **BUILDING**
-- 🌐 Deployment URL: `https://ailydian-acck6srln-emrahsardag-yandexcoms-projects.vercel.app`
-- 🔍 Inspect: `https://vercel.com/emrahsardag-yandexcoms-projects/ailydian/Eht35M3CTbkCbSvBLZGMzeUsQKGe`
+- 🌐 Deployment URL: `https://ailydian-acck6srln-lydian-projects.vercel.app`
+- 🔍 Inspect: `https://vercel.com/lydian-projects/ailydian/Eht35M3CTbkCbSvBLZGMzeUsQKGe`
 - ⏱️ Started: October 19, 2025
 
 ---

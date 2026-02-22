@@ -53,7 +53,7 @@ curl "https://www.ailydian.com/api/lci/v1/brands?status=ACTIVE&limit=5"
 **Credentials**:
 - Email: `admin@ailydian.com`
 - Password: `Admin@2025!Secure`
-- Name: Sardag Admin
+- Name: Lydian Admin
 - Role: ADMIN
 - User ID: 2
 
@@ -141,7 +141,7 @@ curl "https://www.ailydian.com/api/lci/v1/brands?status=ACTIVE&limit=5"
 
 ## 🗄️ DATABASE STATUS
 
-**Location**: `/Users/sardag/Desktop/ailydian-ultra-pro/database/ailydian.db`
+**Location**: `/home/lydian/Desktop/ailydian-ultra-pro/database/ailydian.db`
 
 **Tables**:
 - ✅ `users` - 2 users (including admin)
@@ -156,7 +156,7 @@ SELECT id, email, name, role, status FROM users WHERE id = 2;
 Result:
 id: 2
 email: admin@ailydian.com
-name: Sardag Admin
+name: Lydian Admin
 role: ADMIN
 status: active
 ```
@@ -387,7 +387,7 @@ Access: Full system access
 ### Quick Access Commands
 ```bash
 # Start local server
-cd /Users/sardag/Desktop/ailydian-ultra-pro
+cd /home/lydian/Desktop/ailydian-ultra-pro
 npx serve public -l 3000
 
 # Create database backup
@@ -471,7 +471,7 @@ curl "https://www.ailydian.com/api/lci/v1/brands?status=ACTIVE&limit=5"
 
 **Date**: 17 Ekim 2025
 **Time**: 13:04 Turkish Time
-**Developer**: Claude + Sardag
+**Developer**: Claude + Lydian
 **System**: Lydian Ultra Pro v1.0
 
 **All user requirements met. Zero errors. Production ready.**

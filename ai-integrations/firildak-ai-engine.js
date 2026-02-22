@@ -7,7 +7,7 @@ const axios = require('axios');
 const { EventEmitter } = require('events');
 
 // Platform system prompt import
-const { getEmrahSardagPrompt } = require('./emrah-sardag-system-prompt');
+const { getEmrahLydianPrompt } = require('./lydian-system-prompt');
 
 // 🚦 CONCURRENT REQUEST MANAGER: Prevent "Too many concurrent requests" errors
 const { getConcurrentManager } = require('../middleware/concurrent-request-manager');
@@ -282,7 +282,7 @@ class FirildakAIEngine extends EventEmitter {
     const url = `${provider.endpoint}/openai/deployments/${model.deployment}/chat/completions?api-version=2024-02-15-preview`;
 
     // Inject platform system prompt
-    const secureSystemPrompt = getEmrahSardagPrompt();
+    const secureSystemPrompt = getEmrahLydianPrompt();
     const baseSystemPrompt =
       'Sen LyDian AI tarafindan gelistirilmis Turkce konusan yapay zeka asistanisin. Yardimci, bilgili ve dostane bir sekilde yanit ver.';
     const fullSystemPrompt = secureSystemPrompt
@@ -329,7 +329,7 @@ class FirildakAIEngine extends EventEmitter {
     const url = `${provider.endpoint}/v1/projects/${provider.projectId}/locations/us-central1/publishers/google/models/${model.name}:predict`;
 
     // Inject platform system prompt
-    const secureSystemPrompt = getEmrahSardagPrompt();
+    const secureSystemPrompt = getEmrahLydianPrompt();
     const basePrompt = `Sen LyDian AI tarafindan gelistirilmis Turkce konusan yapay zeka asistanisin. Soru: ${request.message}`;
     const fullPrompt = secureSystemPrompt ? `${secureSystemPrompt}\n\n${basePrompt}` : basePrompt;
 
@@ -378,7 +378,7 @@ class FirildakAIEngine extends EventEmitter {
     const url = `${provider.endpoint}/chat/completions`;
 
     // Inject platform system prompt
-    const secureSystemPrompt = getEmrahSardagPrompt();
+    const secureSystemPrompt = getEmrahLydianPrompt();
     const baseSystemPrompt =
       'Sen LyDian AI tarafindan gelistirilmis Turkce konusan yapay zeka asistanisin. Yardimci, bilgili ve dostane bir sekilde yanit ver.';
     const fullSystemPrompt = secureSystemPrompt
@@ -433,7 +433,7 @@ class FirildakAIEngine extends EventEmitter {
     const url = `${provider.endpoint}/messages`;
 
     // Inject platform system prompt
-    const secureSystemPrompt = getEmrahSardagPrompt();
+    const secureSystemPrompt = getEmrahLydianPrompt();
     const basePrompt = `Sen LyDian AI tarafindan gelistirilmis Turkce konusan yapay zeka asistanisin. Soru: ${request.message}`;
     const fullPrompt = secureSystemPrompt ? `${secureSystemPrompt}\n\n${basePrompt}` : basePrompt;
 
@@ -476,7 +476,7 @@ class FirildakAIEngine extends EventEmitter {
     const url = `${provider.endpoint}/chat/completions`;
 
     // Inject platform system prompt
-    const secureSystemPrompt = getEmrahSardagPrompt();
+    const secureSystemPrompt = getEmrahLydianPrompt();
     const baseSystemPrompt =
       'Sen LyDian AI tarafindan gelistirilmis Turkce konusan yapay zeka asistanisin.';
     const fullSystemPrompt = secureSystemPrompt

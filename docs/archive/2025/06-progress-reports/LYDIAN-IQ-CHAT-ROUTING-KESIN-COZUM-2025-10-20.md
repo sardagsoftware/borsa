@@ -92,7 +92,7 @@ app.get('/chat', (req, res) => {
 
 ### Düzeltme 1: server.js - HTML Page Routes
 
-**Dosya:** `/Users/sardag/Desktop/ailydian-ultra-pro/server.js`
+**Dosya:** `/home/lydian/Desktop/ailydian-ultra-pro/server.js`
 **Satırlar:** 2347-2375 (after `/chat` route)
 
 **Eklenen Kod:**
@@ -137,7 +137,7 @@ app.get('/dashboard', (req, res) => {
 
 ### Düzeltme 2: vercel.json - Production Rewrites
 
-**Dosya:** `/Users/sardag/Desktop/ailydian-ultra-pro/vercel.json`
+**Dosya:** `/home/lydian/Desktop/ailydian-ultra-pro/vercel.json`
 **Satırlar:** 55-78 (before catch-all rule)
 
 **Önceki Kod:**
@@ -365,7 +365,7 @@ Changes:
 
 **Git Push:**
 ```
-To https://github.com/sardagsoftware/borsa.git
+To https://github.com/lydiansoftware/borsa.git
    180b995..cd279d3  main -> main
 ✅ BAŞARILI
 ```
@@ -379,9 +379,9 @@ To https://github.com/sardagsoftware/borsa.git
 **Son Deployment Denemeleri:**
 | # | Method | Result | Inspect URL |
 |---|--------|--------|-------------|
-| 1 | `vercel --prod` | ❌ Platform error | [9zd9bc2ux](https://vercel.com/emrahsardag-yandexcoms-projects/ailydian/9zd9bc2uxCt5cfYaiYHgs5vUuWUK) |
-| 2 | `vercel --prod` retry | ❌ Platform error | [GF69jp8Jt](https://vercel.com/emrahsardag-yandexcoms-projects/ailydian/GF69jp8JtCMZZyE4uKmCtWqzDoMf) |
-| 3 | `vercel deploy` (preview) | ❌ Platform error | [3b9y22kJA](https://vercel.com/emrahsardag-yandexcoms-projects/ailydian/3b9y22kJA6czPGJcQVtazmqajd81) |
+| 1 | `vercel --prod` | ❌ Platform error | [9zd9bc2ux](https://vercel.com/lydian-projects/ailydian/9zd9bc2uxCt5cfYaiYHgs5vUuWUK) |
+| 2 | `vercel --prod` retry | ❌ Platform error | [GF69jp8Jt](https://vercel.com/lydian-projects/ailydian/GF69jp8JtCMZZyE4uKmCtWqzDoMf) |
+| 3 | `vercel deploy` (preview) | ❌ Platform error | [3b9y22kJA](https://vercel.com/lydian-projects/ailydian/3b9y22kJA6czPGJcQVtazmqajd81) |
 
 **Error:**
 ```

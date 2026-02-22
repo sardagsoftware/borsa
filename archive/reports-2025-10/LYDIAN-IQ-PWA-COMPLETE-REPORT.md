@@ -351,7 +351,7 @@ self.registration.showNotification('LyDian IQ', {
 ## 📁 FILE STRUCTURE
 
 ```
-/Users/sardag/Desktop/ailydian-ultra-pro/
+/home/lydian/Desktop/ailydian-ultra-pro/
 ├── public/
 │   ├── lydian-iq.html              ✅ Main application
 │   ├── lydian-manifest.json        ✅ PWA manifest

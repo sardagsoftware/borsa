@@ -56,7 +56,7 @@ Successfully deployed **Phase 1 Multilingual Foundation** to production with **6
 1. ✅ Removed incorrect rewrites from `vercel.json`
 2. ✅ Kept JSON-specific headers for proper Content-Type
 3. ✅ Let Vercel auto-serve `/public/locales/` files natively
-4. ✅ Deployed successfully: `ailydian-6j79lbbva-emrahsardag-yandexcoms-projects.vercel.app`
+4. ✅ Deployed successfully: `ailydian-6j79lbbva-lydian-projects.vercel.app`
 
 ### Git Commits
 
@@ -68,7 +68,7 @@ f1bff55 - feat(seo): Phase 1 - Multilingual i18n Foundation (6 Languages)
 ### Deployment URL
 
 **Production Deployment:**
-- URL: `https://ailydian-6j79lbbva-emrahsardag-yandexcoms-projects.vercel.app`
+- URL: `https://ailydian-6j79lbbva-lydian-projects.vercel.app`
 - Status: ✅ Live on www.ailydian.com
 - Build Time: 26s
 - Zero errors

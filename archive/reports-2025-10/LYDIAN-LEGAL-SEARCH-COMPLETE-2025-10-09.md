@@ -346,7 +346,7 @@ ac64810 - feat(legal-ai): Complete Lydian Legal Search system
 
 ### Vercel Deployments
 ```
-Latest: https://ailydian-2se8ain8n-emrahsardag-yandexcoms-projects.vercel.app
+Latest: https://ailydian-2se8ain8n-lydian-projects.vercel.app
 Status: ● Ready (Production)
 Custom Domain: www.ailydian.com
 Build Time: ~2 minutes

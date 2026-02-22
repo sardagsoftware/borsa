@@ -200,13 +200,13 @@ ops/artifacts/index_history/yandex_20251009_030000.json
 **Crontab Entry:**
 ```bash
 # Daily index monitoring at 03:00 UTC
-0 3 * * * /Users/sardag/Desktop/ailydian-ultra-pro/ops/index_bridge/cron_daily.sh >> /Users/sardag/Desktop/ailydian-ultra-pro/logs/index_bridge_cron.log 2>&1
+0 3 * * * /home/lydian/Desktop/ailydian-ultra-pro/ops/index_bridge/cron_daily.sh >> /home/lydian/Desktop/ailydian-ultra-pro/logs/index_bridge_cron.log 2>&1
 ```
 
 **Manual Testing:**
 ```bash
 # Test the cron script
-cd /Users/sardag/Desktop/ailydian-ultra-pro/ops/index_bridge
+cd /home/lydian/Desktop/ailydian-ultra-pro/ops/index_bridge
 ./cron_daily.sh
 ```
 
@@ -291,15 +291,15 @@ Completed: 2025-10-09 03:00:30 UTC
 ### Script Validation
 ```bash
 # Check script is executable
-ls -lah /Users/sardag/Desktop/ailydian-ultra-pro/ops/index_bridge/index_monitor.py
+ls -lah /home/lydian/Desktop/ailydian-ultra-pro/ops/index_bridge/index_monitor.py
 # Expected: -rwxr-xr-x (executable)
 
 # Validate Python syntax
-python -m py_compile /Users/sardag/Desktop/ailydian-ultra-pro/ops/index_bridge/index_monitor.py
+python -m py_compile /home/lydian/Desktop/ailydian-ultra-pro/ops/index_bridge/index_monitor.py
 # Expected: No errors
 
 # Run help command
-python /Users/sardag/Desktop/ailydian-ultra-pro/ops/index_bridge/index_monitor.py --help
+python /home/lydian/Desktop/ailydian-ultra-pro/ops/index_bridge/index_monitor.py --help
 # Expected: Usage message and examples
 
 # Test cron script
@@ -312,7 +312,7 @@ Historical monitoring data is stored in `/ops/artifacts/index_history/` for tren
 
 ```bash
 # List historical data
-ls -lh /Users/sardag/Desktop/ailydian-ultra-pro/ops/artifacts/index_history/
+ls -lh /home/lydian/Desktop/ailydian-ultra-pro/ops/artifacts/index_history/
 # Expected: JSON files with timestamp naming: {platform}_{YYYYMMDD_HHMMSS}.json
 ```
 

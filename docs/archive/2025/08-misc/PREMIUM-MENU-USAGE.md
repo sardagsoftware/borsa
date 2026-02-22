@@ -217,7 +217,7 @@ Dosyalar otomatik olarak production'a deploy edildi:
 
 **Production URL:**
 ```
-https://ailydian-prod-25yfygg6n-emrahsardag-yandexcoms-projects.vercel.app
+https://ailydian-prod-25yfygg6n-lydian-projects.vercel.app
 ```
 
 ---

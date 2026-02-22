@@ -81,7 +81,7 @@ if [ "$1" == "--deploy" ]; then
         echo "✅ Deployment successful"
         echo ""
         echo "Test the deployment:"
-        echo "  curl https://ailydian-ps8euyp0x-emrahsardag-yandexcoms-projects.vercel.app/api/health-check"
+        echo "  curl https://ailydian-ps8euyp0x-lydian-projects.vercel.app/api/health-check"
     else
         echo "❌ Deployment failed"
         exit 1

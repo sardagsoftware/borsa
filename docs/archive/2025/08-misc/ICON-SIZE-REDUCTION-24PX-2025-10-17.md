@@ -3,7 +3,7 @@
 **Tarih**: 17 Ekim 2025, Perşembe - 17:15
 **Durum**: 🟢 DEPLOYED & LIVE
 **Domain**: www.ailydian.com
-**Developer**: Claude + Sardag
+**Developer**: Claude + Lydian
 
 ---
 
@@ -203,7 +203,7 @@ Production Test:   ✅ PASS
 ---
 
 *Güncelleme raporu: 17 Ekim 2025, 17:15*
-*Developer: Claude AI + Sardag*
+*Developer: Claude AI + Lydian*
 *Commit: 8b10d8f*
 *Domain: www.ailydian.com*
 *Status: ✅ LIVE*

@@ -150,7 +150,7 @@ cookie: {
 ### Deployment Details:
 - **Platform:** Vercel Production
 - **Domain:** https://www.ailydian.com
-- **Deployment URL:** https://ailydian-gzyrf0th8-emrahsardag-yandexcoms-projects.vercel.app
+- **Deployment URL:** https://ailydian-gzyrf0th8-lydian-projects.vercel.app
 - **Build Time:** 56 seconds
 - **Deploy Time:** 2025-10-10 12:57:36 UTC
 - **Status:** ✅ READY

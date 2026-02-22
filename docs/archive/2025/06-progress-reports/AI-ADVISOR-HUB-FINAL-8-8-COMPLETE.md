@@ -105,12 +105,12 @@
 
 ### **Production URL:**
 ```
-https://ailydian-3ke9oioha-emrahsardag-yandexcoms-projects.vercel.app
+https://ailydian-3ke9oioha-lydian-projects.vercel.app
 ```
 
 ### **Ana Dashboard:**
 ```
-https://ailydian-3ke9oioha-emrahsardag-yandexcoms-projects.vercel.app/ai-advisor-hub.html
+https://ailydian-3ke9oioha-lydian-projects.vercel.app/ai-advisor-hub.html
 ```
 
 ### **8 Modül URL'leri (Hepsi LIVE):**
@@ -312,16 +312,16 @@ https://ailydian-3ke9oioha-emrahsardag-yandexcoms-projects.vercel.app/ai-advisor
 ### **Komut Satırı Testi:**
 ```bash
 # Tüm sayfalar test edildi
-curl https://ailydian-3ke9oioha-emrahsardag-yandexcoms-projects.vercel.app/ai-life-coach.html
+curl https://ailydian-3ke9oioha-lydian-projects.vercel.app/ai-life-coach.html
 # → HTTP 200 ✅
 
-curl https://ailydian-3ke9oioha-emrahsardag-yandexcoms-projects.vercel.app/ai-learning-path.html
+curl https://ailydian-3ke9oioha-lydian-projects.vercel.app/ai-learning-path.html
 # → HTTP 200 ✅
 
-curl https://ailydian-3ke9oioha-emrahsardag-yandexcoms-projects.vercel.app/ai-cultural-advisor.html
+curl https://ailydian-3ke9oioha-lydian-projects.vercel.app/ai-cultural-advisor.html
 # → HTTP 200 ✅
 
-curl https://ailydian-3ke9oioha-emrahsardag-yandexcoms-projects.vercel.app/ai-knowledge-assistant.html
+curl https://ailydian-3ke9oioha-lydian-projects.vercel.app/ai-knowledge-assistant.html
 # → HTTP 200 ✅
 ```
 
@@ -353,7 +353,7 @@ curl https://ailydian-3ke9oioha-emrahsardag-yandexcoms-projects.vercel.app/ai-kn
 
 **Production Dashboard:**
 ```
-https://ailydian-3ke9oioha-emrahsardag-yandexcoms-projects.vercel.app/ai-advisor-hub.html
+https://ailydian-3ke9oioha-lydian-projects.vercel.app/ai-advisor-hub.html
 ```
 
 **Custom Domain (Yakında):**
@@ -363,7 +363,7 @@ https://www.ailydian.com/ai-advisor-hub.html
 
 **Vercel Dashboard:**
 ```
-https://vercel.com/emrahsardag-yandexcoms-projects/ailydian
+https://vercel.com/lydian-projects/ailydian
 ```
 
 ---
@@ -396,5 +396,5 @@ https://vercel.com/emrahsardag-yandexcoms-projects/ailydian
 **🎊 DEPLOYMENT BAŞARILI - İTERASYON TAMAMLANDI! 🎊**
 
 *Tarih: 5 Ekim 2025*
-*Son Deployment: https://ailydian-3ke9oioha-emrahsardag-yandexcoms-projects.vercel.app*
+*Son Deployment: https://ailydian-3ke9oioha-lydian-projects.vercel.app*
 *Status: PRODUCTION LIVE ✅*

@@ -28,7 +28,7 @@ CSS Fixes Count: 0 (eski deployment)
 
 1. **Vercel Dashboard'a git:**
    ```
-   https://vercel.com/emrahsardag-yandexcoms-projects/ailydian/settings/git
+   https://vercel.com/lydian-projects/ailydian/settings/git
    ```
 
 2. **"Deploy Hooks" bölümünü bul**
@@ -59,7 +59,7 @@ curl -X POST "SENIN_HOOK_URL"
 
 1. **Deployments sayfasına git:**
    ```
-   https://vercel.com/emrahsardag-yandexcoms-projects/ailydian
+   https://vercel.com/lydian-projects/ailydian
    ```
 
 2. **En son deployment'a tıkla** (commit 477bb5c olmalı)
@@ -83,7 +83,7 @@ GitHub-Vercel webhook neden çalışmıyor kontrol et:
 
 1. **Vercel Settings → Git:**
    ```
-   https://vercel.com/emrahsardag-yandexcoms-projects/ailydian/settings/git
+   https://vercel.com/lydian-projects/ailydian/settings/git
    ```
 
 2. **GitHub Integration durumu:**
@@ -96,7 +96,7 @@ GitHub-Vercel webhook neden çalışmıyor kontrol et:
 
 4. **GitHub Repo → Settings → Webhooks:**
    ```
-   https://github.com/sardagsoftware/borsa/settings/hooks
+   https://github.com/lydiansoftware/borsa/settings/hooks
    ```
 
 5. **Vercel webhook var mı?**

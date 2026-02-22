@@ -280,7 +280,7 @@ Status:               Vercel Edge Network (Global)
 
 ### Vercel Dashboard
 ```
-https://vercel.com/emrahsardag-yandexcoms-projects/ailydian
+https://vercel.com/lydian-projects/ailydian
 ```
 
 ### CLI Komutları

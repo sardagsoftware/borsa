@@ -60,10 +60,10 @@ Refresh sonrası göreceğiniz:
 
 ```
 ✅ GLB File:
-/Users/sardag/Desktop/ailydian-ultra-pro/apps/console/public/assets/play/characters/Elif.glb
+/home/lydian/Desktop/ailydian-ultra-pro/apps/console/public/assets/play/characters/Elif.glb
 
 ✅ Fixed Code:
-/Users/sardag/Desktop/ailydian-ultra-pro/apps/console/src/components/playpro/AssetHealth.tsx (line 13)
+/home/lydian/Desktop/ailydian-ultra-pro/apps/console/src/components/playpro/AssetHealth.tsx (line 13)
 
 ✅ Server:
 http://localhost:3100/console/play-pro?nocache=1

@@ -60,7 +60,7 @@ Aşağıdaki tüm kombinasyonlar denendi:
 
 3. `schema-generated.sql` dosyasının içeriğini kopyala:
    ```bash
-   cat /Users/sardag/Desktop/ailydian-ultra-pro/schema-generated.sql
+   cat /home/lydian/Desktop/ailydian-ultra-pro/schema-generated.sql
    ```
 
 4. SQL Editor'a yapıştır
@@ -98,7 +98,7 @@ Aşağıdaki tüm kombinasyonlar denendi:
 Terminal'de çalıştır:
 
 ```bash
-cd /Users/sardag/Desktop/ailydian-ultra-pro
+cd /home/lydian/Desktop/ailydian-ultra-pro
 
 # .env dosyasını düzenle (DATABASE_URL satırını bul ve değiştir)
 # Kopyaladığın connection string'i yapıştır
@@ -170,7 +170,7 @@ Tarayıcıda açılmalı: http://localhost:5555
 ### Adım 9: Environment Variables'ı Vercel'e Sync Et
 
 ```bash
-cd /Users/sardag/Desktop/ailydian-ultra-pro
+cd /home/lydian/Desktop/ailydian-ultra-pro
 
 # Vercel'e login (gerekirse)
 vercel login

@@ -14,7 +14,7 @@ Successfully deployed LyDian AI Platform with complete Iteration 2 automation to
 
 - **Production URL:** https://ailydian-ultra-pro.vercel.app
 - **Custom Domain (Configured):** www.ailydian.com (DNS propagation pending)
-- **Inspection URL:** https://vercel.com/emrahsardag-yandexcoms-projects/ailydian-ultra-pro
+- **Inspection URL:** https://vercel.com/lydian-projects/ailydian-ultra-pro
 
 ---
 
@@ -196,10 +196,10 @@ Alias configured in vercel.json. Manual domain transfer may be required:
 
 **Domain Transfer Steps:**
 1. Remove www.ailydian.com from existing project:
-   https://vercel.com/emrahsardag-yandexcoms-projects/ailydian/settings/domains
+   https://vercel.com/lydian-projects/ailydian/settings/domains
 
 2. Add to ailydian-ultra-pro:
-   https://vercel.com/emrahsardag-yandexcoms-projects/ailydian-ultra-pro/settings/domains
+   https://vercel.com/lydian-projects/ailydian-ultra-pro/settings/domains
 
 ---
 
@@ -444,7 +444,7 @@ python ops/notification_system.py --test
 
 **Project:** LyDian AI Platform
 **Deployment:** Vercel Production
-**Status Dashboard:** https://vercel.com/emrahsardag-yandexcoms-projects/ailydian-ultra-pro
+**Status Dashboard:** https://vercel.com/lydian-projects/ailydian-ultra-pro
 
 **Support Resources:**
 - GitHub Actions: `.github/workflows/`

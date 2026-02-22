@@ -1,6 +1,6 @@
 # 🎨 FOOTER LYDIAN LOGO GÜNCELLEME RAPORU
 **Tarih:** $(date '+%Y-%m-%d %H:%M:%S')  
-**Dizin:** /Users/sardag/Desktop/ailydian-ultra-pro/public
+**Dizin:** /home/lydian/Desktop/ailydian-ultra-pro/public
 
 ---
 

@@ -3,7 +3,7 @@
 **Tarih:** 2025-10-08
 **Proje:** LyDian AI Platform - Production Deployment
 **Test Tipi:** White-Hat Security Penetration Testing
-**Production URL:** https://ailydian-ps8euyp0x-emrahsardag-yandexcoms-projects.vercel.app
+**Production URL:** https://ailydian-ps8euyp0x-lydian-projects.vercel.app
 
 ---
 
@@ -547,7 +547,7 @@ Etki: File upload parsing (dicer/busboy)
 
 ```bash
 # Package.json güncelleme:
-cd /Users/sardag/Desktop/ailydian-ultra-pro
+cd /home/lydian/Desktop/ailydian-ultra-pro
 
 # Busboy güncelleme:
 npm install busboy@latest --legacy-peer-deps
@@ -569,7 +569,7 @@ npm audit --production
 vercel --prod
 
 # Test et:
-curl https://ailydian-ps8euyp0x-emrahsardag-yandexcoms-projects.vercel.app/api/health-check
+curl https://ailydian-ps8euyp0x-lydian-projects.vercel.app/api/health-check
 ```
 
 ---

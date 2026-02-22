@@ -517,7 +517,7 @@ POST /api/trust/evidence-pack
 ## APPENDIX C: TEST RESULTS
 
 Detailed test results available at:
-- `/Users/sardag/Desktop/ailydian-ultra-pro/docs/audit/certification-results.json`
+- `/home/lydian/Desktop/ailydian-ultra-pro/docs/audit/certification-results.json`
 
 **Test Execution**: October 9, 2025, 18:16 UTC
 **Test Duration**: ~90 seconds

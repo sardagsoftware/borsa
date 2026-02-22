@@ -144,7 +144,7 @@ Archive total: ~1.5 MB (12 files)
 ```
 Commit: 4ffc9b9
 Branch: main
-Remote: github.com/sardagsoftware/borsa.git
+Remote: github.com/lydiansoftware/borsa.git
 Status: Pushed ✅
 ```
 

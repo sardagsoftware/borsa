@@ -618,7 +618,7 @@ Error Rate:        ██████████ 0.01% (Target: 0.5%)
 - Security Tests: `ops/tools/security-penetration-test.js`
 
 **Code:**
-- GitHub: https://github.com/sardagsoftware/borsa
+- GitHub: https://github.com/lydiansoftware/borsa
 - Production: https://ailydian.com
 
 ---

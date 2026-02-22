@@ -30,7 +30,7 @@ docker ps
 Tek komutla her şeyi başlatır:
 
 ```bash
-cd /Users/sardag/Desktop/ailydian-ultra-pro/infra/lci-db
+cd /home/lydian/Desktop/ailydian-ultra-pro/infra/lci-db
 ./start-lci.sh
 ```
 
@@ -49,7 +49,7 @@ Her adımı kendiniz çalıştırmak isterseniz:
 
 #### Adım 1: PostgreSQL Başlat
 ```bash
-cd /Users/sardag/Desktop/ailydian-ultra-pro/infra/lci-db
+cd /home/lydian/Desktop/ailydian-ultra-pro/infra/lci-db
 docker-compose up -d
 ```
 
@@ -70,7 +70,7 @@ npm run seed
 
 #### Adım 5: API'yi Başlat
 ```bash
-cd /Users/sardag/Desktop/ailydian-ultra-pro/apps/lci-api
+cd /home/lydian/Desktop/ailydian-ultra-pro/apps/lci-api
 npm run start:dev
 ```
 
@@ -109,7 +109,7 @@ curl -X POST http://localhost:3201/auth/login \
 ## 4️⃣ E2E Testleri Çalıştırın
 
 ```bash
-cd /Users/sardag/Desktop/ailydian-ultra-pro/apps/lci-api
+cd /home/lydian/Desktop/ailydian-ultra-pro/apps/lci-api
 npm run test:e2e
 ```
 
@@ -248,7 +248,7 @@ kill <PID>
 
 ### PostgreSQL'i Durdur
 ```bash
-cd /Users/sardag/Desktop/ailydian-ultra-pro/infra/lci-db
+cd /home/lydian/Desktop/ailydian-ultra-pro/infra/lci-db
 docker-compose down
 ```
 

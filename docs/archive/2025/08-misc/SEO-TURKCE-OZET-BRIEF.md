@@ -333,7 +333,7 @@ LyDian AI Ecosystem - 20+ dilde yapay zeka çözümleri...
 5. ✅ Kick-off meeting planlamak
 
 ### Sorularınız için:
-- **Email**: emrah.sardag@ailydian.com
+- **Email**: emrah.lydian@ailydian.com
 - **Slack**: #seo-nirvana-2025
 - **Meeting**: Her Pazartesi 10:00 (Sprint Review)
 
@@ -367,7 +367,7 @@ LyDian AI Ecosystem - 20+ dilde yapay zeka çözümleri...
 
 **İmza**: _________________
 **Tarih**: 19 Ekim 2025
-**Onaylayan**: Emrah Sardag
+**Onaylayan**: Lydian
 
 ---
 

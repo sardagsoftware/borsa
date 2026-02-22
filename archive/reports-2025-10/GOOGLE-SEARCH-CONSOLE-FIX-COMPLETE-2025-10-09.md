@@ -13,7 +13,7 @@
 
 ### Tespit Edilen Güvenlik Açıkları
 
-#### 1. `dashboard-sardag.html` - KRİTİK
+#### 1. `dashboard-lydian.html` - KRİTİK
 ```javascript
 // Satır 216 - CLIENT-SIDE'DA HARDCODED PASSWORD!
 const CORRECT_KEY = 'Xrubyphyton1985.!?';
@@ -46,7 +46,7 @@ Google bu sayfayı "phishing/aldatıcı" olarak işaretledi çünkü:
 
 ### 1. Tehlikeli Dosyaları Kaldırma
 ```bash
-✅ Kaldırılan: dashboard-sardag.html
+✅ Kaldırılan: dashboard-lydian.html
 ✅ Kaldırılan: auth-backup-20251007.html
 ```
 
@@ -57,7 +57,7 @@ Disallow: /api/
 Disallow: /auth/
 Disallow: /.env
 Disallow: /admin/
-- Disallow: /dashboard-sardag.html  # KALDIRILDI (dosya yok artık)
+- Disallow: /dashboard-lydian.html  # KALDIRILDI (dosya yok artık)
 ```
 
 ### 3. Git Commit
@@ -117,12 +117,12 @@ Property: https://www.ailydian.com
 
 ### Adım 3: Sorunları Doğrula
 ```
-✅ dashboard-sardag.html kaldırıldı
+✅ dashboard-lydian.html kaldırıldı
 ✅ auth-backup-20251007.html kaldırıldı
 ✅ robots.txt güncellendi
 ✅ Deployment tamamlandı
 ✅ Dosyalar artık erişilemez:
-   - https://www.ailydian.com/dashboard-sardag.html → 404
+   - https://www.ailydian.com/dashboard-lydian.html → 404
    - https://www.ailydian.com/auth-backup-20251007.html → 404
 ```
 
@@ -131,7 +131,7 @@ Property: https://www.ailydian.com
 2. Açıklama yazın:
    ```
    Problem çözüldü:
-   - Hardcoded password içeren dosya (dashboard-sardag.html) kaldırıldı
+   - Hardcoded password içeren dosya (dashboard-lydian.html) kaldırıldı
    - Backup dosyası (auth-backup-20251007.html) kaldırıldı
    - Tüm güvenlik açıkları kapatıldı
    - Production deployment tamamlandı
@@ -188,8 +188,8 @@ Ana sayfalarda H1 kontrolü yapıldı:
 
 ### Test 1: Dosya Erişimi (404 Kontrolü)
 ```bash
-# dashboard-sardag.html kaldırıldı mı?
-curl -I https://www.ailydian.com/dashboard-sardag.html
+# dashboard-lydian.html kaldırıldı mı?
+curl -I https://www.ailydian.com/dashboard-lydian.html
 # Beklenen: HTTP/2 404
 
 # auth-backup kaldırıldı mı?
@@ -199,7 +199,7 @@ curl -I https://www.ailydian.com/auth-backup-20251007.html
 
 ### Test 2: robots.txt Doğrulaması
 ```bash
-curl https://www.ailydian.com/robots.txt | grep "dashboard-sardag"
+curl https://www.ailydian.com/robots.txt | grep "dashboard-lydian"
 # Beklenen: Boş (satır kaldırıldı)
 ```
 
@@ -311,7 +311,7 @@ git secrets --scan
 ## 📝 ÖZET
 
 ### ✅ TAMAMLANAN
-- [x] dashboard-sardag.html kaldırıldı (hardcoded password)
+- [x] dashboard-lydian.html kaldırıldı (hardcoded password)
 - [x] auth-backup-20251007.html kaldırıldı
 - [x] robots.txt temizlendi
 - [x] Git commit oluşturuldu (c2c16a2)

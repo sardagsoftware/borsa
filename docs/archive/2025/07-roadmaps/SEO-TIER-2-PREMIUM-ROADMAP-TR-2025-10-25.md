@@ -378,7 +378,7 @@ DE: LyDian KI-Plattform für Unternehmen | 20+ Sprachen
 **Academic SEO için:**
 ```html
 <meta name="citation_title" content="LyDian: Enterprise-Scale Multilingual AI Platform">
-<meta name="citation_author" content="Emrah Sardag">
+<meta name="citation_author" content="Lydian">
 <meta name="citation_author" content="LyDian Research Team">
 <meta name="citation_publication_date" content="2025/10/25">
 <meta name="citation_journal_title" content="LyDian Technical Reports">
@@ -783,7 +783,7 @@ ROI = 87.5% (6 ayda)
 
 ---
 
-**Hazırlayan**: Claude AI + Emrah Sardag
+**Hazırlayan**: Claude AI + Lydian
 **Tarih**: 25 Ekim 2025
 **Versiyon**: 1.0.0
 **Durum**: ✅ APPROVED - Implementation Ready

@@ -103,7 +103,7 @@
 ```
 Production: https://ailydian.com
 WWW: https://www.ailydian.com
-Vercel: https://ailydian-emrahsardag-yandexcoms-projects.vercel.app
+Vercel: https://ailydian-lydian-projects.vercel.app
 ```
 
 ### AI Governance Dashboard
@@ -116,8 +116,8 @@ https://ailydian.com/ai-governance-dashboard.html
 ### Vercel Inspect
 
 ```
-Deployment URL: ailydian-ljrg0kvie-emrahsardag-yandexcoms-projects.vercel.app
-Inspect: https://vercel.com/emrahsardag-yandexcoms-projects/ailydian/G2BjMbrvSXEc55ZbFnhnFMbTfqs4
+Deployment URL: ailydian-ljrg0kvie-lydian-projects.vercel.app
+Inspect: https://vercel.com/lydian-projects/ailydian/G2BjMbrvSXEc55ZbFnhnFMbTfqs4
 ```
 
 ---
@@ -150,7 +150,7 @@ strict-transport-security: max-age=63072000
 ```
 ✓ https://ailydian.com
 ✓ https://www.ailydian.com
-✓ https://ailydian-emrahsardag-yandexcoms-projects.vercel.app
+✓ https://ailydian-lydian-projects.vercel.app
 ```
 
 ---
@@ -285,7 +285,7 @@ geolocation=(self "https://ailydian-messaging.vercel.app")
 - **Status**: ● Ready
 - **Environment**: Production
 - **Duration**: 2m
-- **Username**: emrahsardag-9142
+- **Username**: lydian-9142
 
 ### Previous Deployments
 
@@ -360,4 +360,4 @@ AILydian Ultra Pro başarıyla www.ailydian.com'a deploy edildi!
 **Deploy Tarihi**: 2025-10-18 18:43:00 GMT+3
 **Developer**: Claude Code + AILydian Team
 **Proje**: AILydian Ultra Pro - ACE Integration
-**Vercel Project**: emrahsardag-yandexcoms-projects/ailydian
+**Vercel Project**: lydian-projects/ailydian

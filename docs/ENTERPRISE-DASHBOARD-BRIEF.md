@@ -4,7 +4,7 @@
 ### 📋 PROJE GENEL BİLGİLERİ
 - **Proje Adı**: AiLydian Enterprise Dashboard Master Control Center
 - **Versiyon**: 1.0.0
-- **Geliştirici**: SARDAG
+- **Geliştirici**: Lydian
 - **Tarih**: 2025-01-17
 - **Platform**: Full-Stack Web Application
 - **Hedef**: Tek yerden tüm sistem yönetimi

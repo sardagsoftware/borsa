@@ -114,22 +114,22 @@ Ailydian Ultra Pro has successfully completed **Vercel Partner Readiness Sprint*
 
 **Primary Production:**
 ```
-https://ailydian-dc09h7jel-emrahsardag-yandexcoms-projects.vercel.app
+https://ailydian-dc09h7jel-lydian-projects.vercel.app
 ```
 
 **Settings Panel:**
 ```
-https://ailydian-dc09h7jel-emrahsardag-yandexcoms-projects.vercel.app/settings.html
+https://ailydian-dc09h7jel-lydian-projects.vercel.app/settings.html
 ```
 
 **Auth Page:**
 ```
-https://ailydian-dc09h7jel-emrahsardag-yandexcoms-projects.vercel.app/auth.html
+https://ailydian-dc09h7jel-lydian-projects.vercel.app/auth.html
 ```
 
 **API Health Check:**
 ```
-https://ailydian-dc09h7jel-emrahsardag-yandexcoms-projects.vercel.app/api/ping
+https://ailydian-dc09h7jel-lydian-projects.vercel.app/api/ping
 ```
 
 ---
@@ -353,19 +353,19 @@ https://ailydian-dc09h7jel-emrahsardag-yandexcoms-projects.vercel.app/api/ping
 
 ### Live Demo
 ```
-🔗 https://ailydian-dc09h7jel-emrahsardag-yandexcoms-projects.vercel.app
+🔗 https://ailydian-dc09h7jel-lydian-projects.vercel.app
 ```
 
 ### Verification Commands
 ```bash
 # Security headers
-curl -I https://ailydian-dc09h7jel-emrahsardag-yandexcoms-projects.vercel.app/
+curl -I https://ailydian-dc09h7jel-lydian-projects.vercel.app/
 
 # Edge cache
-curl -I https://ailydian-dc09h7jel-emrahsardag-yandexcoms-projects.vercel.app/ | grep x-vercel-cache
+curl -I https://ailydian-dc09h7jel-lydian-projects.vercel.app/ | grep x-vercel-cache
 
 # API health
-curl https://ailydian-dc09h7jel-emrahsardag-yandexcoms-projects.vercel.app/api/ping
+curl https://ailydian-dc09h7jel-lydian-projects.vercel.app/api/ping
 
 # Deployment status
 vercel ls --prod

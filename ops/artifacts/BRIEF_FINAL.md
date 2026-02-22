@@ -320,7 +320,7 @@ docker run -v $(pwd)/ops/artifacts:/zap/wrk \
 
 ## 📞 RELEASE APPROVAL REQUEST
 
-**To:** Emrah Sardag (Founder)
+**To:** Lydian (Founder)
 **From:** AX9F7E2B SRE Agent
 **Subject:** LyDian Platform - Azure Harici İterasyonlar Tamamlandı
 

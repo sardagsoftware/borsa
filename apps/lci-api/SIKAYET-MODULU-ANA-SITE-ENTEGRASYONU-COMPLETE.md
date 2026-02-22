@@ -264,7 +264,7 @@ npm run build
 
 ---
 
-**Geliştirici**: AX9F7E2B + Sardag
+**Geliştirici**: AX9F7E2B + Lydian
 **Proje**: LCI - Lydian Complaint Intelligence
 **Versiyon**: v1.0 - Main Site Integration Complete
 **Tarih**: 17 Ekim 2025

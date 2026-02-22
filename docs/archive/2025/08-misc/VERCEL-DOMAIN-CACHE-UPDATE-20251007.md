@@ -32,7 +32,7 @@
 ```
 ✅ https://ailydian.com (Primary - Managed by Vercel)
 ✅ https://www.ailydian.com (WWW subdomain)
-✅ https://ailydian-dpjvxjqsh-emrahsardag-yandexcoms-projects.vercel.app (Latest deployment)
+✅ https://ailydian-dpjvxjqsh-lydian-projects.vercel.app (Latest deployment)
 ```
 
 ### 2. **Cache Busting Implementation**
@@ -64,7 +64,7 @@
 ### 3. **Deployment Process**
 
 **Latest Production Deployment:**
-- **URL:** https://ailydian-dpjvxjqsh-emrahsardag-yandexcoms-projects.vercel.app
+- **URL:** https://ailydian-dpjvxjqsh-lydian-projects.vercel.app
 - **Build Time:** 3 seconds
 - **Upload Size:** 269 bytes (headers file)
 - **Status:** ✅ SUCCESS
@@ -77,7 +77,7 @@
 ### Current Status
 
 **Vercel Project:** `ailydian`
-**Team:** emrahsardag-yandexcoms-projects
+**Team:** lydian-projects
 **Node Version:** 22.x
 
 **Production Domains:**
@@ -238,12 +238,12 @@ https://www.ailydian.com
 
 **Latest Deployment:**
 ```
-https://ailydian-dpjvxjqsh-emrahsardag-yandexcoms-projects.vercel.app
+https://ailydian-dpjvxjqsh-lydian-projects.vercel.app
 ```
 
 **Inspect:**
 ```
-https://vercel.com/emrahsardag-yandexcoms-projects/ailydian/Hrg6Nuxebky5VM3LjPH2ycVCNA8Q
+https://vercel.com/lydian-projects/ailydian/Hrg6Nuxebky5VM3LjPH2ycVCNA8Q
 ```
 
 ---
@@ -308,7 +308,7 @@ Mac: Cmd+Shift+R
 ### Vercel Dashboard Configuration
 
 **To manually configure domain redirects:**
-1. Go to https://vercel.com/emrahsardag-yandexcoms-projects/ailydian
+1. Go to https://vercel.com/lydian-projects/ailydian
 2. Click "Settings" → "Domains"
 3. Add www.ailydian.com as domain
 4. Configure redirect: ailydian.com → www.ailydian.com (if needed)
@@ -365,7 +365,7 @@ Mac: Cmd+Shift+R
 ## 📋 Next Steps (If Needed)
 
 ### Optional: Manually set www as primary domain in Vercel Dashboard
-1. Visit: https://vercel.com/emrahsardag-yandexcoms-projects/ailydian/settings/domains
+1. Visit: https://vercel.com/lydian-projects/ailydian/settings/domains
 2. Click "Edit" on www.ailydian.com
 3. Set as "Primary Domain"
 4. Save changes

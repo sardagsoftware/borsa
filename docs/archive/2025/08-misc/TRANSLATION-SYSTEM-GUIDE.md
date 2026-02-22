@@ -108,7 +108,7 @@ ailydian-ultra-pro/
 
 ### 📍 Endpoint: `/api/translate`
 
-**Location:** `/Users/sardag/Desktop/ailydian-ultra-pro/api/translate.js`
+**Location:** `/home/lydian/Desktop/ailydian-ultra-pro/api/translate.js`
 
 ### Features:
 - ✅ Z.AI powered translation
@@ -319,7 +319,7 @@ console.log(translated); // "Hello world"
 
 ```bash
 # Make sure the API server is running
-cd /Users/sardag/Desktop/ailydian-ultra-pro
+cd /home/lydian/Desktop/ailydian-ultra-pro
 node test-translation-system.js
 ```
 

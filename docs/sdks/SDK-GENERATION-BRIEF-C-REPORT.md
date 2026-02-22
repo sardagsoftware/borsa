@@ -20,7 +20,7 @@ Successfully generated **5 complete, production-ready SDK client libraries** for
 
 ### Package Details
 - **Package Name:** `@lydian/sdk`
-- **Location:** `/Users/sardag/Desktop/ailydian-ultra-pro/docs/sdks/typescript/`
+- **Location:** `/home/lydian/Desktop/ailydian-ultra-pro/docs/sdks/typescript/`
 - **Target:** Node.js 18+, Browser (ESM/CommonJS)
 
 ### Architecture
@@ -78,7 +78,7 @@ const city = await lydian.smartCities.createCity({
 
 ### Package Details
 - **Package Name:** `lydian-sdk`
-- **Location:** `/Users/sardag/Desktop/ailydian-ultra-pro/docs/sdks/python/`
+- **Location:** `/home/lydian/Desktop/ailydian-ultra-pro/docs/sdks/python/`
 - **Target:** Python 3.8+
 
 ### Architecture
@@ -134,7 +134,7 @@ city = lydian.smart_cities.create_city(
 
 ### Package Details
 - **Module:** `github.com/lydian/go-sdk`
-- **Location:** `/Users/sardag/Desktop/ailydian-ultra-pro/docs/sdks/go/`
+- **Location:** `/home/lydian/Desktop/ailydian-ultra-pro/docs/sdks/go/`
 - **Target:** Go 1.21+
 
 ### Architecture
@@ -183,7 +183,7 @@ city, err := client.SmartCities.CreateCity(ctx, lydian.City{
 ### Package Details
 - **Group ID:** `com.lydian`
 - **Artifact ID:** `lydian-sdk`
-- **Location:** `/Users/sardag/Desktop/ailydian-ultra-pro/docs/sdks/java/`
+- **Location:** `/home/lydian/Desktop/ailydian-ultra-pro/docs/sdks/java/`
 - **Target:** Java 11+
 
 ### Architecture
@@ -242,7 +242,7 @@ City created = client.smartCities.createCity(city);
 
 ### Package Details
 - **Package:** `Lydian.SDK`
-- **Location:** `/Users/sardag/Desktop/ailydian-ultra-pro/docs/sdks/csharp/`
+- **Location:** `/home/lydian/Desktop/ailydian-ultra-pro/docs/sdks/csharp/`
 - **Target:** .NET 6.0+
 
 ### Architecture

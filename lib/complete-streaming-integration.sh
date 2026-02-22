@@ -11,7 +11,7 @@ MODULES=(
 )
 
 for MODULE in "${MODULES[@]}"; do
-    FILE="/Users/sardag/Desktop/ailydian-ultra-pro/api/medical/${MODULE}.js"
+    FILE="/home/lydian/Desktop/ailydian-ultra-pro/api/medical/${MODULE}.js"
 
     echo ""
     echo "📝 Processing: $MODULE.js"

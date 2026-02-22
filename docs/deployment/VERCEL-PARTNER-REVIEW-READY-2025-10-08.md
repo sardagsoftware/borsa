@@ -247,7 +247,7 @@ Stats API: https://www.ailydian.com/api/ai-assistant/stats
 
 ## 📞 Contact Info (Vercel'in Göreceği)
 
-**Company:** LyDian AI (Sardag Software)
+**Company:** LyDian AI (Lydian Software)
 **Website:** https://www.ailydian.com
 **Domain:** www.ailydian.com
 **Founded:** 2024

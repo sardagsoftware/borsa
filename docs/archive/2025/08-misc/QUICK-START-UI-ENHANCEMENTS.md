@@ -7,7 +7,7 @@
 Open your terminal and start the development server:
 
 ```bash
-cd /Users/sardag/Desktop/ailydian-ultra-pro
+cd /home/lydian/Desktop/ailydian-ultra-pro
 # Start your existing server (adjust command as needed)
 npm start
 # OR

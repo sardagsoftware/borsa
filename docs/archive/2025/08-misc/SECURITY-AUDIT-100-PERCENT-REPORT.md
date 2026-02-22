@@ -316,7 +316,7 @@ OVERALL: 93/100 (A+)
 
 ### Production Deployment
 ```
-URL: https://ailydian-prod-67mj58q2z-emrahsardag-yandexcoms-projects.vercel.app
+URL: https://ailydian-prod-67mj58q2z-lydian-projects.vercel.app
 Domain: www.ailydian.com
 Status: ✅ DEPLOYED
 Build: ✅ SUCCESS

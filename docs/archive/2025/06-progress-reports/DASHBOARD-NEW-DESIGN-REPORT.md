@@ -2,7 +2,7 @@
 
 **Tarih:** 2025-10-08
 **Durum:** ✅ Başarıyla Deploy Edildi
-**Deployment URL:** https://ailydian-jp5mubxmf-emrahsardag-yandexcoms-projects.vercel.app
+**Deployment URL:** https://ailydian-jp5mubxmf-lydian-projects.vercel.app
 
 ---
 
@@ -58,7 +58,7 @@ Storage: localStorage
 
 ### Password Management
 ```javascript
-- Default Password: EMRAH-SARDAG-ULTRA-SECURE-2025-7X9K4M
+- Default Password: EMRAH-Lydian-ULTRA-SECURE-2025-7X9K4M
 - Custom Password: localStorage.setItem('dashboardPassword', newPass)
 - Auto Re-login Prevention: localStorage.removeItem('dashboardAuth')
 ```
@@ -74,8 +74,8 @@ Storage: localStorage
 ## 🎯 KULLANIM REHBERİ
 
 ### Giriş Yapma
-1. Sayfayı aç: https://www.ailydian.com/dashboard-sardag
-2. Şifrenizi girin: `EMRAH-SARDAG-ULTRA-SECURE-2025-7X9K4M`
+1. Sayfayı aç: https://www.ailydian.com/dashboard-lydian
+2. Şifrenizi girin: `EMRAH-Lydian-ULTRA-SECURE-2025-7X9K4M`
 3. "Giriş Yap" butonuna tıklayın
 4. Dashboard'a yönlendirileceksiniz: http://localhost:3002
 
@@ -95,7 +95,7 @@ Storage: localStorage
 localStorage.removeItem('dashboardPassword');
 ```
 2. Sayfayı yenileyin
-3. Varsayılan şifre ile giriş yapın: `EMRAH-SARDAG-ULTRA-SECURE-2025-7X9K4M`
+3. Varsayılan şifre ile giriş yapın: `EMRAH-Lydian-ULTRA-SECURE-2025-7X9K4M`
 
 ---
 
@@ -142,15 +142,15 @@ Icon Size: 80x80px
 ### Vercel Deployment
 ```
 Deployment ID: 6GuKaVYNcNr5VWfpygnBF9CAzLKZ
-Production URL: https://ailydian-jp5mubxmf-emrahsardag-yandexcoms-projects.vercel.app
-Custom Domain: https://www.ailydian.com/dashboard-sardag
+Production URL: https://ailydian-jp5mubxmf-lydian-projects.vercel.app
+Custom Domain: https://www.ailydian.com/dashboard-lydian
 Deploy Time: ~6 seconds
 Status: ✅ Completed
 ```
 
 ### Dosya Yapısı
 ```
-/public/dashboard-sardag.html (537 satır)
+/public/dashboard-lydian.html (537 satır)
 ├── HTML Structure (220 satır)
 ├── CSS Styles (218 satır)
 └── JavaScript Logic (314 satır)
@@ -201,7 +201,7 @@ Safari: Cmd + Option + R (Mac)
 ### Vercel Cache Temizleme
 ```bash
 # Deployment logs kontrol
-vercel inspect ailydian-jp5mubxmf-emrahsardag-yandexcoms-projects.vercel.app --logs
+vercel inspect ailydian-jp5mubxmf-lydian-projects.vercel.app --logs
 
 # Yeniden deploy
 vercel --prod --yes
@@ -251,8 +251,8 @@ console.log(localStorage.getItem('dashboardPassword'));
 ✅ **Yeni tasarım başarıyla deploy edildi!**
 
 ### Erişim Bilgileri:
-- **URL:** https://www.ailydian.com/dashboard-sardag
-- **Varsayılan Şifre:** `EMRAH-SARDAG-ULTRA-SECURE-2025-7X9K4M`
+- **URL:** https://www.ailydian.com/dashboard-lydian
+- **Varsayılan Şifre:** `EMRAH-Lydian-ULTRA-SECURE-2025-7X9K4M`
 - **Dashboard URL:** http://localhost:3002
 
 ### Özellikler:

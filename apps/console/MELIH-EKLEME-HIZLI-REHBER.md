@@ -23,7 +23,7 @@ Artık oyun içinde **karakter seçici butonlar** var! Sağ üstte bir panel gö
 - İsmini `Melih.glb` yapın
 - Şu konuma kopyalayın:
   ```
-  /Users/sardag/Desktop/ailydian-ultra-pro/apps/console/public/assets/play/characters/Melih.glb
+  /home/lydian/Desktop/ailydian-ultra-pro/apps/console/public/assets/play/characters/Melih.glb
   ```
 
 **Eğer elinizde .glb dosyası yoksa:**
@@ -44,12 +44,12 @@ Artık oyun içinde **karakter seçici butonlar** var! Sağ üstte bir panel gö
 - Melih.glb dosyasını bul
 - Şu klasöre sürükle-bırak:
   ```
-  /Users/sardag/Desktop/ailydian-ultra-pro/apps/console/public/assets/play/characters/
+  /home/lydian/Desktop/ailydian-ultra-pro/apps/console/public/assets/play/characters/
   ```
 
 **Terminal:**
 ```bash
-cp /yolunuz/Melih.glb /Users/sardag/Desktop/ailydian-ultra-pro/apps/console/public/assets/play/characters/Melih.glb
+cp /yolunuz/Melih.glb /home/lydian/Desktop/ailydian-ultra-pro/apps/console/public/assets/play/characters/Melih.glb
 ```
 
 ### Adım 3: Tarayıcıda Test Et
@@ -100,7 +100,7 @@ cp /yolunuz/Melih.glb /Users/sardag/Desktop/ailydian-ultra-pro/apps/console/publ
 
 **Çözüm 1:** Dosya doğru konumda mı?
 ```bash
-ls -lh /Users/sardag/Desktop/ailydian-ultra-pro/apps/console/public/assets/play/characters/Melih.glb
+ls -lh /home/lydian/Desktop/ailydian-ultra-pro/apps/console/public/assets/play/characters/Melih.glb
 ```
 
 **Çözüm 2:** Server'dan erişiliyor mu?

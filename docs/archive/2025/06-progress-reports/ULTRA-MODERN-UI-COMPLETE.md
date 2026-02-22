@@ -408,5 +408,5 @@ box-shadow:
 
 ---
 
-**Built with ❤️ by Claude & Sardag**
+**Built with ❤️ by Claude & Lydian**
 **Türkiye'de geliştirilmiştir**

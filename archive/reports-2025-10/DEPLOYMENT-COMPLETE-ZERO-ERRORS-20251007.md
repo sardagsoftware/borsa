@@ -49,7 +49,7 @@
 ### 🚀 DEPLOYMENT DETAYLARI
 
 **Deployment ID:** `5q2rc1fmMWmq8WAxeBA9qVPcjDuZ`
-**Production URL:** https://ailydian-bdvss3deg-emrahsardag-yandexcoms-projects.vercel.app
+**Production URL:** https://ailydian-bdvss3deg-lydian-projects.vercel.app
 **Custom Domain:** https://www.ailydian.com
 
 **Build Status:** ✅ Completed - 0 Errors
@@ -83,7 +83,7 @@
 **Çözüm:**
 - **Hard Refresh:** `Cmd + Shift + R` (Mac) veya `Ctrl + Shift + R` (Windows)
 - **Veya:** Tarayıcı cache'ini temizleyin
-- **Veya:** Direkt Vercel URL'ini kullanın: https://ailydian-bdvss3deg-emrahsardag-yandexcoms-projects.vercel.app
+- **Veya:** Direkt Vercel URL'ini kullanın: https://ailydian-bdvss3deg-lydian-projects.vercel.app
 
 ---
 
@@ -129,4 +129,4 @@ style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com;
 ---
 
 **Generated:** 2025-10-07 10:10:00 UTC
-**Engineer:** AX9F7E2B Code (Sardag AI Platform)
+**Engineer:** AX9F7E2B Code (Lydian AI Platform)

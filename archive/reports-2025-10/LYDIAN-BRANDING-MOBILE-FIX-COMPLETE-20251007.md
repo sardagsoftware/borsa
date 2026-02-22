@@ -282,7 +282,7 @@ function closeMenu() {
 ## 🚀 Deployment
 
 ### Production URL
-**Primary:** https://public-7ss7mvv0o-emrahsardag-yandexcoms-projects.vercel.app
+**Primary:** https://public-7ss7mvv0o-lydian-projects.vercel.app
 
 ### Deployment Details
 - **Platform:** Vercel
@@ -426,7 +426,7 @@ function closeMenu() {
 ## 🔍 How to Verify
 
 ### Logo Font
-1. Open any page on https://public-7ss7mvv0o-emrahsardag-yandexcoms-projects.vercel.app
+1. Open any page on https://public-7ss7mvv0o-lydian-projects.vercel.app
 2. Right-click logo → Inspect
 3. Check computed styles → Should show `font-family: Righteous, cursive`
 4. Compare header logo vs footer logo → Same font

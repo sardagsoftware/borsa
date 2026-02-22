@@ -183,7 +183,7 @@ const result = await circuitBreakerManager.execute('trendyol', async () => {
 
 ### 1. Install Dependencies
 ```bash
-cd /Users/sardag/Desktop/ailydian-ultra-pro
+cd /home/lydian/Desktop/ailydian-ultra-pro
 pnpm install
 ```
 
@@ -494,7 +494,7 @@ chore: Maintenance
 
 Bu proje **Ailydian Ultra Pro** ekibi tarafından geliştirilmiştir.
 
-**Sardag Edition** - Global kalitede, Türkiye odaklı, White-Hat architecture.
+**Lydian Edition** - Global kalitede, Türkiye odaklı, White-Hat architecture.
 
 ---
 

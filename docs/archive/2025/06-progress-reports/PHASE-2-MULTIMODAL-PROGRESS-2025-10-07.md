@@ -608,7 +608,7 @@ curl https://www.ailydian.com/api/image/generate \
 ---
 
 **Generated:** 2025-10-07
-**Author:** Claude Code (Emrah Sardag request)
+**Author:** Claude Code (Lydian request)
 **Project:** LyDian IQ - Multimodal AI Platform
 **Status:** ✅ 100% Complete - PHASE 2 FINISHED! 🎉
 

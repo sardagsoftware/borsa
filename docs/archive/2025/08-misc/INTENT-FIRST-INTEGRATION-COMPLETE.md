@@ -130,10 +130,10 @@ Successfully integrated a complete **Intent-First Natural Language UI** system i
 
 ### ✅ Modified Files (2 files)
 
-11. **`/Users/sardag/Desktop/ailydian-ultra-pro/server.js`**
+11. **`/home/lydian/Desktop/ailydian-ultra-pro/server.js`**
     - Added lines 3813-3837: 7 new API endpoint registrations
 
-12. **`/Users/sardag/Desktop/ailydian-ultra-pro/public/lydian-iq.html`**
+12. **`/home/lydian/Desktop/ailydian-ultra-pro/public/lydian-iq.html`**
     - Added CSS link (line 120)
     - Added Intent UI container (lines 1319-1322)
     - Added 3 script tags + initialization (lines 4882-4961)
@@ -145,7 +145,7 @@ Successfully integrated a complete **Intent-First Natural Language UI** system i
 
 ### 1. Start the Server
 ```bash
-cd /Users/sardag/Desktop/ailydian-ultra-pro
+cd /home/lydian/Desktop/ailydian-ultra-pro
 PORT=3100 node server.js
 ```
 
@@ -586,5 +586,5 @@ Enjoy your new Intent-First Natural Language Interface! 🚀
 
 ---
 
-**Built with ❤️ by Claude & Sardag**
+**Built with ❤️ by Claude & Lydian**
 **Türkiye'de geliştirilmiştir**

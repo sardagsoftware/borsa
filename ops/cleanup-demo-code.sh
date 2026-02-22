@@ -5,7 +5,7 @@
 
 set -euo pipefail
 
-REPO_ROOT="/Users/sardag/Desktop/ailydian-ultra-pro"
+REPO_ROOT="/home/lydian/Desktop/ailydian-ultra-pro"
 cd "$REPO_ROOT"
 
 echo "🧹 AILYDIAN NO-MOCK CLEANUP AUTOMATION"

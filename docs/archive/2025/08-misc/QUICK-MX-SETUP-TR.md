@@ -18,7 +18,7 @@ Vercel CLI'dan MX kayıtları eklenemedi (permission hatası).
 ### 1️⃣ VERCEL DASHBOARD'A GİT
 
 **DİREKT LİNK**:
-🔗 https://vercel.com/emrahsardag-yandexcoms-projects/ailydian/settings/domains
+🔗 https://vercel.com/lydian-projects/ailydian/settings/domains
 
 Veya:
 1. https://vercel.com giriş yap
@@ -124,7 +124,7 @@ Eğer Vercel'de sorun olursa:
 ## 💡 HIZLI LİNKLER
 
 **Vercel DNS Settings**:
-🔗 https://vercel.com/emrahsardag-yandexcoms-projects/ailydian/settings/domains
+🔗 https://vercel.com/lydian-projects/ailydian/settings/domains
 
 **Email Status Check**:
 🔗 https://www.ailydian.com/email-setup-status

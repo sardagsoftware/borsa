@@ -394,7 +394,7 @@ document.getElementById('loadingIndicator').classList.remove('active');
 ## 📁 FILE STRUCTURE
 
 ```
-/Users/sardag/Desktop/ailydian-ultra-pro/
+/home/lydian/Desktop/ailydian-ultra-pro/
 ├── public/
 │   ├── css/
 │   │   └── theme.css ✨ NEW

@@ -167,7 +167,7 @@ Deploy Time: ~15 seconds total
 
 ### GitHub Push ✅
 ```bash
-To https://github.com/sardagsoftware/borsa.git
+To https://github.com/lydiansoftware/borsa.git
    769dc13..16c7fd2  main -> main
 ```
 

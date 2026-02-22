@@ -34,7 +34,7 @@ curl https://ceipxudbpixhfsnrfjvv.supabase.co/rest/v1/
 ```
 
 ### 2. Prisma Schema Configuration ✅
-- **Location:** `/Users/sardag/Desktop/ailydian-ultra-pro/infra/prisma/schema.prisma`
+- **Location:** `/home/lydian/Desktop/ailydian-ultra-pro/infra/prisma/schema.prisma`
 - **Models:** 40+ (User, Tenant, Message, AIModel, Document, Workflow, etc.)
 - **Extensions:** pgvector for embeddings
 - **Features:** Multi-tenancy, RBAC, Audit logs, GDPR compliance

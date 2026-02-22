@@ -71,12 +71,12 @@ curl -H "Authorization: Bearer $VERCEL_TOKEN" \
 
 The script is already saved at:
 ```
-/Users/sardag/Desktop/ailydian-ultra-pro/ops/dns-cutover-runner.sh
+/home/lydian/Desktop/ailydian-ultra-pro/ops/dns-cutover-runner.sh
 ```
 
 Make it executable:
 ```bash
-chmod +x /Users/sardag/Desktop/ailydian-ultra-pro/ops/dns-cutover-runner.sh
+chmod +x /home/lydian/Desktop/ailydian-ultra-pro/ops/dns-cutover-runner.sh
 ```
 
 ### Step 2: Set Environment Variables
@@ -89,7 +89,7 @@ export DR_REGION="northeurope"
 ### Step 3: Execute the Cutover
 
 ```bash
-cd /Users/sardag/Desktop/ailydian-ultra-pro
+cd /home/lydian/Desktop/ailydian-ultra-pro
 ./ops/dns-cutover-runner.sh
 ```
 
