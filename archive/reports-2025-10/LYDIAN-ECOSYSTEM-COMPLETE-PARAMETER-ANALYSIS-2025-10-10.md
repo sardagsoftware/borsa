@@ -407,7 +407,7 @@ All calculations are based on:
 ## 📜 LICENSE & COMPLIANCE
 
 **Classification:** Technical Documentation
-**Copyright:** © 2025 Emrah Şardağ / AiLydian Ultra Pro
+**Copyright:** © 2025 Lydian / AiLydian Ultra Pro
 **Status:** ✅ Production-Ready | White-Hat Verified | KVKK/GDPR Compliant
 
 **Security:**

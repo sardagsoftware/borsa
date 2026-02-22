@@ -474,7 +474,7 @@
 ## 📞 CONTACT
 
 **Project Lead**: Lydian
-**Email**: emrah.lydian@ailydian.com
+**Email**: contact@ailydian.com
 **Website**: https://www.ailydian.com
 
 **Documentation:**

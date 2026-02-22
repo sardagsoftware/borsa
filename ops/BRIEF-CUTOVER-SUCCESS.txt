@@ -5,7 +5,7 @@ BRIEF(FINAL): AILYDIAN DNS CUTOVER - SUCCESS ✅
 Timestamp: 2025-10-04T16:50:10Z
 AFD Endpoint: ailydian-production-fd-endpoint.z01.azurefd.net
 Method: Manual via Vercel UI (CLI blocked by AFD quota)
-Workspace: /Users/sardag/Desktop/ailydian-ultra-pro/ops
+Workspace: /home/lydian/Masaüstü/PROJELER/ailydian-ultra-pro/ops
 
 EXECUTION STATUS:
 ───────────────────────────────────────────────────────────────

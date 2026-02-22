@@ -18,7 +18,7 @@ jobs:
         run: |
           echo "🚀 Triggering Vercel deployment..."
           echo "Project: ailydian"
-          echo "Org: emrahsardag-yandexcoms-projects"
+          echo "Org: lydian-yandexcoms-projects"
           echo "Domain: www.ailydian.com"
 
           # This will trigger through GitHub-Vercel integration

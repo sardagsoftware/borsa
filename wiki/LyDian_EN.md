@@ -1,6 +1,6 @@
 # LyDian AI Ecosystem
 
-**LyDian AI Ecosystem** is an artificial intelligence-powered multilingual knowledge platform and decision support system. It was founded in 2024 in Turkey by Emrah Şardağ.[1]
+**LyDian AI Ecosystem** is an artificial intelligence-powered multilingual knowledge platform and decision support system. It was founded in 2024 in Turkey by Lydian.[1]
 
 ## Contents
 1. [History](#history)
@@ -14,7 +14,7 @@
 
 ## History
 
-LyDian AI Ecosystem was founded in 2024 by Emrah Şardağ with the goal of developing multilingual artificial intelligence applications. The project was designed as an AI platform running on Microsoft Azure infrastructure, supporting over 20 languages including Turkish, English, and Azerbaijani.[2]
+LyDian AI Ecosystem was founded in 2024 by Lydian with the goal of developing multilingual artificial intelligence applications. The project was designed as an AI platform running on Microsoft Azure infrastructure, supporting over 20 languages including Turkish, English, and Azerbaijani.[2]
 
 The platform provides real-time data access and accurate response generation using RAG (Retrieval-Augmented Generation) technology. The system integrates leading AI models such as LyDian Labs OX5C9E2B, Google LyDian Vision, and LyDian Research AX9F7E2B to offer a hybrid solution.[3]
 

@@ -102,7 +102,7 @@ Go to: Admin Console > Users > Add new user
 1. admin@ailydian.com      - Password: [SEE_ENV_VAR:EMAIL_ACCOUNT_PASSWORD]
 2. support@ailydian.com    - Password: [SEE_ENV_VAR:EMAIL_ACCOUNT_PASSWORD]
 3. info@ailydian.com       - Password: [SEE_ENV_VAR:EMAIL_ACCOUNT_PASSWORD]
-4. emrah@ailydian.com      - Password: [SEE_ENV_VAR:EMAIL_ACCOUNT_PASSWORD]
+4. contact@ailydian.com      - Password: [SEE_ENV_VAR:EMAIL_ACCOUNT_PASSWORD]
 5. noreply@ailydian.com    - Password: [SEE_ENV_VAR:EMAIL_ACCOUNT_PASSWORD]
 6. sales@ailydian.com      - Password: [SEE_ENV_VAR:EMAIL_ACCOUNT_PASSWORD]
 7. contact@ailydian.com    - Password: [SEE_ENV_VAR:EMAIL_ACCOUNT_PASSWORD]
@@ -502,7 +502,7 @@ curl -X POST "https://api.cloudflare.com/client/v4/zones/ZONE_ID/dns_records" \
 **Cost:**
 
 - 10 users × $6 = $60/month
-- Or start with 5 users (admin, emrah, support, noreply, + 1) = $30/month
+- Or start with 5 users (admin, lydian, support, noreply, + 1) = $30/month
 
 **Alternative:** Zoho Mail Free
 

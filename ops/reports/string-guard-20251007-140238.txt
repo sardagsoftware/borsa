@@ -1,6 +1,6 @@
 🔍 Starting STRING-GUARD scan...
 
-Root directory: /Users/sardag/Desktop/ailydian-ultra-pro
+Root directory: /home/lydian/Masaüstü/PROJELER/ailydian-ultra-pro
 Excluded directories: node_modules, .git, .next, dist, build, .vercel, playwright-report, test-results, coverage, ops/tools
 
 

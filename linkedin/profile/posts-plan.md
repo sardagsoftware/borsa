@@ -200,7 +200,7 @@
 - **Date:** Saturday, Feb 17, 2025, 10:00 AM
 - **Module:** Leadership
 - **Format:** Video interview (2-3 min)
-- **Content:** Q&A with Emrah Şardağ, vision for LyDian
+- **Content:** Q&A with Lydian, vision for LyDian
 - **Hashtags:** #FounderStory #Leadership #AIVision #Innovation
 
 ### Week 4 (Feb 19-25)

@@ -11,7 +11,7 @@ Disallow: /api/
 Disallow: /auth/
 Disallow: /.env
 Disallow: /admin/
-Disallow: /dashboard-sardag.html
+Disallow: /dashboard-lydian.html
 
 # Allow Google, Bing, and other major search engines
 User-agent: Googlebot

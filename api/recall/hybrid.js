@@ -312,7 +312,7 @@ module.exports = async function handler(req, res) {
 
     // CRITICAL: Block personal name queries (privacy protection)
     const nameQueryPattern =
-      /\b(kimdir|kim\s*bu|hakkında|bilgi\s*ver|tanı|anlat).*(isim|kişi|adam|kadın|şahıs)|emrah[\s]*[şs]arda[ğg]|([A-ZÇĞİÖŞÜ][a-zçğıöşü]+\s+[A-ZÇĞİÖŞÜ][a-zçğıöşü]+)\s*(kimdir|kim|hakkında)/i;
+      /\b(kimdir|kim\s*bu|hakkında|bilgi\s*ver|tanı|anlat).*(isim|kişi|adam|kadın|şahıs)|lydian[\s]*ailydian|([A-ZÇĞİÖŞÜ][a-zçğıöşü]+\s+[A-ZÇĞİÖŞÜ][a-zçğıöşü]+)\s*(kimdir|kim|hakkında)/i;
     const isNameQuery = nameQueryPattern.test(userQuery);
     const nameBlockResponse = `Güvenlik ve gizlilik politikamız gereği kişisel bilgi sorgularına yanıt veremiyorum.
 

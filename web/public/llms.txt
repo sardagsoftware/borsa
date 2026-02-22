@@ -10,7 +10,7 @@ name: LyDian AI Ecosystem
 legal_name: LyDian AI Ecosystem
 short_name: LyDian
 founded: 2024
-founder: Emrah Şardağ
+founder: Lydian
 headquarters: Turkey
 website: https://www.ailydian.com
 description: Multilingual artificial intelligence platform providing advanced AI solutions including natural language processing, computer vision, speech recognition, and decision support systems. Built on Microsoft Azure with support for 20+ languages.

@@ -114,7 +114,7 @@ Technology Stack:
 • Security: OAuth 2.0, 2FA, End-to-End Encryption
 
 Founded: 2024
-Founder: Emrah Şardağ
+Founder: Lydian
 Headquarters: İstanbul, Turkey
 
 🌐 www.ailydian.com
@@ -143,7 +143,7 @@ Teknoloji:
 • Güvenlik: OWASP Top 10, 2FA, OAuth 2.0, End-to-End Şifreleme
 
 Kuruluş: 2024
-Kurucu: Emrah Şardağ
+Kurucu: Lydian
 Merkez: İstanbul, Türkiye
 
 🌐 www.ailydian.com

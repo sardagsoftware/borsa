@@ -461,7 +461,7 @@ await i18n.init();
 i18n.t('nav.dashboard'); // → "Kontrol Paneli"
 
 // With parameters
-i18n.t('greeting', { name: 'Emrah' }); // → "Merhaba, Emrah!"
+i18n.t('greeting', { name: 'Lydian' }); // → "Merhaba, Lydian!"
 
 // Change locale
 await i18n.setLocale('en');

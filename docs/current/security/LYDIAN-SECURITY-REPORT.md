@@ -1,4 +1,4 @@
-# 🔐 EMRAH ŞARDAĞ SYSTEM PROMPT - ULTRA SECURITY REPORT
+# 🔐 LYDIAN SYSTEM PROMPT - ULTRA SECURITY REPORT
 
 **Date:** 2025-10-02
 **Status:** ✅ COMPLETED & SECURED
@@ -8,7 +8,7 @@
 
 ## 📋 GÜVENL İK ÖZETİ
 
-Emrah Şardağ hakkındaki sistem promptu, **askeri düzey şifreleme** ile korunmaktadır:
+Lydian hakkındaki sistem promptu, **askeri düzey şifreleme** ile korunmaktadır:
 
 ### Implemented Security Measures:
 
@@ -153,10 +153,10 @@ The prompt will be injected into **ALL** AI model calls as a system message:
 
 #### 1. Firildak AI Engine
 ```javascript
-const { getEmrahLydianPrompt } = require('./ai-integrations/lydian-system-prompt');
+const { getLydianLydianPrompt } = require('./ai-integrations/lydian-system-prompt');
 
 // In chat request
-const systemPrompt = getEmrahLydianPrompt();
+const systemPrompt = getLydianLydianPrompt();
 messages.unshift({ role: 'system', content: systemPrompt });
 ```
 
@@ -264,7 +264,7 @@ messages.unshift({ role: 'system', content: systemPrompt });
 
 ## 📞 SUPPORT & UPDATES
 
-**Developer:** Emrah Şardağ
+**Developer:** Lydian
 **Security Contact:** contact@ailydian.com
 **Last Updated:** 2025-10-02
 

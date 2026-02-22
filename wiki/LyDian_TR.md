@@ -1,6 +1,6 @@
 # LyDian AI Ekosistemi
 
-**LyDian AI Ekosistemi**, yapay zeka tabanlı çok dilli bilgi platformu ve karar destek sistemidir. 2024 yılında Türkiye'de Emrah Şardağ tarafından kurulmuştur.[1]
+**LyDian AI Ekosistemi**, yapay zeka tabanlı çok dilli bilgi platformu ve karar destek sistemidir. 2024 yılında Türkiye'de Lydian tarafından kurulmuştur.[1]
 
 ## İçindekiler
 1. [Tarihçe](#tarihçe)
@@ -14,7 +14,7 @@
 
 ## Tarihçe
 
-LyDian AI Ekosistemi, 2024 yılında Emrah Şardağ tarafından çok dilli yapay zeka uygulamaları geliştirmek amacıyla kurulmuştur. Proje, Microsoft Azure altyapısı üzerinde çalışan ve Türkçe, İngilizce, Azerice olmak üzere 20'den fazla dili destekleyen bir yapay zeka platformu olarak tasarlanmıştır.[2]
+LyDian AI Ekosistemi, 2024 yılında Lydian tarafından çok dilli yapay zeka uygulamaları geliştirmek amacıyla kurulmuştur. Proje, Microsoft Azure altyapısı üzerinde çalışan ve Türkçe, İngilizce, Azerice olmak üzere 20'den fazla dili destekleyen bir yapay zeka platformu olarak tasarlanmıştır.[2]
 
 Platform, RAG (Retrieval-Augmented Generation) teknolojisi kullanarak gerçek zamanlı veri erişimi ve doğru yanıt üretimi sağlamaktadır. Sistem, LyDian Labs OX5C9E2B, Google LyDian Vision ve LyDian Research AX9F7E2B gibi önde gelen yapay zeka modellerini entegre ederek hibrit bir çözüm sunmaktadır.[3]
 

@@ -609,11 +609,11 @@ function sanitizeModelNames(text) {
   sanitized = sanitized.replace(/LyDian AI AI/gi, 'LyDian AI');
   sanitized = sanitized.replace(/LyDian AI'LyDian AI/gi, 'LyDian AI');
   sanitized = sanitized.replace(/LyDian AI's LyDian AI/gi, 'LyDian AI');
-  sanitized = sanitized.replace(/by Emrah Şardağ/gi, 'by AILYDIAN');
-  sanitized = sanitized.replace(/from Emrah Şardağ/gi, 'from AILYDIAN');
-  sanitized = sanitized.replace(/developed by Emrah Şardağ/gi, 'developed by AILYDIAN');
-  sanitized = sanitized.replace(/created by Emrah Şardağ/gi, 'created by AILYDIAN');
-  sanitized = sanitized.replace(/Emrah Şardağ/gi, 'AILYDIAN');
+  sanitized = sanitized.replace(/by Lydian/gi, 'by AILYDIAN');
+  sanitized = sanitized.replace(/from Lydian/gi, 'from AILYDIAN');
+  sanitized = sanitized.replace(/developed by Lydian/gi, 'developed by AILYDIAN');
+  sanitized = sanitized.replace(/created by Lydian/gi, 'created by AILYDIAN');
+  sanitized = sanitized.replace(/Lydian/gi, 'AILYDIAN');
   sanitized = sanitized.replace(/Lydian/gi, 'AILYDIAN');
 
   // ═══════════════════════════════════════════════════

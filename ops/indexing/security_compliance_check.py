@@ -19,7 +19,7 @@ from urllib.parse import urlparse
 # Configuration
 DOMAIN = 'www.ailydian.com'
 BASE_URL = f'https://{DOMAIN}'
-ARTIFACTS_DIR = Path('/Users/sardag/Desktop/ailydian-ultra-pro/ops/artifacts')
+ARTIFACTS_DIR = Path('/home/lydian/Masaüstü/PROJELER/ailydian-ultra-pro/ops/artifacts')
 COMPLIANCE_REPORT = ARTIFACTS_DIR / f'security_compliance_{datetime.utcnow().strftime("%Y%m%d_%H%M%S")}.json'
 
 class SecurityComplianceCheck:

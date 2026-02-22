@@ -92,8 +92,8 @@ LyDian
 - **GitHub:** https://github.com/lydianai
 
 ### Leadership
-- **Founder & CEO:** Emrah Şardağ
-- **Email:** emrah@ailydian.com
+- **Founder & CEO:** Lydian
+- **Email:** contact@ailydian.com
 
 ---
 

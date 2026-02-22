@@ -26,7 +26,7 @@
   - admin@ailydian.com (👑 Admin - 5 unread)
   - support@ailydian.com (🛠️ Support - 12 unread)
   - info@ailydian.com (ℹ️ Info - 3 unread)
-  - emrah@ailydian.com (👤 Emrah - 8 unread)
+  - contact@ailydian.com (👤 Lydian - 8 unread)
   - sales@ailydian.com (💰 Sales)
   - contact@ailydian.com (📮 Contact - 2 unread)
   - hello@ailydian.com (👋 Hello)

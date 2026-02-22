@@ -5,7 +5,7 @@ AILYDIAN DNS CUTOVER - EXECUTION SUMMARY
 Timestamp: $(date -u +"%Y-%m-%dT%H:%M:%SZ")
 AFD Endpoint: aly-fd-endpoint-demo.z01.azurefd.net
 Resource Group: aly-core-prod-rg
-Workspace: /Users/sardag/Desktop/ailydian-ultra-pro/ops
+Workspace: /home/lydian/Masaüstü/PROJELER/ailydian-ultra-pro/ops
 
 AUTOMATION STATUS:
 ───────────────────────────────────────────────────────────────
@@ -63,10 +63,10 @@ REQUIRED ACTIONS TO PROCEED:
 
 1. OBTAIN VALID VERCEL TOKEN:
    - Current token is invalid
-   - Generate new token with team scope: emrahsardag-9142
+   - Generate new token with team scope: lydian-9142
    - Required permissions: domains:read, domains:write
    - Test with: curl -H "Authorization: Bearer $TOKEN" \
-     "https://api.vercel.com/v2/domains/ailydian.com/records?teamId=emrahsardag-9142"
+     "https://api.vercel.com/v2/domains/ailydian.com/records?teamId=lydian-9142"
 
 2. CREATE PRODUCTION AFD VIA AZURE PORTAL:
    - AFD quota exceeded, CLI cannot create new profiles
@@ -79,7 +79,7 @@ REQUIRED ACTIONS TO PROCEED:
 
 3. RE-RUN AUTOMATION:
    export VERCEL_TOKEN="<valid_token>"
-   export VERCEL_TEAM_ID="emrahsardag-9142"
+   export VERCEL_TEAM_ID="lydian-9142"
    cd ~/Desktop/ailydian-ultra-pro/ops
    ./full-automated-cutover.sh
 

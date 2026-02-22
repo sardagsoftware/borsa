@@ -281,7 +281,7 @@ Documentation:
   - Azure Docs: https://docs.microsoft.com/azure/frontdoor/
   
 Automation:
-  - Workspace: /Users/sardag/Desktop/ailydian-ultra-pro/ops
+  - Workspace: /home/lydian/Masaüstü/PROJELER/ailydian-ultra-pro/ops
   - Validation: ./validate-and-brief.sh
   - Monitoring: ./monitor-propagation.sh
   - Rollback: ./rollback.sh all

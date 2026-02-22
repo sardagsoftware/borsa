@@ -97,7 +97,7 @@ locals {
     Environment = var.environment
     ManagedBy   = "Terraform"
     CostCenter  = "Engineering"
-    Owner       = "Sardag"
+    Owner       = "Lydian"
   }
 
   resource_group_name = "${var.name_prefix}-${var.environment}-rg"

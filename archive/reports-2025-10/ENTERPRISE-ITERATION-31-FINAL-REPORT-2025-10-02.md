@@ -8,7 +8,7 @@
 **Date:** October 2, 2025
 **Iteration:** 31
 **Status:** ✅ COMPLETED
-**Developer:** Emrah Şardağ
+**Developer:** Lydian
 **Duration:** 2.5 hours
 
 **Mission:** Implement enterprise-grade multi-region global deployment with Azure Front Door for 99.99% availability, < 50ms global latency, automatic failover, WAF protection, and DDoS mitigation.
@@ -575,7 +575,7 @@ All systems have been successfully configured and documented. The multi-region i
 
 ---
 
-**Report Prepared By:** Emrah Şardağ
+**Report Prepared By:** Lydian
 **Date:** October 2, 2025
 **Iteration:** 31
 **Status:** ✅ COMPLETED

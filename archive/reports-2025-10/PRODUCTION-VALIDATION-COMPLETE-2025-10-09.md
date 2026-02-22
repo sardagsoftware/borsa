@@ -239,7 +239,7 @@ Format: Valid JSON-LD
   "foundingDate": "2024",
   "founder": {
     "@type": "Person",
-    "name": "Emrah Şardağ"
+    "name": "Lydian"
   },
   "description": "Multilingual AI platform...",
   "url": "https://www.ailydian.com",

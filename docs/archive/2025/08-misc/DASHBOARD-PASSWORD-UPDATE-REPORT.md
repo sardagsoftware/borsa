@@ -10,7 +10,7 @@
 
 ### 1. Yeni Şifre
 ```
-Eski Şifre: EMRAH-Lydian-ULTRA-SECURE-2025-7X9K4M
+Eski Şifre: LYDIAN-ULTRA-SECURE-2025-7X9K4M
 Yeni Şifre: Xrubyphyton1985.!?
 ```
 
@@ -58,7 +58,7 @@ Yeni Şifre: Xrubyphyton1985.!?
 
 ### 2. `/api/dashboard-auth.js`
 ```diff
-- Eski: EMRAH-Lydian-ULTRA-SECURE-2025-7X9K4M
+- Eski: LYDIAN-ULTRA-SECURE-2025-7X9K4M
 + Yeni: Xrubyphyton1985.!?
 ```
 

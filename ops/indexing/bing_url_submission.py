@@ -152,7 +152,7 @@ def main():
     import sys
 
     # Load URL inventory
-    inventory_path = '/Users/sardag/Desktop/ailydian-ultra-pro/ops/artifacts/url_inventory.json'
+    inventory_path = '/home/lydian/Masaüstü/PROJELER/ailydian-ultra-pro/ops/artifacts/url_inventory.json'
 
     try:
         with open(inventory_path, 'r') as f:
@@ -211,7 +211,7 @@ def main():
     results['end_time'] = datetime.utcnow().isoformat()
 
     # Save results
-    output_path = f'/Users/sardag/Desktop/ailydian-ultra-pro/ops/artifacts/bing_submission_results_{datetime.utcnow().strftime("%Y%m%d_%H%M%S")}.json'
+    output_path = f'/home/lydian/Masaüstü/PROJELER/ailydian-ultra-pro/ops/artifacts/bing_submission_results_{datetime.utcnow().strftime("%Y%m%d_%H%M%S")}.json'
     with open(output_path, 'w') as f:
         json.dump(results, f, indent=2)
 

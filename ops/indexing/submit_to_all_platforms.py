@@ -32,7 +32,7 @@ from yandex_webmaster_api import YandexWebmasterAPI
 # Configuration
 DOMAIN = 'www.ailydian.com'
 BASE_URL = f'https://{DOMAIN}'
-ARTIFACTS_DIR = Path('/Users/sardag/Desktop/ailydian-ultra-pro/ops/artifacts')
+ARTIFACTS_DIR = Path('/home/lydian/Masaüstü/PROJELER/ailydian-ultra-pro/ops/artifacts')
 
 class UniversalPlatformSubmission:
     """

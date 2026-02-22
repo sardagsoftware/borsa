@@ -24,7 +24,7 @@ Complete email management system with real-time notifications, PWA support, and 
 
 ```javascript
 // Line 220 - Fixed URL with access code
-const DASHBOARD_URL = 'https://lydian-master-dashboard-r9yvinny9.vercel.app/?access=/emrah-control-dashboard-7e4a9f8b2c6d1e3a';
+const DASHBOARD_URL = 'https://lydian-master-dashboard-r9yvinny9.vercel.app/?access=/control-dashboard-7e4a9f8b2c6d1e3a';
 ```
 
 ### 2. Email Management Dashboard ✓
@@ -62,7 +62,7 @@ const DASHBOARD_URL = 'https://lydian-master-dashboard-r9yvinny9.vercel.app/?acc
 1.  admin@ailydian.com      - 👑 Admin (Master Inbox)
 2.  support@ailydian.com    - 🛠️ Support → forwards to admin
 3.  info@ailydian.com       - ℹ️ Info → forwards to admin
-4.  emrah@ailydian.com      - 👤 Personal (Independent)
+4.  contact@ailydian.com      - 👤 Personal (Independent)
 5.  noreply@ailydian.com    - 🚫 No Reply (Send-only)
 6.  sales@ailydian.com      - 💰 Sales → forwards to admin
 7.  contact@ailydian.com    - 📮 Contact → forwards to admin
@@ -269,7 +269,7 @@ Click on any account in sidebar:
 - admin@ailydian.com (Master inbox)
 - support@ailydian.com
 - info@ailydian.com
-- emrah@ailydian.com
+- contact@ailydian.com
 - etc.
 
 ### 3. View Emails

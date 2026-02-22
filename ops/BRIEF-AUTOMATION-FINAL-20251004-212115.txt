@@ -4,7 +4,7 @@ BRIEF(FINAL): AILYDIAN AFD DNS AUTOMATION - COMPLETE
 
 Principal SRE & DNS Automation Architect
 Timestamp: $(date -u +"%Y-%m-%dT%H:%M:%SZ")
-Workspace: /Users/sardag/Desktop/ailydian-ultra-pro/ops
+Workspace: /home/lydian/Masaüstü/PROJELER/ailydian-ultra-pro/ops
 
 EXECUTIVE SUMMARY:
 ───────────────────────────────────────────────────────────────
@@ -289,7 +289,7 @@ and instant rollback capability.
 CONTACT & SUPPORT:
 ───────────────────────────────────────────────────────────────
 Primary: Principal SRE & DNS Automation Architect
-Workspace: /Users/sardag/Desktop/ailydian-ultra-pro/ops
+Workspace: /home/lydian/Masaüstü/PROJELER/ailydian-ultra-pro/ops
 Audit Log: dns-change-log.ndjson
 Validation: ./validate-and-brief.sh
 Monitoring: ./monitor-propagation.sh

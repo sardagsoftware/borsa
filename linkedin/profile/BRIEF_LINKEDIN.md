@@ -35,7 +35,7 @@ This report documents the complete LinkedIn corporate page setup for LyDian AI E
 **Company Size:** 11–50 employees
 **Headquarters:** İstanbul, Turkey
 **Founded:** 2024
-**Founder:** Emrah Şardağ (emrah@ailydian.com)
+**Founder:** Lydian (contact@ailydian.com)
 
 #### Contact Information
 **Email:** info@ailydian.com

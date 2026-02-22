@@ -385,9 +385,9 @@ node ops/tools/lydian-i18n.js status
 
 ```javascript
 // Translate string programmatically
-const greeting = i18n.t('hero.greeting', { name: 'Emrah' });
-// Turkish: "Merhaba, Emrah!"
-// English: "Hello, Emrah!"
+const greeting = i18n.t('hero.greeting', { name: 'Lydian' });
+// Turkish: "Merhaba, Lydian!"
+// English: "Hello, Lydian!"
 
 // Format numbers
 const price = i18n.formatNumber(1234.56);
@@ -596,8 +596,8 @@ Always test Arabic layout with `?lang=ar` to ensure proper RTL rendering.
 ```
 
 ```javascript
-i18n.t('greeting', { name: 'Emrah' });
-// Output: "Hello, Emrah!"
+i18n.t('greeting', { name: 'Lydian' });
+// Output: "Hello, Lydian!"
 ```
 
 ### 7. **Run validation before committing**

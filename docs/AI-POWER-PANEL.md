@@ -311,7 +311,7 @@ curl "http://localhost:3100/api/azure/quotas?deployment=OX7A3F8D"
 ## 📜 License
 
 Proprietary - AiLydian Ultra Pro
-© 2025 Emrah Şardağ. All rights reserved.
+© 2025 Lydian. All rights reserved.
 
 ---
 

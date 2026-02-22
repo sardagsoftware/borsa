@@ -3,7 +3,7 @@ AILYDIAN - AZURE FRONT DOOR CUTOVER
 FINAL EXECUTION BRIEF
 ═══════════════════════════════════════════════════════════
 Timestamp: $(date -u +%Y-%m-%dT%H:%M:%SZ)
-Principal SRE: Emrah Sardag
+Principal SRE: Lydian
 Mode: Non-Interactive Full Automation
 Policy: White-Hat Discipline (0 downtime · 0 data loss · auditable)
 
@@ -176,5 +176,5 @@ DNS MONITORING:  ops/dns-propagation-check.sh
 AUDIT LOG:       ops/dns-change-log.ndjson (29 events)
 
 White-Hat Discipline: ✅ MAINTAINED
-Principal SRE: Emrah Sardag
+Principal SRE: Lydian
 ═══════════════════════════════════════════════════════════

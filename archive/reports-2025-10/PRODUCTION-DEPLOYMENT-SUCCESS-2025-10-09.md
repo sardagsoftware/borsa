@@ -54,7 +54,7 @@
    - @type: Organization
    - @id: https://www.ailydian.com/#organization
    - Name: LyDian AI Ecosystem
-   - Founder: Emrah Şardağ
+   - Founder: Lydian
    - Founded: 2024
    - 6 Products listed
    - Contact info: Present

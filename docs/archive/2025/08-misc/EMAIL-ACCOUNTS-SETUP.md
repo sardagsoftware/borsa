@@ -34,8 +34,8 @@ Xrubyphyton1985.!?
 - **Forwarding:** → admin@ailydian.com
 - **Status:** ✅ Active
 
-### 4. Emrah (Personal)
-- **Email:** emrah@ailydian.com
+### 4. Lydian (Personal)
+- **Email:** contact@ailydian.com
 - **Password:** Xrubyphyton1985.!?
 - **Icon:** 👤
 - **Purpose:** Kişisel hesap - Lydian
@@ -105,7 +105,7 @@ hello@    ──┤
 team@     ──┤
 security@ ──┘
 
-emrah@    ──→  Independent (No forwarding)
+lydian@    ──→  Independent (No forwarding)
 noreply@  ──→  Send-only (No inbox)
 ```
 

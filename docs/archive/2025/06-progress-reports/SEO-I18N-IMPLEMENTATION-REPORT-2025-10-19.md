@@ -293,7 +293,7 @@ NLP, computer vision, and decision support. Try free today.
 ## 📞 CONTACT & SUPPORT
 
 **Project Lead**: Lydian
-**Email**: emrah.lydian@ailydian.com
+**Email**: contact@ailydian.com
 **Website**: https://www.ailydian.com
 **Status Page**: https://ailydian.com/status
 

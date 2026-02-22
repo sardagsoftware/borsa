@@ -58,7 +58,7 @@ Storage: localStorage
 
 ### Password Management
 ```javascript
-- Default Password: EMRAH-Lydian-ULTRA-SECURE-2025-7X9K4M
+- Default Password: LYDIAN-ULTRA-SECURE-2025-7X9K4M
 - Custom Password: localStorage.setItem('dashboardPassword', newPass)
 - Auto Re-login Prevention: localStorage.removeItem('dashboardAuth')
 ```
@@ -75,7 +75,7 @@ Storage: localStorage
 
 ### Giriş Yapma
 1. Sayfayı aç: https://www.ailydian.com/dashboard-lydian
-2. Şifrenizi girin: `EMRAH-Lydian-ULTRA-SECURE-2025-7X9K4M`
+2. Şifrenizi girin: `LYDIAN-ULTRA-SECURE-2025-7X9K4M`
 3. "Giriş Yap" butonuna tıklayın
 4. Dashboard'a yönlendirileceksiniz: http://localhost:3002
 
@@ -95,7 +95,7 @@ Storage: localStorage
 localStorage.removeItem('dashboardPassword');
 ```
 2. Sayfayı yenileyin
-3. Varsayılan şifre ile giriş yapın: `EMRAH-Lydian-ULTRA-SECURE-2025-7X9K4M`
+3. Varsayılan şifre ile giriş yapın: `LYDIAN-ULTRA-SECURE-2025-7X9K4M`
 
 ---
 
@@ -252,7 +252,7 @@ console.log(localStorage.getItem('dashboardPassword'));
 
 ### Erişim Bilgileri:
 - **URL:** https://www.ailydian.com/dashboard-lydian
-- **Varsayılan Şifre:** `EMRAH-Lydian-ULTRA-SECURE-2025-7X9K4M`
+- **Varsayılan Şifre:** `LYDIAN-ULTRA-SECURE-2025-7X9K4M`
 - **Dashboard URL:** http://localhost:3002
 
 ### Özellikler:

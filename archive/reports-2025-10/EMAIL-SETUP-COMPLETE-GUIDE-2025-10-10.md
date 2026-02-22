@@ -154,7 +154,7 @@ All accounts are configured in the email dashboard UI:
 | Admin | admin@ailydian.com | 👑 | System administration | 5 |
 | Support | support@ailydian.com | 🛠️ | Customer support | 12 |
 | Info | info@ailydian.com | ℹ️ | General inquiries | 3 |
-| Emrah | emrah@ailydian.com | 👤 | Personal account | 8 |
+| Lydian | contact@ailydian.com | 👤 | Personal account | 8 |
 | Sales | sales@ailydian.com | 💰 | Sales inquiries | 0 |
 | Contact | contact@ailydian.com | 📮 | Contact form | 2 |
 | Hello | hello@ailydian.com | 👋 | Welcome messages | 0 |

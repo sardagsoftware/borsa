@@ -19,7 +19,7 @@
 const CORRECT_KEY = 'Xrubyphyton1985.!?';
 
 // Satır 220 - Dashboard URL açıkta
-const DASHBOARD_URL = 'https://dashboard.ailydian.com/?access=/emrah-control-dashboard-7e4a9f8b2c6d1e3a';
+const DASHBOARD_URL = 'https://dashboard.ailydian.com/?access=/control-dashboard-7e4a9f8b2c6d1e3a';
 ```
 
 **Sorunlar:**

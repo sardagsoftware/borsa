@@ -32,7 +32,7 @@ param tags object = {
   Environment: environment
   ManagedBy: 'Bicep'
   CostCenter: 'Engineering'
-  Owner: 'Sardag'
+  Owner: 'Lydian'
 }
 
 // Variables

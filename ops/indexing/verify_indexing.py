@@ -17,7 +17,7 @@ from typing import Dict, List
 from pathlib import Path
 
 # Configuration
-ARTIFACTS_DIR = Path('/Users/sardag/Desktop/ailydian-ultra-pro/ops/artifacts')
+ARTIFACTS_DIR = Path('/home/lydian/Masaüstü/PROJELER/ailydian-ultra-pro/ops/artifacts')
 VERIFICATION_RESULTS = ARTIFACTS_DIR / f'verification_results_{datetime.utcnow().strftime("%Y%m%d_%H%M%S")}.json'
 
 class IndexingVerification:

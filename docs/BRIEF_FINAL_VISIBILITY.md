@@ -40,7 +40,7 @@ This report documents the complete implementation of SEO/Visibility infrastructu
 - **Status:** ✅ Ready for Wikipedia submission
 
 **Key Content:**
-- Organization history (2024 founding, Emrah Şardağ)
+- Organization history (2024 founding, Lydian)
 - Technology stack (Azure, OX5C9E2B, LyDian Vision, AX9F7E2B, RAG)
 - 6 product modules (IQ, Quantum Pro, SmartCity, Medical, Legal, Video)
 - Security standards (OWASP Top 10, 2FA, OAuth, CSRF, etc.)
@@ -69,7 +69,7 @@ This report documents the complete implementation of SEO/Visibility infrastructu
 **Type:** Organization (Schema.org)
 **Fields Included:**
 - Basic info: name, alternateName, legalName, url, email
-- Founder details: Emrah Şardağ
+- Founder details: Lydian
 - Contact point: Customer support, multilingual
 - Logo: 512×512 px (meets GMB requirements)
 - Image: 1200×628 px cover image

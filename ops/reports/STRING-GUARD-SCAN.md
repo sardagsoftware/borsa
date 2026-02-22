@@ -863,14 +863,14 @@
 | DEPLOYMENT-TAMAMLANDI-TR.md | 187 | model | AX9F7E2B models | `AX9F7E2B` |
 | DEPLOYMENT-TAMAMLANDI-TR.md | 188 | provider | LyDian Research | `LyDian Research` |
 | DEPLOYMENT-TAMAMLANDI-TR.md | 333 | model | AX9F7E2B models | `AX9F7E2B` |
-| EMRAH-Lydian-SECURITY-REPORT.md | 169 | provider | LyDian Labs | `LyDian Labs` |
-| EMRAH-Lydian-SECURITY-REPORT.md | 169 | model | LyDian Core models | `OX5C9E2B` |
-| EMRAH-Lydian-SECURITY-REPORT.md | 170 | provider | LyDian Research | `LyDian Research` |
-| EMRAH-Lydian-SECURITY-REPORT.md | 170 | model | AX9F7E2B models | `AX9F7E2B` |
-| EMRAH-Lydian-SECURITY-REPORT.md | 171 | provider | Google AI | `Google AI` |
-| EMRAH-Lydian-SECURITY-REPORT.md | 171 | model | LyDian Vision models | `LyDian Vision` |
-| EMRAH-Lydian-SECURITY-REPORT.md | 172 | model | LLaMA models | `LyDian Velocity` |
-| EMRAH-Lydian-SECURITY-REPORT.md | 173 | model | Mistral models | `Mistral` |
+| LYDIAN-SECURITY-REPORT.md | 169 | provider | LyDian Labs | `LyDian Labs` |
+| LYDIAN-SECURITY-REPORT.md | 169 | model | LyDian Core models | `OX5C9E2B` |
+| LYDIAN-SECURITY-REPORT.md | 170 | provider | LyDian Research | `LyDian Research` |
+| LYDIAN-SECURITY-REPORT.md | 170 | model | AX9F7E2B models | `AX9F7E2B` |
+| LYDIAN-SECURITY-REPORT.md | 171 | provider | Google AI | `Google AI` |
+| LYDIAN-SECURITY-REPORT.md | 171 | model | LyDian Vision models | `LyDian Vision` |
+| LYDIAN-SECURITY-REPORT.md | 172 | model | LLaMA models | `LyDian Velocity` |
+| LYDIAN-SECURITY-REPORT.md | 173 | model | Mistral models | `Mistral` |
 | ENTERPRISE-34-FEATURES-COMPLETE-REPORT.md | 108 | provider | LyDian Labs | `LyDian Labs` |
 | ENTERPRISE-34-FEATURES-COMPLETE-REPORT.md | 273 | model | LyDian Core models | `OX5C9E2B` |
 | ENTERPRISE-34-FEATURES-COMPLETE-REPORT.md | 416 | provider | LyDian Labs | `LyDian Labs` |

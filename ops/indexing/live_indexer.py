@@ -30,7 +30,7 @@ ROBOTS_URL = 'https://www.ailydian.com/robots.txt'
 RSS_FEED_URL = 'https://www.ailydian.com/feed/updates.xml'
 
 # Paths
-ARTIFACTS_DIR = Path('/Users/sardag/Desktop/ailydian-ultra-pro/ops/artifacts')
+ARTIFACTS_DIR = Path('/home/lydian/Masaüstü/PROJELER/ailydian-ultra-pro/ops/artifacts')
 STATE_FILE = ARTIFACTS_DIR / 'indexer_state.json'
 LOG_FILE = ARTIFACTS_DIR / 'indexer_log.jsonl'
 

@@ -15,7 +15,7 @@ http://localhost:3100/dashboard-lydian.html
 ## 🔑 Access Key (PRIVATE - KEEP SECRET!)
 
 ```
-EMRAH-Lydian-ULTRA-SECURE-2025-7X9K4M
+LYDIAN-ULTRA-SECURE-2025-7X9K4M
 ```
 
 ⚠️  **Bu key'i kimseyle paylaşma!**
@@ -27,7 +27,7 @@ EMRAH-Lydian-ULTRA-SECURE-2025-7X9K4M
 Vercel Dashboard → Settings → Environment Variables:
 
 ```bash
-DASHBOARD_ACCESS_KEY=EMRAH-Lydian-ULTRA-SECURE-2025-7X9K4M
+DASHBOARD_ACCESS_KEY=LYDIAN-ULTRA-SECURE-2025-7X9K4M
 DASHBOARD_URL=http://localhost:3002
 ```
 
@@ -111,7 +111,7 @@ Permissions-Policy: geolocation=(), microphone=(), camera=()
 
 1. User visits: `https://www.ailydian.com/dashboard-lydian`
 2. Beautiful secure login page loads
-3. Enter access key: `EMRAH-Lydian-ULTRA-SECURE-2025-7X9K4M`
+3. Enter access key: `LYDIAN-ULTRA-SECURE-2025-7X9K4M`
 4. Client validates key
 5. Server validates key (rate limited)
 6. On success: Redirect to `http://localhost:3002` (dashboard)
@@ -142,14 +142,14 @@ done
 ```bash
 curl -X POST https://www.ailydian.com/api/dashboard-auth \
   -H "Content-Type: application/json" \
-  -d '{"accessKey": "EMRAH-Lydian-ULTRA-SECURE-2025-7X9K4M"}'
+  -d '{"accessKey": "LYDIAN-ULTRA-SECURE-2025-7X9K4M"}'
 ```
 
 ## 🔄 Changing Access Key
 
 1. Generate new key:
 ```bash
-node -e "console.log('EMRAH-Lydian-' + require('crypto').randomBytes(16).toString('hex').toUpperCase())"
+node -e "console.log('LYDIAN-' + require('crypto').randomBytes(16).toString('hex').toUpperCase())"
 ```
 
 2. Update in `api/dashboard-auth.js`:
