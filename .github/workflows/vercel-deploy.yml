@@ -4,22 +4,81 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:  # Manuel trigger için
+  workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Check and Unpause Vercel Project
+        run: |
+          echo "=== Vercel API Debug ==="
+          echo "Token length: ${#VERCEL_TOKEN}"
+
+          echo "--- Project Status ---"
+          HTTP=$(curl -s -o /tmp/proj.json -w "%{http_code}" \
+            -H "Authorization: Bearer $VERCEL_TOKEN" \
+            "https://api.vercel.com/v9/projects/prj_z15xHHAw4uc4h3aXWHx6KFQNJ7jS?teamId=team_Thpt1qz2YEezX9COIDbSfAOP")
+          echo "HTTP: $HTTP"
+          python3 -c "
+import json
+with open('/tmp/proj.json') as f:
+    d = json.load(f)
+if 'error' in d:
+    print('ERROR:', d['error'].get('message','?'), '|', d['error'].get('code','?'))
+else:
+    print('Name:', d.get('name','?'))
+    print('Paused:', d.get('paused','?'))
+    print('Framework:', d.get('framework','?'))
+    t = d.get('targets',{})
+    if t:
+        for k,v in t.items():
+            if isinstance(v,dict):
+                print(f'  target.{k}: url={v.get(\"url\",\"?\")}')
+" 2>/dev/null || cat /tmp/proj.json
+
+          echo ""
+          echo "--- Attempt Unpause ---"
+          UC=$(curl -s -o /tmp/up.json -w "%{http_code}" -X PATCH \
+            -H "Authorization: Bearer $VERCEL_TOKEN" \
+            -H "Content-Type: application/json" \
+            -d '{"paused":false}' \
+            "https://api.vercel.com/v9/projects/prj_z15xHHAw4uc4h3aXWHx6KFQNJ7jS?teamId=team_Thpt1qz2YEezX9COIDbSfAOP")
+          echo "Unpause HTTP: $UC"
+          cat /tmp/up.json | python3 -m json.tool 2>/dev/null | head -15 || cat /tmp/up.json
+
+          echo ""
+          echo "--- Recent Deployments ---"
+          curl -s -H "Authorization: Bearer $VERCEL_TOKEN" \
+            "https://api.vercel.com/v6/deployments?projectId=prj_z15xHHAw4uc4h3aXWHx6KFQNJ7jS&teamId=team_Thpt1qz2YEezX9COIDbSfAOP&limit=3" | \
+          python3 -c "
+import json,sys
+d=json.load(sys.stdin)
+if 'deployments' in d:
+    for x in d['deployments']:
+        print(f\"  {x.get('uid','?')[:15]} state={x.get('state','?')} url={x.get('url','?')}\")
+elif 'error' in d:
+    print('ERROR:', d['error'].get('message','?'))
+" 2>/dev/null || echo "Could not parse deployments"
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+
+      - uses: actions/checkout@v4
+
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
 
       - name: Deploy to Vercel
         run: |
-          echo "🚀 Triggering Vercel deployment..."
-          echo "Project: ailydian"
-          echo "Org: lydian-yandexcoms-projects"
-          echo "Domain: www.ailydian.com"
+          export VERCEL_ORG_ID="${{ secrets.VERCEL_ORG_ID }}"
+          export VERCEL_PROJECT_ID="${{ secrets.VERCEL_PROJECT_ID }}"
+          vercel deploy --prod --yes --token=${{ secrets.VERCEL_TOKEN }} 2>&1 || echo "DEPLOY_FAILED"
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
 
-          # This will trigger through GitHub-Vercel integration
-          echo "✅ Push detected - Vercel will auto-deploy"
+      - name: Verify
+        if: always()
+        run: |
+          sleep 10
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://www.ailydian.com)
+          echo "www.ailydian.com HTTP: $STATUS"
