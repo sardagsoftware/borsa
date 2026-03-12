@@ -470,7 +470,7 @@ function sanitizeModelNames(text) {
     /moonshot/gi,
     /01\.ai/gi,
     /doubao/gi,
-    /spark/gi,
+    /\bspark\b/gi,
 
     // ═══════════════════════════════════════════════════
     // AI PLATFORMS & SERVICES
