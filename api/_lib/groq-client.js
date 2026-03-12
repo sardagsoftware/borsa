@@ -1,0 +1,158 @@
+/**
+ * Groq API Client — Central proxy layer
+ * All AI API calls route through this module for:
+ * - Centralized key management
+ * - Error sanitization (no model names leak)
+ * - Timeout management
+ * - Model code resolution
+ */
+
+/* global fetch, AbortController, TextDecoder */
+
+const { sanitizeModelNames } = require('../../services/localrecall/obfuscation');
+
+// Internal model registry — codes map to real model IDs (base64 encoded, never exposed)
+const _MODEL_MAP = {
+  GX8E2D9A: 'bGxhbWEtMy4xLThiLWluc3RhbnQ=',           // fast, general
+  GX3C7D5F: 'bGxhbWEtMy4zLTcwYi12ZXJzYXRpbGU=',       // versatile, coding
+  GX9A5E1D: 'bGxhbWEtMy4xLThiLWluc3RhbnQ=',           // standard
+  COMPOUND: 'Z3JvcS9jb21wb3VuZC1taW5p',                 // compound-mini (web search)
+  COMPOUND_FULL: 'Z3JvcS9jb21wb3VuZA==',                // compound (multi-tool)
+};
+
+const _API_URL = Buffer.from(
+  'aHR0cHM6Ly9hcGkuZ3JvcS5jb20vb3BlbmFpL3YxL2NoYXQvY29tcGxldGlvbnM=',
+  'base64'
+).toString();
+
+function resolveModel(modelCode) {
+  const encoded = _MODEL_MAP[modelCode] || _MODEL_MAP.GX8E2D9A;
+  return Buffer.from(encoded, 'base64').toString();
+}
+
+/**
+ * Make a chat completion request to the AI API
+ * @param {string} modelCode - Internal model code (GX8E2D9A, GX3C7D5F, etc.)
+ * @param {Array} messages - Chat messages array
+ * @param {Object} options - { stream, max_tokens, temperature, top_p, timeout }
+ * @returns {Response} Raw fetch Response (for streaming callers)
+ */
+async function chatCompletion(modelCode, messages, options = {}) {
+  const apiKey = process.env.GROQ_API_KEY;
+  if (!apiKey) {
+    throw new Error('AI service not configured');
+  }
+
+  const controller = new AbortController();
+  const timeoutMs = options.timeout || (options.stream ? 60000 : 30000);
+  const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+
+  try {
+    const response = await fetch(_API_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${apiKey}`,
+      },
+      body: JSON.stringify({
+        model: resolveModel(modelCode),
+        messages,
+        max_tokens: options.max_tokens || 4096,
+        temperature: options.temperature ?? 0.7,
+        top_p: options.top_p ?? 0.9,
+        stream: options.stream || false,
+      }),
+      signal: controller.signal,
+    });
+
+    clearTimeout(timeoutId);
+
+    if (!response.ok) {
+      // Drain body silently — never forward raw error with model names
+      try { await response.text(); } catch (_) {}
+      const err = new Error(`AI_REQUEST_FAILED_${response.status}`);
+      err.statusCode = response.status;
+      throw err;
+    }
+
+    return response;
+  } catch (error) {
+    clearTimeout(timeoutId);
+    if (error.statusCode) throw error;
+    // Sanitize all error messages
+    const sanitizedMsg = sanitizeModelNames(error.message || 'AI_ERROR');
+    const sanitizedError = new Error(sanitizedMsg);
+    sanitizedError.statusCode = error.statusCode || 500;
+    throw sanitizedError;
+  }
+}
+
+/**
+ * Non-streaming chat completion — returns parsed JSON result
+ */
+async function chatCompletionJSON(modelCode, messages, options = {}) {
+  const response = await chatCompletion(modelCode, messages, { ...options, stream: false });
+  const data = await response.json();
+
+  if (!data.choices || !data.choices[0] || !data.choices[0].message) {
+    throw new Error('Invalid API response');
+  }
+
+  return {
+    content: data.choices[0].message.content,
+    usage: data.usage,
+  };
+}
+
+/**
+ * Streaming chat completion — writes SSE chunks to res
+ */
+async function chatCompletionStream(modelCode, messages, res, options = {}) {
+  const response = await chatCompletion(modelCode, messages, { ...options, stream: true });
+
+  const reader = response.body.getReader();
+  const decoder = new TextDecoder();
+  let buffer = '';
+  let fullContent = '';
+
+  try {
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+
+      buffer += decoder.decode(value, { stream: true });
+      const lines = buffer.split('\n');
+      buffer = lines.pop() || '';
+
+      for (const line of lines) {
+        const trimmed = line.trim();
+        if (!trimmed || !trimmed.startsWith('data:')) continue;
+        const data = trimmed.slice(5).trim();
+        if (data === '[DONE]') continue;
+
+        try {
+          const parsed = JSON.parse(data);
+          const delta = parsed.choices?.[0]?.delta?.content || '';
+          if (delta) {
+            fullContent += delta;
+            res.write(`data: ${JSON.stringify({ content: delta })}\n\n`);
+          }
+        } catch (_e) {
+          // skip malformed chunks
+        }
+      }
+    }
+  } catch (streamErr) {
+    console.error('[AI_STREAM_ERR]', sanitizeModelNames(streamErr.message));
+  }
+
+  return fullContent;
+}
+
+module.exports = {
+  chatCompletion,
+  chatCompletionJSON,
+  chatCompletionStream,
+  resolveModel,
+  _MODEL_MAP,
+};

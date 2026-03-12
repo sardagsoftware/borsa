@@ -619,7 +619,7 @@ function sanitizeModelNames(text) {
   // PHASE 4: FINAL VERIFICATION (Double-check)
   // ═══════════════════════════════════════════════════
   sanitized = sanitized.replace(
-    /gpt|claude|gemini|llama|mistral|anthropic|openai|deepseek|groq|qwen|cohere|perplexity|bard|codestral|command-r/gi,
+    /\bgpt\b|\bclaude\b|\bgemini\b|\bllama\b|\bmistral\b|\banthropic\b|\bopenai\b|\bdeepseek\b|\bgroq\b|\bqwen\b|\bcohere\b|\bperplexity\b|\bbard\b|\bcodestral\b|\bcommand-r\b/gi,
     'LyDian AI'
   );
 

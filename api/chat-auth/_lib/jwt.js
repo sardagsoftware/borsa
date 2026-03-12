@@ -7,9 +7,24 @@ const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 
 // Chat-specific JWT secrets (independent from main auth)
-const CHAT_JWT_SECRET = process.env.CHAT_JWT_SECRET || crypto.randomBytes(64).toString('hex');
-const CHAT_JWT_REFRESH_SECRET =
-  process.env.CHAT_JWT_REFRESH_SECRET || crypto.randomBytes(64).toString('hex');
+// CRITICAL: Must be set in Vercel environment variables — random fallback causes cold-start token invalidation
+const CHAT_JWT_SECRET = process.env.CHAT_JWT_SECRET;
+const CHAT_JWT_REFRESH_SECRET = process.env.CHAT_JWT_REFRESH_SECRET;
+
+if (!CHAT_JWT_SECRET || !CHAT_JWT_REFRESH_SECRET) {
+  const missing = [];
+  if (!CHAT_JWT_SECRET) missing.push('CHAT_JWT_SECRET');
+  if (!CHAT_JWT_REFRESH_SECRET) missing.push('CHAT_JWT_REFRESH_SECRET');
+  if (process.env.NODE_ENV === 'production') {
+    throw new Error(`[FATAL] Missing required JWT secrets: ${missing.join(', ')}. Set them in Vercel environment variables.`);
+  }
+  console.warn(`[CHAT_AUTH] WARNING: ${missing.join(', ')} not set. Using ephemeral secrets (dev only).`);
+}
+
+// Dev-only ephemeral fallback (will rotate on cold start — acceptable in dev)
+const _devFallback = crypto.randomBytes(64).toString('hex');
+const JWT_SECRET = CHAT_JWT_SECRET || _devFallback;
+const JWT_REFRESH_SECRET = CHAT_JWT_REFRESH_SECRET || _devFallback;
 
 // Token expiration times
 const ACCESS_TOKEN_EXPIRY = process.env.CHAT_JWT_EXPIRATION || '30m';
@@ -26,7 +41,7 @@ function generateAccessToken(user) {
       displayName: user.display_name || user.displayName,
       type: 'chat_access',
     },
-    CHAT_JWT_SECRET,
+    JWT_SECRET,
     {
       expiresIn: ACCESS_TOKEN_EXPIRY,
       issuer: 'ailydian-chat',
@@ -45,7 +60,7 @@ function generateRefreshToken(user) {
       email: user.email,
       type: 'chat_refresh',
     },
-    CHAT_JWT_REFRESH_SECRET,
+    JWT_REFRESH_SECRET,
     {
       expiresIn: REFRESH_TOKEN_EXPIRY,
       issuer: 'ailydian-chat',

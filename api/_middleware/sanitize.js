@@ -7,6 +7,7 @@
  * Usage: require and call applySanitization(req, res) at the top of any handler.
  */
 
+const crypto = require('crypto');
 const { sanitizeModelNames } = require('../../services/localrecall/obfuscation');
 
 /**
@@ -82,6 +83,11 @@ function sanitizeSSEChunk(chunk) {
  * Call this at the top of every API handler.
  */
 function applySanitization(req, res) {
+  // Generate request ID for tracing
+  const requestId = req.headers['x-request-id'] || crypto.randomUUID();
+  req.requestId = requestId;
+  res.setHeader('X-Request-ID', requestId);
+
   // Set secure CORS
   const origin = getAllowedOrigin(req);
   res.setHeader('Access-Control-Allow-Origin', origin);

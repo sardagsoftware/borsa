@@ -257,11 +257,13 @@ const chatSessions = {
 
     if (useUpstash) {
       await redis('HSET', `chat:session:${refreshToken}`, ...Object.entries(session).flat());
-      // Set expiry based on expiresAt
       const ttl = Math.floor((new Date(expiresAt) - new Date()) / 1000);
       if (ttl > 0) {
         await redis('EXPIRE', `chat:session:${refreshToken}`, ttl);
       }
+      // Track session under user's session set for invalidateAll support
+      await redis('SADD', `chat:user:${userId}:sessions`, refreshToken);
+      await redis('EXPIRE', `chat:user:${userId}:sessions`, 30 * 24 * 60 * 60);
     } else {
       memoryStore.sessions.set(refreshToken, session);
     }
@@ -292,7 +294,11 @@ const chatSessions = {
 
   invalidate: async (refreshToken) => {
     if (useUpstash) {
+      const userId = await redis('HGET', `chat:session:${refreshToken}`, 'user_id');
       await redis('HSET', `chat:session:${refreshToken}`, 'is_valid', 'false');
+      if (userId) {
+        await redis('SREM', `chat:user:${userId}:sessions`, refreshToken);
+      }
     } else {
       const session = memoryStore.sessions.get(refreshToken);
       if (session) session.is_valid = 'false';
@@ -300,8 +306,15 @@ const chatSessions = {
   },
 
   invalidateAllForUser: async (userId) => {
-    // For Upstash, we'd need to track sessions by user - simplified for now
-    if (!useUpstash) {
+    if (useUpstash) {
+      const tokenList = await redis('SMEMBERS', `chat:user:${userId}:sessions`);
+      if (tokenList && tokenList.length > 0) {
+        for (const token of tokenList) {
+          await redis('HSET', `chat:session:${token}`, 'is_valid', 'false');
+        }
+        await redis('DEL', `chat:user:${userId}:sessions`);
+      }
+    } else {
       for (const [token, session] of memoryStore.sessions) {
         if (session.user_id === userId) {
           session.is_valid = 'false';
