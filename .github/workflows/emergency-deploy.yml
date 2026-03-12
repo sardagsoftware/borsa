@@ -11,24 +11,78 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Debug Vercel API
+        run: |
+          echo "Token length: ${#VERCEL_TOKEN}"
+          echo "Token prefix: ${VERCEL_TOKEN:0:8}..."
+          echo "Org ID: $VERCEL_ORG_ID"
+          echo "Project ID: $VERCEL_PROJECT_ID"
+
+          echo "--- Check Project Status ---"
+          HTTP_CODE=$(curl -s -o /tmp/project.json -w "%{http_code}" \
+            -H "Authorization: Bearer $VERCEL_TOKEN" \
+            "https://api.vercel.com/v9/projects/$VERCEL_PROJECT_ID?teamId=$VERCEL_ORG_ID")
+          echo "HTTP: $HTTP_CODE"
+          python3 -c "
+import json
+with open('/tmp/project.json') as f:
+    d = json.load(f)
+print('Name:', d.get('name','?'))
+print('Paused:', d.get('paused','?'))
+print('Framework:', d.get('framework','?'))
+print('Node:', d.get('nodeVersion','?'))
+if 'targets' in d:
+    for k,v in d.get('targets',{}).items():
+        print(f'Target {k}: {v.get(\"url\",\"?\")}')
+if 'error' in d:
+    print('ERROR:', d['error'].get('message','?'))
+    print('Code:', d['error'].get('code','?'))
+" 2>/dev/null || cat /tmp/project.json
+
+          echo ""
+          echo "--- Recent Deployments ---"
+          curl -s -o /tmp/deps.json \
+            -H "Authorization: Bearer $VERCEL_TOKEN" \
+            "https://api.vercel.com/v6/deployments?projectId=$VERCEL_PROJECT_ID&teamId=$VERCEL_ORG_ID&limit=3"
+          python3 -c "
+import json
+with open('/tmp/deps.json') as f:
+    d = json.load(f)
+if 'deployments' in d:
+    for dep in d['deployments']:
+        print(f\"  {dep.get('uid','?')[:12]} | state={dep.get('state','?')} | url={dep.get('url','?')} | created={dep.get('createdAt','?')}\")
+elif 'error' in d:
+    print('ERROR:', d['error'].get('message','?'))
+else:
+    print(json.dumps(d, indent=2)[:500])
+" 2>/dev/null || cat /tmp/deps.json
+
+          echo ""
+          echo "--- Try Unpause ---"
+          UNPAUSE_CODE=$(curl -s -o /tmp/unpause.json -w "%{http_code}" -X PATCH \
+            -H "Authorization: Bearer $VERCEL_TOKEN" \
+            -H "Content-Type: application/json" \
+            -d '{"paused": false}' \
+            "https://api.vercel.com/v9/projects/$VERCEL_PROJECT_ID?teamId=$VERCEL_ORG_ID")
+          echo "Unpause HTTP: $UNPAUSE_CODE"
+          cat /tmp/unpause.json | python3 -m json.tool 2>/dev/null | head -20 || cat /tmp/unpause.json
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+
       - uses: actions/checkout@v4
 
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
 
-      - name: Pull Vercel Environment
-        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
-
-      - name: Build
-        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
-
-      - name: Deploy
+      - name: Deploy Direct
         run: |
-          URL=$(vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }})
-          echo "Deployed to: $URL"
+          vercel deploy --prod --yes --token=${{ secrets.VERCEL_TOKEN }} 2>&1 || echo "Deploy failed"
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
 
-      - name: Verify
+      - name: Verify Site
+        if: always()
         run: |
           sleep 15
-          STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://www.ailydian.com || echo "000")
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://www.ailydian.com)
           echo "Site status: HTTP $STATUS"
