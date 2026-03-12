@@ -164,7 +164,7 @@ function rateLimiter(options = {}) {
 
   return async (req, res, next) => {
     // Skip rate limiting in development mode
-    const isDevelopment = process.env.NODE_ENV === 'development' || !process.env.NODE_ENV;
+    const isDevelopment = process.env.NODE_ENV === 'development';
     if (isDevelopment) {
       return next();
     }

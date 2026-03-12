@@ -179,10 +179,8 @@ function extractToken(req) {
     return req.cookies.access_token;
   }
 
-  // 4. Check query parameter (testing/compatibility only - NOT RECOMMENDED)
-  if (req.query.token) {
-    return req.query.token;
-  }
+  // Query parameter token extraction removed for security
+  // Tokens in URLs are logged in server logs, browser history, and Referer headers
 
   return null;
 }
@@ -320,6 +318,5 @@ module.exports = {
   // Constants
   ROLES,
   PERMISSIONS,
-  JWT_SECRET,
   JWT_EXPIRATION,
 };

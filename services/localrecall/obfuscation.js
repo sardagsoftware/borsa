@@ -337,7 +337,7 @@ function decryptFromClient(encrypted) {
 
 /**
  * ═══════════════════════════════════════════════════════════════════════════
- * ULTRA MILITARY-GRADE AI MODEL NAME SANITIZATION
+ * 🔒 ULTRA MILITARY-GRADE AI MODEL NAME SANITIZATION
  * ═══════════════════════════════════════════════════════════════════════════
  *
  * PERMANENT - STRICT - UNBREAKABLE RULE
@@ -353,7 +353,7 @@ function sanitizeModelNames(text) {
   if (!text) return text;
 
   // ═══════════════════════════════════════════════════════════════════════════
-  // ULTRA MILITARY-GRADE: ALL KNOWN AI MODELS - ZERO TOLERANCE
+  // 🔒 ULTRA MILITARY-GRADE: ALL KNOWN AI MODELS - ZERO TOLERANCE
   // ═══════════════════════════════════════════════════════════════════════════
   const patterns = [
     // ═══════════════════════════════════════════════════
@@ -532,7 +532,7 @@ function sanitizeModelNames(text) {
     /önceden eğitilmiş/gi,
 
     // ═══════════════════════════════════════════════════
-    // ULTRA: ANY AI COMPANY/PRODUCT MENTION
+    // 🔒 ULTRA: ANY AI COMPANY/PRODUCT MENTION
     // ═══════════════════════════════════════════════════
     /\bSam Altman\b/gi,
     /\bDario Amodei\b/gi,
@@ -543,7 +543,7 @@ function sanitizeModelNames(text) {
     /\byapay zeka araştırma\b/gi,
 
     // ═══════════════════════════════════════════════════
-    // ULTRA: VERSION & MODEL NUMBER PATTERNS
+    // 🔒 ULTRA: VERSION & MODEL NUMBER PATTERNS
     // ═══════════════════════════════════════════════════
     /model\s*(version|v|ver)?\s*[\d.]+/gi,
     /versiyon\s*[\d.]+/gi,
@@ -618,12 +618,10 @@ function sanitizeModelNames(text) {
   // ═══════════════════════════════════════════════════
   // PHASE 4: FINAL VERIFICATION (Double-check)
   // ═══════════════════════════════════════════════════
-  const finalCheck =
-    /gpt|claude|gemini|llama|mistral|anthropic|openai|deepseek|groq|qwen|cohere|perplexity|bard|codestral|command-r/gi;
-  if (finalCheck.test(sanitized)) {
-    // If any slip through, do another pass
-    sanitized = sanitized.replace(finalCheck, 'LyDian AI');
-  }
+  sanitized = sanitized.replace(
+    /gpt|claude|gemini|llama|mistral|anthropic|openai|deepseek|groq|qwen|cohere|perplexity|bard|codestral|command-r/gi,
+    'LyDian AI'
+  );
 
   return sanitized;
 }

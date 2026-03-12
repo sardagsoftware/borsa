@@ -22,7 +22,7 @@ async function getDbClient() {
   if (!dbClient) {
     dbClient = new Client({
       connectionString: process.env.DATABASE_URL,
-      ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
+      ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: true } : false,
     });
     await dbClient.connect();
   }

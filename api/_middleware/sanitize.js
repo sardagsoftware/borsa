@@ -122,11 +122,7 @@ function applySanitization(req, res) {
     if (typeof data === 'string') {
       return originalEnd(sanitizeModelNames(data), encoding, callback);
     }
-    if (data && Buffer.isBuffer(data)) {
-      const str = data.toString('utf-8');
-      const sanitized = sanitizeModelNames(str);
-      return originalEnd(Buffer.from(sanitized, 'utf-8'), encoding, callback);
-    }
+    // Do NOT sanitize Buffer data — it may be binary (images, PDFs)
     return originalEnd(data, encoding, callback);
   };
 }

@@ -246,9 +246,8 @@ async function callAIStream(userMessage, domain, conversationHistory, res) {
       console.error('[AI_STREAM_ERR]', streamErr.message);
     }
 
-    // Send final sanitized content
-    const sanitized = obfuscation.sanitizeModelNames(fullContent);
-    res.write(`data: ${JSON.stringify({ done: true, full: sanitized })}\n\n`);
+    // Send final content (middleware handles sanitization via wrapped res.write)
+    res.write(`data: ${JSON.stringify({ done: true, full: fullContent })}\n\n`);
     res.write('data: [DONE]\n\n');
     return res.end();
   } catch (error) {

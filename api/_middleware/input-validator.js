@@ -205,8 +205,8 @@ class InputValidator {
  * Middleware for input validation
  */
 function inputValidationMiddleware(req, res, next) {
-    // Only validate POST requests
-    if (req.method !== 'POST') {
+    // Validate POST, PUT, PATCH, DELETE requests (all methods with body)
+    if (!['POST', 'PUT', 'PATCH', 'DELETE'].includes(req.method)) {
         return next();
     }
 

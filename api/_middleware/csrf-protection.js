@@ -128,11 +128,26 @@ function csrfMiddleware(req, res, next) {
     'ailydian.vercel.app',
   ];
 
+  // Strict origin comparison — prevents bypass via evil-ailydian.com
+  const requestHost = req.headers.host?.split(':')[0];
+  let requestOriginHost = null;
+  try {
+    if (req.headers.origin) {
+      requestOriginHost = new URL(req.headers.origin).hostname;
+    }
+  } catch (_e) { /* invalid origin header */ }
+  let requestRefererHost = null;
+  try {
+    if (req.headers.referer) {
+      requestRefererHost = new URL(req.headers.referer).hostname;
+    }
+  } catch (_e) { /* invalid referer header */ }
+
   const isTrustedOrigin = trustedOrigins.some(
     origin =>
-      req.headers.host?.includes(origin) ||
-      req.headers.origin?.includes(origin) ||
-      req.headers.referer?.includes(origin)
+      requestHost === origin ||
+      requestOriginHost === origin ||
+      requestRefererHost === origin
   );
 
   if (isTrustedOrigin) {

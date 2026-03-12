@@ -21,10 +21,7 @@ const extractToken = (req) => {
     return req.cookies.token;
   }
 
-  // Check query parameter (less secure, use only for specific cases)
-  if (req.query && req.query.token) {
-    return req.query.token;
-  }
+  // Query parameter token extraction removed for security
 
   return null;
 };

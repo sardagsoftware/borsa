@@ -134,7 +134,7 @@
       "destination": "/public/index.html"
     },
     {
-      "source": "/(.*)",
+      "source": "/api/((?!recall|chat|auth|files|media|code|web-search|csrf|models|not-found|health|status|analytics).*)",
       "destination": "/api/not-found"
     }
   ],
@@ -241,7 +241,7 @@
       "headers": [
         {
           "key": "Access-Control-Allow-Origin",
-          "value": "https://ailydian.com, https://www.ailydian.com, https://seo.ailydian.com, https://dashboard.ailydian.com"
+          "value": "https://www.ailydian.com"
         },
         {
           "key": "Access-Control-Allow-Methods",
