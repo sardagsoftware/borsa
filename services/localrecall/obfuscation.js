@@ -337,7 +337,7 @@ function decryptFromClient(encrypted) {
 
 /**
  * ═══════════════════════════════════════════════════════════════════════════
- * 🔒 ULTRA MILITARY-GRADE AI MODEL NAME SANITIZATION
+ * ULTRA MILITARY-GRADE AI MODEL NAME SANITIZATION
  * ═══════════════════════════════════════════════════════════════════════════
  *
  * PERMANENT - STRICT - UNBREAKABLE RULE
@@ -353,7 +353,7 @@ function sanitizeModelNames(text) {
   if (!text) return text;
 
   // ═══════════════════════════════════════════════════════════════════════════
-  // 🔒 ULTRA MILITARY-GRADE: ALL KNOWN AI MODELS - ZERO TOLERANCE
+  // ULTRA MILITARY-GRADE: ALL KNOWN AI MODELS - ZERO TOLERANCE
   // ═══════════════════════════════════════════════════════════════════════════
   const patterns = [
     // ═══════════════════════════════════════════════════
@@ -532,7 +532,7 @@ function sanitizeModelNames(text) {
     /önceden eğitilmiş/gi,
 
     // ═══════════════════════════════════════════════════
-    // 🔒 ULTRA: ANY AI COMPANY/PRODUCT MENTION
+    // ULTRA: ANY AI COMPANY/PRODUCT MENTION
     // ═══════════════════════════════════════════════════
     /\bSam Altman\b/gi,
     /\bDario Amodei\b/gi,
@@ -543,7 +543,7 @@ function sanitizeModelNames(text) {
     /\byapay zeka araştırma\b/gi,
 
     // ═══════════════════════════════════════════════════
-    // 🔒 ULTRA: VERSION & MODEL NUMBER PATTERNS
+    // ULTRA: VERSION & MODEL NUMBER PATTERNS
     // ═══════════════════════════════════════════════════
     /model\s*(version|v|ver)?\s*[\d.]+/gi,
     /versiyon\s*[\d.]+/gi,
@@ -613,8 +613,7 @@ function sanitizeModelNames(text) {
   sanitized = sanitized.replace(/from Lydian/gi, 'from AILYDIAN');
   sanitized = sanitized.replace(/developed by Lydian/gi, 'developed by AILYDIAN');
   sanitized = sanitized.replace(/created by Lydian/gi, 'created by AILYDIAN');
-  sanitized = sanitized.replace(/Lydian/gi, 'AILYDIAN');
-  sanitized = sanitized.replace(/Lydian/gi, 'AILYDIAN');
+  sanitized = sanitized.replace(/\bLydian\b/gi, 'AILYDIAN');
 
   // ═══════════════════════════════════════════════════
   // PHASE 4: FINAL VERIFICATION (Double-check)
