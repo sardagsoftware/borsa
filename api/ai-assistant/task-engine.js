@@ -11,7 +11,7 @@
 const { applySanitization } = require('../_middleware/sanitize');
 const { getCorsOrigin } = require('../_middleware/cors');
 const { applyChatRateLimit } = require('../_middleware/chat-rate-limiter');
-const { optionalChatAuth, authenticateChatUser } = require('../chat-auth/_lib/jwt');
+const { authenticateChatUser } = require('../chat-auth/_lib/jwt');
 const { parseCookies } = require('../chat-auth/_lib/cookies');
 const groqClient = require('../_lib/groq-client');
 const { logAudit } = require('../_lib/audit-log');
@@ -50,38 +50,71 @@ Eger tek basit bir soru ise, sadece bir "chat" gorevi dondur.`;
 async function executeSubTask(task, userMessage) {
   switch (task.tool) {
     case 'web_search': {
-      // Use Groq Compound AI with built-in web search
-      const result = await groqClient.chatCompletionJSON('COMPOUND', [
-        { role: 'system', content: `${IDENTITY_PROTECTION}\nWeb aramasini kullanarak kullanicinin sorusunu yanitla. Guncel bilgi sun.` },
-        { role: 'user', content: task.query || userMessage },
-      ], { temperature: 0.3 });
-      return { tool: 'web_search', content: result.content, success: true };
+      // Use Groq Compound AI with built-in web search + citation extraction
+      const result = await groqClient.chatCompletionWithTools(
+        'COMPOUND',
+        [
+          {
+            role: 'system',
+            content: `${IDENTITY_PROTECTION}\nWeb aramasini kullanarak kullanicinin sorusunu yanitla. Kaynaklara [1], [2] seklinde referans ver.`,
+          },
+          { role: 'user', content: task.query || userMessage },
+        ],
+        { temperature: 0.3 }
+      );
+      return {
+        tool: 'web_search',
+        content: result.content,
+        sources: result.sources || [],
+        success: true,
+      };
     }
 
     case 'code_run':
     case 'calculate': {
       // Use Groq Compound with code interpreter
-      const result = await groqClient.chatCompletionJSON('COMPOUND', [
-        { role: 'system', content: `${IDENTITY_PROTECTION}\nKod calistirma ve hesaplama araci. Sonucu acik ve anlasilir sekilde sun.` },
-        { role: 'user', content: task.query || userMessage },
-      ], { temperature: 0.1 });
+      const result = await groqClient.chatCompletionJSON(
+        'COMPOUND',
+        [
+          {
+            role: 'system',
+            content: `${IDENTITY_PROTECTION}\nKod calistirma ve hesaplama araci. Sonucu acik ve anlasilir sekilde sun.`,
+          },
+          { role: 'user', content: task.query || userMessage },
+        ],
+        { temperature: 0.1 }
+      );
       return { tool: task.tool, content: result.content, success: true };
     }
 
     case 'analyze': {
-      const result = await groqClient.chatCompletionJSON('GX3C7D5F', [
-        { role: 'system', content: `${IDENTITY_PROTECTION}\nDerinlemesine analiz yap. Detayli ve yapisal bilgi sun.` },
-        { role: 'user', content: task.query || userMessage },
-      ], { temperature: 0.5 });
+      const result = await groqClient.chatCompletionJSON(
+        'GX3C7D5F',
+        [
+          {
+            role: 'system',
+            content: `${IDENTITY_PROTECTION}\nDerinlemesine analiz yap. Detayli ve yapisal bilgi sun.`,
+          },
+          { role: 'user', content: task.query || userMessage },
+        ],
+        { temperature: 0.5 }
+      );
       return { tool: 'analyze', content: result.content, success: true };
     }
 
     case 'chat':
     default: {
-      const result = await groqClient.chatCompletionJSON('GX8E2D9A', [
-        { role: 'system', content: `${IDENTITY_PROTECTION}\nYardimci ve bilgili bir AI asistani olarak yanitla.` },
-        { role: 'user', content: task.query || userMessage },
-      ], { temperature: 0.7 });
+      const result = await groqClient.chatCompletionJSON(
+        'GX8E2D9A',
+        [
+          {
+            role: 'system',
+            content: `${IDENTITY_PROTECTION}\nYardimci ve bilgili bir AI asistani olarak yanitla.`,
+          },
+          { role: 'user', content: task.query || userMessage },
+        ],
+        { temperature: 0.7 }
+      );
       return { tool: 'chat', content: result.content, success: true };
     }
   }
@@ -112,7 +145,7 @@ module.exports = async function handler(req, res) {
   }
 
   // Authenticate — assistant requires login
-  await new Promise((resolve) => {
+  await new Promise(resolve => {
     authenticateChatUser(req, res, () => resolve());
   });
 
@@ -150,15 +183,21 @@ module.exports = async function handler(req, res) {
     // Step 1: Decompose the task
     let tasks;
     try {
-      const decomposition = await groqClient.chatCompletionJSON('GX8E2D9A', [
-        { role: 'system', content: TASK_DECOMPOSITION_PROMPT },
-        ...(memoryContext ? [{ role: 'system', content: `Kullanici hakkinda bilinen: ${memoryContext}` }] : []),
-        ...conversationHistory.slice(-6).map(m => ({
-          role: m.role === 'assistant' ? 'assistant' : 'user',
-          content: m.content,
-        })),
-        { role: 'user', content: message },
-      ], { temperature: 0.3 });
+      const decomposition = await groqClient.chatCompletionJSON(
+        'GX8E2D9A',
+        [
+          { role: 'system', content: TASK_DECOMPOSITION_PROMPT },
+          ...(memoryContext
+            ? [{ role: 'system', content: `Kullanici hakkinda bilinen: ${memoryContext}` }]
+            : []),
+          ...conversationHistory.slice(-6).map(m => ({
+            role: m.role === 'assistant' ? 'assistant' : 'user',
+            content: m.content,
+          })),
+          { role: 'user', content: message },
+        ],
+        { temperature: 0.3 }
+      );
 
       // Try to parse JSON from response
       const jsonMatch = decomposition.content.match(/\{[\s\S]*\}/);
@@ -175,7 +214,8 @@ module.exports = async function handler(req, res) {
 
     // Step 2: Execute sub-tasks (sequentially for now, parallel later)
     const results = [];
-    for (const task of tasks.slice(0, 5)) { // Max 5 sub-tasks
+    for (const task of tasks.slice(0, 5)) {
+      // Max 5 sub-tasks
       try {
         const result = await executeSubTask(task, message);
         results.push({ ...result, taskId: task.id, description: task.description });
@@ -200,10 +240,17 @@ module.exports = async function handler(req, res) {
         .map(r => `[${r.tool}]: ${r.content}`)
         .join('\n\n---\n\n');
 
-      const synthesis = await groqClient.chatCompletionJSON('GX8E2D9A', [
-        { role: 'system', content: `${IDENTITY_PROTECTION}\nAsagidaki alt gorev sonuclarini birlestirip kullaniciya anlasilir tek bir yanit olarak sun. Kaynaklari belirt.` },
-        { role: 'user', content: `Orijinal soru: ${message}\n\nSonuclar:\n${synthesisInput}` },
-      ], { temperature: 0.5 });
+      const synthesis = await groqClient.chatCompletionJSON(
+        'GX8E2D9A',
+        [
+          {
+            role: 'system',
+            content: `${IDENTITY_PROTECTION}\nAsagidaki alt gorev sonuclarini birlestirip kullaniciya anlasilir tek bir yanit olarak sun. Kaynaklari belirt.`,
+          },
+          { role: 'user', content: `Orijinal soru: ${message}\n\nSonuclar:\n${synthesisInput}` },
+        ],
+        { temperature: 0.5 }
+      );
 
       finalResponse = synthesis.content;
     }
@@ -214,20 +261,28 @@ module.exports = async function handler(req, res) {
     const responseTime = Date.now() - startTime;
 
     // Audit log
-    logAudit('assistant.task', {
-      taskCount: tasks.length,
-      tools: tasks.map(t => t.tool),
-      responseTime,
-    }, {
-      requestId: req.requestId,
-      userId,
-      ip: getClientIP(req),
-      userAgent: req.headers['user-agent'],
-    });
+    logAudit(
+      'assistant.task',
+      {
+        taskCount: tasks.length,
+        tools: tasks.map(t => t.tool),
+        responseTime,
+      },
+      {
+        requestId: req.requestId,
+        userId,
+        ip: getClientIP(req),
+        userAgent: req.headers['user-agent'],
+      }
+    );
+
+    // Collect all sources from web_search subtasks
+    const allSources = results.flatMap(r => r.sources || []);
 
     return res.status(200).json({
       success: true,
       response: sanitizeModelNames(finalResponse),
+      sources: allSources,
       tasks: results.map(r => ({
         id: r.taskId,
         tool: r.tool,

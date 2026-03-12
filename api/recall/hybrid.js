@@ -1,10 +1,9 @@
-/* global fetch, AbortController, TextDecoder */
 /**
  * AILYDIAN Recall Hybrid Mode API
  * Real AI responses via secure backend
  *
  * @route POST /api/recall/hybrid
- * @version 3.0.0
+ * @version 4.0.0
  */
 
 const { obfuscation, MODES } = require('../../services/localrecall');
@@ -16,6 +15,7 @@ const { parseCookies } = require('../chat-auth/_lib/cookies');
 const groqClient = require('../_lib/groq-client');
 const { logAudit } = require('../_lib/audit-log');
 const { getClientIP } = require('../_middleware/chat-rate-limiter');
+const axios = require('axios');
 
 // Identity protection instruction - MILITARY-GRADE
 const IDENTITY_PROTECTION = `
@@ -115,9 +115,11 @@ IDENTITY PROTECTION — ABSOLUTE RULE:
 function detectNonTurkish(text) {
   const sample = text.substring(0, 200).toLowerCase();
   const turkishChars = (sample.match(/[çğıöşü]/g) || []).length;
-  const turkishWords = (sample.match(/\b(ve|bir|bu|da|de|ile|için|olan|var|ne|mi|mı|değil)\b/g) || []).length;
+  const turkishWords = (
+    sample.match(/\b(ve|bir|bu|da|de|ile|için|olan|var|ne|mi|mı|değil)\b/g) || []
+  ).length;
   return turkishChars === 0 && turkishWords === 0 && sample.length > 10;
-};
+}
 
 /**
  * Build messages array for AI call
@@ -150,17 +152,250 @@ function buildMessages(userMessage, domain, conversationHistory = []) {
 
 // Model selection per domain
 const DOMAIN_MODELS = {
-  coding: 'GX3C7D5F',         // 70B versatile for better code quality
-  mathematics: 'GX3C7D5F',    // 70B for complex math
-  'web-search': 'COMPOUND',   // Compound AI with built-in web search
-  'deep-think': 'GX3C7D5F',   // 70B for deep reasoning
-  default: 'GX8E2D9A',        // 8B fast for general chat
+  coding: 'GX3C7D5F', // 70B versatile for better code quality
+  mathematics: 'GX3C7D5F', // 70B for complex math
+  'web-search': 'COMPOUND', // Compound AI with built-in web search
+  'deep-think': 'GX3C7D5F', // 70B for deep reasoning
+  default: 'GX8E2D9A', // 8B fast for general chat
 };
+
+/**
+ * Fetch web results from Google Custom Search / DuckDuckGo fallback
+ * Calls the same logic as api/web-search.js but internally
+ */
+async function fetchWebResults(query) {
+  const googleKey = process.env.GOOGLE_AI_API_KEY;
+  const googleCx = process.env.GOOGLE_SEARCH_ENGINE_ID;
+
+  try {
+    if (googleKey && googleCx) {
+      const url = `https://www.googleapis.com/customsearch/v1?key=${googleKey}&cx=${googleCx}&q=${encodeURIComponent(query)}&num=5&lr=lang_tr&safe=active`;
+      const resp = await axios.get(url, { timeout: 8000 });
+      return (resp.data.items || []).map(item => ({
+        title: item.title || '',
+        url: item.link || '',
+        domain: item.displayLink || '',
+        snippet: item.snippet || '',
+        image: item.pagemap?.cse_image?.[0]?.src || null,
+        thumbnail: item.pagemap?.cse_thumbnail?.[0]?.src || null,
+        favicon: item.displayLink
+          ? `https://www.google.com/s2/favicons?domain=${item.displayLink}&sz=32`
+          : null,
+      }));
+    }
+
+    // DuckDuckGo fallback
+    const ddgUrl = `https://api.duckduckgo.com/?q=${encodeURIComponent(query)}&format=json&no_html=1&skip_disambig=1`;
+    const resp = await axios.get(ddgUrl, {
+      timeout: 8000,
+      headers: { 'User-Agent': 'AILYDIAN/4.0' },
+    });
+    const data = resp.data;
+    const results = [];
+
+    if (data.Abstract) {
+      results.push({
+        title: data.Heading || query,
+        url: data.AbstractURL || '',
+        domain: data.AbstractURL ? new URL(data.AbstractURL).hostname : '',
+        snippet: data.Abstract || '',
+        image: data.Image || null,
+        thumbnail: null,
+        favicon: data.AbstractURL
+          ? `https://www.google.com/s2/favicons?domain=${new URL(data.AbstractURL).hostname}&sz=32`
+          : null,
+      });
+    }
+
+    if (data.RelatedTopics && Array.isArray(data.RelatedTopics)) {
+      for (const topic of data.RelatedTopics.slice(0, 4)) {
+        if (topic.FirstURL && topic.Text) {
+          let host = '';
+          try {
+            host = new URL(topic.FirstURL).hostname;
+          } catch (_e) {
+            /* skip */
+          }
+          results.push({
+            title: topic.Text.split(' - ')[0],
+            url: topic.FirstURL,
+            domain: host,
+            snippet: topic.Text,
+            image: topic.Icon?.URL || null,
+            thumbnail: null,
+            favicon: host ? `https://www.google.com/s2/favicons?domain=${host}&sz=32` : null,
+          });
+        }
+      }
+    }
+
+    return results;
+  } catch (err) {
+    console.warn('[WEB_SEARCH_FETCH]', obfuscation.sanitizeModelNames(err.message));
+    return [];
+  }
+}
+
+/**
+ * Merge and deduplicate sources from multiple search backends
+ */
+function mergeSources(compoundSources, webResults) {
+  const seen = new Set();
+  const merged = [];
+
+  // Compound sources first (higher quality from AI search)
+  for (const src of compoundSources) {
+    if (src.domain && !seen.has(src.domain)) {
+      seen.add(src.domain);
+      merged.push({ ...src, id: merged.length + 1 });
+    }
+  }
+
+  // Web results second (fill gaps)
+  for (const src of webResults) {
+    if (src.domain && !seen.has(src.domain)) {
+      seen.add(src.domain);
+      merged.push({
+        id: merged.length + 1,
+        title: src.title,
+        url: src.url,
+        domain: src.domain,
+        snippet: (src.snippet || '').substring(0, 200),
+        score: 0,
+        favicon: src.favicon,
+        image: src.image || src.thumbnail || null,
+      });
+    }
+  }
+
+  return merged.slice(0, 8); // Max 8 sources
+}
+
+/**
+ * Collect images from all search results
+ */
+function collectImages(compoundSources, webResults) {
+  const images = [];
+  const seen = new Set();
+
+  for (const src of [...compoundSources, ...webResults]) {
+    const img = src.image || src.thumbnail;
+    if (img && !seen.has(img)) {
+      seen.add(img);
+      images.push(img);
+    }
+  }
+
+  return images.slice(0, 4);
+}
+
+/**
+ * Generate related questions from the query
+ */
+function generateRelatedQuestions(query, sources) {
+  const suggestions = [];
+  const q = query.toLowerCase();
+
+  if (q.includes('ne') || q.includes('nedir')) {
+    suggestions.push(query.replace(/nedir|ne/i, 'nasıl çalışır'));
+    suggestions.push(query.replace(/nedir|ne/i, 'tarihi nedir'));
+  } else if (q.includes('nasıl')) {
+    suggestions.push(query.replace(/nasıl/i, 'neden'));
+    suggestions.push(query + ' örnekleri');
+  } else {
+    suggestions.push(query + ' hakkında detaylı bilgi');
+    suggestions.push(query + ' güncel gelişmeler');
+  }
+
+  if (sources.length > 0) {
+    suggestions.push(query + ' karşılaştırma');
+  }
+
+  return suggestions.slice(0, 3);
+}
+
+/**
+ * Web Search Pipeline — Dual-source (Compound AI + Google/DDG) with synthesis
+ * Returns { content, sources, images, relatedQuestions }
+ */
+async function webSearchPipeline(userMessage, _conversationHistory) {
+  // Step 1: Parallel search — Groq Compound + Google/DDG
+  const compoundMessages = [
+    {
+      role: 'system',
+      content: `${IDENTITY_PROTECTION}\nWeb araması yaparak güncel bilgileri bul. Bugün: ${new Date().toLocaleDateString('tr-TR')}.`,
+    },
+    { role: 'user', content: userMessage },
+  ];
+
+  const [compoundResult, webResults] = await Promise.allSettled([
+    groqClient.chatCompletionWithTools('COMPOUND', compoundMessages, {
+      temperature: 0.3,
+      timeout: 20000,
+    }),
+    fetchWebResults(userMessage),
+  ]);
+
+  const compoundSources =
+    compoundResult.status === 'fulfilled' ? compoundResult.value.sources || [] : [];
+  const webSources = webResults.status === 'fulfilled' ? webResults.value || [] : [];
+
+  // Step 2: Merge + deduplicate
+  const sources = mergeSources(compoundSources, webSources);
+  const images = collectImages(compoundSources, webSources);
+  const relatedQuestions = generateRelatedQuestions(userMessage, sources);
+
+  // Step 3: Compound answer as fallback context
+  const compoundAnswer = compoundResult.status === 'fulfilled' ? compoundResult.value.content : '';
+
+  return { sources, images, relatedQuestions, compoundAnswer };
+}
 
 /**
  * Call LyDian AI Engine (non-streaming)
  */
 async function callAI(userMessage, domain, conversationHistory = []) {
+  // Web search domain — enriched pipeline
+  if (domain === 'web-search') {
+    const { sources, images, relatedQuestions, compoundAnswer } = await webSearchPipeline(
+      userMessage,
+      conversationHistory
+    );
+
+    const sourceContext =
+      sources.length > 0
+        ? '\n\n[KAYNAKLAR - Yanıtında [1], [2] gibi kaynak numaraları kullan]:\n' +
+          sources.map(s => `[${s.id}] ${s.title} (${s.domain}): ${s.snippet}`).join('\n')
+        : '';
+
+    const extraContext = compoundAnswer
+      ? `\n\nArama konteksti: ${compoundAnswer.substring(0, 500)}`
+      : '';
+
+    const synthMessages = buildMessages(
+      userMessage +
+        sourceContext +
+        extraContext +
+        '\n\nKRİTİK: Yanıtında kaynaklara [1], [2], [3] şeklinde referans ver.',
+      domain,
+      conversationHistory
+    );
+
+    const result = await groqClient.chatCompletionJSON('GX3C7D5F', synthMessages, {
+      temperature: 0.4,
+    });
+
+    return {
+      success: true,
+      response: result.content,
+      usage: result.usage,
+      sources,
+      images,
+      relatedQuestions,
+    };
+  }
+
+  // Standard domains
   const messages = buildMessages(userMessage, domain, conversationHistory);
   const modelCode = DOMAIN_MODELS[domain] || DOMAIN_MODELS.default;
   const temperature = domain === 'coding' ? 0.3 : 0.7;
@@ -178,13 +413,79 @@ async function callAI(userMessage, domain, conversationHistory = []) {
  * Call LyDian AI Engine (streaming SSE)
  */
 async function callAIStream(userMessage, domain, conversationHistory, res) {
+  // ===== WEB SEARCH ENHANCED MODE =====
+  if (domain === 'web-search') {
+    // Step 1: Send searching status
+    res.write(
+      `data: ${JSON.stringify({ type: 'search_status', status: 'searching', message: "Web'de aranıyor..." })}\n\n`
+    );
+
+    // Step 2: Run search pipeline
+    let sources = [];
+    let images = [];
+    let relatedQuestions = [];
+    let compoundAnswer = '';
+
+    try {
+      const pipelineResult = await webSearchPipeline(userMessage, conversationHistory);
+      sources = pipelineResult.sources;
+      images = pipelineResult.images;
+      relatedQuestions = pipelineResult.relatedQuestions;
+      compoundAnswer = pipelineResult.compoundAnswer;
+    } catch (searchErr) {
+      console.warn('[WEB_SEARCH_PIPELINE]', obfuscation.sanitizeModelNames(searchErr.message));
+    }
+
+    // Step 3: Send search metadata to frontend
+    res.write(
+      `data: ${JSON.stringify({
+        type: 'search_meta',
+        sources: sources,
+        images: images,
+        related_questions: relatedQuestions,
+        search_provider: 'AILYDIAN_WEB_v1',
+      })}\n\n`
+    );
+
+    // Step 4: Build enhanced prompt with source references
+    const sourceContext =
+      sources.length > 0
+        ? '\n\n[KAYNAKLAR - Yanıtında [1], [2] gibi kaynak numaraları kullan]:\n' +
+          sources.map(s => `[${s.id}] ${s.title} (${s.domain}): ${s.snippet}`).join('\n')
+        : '';
+
+    const extraContext = compoundAnswer
+      ? `\n\nArama konteksti: ${compoundAnswer.substring(0, 500)}`
+      : '';
+
+    const synthMessages = buildMessages(
+      userMessage +
+        sourceContext +
+        extraContext +
+        '\n\nKRİTİK: Yanıtında kaynaklara [1], [2], [3] şeklinde referans ver. Her iddia için kaynak göster.',
+      domain,
+      conversationHistory
+    );
+
+    // Step 5: Stream synthesized answer via 70B model
+    const fullContent = await groqClient.chatCompletionStream('GX3C7D5F', synthMessages, res, {
+      temperature: 0.4,
+    });
+
+    res.write(`data: ${JSON.stringify({ done: true, full: fullContent })}\n\n`);
+    res.write('data: [DONE]\n\n');
+    return res.end();
+  }
+
+  // ===== STANDARD MODES (unchanged) =====
   const messages = buildMessages(userMessage, domain, conversationHistory);
   const modelCode = DOMAIN_MODELS[domain] || DOMAIN_MODELS.default;
   const temperature = domain === 'coding' ? 0.3 : 0.7;
 
-  const fullContent = await groqClient.chatCompletionStream(modelCode, messages, res, { temperature });
+  const fullContent = await groqClient.chatCompletionStream(modelCode, messages, res, {
+    temperature,
+  });
 
-  // Send final content (middleware handles sanitization via wrapped res.write)
   res.write(`data: ${JSON.stringify({ done: true, full: fullContent })}\n\n`);
   res.write('data: [DONE]\n\n');
   return res.end();
@@ -239,7 +540,9 @@ module.exports = async function handler(req, res) {
     const stream = req.body?.stream;
     if (stream) {
       res.writeHead(429, { 'Content-Type': 'text/event-stream', 'Cache-Control': 'no-cache' });
-      res.write(`data: ${JSON.stringify({ error: 'Istek limiti asildi. Lutfen biraz bekleyin.' })}\n\n`);
+      res.write(
+        `data: ${JSON.stringify({ error: 'Istek limiti asildi. Lutfen biraz bekleyin.' })}\n\n`
+      );
       res.write('data: [DONE]\n\n');
       return res.end();
     }
@@ -339,12 +642,16 @@ Başka bir konuda nasıl yardımcı olabilirim?`;
     const modelConfig = obfuscation.getModel(modelCode);
 
     // Audit log (fire-and-forget)
-    logAudit('chat.request', { domain, stream: false, responseTime }, {
-      requestId: req.requestId,
-      userId: req.chatUser?.userId,
-      ip: getClientIP(req),
-      userAgent: req.headers['user-agent'],
-    });
+    logAudit(
+      'chat.request',
+      { domain, stream: false, responseTime },
+      {
+        requestId: req.requestId,
+        userId: req.chatUser?.userId,
+        ip: getClientIP(req),
+        userAgent: req.headers['user-agent'],
+      }
+    );
 
     return res.status(200).json({
       success: true,
@@ -371,11 +678,15 @@ Başka bir konuda nasıl yardımcı olabilirim?`;
   } catch (error) {
     console.error('[AI_HYBRID_ERR]', obfuscation.sanitizeModelNames(error.message));
 
-    logAudit('chat.error', { error: 'AI_CALL_FAILED' }, {
-      requestId: req.requestId,
-      userId: req.chatUser?.userId,
-      ip: getClientIP(req),
-    });
+    logAudit(
+      'chat.error',
+      { error: 'AI_CALL_FAILED' },
+      {
+        requestId: req.requestId,
+        userId: req.chatUser?.userId,
+        ip: getClientIP(req),
+      }
+    );
 
     // Fallback response on error
     return res.status(200).json({

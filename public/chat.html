@@ -8063,6 +8063,205 @@
         }
       }
 
+      /* ===== WEB SEARCH SOURCE CARDS ===== */
+      .search-meta-container {
+        margin-bottom: 10px;
+      }
+
+      .search-sources-container {
+        display: flex;
+        gap: 8px;
+        overflow-x: auto;
+        padding: 8px 0 12px 0;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(110, 132, 255, 0.3) transparent;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .search-sources-container::-webkit-scrollbar {
+        height: 4px;
+      }
+
+      .search-sources-container::-webkit-scrollbar-thumb {
+        background: rgba(110, 132, 255, 0.3);
+        border-radius: 2px;
+      }
+
+      .source-card {
+        flex: 0 0 auto;
+        width: 210px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 12px;
+        padding: 12px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        text-decoration: none;
+        color: inherit;
+        display: block;
+      }
+
+      .source-card:hover {
+        background: rgba(110, 132, 255, 0.08);
+        border-color: rgba(110, 132, 255, 0.3);
+        transform: translateY(-1px);
+      }
+
+      .source-card-header {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: 6px;
+      }
+
+      .source-card-number {
+        font-size: 10px;
+        font-weight: 700;
+        color: var(--accent-2, #6e84ff);
+        background: rgba(110, 132, 255, 0.12);
+        border-radius: 4px;
+        padding: 1px 5px;
+        flex-shrink: 0;
+        line-height: 1.4;
+      }
+
+      .source-card-favicon {
+        width: 16px;
+        height: 16px;
+        border-radius: 3px;
+        flex-shrink: 0;
+      }
+
+      .source-card-domain {
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.5);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .source-card-title {
+        font-size: 13px;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.9);
+        line-height: 1.3;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      /* Inline citation badges [1] [2] */
+      .citation-ref {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+        font-weight: 700;
+        color: var(--accent-2, #6e84ff);
+        background: rgba(110, 132, 255, 0.12);
+        border-radius: 4px;
+        padding: 1px 5px;
+        margin: 0 1px;
+        cursor: pointer;
+        vertical-align: super;
+        transition: background 0.2s;
+        text-decoration: none;
+        line-height: 1;
+      }
+
+      .citation-ref:hover {
+        background: rgba(110, 132, 255, 0.25);
+      }
+
+      /* Search images row */
+      .search-images-container {
+        display: flex;
+        gap: 8px;
+        padding: 6px 0;
+        overflow-x: auto;
+      }
+
+      .search-image-thumb {
+        width: 120px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: transform 0.2s;
+        flex-shrink: 0;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .search-image-thumb:hover {
+        transform: scale(1.05);
+      }
+
+      /* Related questions */
+      .related-questions-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        padding: 8px 0;
+      }
+
+      .related-question-chip {
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 18px;
+        padding: 6px 14px;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.65);
+        cursor: pointer;
+        transition: all 0.2s;
+        font-family: inherit;
+      }
+
+      .related-question-chip:hover {
+        background: rgba(110, 132, 255, 0.08);
+        border-color: rgba(110, 132, 255, 0.3);
+        color: var(--accent-2, #6e84ff);
+      }
+
+      /* Light theme overrides */
+      [data-theme='light'] .source-card {
+        background: rgba(0, 0, 0, 0.02);
+        border-color: rgba(0, 0, 0, 0.08);
+      }
+      [data-theme='light'] .source-card:hover {
+        background: rgba(79, 70, 229, 0.06);
+        border-color: rgba(79, 70, 229, 0.2);
+      }
+      [data-theme='light'] .source-card-title {
+        color: #1f2937;
+      }
+      [data-theme='light'] .source-card-domain {
+        color: #6b7280;
+      }
+      [data-theme='light'] .related-question-chip {
+        background: rgba(0, 0, 0, 0.02);
+        border-color: rgba(0, 0, 0, 0.1);
+        color: #4b5563;
+      }
+      [data-theme='light'] .citation-ref {
+        color: #4f46e5;
+        background: rgba(79, 70, 229, 0.1);
+      }
+
+      @media (max-width: 768px) {
+        .source-card {
+          width: 170px;
+          padding: 10px;
+        }
+        .source-card-title {
+          font-size: 12px;
+        }
+        .search-image-thumb {
+          width: 100px;
+          height: 65px;
+        }
+      }
+
       /* Suggestion chips header */
       .suggestions-header {
         display: flex;
@@ -13274,7 +13473,9 @@
           } catch (e) {
             return 'general';
           }
-        })(), // 🎯 Track specialized AI mode (persisted in sessionStorage)
+        })(), // Track specialized AI mode (persisted in sessionStorage)
+        _pendingSearchMeta: null,
+        _currentSources: null,
       };
 
       // ========== ELEMENTS ==========
@@ -14821,12 +15022,43 @@
                           result = { success: false, error: chatSseParsed.error };
                           break;
                         }
+
+                        // Handle web search status event
+                        if (chatSseParsed.type === 'search_status') {
+                          var typingText = document.querySelector('#typingIndicator .typing-text');
+                          if (typingText) {
+                            typingText.innerHTML =
+                              chatSseParsed.message +
+                              '<span class="typing-dots"><span></span><span></span><span></span></span>';
+                          }
+                          continue;
+                        }
+
+                        // Handle web search metadata event (sources, images, related)
+                        if (chatSseParsed.type === 'search_meta') {
+                          state._pendingSearchMeta = chatSseParsed;
+                          if (chatSseParsed.sources) {
+                            state._currentSources = chatSseParsed.sources;
+                          }
+                          continue;
+                        }
+
                         if (chatSseParsed.content) {
                           // On first chunk: hide typing indicator, show streaming bubble
                           if (!chatFirstChunk) {
                             chatFirstChunk = true;
                             hideTypingIndicator();
                             chatStreamEl.style.display = '';
+
+                            // Render search source cards above content if available
+                            if (
+                              state._pendingSearchMeta &&
+                              state._pendingSearchMeta.sources &&
+                              state._pendingSearchMeta.sources.length > 0
+                            ) {
+                              var metaEl = renderSearchMeta(state._pendingSearchMeta);
+                              chatStreamEl.querySelector('.message-content').prepend(metaEl);
+                            }
                           }
                           chatRawText += chatSseParsed.content;
                           // Format with markdown periodically (every 3 chunks) for performance
@@ -14862,6 +15094,10 @@
                 var chatResponseText = chatFinalContent || chatRawText;
                 if (chatResponseText) {
                   result = { success: true, response: chatResponseText };
+                  // Attach search metadata if available (for addMessage rendering)
+                  if (state._pendingSearchMeta) {
+                    result._searchMeta = state._pendingSearchMeta;
+                  }
                 } else if (!result) {
                   result = { success: false, error: 'AI yanıt veremedi' };
                 }
@@ -15332,6 +15568,29 @@
               </div>
             `;
           }
+
+          // Add related questions from web search if available
+          if (
+            state._pendingSearchMeta &&
+            state._pendingSearchMeta.related_questions &&
+            state._pendingSearchMeta.related_questions.length > 0
+          ) {
+            suggestionsHtml =
+              '<div class="related-questions-container">' +
+              state._pendingSearchMeta.related_questions
+                .map(function (q) {
+                  return (
+                    '<button class="related-question-chip" data-suggestion="' +
+                    escapeHtml(q) +
+                    '">' +
+                    escapeHtml(q) +
+                    '</button>'
+                  );
+                })
+                .join('') +
+              '</div>' +
+              suggestionsHtml;
+          }
         }
 
         // Build actions HTML
@@ -15368,6 +15627,24 @@
 
         elements.messagesContainer.appendChild(messageEl);
 
+        // Inject search source cards for web-search assistant messages
+        if (
+          role === 'assistant' &&
+          state._pendingSearchMeta &&
+          state._pendingSearchMeta.sources &&
+          state._pendingSearchMeta.sources.length > 0
+        ) {
+          var searchMetaEl = renderSearchMeta(state._pendingSearchMeta);
+          var contentEl = messageEl.querySelector('.message-content');
+          var textEl = messageEl.querySelector('.message-text');
+          if (contentEl && textEl) {
+            contentEl.insertBefore(searchMetaEl, textEl);
+          }
+          // Clean up search state
+          state._pendingSearchMeta = null;
+          state._currentSources = null;
+        }
+
         // Set user avatar background-image if available
         if (role === 'user') {
           var savedAv = localStorage.getItem('lydian_avatar');
@@ -15402,16 +15679,24 @@
                   });
               }
               // Bind suggestion chips
-              messageEl.querySelectorAll('.suggestion-chip').forEach(function (chip) {
-                chip.addEventListener('click', function () {
-                  var st = chip.dataset.suggestion;
-                  if (st && elements.messageInput) {
-                    elements.messageInput.value = st;
-                    elements.messageInput.focus();
-                    elements.messageInput.dispatchEvent(new Event('input'));
-                  }
+              messageEl
+                .querySelectorAll('.suggestion-chip, .related-question-chip')
+                .forEach(function (chip) {
+                  chip.addEventListener('click', function () {
+                    var st = chip.dataset.suggestion;
+                    if (st && elements.messageInput) {
+                      elements.messageInput.value = st;
+                      elements.messageInput.focus();
+                      elements.messageInput.dispatchEvent(new Event('input'));
+                      // Auto-send for related questions
+                      if (chip.classList.contains('related-question-chip')) {
+                        setTimeout(function () {
+                          sendMessage();
+                        }, 100);
+                      }
+                    }
+                  });
                 });
-              });
               return;
             }
             // Add 3-5 words per frame
@@ -15443,23 +15728,30 @@
               });
           }
           if (role === 'assistant') {
-            messageEl.querySelectorAll('.suggestion-chip').forEach(function (chip) {
-              chip.addEventListener('click', function () {
-                var st = chip.dataset.suggestion;
-                if (st && elements.messageInput) {
-                  elements.messageInput.value = st;
-                  elements.messageInput.focus();
-                  elements.messageInput.dispatchEvent(new Event('input'));
-                }
+            messageEl
+              .querySelectorAll('.suggestion-chip, .related-question-chip')
+              .forEach(function (chip) {
+                chip.addEventListener('click', function () {
+                  var st = chip.dataset.suggestion;
+                  if (st && elements.messageInput) {
+                    elements.messageInput.value = st;
+                    elements.messageInput.focus();
+                    elements.messageInput.dispatchEvent(new Event('input'));
+                    if (chip.classList.contains('related-question-chip')) {
+                      setTimeout(function () {
+                        sendMessage();
+                      }, 100);
+                    }
+                  }
+                });
               });
-            });
           }
         }
       }
 
       function showTypingIndicator() {
         state.isTyping = true;
-        var typingLabel = 'Düşünüyor';
+        var typingLabel = state.selectedAiType === 'web-search' ? "Web'de aranıyor" : 'Düşünüyor';
         const indicator = document.createElement('div');
         indicator.className = 'message assistant';
         indicator.id = 'typingIndicator';
@@ -15580,6 +15872,24 @@
             /\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g,
             '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>'
           );
+
+        // Phase 2.5: Convert inline citations [1], [2], [3] to clickable badges
+        processed = processed.replace(/\[(\d{1,2})\]/g, function (match, num) {
+          var idx = parseInt(num) - 1;
+          if (state._currentSources && state._currentSources[idx]) {
+            var src = state._currentSources[idx];
+            return (
+              '<a class="citation-ref" href="' +
+              escapeHtml(src.url) +
+              '" target="_blank" rel="noopener" title="' +
+              escapeHtml(src.title || src.domain) +
+              '">' +
+              num +
+              '</a>'
+            );
+          }
+          return '<span class="citation-ref">' + num + '</span>';
+        });
 
         // Phase 3: Re-inject code blocks with rich UI (header, copy, preview)
         codeBlocks.forEach(function (block, i) {
@@ -15735,6 +16045,79 @@
               );
           } catch (e) {}
         }
+      }
+
+      // ═══ WEB SEARCH — RENDER SEARCH META ═══
+
+      /**
+       * Render search metadata as source cards + images
+       * Returns a DOM element to prepend inside message-content
+       */
+      function renderSearchMeta(meta) {
+        var container = document.createElement('div');
+        container.className = 'search-meta-container';
+
+        // Source cards (horizontal scrollable row)
+        if (meta.sources && meta.sources.length > 0) {
+          var sourcesRow = document.createElement('div');
+          sourcesRow.className = 'search-sources-container';
+
+          meta.sources.forEach(function (source) {
+            var card = document.createElement('a');
+            card.className = 'source-card';
+            card.href = source.url || '#';
+            card.target = '_blank';
+            card.rel = 'noopener noreferrer';
+
+            var faviconHtml = source.favicon
+              ? '<img class="source-card-favicon" src="' +
+                escapeHtml(source.favicon) +
+                '" onerror="this.style.display=\'none\'" />'
+              : '';
+
+            card.innerHTML =
+              '<div class="source-card-header">' +
+              '<span class="source-card-number">' +
+              source.id +
+              '</span>' +
+              faviconHtml +
+              '<span class="source-card-domain">' +
+              escapeHtml(source.domain || '') +
+              '</span>' +
+              '</div>' +
+              '<div class="source-card-title">' +
+              escapeHtml(source.title || source.domain || '') +
+              '</div>';
+
+            sourcesRow.appendChild(card);
+          });
+
+          container.appendChild(sourcesRow);
+        }
+
+        // Search images (if any)
+        if (meta.images && meta.images.length > 0) {
+          var imagesRow = document.createElement('div');
+          imagesRow.className = 'search-images-container';
+
+          meta.images.slice(0, 4).forEach(function (imgUrl) {
+            var img = document.createElement('img');
+            img.className = 'search-image-thumb';
+            img.src = imgUrl;
+            img.alt = 'Arama görseli';
+            img.onerror = function () {
+              this.style.display = 'none';
+            };
+            img.onclick = function () {
+              openImageModal(imgUrl);
+            };
+            imagesRow.appendChild(img);
+          });
+
+          container.appendChild(imagesRow);
+        }
+
+        return container;
       }
 
       // ═══ CODE PREVIEW & COPY FUNCTIONS ═══

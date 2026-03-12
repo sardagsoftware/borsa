@@ -7,17 +7,15 @@
  * - Model code resolution
  */
 
-/* global fetch, AbortController, TextDecoder */
-
 const { sanitizeModelNames } = require('../../services/localrecall/obfuscation');
 
 // Internal model registry — codes map to real model IDs (base64 encoded, never exposed)
 const _MODEL_MAP = {
-  GX8E2D9A: 'bGxhbWEtMy4xLThiLWluc3RhbnQ=',           // fast, general
-  GX3C7D5F: 'bGxhbWEtMy4zLTcwYi12ZXJzYXRpbGU=',       // versatile, coding
-  GX9A5E1D: 'bGxhbWEtMy4xLThiLWluc3RhbnQ=',           // standard
-  COMPOUND: 'Z3JvcS9jb21wb3VuZC1taW5p',                 // compound-mini (web search)
-  COMPOUND_FULL: 'Z3JvcS9jb21wb3VuZA==',                // compound (multi-tool)
+  GX8E2D9A: 'bGxhbWEtMy4xLThiLWluc3RhbnQ=', // fast, general
+  GX3C7D5F: 'bGxhbWEtMy4zLTcwYi12ZXJzYXRpbGU=', // versatile, coding
+  GX9A5E1D: 'bGxhbWEtMy4xLThiLWluc3RhbnQ=', // standard
+  COMPOUND: 'Z3JvcS9jb21wb3VuZC1taW5p', // compound-mini (web search)
+  COMPOUND_FULL: 'Z3JvcS9jb21wb3VuZA==', // compound (multi-tool)
 };
 
 const _API_URL = Buffer.from(
@@ -69,7 +67,11 @@ async function chatCompletion(modelCode, messages, options = {}) {
 
     if (!response.ok) {
       // Drain body silently — never forward raw error with model names
-      try { await response.text(); } catch (_) {}
+      try {
+        await response.text();
+      } catch (_e) {
+        /* drain */
+      }
       const err = new Error(`AI_REQUEST_FAILED_${response.status}`);
       err.statusCode = response.status;
       throw err;
@@ -101,6 +103,54 @@ async function chatCompletionJSON(modelCode, messages, options = {}) {
   return {
     content: data.choices[0].message.content,
     usage: data.usage,
+  };
+}
+
+/**
+ * Non-streaming chat completion with tool results extraction
+ * For Compound AI models that return executed_tools (web_search, code_interpreter, etc.)
+ */
+async function chatCompletionWithTools(modelCode, messages, options = {}) {
+  const response = await chatCompletion(modelCode, messages, { ...options, stream: false });
+  const data = await response.json();
+
+  if (!data.choices || !data.choices[0] || !data.choices[0].message) {
+    throw new Error('Invalid API response');
+  }
+
+  const msg = data.choices[0].message;
+  const executedTools = msg.executed_tools || [];
+
+  // Extract structured sources from web_search tool results
+  const sources = [];
+  for (const tool of executedTools) {
+    if (tool.type === 'web_search' && tool.search_results && tool.search_results.results) {
+      for (const result of tool.search_results.results) {
+        let domain = '';
+        try {
+          domain = new URL(result.url).hostname;
+        } catch (_e) {
+          /* skip */
+        }
+        sources.push({
+          id: sources.length + 1,
+          title: result.title || domain,
+          url: result.url || '',
+          domain,
+          snippet: (result.content || '').substring(0, 200),
+          score: result.score || 0,
+          favicon: domain ? `https://www.google.com/s2/favicons?domain=${domain}&sz=32` : null,
+          image: null,
+        });
+      }
+    }
+  }
+
+  return {
+    content: msg.content || '',
+    usage: data.usage,
+    sources,
+    executedTools,
   };
 }
 
@@ -152,6 +202,7 @@ async function chatCompletionStream(modelCode, messages, res, options = {}) {
 module.exports = {
   chatCompletion,
   chatCompletionJSON,
+  chatCompletionWithTools,
   chatCompletionStream,
   resolveModel,
   _MODEL_MAP,
