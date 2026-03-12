@@ -9,52 +9,100 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
     steps:
-      - name: Check Vercel Project and Unpause
+      - name: Debug Vercel Status
         env:
           VT: ${{ secrets.VERCEL_TOKEN }}
         run: |
-          echo "=== Vercel API Check ==="
-          echo "Token available: $([ -n \"$VT\" ] && echo 'YES' || echo 'NO')"
-          echo "Token length: $(echo -n \"$VT\" | wc -c)"
+          echo "=== Token Check ==="
+          echo "Length: $(echo -n "$VT" | wc -c)"
 
           echo ""
-          echo "--- Project Status ---"
-          curl -s -w "\nHTTP: %{http_code}\n" \
-            -H "Authorization: Bearer $VT" \
-            "https://api.vercel.com/v9/projects/prj_z15xHHAw4uc4h3aXWHx6KFQNJ7jS?teamId=team_Thpt1qz2YEezX9COIDbSfAOP" \
-            | head -50
+          echo "=== Team/Account Info ==="
+          curl -s -H "Authorization: Bearer $VT" "https://api.vercel.com/v2/user" | python3 -c "
+          import json,sys
+          d=json.load(sys.stdin)
+          if 'user' in d:
+            u=d['user']
+            print(f\"User: {u.get('username','?')}\")
+            print(f\"Email: {u.get('email','?')}\")
+            print(f\"Billing: {u.get('billing',{}).get('plan','?')}\")
+            print(f\"SoftBlock: {u.get('softBlock',{})}\")
+          elif 'error' in d:
+            print(f\"Error: {d['error']}\")
+          " 2>/dev/null
 
           echo ""
-          echo "--- Unpause Attempt ---"
-          curl -s -w "\nHTTP: %{http_code}\n" -X PATCH \
-            -H "Authorization: Bearer $VT" \
-            -H "Content-Type: application/json" \
-            -d '{"paused":false}' \
-            "https://api.vercel.com/v9/projects/prj_z15xHHAw4uc4h3aXWHx6KFQNJ7jS?teamId=team_Thpt1qz2YEezX9COIDbSfAOP" \
-            | head -30
+          echo "=== Team Info ==="
+          curl -s -H "Authorization: Bearer $VT" "https://api.vercel.com/v2/teams/team_Thpt1qz2YEezX9COIDbSfAOP" | python3 -c "
+          import json,sys
+          d=json.load(sys.stdin)
+          print(f\"Name: {d.get('name','?')}\")
+          print(f\"Slug: {d.get('slug','?')}\")
+          print(f\"Billing Plan: {d.get('billing',{}).get('plan','?')}\")
+          print(f\"SoftBlock: {d.get('softBlock','none')}\")
+          print(f\"BlockedAt: {d.get('blockedAt','none')}\")
+          if 'error' in d:
+            print(f\"Error: {d['error']}\")
+          " 2>/dev/null
 
           echo ""
-          echo "--- Recent Deployments ---"
-          curl -s -w "\nHTTP: %{http_code}\n" \
-            -H "Authorization: Bearer $VT" \
-            "https://api.vercel.com/v6/deployments?projectId=prj_z15xHHAw4uc4h3aXWHx6KFQNJ7jS&teamId=team_Thpt1qz2YEezX9COIDbSfAOP&limit=2" \
-            | head -50
+          echo "=== Project Status ==="
+          curl -s -H "Authorization: Bearer $VT" "https://api.vercel.com/v9/projects/prj_z15xHHAw4uc4h3aXWHx6KFQNJ7jS?teamId=team_Thpt1qz2YEezX9COIDbSfAOP" | python3 -c "
+          import json,sys
+          d=json.load(sys.stdin)
+          print(f\"Name: {d.get('name','?')}\")
+          print(f\"Framework: {d.get('framework','?')}\")
+          print(f\"NodeVersion: {d.get('nodeVersion','?')}\")
+          print(f\"SpeedInsights: {d.get('speedInsights','?')}\")
+          link = d.get('link',{})
+          if link:
+            print(f\"Git: {link.get('type','?')} {link.get('org','?')}/{link.get('repo','?')}\")
+          targets = d.get('targets',{})
+          if targets:
+            for k,v in targets.items():
+              if isinstance(v,dict):
+                print(f\"Target {k}: id={v.get('id','?')[:15]} url={v.get('url','?')}\")
+          if 'error' in d:
+            print(f\"Error: {d['error']}\")
+          " 2>/dev/null
+
+          echo ""
+          echo "=== Latest Deployment ==="
+          curl -s -H "Authorization: Bearer $VT" "https://api.vercel.com/v6/deployments?projectId=prj_z15xHHAw4uc4h3aXWHx6KFQNJ7jS&teamId=team_Thpt1qz2YEezX9COIDbSfAOP&limit=1" | python3 -c "
+          import json,sys
+          d=json.load(sys.stdin)
+          for dep in d.get('deployments',[]):
+            print(f\"UID: {dep.get('uid','?')}\")
+            print(f\"State: {dep.get('state','?')}\")
+            print(f\"ReadyState: {dep.get('readyState','?')}\")
+            print(f\"URL: {dep.get('url','?')}\")
+            print(f\"Created: {dep.get('createdAt','?')}\")
+            print(f\"Target: {dep.get('target','?')}\")
+            meta = dep.get('meta',{})
+            print(f\"GitCommit: {meta.get('githubCommitSha','?')[:12] if meta.get('githubCommitSha') else '?'}\")
+          " 2>/dev/null
 
       - uses: actions/checkout@v4
 
-      - name: Setup and Deploy
+      - name: Install and Deploy
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
         run: |
           npm install --global vercel@latest
-          vercel deploy --prod --yes --token="$VERCEL_TOKEN" 2>&1 || echo "DEPLOY_STEP_FAILED"
+          echo "=== Vercel Pull ==="
+          vercel pull --yes --environment=production --token="$VERCEL_TOKEN" 2>&1
+          echo "=== Vercel Build ==="
+          vercel build --prod --token="$VERCEL_TOKEN" 2>&1 || echo "BUILD_SKIPPED"
+          echo "=== Vercel Deploy ==="
+          vercel deploy --prebuilt --prod --token="$VERCEL_TOKEN" 2>&1 || echo "DEPLOY_FAILED"
 
       - name: Check Site
         if: always()
         run: |
           sleep 15
-          echo "www.ailydian.com HTTP: $(curl -s -o /dev/null -w '%{http_code}' https://www.ailydian.com)"
-          echo "ailydian.com HTTP: $(curl -s -o /dev/null -w '%{http_code}' https://ailydian.com)"
+          echo "www.ailydian.com: $(curl -s -o /dev/null -w '%{http_code}' https://www.ailydian.com)"
+          echo "ailydian.com: $(curl -s -o /dev/null -w '%{http_code}' https://ailydian.com)"
