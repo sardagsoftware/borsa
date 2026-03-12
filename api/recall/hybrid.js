@@ -666,6 +666,9 @@ Başka bir konuda nasıl yardımcı olabilirim?`;
       responseType: 'ai_response',
       source: 'ai_engine',
       engine: 'AI_HYBRID_v3',
+      ...(aiResult.sources && aiResult.sources.length > 0 ? { sources: aiResult.sources } : {}),
+      ...(aiResult.images && aiResult.images.length > 0 ? { images: aiResult.images } : {}),
+      ...(aiResult.relatedQuestions && aiResult.relatedQuestions.length > 0 ? { relatedQuestions: aiResult.relatedQuestions } : {}),
       usage: aiResult.usage
         ? {
             promptTokens: aiResult.usage.prompt_tokens,
