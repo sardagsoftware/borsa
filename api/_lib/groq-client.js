@@ -121,9 +121,38 @@ async function chatCompletionWithTools(modelCode, messages, options = {}) {
   const msg = data.choices[0].message;
   const executedTools = msg.executed_tools || [];
 
-  // Extract structured sources from web_search tool results
+  // Extract structured sources from search tool results
+  // Groq Compound returns type:"search" with output as text (Title:\nURL:\nContent:\n blocks)
   const sources = [];
   for (const tool of executedTools) {
+    if ((tool.type === 'search' || tool.type === 'web_search') && tool.output) {
+      // Parse text output: "Title: ...\nURL: ...\nContent: ..." blocks
+      const blocks = tool.output.split(/(?=Title: )/);
+      for (const block of blocks) {
+        const titleMatch = block.match(/Title: (.+)/);
+        const urlMatch = block.match(/URL: (https?:\/\/\S+)/);
+        const contentMatch = block.match(/Content: ([\s\S]*?)(?=\n\nTitle: |\n*$)/);
+        if (titleMatch && urlMatch) {
+          let domain = '';
+          try {
+            domain = new URL(urlMatch[1]).hostname;
+          } catch (_e) {
+            /* skip */
+          }
+          sources.push({
+            id: sources.length + 1,
+            title: titleMatch[1].trim(),
+            url: urlMatch[1].trim(),
+            domain,
+            snippet: (contentMatch ? contentMatch[1].trim() : '').substring(0, 200),
+            score: 0,
+            favicon: domain ? `https://www.google.com/s2/favicons?domain=${domain}&sz=32` : null,
+            image: null,
+          });
+        }
+      }
+    }
+    // Also handle structured search_results format (future-proof)
     if (tool.type === 'web_search' && tool.search_results && tool.search_results.results) {
       for (const result of tool.search_results.results) {
         let domain = '';
